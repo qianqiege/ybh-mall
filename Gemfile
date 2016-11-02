@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Ruby wrapper for integrate Wechat Open Platform into Rails projects
+# https://github.com/lanrion/weixin_rails_middleware
+gem 'weixin_rails_middleware', '~> 1.3', '>= 1.3.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
