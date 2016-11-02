@@ -41,6 +41,17 @@ gem 'weixin_authorize', '~> 1.6', '>= 1.6.4'
 # https://rubygems.org/gems/config
 gem 'config', '~> 1.3'
 
+
+# Flexible authentication solution for Rails with Warden
+# https://github.com/plataformatec/devise
+gem 'devise'
+
+# The administration framework for Ruby on Rails applications. http://activeadmin.info
+# https://github.com/activeadmin/activeadmin
+# Active Admin master has preliminary support for Rails 5. To give it a try, these Gemfile changes may be needed:
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'activeadmin', '~> 1.0.0.pre4'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
