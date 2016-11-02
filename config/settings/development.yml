@@ -1,0 +1,18 @@
+weixin:
+  api_id: wx54acf8a779144bf4
+  api_secret: 5ecd72fe80eec4db1f5a16eb6a1dfcd9
+  host: https://justin.localtunnel.me/
+
+  menu:
+    button:
+    - type: "view"
+      name: "首页"
+      url: "http://spd.ybyt.cc/"
+    - name: "商城"
+      sub_button:
+        - type: "view"
+          name: "热销产品"
+          url: "http://spddev.ybyt.cc/"
+        - type: "view"
+          name: "我的订单"
+          url: "http://spddev.ybyt.cc/"
