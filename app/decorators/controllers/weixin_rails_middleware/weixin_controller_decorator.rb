@@ -82,6 +82,26 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       reply_text_message("关注公众账号")
     end
 
+
+    # 关注公众账号
+    def handle_subscribe_event
+      if @keyword.present?
+        # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
+        return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
+      end
+      open_id = @weixin_message.FromUserName
+      user_basic_info = $wechat_client.user(open_id).result
+
+      # user_basic_info example:
+      # {"subscribe"=>1, "openid"=>"oNlo_txgWmyaOkP3zHfOQ1CKkuX1", "nickname"=>"Justin_lu", "sex"=>1, "language"=>"zh_CN", "city"=>"广州", "province"=>"广东", "country"=>"中国", "headimgurl"=>"http://wx.qlogo.cn/mmopen/tc3nPPzyVdmATkEMaOe8DRoEhRHkXapSU8nia1KrIgA9nugDoQGeMiaPHVLH5A0kN69gbFoj73AuBDyzRGSq1GX6bADcCyUibwS/0", "subscribe_time"=>1463207136, "remark"=>"", "groupid"=>0, "tagid_list"=>[]}
+      @new_user = WechatUser.find_or_initialize_by open_id: open_id
+      @new_user.set_userinfo(user_basic_info)
+      @new_user.save
+
+      reply_text_message("欢迎关注精英慢病健康管理服务")
+    end
+
+
     # 取消关注
     def handle_unsubscribe_event
       Rails.logger.info("取消关注")
@@ -102,6 +122,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     # 点击菜单拉取消息时的事件推送
     def handle_click_event
       reply_text_message("你点击了: #{@keyword}")
+      render_nothing
     end
 
     # 点击菜单跳转链接时的事件推送
@@ -256,6 +277,10 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     # 未定义的事件处理
     def handle_undefined_event
       Rails.logger.info("回调事件处理")
+    end
+
+    def render_nothing
+      "nothing"
     end
 
 end

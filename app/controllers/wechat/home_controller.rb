@@ -1,4 +1,4 @@
-class Wechat::HomeController < ApplicationController
+class Wechat::HomeController < Wechat::BaseController
   def index
   end
 end
