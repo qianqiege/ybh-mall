@@ -1,6 +1,8 @@
 weixin:
   api_id: wx54acf8a779144bf4
   api_secret: 5ecd72fe80eec4db1f5a16eb6a1dfcd9
+  token: 9ea435f4ac0c6161f25d2253
+  secret: iZoqfJJJjGtG6nq-yER_1Ipb7wAu5D6V
   host: https://justin.localtunnel.me/
 
   menu:
