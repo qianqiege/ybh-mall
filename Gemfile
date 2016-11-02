@@ -33,6 +33,10 @@ gem 'jbuilder', '~> 2.5'
 # https://github.com/lanrion/weixin_rails_middleware
 gem 'weixin_rails_middleware', '~> 1.3', '>= 1.3.2'
 
+# Easiest way to manage multi-environment settings in any ruby project or framework: Rails, Sinatra, Pandrino and others
+# https://rubygems.org/gems/config
+gem 'config', '~> 1.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
