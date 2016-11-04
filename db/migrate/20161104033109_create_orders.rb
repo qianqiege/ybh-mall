@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.0]
       t.datetime :time
       t.string :people
       t.string :order_type
-      
+
 
       t.timestamps
     end
