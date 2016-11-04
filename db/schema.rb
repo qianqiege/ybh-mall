@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104031443) do
+ActiveRecord::Schema.define(version: 20161104035444) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -43,6 +43,67 @@ ActiveRecord::Schema.define(version: 20161104031443) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "product_number"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "number"
+    t.datetime "time"
+    t.string   "people"
+    t.string   "order_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "price"
+    t.string   "status"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "order_item_id"
+    t.string   "name"
+    t.text     "remark"
+    t.string   "shop_count"
+    t.boolean  "off_self"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "serves", force: :cascade do |t|
+    t.string   "server_name"
+    t.string   "server_level"
+    t.string   "server_money"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "set_meals", force: :cascade do |t|
+    t.integer  "vip_type_id"
+    t.string   "type"
+    t.string   "cost"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "vip_lvs", force: :cascade do |t|
+    t.integer  "vip_type_id"
+    t.integer  "set_meal_id"
+    t.string   "level"
+    t.string   "standard"
+    t.string   "rights"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "vip_records", force: :cascade do |t|
     t.string   "name"
     t.integer  "sex",               default: 0
@@ -54,6 +115,13 @@ ActiveRecord::Schema.define(version: 20161104031443) do
     t.string   "emergency_contact"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+  end
+
+  create_table "vip_types", force: :cascade do |t|
+    t.string   "vip_type"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "wechat_users", force: :cascade do |t|

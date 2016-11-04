@@ -1,0 +1,2 @@
+module Wechat::GoodsHelper
+end
