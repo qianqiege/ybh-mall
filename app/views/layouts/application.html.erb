@@ -7,38 +7,11 @@
 
     <%= csrf_meta_tags %>
 
-    <link rel=stylesheet href="//res.wx.qq.com/open/libs/weui/1.0.2/weui.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="page tabbar js_show">
-      <div class="page__bd" style="height: 100%;">
-        <div class="weui-tab">
-          <div class="weui-tab__panel">
-            <%= yield %>
-          </div>
-          <div class="weui-tabbar">
-            <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-              <%= image_tag("icon_tabbar.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">首页</p>
-            </a>
-            <a href="javascript:;" class="weui-tabbar__item">
-              <%= image_tag("icon_tabbar.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">分类</p>
-            </a>
-            <a href="javascript:;" class="weui-tabbar__item">
-              <%= image_tag("icon_tabbar.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">发现</p>
-            </a>
-            <a href="javascript:;" class="weui-tabbar__item">
-              <%= image_tag("icon_tabbar.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">我的</p>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= yield %>
   </body>
 </html>
