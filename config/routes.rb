@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   namespace :wechat do
     root "home#index"
     get 'goods/index'
+    get 'goods/classify'
+    get 'goods/shopping_car'
   end
 
 end
