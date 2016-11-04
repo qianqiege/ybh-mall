@@ -1,0 +1,2 @@
+class VipType < ApplicationRecord
+end
