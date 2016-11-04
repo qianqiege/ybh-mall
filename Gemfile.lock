@@ -9,7 +9,7 @@ GIT
       responders
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://ruby.taobao.org/
   specs:
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
