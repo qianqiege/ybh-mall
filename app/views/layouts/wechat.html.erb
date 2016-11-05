@@ -10,6 +10,9 @@
     <link rel=stylesheet href="//res.wx.qq.com/open/libs/weui/1.0.2/weui.min.css">
     <%= stylesheet_link_tag    'wechat', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'wechat', 'data-turbolinks-track': 'reload' %>
+    <% if Rails.env.development? %>
+      <script type='text/javascript' src="http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=2.5.0"></script>
+    <% end %>
   </head>
 
   <body>
