@@ -1,0 +1,10 @@
+<div class="weui-article">
+  <h1><%= @setmeal.name %></h1>
+  <section>
+    <% if @setmeal.content.present? %>
+      <%= raw @setmeal.content %>
+    <% else %>
+      <p>暂无内容</p>
+    <% end %>
+  </section>
+</div>
