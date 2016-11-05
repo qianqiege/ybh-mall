@@ -5,7 +5,7 @@ module Wechat
 
     helper_method :current_user
 
-    # before_action :get_wechat_sns_info, :current_user
+    before_action :get_wechat_sns_info, :current_user
 
     private
     def get_wechat_sns_info

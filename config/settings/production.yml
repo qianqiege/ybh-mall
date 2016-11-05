@@ -9,7 +9,7 @@ weixin:
     button:
     - type: "view"
       name: "首页"
-      url: "http://spd.ybyt.cc/"
+      url: "http://ybhm.ybyt.cc/wechat"
     - name: "商城"
       sub_button:
         - type: "view"
