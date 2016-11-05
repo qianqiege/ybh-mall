@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     root "home#index"
   end
 
+  root "wechat/home#index"
 end
