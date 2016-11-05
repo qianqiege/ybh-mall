@@ -60,6 +60,10 @@ gem 'carrierwave', '~> 0.11.2'
 # Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
+# https://github.com/galetahub/ckeditor/
+# CKEditor is a WYSIWYG text editor designed to simplify web content creation. It brings common word processing features directly to your web pages. Enhance your website experience with our community maintained editor. ckeditor.com
+gem 'ckeditor', '~> 4.2'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
