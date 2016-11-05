@@ -15,7 +15,7 @@ default: &default
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
 
 development:
   <<: *default
@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: YBH-mall_production
-  username: YBH-mall
-  password: <%= ENV['YBH-MALL_DATABASE_PASSWORD'] %>
+  username: root
+  password: 
