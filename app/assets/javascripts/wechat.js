@@ -13,4 +13,5 @@
 //= require zepto.min
 //= require swipe
 //= require turbolinks
+//= require wechat/base
 //= require wechat/home
