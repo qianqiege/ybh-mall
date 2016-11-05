@@ -52,3 +52,6 @@
 
 填写完以上两项信息后，点击“提交”即可完成配置。微信服务器会在这个时候POST 请求到我们的服务器，如果上述步骤全部正确并且没有疏漏，则应该会显示“配置成功”。如果提示失败，请重新仔细检查你的配置，如果确认配置没有问题，则有可能是网络问题，重试几次提交一般都能解决问题。
 
+
+## Getting start
+1. [Install Graphics Magick on CentOS 7](https://gist.github.com/abernardobr/e4292953fc84f9456cfa)
