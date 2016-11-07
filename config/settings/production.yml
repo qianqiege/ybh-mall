@@ -5,7 +5,6 @@ weixin:
   secret: iZoqfJJJjGtG6nq-yER_1Ipb7wAu5D6V
   host: http://ybhm.ybyt.cc
 
-
   menu:
     button:
     - type: "view"
@@ -17,19 +16,13 @@ weixin:
         - type: "view"
           name: "我的"
           url: "http://ybhm.ybyt.c/wechat/my/my_info"
-    - name: "服务"
-      sub_button:
-        - type: "view"
-          name: "我的服务"
-          url: "http://spddev.ybyt.cc/"
-        - type: "view"
-          name: "服务"
-          url: "http://spddev.ybyt.cc/"
     - name: "商城"
       sub_button:
         - type: "view"
-          name: "热销产品"
+          name: "商城首页"
           url: "http://spddev.ybyt.cc/"
+    - name: "服务"
+      sub_button:
         - type: "view"
-          name: "我的订单"
+          name: "龙氏脊筑服务"
           url: "http://spddev.ybyt.cc/"
