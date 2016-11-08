@@ -12,10 +12,10 @@ weixin:
       sub_button:
         - type: "view"
           name: "首页"
-          url: "http://ybhm.ybyt.c/wechat"
+          url: "http://ybhm.ybyt.cc/wechat"
         - type: "view"
           name: "我的"
-          url: "http://ybhm.ybyt.c/wechat/my/my_info"
+          url: "http://ybhm.ybyt.cc/wechat/user/info"
     - name: "商城"
       sub_button:
         - type: "view"
