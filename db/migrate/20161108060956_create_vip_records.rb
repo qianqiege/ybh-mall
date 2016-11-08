@@ -4,7 +4,7 @@ class CreateVipRecords < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :sex
       t.string :address
-      t.date :birthday
+      t.datetime :birthday
       t.integer :identity_card
       t.string :telephone
       t.string :mobile
