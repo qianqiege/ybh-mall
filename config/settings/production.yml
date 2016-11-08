@@ -8,13 +8,21 @@ weixin:
   menu:
     button:
     - type: "view"
-      name: "首页"
-      url: "http://ybhm.ybyt.cc/wechat"
+      name: "御邦会"
+      sub_button:
+        - type: "view"
+          name: "首页"
+          url: "http://ybhm.ybyt.c/wechat"
+        - type: "view"
+          name: "我的"
+          url: "http://ybhm.ybyt.c/wechat/my/my_info"
     - name: "商城"
       sub_button:
         - type: "view"
-          name: "热销产品"
+          name: "商城首页"
           url: "http://spddev.ybyt.cc/"
+    - name: "服务"
+      sub_button:
         - type: "view"
-          name: "我的订单"
+          name: "龙氏脊筑服务"
           url: "http://spddev.ybyt.cc/"

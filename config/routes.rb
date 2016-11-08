@@ -9,5 +9,9 @@ Rails.application.routes.draw do
     resources :setmeals
   end
 
+  namespace :wechat do
+    get 'user/info'
+  end
+
   root "wechat/home#index"
 end
