@@ -7,9 +7,12 @@ Rails.application.routes.draw do
   namespace :wechat do
     root "home#index"
     resources :setmeals
+    resources :member
+    resources :card
+    resources :server
   end
 
-  namespace :wechat do
+  namespace :user do
     get 'user/info'
   end
 

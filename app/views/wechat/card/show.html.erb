@@ -1,0 +1,12 @@
+<%= title @vipcard.name%>
+
+<div class="weui-article">
+  <h1><%= @vipcard.name %></h1>
+  <section>
+    <% if @vipcard.content.present? %>
+      <%= raw @vipcard.content %>
+    <% else %>
+      <p>暂无内容</p>
+    <% end %>
+  </section>
+</div>
