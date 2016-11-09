@@ -1,3 +1,3 @@
 class HousePoperty < ApplicationRecord
-  has_manys :VipCards
+  has_many :VipCards
 end
