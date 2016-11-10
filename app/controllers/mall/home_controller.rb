@@ -1,6 +1,6 @@
 class Mall::HomeController < Mall::BaseController
   def index
-    @slides = Slide::Mall.where(is_show: true).order(weight: :asc).limit(3)
+    @slides = Slide.where(is_show: true, tp: 2).order(weight: :asc).limit(3)
     @vip_types = VipType.all
     @setmeal = Setmeal.all
   end

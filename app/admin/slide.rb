@@ -1,6 +1,6 @@
 ActiveAdmin.register Slide do
 
-permit_params :desc, :image, :is_show, :weight, :url, :type
+permit_params :desc, :image, :is_show, :weight, :url, :tp
 
 index do
   selectable_column
@@ -15,7 +15,7 @@ index do
   column :url
   column :updated_at
   column "类型" do |slide|
-    Slide::HUMAN_TYPE[slide.type] if slide.type
+    Slide::HUMAN_TYPE[slide.tp.to_i] if slide.tp
   end
   actions
 end
@@ -27,7 +27,7 @@ form(:html => { :multipart => true }) do |f|
     f.input :is_show
     f.input :weight
     f.input :url
-    f.input :type, as: :select, collection: Slide::HUMAN_TYPE.invert, include_blank: false
+    f.input :tp, as: :select, collection: Slide::HUMAN_TYPE.invert, include_blank: false
   end
   f.actions
 end
