@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105195722) do
+ActiveRecord::Schema.define(version: 20161108074144) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -58,6 +58,105 @@ ActiveRecord::Schema.define(version: 20161105195722) do
     t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
+  create_table "house_poperties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "house_name"
+    t.string   "unit"
+    t.float    "price",          limit: 24
+    t.float    "total",          limit: 24
+    t.string   "discount"
+    t.float    "discount_price", limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "product_number"
+    t.string   "expressage_type"
+    t.string   "way"
+    t.string   "Logistics_type"
+    t.integer  "order_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "people"
+    t.string   "number"
+    t.datetime "order_time"
+    t.string   "order_type"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "price",         limit: 24
+    t.string   "status"
+    t.string   "way"
+    t.integer  "order_id"
+    t.integer  "order_item_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "product_name"
+    t.string   "product_price"
+    t.string   "shop_count"
+    t.string   "boolean"
+    t.string   "standard"
+    t.string   "product_sort"
+    t.string   "packaging"
+    t.string   "production"
+    t.string   "weight"
+    t.string   "standard_number"
+    t.string   "serial_number"
+    t.text     "remark",          limit: 65535
+    t.integer  "order_item_id"
+    t.integer  "shopping_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  create_table "receiver_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "receiver_address"
+    t.string   "receiver"
+    t.string   "receiver_telphone"
+    t.string   "receiver_type"
+    t.string   "receiver_date"
+    t.string   "receiver_company"
+    t.integer  "order_item_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "sender"
+    t.string   "sender_address"
+    t.string   "sender_telphone"
+    t.string   "sender_date"
+    t.string   "sender_type"
+    t.string   "sender_company"
+    t.integer  "order_item_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "serves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "serve_name"
+    t.string   "serve_level"
+    t.float    "serve_money", limit: 24
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "set_meal_serve_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "server_id"
+    t.integer  "setmeal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "setmeals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
@@ -68,6 +167,14 @@ ActiveRecord::Schema.define(version: 20161105195722) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "shoppings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "number"
+    t.string   "name"
+    t.float    "maney",      limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "slides", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "desc"
     t.string   "url"
@@ -76,6 +183,54 @@ ActiveRecord::Schema.define(version: 20161105195722) do
     t.integer  "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stock_rights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "count"
+    t.string   "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vip_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "vip_lv_id"
+    t.integer  "setmeal_id"
+    t.integer  "serve_id"
+    t.integer  "house_poperty_id"
+    t.integer  "stock_right_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "vip_lvs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "vip_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "sex"
+    t.string   "address"
+    t.datetime "birthday"
+    t.integer  "identity_card"
+    t.string   "telephone"
+    t.string   "mobile"
+    t.string   "emergency_contact"
+    t.integer  "vip_info_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "vip_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
