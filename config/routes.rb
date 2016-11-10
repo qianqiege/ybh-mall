@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :setmeals
   end
 
+  namespace :mall do
+    root "home#index"
+  end
+
   namespace :wechat do
     get 'user/info'
   end
