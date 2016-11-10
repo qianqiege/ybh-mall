@@ -15,3 +15,4 @@
 // require turbolinks
 //= require wechat/base
 //= require wechat/home
+//= require wechat/mall
