@@ -20,7 +20,7 @@ weixin:
       sub_button:
         - type: "view"
           name: "商城首页"
-          url: "http://spddev.ybyt.cc/mall"
+          url: "http://ybhm.ybyt.cc/mall"
     - name: "服务"
       sub_button:
         - type: "view"

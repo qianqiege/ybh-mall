@@ -120,11 +120,8 @@ ActiveRecord::Schema.define(version: 20161111062916) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "image"
-    t.string   "original_product_price"
-    t.string   "now_product_price"
-    t.boolean  "is_show"
+    t.string   "product_name"
+    t.string   "product_price"
     t.string   "shop_count"
     t.string   "boolean"
     t.string   "standard"
@@ -134,9 +131,11 @@ ActiveRecord::Schema.define(version: 20161111062916) do
     t.string   "weight"
     t.string   "standard_number"
     t.string   "serial_number"
-    t.text     "desc",                   limit: 65535
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.text     "remark",          limit: 65535
+    t.integer  "order_item_id"
+    t.integer  "shopping_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "receiver_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
