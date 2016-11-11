@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110091758) do
+ActiveRecord::Schema.define(version: 20161111062916) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -69,6 +69,26 @@ ActiveRecord::Schema.define(version: 20161110091758) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "membership_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "member_rank_id"
+    t.integer  "setmeal_id"
+    t.integer  "serve_id"
+    t.integer  "house_poperty_id"
+    t.integer  "stock_right_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "product_number"
     t.string   "expressage_type"
@@ -100,8 +120,11 @@ ActiveRecord::Schema.define(version: 20161110091758) do
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "product_name"
-    t.string   "product_price"
+    t.string   "name"
+    t.string   "image"
+    t.string   "original_product_price"
+    t.string   "now_product_price"
+    t.boolean  "is_show"
     t.string   "shop_count"
     t.string   "boolean"
     t.string   "standard"
@@ -111,11 +134,9 @@ ActiveRecord::Schema.define(version: 20161110091758) do
     t.string   "weight"
     t.string   "standard_number"
     t.string   "serial_number"
-    t.text     "remark",          limit: 65535
-    t.integer  "order_item_id"
-    t.integer  "shopping_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.text     "desc",                   limit: 65535
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "receiver_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -199,24 +220,6 @@ ActiveRecord::Schema.define(version: 20161110091758) do
     t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "vip_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "vip_lv_id"
-    t.integer  "setmeal_id"
-    t.integer  "serve_id"
-    t.integer  "house_poperty_id"
-    t.integer  "stock_right_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  create_table "vip_lvs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "vip_type_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "vip_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

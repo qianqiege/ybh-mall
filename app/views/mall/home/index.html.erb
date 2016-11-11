@@ -63,32 +63,23 @@
     </div>
     <div class="pro-list">
       <ul>
-        <li>
-          <a href="../../product.html?product_id=3617&amp;channel=double11">
-            <img src="http://prod.image.yit.com/5/7/57948cb68fa2e.jpg-h5square1" class="lazyload">
-            <h5>日本制双层盖陶锅 万古烧</h5>
-            <p class="sub-title">锁住米的香味和水分 烹饪时间更短 也更入味</p>
-            <span class="tag">好货价</span>
-            <p class="item-price">
-              <em>¥699</em>
-              <del>¥880</del>
-              <span class="pre-addcar"></span>
-            </p>
-          </a>
-        </li>
-        <li class="limit">
-          <a href="../../product.html?product_id=6873&amp;channel=double11">
-            <img src="http://prod.image.yit.com//5/8/5808ded600f02.jpg-h5square1" class="lazyload">
-            <h5>特惠 大养生壶K153 北鼎</h5>
-            <p class="sub-title">采用德国肖特玻璃，现在购买享特惠价和三重好礼</p>
-            <span class="tag">好货价 超值赠品</span>
-            <p class="item-price">
-              <em>¥978</em>
-              <!-- <del>&yen;1299</del> -->
-              <span class="pre-addcar"></span>
-            </p>
-          </a>
-        </li>
+        <% @products.each do |product| %>
+          <li>
+            <a href="">
+              <%= image_tag product.image_url %>
+              <h5><%= product.name %></h5>
+              <p class="sub-title"><%= product.desc %></p>
+              <span class="tag">好货价</span>
+              <p class="item-price">
+                <em><%= product.now_product_price %></em>
+                <% if product.original_product_price.present? %>
+                  <del><%= product.original_product_price %></del>
+                <% end %>
+                <span class="pre-addcar"></span>
+              </p>
+            </a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
