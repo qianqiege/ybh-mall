@@ -17,8 +17,6 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :serial_number
       t.text :desc
 
-      t.integer :order_item_id
-      t.integer :shopping_id
       t.timestamps
     end
   end
