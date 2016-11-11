@@ -2,7 +2,10 @@ class CreateProducts < ActiveRecord::Migration[5.0]
   def change
     create_table :products do |t|
       t.string :product_name
-      t.string :product_price
+      t.string :image
+      t.string :original_product_price
+      t.string :now_product_price
+      t.boolean :is_show
       t.string :shop_count
       t.string :boolean
       t.string :standard
