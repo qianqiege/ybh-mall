@@ -1,5 +1,5 @@
 class Serve < ApplicationRecord
-  has_many :VipCards
-  has_many :Setmeals, through: :SetMealServeRelations
-  has_many :SetMealServeRelations
+  has_many :membership_cards
+  has_many :setmeals, through: :set_meal_serve_relations
+  has_many :set_meal_serve_relations
 end

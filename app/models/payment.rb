@@ -1,4 +1,4 @@
 class Payment < ApplicationRecord
-  belongs_to :Order
-  belongs_to :OrderItem
+  belongs_to :order
+  belongs_to :order_item
 end
