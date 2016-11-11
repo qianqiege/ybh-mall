@@ -1,3 +1,3 @@
 class StockRight < ApplicationRecord
-  has_many :MembershipCards
+  has_many :membership_cards
 end
