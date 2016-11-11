@@ -1,3 +1,3 @@
 class StockRight < ApplicationRecord
-  has_many :VipCard
+  has_many :MembershipCards
 end

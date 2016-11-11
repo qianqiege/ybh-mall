@@ -1,4 +1,4 @@
 class VipRecord < ApplicationRecord
-  belongs_to :VipInfos
-  belongs_to :Users
+  belongs_to :vip_info
+  belongs_to :user
 end

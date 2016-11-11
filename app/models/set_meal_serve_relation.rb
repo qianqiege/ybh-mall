@@ -1,4 +1,4 @@
 class SetMealServeRelation < ApplicationRecord
-  belongs_to :Setmeal
-  belongs_to :Serve
+  belongs_to :setmeal
+  belongs_to :serve
 end

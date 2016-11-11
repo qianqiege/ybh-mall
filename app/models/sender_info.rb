@@ -1,3 +1,3 @@
 class SenderInfo < ApplicationRecord
-  belongs_to :OrderItem
+  belongs_to :order_item
 end

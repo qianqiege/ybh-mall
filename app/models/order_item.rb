@@ -1,7 +1,7 @@
 class OrderItem < ApplicationRecord
-  has_many :Products
-  has_one :Payment
-  has_one :ReceiverInfo
-  has_one :SenderInfo
-  belongs_to :Order
+  has_many :products
+  has_one :payment
+  has_one :receiver_info
+  has_one :sender_info
+  belongs_to :order
 end
