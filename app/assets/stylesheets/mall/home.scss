@@ -3,3 +3,96 @@
   opacity: 1;
   transform: scale(1, 1);
 }
+
+.pro-area {
+  background: #fff;
+  padding: 20px 0 0;
+  .pro-tit {
+    h2 {
+      padding: 0 0 20px 0;
+      text-align: center;
+      color: #333;
+      font-size: 17px;
+      position: relative;
+      &:after {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: #c1272d;
+        position: absolute;
+        left: 50%;
+        margin-left: -15px;
+        bottom: 10px;
+        text-align: center;
+      }
+    }
+  }
+  .pro-list {
+    padding: 0 0 0 10px;
+    h5 {
+      font-size: 15px;
+      color: #333;
+      padding: 6px 0 3px;
+      font-weight: 700;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .sub-title {
+      font-size: 13px;
+      color: #999;
+      line-height: 19px;
+      height: 38px;
+      overflow: hidden;
+    }
+    .tag {
+      font-size: 12px;
+      color: #ad0e11;
+    }
+    .item-price {
+      position: relative;
+      em {
+        font-size: 15px;
+        color: #ad0e11;
+      }
+      del {
+        font-size: 15px;
+        color: #999;
+        margin: 0 5px;
+        text-decoration: line-through;
+        position: relative;
+      }
+      .pre-addcar {
+        position: absolute;
+        right: 0;
+        top: -2px;
+        background: url(http://prod.image.yit.com/promotion/double11/images/activity/addbag.png) center /19px auto;
+        width: 19px;
+        height: 23px;
+        display: inline-block;
+      }
+    }
+    ul {
+      padding: 5px 0 0;
+      overflow: hidden;
+      list-style: none;
+      li {
+        list-style: none;
+        width: 50%;
+        padding: 0 10px 15px 0;
+        box-sizing: border-box;
+        float: left;
+        position: relative;
+        a {
+          color: #000;
+          text-decoration: none;
+        }
+        img {
+          width: 100%;
+          border: 1px solid #ededed;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}
