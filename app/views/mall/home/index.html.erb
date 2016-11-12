@@ -65,7 +65,7 @@
       <ul>
         <% @products.each do |product| %>
           <li>
-            <a href="">
+            <a href="<%= mall_product_path(product) %>">
               <%= image_tag product.image_url %>
               <h5><%= product.name %></h5>
               <p class="sub-title"><%= product.desc %></p>

@@ -1,0 +1,45 @@
+<div class="pro-show">
+  <div class="swiper-container swp_pro swiper-container-horizontal">
+    <ul class="swiper-wrapper">
+      <li class='swiper-slide swiper-slide-active'>
+        <%= image_tag @product.image_url %>
+      </li>
+    </ul>
+  </div>
+  <div class="pro-info">
+    <p class="name"><%= @product.name %></p>
+    <p class="price">¥<%= @product.now_product_price %></p>
+  </div>
+</div>
+
+<ul class="list-type">
+  <li class="arrow-right">
+    <span class="choosed">包装：<%= @product.packaging %></span>
+  </li>
+  <li class="arrow-right">
+    <span class="choosed">生产厂家：<%= @product.production %></span>
+  </li>
+
+  <li class="arrow-right">
+    <span class="choosed">说明：<%= @product.desc %></span>
+  </li>
+</ul>
+
+<div class="fixed-ft">
+  <div class='operation flex'>
+    <a class="flex-item home" href="/">
+      <i class="icon-pre"></i>
+      首页
+    </a>
+    <a class="flex-item home" href="/">
+      <i class="icon-car"></i>
+      购物车
+    </a>
+    <a class="flex-item home" href="/">
+      <i class="icon-wechat"></i>
+      客服
+    </a>
+    <a class="flex-item btn add-car">加入购物袋</a>
+    <a class="flex-item btn buy">立即购买</a>
+  </div>
+</div>
