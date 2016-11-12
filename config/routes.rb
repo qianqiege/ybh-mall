@@ -17,14 +17,5 @@ Rails.application.routes.draw do
     get 'user/info'
   end
 
-  namespace :serve do
-    root "home#index"
-    resources :dragon
-  end
-
-  namespace :user do
-    root "home#index"
-  end
-
   root "wechat/home#index"
 end
