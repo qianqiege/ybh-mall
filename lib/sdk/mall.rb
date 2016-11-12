@@ -8,7 +8,7 @@ module Sdk
       @api_url = Settings.external.api_url
     end
 
-    def exec(method, url, params ={})
+    def exec(method, url, payload ={})
       headers = {
         "Content-Type": "application/json",
         'App-Id': app_id
@@ -17,7 +17,7 @@ module Sdk
         url: api_url + url,
         headers: headers,
         method: method,
-        params: params
+        payload: payload
       })
       signed_request = ApiAuth.sign!(request, app_id, secret_key)
       JSON.parse(signed_request.execute)
