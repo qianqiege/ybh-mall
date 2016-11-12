@@ -64,6 +64,13 @@ gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 # CKEditor is a WYSIWYG text editor designed to simplify web content creation. It brings common word processing features directly to your web pages. Enhance your website experience with our community maintained editor. ckeditor.com
 gem 'ckeditor', '~> 4.2'
 
+# Full HMAC auth implementation for use in your gems and Rails apps.
+# https://rubygems.org/gems/api-auth
+gem 'api-auth', '~> 2.0', '>= 2.0.1'
+
+# https://rubygems.org/gems/rest-client
+# A simple HTTP and REST client for Ruby, inspired by the Sinatra microframework style of specifying actions: get, put, post, delete.
+gem 'rest-client', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
