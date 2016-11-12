@@ -69,6 +69,83 @@
   margin-bottom: 10px;
   .arrow-right {
     padding-right: 30px;
+    .amount {
+      position: relative;
+      width: 95px;
+      height: 28px;
+      line-height: 26px;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: -3px;
+      .increase, .decrease {
+        position: relative;
+        float: left;
+        width: 30px;
+        height: 28px;
+        text-align: center;
+        color: #999;
+        font-size: 0;
+        &:before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin: -1px 0 0 -5px;
+          width: 10px;
+          height: 2px;
+          background: #7d7d7d;
+        }
+      }
+      .increase {
+        margin-right: -2px;
+        background: #f0f0f0;
+        &:after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin: -5px 0 0 -1px;
+          width: 2px;
+          height: 10px;
+          background: #7d7d7d;
+        }
+      }
+      .disable {
+        background: #f0f0f0;
+        &:before {
+          background: #c6c6c6;
+        }
+        &:after {
+          background: #c6c6c6;
+        }
+      }
+      .num {
+        float: left;
+        width: 35px;
+        height: 28px;
+        text-align: center;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 0;
+        border: 0 none;
+        vertical-align: middle;
+        font-size: 100%;
+        font: normal 14px/1.5 Heiti SC,Arial,Lucida Grande,Verdana,STXhei,Microsoft YaHei,hei;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        width: 36px;
+        height: 29px;
+        left: 30px;
+        top: -1px;
+      }
+    }
   }
 
   li {
@@ -179,4 +256,8 @@
     box-flex: 1;
     flex: 1;
   }
+}
+
+.fr {
+  float: right;
 }
