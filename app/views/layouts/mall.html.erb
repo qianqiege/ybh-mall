@@ -10,28 +10,30 @@
           <div class="weui-tab__panel">
             <%= yield %>
           </div>
-          <div class="weui-tabbar">
-            <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-              <%= image_tag("home.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">首页</p>
-            </a>
-            <a href="javascript:;" class="weui-tabbar__item">
-              <%= image_tag("category.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">分类</p>
-            </a>
-            <a href="javascript:;" class="weui-tabbar__item">
-              <%= image_tag("cart.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">购物车</p>
-            </a>
-            <a href="javascript:;" class="weui-tabbar__item">
-              <%= image_tag("discover.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">发现</p>
-            </a>
-            <a href="javascript:;" class="weui-tabbar__item">
-              <%= image_tag("person.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">我的</p>
-            </a>
-          </div>
+          <% unless @no_fotter %>
+            <div class="weui-tabbar">
+              <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                <%= image_tag("home.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">首页</p>
+              </a>
+              <a href="javascript:;" class="weui-tabbar__item">
+                <%= image_tag("category.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">分类</p>
+              </a>
+              <a href="javascript:;" class="weui-tabbar__item">
+                <%= image_tag("cart.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">购物车</p>
+              </a>
+              <a href="javascript:;" class="weui-tabbar__item">
+                <%= image_tag("discover.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">发现</p>
+              </a>
+              <a href="javascript:;" class="weui-tabbar__item">
+                <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">我的</p>
+              </a>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

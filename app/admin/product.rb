@@ -5,7 +5,9 @@ ActiveAdmin.register Product do
                 :shop_count,
                 :image,
                 :desc,
-                :is_show
+                :is_show,
+                :production,
+                :packaging
 
   index do
     selectable_column
@@ -20,6 +22,8 @@ ActiveAdmin.register Product do
     column :is_show
     column :shop_count
     column :desc
+    column :production
+    column :packaging
     actions
   end
 
@@ -30,6 +34,8 @@ ActiveAdmin.register Product do
       f.input :original_product_price
       f.input :shop_count
       f.input :is_show
+      f.input :production
+      f.input :packaging
       f.input :image, as: :file
       f.input :desc
     end

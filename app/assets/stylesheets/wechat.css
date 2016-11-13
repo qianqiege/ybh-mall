@@ -13,5 +13,6 @@
  *= require wechat/base
  *= require wechat/home
  *= require mall/home
+ *= require mall/products
  *= require_self
  */

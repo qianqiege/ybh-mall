@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :mall do
     root "home#index"
+    resources :products, only: [:show]
   end
 
   namespace :wechat do
