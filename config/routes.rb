@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :mall do
     root "home#index"
     resources :products, only: [:show]
+    get '/authenticate_phone', to: 'authenticate#phone'
   end
 
   namespace :wechat do
