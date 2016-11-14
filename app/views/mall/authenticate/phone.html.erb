@@ -22,10 +22,18 @@
       <div class="login_content">
         <input id="txtValidatedCode" placeholder="短信中6位数字" type="text">
         <div id="smsgetCode" class="get_code fr">发送验证码</div>
+        <div id="resetText" class="get_code hide fr">重新发送(<span id="smsTimeText"></span>)</div>
       </div>
     </div>
     <div class="btnPanel">
       <a class="btn_login" id="txtlogin">手机号验证</a>
     </div>
+  </div>
+</div>
+
+<div id="toast">
+  <div class="weui-mask_transparent"></div>
+  <div class="weui-toast">
+    <p class="weui-toast__content">已完成</p>
   </div>
 </div>
