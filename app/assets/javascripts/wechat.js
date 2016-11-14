@@ -16,3 +16,5 @@
 //= require wechat/base
 //= require wechat/home
 //= require wechat/mall
+//= require serve/reservation
+//= require serve/app

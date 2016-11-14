@@ -4,6 +4,5 @@ class Serve::HomeController < Wechat::BaseController
     @serves = Serve.all
   end
   def show
-
   end
 end

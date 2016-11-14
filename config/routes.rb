@@ -14,10 +14,6 @@ Rails.application.routes.draw do
     resources :products, only: [:show]
   end
 
-  namespace :wechat do
-    get 'user/info'
-  end
-
   namespace :serve do
     root "home#index"
     resources :dragon
