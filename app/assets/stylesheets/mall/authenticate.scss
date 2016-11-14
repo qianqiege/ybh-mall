@@ -7,7 +7,7 @@
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-font-smoothing: antialiased;
   color: #000;
-  
+
   button, fieldset, img, input {
     border: 0 none;
     vertical-align: middle;
@@ -134,4 +134,11 @@
   background-color: #000;
   color: #fff;
   text-align: center;
+}
+
+.custom-weui-toast {
+  top: 280px;
+  min-height: 1.6em;
+  line-height: 2.6em;
+  height: 2.6em;
 }

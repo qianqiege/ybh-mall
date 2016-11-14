@@ -4,11 +4,19 @@ $(function () {
 
     // 默认为1分钟
     var time = 1 * 60,
-        mobile = $.trim($("#txtCustomerID").val()),
-        $smsTimeText = $("#smsTimeText");
+        mobile = $.trim($("#txtCustomerID").val()).replace(/\s/g, ""),
+        $smsTimeText = $("#smsTimeText"),
+        $toast = $("#toast");
 
     if (!validateMobile(mobile)) {
-      console.log('无效的手机号码')
+      if (!$toast.hasClass('hide')) return;
+
+      $toast.removeClass('hide')
+
+      setTimeout(function () {
+        $toast.addClass('hide');
+      }, 2000);
+
       return;
     }
 

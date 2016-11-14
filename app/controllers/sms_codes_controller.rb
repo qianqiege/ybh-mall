@@ -30,6 +30,6 @@ class SmsCodesController < ApplicationController
   end
 
   def generate_code
-    rand(100000..999999).to_i.to_s
+    rand(100000..999999).to_s
   end
 end
