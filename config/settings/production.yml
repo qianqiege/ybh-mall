@@ -24,5 +24,5 @@ weixin:
     - name: "服务"
       sub_button:
         - type: "view"
-          name: "龙氏脊筑服务"
-          url: "http://spddev.ybyt.cc/"
+          name: "服务首页"
+          url: "http://ybhm.ybyt.cc/serve"
