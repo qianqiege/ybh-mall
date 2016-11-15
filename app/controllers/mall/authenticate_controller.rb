@@ -1,5 +1,8 @@
 class Mall::AuthenticateController < Mall::BaseController
   def phone
+    if bind_phone?
+      redirect_to session[:return_to] || '/'
+    end
     @no_fotter = true
   end
 

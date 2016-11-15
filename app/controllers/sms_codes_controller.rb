@@ -3,7 +3,7 @@ class SmsCodesController < ApplicationController
     if sms_code.blank? or ( Time.now - sms_created_at ) > 1.minutes
       code = generate_code
       if Rails.env.production?
-        # 发送短信代码
+        SendSms.send(params[:mobile], code)
       else
         logger.info "sms code send: #{code} to mobile: #{params[:mobile]}"
       end
