@@ -28,4 +28,8 @@ class WechatUser < ApplicationRecord
       0
     end
   end
+
+  def update_mobile(mobile)
+    self.update_attribute(:mobile, mobile)
+  end
 end
