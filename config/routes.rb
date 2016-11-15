@@ -9,13 +9,13 @@ Rails.application.routes.draw do
     resources :setmeals
   end
 
+  namespace :wechat do
+    get 'member/card'
+  end
+
   namespace :mall do
     root "home#index"
     resources :products, only: [:show]
-  end
-
-  namespace :wechat do
-    get 'user/info'
   end
 
   namespace :serve do

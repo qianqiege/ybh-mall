@@ -1,4 +1,5 @@
 class MembershipCard < ApplicationRecord
+  include ImageConcern
   belongs_to :member_rank
   belongs_to :setmeal
   belongs_to :serve
