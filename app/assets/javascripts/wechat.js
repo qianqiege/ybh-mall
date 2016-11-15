@@ -15,4 +15,7 @@
 // require turbolinks
 //= require wechat/base
 //= require wechat/home
-//= require wechat/mall
+//= require mall/base
+//= require mall/home
+//= require mall/products
+//= require mall/authenticate

@@ -4,14 +4,14 @@
       <li>
         <a href="<%= slide.url %>">
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="<%= slide.thumb_url %>" alt="">
-          </a>
-          <div class="slide-desc"><%= slide.desc %></div>
-        </li>
-      <% end %>
-    </ul>
-    <div class="dot">
-      <% @slides.each do |slide|%>
-        <span></span>
-      <% end %>
-    </div>
+        </a>
+        <div class="slide-desc"><%= slide.desc %></div>
+      </li>
+    <% end %>
+  </ul>
+  <div class="dot">
+    <% @slides.each do |slide|%>
+      <span></span>
+    <% end %>
   </div>
+</div>
