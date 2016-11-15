@@ -1,4 +1,5 @@
 ActiveAdmin.register VipType do
+  menu parent: "会员管理"
 
   permit_params :name, :image, :remark
 
@@ -25,5 +26,4 @@ ActiveAdmin.register VipType do
     end
     f.actions
   end
-
 end

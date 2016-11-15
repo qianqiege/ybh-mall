@@ -1,5 +1,6 @@
 ActiveAdmin.register MembershipCard do
   permit_params :name, :image, :desc
+  menu parent: "会员管理"
 
   index do
     selectable_column
@@ -34,6 +35,4 @@ ActiveAdmin.register MembershipCard do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
-
 end

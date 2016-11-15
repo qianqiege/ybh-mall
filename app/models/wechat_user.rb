@@ -1,4 +1,5 @@
 class WechatUser < ApplicationRecord
+  has_one :cart
   serialize :access_token_info, JSON
   serialize :auth_hash, Hash
 
@@ -18,5 +19,13 @@ class WechatUser < ApplicationRecord
 
   def is_wechat_authorized?
     access_token_info.present?
+  end
+
+  def cart_count
+    if cart.present?
+      cart.line_items.to_a.sum { |item| item.quantity }
+    else
+      0
+    end
   end
 end

@@ -6,16 +6,10 @@ $(function () {
     var time = 1 * 60,
         mobile = $.trim($("#txtCustomerID").val()).replace(/\s/g, ""),
         $smsTimeText = $("#smsTimeText"),
-        $toast = $("#toast");
+        $toast = $("#toast-custom");
 
     if (!validateMobile(mobile)) {
-      if (!$toast.hasClass('hide')) return;
-
-      $toast.removeClass('hide')
-
-      setTimeout(function () {
-        $toast.addClass('hide');
-      }, 2000);
+      showFlash("#toast-custom", '无效的手机号码');
 
       return;
     }

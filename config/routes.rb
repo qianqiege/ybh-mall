@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     root "home#index"
     resources :products, only: [:show]
     get '/authenticate_phone', to: 'authenticate#phone'
+    resources :line_items, only: [:create]
+    resources :carts, only: [:show, :destroy]
   end
   resource :sms_code, only: [:show]
 
