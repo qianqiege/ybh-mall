@@ -22,5 +22,7 @@ module YBHMall
     # load carrierware files
     config.autoload_paths += Dir["#{Rails.root}/app/uploaders"]
     config.autoload_paths << Rails.root.join('lib')
+    config.time_zone = 'Beijing'
+    config.i18n.default_locale = :'zh-CN'
   end
 end

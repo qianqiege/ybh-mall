@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115015534) do
+ActiveRecord::Schema.define(version: 20161115023941) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(version: 20161115015534) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -67,6 +72,14 @@ ActiveRecord::Schema.define(version: 20161115015534) do
     t.float    "discount_price", limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "product_id"
+    t.integer "cart_id"
+    t.integer "quantity",   default: 1
+    t.index ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+    t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
   end
 
   create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -122,11 +135,10 @@ ActiveRecord::Schema.define(version: 20161115015534) do
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
-    t.string   "original_product_price"
-    t.string   "now_product_price"
+    t.decimal  "original_product_price",               precision: 10, scale: 2
+    t.decimal  "now_product_price",                    precision: 10, scale: 2
     t.boolean  "is_show"
     t.string   "shop_count"
-    t.string   "boolean"
     t.string   "standard"
     t.string   "product_sort"
     t.string   "packaging"
@@ -135,8 +147,8 @@ ActiveRecord::Schema.define(version: 20161115015534) do
     t.string   "standard_number"
     t.string   "serial_number"
     t.text     "desc",                   limit: 65535
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
   end
 
   create_table "receiver_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -187,14 +199,6 @@ ActiveRecord::Schema.define(version: 20161115015534) do
     t.float    "const",      limit: 24
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-  end
-
-  create_table "shoppings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "number"
-    t.string   "name"
-    t.float    "maney",      limit: 24
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
   end
 
   create_table "slides", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

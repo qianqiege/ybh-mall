@@ -1,0 +1,15 @@
+zh-CN:
+  activerecord:
+    attributes:
+      product:
+        name: "标题"
+        original_product_price: "原价"
+        now_product_price: "现价"
+        is_show: "是否显示"
+        shop_count: '库存'
+        packaging: '包装'
+        production: '厂家'
+        image: '展示图片'
+        desc: '描述'
+    models:
+      product: "商品"
