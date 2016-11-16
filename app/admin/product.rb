@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  menu parent: "商城", label: "商品管理"
+  menu parent: I18n.t("active_admin.menu.mall"), label: "商品管理"
   permit_params :name,
                 :now_product_price,
                 :original_product_price,

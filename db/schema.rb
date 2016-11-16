@@ -100,8 +100,9 @@ ActiveRecord::Schema.define(version: 20161115081008) do
     t.integer  "serve_id"
     t.integer  "house_poperty_id"
     t.integer  "stock_right_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.text     "desc",             limit: 65535
   end
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -165,6 +166,15 @@ ActiveRecord::Schema.define(version: 20161115081008) do
     t.datetime "updated_at",        null: false
   end
 
+  create_table "reservation_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "time"
+    t.integer  "service_staff_id"
+    t.integer  "serve_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "sender"
     t.string   "sender_address"
@@ -179,11 +189,19 @@ ActiveRecord::Schema.define(version: 20161115081008) do
 
   create_table "serves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "serve_name"
-    t.string   "serve_level"
-    t.float    "serve_money", limit: 24
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "url"
+  end
+
+  create_table "service_staffs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "grade"
+    t.string   "city"
+    t.integer  "serve_number"
+    t.integer  "serve_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "set_meal_serve_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

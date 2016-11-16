@@ -1,5 +1,5 @@
 ActiveAdmin.register MemberRank do
-  menu parent: "会员管理"
+  menu parent: I18n.t("active_admin.menu.member_manage")
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

@@ -12,7 +12,7 @@
 //
 //= require zepto.min
 //= require swipe
-// require turbolinks
+//= require turbolinks
 //= require wechat/base
 //= require wechat/home
 //= require mall/base
