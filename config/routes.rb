@@ -25,7 +25,8 @@ Rails.application.routes.draw do
 
   namespace :serve do
     root "home#index"
-    resources :dragon
+    get 'buildspine/reservation'
+    resources :buildspine
   end
 
   namespace :user do
