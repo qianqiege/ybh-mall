@@ -4,7 +4,7 @@ class CreateWordstations < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :city
 
-      t.integet :service_staff_id
+      t.integer :service_staff_id
       t.timestamps
     end
   end
