@@ -7,6 +7,10 @@ class Mall::LineItemsController < Mall::BaseController
   def create
     quantity = params[:quantity].to_i
     product = Product.find(params[:product_id])
+    if quantity > product.shop_count.to_i
+      render plain: '非法操作', status: :bad_request
+      return
+    end
     @line_item = @cart.add_product(product, quantity)
     if @line_item.save
       render json: { quantity: quantity }
