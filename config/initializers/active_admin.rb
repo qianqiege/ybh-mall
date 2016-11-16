@@ -273,10 +273,8 @@ ActiveAdmin.setup do |config|
   # http://activeadmin.info/docs/2-resource-customization.html
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
-      menu.add label: '商城', priority: 2
-    end
-    admin.build_menu do |menu|
-      menu.add label: '会员管理', priority: 3
+      menu.add label: I18n.t("active_admin.menu.mall"), priority: 2
+      menu.add label: I18n.t("active_admin.menu.member_manage"), priority: 3
     end
   end
 end

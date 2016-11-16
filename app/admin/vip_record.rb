@@ -1,5 +1,5 @@
 ActiveAdmin.register VipRecord do
-  menu parent: "会员管理"
+  menu parent: I18n.t("active_admin.menu.member_manage")
   permit_params :name,
                 :sex,
                 :address,

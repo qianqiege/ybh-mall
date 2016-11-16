@@ -1,4 +1,8 @@
 zh-CN:
+  active_admin:
+    menu:
+      mall: '商城'
+      member_manage: '会员管理'
   activerecord:
     attributes:
       product:
