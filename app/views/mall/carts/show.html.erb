@@ -1,0 +1,15 @@
+<div class='bind_phone'>
+  <div class="page-title">
+    <h2 class="text-cen">
+      <span>我的购物车</span>
+    </h2>
+  </div>
+  <div class="wraper pt50">
+    <% if @line_items.empty? %>
+      <div class="empty-car">
+        <i class="icon"></i>
+        <p class="gray84 mt10">你的购物车还是空的</p>
+      </div>    
+    <% end %>
+  </div>
+</div>

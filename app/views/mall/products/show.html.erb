@@ -39,10 +39,10 @@
       <i class="icon-pre"></i>
       首页
     </a>
-    <a class="flex-item home" href="/">
+    <a class="flex-item home" href="<%= mall_cart_path() %>">
       <i class="icon-car"></i>
-      <i class="num <%= current_cart_count.to_i > 0 ? '' : 'hide' %>" id="carNum">
-        <%= current_cart_count.to_i %>
+      <i class="num <%= current_cart_count > 0 ? '' : 'hide' %>" id="carNum">
+        <%= current_cart_count %>
       </i>
       购物车
     </a>

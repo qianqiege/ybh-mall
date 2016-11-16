@@ -22,7 +22,6 @@ $(function () {
       url: '/mall/line_items',
       data: { product_id: $(this).data("product_id"), quantity: parseInt($buyNum.val())},
       dataType: 'json',
-      timeout: 300,
       success: function(data){
         if (data.location) {
           window.location.href = data.location;

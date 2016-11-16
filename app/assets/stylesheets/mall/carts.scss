@@ -1,0 +1,17 @@
+.empty-car {
+  margin-bottom: 10px;
+  padding: 30px;
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  .icon {
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    background: image-url("empty_cart.png") no-repeat;
+    background-size: 50px auto;
+  }
+}
