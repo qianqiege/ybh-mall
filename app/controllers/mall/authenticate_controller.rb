@@ -7,7 +7,7 @@ class Mall::AuthenticateController < Mall::BaseController
   end
 
   def bind_phone
-    if sms_code_validate(params[:code])
+    if sms_code_validate(params[:code], params[:mobile])
       current_user.update_mobile(params[:mobile])
       # 绑定有折扣的会员vip
       redirect_to session[:return_to]
