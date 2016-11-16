@@ -3,6 +3,9 @@ zh-CN:
     menu:
       mall: '商城'
       member_manage: '会员管理'
+      serve_manage: '服务管理'
+      user_manage: '用户管理'
+      view_manage: '页面管理'
   activerecord:
     attributes:
       product:

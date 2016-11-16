@@ -1,6 +1,6 @@
 ActiveAdmin.register MembershipCard do
+  menu parent: I18n.t("active_admin.menu.member_manage")
   permit_params :name, :image, :desc
-  menu parent: "会员管理"
 
   index do
     selectable_column
@@ -16,8 +16,13 @@ ActiveAdmin.register MembershipCard do
   end
 
   form(:html => { :multipart => true }) do |f|
-    f.inputs "会员卡级别" do
+    f.inputs "会员卡" do
       f.input :name
+      f.input :member_rank
+      f.input :setmeal
+      f.input :serve
+      f.input :house_poperty
+      f.input :stock_right
       f.input :image, :as => :file
       f.input :desc
     end

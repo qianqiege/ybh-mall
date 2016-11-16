@@ -1,5 +1,6 @@
 # https://github.com/activeadmin/activeadmin/wiki/Ckeditor-integration
 ActiveAdmin.register Setmeal do
+  menu parent: I18n.t("active_admin.menu.member_manage")
   permit_params :name, :image, :content, :type, :const
 
   index do

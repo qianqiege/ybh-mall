@@ -1,5 +1,5 @@
 ActiveAdmin.register WechatUser do
-  menu parent: I18n.t("active_admin.menu.member_manage")
+  menu parent: I18n.t("active_admin.menu.user_manage")
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
