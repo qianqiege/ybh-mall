@@ -1,0 +1,2 @@
+class SpineBuild < ApplicationRecord
+end
