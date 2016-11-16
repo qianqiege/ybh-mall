@@ -6,17 +6,10 @@ $(function () {
     var time = 1 * 60,
         mobile = $.trim($("#txtCustomerID").val()).replace(/\s/g, ""),
         $smsTimeText = $("#smsTimeText"),
-        $toast = $("#toast");
+        $toast = $("#toast-custom");
 
     if (!validateMobile(mobile)) {
-      if (!$toast.hasClass('hide')) return;
-
-      $toast.removeClass('hide')
-
-      setTimeout(function () {
-        $toast.addClass('hide');
-      }, 2000);
-
+      showFlash("#toast-custom", '无效的手机号码');
       return;
     }
 
@@ -37,4 +30,24 @@ $(function () {
       $("#resetText").addClass('hide');
     }.bind(this), time * 1000)
   });
+
+  // 提交
+  $("#txtlogin").on('click', function(event) {
+    event.preventDefault();
+
+    var mobile = $.trim($("#txtCustomerID").val()).replace(/\s/g, ""),
+        code = $.trim($("#txtValidatedCode").val()).replace(/\s/g, "");
+
+    if (!validateMobile(mobile)) {
+      showFlash("#toast-custom", '无效的手机号码');
+      return;
+    }
+
+    if(!validateCode(code)) {
+      showFlash("#toast-custom", '无效的验证码');
+      return;
+    }
+
+    $("#bind_phone_form").submit();
+  })
 });

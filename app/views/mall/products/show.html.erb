@@ -41,13 +41,16 @@
     </a>
     <a class="flex-item home" href="/">
       <i class="icon-car"></i>
+      <i class="num <%= current_cart_count.to_i > 0 ? '' : 'hide' %>" id="carNum">
+        <%= current_cart_count.to_i %>
+      </i>
       购物车
     </a>
-    <a class="flex-item home" href="/">
+    <a class="flex-item footer_link" href="/">
       <i class="icon-wechat"></i>
       客服
     </a>
-    <a class="flex-item btn add-car">加入购物袋</a>
+    <a class="flex-item btn add-car" data-product_id="<%= @product.id %>" id="add_cart">加入购物车</a>
     <a class="flex-item btn buy">立即购买</a>
   </div>
 </div>

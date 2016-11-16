@@ -1,29 +1,30 @@
 ActiveAdmin.register WechatUser do
+  menu parent: "会员管理"
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
-index do
-  selectable_column
-  id_column
+  # See permitted parameters documentation:
+  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+  #
+  # permit_params :list, :of, :attributes, :on, :model
+  #
+  # or
+  #
+  # permit_params do
+  #   permitted = [:permitted, :attributes]
+  #   permitted << :other if resource.something?
+  #   permitted
+  # end
+  index do
+    selectable_column
+    id_column
 
-  column "Headimgurl" do |user|
-    image_tag(user.headimgurl, size: "40x40", :alt => "wechat head image")
+    column "Headimgurl" do |user|
+      image_tag(user.headimgurl, size: "40x40", :alt => "wechat head image")
+    end
+    column :open_id
+    column :nickname
+    column :subscribe
+    column :auth_hash
+
+    actions
   end
-  column :open_id
-  column :nickname
-  column :subscribe
-  column :auth_hash
-
-  actions
-end
 end

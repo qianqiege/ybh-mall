@@ -1,4 +1,5 @@
 ActiveAdmin.register VipRecord do
+  menu parent: "会员管理"
   permit_params :name,
                 :sex,
                 :address,
@@ -21,6 +22,4 @@ ActiveAdmin.register VipRecord do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
-
 end

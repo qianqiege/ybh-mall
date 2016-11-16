@@ -178,6 +178,19 @@
   height: 50px;
   line-height: 50px;
   bottom: 0!important;
+  .num {
+    position: absolute;
+    right: 11px;
+    top: 3px;
+    height: 14px;
+    padding: 0 4px;
+    background: #ad0e11;
+    border-radius: 7px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    line-height: 14px;
+  }
   .btn {
     height: 50px;
     line-height: 50px;
@@ -195,7 +208,7 @@
     color: #666;
     background: #fff;
   }
-  .home {
+  .footer_link {
     display: block!important;
     position: relative;
     text-align: center;
@@ -230,6 +243,9 @@
       background-repeat: no-repeat;
       background-image: image-url("icon_wechat.png");
     }
+  }
+  .home {
+    @extend .footer_link;
     &:after {
       content: "";
       position: absolute;
