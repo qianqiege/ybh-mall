@@ -26,7 +26,7 @@
     setTimeout(function () {
       $toast.addClass('hide');
       $successText.text("");
-    }, 2000);
+    }, 1000);
   }
 
   // Make Zepto XHR play nicely with Rails XSS protection

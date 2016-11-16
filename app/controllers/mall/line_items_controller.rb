@@ -8,7 +8,7 @@ class Mall::LineItemsController < Mall::BaseController
     quantity = params[:quantity].to_i
     product = Product.find(params[:product_id])
     if quantity > product.shop_count.to_i
-      render plain: '非法操作', status: :bad_request
+      render json: { exceed: "没有库存了" }
       return
     end
     @line_item = @cart.add_product(product, quantity)

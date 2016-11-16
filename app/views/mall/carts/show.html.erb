@@ -9,7 +9,32 @@
       <div class="empty-car">
         <i class="icon"></i>
         <p class="gray84 mt10">你的购物车还是空的</p>
-      </div>    
+      </div>
+    <% else %>
+      <div class="car-box">
+        <ul class="pro-list-portrait">
+          <% @line_items.each do |line_item| %>
+            <li>
+              <div class="img">
+                <%= image_tag line_item.product.image_url %>
+              </div>
+              <div class="pro-m">
+                <p class="name"><%= line_item.product.name %></p>
+                <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
+                <div class="info clearfix">
+                  <p class="fl price">¥<span><%= line_item.product.now_product_price %></span></p>
+                </div>
+                <div class="fr amount">
+                  <span class="decrease decrease_btn disable">-</span>
+                  <input type="tel" data-shop-count="<%= line_item.product.shop_count %>" class="num buyNum" value="1" readonly="">
+                  <span class="increase increase_btn">+</span>
+                </div>
+                <span class="del"></span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
   </div>
 </div>

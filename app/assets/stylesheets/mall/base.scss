@@ -24,3 +24,14 @@
 .mt10 {
   margin-top: 10px;
 }
+
+.clearfix {
+  &:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    line-height: 0;
+  }
+}
