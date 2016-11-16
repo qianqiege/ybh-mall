@@ -1,5 +1,5 @@
 ActiveAdmin.register Slide do
-
+menu parent: I18n.t("active_admin.menu.view_manage")
 permit_params :desc, :image, :is_show, :weight, :url, :tp
 
 index do

@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  menu parent: I18n.t("active_admin.menu.member_manage")
+  menu parent: I18n.t("active_admin.menu.user_manage")
   permit_params :email, :password, :password_confirmation
 
   index do
