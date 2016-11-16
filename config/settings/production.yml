@@ -17,7 +17,7 @@ weixin:
           url: "http://ybhm.ybyt.cc/wechat"
         - type: "view"
           name: "我的"
-          url: "http://ybhm.ybyt.cc/wechat/user/info"
+          url: "http://ybhm.ybyt.cc/wechat/user"
     - name: "商城"
       sub_button:
         - type: "view"
