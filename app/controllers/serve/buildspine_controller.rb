@@ -11,7 +11,6 @@ class Serve::BuildspineController < Wechat::BaseController
   end
 
   def new
-    byebug
     @reservation = ReservationRecord.new(reservation_params)
     if @reservation.save
     end
