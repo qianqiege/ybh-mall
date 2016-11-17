@@ -23,8 +23,9 @@ Rails.application.routes.draw do
       put :remove, on: :member
     end
     resource :cart, only: [:show]
+    resources :orders, only: [:create]
+    resource :sms_code, only: [:show]
   end
-  resource :sms_code, only: [:show]
 
   namespace :serve do
     root "home#index"

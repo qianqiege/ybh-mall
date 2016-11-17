@@ -1,4 +1,4 @@
-class SmsCodesController < ApplicationController
+class Mall::SmsCodesController < Mall::BaseController
   def show
     if sms_code.blank? or ( Time.now - sms_created_at ) > 1.minutes
       code = generate_code

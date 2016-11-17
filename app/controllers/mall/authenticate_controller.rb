@@ -13,7 +13,7 @@ class Mall::AuthenticateController < Mall::BaseController
       redirect_to session[:return_to]
     else
       flash[:notice] = '验证码无效或过期, 请重新发送验证码'
-      redirect_back fallback_location: mall_path
+      redirect_back fallback_location: mall_root_path
     end
   end
 end
