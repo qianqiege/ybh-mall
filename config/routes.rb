@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     resource :cart, only: [:show]
     resources :orders, only: [:create]
     resource :sms_code, only: [:show]
+    resources :addresses, only: [:new, :create, :index, :destroy, :edit, :update] do
+      get :deliver, on: :collection
+    end
   end
 
   namespace :serve do

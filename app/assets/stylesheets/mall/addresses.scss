@@ -1,0 +1,65 @@
+.list-address {
+  margin: 10px 0 0;
+  background-color: #fff;
+  .empty-address {
+    text-align: center;
+    background-color: #fff;
+    line-height: 80px;
+    font-size: 14px;
+  }
+}
+
+.address-btn {
+  max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 58px;
+  left: 0;
+  right: 0;
+  background-color: #ad0e11;
+  line-height: 40px;
+  text-align: center;
+  a {
+    color: #fff;
+    display: block;
+  }
+}
+
+.address-box {
+  background-color: #fff;
+  li {
+    .field_with_errors { 
+      display: inline;
+      input {
+        border: 1px solid #ad0e11;
+      }
+    }
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    line-height: 30px;
+    position: relative;
+    transition: all .3s ease-in;
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    background-color: #fff;
+    span {
+      width: 90px;
+      display: inline-block;
+      color: #000;
+      font-size: 14px;
+    }
+    input, select, textarea {
+      width: 60%;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      line-height: 20px;
+      padding: 5px 10px;
+    }
+    select {
+      outline: none;
+    }
+  }
+}

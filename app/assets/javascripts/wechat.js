@@ -21,3 +21,4 @@
 //= require mall/authenticate
 //= require mall/carts
 //= require mall/lib
+//= require mall/addresses
