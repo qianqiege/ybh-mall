@@ -1,11 +1,13 @@
 ActiveAdmin.register ReservationRecord do
   menu parent: I18n.t("active_admin.menu.user_manage")
-  permit_params :date, :name
+  permit_params :time, :name,:tel,:spine_build_id
 
     form(:html => { :multipart => true }) do |f|
-      f.inputs "等级" do
-        f.input :datetime
+      f.inputs "预约记录" do
+        f.input :time
         f.input :name
+        f.input :tel
+        f.input :spine_build
       end
       f.actions
   end
