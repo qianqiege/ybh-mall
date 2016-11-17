@@ -1,4 +1,4 @@
-function line_item_add_and_remove(url, line_item_id, total_price, method) {
+function line_item_add_and_remove(url, line_item_id, total_price, method, that) {
   $.ajax({
     type: method,
     url: url,
@@ -33,7 +33,7 @@ $.fn.shop_count_decrease_control = function(){
           total_price = $("#total-price").text(),
           url = "/mall/line_items/" + line_item_id + "/remove";
 
-      line_item_add_and_remove(url, line_item_id, total_price, "PUT");
+      line_item_add_and_remove(url, line_item_id, total_price, "PUT", $(this));
     }
   })
 }
@@ -56,7 +56,7 @@ $.fn.shop_count_increase_control = function(){
           total_price = $("#total-price").text(),
           url = "/mall/line_items/" + line_item_id + "/add";
 
-      line_item_add_and_remove(url, line_item_id, total_price, "PUT");
+      line_item_add_and_remove(url, line_item_id, total_price, "PUT", $(this));
     }
   })
 }

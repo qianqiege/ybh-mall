@@ -154,6 +154,12 @@ ActiveRecord::Schema.define(version: 20161116090305) do
     t.datetime "updated_at",                                                    null: false
   end
 
+  create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "receiver_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "receiver_address"
     t.string   "receiver"
@@ -195,13 +201,8 @@ ActiveRecord::Schema.define(version: 20161116090305) do
   end
 
   create_table "service_staffs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "grade"
-    t.string   "city"
-    t.integer  "serve_number"
-    t.integer  "serve_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "set_meal_serve_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -230,6 +231,15 @@ ActiveRecord::Schema.define(version: 20161116090305) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "tp",         default: 1
+  end
+
+  create_table "spine_builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "workstation_id"
+    t.integer  "rank_id"
+    t.integer  "serve_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "stock_rights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -279,6 +289,14 @@ ActiveRecord::Schema.define(version: 20161116090305) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "mobile"
+  end
+
+  create_table "wordstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "city"
+    t.integer  "service_staff_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end
