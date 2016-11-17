@@ -19,3 +19,5 @@
 //= require mall/home
 //= require mall/products
 //= require mall/authenticate
+//= require mall/carts
+//= require mall/lib

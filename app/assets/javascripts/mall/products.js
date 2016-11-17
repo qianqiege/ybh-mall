@@ -1,24 +1,10 @@
 $(function () {
-  $(".increase_btn").on('click', function() {
-    var $buyNum = $(this).prev(),
-        $maxNum = parseInt($buyNum.data("shop-count")),
-        $currentNum = parseInt($buyNum.val()),
-        $errorTip = "最大购买数量为" + $maxNum;
-    if ($maxNum === $currentNum) {
-      showFlash("#toast-custom", $errorTip);
-      return;
-    }
-    $buyNum.val($currentNum + 1)
+  $("#increase_btn").on('click', function() {
+    $(this).shop_count_increase_control();
   });
 
-  $(".decrease_btn").on('click', function() {
-    var $buyNum = $(this).next(),
-        $currentNum = parseInt($buyNum.val());
-    if (1 === $currentNum) {
-      showFlash('#toast-custom', '最小购买数量为1');
-      return;
-    }
-    $buyNum.val($currentNum - 1)
+  $("#decrease_btn").on('click', function() {
+    $(this).shop_count_decrease_control();
   });
 
   $("#add_cart").on('click', function() {

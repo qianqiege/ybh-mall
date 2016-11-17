@@ -16,24 +16,33 @@
           <% @line_items.each do |line_item| %>
             <li>
               <div class="img">
-                <%= image_tag line_item.product.image_url %>
+                <a href="<%= mall_product_path(line_item.product) %>">
+                  <%= image_tag line_item.product.image_url %>
+                </a>
               </div>
               <div class="pro-m">
-                <p class="name"><%= line_item.product.name %></p>
+                <a href="<%= mall_product_path(line_item.product) %>">
+                  <p class="name"><%= line_item.product.name %></p>
+                </a>
                 <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
                 <div class="info clearfix">
-                  <p class="fl price">¥<span><%= line_item.product.now_product_price %></span></p>
+                  <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
                 </div>
                 <div class="fr amount">
-                  <span class="decrease decrease_btn disable">-</span>
-                  <input type="tel" data-shop-count="<%= line_item.product.shop_count %>" class="num buyNum" value="1" readonly="">
-                  <span class="increase increase_btn">+</span>
+                  <span class="decrease disable decrease_btn_ajax">-</span>
+                  <input type="tel" data-shop-count="<%= line_item.product.shop_count %>" class="num buyNum" value="<%= line_item.quantity %>" data-line_item_id="<%= line_item.id %>" readonly="">
+                  <span class="increase increase_btn_ajax">+</span>
                 </div>
-                <span class="del"></span>
+                <span data-line_item_id="<%= line_item.id %>" class="del"></span>
               </div>
             </li>
           <% end %>
         </ul>
+      </div>
+      <!-- end car-box -->
+      <div class="cart-fixed-ft">
+        <a class="commit" id="commit">结算</a>
+        <span class="mr15">合计：¥<span class="total" id="total-price"><%= money current_cart.total_price %></span></span>
       </div>
     <% end %>
   </div>

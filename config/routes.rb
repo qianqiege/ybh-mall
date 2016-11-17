@@ -18,8 +18,11 @@ Rails.application.routes.draw do
     resources :products, only: [:show]
     get '/authenticate_phone', to: 'authenticate#phone'
     post 'bind_phone', to: 'authenticate#bind_phone'
-    resources :line_items, only: [:create]
-    resource :cart, only: [:show, :destroy]
+    resources :line_items, only: [:create, :destroy] do
+      put :add, on: :member
+      put :remove, on: :member
+    end
+    resource :cart, only: [:show]
   end
   resource :sms_code, only: [:show]
 

@@ -98,3 +98,36 @@
     }
   }
 }
+
+.cart-fixed-ft {
+  height: 50px;
+  line-height: 50px;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  max-width: 640px;
+  min-width: 320px;
+  left: 0;
+  right: 0;
+  bottom: 58px;
+  margin: 0 auto;
+  text-align: right;
+  background: #fff;
+  color: #000;
+  border-top: 1px solid #ddd;
+  .choose {
+    float: left;
+    height: 50px;
+    padding: 0 10px;
+    line-height: 50px;
+  }
+  .commit {
+    height: 50px;
+    line-height: 50px;
+    float: right;
+    width: 25%;
+    text-align: center;
+    color: #fff;
+    background: #ad0e11;
+  }
+}
