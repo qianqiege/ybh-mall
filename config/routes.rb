@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   namespace :serve do
     root "home#index"
     get 'buildspine/reservation'
+    post 'buildspine/new'
     resources :buildspine
   end
 
