@@ -14,9 +14,6 @@ function line_item_add_and_remove(url, line_item_id, total_price, method, that) 
         window.location.reload();
       }
       $("#total-price").text(data.total_price);
-    },
-    error: function(xhr, type){
-      showFlash('#toast-custom', '发生错误了')
     }
   })
 }

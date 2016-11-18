@@ -50,4 +50,6 @@ $(function () {
 
     $("#bind_phone_form").submit();
   })
+
+
 });

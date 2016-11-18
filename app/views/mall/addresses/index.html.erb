@@ -5,6 +5,9 @@
     </h2>
   </div>
   <div class="wraper pt50 graybg">
+    <% if flash[:success] %>
+      <div class="notice"><%= flash[:success] %></div>
+    <% end %>
     <div class="list-address">
       <% if @addresses.empty? %>
         <div class="empty-address">

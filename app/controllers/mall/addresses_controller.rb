@@ -12,6 +12,7 @@ class Mall::AddressesController < Mall::BaseController
   def create
     @address = current_user.addresses.new(address_params)
     if @address.save
+      flash[:success] = '创建成功'
       redirect_to mall_addresses_path
     else
       render :new
@@ -23,6 +24,7 @@ class Mall::AddressesController < Mall::BaseController
 
   def update
     if @address.update(address_params)
+      flash[:success] = '修改成功'
       redirect_to mall_addresses_path
     else
       render :edit
@@ -30,6 +32,7 @@ class Mall::AddressesController < Mall::BaseController
   end
 
   def destroy
+    flash[:success] = '删除成功'
     @address.destroy
     render nothing: true, status: :ok
   end
