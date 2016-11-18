@@ -5,9 +5,6 @@ class Mall::AddressesController < Mall::BaseController
     @addresses = current_user.addresses
   end
 
-  def deliver
-  end
-
   def new
     @address = current_user.addresses.build
   end
