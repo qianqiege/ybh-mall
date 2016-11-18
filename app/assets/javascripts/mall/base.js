@@ -20,12 +20,11 @@
 
     if (!$toast.hasClass('hide')) return;
 
-    $toast.removeClass('hide');
+    $toast.fadeIn();
     $successText.text(text);
 
     setTimeout(function () {
-      $toast.addClass('hide');
-      $successText.text("");
+      $toast.fadeOut();
     }, 1000);
   }
 

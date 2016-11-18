@@ -23,13 +23,16 @@
                 <span class="gray84">设为默认地址</span>
               </div>
               <div>
-                <a href="">编辑</a>
-                <a href="">删除</a>
+                <%= link_to '编辑', edit_mall_address_path(address) %>
+                <a class='address_delete_btn' data-id="<%= address.id %>">删除</a>
               </div>
             </div>
           </li>
         <% end %>
       </ul>
+    </div>
+    <div class="address-btn add-address">
+      <a href="<%= new_mall_address_path %>">新增收货地址</a>
     </div>
   </div>
 </div>

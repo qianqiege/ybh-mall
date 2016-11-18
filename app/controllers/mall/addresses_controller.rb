@@ -1,4 +1,6 @@
 class Mall::AddressesController < Mall::BaseController
+  before_action :set_address, only: [:edit, :update, :destroy]
+
   def index
     @addresses = current_user.addresses
   end
@@ -19,7 +21,27 @@ class Mall::AddressesController < Mall::BaseController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @address.update(address_params)
+      redirect_to mall_addresses_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @address.destroy
+    render nothing: true, status: :ok
+  end
+
   private
+
+  def set_address
+    @address = current_user.addresses.find(params[:id])
+  end
 
   def address_params
     params.require(:address).permit(:contact_name,
