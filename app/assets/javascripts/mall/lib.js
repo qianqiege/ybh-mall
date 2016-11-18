@@ -9,6 +9,12 @@ function line_item_add_and_remove(url, line_item_id, total_price, method, that) 
         showFlash('#toast-custom', data.exceed);
         return;
       }
+      if (data.add) {
+        that.prev().val(parseInt(that.prev().val()) + 1);
+      }
+      if (data.remove) {
+        that.next().val(parseInt(that.next().val()) - 1);
+      }
       if (data.delete) {
         // that.parent().parent().remove();
         window.location.reload();
@@ -18,16 +24,22 @@ function line_item_add_and_remove(url, line_item_id, total_price, method, that) 
   })
 }
 
+// 减少商品数量
 $.fn.shop_count_decrease_control = function(){
   return this.each(function(){
     var $buyNum = $(this).next(),
+        $maxNum = parseInt($buyNum.data("shop-count")),
         $currentNum = parseInt($buyNum.val());
+
     if (1 === $currentNum) {
       showFlash('#toast-custom', '最小购买数量为1');
       return;
     }
 
-    $buyNum.val($currentNum - 1)
+
+    if ( !$(this).hasClass('decrease_btn_ajax') ) {
+      $buyNum.val($currentNum - 1)
+    }
 
     if ( $(this).hasClass('decrease_btn_ajax') ) {
       var line_item_id = $(this).next().data("line_item_id"),
@@ -39,18 +51,27 @@ $.fn.shop_count_decrease_control = function(){
   })
 }
 
+// 增加商品数量
 $.fn.shop_count_increase_control = function(){
   return this.each(function(){
     var $buyNum = $(this).prev(),
         $maxNum = parseInt($buyNum.data("shop-count")),
         $currentNum = parseInt($buyNum.val()),
         $errorTip = "最大购买数量为" + $maxNum;
+
+    if ( 0 === $maxNum ) {
+      showFlash("#toast-custom", "没有库存了");
+      return;
+    }
+
     if ($maxNum <= $currentNum) {
       showFlash("#toast-custom", $errorTip);
       return;
     }
 
-    $buyNum.val($currentNum + 1)
+    if ( !$(this).hasClass('increase_btn_ajax') ) {
+      $buyNum.val($currentNum + 1)
+    }
 
     if ( $(this).hasClass('increase_btn_ajax') ) {
       var line_item_id = $(this).prev().data("line_item_id"),

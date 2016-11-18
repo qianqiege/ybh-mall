@@ -38,7 +38,7 @@ class Mall::LineItemsController < Mall::BaseController
     end
 
     @line_item.increment! :quantity
-    render json: { total_price: helpers.money(params[:total_price].to_f + @line_item.price) }
+    render json: { total_price: helpers.money(params[:total_price].to_f + @line_item.price), add: true }
   end
 
   def remove
@@ -49,7 +49,7 @@ class Mall::LineItemsController < Mall::BaseController
     end
 
     @line_item.decrement! :quantity
-    render json: { total_price: helpers.money(params[:total_price].to_f - @line_item.price) }
+    render json: { total_price: helpers.money(params[:total_price].to_f - @line_item.price), remove: true }
   end
 
   def destroy
