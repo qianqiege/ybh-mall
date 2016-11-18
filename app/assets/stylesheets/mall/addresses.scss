@@ -18,33 +18,7 @@
     position: relative;
     text-align: right;
     height: 40px;
-    .radio {
-      left: 10px;
-      border: 1px solid #a0a0a0;
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      border: 1px solid #7d7d7d;
-      background: #fff;
-      border-radius: 50%;
-      box-sizing: border-box;
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      margin-top: -7px;
-    }
-    .setDef {
-      &:after {
-        content: "";
-        position: absolute;
-        left: -1px;
-        top: -1px;
-        border-radius: 50%;
-        background: image-url("address_default.png") 50%/15px 15px no-repeat;
-        width: 15px;
-        height: 15px;
-      }
-    }
+
     a {
       display: inline-block;
       padding: 0 16px;
@@ -107,7 +81,7 @@
 .address-box {
   background-color: #fff;
   li {
-    .field_with_errors { 
+    .field_with_errors {
       display: inline;
       input {
         border: 1px solid #ad0e11;
@@ -139,5 +113,34 @@
     select {
       outline: none;
     }
+  }
+}
+
+.radio {
+  left: 10px;
+  border: 1px solid #a0a0a0;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #7d7d7d;
+  background: #fff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  margin-top: -7px;
+}
+
+.setDef {
+  &:after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    border-radius: 50%;
+    background: image-url("address_default.png") 50%/15px 15px no-repeat;
+    width: 15px;
+    height: 15px;
   }
 }
