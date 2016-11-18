@@ -12,7 +12,9 @@ $(function () {
         total_price = $("#total-price").text();
         url = "/mall/line_items/" + line_item_id;
     $.confirm('确定要删除此商品吗？', function(e) {
-      line_item_add_and_remove(url, line_item_id, total_price, "DELETE", $(this));
+      if (e) {
+        line_item_add_and_remove(url, line_item_id, total_price, "DELETE", $(this));
+      }
     }.bind(this));
   })
 
