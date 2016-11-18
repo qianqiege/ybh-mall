@@ -24,7 +24,9 @@ Rails.application.routes.draw do
       put :remove, on: :member
     end
     resource :cart, only: [:show]
-    resources :orders, only: [:create]
+    resources :orders, only: [:create] do
+      get :confirm, on: :collection
+    end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do
       put :make_default, on: :member

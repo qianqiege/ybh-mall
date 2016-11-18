@@ -19,14 +19,16 @@ $(function () {
 
   $(".address_delete_btn").on('click', function() {
     $.confirm('确定要删除此商品吗？', function(e) {
-      $.ajax({
-        type: "DELETE",
-        url: '/mall/addresses/' + $(this).data("id"),
-        dataType: 'json',
-        success: function(data) {
-          window.location.reload();
-        }
-      })
+      if (e) {
+        $.ajax({
+          type: "DELETE",
+          url: '/mall/addresses/' + $(this).data("id"),
+          dataType: 'json',
+          success: function(data) {
+            window.location.reload();
+          }
+        })
+      }
     }.bind(this));
   })
 
