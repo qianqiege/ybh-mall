@@ -3,4 +3,5 @@ $(function () {
     event.preventDefault();
     $("#new_address").submit();
   })
+  $('.city-group').china_city()
 });

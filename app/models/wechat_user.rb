@@ -6,6 +6,8 @@ class WechatUser < ApplicationRecord
   serialize :auth_hash, Hash
 
   validates :open_id, presence: true, uniqueness: true
+  VALID_MOBILE_REGEX = /\A(13[0-9]|15[012356789]|17[0123456789]|18[0-9]|14[57])[0-9]{8}\z/
+  validates :mobile, format: { with: VALID_MOBILE_REGEX, message: '格式不正确' }
 
   def set_userinfo user_basic_info
     self.subscribe = user_basic_info['subscribe'] if user_basic_info['subscribe'].present?

@@ -1,48 +1,10 @@
-<%= form_for [:mall, @address] do |f| %>
-  <div class='mobile_box'>
-    <div class="page-title">
-      <h2 class="text-cen">
-        <span>新增收货地址</span>
-      </h2>
-    </div>
-    <div class="wraper pt50">
-      <% if @address.errors.any? %>
-        <div class="notice">
-          <h3><%= "#{@address.errors.count}个错误:" %></h3>
-          <ul>
-            <% @address.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <div class="address-box">
-        <ul>
-          <li class='clearfix'>
-            <span>收货人姓名：</span>
-            <%= f.text_field :contact_name, class: 'gray84' %>
-          </li>
-          <li class="clearfix">
-            <span>手机号码：</span>
-            <%= f.text_field :mobile, class: 'gray84', maxlength: 11 %>
-          </li>
-          <li class="clearfix">
-            <span>省份</span>
-            <select name="select2">
-              <option value="1">中国</option>
-              <option value="2">美国</option>
-              <option value="3">英国</option>
-            </select>
-          </li>
-          <li class="clearfix">
-            <span>详细地址：</span>
-            <%= f.text_field :detail, class: 'gray84' %>
-          </li>
-        </ul>
-      </div>
-      <div class="address-btn add-address">
-        <a id="create_address_btn">保存</a>
-      </div>
-    </div>
+<div class='mobile_box'>
+  <div class="page-title">
+    <h2 class="text-cen">
+      <span>新增收货地址</span>
+    </h2>
   </div>
-<% end %>
+  <div class="wraper pt50">
+    <%= render 'form' %>
+  </div>
+</div>

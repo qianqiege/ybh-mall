@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ChinaCity::Engine => '/china_city'
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
     resource :cart, only: [:show]
     resources :orders, only: [:create]
     resource :sms_code, only: [:show]
-    resources :addresses, only: [:new, :create, :index, :destroy, :edit, :update] do
+    resources :addresses, except: [:show] do
       get :deliver, on: :collection
     end
   end
