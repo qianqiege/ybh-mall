@@ -9,6 +9,12 @@ class Mall::LineItemsController < Mall::BaseController
     quantity = params[:quantity].to_i
     product = Product.find(params[:product_id])
 
+    # 库存为0的情况
+    if product.shop_count == 0
+      render json: { exceed: "没有库存了" }
+      return
+    end
+
     # 控制库存数量
     current_item = @cart.line_items.find_by(product_id: product.id)
     if current_item && (quantity + current_item.quantity > product.shop_count.to_i)
