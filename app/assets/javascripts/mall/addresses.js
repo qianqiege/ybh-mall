@@ -16,16 +16,18 @@ $(function () {
   $('.city-group').china_city()
 
   $(".address_delete_btn").on('click', function() {
-    $.ajax({
-      type: "DELETE",
-      url: '/mall/addresses/' + $(this).data("id"),
-      dataType: 'json',
-      success: function(data) {
-        window.location.reload();
-      },
-      error: function(xhr, type){
-        showFlash('#toast-custom', '发生错误了')
-      }
-    })
+    $.confirm('确定要删除此商品吗？', function(e) {
+      $.ajax({
+        type: "DELETE",
+        url: '/mall/addresses/' + $(this).data("id"),
+        dataType: 'json',
+        success: function(data) {
+          window.location.reload();
+        },
+        error: function(xhr, type){
+          showFlash('#toast-custom', '发生错误了')
+        }
+      })
+    }.bind(this));
   })
 });

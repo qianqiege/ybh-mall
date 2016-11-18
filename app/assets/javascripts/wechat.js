@@ -13,6 +13,7 @@
 //= require zepto.min
 //= require fx
 //= require fx_methods
+//= require alert.min
 //= require swipe
 // require turbolinks
 //= require wechat/base
