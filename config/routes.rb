@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     resource :cart, only: [:show]
     resources :orders, only: [:create]
     resource :sms_code, only: [:show]
-    resources :addresses, except: [:show]
+    resources :addresses, except: [:show] do
+      put :make_default, on: :member
+    end
   end
 
   namespace :serve do

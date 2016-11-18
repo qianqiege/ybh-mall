@@ -29,4 +29,21 @@ $(function () {
       })
     }.bind(this));
   })
+
+  $(".set-default-btn").on('click', function() {
+    if ( $(this).hasClass('setDef') ) {
+      return;
+    }
+    $.ajax({
+      type: "PUT",
+      url: '/mall/addresses/' + $(this).data("id") + "/make_default",
+      dataType: 'json',
+      beforeSend: function() {
+        showFlash('#loadingToast', '数据加载中')
+      },
+      success: function(data) {
+        window.location.reload();
+      }
+    })
+  })
 });

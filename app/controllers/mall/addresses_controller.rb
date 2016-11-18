@@ -1,5 +1,5 @@
 class Mall::AddressesController < Mall::BaseController
-  before_action :set_address, only: [:edit, :update, :destroy]
+  before_action :set_address, only: [:edit, :update, :destroy, :make_default]
 
   def index
     @addresses = current_user.addresses
@@ -35,6 +35,13 @@ class Mall::AddressesController < Mall::BaseController
     flash[:success] = '删除成功'
     @address.destroy
     render nothing: true, status: :ok
+  end
+
+  def make_default
+    addresses = current_user.addresses
+    addresses.update_all is_default: false
+    @address.update_attribute(:is_default, true)
+    flash[:success] = '设置成功'
   end
 
   private
