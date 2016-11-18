@@ -8,7 +8,7 @@
   </div>
   <div class="pro-info">
     <p class="name"><%= @product.name %></p>
-    <p class="price">¥<%= @product.now_product_price %></p>
+    <p class="price">¥<%= money @product.now_product_price %></p>
   </div>
 </div>
 
@@ -16,7 +16,7 @@
   <li class="arrow-right">
     <div class="fr amount">
       <span class="decrease disable" id="decrease_btn">-</span>
-      <input type="tel" class="num" id="buyNum" value="1" readonly="">
+      <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="">
       <span class="increase" id="increase_btn">+</span>
     </div>
     <span class="choosed">购买数量(库存<span id="shop_count"><%= @product.shop_count %></span>)</span>
@@ -39,10 +39,10 @@
       <i class="icon-pre"></i>
       首页
     </a>
-    <a class="flex-item home" href="/">
+    <a class="flex-item home" href="<%= mall_cart_path() %>">
       <i class="icon-car"></i>
-      <i class="num <%= current_cart_count.to_i > 0 ? '' : 'hide' %>" id="carNum">
-        <%= current_cart_count.to_i %>
+      <i class="num <%= current_cart_count > 0 ? '' : 'hide' %>" id="carNum">
+        <%= current_cart_count %>
       </i>
       购物车
     </a>

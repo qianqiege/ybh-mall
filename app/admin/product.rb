@@ -8,7 +8,8 @@ ActiveAdmin.register Product do
                 :desc,
                 :is_show,
                 :production,
-                :packaging
+                :packaging,
+                :product_sort
 
   index do
     selectable_column
@@ -25,6 +26,7 @@ ActiveAdmin.register Product do
     column :desc
     column :production
     column :packaging
+    column :product_sort
     actions
   end
 
@@ -36,6 +38,7 @@ ActiveAdmin.register Product do
       f.input :shop_count
       f.input :is_show
       f.input :production
+      f.input :product_sort
       f.input :packaging
       f.input :image, as: :file
       f.input :desc

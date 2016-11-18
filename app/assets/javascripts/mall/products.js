@@ -1,31 +1,26 @@
 $(function () {
-  var $buyNum = $("#buyNum"),
-      $maxNum = parseInt($("#shop_count").text());
-
   $("#increase_btn").on('click', function() {
-    if ($maxNum === parseInt($buyNum.val())) {
-      return;
-    }
-    $buyNum.val(parseInt($buyNum.val()) + 1)
+    $(this).shop_count_increase_control();
   });
 
   $("#decrease_btn").on('click', function() {
-    if (1 === parseInt($buyNum.val())) {
-      return;
-    }
-    $buyNum.val(parseInt($buyNum.val()) - 1)
+    $(this).shop_count_decrease_control();
   });
 
   $("#add_cart").on('click', function() {
+    var $buyNum = $("#buyNum");
     $.ajax({
       type: 'POST',
       url: '/mall/line_items',
       data: { product_id: $(this).data("product_id"), quantity: parseInt($buyNum.val())},
       dataType: 'json',
-      timeout: 300,
       success: function(data){
         if (data.location) {
           window.location.href = data.location;
+          return;
+        }
+        if (data.exceed) {
+          showFlash('#toast-custom', data.exceed);
           return;
         }
         $("#carNum").removeClass('hide');

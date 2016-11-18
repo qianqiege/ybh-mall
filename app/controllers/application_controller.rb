@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :sms_code_validate
-  def sms_code_validate(code)
-    return false if session[:sms_code].blank?
+  def sms_code_validate(code, mobile)
+    return false if session[:sms_code].blank? || !(session[:mobile] == mobile)
     sms_created_at = DateTime.parse(session[:sms_created_at])
     # 验证码10分钟内有效
     if Time.now - sms_created_at > 10.minutes

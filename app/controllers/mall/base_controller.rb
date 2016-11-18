@@ -3,7 +3,7 @@ module Mall
   class BaseController < Wechat::BaseController
     layout "mall"
 
-    helper_method :current_cart_count
+    helper_method :current_cart, :current_cart_count
     before_action :set_current_cart_count
 
     protected
@@ -14,12 +14,16 @@ module Mall
 
     private
 
-    def current_cart_count=(count)
-      @cart_count = count
+    def current_cart=(count)
+      @current_cart = count
+    end
+
+    def current_cart
+      @current_cart ||= current_user.cart
     end
 
     def current_cart_count
-      @cart_count ||= current_user.cart_count
+      current_cart.try(:product_count).to_i
     end
 
     def set_current_cart_count

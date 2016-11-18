@@ -18,5 +18,6 @@ zh-CN:
         production: '厂家'
         image: '展示图片'
         desc: '描述'
+        product_sort: '类别'
     models:
       product: "商品"
