@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require zepto.min
+//= require fx
+//= require fx_methods
+//= require alert.min
 //= require swipe
 // require turbolinks
 //= require wechat/base
@@ -21,3 +24,4 @@
 //= require mall/authenticate
 //= require mall/carts
 //= require mall/lib
+//= require mall/addresses

@@ -26,9 +26,6 @@ $(function () {
         $("#carNum").removeClass('hide');
         $("#carNum").text(parseInt($("#carNum").text()) + parseInt(data['quantity']))
         showFlash('#toast-success', '已加入购物车');
-      },
-      error: function(xhr, type){
-        showFlash('#toast-custom', '发生错误了')
       }
     })
   })

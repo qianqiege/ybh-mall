@@ -20,12 +20,11 @@
 
     if (!$toast.hasClass('hide')) return;
 
-    $toast.removeClass('hide');
+    $toast.fadeIn();
     $successText.text(text);
 
     setTimeout(function () {
-      $toast.addClass('hide');
-      $successText.text("");
+      $toast.fadeOut();
     }, 1000);
   }
 
@@ -33,3 +32,13 @@
   $.ajaxSettings.headers || ($.ajaxSettings.headers = {});
   $.ajaxSettings.headers['X-CSRF-TOKEN'] = $("meta[name='csrf-token']").attr('content');
 }).call(this);
+
+$(function () {
+  if ( $(".notice").length > 0 ) {
+    $(".notice").fadeOut(5000);
+  }
+
+  $(document).on('ajaxError', function(e, xhr, options){
+    showFlash('#toast-custom', '发生错误了')
+  })
+});

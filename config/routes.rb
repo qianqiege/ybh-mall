@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ChinaCity::Engine => '/china_city'
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -23,8 +24,12 @@ Rails.application.routes.draw do
       put :remove, on: :member
     end
     resource :cart, only: [:show]
+    resources :orders, only: [:create]
+    resource :sms_code, only: [:show]
+    resources :addresses, except: [:show] do
+      put :make_default, on: :member
+    end
   end
-  resource :sms_code, only: [:show]
 
   namespace :serve do
     root "home#index"

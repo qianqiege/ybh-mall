@@ -17,7 +17,7 @@ $(function () {
     $("#smsgetCode").addClass('hide');
     $("#resetText").removeClass('hide');
 
-    $.get("/sms_code?mobile=" + mobile);
+    $.get("/mall/sms_code?mobile=" + mobile);
 
     var int = self.setInterval(function() {
       $smsTimeText.text( parseInt($smsTimeText.text()) - 1 );
@@ -50,4 +50,6 @@ $(function () {
 
     $("#bind_phone_form").submit();
   })
+
+
 });

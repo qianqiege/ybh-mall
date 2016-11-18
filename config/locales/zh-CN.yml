@@ -19,5 +19,13 @@ zh-CN:
         image: '展示图片'
         desc: '描述'
         product_sort: '类别'
+      address:
+        contact_name: '收货人姓名'
+        mobile: '手机号码'
+        detail: '详细地址'
+        province: '省份'
+        city: '城市'
+        street: '区或街道'
     models:
       product: "商品"
+      address: '收货地址'

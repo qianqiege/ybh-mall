@@ -47,8 +47,8 @@ class Mall::LineItemsController < Mall::BaseController
   end
 
   def destroy
-    # @line_item.destroy
-    render json: { total_price: helpers.money(params[:total_price].to_f - @line_item.total_price) }
+    @line_item.destroy
+    render json: { total_price: helpers.money(params[:total_price].to_f - @line_item.total_price), delete: true }
   end
 
   private

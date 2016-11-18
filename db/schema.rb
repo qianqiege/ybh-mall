@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116090305) do
+ActiveRecord::Schema.define(version: 20161117122608) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 20161116090305) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "contact_name"
+    t.string   "mobile"
+    t.boolean  "is_default",     default: false
+    t.string   "detail"
+    t.string   "province"
+    t.string   "city"
+    t.string   "street"
+    t.integer  "wechat_user_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["wechat_user_id"], name: "index_addresses_on_wechat_user_id", using: :btree
   end
 
   create_table "admin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -154,6 +168,12 @@ ActiveRecord::Schema.define(version: 20161116090305) do
     t.datetime "updated_at",                                                    null: false
   end
 
+  create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "receiver_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "receiver_address"
     t.string   "receiver"
@@ -195,13 +215,8 @@ ActiveRecord::Schema.define(version: 20161116090305) do
   end
 
   create_table "service_staffs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "grade"
-    t.string   "city"
-    t.integer  "serve_number"
-    t.integer  "serve_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "set_meal_serve_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -230,6 +245,15 @@ ActiveRecord::Schema.define(version: 20161116090305) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "tp",         default: 1
+  end
+
+  create_table "spine_builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "workstation_id"
+    t.integer  "rank_id"
+    t.integer  "serve_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "stock_rights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -279,6 +303,14 @@ ActiveRecord::Schema.define(version: 20161116090305) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "mobile"
+  end
+
+  create_table "wordstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "city"
+    t.integer  "service_staff_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
 end

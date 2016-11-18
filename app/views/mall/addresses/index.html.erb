@@ -1,0 +1,46 @@
+<div class='mobile_box'>
+  <div class="page-title">
+    <h2 class="text-cen">
+      <span>收货地址管理</span>
+    </h2>
+  </div>
+  <div class="wraper pt50 graybg">
+    <% if flash[:success] %>
+      <div class="notice"><%= flash[:success] %></div>
+    <% end %>
+    <div class="list-address">
+      <% if @addresses.empty? %>
+        <div class="empty-address">
+          <p>暂无收货地址,请添加地址</p>
+        </div>
+      <% else %>
+        <ul class='list-type'>
+          <% @addresses.each do |address| %>
+            <li>
+              <div class="address-item">
+                <p>
+                  <span class="mr20"><%= address.contact_name %></span>
+                  <%= address.mobile %>
+                </p>
+                <p class="address"><%= address.display_detail %></p>
+              </div>
+              <div class="set-address">
+                <div class="set-default">
+                  <span data-id="<%= address.id %>" class="set-default-btn radio <%= address.is_default ? 'setDef' : nil %>"></span>
+                  <span class="gray84">设为默认地址</span>
+                </div>
+                <div>
+                  <%= link_to '编辑', edit_mall_address_path(address) %>
+                  <a class='address_delete_btn' data-id="<%= address.id %>">删除</a>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="address-btn add-address">
+      <a href="<%= new_mall_address_path %>">新增收货地址</a>
+    </div>
+  </div>
+</div>
