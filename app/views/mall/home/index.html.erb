@@ -71,9 +71,9 @@
               <p class="sub-title"><%= product.desc %></p>
               <span class="tag">好货价</span>
               <p class="item-price">
-                <em><%= product.now_product_price %></em>
+                <em><%= money product.now_product_price %></em>
                 <% if product.original_product_price.present? %>
-                  <del><%= product.original_product_price %></del>
+                  <del><%= money product.original_product_price %></del>
                 <% end %>
                 <span class="pre-addcar"></span>
               </p>
