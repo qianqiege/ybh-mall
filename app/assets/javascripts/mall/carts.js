@@ -29,6 +29,7 @@ $(function () {
       showFlash('#toast-custom', '请至少选择一个商品');
       return;
     }
+    showFlash('#loadingToast', '确认订单中')
     $("#show_cart").submit();
   })
 

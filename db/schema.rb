@@ -93,9 +93,10 @@ ActiveRecord::Schema.define(version: 20161119124647) do
   create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "product_id"
     t.integer "cart_id"
-    t.integer "quantity",   default: 1
+    t.integer "quantity",                            default: 1
     t.integer "order_id"
-    t.boolean "in_cart",    default: true
+    t.boolean "in_cart",                             default: true
+    t.decimal "unit_price", precision: 10, scale: 2
     t.index ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
     t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
     t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree

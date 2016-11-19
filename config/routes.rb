@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resource :cart, only: [:show]
     resources :orders, only: [:create] do
       get :confirm, on: :collection
+      get :pay, on: :member
     end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do

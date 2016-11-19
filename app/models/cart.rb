@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
   belongs_to :wechat_user
-  has_many :line_items, -> { where in_cart: true }, dependent: :destroy
+  has_many :line_items, -> { where in_cart: true }
 
   def add_product(product, quantity)
     current_item = line_items.find_by(product_id: product.id)

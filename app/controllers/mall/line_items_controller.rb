@@ -63,6 +63,6 @@ class Mall::LineItemsController < Mall::BaseController
   private
 
   def set_line_item
-    @line_item = LineItem.find(params[:id])
+    @line_item = current_cart.line_items.find(params[:id])
   end
 end

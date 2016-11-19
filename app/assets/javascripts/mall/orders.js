@@ -5,6 +5,7 @@ $(function () {
 
   $("#confirm_order_btn").on('click', function() {
     event.preventDefault();
+    showFlash('#loadingToast', '提交订单中')
     $("#confirm_order").submit();
   })
 });
