@@ -1,0 +1,52 @@
+<%= form_tag(mall_orders_path, method: :post, id: 'confirm_order') do %>
+  <div class='mobile_box'>
+    <div class="page-title">
+      <h2 class="text-cen">
+        <span>确认订单</span>
+      </h2>
+    </div>
+    <div class="wraper pt50 graybg">
+      <% if flash[:success] %>
+        <div class="notice"><%= flash[:success] %></div>
+      <% end %>
+      <div class="address-confirm" data-address-id="<%= @recommend_address.id %>">
+        <i class="icon-address"></i>
+        <i class="arrow-right"></i>
+        <p>
+          <span class="fr gray84"><%= @recommend_address.mobile %></span>
+          收货人：<%= @recommend_address.contact_name %>
+        </p>
+        <p class="mt10">收货地址：<%= @recommend_address.display_detail %></p>
+
+        <%= hidden_field_tag "address_id", @recommend_address.id %>
+      </div>
+      <div class="car-box">
+        <ul class="pro-list-portrait">
+          <% @line_items.each do |line_item| %>
+            <li>
+              <div class="img">
+                <a href="<%= mall_product_path(line_item.product) %>">
+                  <%= image_tag line_item.product.image_url %>
+                </a>
+              </div>
+              <div class="pro-m">
+                <a href="<%= mall_product_path(line_item.product) %>">
+                  <p class="name"><%= line_item.product.name %></p>
+                </a>
+                <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
+                <div class="info clearfix">
+                  <span class="fr"><small>x</small><%= line_item.quantity %></span>
+                  <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="cart-fixed-ft">
+        <a class="commit" id="confirm_order_btn">提交订单</a>
+        <span class="mr15">共<%= @all_line_item_count %>件，合计：¥<span class="total" data-all_total_price="<%= money @total_price %>" id="total-price"><%= money @total_price %></span></span>
+      </div>
+    </div>
+  </div>
+<% end %>

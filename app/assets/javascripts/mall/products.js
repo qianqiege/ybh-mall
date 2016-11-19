@@ -7,6 +7,7 @@ $(function () {
     $(this).shop_count_decrease_control();
   });
 
+  // 加入购物车
   $("#add_cart").on('click', function() {
     var $buyNum = $("#buyNum");
     $.ajax({

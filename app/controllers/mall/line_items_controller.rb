@@ -38,7 +38,8 @@ class Mall::LineItemsController < Mall::BaseController
     end
 
     @line_item.increment! :quantity
-    render json: { total_price: helpers.money(params[:total_price].to_f + @line_item.price) }
+    @action = 'add'
+    render 'carts_line_item.json.jbuilder'
   end
 
   def remove
@@ -49,17 +50,19 @@ class Mall::LineItemsController < Mall::BaseController
     end
 
     @line_item.decrement! :quantity
-    render json: { total_price: helpers.money(params[:total_price].to_f - @line_item.price) }
+    @action = 'remove'
+    render 'carts_line_item.json.jbuilder'
   end
 
   def destroy
     @line_item.destroy
-    render json: { total_price: helpers.money(params[:total_price].to_f - @line_item.total_price), delete: true }
+    @action = 'delete'
+    render 'carts_line_item.json.jbuilder'
   end
 
   private
 
   def set_line_item
-    @line_item = LineItem.find(params[:id])
+    @line_item = current_cart.line_items.find(params[:id])
   end
 end
