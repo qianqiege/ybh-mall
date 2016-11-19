@@ -1,27 +1,42 @@
-function line_item_add_and_remove(url, line_item_id, total_price, method, that) {
+function line_item_add_and_remove(url, line_item_id, method, that) {
   $.ajax({
     type: method,
     url: url,
-    data: { id: parseInt(line_item_id), total_price: total_price },
     dataType: 'json',
     success: function(data) {
       if (data.exceed) {
         showFlash('#toast-custom', data.exceed);
         return;
       }
-      if (data.add) {
-        that.prev().val(parseInt(that.prev().val()) + 1);
+      switch(data.action) {
+        case 'add':
+          that.prev().val(parseInt(that.prev().val()) + 1);
+          trgger_price_change(that, data.unit_price)
+          break;
+        case 'remove':
+          that.next().val(parseInt(that.next().val()) - 1);
+          trgger_price_change(that, 0 - data.unit_price)
+          break;
+        case 'delete':
+          that.parent().parent().remove();
+          trigger_total_price_change(0 - data.current_line_item_price)
+          break;
       }
-      if (data.remove) {
-        that.next().val(parseInt(that.next().val()) - 1);
-      }
-      if (data.delete) {
-        // that.parent().parent().remove();
-        window.location.reload();
-      }
-      $("#total-price").text(data.total_price);
     }
   })
+}
+
+function trgger_price_change(that, price) {
+  var radioEle = that.parent().parent().parent().find('.radio');
+  radioEle.data( 'current-line-item-price', (radioEle.data('current-line-item-price') - 0 + parseFloat(price)).formatMoney() );
+
+  var totalPriceEle = $("#total-price");
+
+  if (radioEle.hasClass('setDef')) {
+    totalPriceEle.text( (totalPriceEle.text() - 0 + parseFloat(price)).formatMoney() );
+  }
+
+  totalPriceEle.data( 'all_total_price', (totalPriceEle.data('all_total_price') - 0 + parseFloat(price)).formatMoney() );
 }
 
 // 减少商品数量
@@ -43,10 +58,9 @@ $.fn.shop_count_decrease_control = function(){
 
     if ( $(this).hasClass('decrease_btn_ajax') ) {
       var line_item_id = $(this).next().data("line_item_id"),
-          total_price = $("#total-price").text(),
           url = "/mall/line_items/" + line_item_id + "/remove";
 
-      line_item_add_and_remove(url, line_item_id, total_price, "PUT", $(this));
+      line_item_add_and_remove(url, line_item_id, "PUT", $(this));
     }
   })
 }
@@ -78,7 +92,7 @@ $.fn.shop_count_increase_control = function(){
           total_price = $("#total-price").text(),
           url = "/mall/line_items/" + line_item_id + "/add";
 
-      line_item_add_and_remove(url, line_item_id, total_price, "PUT", $(this));
+      line_item_add_and_remove(url, line_item_id, "PUT", $(this));
     }
   })
 }
