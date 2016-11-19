@@ -20,6 +20,11 @@ $(function () {
 
   $("#clearing_commit").on('click', function() {
     event.preventDefault();
+    var allLineItemRadioEle = $(".pro-list-portrait .radio");
+    if (!allLineItemRadioEle.hasClass('setDef')) {
+      showFlash('#toast-custom', '请至少选择一个商品');
+      return;
+    }
     $("#show_cart").submit();
   })
 
