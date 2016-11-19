@@ -1,12 +1,15 @@
 $(function () {
+  // 增加商品数目
   $(".increase_btn_ajax").on('click', function() {
     $(this).shop_count_increase_control();
   })
 
+  // 减少商品数目
   $(".decrease_btn_ajax").on('click', function() {
     $(this).shop_count_decrease_control();
   })
 
+  // 删除商品
   $(".del").on('click', function() {
     var line_item_id = $(this).data("line_item_id"),
         total_price = $("#total-price").text();
@@ -18,6 +21,7 @@ $(function () {
     }.bind(this));
   })
 
+  // 购物车到确认订单
   $("#clearing_commit").on('click', function() {
     event.preventDefault();
     var allLineItemRadioEle = $(".pro-list-portrait .radio");
@@ -28,6 +32,7 @@ $(function () {
     $("#show_cart").submit();
   })
 
+  // 全选商品
   $(".choose").on('click', function() {
     var textEle = $('.cart_check_all_line_item', this),
         radioEle = $('.radio', this),
@@ -54,6 +59,7 @@ $(function () {
     }
   })
 
+  // 选择商品
   $('.radio_btn').on('click', function() {
     var currentLineItemPriceVal = $(this).data('current-line-item-price'),
         totalPriceEle = $("#total-price"),

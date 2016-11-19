@@ -6,5 +6,6 @@ class Mall::CartsController < Mall::BaseController
 
   def show
     @line_items = current_cart.line_items
+    session[:line_item_ids] = nil
   end
 end

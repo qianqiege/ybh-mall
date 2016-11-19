@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119090051) do
+ActiveRecord::Schema.define(version: 20161119124647) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -94,7 +94,10 @@ ActiveRecord::Schema.define(version: 20161119090051) do
     t.integer "product_id"
     t.integer "cart_id"
     t.integer "quantity",   default: 1
+    t.integer "order_id"
+    t.boolean "in_cart",    default: true
     t.index ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+    t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
     t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
   end
 
@@ -135,8 +138,15 @@ ActiveRecord::Schema.define(version: 20161119090051) do
     t.datetime "order_time"
     t.string   "order_type"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+    t.integer  "wechat_user_id"
+    t.integer  "address_id"
+    t.string   "status",                                  default: "pending"
+    t.integer  "quantity"
+    t.decimal  "price",          precision: 10, scale: 2
+    t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
+    t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -155,7 +165,6 @@ ActiveRecord::Schema.define(version: 20161119090051) do
     t.decimal  "original_product_price",               precision: 10, scale: 2
     t.decimal  "now_product_price",                    precision: 10, scale: 2
     t.boolean  "is_show"
-    t.integer  "shop_count"
     t.string   "standard"
     t.string   "product_sort"
     t.string   "packaging"
@@ -164,8 +173,9 @@ ActiveRecord::Schema.define(version: 20161119090051) do
     t.string   "standard_number"
     t.string   "serial_number"
     t.text     "desc",                   limit: 65535
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
+    t.integer  "shop_count",                                                    default: 0
   end
 
   create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
