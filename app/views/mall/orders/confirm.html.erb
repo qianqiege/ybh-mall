@@ -1,0 +1,19 @@
+<div class='mobile_box'>
+  <div class="page-title">
+    <h2 class="text-cen">
+      <span>确认订单</span>
+    </h2>
+  </div>
+  <div class="wraper pt50 graybg">
+    <% if flash[:success] %>
+      <div class="notice"><%= flash[:success] %></div>
+    <% end %>
+    <div class="list-address">
+
+    </div>
+    <div class="cart-fixed-ft">
+      <a class="commit" id="clearing_commit">结算</a>
+      <span class="mr15">共<%= @all_line_item_count %>件，合计：¥<span class="total" data-all_total_price="<%= money @total_price %>" id="total-price"><%= money @total_price %></span></span>
+    </div>
+  </div>
+</div>

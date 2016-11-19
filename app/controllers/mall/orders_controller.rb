@@ -8,5 +8,10 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def confirm
+    line_item_ids = params[:line_item_ids].reject(&:blank?)
+    session[:line_item_ids] = line_item_ids
+    @line_items = LineItem.where(id: line_item_ids)
+    @all_line_item_count =  @line_items.sum { |line_item| line_item.quantity }
+    @total_price = @line_items.sum { |line_item| line_item.total_price }
   end
 end
