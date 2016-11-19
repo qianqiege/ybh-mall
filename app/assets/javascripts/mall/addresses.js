@@ -1,4 +1,5 @@
 $(function () {
+  // 创建和编辑收货地址
   $("#create_address_btn").on('click', function() {
     event.preventDefault();
 
@@ -13,10 +14,12 @@ $(function () {
     }
   })
 
+  // 省城区选择器
   if ( $('.city-group').length > 0 ) {
     $('.city-group').china_city()
   }
 
+  // 删除收货地址
   $(".address_delete_btn").on('click', function() {
     $.confirm('确定要删除此商品吗？', function(e) {
       if (e) {
@@ -32,13 +35,20 @@ $(function () {
     }.bind(this));
   })
 
+  // 选择收货地址
+  $(".address-item").on('click', function() {
+    window.location = "/mall/orders/confirm?address_id=" + $(this).data("address-id");
+  })
+
+  // 设置默认收货地址
   $(".set-default-btn").on('click', function() {
-    if ( $(this).hasClass('setDef') ) {
+    var radioEle = $(this).children().first();
+    if ( radioEle.hasClass('setDef') ) {
       return;
     }
     $.ajax({
       type: "PUT",
-      url: '/mall/addresses/' + $(this).data("id") + "/make_default",
+      url: '/mall/addresses/' + radioEle.data("id") + "/make_default",
       dataType: 'json',
       beforeSend: function() {
         showFlash('#loadingToast', '数据加载中')

@@ -8,6 +8,15 @@
     <% if flash[:success] %>
       <div class="notice"><%= flash[:success] %></div>
     <% end %>
+    <div class="address-confirm" data-address-id="<%= @recommend_address.id %>">
+      <i class="icon-address"></i>
+      <i class="arrow-right"></i>
+      <p>
+        <span class="fr gray84"><%= @recommend_address.mobile %></span>
+        收货人：<%= @recommend_address.contact_name %>
+      </p>
+      <p class="mt10">收货地址：<%= @recommend_address.display_detail %></p>
+    </div>
     <div class="car-box">
       <ul class="pro-list-portrait">
         <% @line_items.each do |line_item| %>

@@ -25,3 +25,4 @@
 //= require mall/carts
 //= require mall/lib
 //= require mall/addresses
+//= require mall/orders

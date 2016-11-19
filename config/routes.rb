@@ -25,11 +25,12 @@ Rails.application.routes.draw do
     end
     resource :cart, only: [:show]
     resources :orders, only: [:create] do
-      post :confirm, on: :collection
+      get :confirm, on: :collection
     end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do
       put :make_default, on: :member
+      get :choose, on: :collection
     end
   end
 
