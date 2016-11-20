@@ -8,6 +8,8 @@ class WechatUser < ApplicationRecord
 
   validates :open_id, presence: true, uniqueness: true
 
+  alias_attribute :name, :nickname
+
   def set_userinfo user_basic_info
     self.subscribe = user_basic_info['subscribe'] if user_basic_info['subscribe'].present?
     self.nickname = user_basic_info['nickname'] if user_basic_info['nickname'].present?
