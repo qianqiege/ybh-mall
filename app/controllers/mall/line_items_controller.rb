@@ -16,13 +16,13 @@ class Mall::LineItemsController < Mall::BaseController
     end
 
     # 控制库存数量
-    current_item = @cart.line_items.find_by(product_id: product.id)
+    current_item = current_cart.line_items.find_by(product_id: product.id)
     if current_item && (quantity + current_item.quantity > product.shop_count.to_i)
       render json: { exceed: "没有库存了" }
       return
     end
 
-    @line_item = @cart.add_product(product, quantity)
+    @line_item = current_cart.add_product(product, quantity)
     if @line_item.save
       render json: { quantity: quantity }
     else
