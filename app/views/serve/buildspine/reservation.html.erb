@@ -1,31 +1,5 @@
 <%= title '龙氏脊筑服务预约' %>
-<head>
-  <script type="text/javascript">
-  function showCustomer() {
-    var workStr=document.getElementById("work").value,
-        rankStr=document.getElementById("rank").value;
-    if (!workStr || !rankStr) {
-      return false;
-    }
-    var xmlhttp;
-    if (window.XMLHttpRequest) {
-      xmlhttp=new XMLHttpRequest();
-    } else {
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function() {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-        console.log(xmlhttp.responseText);
-      }
-    }
-    xmlhttp.open("GET","search/?work="+workStr+"&rank="+rankStr,true);
-    xmlhttp.send();
-    }
-    // 联动的js代码，传入后台的数据是工作站的ID和级别的ID,然后根据这两个ID在SpineBuild脊筑师表中对应外键查找相应的数据
-  </script>
-</head>
-<body>
-  <%= form_for @reservation, url: {action: "new"}, html: {class: "nifty_form"} do |f| %>
+<%= form_for @reservation, url: {action: "new"}, html: {class: "nifty_form"} do |f| %>
   <div class="weui-cells__title">基础信息</div>
   <div class="weui-cells weui-cells_form">
       <div class="weui-cell">
@@ -54,25 +28,15 @@
               <label for="" class="weui-label">工作站</label>
           </div>
           <div class="weui-cell__bd">
-              <select class="weui-select" name="work" id="work" onchange="showCustomer()">
-                <option value="">请选择</option>
-                <% @work.each do |work|%>
-                  <option value="<%= work.id %>"><%= work.name %></option>
-                <% end %>
-              </select>
+            <%= f.collection_select :work_id, @work, :id, :name, { prompt: true }, class: "weui-select" %>
           </div>
       </div>
       <div class="weui-cell weui-cell_select weui-cell_select-after">
           <div class="weui-cell__hd">
-              <label for="" class="weui-label">级别</label>
+            <label for="" class="weui-label">级别</label>
           </div>
           <div class="weui-cell__bd">
-              <select class="weui-select" name="rank" id="rank" onchange="showCustomer()">
-                <option value="">请选择</option>
-                <% @rank.each do |rank|%>
-                  <option value="<%= rank.id %>"><%= rank.level %></option>
-                <% end %>
-              </select>
+            <%= f.collection_select :rank_id, @rank, :id, :level, { prompt: true }, class: "weui-select" %>
           </div>
       </div>
       <div class="weui-cell weui-cell_select weui-cell_select-after">
@@ -80,9 +44,7 @@
               <label for="" class="weui-label">筑脊师</label>
           </div>
           <div class="weui-cell__bd">
-            <!-- 在这里选择脊筑师，然后提交表单到ReservationRecord预约记录表中 绑外键ID -->
-            <select class="weui-select" name="spine" id="spine">
-            </select>
+            <%= f.collection_select :spine_build_id, [], :id, :level, { prompt: true }, class: "weui-select" %>
           </div>
       </div>
   </div>
@@ -90,5 +52,4 @@
   <div class="weui-btn-area">
       <%= f.submit "预约" ,class:"weui-btn weui-btn_primary" %>
   </div>
-  <% end %>
-</body>
+<% end %>

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     root "home#index"
     get 'buildspine/reservation'
     post 'buildspine/new'
-    get 'buildspine/search'
+    get 'buildspine/show_spine'
     resources :buildspine
   end
 

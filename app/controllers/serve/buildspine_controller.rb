@@ -14,11 +14,9 @@ class Serve::BuildspineController < Wechat::BaseController
     end
   end
 
-  def search
-    @work_id = params[:work].to_i
-    @rank_id = params[:rank].to_i
-    @spine = SpineBuild.where(rank_id:@rank_id,workstation_id:@work_id).to_json
-    # 这是从数据库里根据级别和工作站查出来的数据 json 格式
+  def show_spine
+    data = SpineBuild.where(rank_id:params[:work_id],workstation_id: params[:rank_id])
+    render json: data, layout: nil
   end
 
   def reservation_params
