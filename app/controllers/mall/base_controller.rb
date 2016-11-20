@@ -14,8 +14,8 @@ module Mall
 
     private
 
-    def current_cart=(count)
-      @current_cart = count
+    def current_cart=(cart)
+      @current_cart = cart
     end
 
     def current_cart
