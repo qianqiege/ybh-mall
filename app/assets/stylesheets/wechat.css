@@ -12,6 +12,7 @@
  *
  *= require wechat/base
  *= require wechat/home
+ *= require wechat/weui_ext
  *= require mall/base
  *= require mall/home
  *= require mall/products
@@ -19,5 +20,6 @@
  *= require mall/carts
  *= require mall/addresses
  *= require mall/orders
+ *= require serve/serve
  *= require_self
  */

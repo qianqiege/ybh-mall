@@ -3,7 +3,9 @@
 one:
   name: MyString
   city: MyString
+  service_staff_id: 1
 
 two:
   name: MyString
   city: MyString
+  service_staff_id: 1

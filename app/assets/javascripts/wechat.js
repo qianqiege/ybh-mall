@@ -18,10 +18,14 @@
 // require turbolinks
 //= require wechat/base
 //= require wechat/home
+
 //= require mall/base
 //= require mall/home
 //= require mall/products
 //= require mall/authenticate
+
+//= require serve/buildspine
+
 //= require mall/carts
 //= require mall/lib
 //= require mall/addresses

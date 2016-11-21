@@ -161,6 +161,10 @@ ActiveRecord::Schema.define(version: 20161120074116) do
     t.decimal  "original_product_price",               precision: 10, scale: 2
     t.decimal  "now_product_price",                    precision: 10, scale: 2
     t.boolean  "is_show"
+<<<<<<< HEAD
+    t.integer  "shop_count"
+=======
+>>>>>>> c8aa06f42547f5d020fd397f306d00652cc0405b
     t.string   "standard"
     t.string   "product_sort"
     t.string   "packaging"
@@ -172,6 +176,12 @@ ActiveRecord::Schema.define(version: 20161120074116) do
     t.datetime "created_at",                                                                null: false
     t.datetime "updated_at",                                                                null: false
     t.integer  "shop_count",                                                    default: 0
+  end
+
+  create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -196,9 +206,10 @@ ActiveRecord::Schema.define(version: 20161120074116) do
     t.string   "name"
     t.datetime "time"
     t.integer  "service_staff_id"
-    t.integer  "serve_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "tel"
+    t.integer  "spine_build_id"
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -318,6 +329,13 @@ ActiveRecord::Schema.define(version: 20161120074116) do
     t.integer  "service_staff_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "workstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

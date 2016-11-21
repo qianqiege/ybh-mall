@@ -1,0 +1,58 @@
+<%= title '龙氏脊筑服务预约' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+<%= form_for @reservation, url: {action: "new"}, html: {class: "nifty_form"} do |f| %>
+  <div class="weui-cells__title">基础信息</div>
+  <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+          <div class="weui-cell__bd">
+            <%= f.text_field :name ,class:"weui-input",type:"text", placeholder:"请输入姓名"%>
+          </div>
+      </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
+          <div class="weui-cell__bd">
+            <%= f.text_field :tel,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入手机号"%>
+          </div>
+      </div>
+      <div class="weui-cell">
+          <div class="weui-cell__hd"><label for="" class="weui-label">时间</label></div>
+          <div class="weui-cell__bd">
+            <%= f.text_field :time ,class:"weui-input",type:"datetime-local"%>
+          </div>
+      </div>
+  </div>
+  <div class="weui-cells__title">选择</div>
+  <div class="weui-cells">
+      <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+              <label for="" class="weui-label">工作站</label>
+          </div>
+          <div class="weui-cell__bd">
+            <%= f.collection_select :work_id, @work, :id, :name, { prompt: true }, class: "weui-select" %>
+          </div>
+      </div>
+      <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">级别</label>
+          </div>
+          <div class="weui-cell__bd">
+            <%= f.collection_select :rank_id, @rank, :id, :level, { prompt: true }, class: "weui-select" %>
+          </div>
+      </div>
+      <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+              <label for="" class="weui-label">筑脊师</label>
+          </div>
+          <div class="weui-cell__bd">
+            <%= f.collection_select :spine_build_id, [], :id, :level, { prompt: true }, class: "weui-select" %>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-btn-area">
+      <%= f.submit "预约" ,class:"weui-btn weui-btn_primary" %>
+  </div>
+<% end %>
