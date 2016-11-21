@@ -4,7 +4,7 @@ class Mall::OrdersController < Mall::BaseController
   include HasAddress
   before_action :check_has_address, only: [:confirm, :create]
   include CurrentCart
-  before_action :check_cart_product_count, only: [:confirm]
+  before_action :check_cart, only: [:confirm]
 
   def create
     line_items = current_cart.line_items.where(id: session[:line_item_ids])

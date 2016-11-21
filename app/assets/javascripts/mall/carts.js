@@ -51,6 +51,14 @@ $(function () {
     var line_item_id = $(this).next().data("line_item_id"),
         url = "/mall/line_items/" + line_item_id + "/remove";
 
+    var $buyNum = $(this).next(),
+        $currentNum = parseInt($buyNum.val());
+
+    if (1 === $currentNum) {
+      $.tips('最小购买数量为1');
+      return;
+    }
+
     line_item_add_and_remove(url, line_item_id, "PUT", $(this));
   })
 

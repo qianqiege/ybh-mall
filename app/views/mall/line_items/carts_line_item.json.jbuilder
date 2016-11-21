@@ -10,7 +10,7 @@ if @line_item.errors.any?
   end
 else
   json.price money @line_item.price
-  json.current_line_item_price money @line_item.real_total_price
+  json.current_line_item_price money @line_item.total_price
 end
 
 json.action @action

@@ -2,7 +2,7 @@ class Mall::CartsController < Mall::BaseController
   include BindPhone
   before_action :check_bind_phone, only: [:show]
   include CurrentCart
-  before_action :set_cart, :check_cart_product_count, only: [:show]
+  before_action :set_cart, :check_cart, only: [:show]
 
   def show
     @line_items = current_cart.reload.line_items

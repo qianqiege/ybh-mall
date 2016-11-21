@@ -12,12 +12,10 @@ class LineItem < ApplicationRecord
     product.now_product_price
   end
 
+  # 商品金额
+  # 下架的商品不计算
   def total_price
-    price * quantity
-  end
-
-  def real_total_price
-    price * real_quantity
+    product.is_show ? price * real_quantity : 0
   end
 
   def move_to_order(order_id)
@@ -28,11 +26,12 @@ class LineItem < ApplicationRecord
   end
 
   # 商品最大购买数目
+  # 下架的商品不能购买
   def real_quantity
-    if quantity <= product.shop_count
-      quantity
+    if product.is_show
+      quantity <= product.shop_count ? quantity : product.shop_count
     else
-      product.shop_count
+      0
     end
   end
 

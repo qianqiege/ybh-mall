@@ -1,7 +1,7 @@
 class Mall::ProductsController < Mall::BaseController
   before_action :set_product, only: [:show]
   include CurrentCart
-  before_action :check_cart_product_count, only: [:show]
+  before_action :check_cart, only: [:show]
 
   def show
     @no_fotter = true

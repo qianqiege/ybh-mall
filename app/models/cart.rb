@@ -12,18 +12,18 @@ class Cart < ApplicationRecord
     current_item
   end
 
+  # 商品总金额
   def total_price
     line_items.to_a.sum { |item| item.total_price }
   end
 
-  def real_total_price
-    line_items.to_a.sum { |item| item.real_total_price }
-  end
-
+  # 目前放在购物车中的商品数量
+  # 下架的商品不能被计算在总数量中
   def product_count
-    line_items.to_a.sum { |item| item.quantity }
+    line_items.to_a.sum { |item| item.product.is_show ? item.quantity : 0 }
   end
 
+  # 真正能够购买的商品总数量
   def real_product_count
     reload.line_items.to_a.sum { |item| item.real_quantity }
   end

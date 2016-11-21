@@ -33,12 +33,18 @@
                   <div class="info clearfix">
                     <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
                   </div>
-                  <div class="fr amount">
-                    <%= hidden_field "line_item_ids", "", value: line_item.id, id: "line_item_#{line_item.id}", class: 'line_item_hidden_input', data: { "line-item-id" => line_item.id } %>
-                    <span class="decrease disable decrease_btn_ajax">-</span>
-                    <input type="text" data-shop-count="<%= line_item.product.shop_count %>" class="num buyNum" value="<%= line_item.quantity %>" data-line_item_id="<%= line_item.id %>" readonly="">
-                    <span class="increase increase_btn_ajax">+</span>
-                  </div>
+                   <% if line_item.product.is_show %>
+                     <div class="fr amount">
+                        <%= hidden_field "line_item_ids", "", value: line_item.id, id: "line_item_#{line_item.id}", class: 'line_item_hidden_input', data: { "line-item-id" => line_item.id } %>
+                        <span class="decrease disable decrease_btn_ajax">-</span>
+                        <input type="text" data-shop-count="<%= line_item.product.shop_count %>" class="num buyNum" value="<%= line_item.quantity %>" data-line_item_id="<%= line_item.id %>" readonly="">
+                        <span class="increase increase_btn_ajax">+</span>
+                      </div>
+                    <% else %>
+                     <div class="fr amount amount-is-not-show">
+                       该商品已下架
+                     </div>
+                    <% end %>
                   <span data-line_item_id="<%= line_item.id %>" class="del"></span>
                 </div>
               </li>
@@ -52,7 +58,7 @@
             <span class="cart_check_all_line_item">全部取消</span>
           </span>
           <a class="commit" id="clearing_commit">结算</a>
-          <span class="mr15">合计：¥<span class="total" data-all_total_price="<%= money current_cart.real_total_price %>" id="total-price"><%= money current_cart.real_total_price %></span></span>
+          <span class="mr15">合计：¥<span class="total" data-all_total_price="<%= money current_cart.total_price %>" id="total-price"><%= money current_cart.total_price %></span></span>
         </div>
       <% end %>
     </div>
