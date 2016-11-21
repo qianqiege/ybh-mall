@@ -1,4 +1,7 @@
 <%= title '龙氏脊筑服务预约' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
 <%= form_for @reservation, url: {action: "new"}, html: {class: "nifty_form"} do |f| %>
   <div class="weui-cells__title">基础信息</div>
   <div class="weui-cells weui-cells_form">

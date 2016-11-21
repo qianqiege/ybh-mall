@@ -10,7 +10,12 @@ class Serve::BuildspineController < Wechat::BaseController
 
   def new
     @reservation = ReservationRecord.new(reservation_params)
-    if @reservation.save
+    respond_to do |format|
+      if @reservation.save
+        format.html { redirect_to serve_buildspine_reservation_path , notice: '恭喜您，预约成功!' }
+      else
+        format.html { redirect_to serve_buildspine_reservation_path , notice: '非常抱歉，预约失败!' }
+      end
     end
   end
 
