@@ -17,8 +17,7 @@ function line_item_add_and_remove(url, line_item_id, method, that) {
           that.next().val(data.quantity);
           break;
         case 'delete':
-          that.parent().parent().remove();
-          trigger_total_price_change(0 - data.current_line_item_price)
+          window.location.reload();
           break;
       }
     }
@@ -71,7 +70,7 @@ $(function () {
   $("#clearing_commit").on('click', function() {
     event.preventDefault();
     var allLineItemRadioEle = $(".pro-list-portrait .radio");
-    if (!allLineItemRadioEle.hasClass('setDef')) {
+    if (!allLineItemRadioEle.hasClass('setDef') || $.trim($("#total-price").data('all_total_price')) == "0.00") {
       showFlash('#toast-custom', '请至少选择一个商品');
       return;
     }

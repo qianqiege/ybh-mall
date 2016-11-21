@@ -9,6 +9,9 @@
       <% if flash[:success] %>
         <div class="notice"><%= flash[:success] %></div>
       <% end %>
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
       <div class="address-confirm" data-address-id="<%= @recommend_address.id %>">
         <i class="icon-address"></i>
         <i class="arrow-right"></i>

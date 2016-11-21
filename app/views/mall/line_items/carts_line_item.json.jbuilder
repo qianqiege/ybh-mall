@@ -15,6 +15,8 @@ end
 
 json.action @action
 
-json.quantity @line_item.reload.real_quantity
+unless @action == 'delete'
+  json.quantity @line_item.reload.real_quantity
+end
 
 json.cart_real_product_count current_cart.real_product_count

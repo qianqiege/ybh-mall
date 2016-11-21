@@ -21,5 +21,6 @@
  *= require mall/addresses
  *= require mall/orders
  *= require serve/serve
+ *= require mall/my
  *= require_self
  */

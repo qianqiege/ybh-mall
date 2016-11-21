@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :mall do
     root "home#index"
     resources :products, only: [:show]
-    get '/authenticate_phone', to: 'authenticate#phone'
+    get 'authenticate_phone', to: 'authenticate#phone'
     post 'bind_phone', to: 'authenticate#bind_phone'
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       put :make_default, on: :member
       get :choose, on: :collection
     end
+    get 'my', to: 'my#home'
   end
 
   namespace :service do

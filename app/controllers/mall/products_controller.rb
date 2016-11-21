@@ -1,5 +1,5 @@
 class Mall::ProductsController < Mall::BaseController
-  before_action :set_product, :store_location, only: [:show]
+  before_action :set_product, only: [:show]
   include CurrentCart
   before_action :check_cart_product_count, only: [:show]
 
@@ -11,9 +11,5 @@ class Mall::ProductsController < Mall::BaseController
 
   def set_product
     @product = Product.find(params[:id])
-  end
-
-  def store_location
-    session[:return_to] = request.url if request.get?
   end
 end
