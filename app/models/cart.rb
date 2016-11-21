@@ -16,7 +16,15 @@ class Cart < ApplicationRecord
     line_items.to_a.sum { |item| item.total_price }
   end
 
+  def real_total_price
+    line_items.to_a.sum { |item| item.real_total_price }
+  end
+
   def product_count
     line_items.to_a.sum { |item| item.quantity }
+  end
+
+  def real_product_count
+    reload.line_items.to_a.sum { |item| item.real_quantity }
   end
 end
