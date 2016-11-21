@@ -1,0 +1,56 @@
+<%= form_for [:mall, @address] do |f| %>
+  <% if @address.errors.any? %>
+    <div class="notice">
+      <h3><%= "#{@address.errors.count}个错误:" %></h3>
+      <ul>
+        <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="address-box city-group">
+    <ul>
+      <li class='clearfix'>
+        <span>收货人姓名：</span>
+        <%= f.text_field :contact_name, class: 'gray84' %>
+      </li>
+      <li class="clearfix">
+        <span>手机号码：</span>
+        <%= f.text_field :mobile, class: 'gray84', maxlength: 11 %>
+      </li>
+      <li class="clearfix">
+        <span>省份</span>
+        <select class="city-select" name="address[province]">
+          <option value="">--省份--</option>
+          <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>城市</span>
+        <select class="city-select" name="address[city]">
+          <option value="">--城市--</option>
+          <% if @address.province.present? && !(@address.city == "--城市--") %>
+            <%= options_for_select(ChinaCity.list(@address.province), @address.city) %>
+          <% end %>
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>地区或街道</span>
+        <select class="city-select" name="address[street]">
+          <option value="">--地区或街道--</option>
+          <% if @address.province.present? && @address.city.present? && !(@address.street == "--地区或街道--") %>
+            <%= options_for_select(ChinaCity.list(@address.city), @address.street) %>
+          <% end %>
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>详细地址：</span>
+        <%= f.text_field :detail, class: 'gray84' %>
+      </li>
+    </ul>
+  </div>
+  <div class="address-btn add-address">
+    <a id="create_address_btn">保存</a>
+  </div>
+<% end %>

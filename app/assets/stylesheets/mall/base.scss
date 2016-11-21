@@ -16,3 +16,34 @@
   color: #ad0e11;
   line-height: 1.4;
 }
+
+.gray84 {
+  color: #848484;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.clearfix {
+  &:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    line-height: 0;
+  }
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.graybg {
+  background-color: #f8f8f8;
+}
+
+.mr20 {
+  margin-right: 20px;
+}

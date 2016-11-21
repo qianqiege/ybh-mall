@@ -17,5 +17,8 @@
  *= require mall/home
  *= require mall/products
  *= require mall/authenticate
+ *= require mall/carts
+ *= require mall/addresses
+ *= require mall/orders
  *= require_self
  */

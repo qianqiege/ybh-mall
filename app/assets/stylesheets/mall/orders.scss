@@ -1,0 +1,69 @@
+.cachier-fix-foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  line-height: 54px;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  background: #ad0e11;
+}
+
+.cashier-total {
+  line-height: 81px;
+  background: #fff;
+  text-align: center;
+  border-bottom: none;
+  span {
+    font-size: 1.7em;
+  }
+}
+
+.cashier-info {
+  background: #fff;
+  line-height: 37px;
+  padding: 0 10px;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef
+}
+
+.cashier-info-needpay {
+  color: #af1411;
+}
+
+.cashier-body {
+  padding: 10px;
+  background: #fff;
+}
+
+.pay-type-title {
+  color: #818181;
+}
+
+.cashier-paytype {
+  li {
+    line-height: 68px;
+  }
+} 
+
+.weixinpay {
+  i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    background-size: 45px 45px;
+    margin-right: 10px;
+    background-image: image-url("wechat_pay.png");
+  }
+  span {
+    vertical-align: middle;
+    width: 21px;
+    height: 18px;
+    background-size: 21px 18px;
+    background-image: image-url("choose.png");
+    float: right;
+    margin-top: 20px;
+  }
+}

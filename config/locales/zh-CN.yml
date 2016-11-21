@@ -18,5 +18,23 @@ zh-CN:
         production: '厂家'
         image: '展示图片'
         desc: '描述'
+        product_sort: '类别'
+      address:
+        contact_name: '收货人姓名'
+        mobile: '手机号码'
+        detail: '详细地址'
+        province: '省份'
+        city: '城市'
+        street: '区或街道'
+      order:
+        address: '收货地址'
+        address_id: '收货地址'
+        wechat_user: '所属用户'
+        wechat_user_id: '所属用户'
+        price: '金额'
+        quantity: '数量'
+        status: '状态'
     models:
       product: "商品"
+      address: '收货地址'
+      order: '订单'

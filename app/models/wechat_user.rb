@@ -1,9 +1,14 @@
 class WechatUser < ApplicationRecord
   has_one :cart
+  has_many :addresses
+  has_many :orders
+
   serialize :access_token_info, JSON
   serialize :auth_hash, Hash
 
   validates :open_id, presence: true, uniqueness: true
+
+  alias_attribute :name, :nickname
 
   def set_userinfo user_basic_info
     self.subscribe = user_basic_info['subscribe'] if user_basic_info['subscribe'].present?
@@ -31,5 +36,15 @@ class WechatUser < ApplicationRecord
 
   def update_mobile(mobile)
     self.update_attribute(:mobile, mobile)
+  end
+
+  def recommend_address
+    if default_address = addresses.find_by(is_default: true)
+      default_address
+    elsif used_address = addresses.find_by(id: self.used_address_id)
+      used_address
+    else
+      addresses.last
+    end
   end
 end
