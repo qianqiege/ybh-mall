@@ -1,6 +1,6 @@
 .list-address {
   margin: 10px 0 0;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
   background-color: #fff;
   .empty-address {
     text-align: center;
@@ -65,7 +65,7 @@
   max-width: 640px;
   min-width: 320px;
   margin: 0 auto;
-  position: fixed;
+  position: absolute;
   bottom: 58px;
   left: 0;
   right: 0;
