@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :service do
+    root "home#index"
+  end
+
   namespace :user do
     root "home#index"
   end
