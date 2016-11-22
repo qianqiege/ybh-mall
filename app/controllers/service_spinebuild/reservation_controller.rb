@@ -1,20 +1,20 @@
-class Serve::BuildspineController < Wechat::BaseController
-  def index
+class ServiceSpinebuild::ReservationController < ServiceSpinebuild::BaseController
+  def home
   end
 
-  def reservation
+  def new
     @work = Workstation.all
     @rank = Rank.all
     @reservation = ReservationRecord.new
   end
 
-  def new
+  def create
     @reservation = ReservationRecord.new(reservation_params)
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to serve_buildspine_reservation_path , notice: '恭喜您，预约成功!' }
+        format.html { redirect_to service_spinebuild_reservation_new_path , notice: '恭喜您，预约成功!' }
       else
-        format.html { redirect_to serve_buildspine_reservation_path , notice: '非常抱歉，预约失败!' }
+        format.html { redirect_to service_spinebuild_reservation_new_path , notice: '非常抱歉，预约失败!' }
       end
     end
   end

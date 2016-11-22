@@ -3,7 +3,7 @@ $(function(){
     var work_id = $('#reservation_record_work_id').val();
     var rank_id = $('#reservation_record_rank_id').val();
     if(work_id && rank_id){
-      var url = '/serve/buildspine/show_spine';
+      var url = '/service_spinebuild/reservation/show_spine';
       var params = {work_id: work_id, rank_id: rank_id};
       $.get(url, params, function(data){
         if(data.length){

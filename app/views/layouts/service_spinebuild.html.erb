@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'shared/head' %>
+  </head>
+  <body>
+    <div class="page tabbar js_show">
+      <div class="page__bd" style="height: 100%;">
+        <div class="weui-tab">
+          <div class="weui-tab__panel">
+            <%= yield %>
+          </div>
+          <div class="weui-tabbar">
+            <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+              <%= image_tag("home.png", class: "weui-tabbar__icon") %>
+              <p class="weui-tabbar__label">首页</p>
+            </a>
+            <a href="service_spinebuild/reservation/new" class="weui-tabbar__item">
+              <%= image_tag("reservation.jpg", class: "weui-tabbar__icon") %>
+              <p class="weui-tabbar__label">预约</p>
+            </a>
+            <a href="javascript:;" class="weui-tabbar__item">
+              <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+              <p class="weui-tabbar__label">我的</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
