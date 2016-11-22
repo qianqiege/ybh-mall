@@ -27,4 +27,4 @@ weixin:
       sub_button:
         - type: "view"
           name: "服务首页"
-          url: "http://ybhm.ybyt.cc/serve"
+          url: "http://ybhm.ybyt.cc/service"
