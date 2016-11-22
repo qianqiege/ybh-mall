@@ -88,6 +88,7 @@ group :development do
   # Use Capistrano for deployment
   gem 'capistrano', "~> 2.15.5"
   gem 'rvm-capistrano', '~> 1.4.1', :require => false
+  gem 'awesome_print'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -96,3 +97,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails-i18n'
 gem 'china_sms'
 gem 'china_city'
+gem 'aasm'

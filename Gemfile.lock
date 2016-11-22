@@ -11,6 +11,7 @@ GIT
 GEM
   remote: https://ruby.taobao.org/
   specs:
+    aasm (4.5.1)
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
       nio4r (~> 1.2)
@@ -66,6 +67,7 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
+    awesome_print (1.7.0)
     bcrypt (3.1.11)
     bourbon (4.2.7)
       sass (~> 3.4)
@@ -290,8 +292,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   activeadmin (~> 1.0.0.pre4)
   api-auth (~> 2.0, >= 2.0.1)
+  awesome_print
   byebug
   capistrano (~> 2.15.5)
   carrierwave (~> 0.11.2)
