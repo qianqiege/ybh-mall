@@ -38,8 +38,12 @@
                 </a>
                 <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
                 <div class="info clearfix">
-                  <span class="fr"><small>x</small><%= line_item.quantity %></span>
-                  <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
+                  <% if line_item.product.is_show %>
+                    <span class="fr"><small>x</small><%= line_item.quantity %></span>
+                    <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
+                  <% else %>
+                    <span class='notice-text'>该商品已下架</span>
+                  <% end %>
                 </div>
               </div>
             </li>
