@@ -35,14 +35,6 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :serve do
-    root "home#index"
-    get 'buildspine/reservation'
-    post 'buildspine/new'
-    get 'buildspine/show_spine'
-    resources :buildspine
-  end
-
   namespace :user do
     root "home#index"
   end
