@@ -79,6 +79,22 @@
       i {
         margin: 0 auto 10px;
         position: relative;
+        em {
+          position: absolute;
+          top: -6px;
+          left: 14px;
+          height: 14px;
+          padding: 0 4px;
+          background: #ad0e11;
+          border-radius: 7px;
+          text-align: center;
+          color: #fff;
+          font-size: 12px;
+          line-height: 14px;
+          box-sizing: border-box;
+          font-style: normal;
+          font-weight: 400;
+        }
       }
     }
   }

@@ -26,4 +26,8 @@ class Order < ApplicationRecord
       transitions :from => :pending, :to => :wait_send
     end
   end
+
+  def number
+    100000000 + self.id
+  end
 end

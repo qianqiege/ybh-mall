@@ -17,7 +17,11 @@
       <ul class='flex'>
         <li class="flex-item5">
           <a href="<%= mall_orders_path(status: 'pending')  %>">
-            <i class="ico-status waitPay"></i>
+            <i class="ico-status waitPay">
+              <% if @pending_order_count > 0 %>
+                <em><%= @pending_order_count %></em>
+              <% end %>
+            </i>
             待付款
           </a>
         </li>
@@ -35,13 +39,18 @@
         </li>
         <li class="flex-item5">
           <a href="">
-            <i class="ico-status allOrders"></i>
+            <i class="ico-status allOrders">
+              <% if @all_order_count > 0 %>
+                <em><%= @all_order_count %></em>
+              <% end %>
+            </i>
             全部订单
           </a>
         </li>
         <li class="flex-item5">
           <a href="">
-            <i class="ico-status returns"></i>
+            <i class="ico-status returns">
+            </i>
             退换货
           </a>
         </li>
