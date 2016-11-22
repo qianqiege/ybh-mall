@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     root "home#index"
   end
 
+  namespace :service_spinebuild do
+    root "home#index"
+  end
+
   namespace :user do
     root "home#index"
   end
