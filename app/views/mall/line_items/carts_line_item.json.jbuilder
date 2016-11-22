@@ -18,7 +18,7 @@ end
 json.action @action
 
 # 购物车页面中增加减少商品使用
-unless @action == 'delete'
+if @action == 'add' || @action == 'remove'
   json.quantity @line_item.reload.real_quantity
 end
 

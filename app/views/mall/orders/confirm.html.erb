@@ -12,6 +12,9 @@
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
+      <% if flash[:error] %>
+        <div class="notice"><%= flash[:error] %></div>
+      <% end %>
       <div class="address-confirm" data-address-id="<%= @recommend_address.id %>">
         <i class="icon-address"></i>
         <i class="arrow-right"></i>
@@ -43,6 +46,7 @@
                     <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
                   <% else %>
                     <span class='notice-text'>该商品已下架</span>
+                    <span data-line_item_id="<%= line_item.id %>" class="fr del"></span>
                   <% end %>
                 </div>
               </div>

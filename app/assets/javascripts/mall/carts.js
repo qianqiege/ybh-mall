@@ -1,3 +1,4 @@
+// 购物车页面，增加和减少商品数量，删除商品
 function line_item_add_and_remove(url, line_item_id, method, that) {
   $.ajax({
     type: method,
@@ -24,6 +25,7 @@ function line_item_add_and_remove(url, line_item_id, method, that) {
   })
 }
 
+// 由line_item_add_and_remove调用，只需要传入金额就可以设置购物车的动态金额变化效果
 function trgger_price_change(that, price) {
   var radioEle = that.parent().parent().parent().find('.radio');
   radioEle.data( 'current-line-item-price', (radioEle.data('current-line-item-price') - 0 + parseFloat(price)).formatMoney() );

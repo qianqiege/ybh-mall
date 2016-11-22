@@ -23,6 +23,13 @@ class Cart < ApplicationRecord
     line_items.to_a.sum { |item| item.product.is_show ? item.quantity : 0 }
   end
 
+  # 目前放在购物车中的商品数量
+  # 包含下架的商品
+  # 此方法在生成订单时调用，用于比较
+  def all_product_count
+    line_items.to_a.sum { |item| item.quantity }
+  end
+
   # 真正能够购买的商品总数量
   def real_product_count
     reload.line_items.to_a.sum { |item| item.real_quantity }
