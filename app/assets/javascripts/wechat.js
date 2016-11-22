@@ -24,7 +24,7 @@
 //= require mall/products
 //= require mall/authenticate
 
-//= require serve/buildspine
+//= require service/buildspine
 
 //= require mall/carts
 //= require mall/lib
