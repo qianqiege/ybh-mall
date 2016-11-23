@@ -33,6 +33,9 @@ class Mall::OrdersController < Mall::BaseController
     end
 
     line_items = current_cart.line_items.where(id: session[:line_item_ids])
+
+    # 去掉库存为0的商品
+    line_items = line_items.reject { |line_item| line_item.quantity == 0 }
     # 1. 计算金额(不包含下架的商品)
     price = line_items.to_a.sum { |item| item.total_price }
     # 2. 计算商品数量(不包含下架的商品)

@@ -3,6 +3,7 @@
     <div class="page-title">
       <h2 class="text-cen">
         <span>确认订单</span>
+        <%= link_to '', mall_cart_path, class: 'arrow-left' %>
       </h2>
     </div>
     <div class="wraper pt50 graybg">
@@ -42,8 +43,12 @@
                 <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
                 <div class="info clearfix">
                   <% if line_item.product.is_show %>
-                    <span class="fr"><small>x</small><%= line_item.quantity %></span>
-                    <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
+                    <% if line_item.quantity > 0 %>
+                      <span class="fr"><small>x</small><%= line_item.quantity %></span>
+                      <p class="fl price">¥<span><%= money line_item.product.now_product_price %></span></p>
+                    <% else %>
+                      <span class='notice-text'>该商品已无货</span>
+                    <% end %>
                   <% else %>
                     <span class='notice-text'>该商品已下架</span>
                     <span data-line_item_id="<%= line_item.id %>" class="fr del"></span>
