@@ -1,0 +1,134 @@
+.user-center {
+  font: normal 14px/1.5 Heiti SC,Arial,Lucida Grande,Verdana,STXhei,Microsoft YaHei,hei;
+}
+
+.nickname {
+  position: relative;
+  background-color: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.nick-item {
+  vertical-align: top;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px;
+  h3 {
+    line-height: 30px;
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
+
+.module-title {
+  height: 40px;
+  padding: 5px 35px 5px 15px;
+  line-height: 30px;
+  margin: 10px 0 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  color: #262626;
+  overflow: hidden;
+  font-weight: 400;
+  .arrow-right {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -4px;
+    &:before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      display: block;
+      border-left: 2px solid #000;
+      border-top: 2px solid #000;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
+    }
+  }
+  h3 {
+    font-weight: 400;
+    font-size: 14px;
+  }
+  a {
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    color: #262626;
+  }
+}
+
+.order-item {
+  background-color: #fff;
+  overflow: hidden;
+  ul {
+    text-align: center;
+    padding: 15px 0;
+    li {
+      text-align: center;
+      color: #000;
+      font-size: 14px;
+      a {
+        display: block;
+        color: #000;
+        text-decoration: none;
+      }
+      i {
+        margin: 0 auto 10px;
+        position: relative;
+        em {
+          position: absolute;
+          top: -6px;
+          left: 14px;
+          height: 14px;
+          padding: 0 4px;
+          background: #ad0e11;
+          border-radius: 7px;
+          text-align: center;
+          color: #fff;
+          font-size: 12px;
+          line-height: 14px;
+          box-sizing: border-box;
+          font-style: normal;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+.waitPay {
+  background-position: 0 0;
+  width: 19px;
+}
+
+.ico-status {
+  height: 22px;
+  display: block;
+  background-image: image-url("user-center-order-icon.png");
+  background-repeat: no-repeat;
+  background-size: 110px 22px;
+}
+
+.waitSend {
+  background-position: -19px 0;
+  width: 21px;
+}
+
+.waitComfirm {
+  background-position: -40px 0;
+  width: 29px;
+}
+
+.allOrders {
+  background-position: -92px 0;
+  width: 18px;
+}
+
+.returns {
+  background-position: -70px 0;
+  width: 22px;
+}

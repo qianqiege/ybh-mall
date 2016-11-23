@@ -1,0 +1,67 @@
+<div class='mobile_box'>
+  <div class="page-title">
+    <h2 class="text-cen">
+      <span><%= @title %></span>
+    </h2>
+  </div>
+  <div class="wraper pt50 graybg">
+    <% if @orders.empty? %>
+      <div class="empty-content">
+        暂无<%= @title %>o(╯□╰)o
+      </div>
+    <% else %>
+      <div class="order-list">
+        <ul>
+          <% @orders.each do |order| %>
+            <li>
+              <div class="order-head">
+                <p><span>订单号:<%= order.number %></span><b>订单待付款</b></p>
+              </div>
+
+              <div class="address-confirm order-address">
+                <i class="icon-address"></i>
+                <p>
+                  <span class="fr gray84"><%= order.address.mobile %></span>
+                  收货人：<%= order.address.contact_name %>
+                </p>
+                <p class="mt10">收货地址：<%= order.address.display_detail %></p>
+              </div>
+
+              <div class="car-box car-nmb">
+                <div class="pro-list-portrait">
+                  <% order.line_items.each do |line_item| %>
+                    <div class="order-line-item">
+                      <div class="img">
+                        <a href="<%= mall_product_path(line_item.product) %>">
+                          <%= image_tag line_item.product.image_url %>
+                        </a>
+                      </div>
+                      <div class="pro-m">
+                        <a href="<%= mall_product_path(line_item.product) %>">
+                          <p class="name"><%= line_item.product.name %></p>
+                        </a>
+                        <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
+                        <div class="info clearfix">
+                          <span class="fr"><small>x</small><%= line_item.quantity %></span>
+                          <p class="fl price">¥<span><%= money line_item.unit_price %></span></p>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="order-total">
+                <p>共<%= order.quantity %>件，合计：¥<%= money order.price %></p>
+              </div>
+
+              <div class="order-btn">
+                <p><a class="btn-pay" href="<%= pay_mall_order_path(order) %>">去支付</a></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -4,52 +4,27 @@ class Mall::LineItemsController < Mall::BaseController
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:add, :remove, :destroy]
+  after_action :set_real_quantity, only: [:add, :remove]
 
   def create
     quantity = params[:quantity].to_i
     product = Product.find(params[:product_id])
 
-    # 库存为0的情况
-    if product.shop_count == 0
-      render json: { exceed: "没有库存了" }
-      return
-    end
-
-    # 控制库存数量
-    current_item = current_cart.line_items.find_by(product_id: product.id)
-    if current_item && (quantity + current_item.quantity > product.shop_count.to_i)
-      render json: { exceed: "没有库存了" }
-      return
-    end
-
     @line_item = current_cart.add_product(product, quantity)
-    if @line_item.save
-      render json: { quantity: quantity }
-    else
-      render json: @line_item.errors, status: :bad_request
-    end
+    @line_item.save
+    render 'carts_line_item.json.jbuilder'
   end
 
   def add
-    # 为了安全，需要检测库存数量
-    if @line_item.quantity >= @line_item.product.shop_count
-      render json: { exceed: "没有库存了" }
-      return
-    end
-
-    @line_item.increment! :quantity
+    @line_item.quantity += 1
+    @line_item.save
     @action = 'add'
     render 'carts_line_item.json.jbuilder'
   end
 
   def remove
-    # 为了安全，需要检测库存数量
-    if @line_item.quantity == 1
-      render json: { exceed: "已经到最小购买数量了" }
-      return
-    end
-
-    @line_item.decrement! :quantity
+    @line_item.quantity -= 1
+    @line_item.save
     @action = 'remove'
     render 'carts_line_item.json.jbuilder'
   end
@@ -64,5 +39,9 @@ class Mall::LineItemsController < Mall::BaseController
 
   def set_line_item
     @line_item = current_cart.line_items.find(params[:id])
+  end
+
+  def set_real_quantity
+    @line_item.update_attribute(:quantity, @line_item.reload.real_quantity)
   end
 end

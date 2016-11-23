@@ -1,19 +1,74 @@
+// 购物车页面，增加和减少商品数量，删除商品
+function line_item_add_and_remove(url, line_item_id, method, that) {
+  $.ajax({
+    type: method,
+    url: url,
+    dataType: 'json',
+    success: function(data) {
+      if (data.error_messages) {
+        $.tips(data.error_messages);
+      }
+      switch(data.action) {
+        case 'add':
+          trgger_price_change(that, data.price)
+          that.prev().val(data.quantity);
+          break;
+        case 'remove':
+          trgger_price_change(that, 0 - data.price)
+          that.next().val(data.quantity);
+          break;
+        case 'delete':
+          window.location.reload();
+          break;
+      }
+    }
+  })
+}
+
+// 由line_item_add_and_remove调用，只需要传入金额就可以设置购物车的动态金额变化效果
+function trgger_price_change(that, price) {
+  var radioEle = that.parent().parent().parent().find('.radio');
+  radioEle.data( 'current-line-item-price', (radioEle.data('current-line-item-price') - 0 + parseFloat(price)).formatMoney() );
+
+  var totalPriceEle = $("#total-price");
+
+  if (radioEle.hasClass('setDef')) {
+    totalPriceEle.text( (totalPriceEle.text() - 0 + parseFloat(price)).formatMoney() );
+  }
+
+  totalPriceEle.data( 'all_total_price', (totalPriceEle.data('all_total_price') - 0 + parseFloat(price)).formatMoney() );
+}
+
 $(function () {
-  // 增加商品数目
+  // 增加购物车商品数目
   $(".increase_btn_ajax").on('click', function() {
-    $(this).shop_count_increase_control();
+    var line_item_id = $(this).prev().data("line_item_id"),
+        url = "/mall/line_items/" + line_item_id + "/add";
+
+    line_item_add_and_remove(url, line_item_id, "PUT", $(this));
   })
 
-  // 减少商品数目
+  // 减少购物车商品数目
   $(".decrease_btn_ajax").on('click', function() {
-    $(this).shop_count_decrease_control();
+    var line_item_id = $(this).next().data("line_item_id"),
+        url = "/mall/line_items/" + line_item_id + "/remove";
+
+    var $buyNum = $(this).next(),
+        $currentNum = parseInt($buyNum.val());
+
+    if (1 === $currentNum) {
+      $.tips('最小购买数量为1');
+      return;
+    }
+
+    line_item_add_and_remove(url, line_item_id, "PUT", $(this));
   })
 
   // 删除商品
   $(".del").on('click', function() {
     var line_item_id = $(this).data("line_item_id"),
-        total_price = $("#total-price").text();
         url = "/mall/line_items/" + line_item_id;
+
     $.confirm('确定要删除此商品吗？', function(e) {
       if (e) {
         line_item_add_and_remove(url, line_item_id, "DELETE", $(this));
@@ -25,7 +80,7 @@ $(function () {
   $("#clearing_commit").on('click', function() {
     event.preventDefault();
     var allLineItemRadioEle = $(".pro-list-portrait .radio");
-    if (!allLineItemRadioEle.hasClass('setDef')) {
+    if (!allLineItemRadioEle.hasClass('setDef') || $.trim($("#total-price").data('all_total_price')) == "0.00") {
       showFlash('#toast-custom', '请至少选择一个商品');
       return;
     }

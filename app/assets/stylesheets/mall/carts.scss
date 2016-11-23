@@ -52,6 +52,10 @@
       margin-top: -25px;
       margin-right: 50px;
     }
+    .amount-is-not-show {
+      border: none;
+      color: #ad0e11;
+    }
     .pro-m {
       margin-left: 95px;
     }
@@ -102,6 +106,10 @@
   }
 }
 
+.car-nmb {
+  margin-bottom: 0;
+}
+
 .cart-fixed-ft {
   height: 50px;
   line-height: 50px;
@@ -118,8 +126,6 @@
   background: #fff;
   color: #000;
   border-top: 1px solid #ddd;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
   .choose {
     float: left;
     height: 50px;

@@ -14,8 +14,8 @@ module Mall
 
     private
 
-    def current_cart=(count)
-      @current_cart = count
+    def current_cart=(cart)
+      @current_cart = cart
     end
 
     def current_cart
@@ -23,7 +23,7 @@ module Mall
     end
 
     def current_cart_count
-      current_cart.try(:product_count).to_i
+      current_cart.try(:real_product_count).to_i
     end
 
     def set_current_cart_count

@@ -1,0 +1,70 @@
+<div class="wraper graybg">
+  <div class='user-center'>
+    <div class='my-info'>
+      <div class="nickname">
+        <div class="nick-item">
+          <h3><%= current_user.name %> <%= current_user.mobile %></h3>
+        </div>
+      </div>
+      <div class="module-title">
+        <h3>
+          <a href="javascript:;"> 我的订单</a>
+        </h3>
+      </div>
+    </div>
+
+    <div class="order-item">
+      <ul class='flex'>
+        <li class="flex-item5">
+          <a href="<%= mall_orders_path(status: 'pending')  %>">
+            <i class="ico-status waitPay">
+              <% if @pending_order_count > 0 %>
+                <em><%= @pending_order_count %></em>
+              <% end %>
+            </i>
+            待付款
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="">
+            <i class="ico-status waitSend"></i>
+            待发货
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="">
+            <i class="ico-status waitComfirm"></i>
+            待收货
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="">
+            <i class="ico-status allOrders">
+              <% if @all_order_count > 0 %>
+                <em><%= @all_order_count %></em>
+              <% end %>
+            </i>
+            全部订单
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="">
+            <i class="ico-status returns">
+            </i>
+            退换货
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="module-title">
+      <h3>
+        <a class="link-area" href="<%= mall_addresses_path %>">
+          设置
+          <span class="fr gray84">收货地址管理</span>
+          <i class="arrow-right"></i>
+        </a>
+      </h3>
+    </div>
+  </div>
+</div>
