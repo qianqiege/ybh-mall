@@ -3,29 +3,29 @@
 <div class="home">
   <%= render 'shared/slide' %>
 
-  <div class='weui-panel__hd'>会员类别</div>
+  <div class='weui-panel__hd'>御邦会会员</div>
   <div class="weui-panel__bd">
     <div class="weui-grids">
-      <% @vip_types.each do |vip_type|%>
-        <a href="wechat/member/card" class="weui-grid">
+      <% @vip_yb.each do |vip_yb| %>
+        <a href="<%= wechat_member_club_path(vip_yb)%>" class="weui-grid">
           <div class="weui-grid__icon">
-            <%= image_tag(vip_type.icon_url, class: "weui-tabbar__icon") %>
+            <%= image_tag(vip_yb.icon_url, class: "weui-tabbar__icon") %>
           </div>
-          <p class="weui-grid__label"><%= vip_type.name %></p>
+          <p class="weui-grid__label"><%= vip_yb.name %></p>
         </a>
       <% end %>
     </div>
   </div>
 
-  <div class='weui-panel__hd'>套餐类别</div>
+  <div class='weui-panel__hd'>医通会会员</div>
   <div class="weui-panel__bd">
     <div class="weui-grids">
-      <% @setmeal.each do |setmeal|%>
-        <a href="<%= wechat_setmeal_path(setmeal)%>" class="weui-grid">
+      <% @vip_yt.each do |vip_yt|%>
+        <a href="<%= wechat_member_club_path(vip_yt)%>" class="weui-grid">
           <div class="weui-grid__icon">
-            <%= image_tag(setmeal.icon_url, class: "weui-tabbar__icon") %>
+            <%= image_tag(vip_yt.icon_url, class: "weui-tabbar__icon") %>
           </div>
-          <p class="weui-grid__label"><%= setmeal.name %></p>
+          <p class="weui-grid__label"><%= vip_yt.name %></p>
         </a>
       <% end %>
     </div>
