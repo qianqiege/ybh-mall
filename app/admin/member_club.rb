@@ -1,13 +1,13 @@
-ActiveAdmin.register MemberRank do
+ActiveAdmin.register MemberClub do
   menu parent: I18n.t("active_admin.menu.member_manage")
   permit_params :name, :image
-  
+
   index do
     selectable_column
     id_column
 
-    column "会员卡图片" do |card|
-      image_tag(card.image_url, size: "80x50")
+    column "会员俱乐部图片" do |club|
+      image_tag(club.image_url, size: "80x50")
     end
     column :name
     column :image
@@ -16,7 +16,7 @@ ActiveAdmin.register MemberRank do
   end
 
   form(:html => { :multipart => true }) do |f|
-    f.inputs "会员卡级别" do
+    f.inputs "会员卡俱乐部" do
       f.input :name
       f.input :image, :as => :file
     end
