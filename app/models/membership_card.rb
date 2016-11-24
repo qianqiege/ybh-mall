@@ -5,4 +5,5 @@ class MembershipCard < ApplicationRecord
   belongs_to :serve
   belongs_to :house_poperty
   belongs_to :stock_right
+  has_many :member_equities
 end
