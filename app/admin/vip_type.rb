@@ -1,7 +1,7 @@
 ActiveAdmin.register VipType do
   menu parent: I18n.t("active_admin.menu.member_manage")
 
-  permit_params :name, :image, :remark
+  permit_params :name, :image, :remark,:affiliation
 
   index do
     selectable_column
@@ -13,6 +13,7 @@ ActiveAdmin.register VipType do
     column :name
     column :image
     column :remark
+    column :affiliation
 
     column :updated_at
     actions
@@ -23,6 +24,7 @@ ActiveAdmin.register VipType do
       f.input :name
       f.input :remark
       f.input :image, :as => :file
+      f.input :affiliation
     end
     f.actions
   end
