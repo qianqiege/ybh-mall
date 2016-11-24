@@ -4,8 +4,9 @@ class Serve < ApplicationRecord
   has_many :set_meal_serve_relations
   has_many :reservation_records
   has_many :spine_builds
+  has_many :member_equities
 
   def name
-    serve_name    
+    serve_name
   end
 end
