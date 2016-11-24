@@ -1,6 +1,6 @@
 ActiveAdmin.register MemberClub do
   menu parent: I18n.t("active_admin.menu.member_manage")
-  permit_params :name, :image
+  permit_params :name, :image,:vip_type_id
 
   index do
     selectable_column
@@ -12,6 +12,7 @@ ActiveAdmin.register MemberClub do
     column :name
     column :image
     column :updated_at
+    column :vip_type
     actions
   end
 
@@ -19,6 +20,7 @@ ActiveAdmin.register MemberClub do
     f.inputs "会员卡俱乐部" do
       f.input :name
       f.input :image, :as => :file
+      f.input :vip_type
     end
     f.actions
   end
