@@ -53,4 +53,6 @@ $(function () {
   $(document).on('ajaxError', function(e, xhr, options){
     showFlash('#toast-custom', '发生错误了')
   })
+
+  FastClick.attach(document.body);
 });
