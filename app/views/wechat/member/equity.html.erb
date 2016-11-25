@@ -10,24 +10,28 @@
         <div class="weui-panel__bd">
           <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__bd">
-              <p class="ptext"><%= equity.remark %>，1疗程/<%= equity.number_of_time %>次，<%= equity.total_price / equity.number_of_time %>元/疗程，共计人民币<%= equity.total_price %>元。</p>
+              <p class="ptext">
+                <%= equity.remark %>,1疗程/<%= equity.number_of_time %>次,<%= equity.price %>元/疗程,共计人民币<%= equity.price * equity.number %>元
+              </p>
             </div>
           </a>
         </div>
       </div>
-    <% else %>
-    <div class="weui-panel weui-panel_access">
-      <div class="weui-panel__hd">
-        <h3 class="membertitle"><%= equity.product.name %></h3>
+    <% elsif equity.product_id %>
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__hd">
+          <h3 class="membertitle"><%= equity.product.name %></h3>
+        </div>
+        <div class="weui-panel__bd">
+          <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__bd">
+              <p class="ptext">
+                <%= equity.remark %>,<%= equity.number %>/盒/份,<%= equity.price%>元/盒,共计人民币<%= equity.price * equity.number %>元。
+              </p>
+            </div>
+          </a>
+        </div>
       </div>
-      <div class="weui-panel__bd">
-        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-          <div class="weui-media-box__bd">
-            <p class="ptext"><%= equity.remark %><%= equity.number %>/盒/份，<%= equity.total_price / equity.number%>元/盒，共计人民币<%= equity.total_price %>元。
-          </div>
-        </a>
-      </div>
-    </div>
     <% end %>
   <% end %>
 </div>
