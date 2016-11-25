@@ -1,0 +1,75 @@
+<%= title '会员权益介绍' %>
+
+<div class="body">
+  <% @equity.each do |equity| %>
+
+    <% if equity.serve_id %>
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__hd">
+          <h3 class="membertitle"><%= equity.serve.serve_name %></h3>
+        </div>
+        <div class="weui-panel__bd">
+          <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__bd">
+              <p class="ptext">
+                <%= equity.remark %>,1疗程/<%= equity.number_of_time %>次,<%= equity.price %>元/疗程,共计人民币<%= equity.price * equity.number %>元
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    <% elsif equity.product.name == "惠健康" %>
+      <div class="weui-panel weui-panel_access">
+          <div class="weui-panel__hd">
+            <h3 class="membertitle"><%= equity.product.name %></h3>
+          </div>
+          <div class="weui-panel__bd">
+            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+              <div class="weui-media-box__bd">
+                <p class="ptext">
+                  <%= equity.remark %>,共计人民币<%= equity.price * equity.number %>元。
+                </p>
+              </div>
+           </a>
+         </div>
+      </div>
+
+    <% elsif equity.product_id %>
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__hd">
+          <h3 class="membertitle"><%= equity.product.name %></h3>
+        </div>
+        <div class="weui-panel__bd">
+          <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__bd">
+              <p class="ptext">
+                <%= equity.remark %>,<%= equity.number %>/盒/份,<%= equity.price%>元/盒,共计人民币<%= equity.price * equity.number %>元。
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    <% end %>
+  <% end %>
+  <div class="weui-panel__hd">
+    <h3 class="membertitle">御邦医通公司产品<%= @discount.membership_card.discount %>折优惠</h3>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">
+      <h3 class="membertitle">健康津贴</h3>
+    </div>
+    <div class="weui-panel__bd">
+      <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+          <p class="ptext">
+            协议签订后，自甲方向乙方全额缴纳医通會单病种会员入会费3个月后起连续3年，甲方每月享有乙方支返的<%= @discount.membership_card.allowance %>元健康津贴
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>

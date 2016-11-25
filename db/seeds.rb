@@ -9,11 +9,36 @@ if AdminUser.first.blank?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 end
 
+if Serve.first.blank?
+  Serve.create!(serve_name:'龙氏脊筑',url: 'service_spinebuild')
+  Serve.create!(serve_name:'慢病健康管理深度临床营养干预')
+  Serve.create!(serve_name:'数字中医TDS')
+  Serve.create!(serve_name:'惠健康可穿戴动态监测设备一套')
+end
 
 if VipType.first.blank?
-  VipType.create!(name:'A类会员',remark: '御邦首期A类会员')
-  VipType.create!(name:'B类会员',remark: '御邦首期B类会员')
-  VipType.create!(name:'C类会员',remark: '御邦首期C类会员')
+  VipType.create!(name:'御邦会员',remark: '御邦会 会员')
+  VipType.create!(name:'医通会员',remark: '医通会 会员')
+end
+
+if MemberClub.first.blank?
+  MemberClub.create!(name:'御邦会奉亲俱乐部',vip_type_id:1)
+  MemberClub.create!(name:'医通會黄卡俱乐部',vip_type_id:2)
+  MemberClub.create!(name:'医通會绿卡俱乐部',vip_type_id:2)
+  MemberClub.create!(name:'医通會红卡俱乐部',vip_type_id:2)
+  MemberClub.create!(name:'医通會绿卡青少年专属',vip_type_id:2)
+end
+
+if MembershipCard.first.blank?
+  MembershipCard.create!(name:'御邦医通-火聖卡',member_club_id:1,discount:6.8)
+  MembershipCard.create!(name:'御邦医通-土聖卡',member_club_id:1,discount:6.8)
+  MembershipCard.create!(name:'御邦医通-水聖卡',member_club_id:1,discount:6.8)
+  MembershipCard.create!(name:'御邦医通-木聖卡',member_club_id:1,discount:6.8)
+  MembershipCard.create!(name:'御邦医通-金聖卡',member_club_id:1,discount:6.8)
+  MembershipCard.create!(name:'御邦医通-金聖卡',member_club_id:1,discount:6.8)
+  MembershipCard.create!(name:'御邦医通-黄卡',member_club_id:2,discount:8)
+  MembershipCard.create!(name:'御邦医通-绿卡',member_club_id:3,discount:9)
+  MembershipCard.create!(name:'御邦医通-红卡',member_club_id:4,discount:8)
 end
 
 if Setmeal.first.blank?

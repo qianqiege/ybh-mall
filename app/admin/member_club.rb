@@ -7,7 +7,7 @@ ActiveAdmin.register MemberClub do
     id_column
 
     column "会员俱乐部图片" do |club|
-      image_tag(club.image_url, size: "80x50")
+      image_tag(club.image_url, size: "50x50")
     end
     column :name
     column :image

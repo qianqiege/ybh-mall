@@ -1,6 +1,6 @@
 ActiveAdmin.register MembershipCard do
   menu parent: I18n.t("active_admin.menu.member_manage")
-  permit_params :name, :image, :desc,:member_club_id,:setmeal_id,:serve_id,:house_poperty_id,:stock_right_id
+  permit_params :name, :image, :desc,:member_club_id,:setmeal_id,:serve_id,:house_poperty_id,:stock_right_id,:discount,:allowance
 
   index do
     selectable_column
@@ -25,6 +25,8 @@ ActiveAdmin.register MembershipCard do
       f.input :stock_right
       f.input :image, :as => :file
       f.input :desc
+      f.input :allowance
+      f.input :discount
     end
     f.actions
   end
