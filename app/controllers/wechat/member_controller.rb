@@ -1,6 +1,6 @@
 class Wechat::MemberController < Wechat::BaseController
   before_action :set_card, only: [:card]
-  before_action :store_location, only: [:card,:equities]
+  before_action :store_location, only: [:card,:equity]
 
   before_action :set_equity, only: [:equity]
   def card
@@ -18,6 +18,7 @@ class Wechat::MemberController < Wechat::BaseController
 
   def set_equity
     @equity = MemberEquity.where(membership_card_id:params[:format])
+    @discount = MemberEquity.where(membership_card_id:params[:format]).take
   end
 
   def store_location
