@@ -5,6 +5,17 @@ ActiveAdmin.register Order do
 
   actions :index, :edit, :update, :show
 
+  controller do
+    def update
+      if params[:order] && params[:order][:status] == 'cancel' && resource.may_make_cancel?
+        resource.make_cancel
+        redirect_to resource_path, notice: 'Cancel!'
+      else
+        super
+      end
+    end
+  end
+
   index do
     selectable_column
     id_column

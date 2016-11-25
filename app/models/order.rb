@@ -14,7 +14,7 @@ class Order < ApplicationRecord
   include AASM
   aasm column: :status do
     # 待付款，初始状态
-    state :pending, :initial => true
+    state :pending, initial: true
     # 待发货
     state :wait_send
     # 待收货确认
@@ -25,7 +25,21 @@ class Order < ApplicationRecord
     state :cancel
 
     event :pay do
-      transitions :from => :pending, :to => :wait_send
+      transitions from: :pending, to: :wait_send
+      after do
+        line_items.each do |line_item|
+          line_item.product.pay_reduce_shop_count(line_item.quantity)
+        end
+      end
+    end
+
+    event :make_cancel do
+      transitions from: :pending, to: :cancel
+      after do
+        line_items.each do |line_item|
+          line_item.product.back_shop_count(line_item.quantity)
+        end
+      end
     end
   end
 

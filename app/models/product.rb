@@ -6,7 +6,24 @@ class Product < ApplicationRecord
 
   validates :name, :now_product_price, :image, :desc, presence: true
   validates :now_product_price, numericality: { greater_than_or_equal_to: 0.01 }
-  validates :shop_count, numericality: { only_integer: true,  greater_than_or_equal_to: 0 }
+  validates :shop_count, :lock_shop_count, numericality: { only_integer: true,  greater_than_or_equal_to: 0 }
+
+  def reduce_shop_count(quantity)
+    self.shop_count -= quantity
+    self.lock_shop_count += quantity
+    self.save validate: false
+  end
+
+  def back_shop_count(quantity)
+    self.shop_count += quantity
+    self.lock_shop_count -= quantity
+    self.save!
+  end
+
+  def pay_reduce_shop_count(quantity)
+    self.lock_shop_count -= quantity
+    self.save!
+  end
 
   private
 

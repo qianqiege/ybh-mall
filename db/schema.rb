@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120074116) do
+ActiveRecord::Schema.define(version: 20161125091332) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -161,10 +161,6 @@ ActiveRecord::Schema.define(version: 20161120074116) do
     t.decimal  "original_product_price",               precision: 10, scale: 2
     t.decimal  "now_product_price",                    precision: 10, scale: 2
     t.boolean  "is_show"
-<<<<<<< HEAD
-    t.integer  "shop_count"
-=======
->>>>>>> c8aa06f42547f5d020fd397f306d00652cc0405b
     t.string   "standard"
     t.string   "product_sort"
     t.string   "packaging"
@@ -176,12 +172,7 @@ ActiveRecord::Schema.define(version: 20161120074116) do
     t.datetime "created_at",                                                                null: false
     t.datetime "updated_at",                                                                null: false
     t.integer  "shop_count",                                                    default: 0
-  end
-
-  create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "level"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "lock_shop_count",                                               default: 0
   end
 
   create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -321,14 +312,6 @@ ActiveRecord::Schema.define(version: 20161120074116) do
     t.datetime "updated_at",                      null: false
     t.string   "mobile"
     t.integer  "used_address_id"
-  end
-
-  create_table "wordstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "city"
-    t.integer  "service_staff_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
   end
 
   create_table "workstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
