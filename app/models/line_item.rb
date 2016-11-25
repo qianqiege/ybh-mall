@@ -23,6 +23,8 @@ class LineItem < ApplicationRecord
     self.in_cart = false
     self.order_id = order_id
     self.save validate: false
+
+    self.product.reduce_shop_count(self.quantity)
   end
 
   # 商品最大购买数目
