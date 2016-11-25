@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   end
 
   namespace :wechat do
-    get 'member/club'
+    get 'member/card'
+    get 'member/equity'
   end
 
   namespace :mall do

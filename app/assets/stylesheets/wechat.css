@@ -12,6 +12,7 @@
  *
  *= require wechat/base
  *= require wechat/home
+ *= require wechat/member
  *= require wechat/weui_ext
  *= require mall/base
  *= require mall/home
