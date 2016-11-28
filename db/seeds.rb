@@ -35,7 +35,7 @@ if MembershipCard.first.blank?
   MembershipCard.create!(name:'御邦医通-水聖卡',member_club_id:1,discount:6.8)
   MembershipCard.create!(name:'御邦医通-木聖卡',member_club_id:1,discount:6.8)
   MembershipCard.create!(name:'御邦医通-金聖卡',member_club_id:1,discount:6.8)
-  MembershipCard.create!(name:'御邦医通-金聖卡',member_club_id:1,discount:6.8)
+  MembershipCard.create!(name:'御邦医通-太聖卡',member_club_id:1,discount:6.8)
   MembershipCard.create!(name:'御邦医通-黄卡',member_club_id:2,discount:8)
   MembershipCard.create!(name:'御邦医通-绿卡',member_club_id:3,discount:9)
   MembershipCard.create!(name:'御邦医通-红卡',member_club_id:4,discount:8)
