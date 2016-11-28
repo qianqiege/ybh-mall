@@ -4,12 +4,13 @@ class Wechat::MemberController < Wechat::BaseController
 
   before_action :set_equity, only: [:equity]
   def card
-    @slides = Slide.top(4)
     @no_fotter = true
+    @slides = Slide.top(4)
   end
 
   def equity
     @no_fotter = true
+    @discount = MemberEquity.where(membership_card_id:params[:format]).take
   end
 
   def set_card
@@ -18,7 +19,6 @@ class Wechat::MemberController < Wechat::BaseController
 
   def set_equity
     @equity = MemberEquity.where(membership_card_id:params[:format])
-    @discount = MemberEquity.where(membership_card_id:params[:format]).take
   end
 
   def store_location

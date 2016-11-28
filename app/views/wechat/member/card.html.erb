@@ -3,19 +3,21 @@
 <div class="home">
   <%= render 'shared/slide' %>
 
+  <% if @card %>
   <div class="weui-panel weui-panel_access">
-    <div class="weui-panel__hd">御邦医通会员</div>
+    <% @card.each do |card| %>
+    <div class="weui-panel__hd"><%= card.member_club.name %></div>
     <div class="weui-panel__bd">
-      <% @card.each do |card| %>
-      <a href="<%= wechat_member_equity_path(card)%>" class="weui-media-box weui-media-box_appmsg">
+      <a href="<%= wechat_member_equity_path(card) %>" class="weui-media-box weui-media-box_appmsg">
           <div class="weui-media-box__hd">
             <%= image_tag(card.icon_url,size: "70x40") %>
           </div>
           <div class="weui-media-box__bd">
-            <h4 class="weui-media-box__title"><%=card.name%></h4>
+            <h4 class="weui-media-box__title"><%= card.name %></h4>
           </div>
       </a>
       <% end %>
     </div>
   </div>
+  <% end %>
 </div>
