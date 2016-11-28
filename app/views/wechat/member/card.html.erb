@@ -5,8 +5,8 @@
 
   <% if @card %>
   <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd"><%= @clubname.member_club.name %></div>
     <% @card.each do |card| %>
-    <div class="weui-panel__hd"><%= card.member_club.name %></div>
     <div class="weui-panel__bd">
       <a href="<%= wechat_member_equity_path(card) %>" class="weui-media-box weui-media-box_appmsg">
           <div class="weui-media-box__hd">

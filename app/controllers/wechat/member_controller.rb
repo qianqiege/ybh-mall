@@ -15,6 +15,7 @@ class Wechat::MemberController < Wechat::BaseController
 
   def set_card
     @card = MembershipCard.where(member_club_id:params[:format])
+    @clubname = MembershipCard.where(member_club_id:params[:format]).take
   end
 
   def set_equity
