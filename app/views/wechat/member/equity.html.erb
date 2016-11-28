@@ -2,20 +2,37 @@
 
 <div class="body">
   <% @equity.each do |equity| %>
-  <div class="weui-panel weui-panel_access">
-      <div class="weui-panel__hd">
-        <h3 class="membertitle"><%= equity.serve.serve_name %></h3>
+  <% if equity.serve_id %>
+    <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__hd">
+          <h3 class="membertitle"><%= equity.serve.serve_name %></h3>
+        </div>
+        <div class="weui-panel__bd">
+          <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__bd">
+              <p class="ptext">
+                <%= equity.remark %>
+              </p>
+            </div>
+          </a>
+        </div>
       </div>
-      <div class="weui-panel__bd">
-        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-          <div class="weui-media-box__bd">
-            <p class="ptext">
-              <%= equity.remark %>
-            </p>
-          </div>
-        </a>
+    <% elsif equity.product_id %>
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel__hd">
+          <h3 class="membertitle"><%= equity.product.name %></h3>
+        </div>
+        <div class="weui-panel__bd">
+          <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__bd">
+              <p class="ptext">
+                <%= equity.remark %>
+              </p>
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <% if @discount %>
