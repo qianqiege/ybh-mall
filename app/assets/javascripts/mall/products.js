@@ -23,6 +23,36 @@ $.fn.product_count_decrease_control = function(){
   })
 }
 
+// 加入购物车和立即购买的请求
+function add_cart_ajax(data) {
+  $.ajax({
+    type: 'POST',
+    url: '/mall/line_items',
+    data: data,
+    dataType: 'json',
+    success: function(data){
+      if (data.location) {
+        window.location.href = data.location;
+        return;
+      }
+      if (data.error_messages) {
+        $.tips(data.error_messages);
+        $("#carNum").text(parseInt(data.cart_real_product_count))
+        return;
+      }
+
+      if (data.fast_buy) {
+        window.location.href = '/mall/cart';
+        return;
+      }
+
+      $("#carNum").removeClass('hide');
+      $("#carNum").text(parseInt(data.cart_real_product_count))
+      showFlash('#toast-success', '已加入购物车');
+    }
+  })
+}
+
 $(function () {
   $("#increase_btn").on('click', function() {
     $(this).product_count_increase_control();
@@ -34,26 +64,16 @@ $(function () {
 
   // 加入购物车
   $("#add_cart").on('click', function() {
-    var $buyNum = $("#buyNum");
-    $.ajax({
-      type: 'POST',
-      url: '/mall/line_items',
-      data: { product_id: $(this).data("product_id"), quantity: parseInt($buyNum.val())},
-      dataType: 'json',
-      success: function(data){
-        if (data.location) {
-          window.location.href = data.location;
-          return;
-        }
-        if (data.error_messages) {
-          $.tips(data.error_messages);
-          $("#carNum").text(parseInt(data.cart_real_product_count))
-          return;
-        }
-        $("#carNum").removeClass('hide');
-        $("#carNum").text(parseInt(data.cart_real_product_count))
-        showFlash('#toast-success', '已加入购物车');
-      }
-    })
+    var $buyNum = $("#buyNum"),
+        data = { product_id: $(this).data("product_id"), quantity: parseInt($buyNum.val()) };
+
+    add_cart_ajax(data);
+  })
+
+  // 立即购买
+  $("#fast-buy-btn").on('click', function() {
+    var $buyNum = $("#buyNum"),
+        data = { product_id: $(this).data("product_id"), quantity: parseInt($buyNum.val()), fast_buy: true };
+    add_cart_ajax(data);
   })
 });

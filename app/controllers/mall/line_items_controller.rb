@@ -6,6 +6,7 @@ class Mall::LineItemsController < Mall::BaseController
   before_action :set_line_item, only: [:add, :remove, :destroy]
   after_action :set_real_quantity, only: [:add, :remove]
 
+  # 加入购物车和立即购买
   def create
     quantity = params[:quantity].to_i
     product = Product.find(params[:product_id])
@@ -15,6 +16,7 @@ class Mall::LineItemsController < Mall::BaseController
     render 'carts_line_item.json.jbuilder'
   end
 
+  # 购物车增加商品数量
   def add
     @line_item.quantity += 1
     @line_item.save
@@ -22,6 +24,7 @@ class Mall::LineItemsController < Mall::BaseController
     render 'carts_line_item.json.jbuilder'
   end
 
+  # 购物车减少商品数量
   def remove
     @line_item.quantity -= 1
     @line_item.save
@@ -29,6 +32,7 @@ class Mall::LineItemsController < Mall::BaseController
     render 'carts_line_item.json.jbuilder'
   end
 
+  # 删除商品
   def destroy
     @line_item.destroy
     @action = 'delete'
