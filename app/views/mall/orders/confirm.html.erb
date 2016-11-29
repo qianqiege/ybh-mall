@@ -37,9 +37,7 @@
                 </a>
               </div>
               <div class="pro-m">
-                <a href="<%= mall_product_path(line_item.product) %>">
-                  <p class="name"><%= line_item.product.name %></p>
-                </a>
+                <p class="name"><%= line_item.product.name %></p>
                 <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
                 <div class="info clearfix">
                   <% if line_item.product.is_show %>
