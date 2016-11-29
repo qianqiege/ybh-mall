@@ -24,7 +24,7 @@
 .car-box {
   background: #fff;
   border-bottom: 1px solid #ddd;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   .pro-list-portrait {
     margin: -1px 0;
     list-style: none;
@@ -113,7 +113,7 @@
 .cart-fixed-ft {
   height: 50px;
   line-height: 50px;
-  position: absolute;
+  position: fixed;
   z-index: 99;
   width: 100%;
   max-width: 640px;

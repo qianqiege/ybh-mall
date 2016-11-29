@@ -163,14 +163,13 @@
 }
 
 .fixed-ft {
-  position: absolute;
+  position: fixed;
   z-index: 9;
   width: 100%;
   max-width: 640px;
   min-width: 320px;
   left: 0;
   right: 0;
-  bottom: 46px;
   margin: 0 auto;
   text-align: right;
   background: #fff;
