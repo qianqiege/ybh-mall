@@ -18,7 +18,7 @@ ActiveAdmin.register WechatUser do
     id_column
 
     column "Headimgurl" do |user|
-      image_tag(user.headimgurl, size: "40x40", :alt => "wechat head image")
+      image_tag(user.headimgurl || ImageUploader.new.default_url, size: "40x40", :alt => "wechat head image")
     end
     column :open_id
     column :nickname
