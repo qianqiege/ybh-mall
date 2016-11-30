@@ -52,5 +52,18 @@ Rails.application.routes.draw do
     root "home#index"
   end
 
+  namespace :examine do
+    get 'glucose/new'
+    get 'pressure/new'
+    get 'body_temperature/new'
+    get 'body_weight/new'
+    get 'heart/new'
+    post 'glucose/create_glucose'
+    post 'body_temperature/create_temperature'
+    post 'body_weight/create_weight'
+    post 'heart/create_heart'
+    post 'pressure/create_pressure'
+  end
+
   root "wechat/home#index"
 end

@@ -1,0 +1,24 @@
+<%= title '体温' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+<%= form_for @temperature, url: {action: "create_temperature"}, html: {class: "nifty_form"} do |f| %>
+<div class="weui-cells__title">体温测试</div>
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+        <div class="weui-cell__bd">
+          <%= f.text_field :value ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入体温值"%>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="" class="weui-label">测试日期</label></div>
+        <div class="weui-cell__bd">
+          <%= f.text_field :time ,class:"weui-input",type:"datetime-local"%>
+        </div>
+    </div>
+</div>
+<div class="weui-btn-area">
+    <%= f.submit "保存" ,class:"weui-btn weui-btn_primary" %>
+</div>
+<% end %>
