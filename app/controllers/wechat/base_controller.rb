@@ -4,9 +4,10 @@ module Wechat
     layout "wechat"
 
     helper_method :current_user
+    helper_method :identity_card
 
     before_action :get_wechat_sns_info, :current_user
-
+    before_action :get_wechat_sns_info, :identity_card
     private
     def get_wechat_sns_info
       # enable to skip wechat auth for fast local development
@@ -101,6 +102,10 @@ module Wechat
       if session[:wechat_open_id].present?
         @current_user ||= WechatUser.find_by(open_id: session[:wechat_open_id])
       end
+    end
+
+    def identity_card
+      @identity_card = VipRecord.connection.select_all("SELECT `vip_records`.`user_id`,`vip_records`.`identity_card` from wechat_users,users,vip_records where wechat_users.user_id=vip_records.id and users.id=wechat_users.user_id and wechat_users.id= #{current_user.id} ")
     end
 
     def wechat_reauthorize_url(url, scope)
