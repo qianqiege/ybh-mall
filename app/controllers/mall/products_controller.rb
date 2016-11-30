@@ -1,5 +1,5 @@
 class Mall::ProductsController < Mall::BaseController
-  before_action :set_product, only: [:show]
+  before_action :set_product, :store_location, only: [:show]
   include CurrentCart
   before_action :check_cart, only: [:show]
 
