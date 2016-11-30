@@ -2,6 +2,7 @@ class WechatUser < ApplicationRecord
   has_one :cart
   has_many :addresses
   has_many :orders
+  belongs_to :user
 
   serialize :access_token_info, JSON
   serialize :auth_hash, Hash
