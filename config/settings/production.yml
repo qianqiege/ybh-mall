@@ -28,3 +28,6 @@ weixin:
         - type: "view"
           name: "服务首页"
           url: "http://ybhm.ybyt.cc/service"
+        - type: "view"
+          name: "健康检测"
+          url: "http://ybhm.ybyt.cc/examine/home"
