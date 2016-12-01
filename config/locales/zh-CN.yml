@@ -6,6 +6,7 @@ zh-CN:
       serve_manage: '服务管理'
       user_manage: '人员管理'
       view_manage: '页面管理'
+      examine_manage: '健康检测'
   activerecord:
     attributes:
       product:

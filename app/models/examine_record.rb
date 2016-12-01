@@ -4,4 +4,5 @@ class ExamineRecord < ApplicationRecord
   has_many :blood_pressures
   has_many :temperatures
   has_many :weights
+  belongs_to :user
 end
