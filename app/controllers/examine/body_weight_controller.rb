@@ -5,12 +5,12 @@ class Examine::BodyWeightController < Examine::BaseController
   end
 
   def create
-    @weight = current_user.temperatures.build(weight_params)
+    @weight = current_user.weights.build(weight_params)
     respond_to do |format|
       if @weight.save
-        format.html { redirect_to examine_body_weight_new_path, notice: '保存成功'}
+        format.html { redirect_to examine_weight_path, notice: '保存成功'}
       else
-        format.html { redirect_to examine_body_weight_new_path, notice: '保存失败'}
+        format.html { redirect_to examine_weight_path, notice: '保存失败'}
       end
     end
   end
