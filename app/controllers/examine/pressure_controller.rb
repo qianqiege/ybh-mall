@@ -5,12 +5,12 @@ class Examine::PressureController < Examine::BaseController
   end
 
   def create
-    @pressure = current_user.temperatures.build(pressure_params)
+    @pressure = current_user.blood_pressures.build(pressure_params)
     respond_to do |format|
       if @pressure.save
-        format.html { redirect_to examine_pressure_new_path, notice: '保存成功'}
+        format.html { redirect_to examine_pressure_path, notice: '保存成功'}
       else
-        format.html { redirect_to examine_pressure_new_path, notice: '保存失败'}
+        format.html { redirect_to examine_pressure_path, notice: '保存失败'}
       end
     end
   end
