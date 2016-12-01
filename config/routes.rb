@@ -54,11 +54,12 @@ Rails.application.routes.draw do
   end
 
   namespace :examine do
-    get 'glucose/new'
-    get 'pressure/new'
-    get 'body_temperature/new'
-    get 'body_weight/new'
-    get 'heart/new'
+    get '/home',to: 'home#index'
+    get '/glucose', to: 'glucose#new'
+    get '/pressure', to: 'pressure#new'
+    get '/temperature', to: 'body_temperature#new'
+    get '/weight', to: 'body_weight#new'
+    get '/heart', to: 'heart#new'
     post 'glucose/create'
     post 'body_temperature/create'
     post 'body_weight/create'
