@@ -2,7 +2,7 @@
 <% if flash[:notice] %>
   <div class="notice"><%=flash[:notice]%></div>
 <% end %>
-<%= form_for @weight, url: {action: "create_weight"}, html: {class: "nifty_form"} do |f| %>
+<%= form_for @weight, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
 <div class="weui-cells__title">体重测试</div>
 <div class="weui-cells weui-cells_form">
     <div class="weui-cell">

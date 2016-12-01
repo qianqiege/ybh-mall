@@ -1,12 +1,11 @@
 class Examine::BodyTemperatureController < Examine::BaseController
-  helper_method :create_temperature
 
   def new
     @temperature = Temperature.new
   end
 
-  def create_temperature
-    @temperature = Temperature.new(temperature_params)
+  def create
+    @temperature = current_user.temperatures.build(temperature_params)
     respond_to do |format|
       if @temperature.save
         format.html { redirect_to examine_body_temperature_new_path, notice: '保存成功'}

@@ -59,11 +59,11 @@ Rails.application.routes.draw do
     get 'body_temperature/new'
     get 'body_weight/new'
     get 'heart/new'
-    post 'glucose/create_glucose'
-    post 'body_temperature/create_temperature'
-    post 'body_weight/create_weight'
-    post 'heart/create_heart'
-    post 'pressure/create_pressure'
+    post 'glucose/create'
+    post 'body_temperature/create'
+    post 'body_weight/create'
+    post 'heart/create'
+    post 'pressure/create'
   end
 
   root "wechat/home#index"

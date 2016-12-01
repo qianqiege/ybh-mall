@@ -1,12 +1,11 @@
 class Examine::GlucoseController < Examine::BaseController
-  helper_method :create_glucose
 
   def new
     @glucose = BloodGlucose.new
   end
 
-  def create_glucose
-    @glucose = BloodGlucose.new(glucose_params)
+  def create
+    @glucose = current_user.temperatures.build(glucose_params)
     respond_to do |format|
       if @glucose.save
         format.html { redirect_to examine_glucose_new_path, notice: '保存成功'}
