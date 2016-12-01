@@ -5,12 +5,12 @@ class Examine::HeartController < Examine::BaseController
   end
 
   def create
-    @heart = current_user.temperatures.build(heart_params)
+    @heart = current_user.heart_rates.build(heart_params)
     respond_to do |format|
       if @heart.save
-        format.html { redirect_to examine_heart_new_path, notice: '保存成功'}
+        format.html { redirect_to examine_heart_path, notice: '保存成功'}
       else
-        format.html { redirect_to examine_heart_new_path, notice: '保存失败'}
+        format.html { redirect_to examine_heart_path, notice: '保存失败'}
       end
     end
   end

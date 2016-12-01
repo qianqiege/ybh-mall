@@ -6,9 +6,15 @@
 <div class="weui-cells__title">血压测试</div>
 <div class="weui-cells weui-cells_form">
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">血压</label></div>
+        <div class="weui-cell__hd"><label class="weui-label">舒张压</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :value ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血压值"%>
+          <%= f.text_field :diastolic_pressure,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血压值"%>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">收缩压</label></div>
+        <div class="weui-cell__bd">
+          <%= f.text_field :systolic_pressure,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血压值"%>
         </div>
     </div>
 </div>
