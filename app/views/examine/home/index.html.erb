@@ -1,0 +1,14 @@
+<%= title '健康检测' %>
+
+<div class="home">
+  <div class='weui-panel__hd'>检测项目</div>
+  <div class="weui-panel__bd">
+    <div class="weui-grids">
+      <% @health_examine.each do |health_examine|%>
+        <a href="<%= health_examine.url %>" class="weui-grid">
+          <p class="weui-grid__label"><%= health_examine.name %></p>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
