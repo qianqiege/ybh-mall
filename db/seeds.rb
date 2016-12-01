@@ -9,6 +9,14 @@ if AdminUser.first.blank?
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 end
 
+if HealthExamine.first.blank?
+  HealthExamine.create!(name:'血压',url:'pressure')
+  HealthExamine.create!(name:'血糖',url:'glucose')
+  HealthExamine.create!(name:'体重',url:'weight')
+  HealthExamine.create!(name:'心率',url:'heart')
+  HealthExamine.create!(name:'体温',url:'temperature')
+end
+
 if Serve.first.blank?
   Serve.create!(serve_name:'龙氏脊筑',url: 'service_spinebuild')
   Serve.create!(serve_name:'慢病健康管理深度临床营养干预')
