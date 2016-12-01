@@ -15,7 +15,7 @@
           <% @orders.each do |order| %>
             <li>
               <div class="order-head">
-                <p><span>订单号:<%= order.number %></span><b>订单待付款</b></p>
+                <p><span>订单号:<%= order.number %></span><b><%= Order::STATUS_TEXT[order.status.to_sym] %></b></p>
               </div>
 
               <div class="address-confirm order-address">
@@ -55,9 +55,11 @@
                 <p>共<%= order.quantity %>件，合计：¥<%= money order.price %></p>
               </div>
 
-              <div class="order-btn">
-                <p><a class="btn-pay" href="<%= pay_mall_order_path(order) %>">去支付</a></p>
-              </div>
+              <% if order.pending? %>
+                <div class="order-btn">
+                  <p><a class="btn-pay" href="<%= pay_mall_order_path(order) %>">去支付</a></p>
+                </div>
+              <% end %>
             </li>
           <% end %>
         </ul>

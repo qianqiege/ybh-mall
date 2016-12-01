@@ -49,7 +49,8 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
-    root "home#index"
+    root "info#show"
+    get 'binding/new'
   end
 
   namespace :examine do

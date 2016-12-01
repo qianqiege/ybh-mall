@@ -4,6 +4,7 @@ class Mall::MyController < Mall::BaseController
 
   def home
     @pending_order_count = Order.pending.count
+    @wait_send_order_count = Order.wait_send.count
     @all_order_count = Order.count
   end
 end

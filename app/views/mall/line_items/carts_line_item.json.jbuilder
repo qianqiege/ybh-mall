@@ -24,3 +24,5 @@ end
 
 # 商品展示页面中显示购物车的数目
 json.cart_real_product_count current_cart.real_product_count
+
+json.fast_buy params[:fast_buy] if params[:fast_buy]

@@ -19,10 +19,17 @@
               <%= image_tag("category.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">分类</p>
             </a>
-            <a href="<%= user_root_path %>" class="weui-tabbar__item">
-              <%= image_tag("person.png", class: "weui-tabbar__icon") %>
-              <p class="weui-tabbar__label">我的</p>
-            </a>
+            <% if @identity_card %>
+              <a href="<%= user_root_path(@identity_card) %>" class="weui-tabbar__item">
+                <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">我的</p>
+              </a>
+            <% else %>
+              <a href="<%= user_binding_new_path(current_user.id) %>" class="weui-tabbar__item">
+                <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">我的</p>
+              </a>
+            <% end %>
           </div>
 
           <%= render 'shared/flash' %>

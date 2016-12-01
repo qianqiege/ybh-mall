@@ -30,5 +30,9 @@ module Mall
       return unless bind_phone?
       current_cart_count
     end
+
+    def store_location
+      session[:return_to] = request.url if request.get?
+    end
   end
 end
