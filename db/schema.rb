@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125091332) do
+ActiveRecord::Schema.define(version: 20161201060859) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -57,6 +57,24 @@ ActiveRecord::Schema.define(version: 20161125091332) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "blood_glucoses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "value",             limit: 24
+    t.datetime "time"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "examine_record_id"
+    t.integer  "wechat_user_id"
+  end
+
+  create_table "blood_pressures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "value",             limit: 24
+    t.datetime "time"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "examine_record_id"
+    t.integer  "wechat_user_id"
+  end
+
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -77,6 +95,30 @@ ActiveRecord::Schema.define(version: 20161125091332) do
     t.datetime "updated_at",                   null: false
     t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
     t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+  end
+
+  create_table "examine_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "idcard"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "user_id"
+  end
+
+  create_table "health_examines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "heart_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "value",             limit: 24
+    t.datetime "time"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "examine_record_id"
+    t.integer  "wechat_user_id"
   end
 
   create_table "house_poperties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -102,6 +144,26 @@ ActiveRecord::Schema.define(version: 20161125091332) do
     t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
   end
 
+  create_table "member_clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "member_equities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "number_of_time"
+    t.integer  "number"
+    t.integer  "serve_id"
+    t.integer  "product_id"
+    t.integer  "membership_card_id"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.text     "remark",             limit: 65535
+    t.decimal  "price",                            precision: 10
+  end
+
   create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
@@ -113,7 +175,6 @@ ActiveRecord::Schema.define(version: 20161125091332) do
   create_table "membership_cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
-    t.integer  "member_rank_id"
     t.integer  "setmeal_id"
     t.integer  "serve_id"
     t.integer  "house_poperty_id"
@@ -121,6 +182,9 @@ ActiveRecord::Schema.define(version: 20161125091332) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.text     "desc",             limit: 65535
+    t.integer  "member_club_id"
+    t.float    "discount",         limit: 24
+    t.integer  "allowance"
   end
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -272,11 +336,20 @@ ActiveRecord::Schema.define(version: 20161125091332) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "temperatures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "value",             limit: 24
+    t.datetime "time"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "examine_record_id"
+    t.integer  "wechat_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email"
     t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "telphone"
   end
 
   create_table "vip_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -284,13 +357,15 @@ ActiveRecord::Schema.define(version: 20161125091332) do
     t.string   "sex"
     t.string   "address"
     t.datetime "birthday"
-    t.integer  "identity_card"
     t.string   "telephone"
     t.string   "mobile"
     t.string   "emergency_contact"
     t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "member_number"
+    t.datetime "initiation_time"
+    t.string   "identity_card"
   end
 
   create_table "vip_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -312,6 +387,16 @@ ActiveRecord::Schema.define(version: 20161125091332) do
     t.datetime "updated_at",                      null: false
     t.string   "mobile"
     t.integer  "used_address_id"
+    t.integer  "user_id"
+  end
+
+  create_table "weights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "value",             limit: 24
+    t.datetime "time"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "examine_record_id"
+    t.integer  "wechat_user_id"
   end
 
   create_table "workstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
