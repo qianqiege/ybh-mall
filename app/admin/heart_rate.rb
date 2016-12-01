@@ -1,5 +1,6 @@
 ActiveAdmin.register HeartRate do
-
+  menu parent: I18n.t("active_admin.menu.examine_manage")
+  permit_params :value,:wechat_user_id,:examine_record_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
