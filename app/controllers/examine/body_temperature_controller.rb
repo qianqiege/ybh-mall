@@ -2,6 +2,8 @@ class Examine::BodyTemperatureController < Examine::BaseController
 
   def new
     @temperature = Temperature.new
+    @blood = Temperature.where(wechat_user_id:current_user.id)
+    @search = @blood.order(created_at: :desc).limit(5)
   end
 
   def create
