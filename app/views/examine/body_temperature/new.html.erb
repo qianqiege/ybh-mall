@@ -8,7 +8,7 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">体温</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :value ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入体温值"%>
+          <%= f.text_field :value ,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入体温值"%>
         </div>
     </div>
 </div>
@@ -16,3 +16,22 @@
     <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
 </div>
 <% end %>
+
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>体温值</th><th>状态</th><th>测量时间</th>
+    </tr>
+    <% @search.each do |search|%>
+    <tr>
+    	<th><%= search.value %>℃</th>
+      <% if search.value > 35 && search.value < 37.6 %>
+        <th class="green">正常</th>
+      <% else %>
+        <th class="red">异常</th>
+      <% end %>
+      <th><%= datetime search.updated_at %></th>
+    </tr>
+    <% end %>
+  </table>
+</div>

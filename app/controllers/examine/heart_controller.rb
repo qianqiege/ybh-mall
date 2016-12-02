@@ -2,6 +2,8 @@ class Examine::HeartController < Examine::BaseController
 
   def new
     @heart = HeartRate.new
+    @blood = HeartRate.where(wechat_user_id:current_user.id)
+    @search = @blood.order(created_at: :desc).limit(5)
   end
 
   def create

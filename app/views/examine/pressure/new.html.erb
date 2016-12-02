@@ -8,13 +8,13 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">舒张压</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :diastolic_pressure,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血压值"%>
+          <%= f.text_field :diastolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入舒张压"%>
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">收缩压</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :systolic_pressure,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血压值"%>
+          <%= f.text_field :systolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入收缩压"%>
         </div>
     </div>
 </div>
@@ -23,3 +23,27 @@
     <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
 </div>
 <% end %>
+
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>舒张压</th><th>收缩压</th><th>测量时间</th>
+    </tr>
+    <% @search.each do |search|%>
+    <tr>
+      <% if search.diastolic_pressure > 89 && search.diastolic_pressure < 140 %>
+        <th class="green"><%= search.diastolic_pressure %></th>
+      <% else %>
+        <th class="red"><%= search.diastolic_pressure %></th>
+      <% end %>
+
+      <% if search.systolic_pressure > 59 && search.systolic_pressure < 91 %>
+        <th class="green"><%= search.systolic_pressure %></th>
+      <% else %>
+        <th class="red"><%= search.systolic_pressure %></th>
+      <% end %>
+      <th><%= datetime search.updated_at %></th>
+    </tr>
+    <% end %>
+  </table>
+</div>
