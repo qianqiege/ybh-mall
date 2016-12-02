@@ -7,6 +7,8 @@ class LineItem < ApplicationRecord
   validate :check_quantity, on: [:create, :update]
   validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 0 }
 
+  delegate :name, to: :product, prefix: true, allow_nil: true
+
   # 需要重新定义，有些会员是有折扣的
   def price
     product.now_product_price

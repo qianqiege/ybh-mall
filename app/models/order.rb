@@ -46,4 +46,8 @@ class Order < ApplicationRecord
   def number
     100000000 + self.id
   end
+
+  def trade_name
+    line_items.map(&:product_name).join(',')
+  end
 end

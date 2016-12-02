@@ -33,3 +33,8 @@ external:
   api_url: http://localhost:3000/open_api/v1/
   app_id: S2jEUe1P9Ft_RJseFGIMbX7ZeEqHcDZaSD7sBC9x4gE24nsID0GVQJOdRX3juqwIIxPpDDAdBB_5d2VvcARqZg==
   secret_key: YzKAClQnLwEJqK60SrSSlW0zYHW01U5rfR+1ekm5h339988om4UGmmqPrLZ8DUp3ieKCgGAjz6QF/D2XO57ytQ==
+
+fast_pay:
+  url: http://openapi.yijifu.net/gateway.html
+  secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
+  partner_id: 20160606020000748137
