@@ -2,6 +2,8 @@ class Examine::GlucoseController < Examine::BaseController
 
   def new
     @glucose = BloodGlucose.new
+    @blood = BloodGlucose.where(wechat_user_id:current_user.id)
+    @search = @blood.order(created_at: :desc).limit(5)
   end
 
   def create

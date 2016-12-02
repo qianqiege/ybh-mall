@@ -8,13 +8,13 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">餐前</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :ante_cibum ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血糖值"%>
+          <%= f.text_field :ante_cibum ,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入血糖值"%>
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">餐后</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :after_a_meal ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血糖值"%>
+          <%= f.text_field :after_a_meal ,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入血糖值"%>
         </div>
     </div>
 </div>
@@ -22,3 +22,46 @@
     <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
 </div>
 <% end %>
+
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>餐前</th><th>餐后</th><th>餐前状态</th><th>餐后状态</th>
+    </tr>
+    <% @search.each do |search|%>
+      <% if search.ante_cibum > 69 && search.after_a_meal < 200 %>
+        <tr>
+          <th><%= search.ante_cibum %>毫克/分升</th>
+          <th><%= search.after_a_meal %>毫克/分升</th>
+          <% if search.ante_cibum > 69 && search.ante_cibum < 110 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+
+          <% if search.after_a_meal > 119 && search.after_a_meal < 200 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+        </tr>
+      <% else %>
+        <tr>
+          <th><%= search.ante_cibum %>毫摩尔/升</th>
+          <th><%= search.after_a_meal %>毫摩尔/升</th>
+          <% if search.ante_cibum > 3.8 && search.ante_cibum < 6.2 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+
+          <% if search.after_a_meal > 6.6 && search.after_a_meal < 9.5 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
