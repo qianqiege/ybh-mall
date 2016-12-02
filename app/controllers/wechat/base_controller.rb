@@ -101,6 +101,7 @@ module Wechat
       if session[:wechat_open_id].present?
         @current_user ||= WechatUser.find_by(open_id: session[:wechat_open_id])
       end
+      @current_user ||= WechatUser.last
     end
 
     def wechat_reauthorize_url(url, scope)
