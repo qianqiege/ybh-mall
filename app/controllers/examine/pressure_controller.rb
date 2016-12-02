@@ -2,6 +2,8 @@ class Examine::PressureController < Examine::BaseController
 
   def new
     @pressure = BloodPressure.new
+    @blood = BloodPressure.where(wechat_user_id:current_user.id)
+    @search = @blood.order(created_at: :desc).limit(5)
   end
 
   def create

@@ -8,13 +8,13 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">舒张压</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :diastolic_pressure,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血压值"%>
+          <%= f.text_field :diastolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入舒张压"%>
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">收缩压</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :systolic_pressure,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入血压值"%>
+          <%= f.text_field :systolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入收缩压"%>
         </div>
     </div>
 </div>
@@ -23,3 +23,28 @@
     <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
 </div>
 <% end %>
+
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>舒张压</th><th>收缩压</th><th>舒张压状态</th><th>收缩压状态</th>
+    </tr>
+    <% @search.each do |search|%>
+    <tr>
+    	<th><%= search.diastolic_pressure %></th>
+      <th><%= search.systolic_pressure %></th>
+      <% if search.diastolic_pressure > 89 && search.diastolic_pressure < 140 %>
+        <th class="green">正常</th>
+      <% else %>
+        <th class="red">异常</th>
+      <% end %>
+
+      <% if search.systolic_pressure > 59 && search.systolic_pressure < 91 %>
+        <th class="green">正常</th>
+      <% else %>
+        <th class="red">异常</th>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+</div>
