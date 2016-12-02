@@ -26,42 +26,23 @@
 <div class="weui-btn-area">
   <table class="hovertable">
     <tr>
-    	<th>餐前</th><th>餐后</th><th>餐前状态</th><th>餐后状态</th>
+    	<th>餐前/毫摩尔</th><th>餐后/毫摩尔</th><th>测量时间</th>
     </tr>
     <% @search.each do |search|%>
-      <% if search.ante_cibum > 69 && search.after_a_meal < 200 %>
         <tr>
-          <th><%= search.ante_cibum %>毫克/分升</th>
-          <th><%= search.after_a_meal %>毫克/分升</th>
-          <% if search.ante_cibum > 69 && search.ante_cibum < 110 %>
-            <th class="green">正常</th>
-          <% else %>
-            <th class="red">异常</th>
-          <% end %>
-
-          <% if search.after_a_meal > 119 && search.after_a_meal < 200 %>
-            <th class="green">正常</th>
-          <% else %>
-            <th class="red">异常</th>
-          <% end %>
-        </tr>
-      <% else %>
-        <tr>
-          <th><%= search.ante_cibum %>毫摩尔/升</th>
-          <th><%= search.after_a_meal %>毫摩尔/升</th>
           <% if search.ante_cibum > 3.8 && search.ante_cibum < 6.2 %>
-            <th class="green">正常</th>
+            <th class="green"><%= search.ante_cibum %></th>
           <% else %>
-            <th class="red">异常</th>
+            <th class="red"><%= search.ante_cibum %></th>
           <% end %>
 
           <% if search.after_a_meal > 6.6 && search.after_a_meal < 9.5 %>
-            <th class="green">正常</th>
+            <th class="green"><%= search.after_a_meal %></th>
           <% else %>
-            <th class="red">异常</th>
+            <th class="red"><%= search.after_a_meal %></th>
           <% end %>
+          <th><%= datetime search.updated_at %></th>
         </tr>
-      <% end %>
     <% end %>
   </table>
 </div>

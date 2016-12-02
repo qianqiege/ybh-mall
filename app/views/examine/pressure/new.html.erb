@@ -27,23 +27,22 @@
 <div class="weui-btn-area">
   <table class="hovertable">
     <tr>
-    	<th>舒张压</th><th>收缩压</th><th>舒张压状态</th><th>收缩压状态</th>
+    	<th>舒张压</th><th>收缩压</th><th>测量时间</th>
     </tr>
     <% @search.each do |search|%>
     <tr>
-    	<th><%= search.diastolic_pressure %></th>
-      <th><%= search.systolic_pressure %></th>
       <% if search.diastolic_pressure > 89 && search.diastolic_pressure < 140 %>
-        <th class="green">正常</th>
+        <th class="green"><%= search.diastolic_pressure %></th>
       <% else %>
-        <th class="red">异常</th>
+        <th class="red"><%= search.diastolic_pressure %></th>
       <% end %>
 
       <% if search.systolic_pressure > 59 && search.systolic_pressure < 91 %>
-        <th class="green">正常</th>
+        <th class="green"><%= search.systolic_pressure %></th>
       <% else %>
-        <th class="red">异常</th>
+        <th class="red"><%= search.systolic_pressure %></th>
       <% end %>
+      <th><%= datetime search.updated_at %></th>
     </tr>
     <% end %>
   </table>

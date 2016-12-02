@@ -16,3 +16,19 @@
     <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
 </div>
 <% end %>
+
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>体重值 kg</th><th>测量时间</th>
+    </tr>
+    <% @search.each do |search|%>
+    <% if @search %>
+      <tr>
+      	<th><%= search.value %></th>
+        <th><%= datetime search.updated_at %></th>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
