@@ -8,7 +8,7 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">心率</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :value ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入心率值"%>
+          <%= f.text_field :value ,class:"weui-input",type:"number",placeholder:"请输入心率值"%>
         </div>
     </div>
 </div>
@@ -16,3 +16,23 @@
     <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
 </div>
 <% end %>
+
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>心率值</th><th>状态</th>
+    </tr>
+    <% @search.each do |search|%>
+    <% if @search %>
+      <tr>
+      	<th><%= search.value %>次/分</th>
+        <% if search.value > 59 && search.value < 101 %>
+          <th class="green">正常</th>
+        <% else %>
+          <th class="red">异常</th>
+        <% end %>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
