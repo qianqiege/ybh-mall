@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201060859) do
+ActiveRecord::Schema.define(version: 20161202075651) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -58,21 +58,21 @@ ActiveRecord::Schema.define(version: 20161201060859) do
   end
 
   create_table "blood_glucoses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float    "value",             limit: 24
-    t.datetime "time"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"
     t.integer  "wechat_user_id"
+    t.float    "ante_cibum",        limit: 24
+    t.float    "after_a_meal",      limit: 24
   end
 
   create_table "blood_pressures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float    "value",             limit: 24
-    t.datetime "time"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "examine_record_id"
     t.integer  "wechat_user_id"
+    t.float    "diastolic_pressure", limit: 24
+    t.float    "systolic_pressure",  limit: 24
   end
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -113,12 +113,11 @@ ActiveRecord::Schema.define(version: 20161201060859) do
   end
 
   create_table "heart_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float    "value",             limit: 24
-    t.datetime "time"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "examine_record_id"
     t.integer  "wechat_user_id"
+    t.integer  "value"
   end
 
   create_table "house_poperties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -338,7 +337,6 @@ ActiveRecord::Schema.define(version: 20161201060859) do
 
   create_table "temperatures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float    "value",             limit: 24
-    t.datetime "time"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"
@@ -376,15 +374,15 @@ ActiveRecord::Schema.define(version: 20161201060859) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "wechat_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "wechat_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "open_id"
-    t.string   "nickname"
+    t.string   "nickname",          limit: 250
     t.string   "headimgurl"
     t.integer  "subscribe"
-    t.text     "access_token_info", limit: 65535
-    t.text     "auth_hash",         limit: 65535
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.text     "access_token_info", limit: 16777215
+    t.text     "auth_hash",         limit: 16777215
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "mobile"
     t.integer  "used_address_id"
     t.integer  "user_id"
@@ -392,7 +390,6 @@ ActiveRecord::Schema.define(version: 20161201060859) do
 
   create_table "weights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float    "value",             limit: 24
-    t.datetime "time"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"

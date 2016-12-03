@@ -1,0 +1,41 @@
+sms_password: '575bf5a52d5e2d4a9d6957d2245c30c8'
+sms_tpl_id: 1628154
+weixin:
+  api_id: wx54acf8a779144bf4
+  api_secret: 5ecd72fe80eec4db1f5a16eb6a1dfcd9
+  token: 9ea435f4ac0c6161f25d2253
+  secret: iZoqfJJJjGtG6nq-yER_1Ipb7wAu5D6V
+  host: https://xiao.localtunnel.me/
+
+  menu:
+    button:
+    - type: "view"
+      name: "御邦会"
+      sub_button:
+        - type: "view"
+          name: "首页"
+          url: "http://ybhm.ybyt.c/wechat"
+        - type: "view"
+          name: "我的"
+          url: "http://ybhm.ybyt.c/wechat/my/my_info"
+    - name: "商城"
+      sub_button:
+        - type: "view"
+          name: "商城首页"
+          url: "http://spddev.ybyt.cc/"
+    - name: "服务"
+      sub_button:
+        - type: "view"
+          name: "龙氏脊筑服务"
+          url: "http://spddev.ybyt.cc/"
+
+external:
+  api_url: http://localhost:3000/open_api/v1/
+  app_id: S2jEUe1P9Ft_RJseFGIMbX7ZeEqHcDZaSD7sBC9x4gE24nsID0GVQJOdRX3juqwIIxPpDDAdBB_5d2VvcARqZg==
+  secret_key: YzKAClQnLwEJqK60SrSSlW0zYHW01U5rfR+1ekm5h339988om4UGmmqPrLZ8DUp3ieKCgGAjz6QF/D2XO57ytQ==
+
+fast_pay:
+  url: http://openapi.yijifu.net/gateway.html
+  secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
+  partner_id: 20160606020000748137
+  host: "localhost:3000/"

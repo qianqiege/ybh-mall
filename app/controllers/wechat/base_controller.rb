@@ -3,11 +3,10 @@ module Wechat
   class BaseController < ApplicationController
     layout "wechat"
 
-    helper_method :current_user
-    helper_method :identity_card
+    helper_method :current_user, :identity_card
 
-    before_action :get_wechat_sns_info, :current_user
-    before_action :get_wechat_sns_info, :identity_card
+    before_action :get_wechat_sns_info, :current_user, :identity_card
+
     private
     def get_wechat_sns_info
       # enable to skip wechat auth for fast local development

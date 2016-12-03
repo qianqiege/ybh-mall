@@ -4,13 +4,14 @@ module Sdk
   class FastPay
     include Singleton
 
-    attr_accessor :headers, :url, :secrect_key, :partner_id
+    attr_accessor :headers, :url, :secrect_key, :partner_id, :host
 
     def initialize
       @headers = { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
       @url = Settings.fast_pay.url
       @secrect_key = Settings.fast_pay.secrect_key
       @partner_id = Settings.fast_pay.partner_id
+      @host = Settings.fast_pay.host
     end
 
     def sign(params)
@@ -39,7 +40,7 @@ module Sdk
         signType: "MD5",
         version: "1.0",
         tradeInfo: tradeInfo.to_s,
-        returnUrl: "localhost:3000",
+        returnUrl: @host + 'mall/orders',
         paymentType: "PAYMENT_TYPE_YJ"
       }
 
