@@ -49,7 +49,10 @@ module Sdk
       signed_params.sort_by{ |k, v| k }.to_h
     end
 
-    def trade_merge_pay_params(options)
+    def trade_merge_pay_params
+      salt = rand(999999999..9999999999)
+      order_no = "#{Time.current.to_s(:number)}#{salt}"
+
       tradeInfo = [{
         merchOrderNo: @order.number,
         tradeAmount: @order.price.to_f,
@@ -58,9 +61,9 @@ module Sdk
       }]
 
       options = {
-        orderNo: @order.number,
-        service: options["service"],
-        tradeInfo: tradeInfo.to_s,
+        orderNo: order_no,
+        service: "fastPayTradeMergePay",
+        tradeInfo: tradeInfo.to_json,
         returnUrl: @host + 'mall/orders',
         paymentType: "PAYMENT_TYPE_YJ"
       }
@@ -68,8 +71,8 @@ module Sdk
     end
 
     # 普通交易支付
-    def trade_merge_pay(options = { service: "fastPayTradeMergePay"})
-      exec(:post, @url, trade_merge_pay_params(options))
+    def trade_merge_pay
+      exec(:post, @url, trade_merge_pay_params)
     end
 
     # 交易查询
