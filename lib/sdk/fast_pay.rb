@@ -34,11 +34,11 @@ module Sdk
 
     def sign_params(options = {})
       salt = rand(999999999..9999999999)
-      order_no = "#{Date.current.to_s(:number)}#{salt}"
+      order_no = "#{Time.current.to_s(:number)}#{salt}"
+      # https://apidoc.yiji.com/website/develop_doc.html#公共请求报文
       default_params = {
         partnerId: @partner_id,
         orderNo: order_no,
-        protocol: "httpPost",
         signType: "MD5",
         version: "1.0"
       }
@@ -75,6 +75,19 @@ module Sdk
       options = {
         service: "multipleTradeMergeQuery",
         tradeNos: @order.trade_nos
+      }
+      payload = sign_params(options)
+
+      exec(:post, @url, payload)
+    end
+
+    # 退款
+    def trade_refund
+      options = {
+        service: "fastPayTradeRefund",
+        tradeNo: @order.trade_nos,
+        refundAmount: @order.refund_price,
+        refundReason: "123"
       }
       payload = sign_params(options)
 

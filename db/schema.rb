@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203032906) do
+ActiveRecord::Schema.define(version: 20161203042638) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -205,6 +205,8 @@ ActiveRecord::Schema.define(version: 20161203032906) do
     t.integer  "quantity"
     t.decimal  "price",          precision: 10, scale: 2
     t.string   "trade_nos"
+    t.string   "refund_reason"
+    t.decimal  "refund_price",   precision: 10, scale: 2
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
