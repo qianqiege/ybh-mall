@@ -2,16 +2,24 @@ require 'singleton'
 
 module Sdk
   class FastPay
-    include Singleton
 
     attr_accessor :headers, :url, :secrect_key, :partner_id, :host
 
-    def initialize
+    def initialize(order)
       @headers = { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }
       @url = Settings.fast_pay.url
       @secrect_key = Settings.fast_pay.secrect_key
       @partner_id = Settings.fast_pay.partner_id
       @host = Settings.fast_pay.host
+      @order = order
+    end
+
+    def exec(method, url, payload)
+      respond = RestClient::Request.execute(
+        method: method, url: url, timeout: 120,
+        headers: @headers, payload: payload
+      )
+      JSON.parse(respond.body)
     end
 
     def sign(params)
@@ -24,33 +32,53 @@ module Sdk
       md5.hexdigest
     end
 
-    def sign_params(order, options)
+    def sign_params(options = {})
+      salt = rand(999999999..9999999999)
+      order_no = "#{Date.current.to_s(:number)}#{salt}"
+      default_params = {
+        partnerId: @partner_id,
+        orderNo: order_no,
+        protocol: "httpPost",
+        signType: "MD5",
+        version: "1.0"
+      }
+      params = default_params.merge(options)
+      signed_params = { sign: sign(params) }.merge(params)
+      signed_params.sort_by{ |k, v| k }.to_h
+    end
+
+    # 普通交易支付
+    def trade_merge_pay_params(options)
       tradeInfo = [{
-        merchOrderNo: order.number,
-        tradeAmount: order.price.to_f,
+        merchOrderNo: @order.number,
+        tradeAmount: @order.price.to_f,
         currency: "CNY",
-        goodsName: order.trade_name
+        goodsName: @order.trade_name
       }]
 
-      params = {
-        orderNo: order.number,
-        partnerId: @partner_id,
-        protocol: "httpPost",
+      options = {
+        orderNo: @order.number,
         service: options["service"],
-        signType: "MD5",
-        version: "1.0",
         tradeInfo: tradeInfo.to_s,
         returnUrl: @host + 'mall/orders',
         paymentType: "PAYMENT_TYPE_YJ"
       }
-
-      signed_params = { sign: sign(params) }.merge(params)
-      signed_params.sort_by{ |k, v| k }.to_h
-
+      sign_params(options)
     end
 
-    def trade_merge_pay(order, options = { service: "fastPayTradeMergePay"})
-      RestClient.post(@url, sign_params(order, options), @headers)
+    def trade_merge_pay(options = { service: "fastPayTradeMergePay"})
+      exec(:post, @url, trade_merge_pay_params(options))
+    end
+
+    # 交易查询
+    def trade_merge_query
+      options = {
+        service: "multipleTradeMergeQuery",
+        tradeNos: @order.trade_nos
+      }
+      payload = sign_params(options)
+
+      exec(:post, @url, payload)
     end
 
   end

@@ -50,4 +50,9 @@ class Order < ApplicationRecord
   def trade_name
     line_items.map(&:product_name).join(',')
   end
+
+  def fast_pay
+    @fast_pay ||= Sdk::FastPay.new(self)
+  end
+
 end

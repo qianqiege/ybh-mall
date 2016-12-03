@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202075651) do
+ActiveRecord::Schema.define(version: 20161203032906) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(version: 20161202075651) do
     t.string   "status",                                  default: "pending"
     t.integer  "quantity"
     t.decimal  "price",          precision: 10, scale: 2
+    t.string   "trade_nos"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
