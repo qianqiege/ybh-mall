@@ -86,12 +86,33 @@ module Sdk
       options = {
         service: "fastPayTradeRefund",
         tradeNo: @order.trade_nos,
+        merchOrderNo: @order.number,
         refundAmount: @order.refund_price,
-        refundReason: "123"
+        refundReason: @order.refund_reason
       }
       payload = sign_params(options)
 
       exec(:post, @url, payload)
+    end
+
+    # 新规会员注册
+    def register_user
+      wechat_user = @order.wechat_user
+      if(wechat_user && wechat_user.user)
+        options = {
+          service: "ppmNewRuleRegisterUser",
+          userName: wechat_user.nickname,
+          merchOrderNo: @order.number,
+          registerUserType: "PERSONAL",
+          mobile: wechat_user.user.telphone
+        }
+        payload = sign_params(options)
+
+        exec(:post, @url, payload)
+      else
+        {"success": false, resultMessage: "用户未绑定"}
+      end
+
     end
 
   end
