@@ -23,12 +23,14 @@ module Sdk
     end
 
     def sign(params)
-      sorted_params = params.sort_by{ |k, v| k }.to_h
-      query_string = sorted_params.to_query
+      query_string = params.collect do |key, value|
+        "#{key}=#{value}"
+      end.sort * '&'
+
       to_sign_params = query_string.to_s + @secrect_key
 
       md5 = Digest::MD5.new
-      md5.update(to_sign_params)
+      md5.update(to_sign_params.force_encoding("UTF-8"))
       md5.hexdigest
     end
 
@@ -47,7 +49,6 @@ module Sdk
       signed_params.sort_by{ |k, v| k }.to_h
     end
 
-    # 普通交易支付
     def trade_merge_pay_params(options)
       tradeInfo = [{
         merchOrderNo: @order.number,
@@ -66,6 +67,7 @@ module Sdk
       sign_params(options)
     end
 
+    # 普通交易支付
     def trade_merge_pay(options = { service: "fastPayTradeMergePay"})
       exec(:post, @url, trade_merge_pay_params(options))
     end
@@ -112,7 +114,6 @@ module Sdk
       else
         {"success": false, resultMessage: "用户未绑定"}
       end
-
     end
 
   end
