@@ -1,0 +1,11 @@
+<%= title '套餐介绍' %>
+<div class="weui-article body">
+   <h1 class="h3"><%= @setmeal.name %></h1>
+   <section>
+     <% if @setmeal.content.present? %>
+       <%= raw @setmeal.content %>
+     <% else %>
+       <p>暂无内容</p>
+     <% end %>
+   </section>
+ </div>
