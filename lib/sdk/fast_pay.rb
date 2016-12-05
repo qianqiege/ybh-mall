@@ -140,7 +140,7 @@ module Sdk
     end
 
     def logger
-      @logger ||= Logger.new('./log/fast_pay.log')
+      @@logger ||= Logger.new('./log/fast_pay.log')
     end
 
   end

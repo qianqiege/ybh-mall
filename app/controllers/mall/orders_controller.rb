@@ -77,16 +77,21 @@ class Mall::OrdersController < Mall::BaseController
   # 支付通知回调
   def notify
     order = Order.find_by(number: params["merchOrderNo"])
-    remote_sign = params[:sign]
+    if(order.present?)
+      order.fast_pay.logger.info params
+      remote_sign = params[:sign]
 
-    params.delete(:sign)
-    params.delete(:action)
-    params.delete(:controller)
+      params.delete(:sign)
+      params.delete(:action)
+      params.delete(:controller)
 
-    local_sign = order.fast_pay.sign(params)
-    if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
-      order.pay!
-      render json: "success", layout: nil
+      local_sign = order.fast_pay.sign(params)
+      if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
+        order.pay!
+        render json: "success", layout: nil
+      else
+        render json: "fail", layout: nil
+      end
     else
       render json: "fail", layout: nil
     end
