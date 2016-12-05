@@ -78,6 +78,7 @@ module Sdk
 
       options = {
         orderNo: order_no,
+        merchOrderNo: @order.number,
         service: "fastPayTradeMergePay",
         tradeInfo: tradeInfo.to_json,
         returnUrl: @host + 'mall/orders',

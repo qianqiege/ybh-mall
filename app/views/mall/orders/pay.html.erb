@@ -27,7 +27,7 @@
           </li>
         </ul>
       </div>
-      <% [:orderNo, :partnerId, :paymentType, :returnUrl, :service, :sign, :signType, :tradeInfo, :version].each do |item| %>
+      <% [:merchOrderNo, :orderNo, :partnerId, :paymentType, :returnUrl, :service, :sign, :signType, :tradeInfo, :version].each do |item| %>
         <%= hidden_field_tag item, @trade_merge_pay_params[item] %>
       <% end %>
       <button id="cachier-fix-foot" class="cachier-fix-foot active">确认支付</button>
