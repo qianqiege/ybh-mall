@@ -5,18 +5,18 @@
 <%= form_for @pressure, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
 <div class="weui-cells__title">血压测试</div>
 <div class="weui-cells weui-cells_form">
-    <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">舒张压</label></div>
-        <div class="weui-cell__bd">
-          <%= f.text_field :diastolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入舒张压"%>
-        </div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">收缩压</label></div>
-        <div class="weui-cell__bd">
-          <%= f.text_field :systolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入收缩压"%>
-        </div>
-    </div>
+  <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">收缩压</label></div>
+      <div class="weui-cell__bd">
+        <%= f.text_field :systolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入收缩压"%>
+      </div>
+  </div>
+  <div class="weui-cell">
+      <div class="weui-cell__hd"><label class="weui-label">舒张压</label></div>
+      <div class="weui-cell__bd">
+        <%= f.text_field :diastolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入舒张压"%>
+      </div>
+  </div>
 </div>
 
 <div class="weui-btn-area">
@@ -27,20 +27,20 @@
 <div class="weui-btn-area">
   <table class="hovertable">
     <tr>
-    	<th>舒张压</th><th>收缩压</th><th>测量时间</th>
+    	<th>收缩压</th><th>舒张压</th><th>测量时间</th>
     </tr>
     <% @search.each do |search|%>
     <tr>
-      <% if search.diastolic_pressure > 89 && search.diastolic_pressure < 140 %>
-        <th class="green"><%= search.diastolic_pressure %></th>
-      <% else %>
-        <th class="red"><%= search.diastolic_pressure %></th>
-      <% end %>
-
-      <% if search.systolic_pressure > 59 && search.systolic_pressure < 91 %>
+      <% if search.systolic_pressure > 89 && search.systolic_pressure < 141 %>
         <th class="green"><%= search.systolic_pressure %></th>
       <% else %>
         <th class="red"><%= search.systolic_pressure %></th>
+      <% end %>
+
+      <% if search.diastolic_pressure > 59 && search.diastolic_pressure < 91 %>
+        <th class="green"><%= search.diastolic_pressure %></th>
+      <% else %>
+        <th class="red"><%= search.diastolic_pressure %></th>
       <% end %>
       <th><%= datetime search.updated_at %></th>
     </tr>
