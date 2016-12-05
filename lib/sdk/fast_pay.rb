@@ -71,6 +71,7 @@ module Sdk
 
       tradeInfo = [{
         merchOrderNo: @order.number,
+        sellerUserId: @partner_id,
         tradeAmount: @order.price.to_f,
         currency: "CNY",
         goodsName: @order.trade_name
