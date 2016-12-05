@@ -3,6 +3,17 @@
 <div class="home">
   <%= render 'shared/slide' %>
 
+  <div class='weui-panel__hd'>套餐</div>
+  <div class="weui-panel__bd">
+    <div class="weui-grids">
+      <% @setmeal.each do |setmeal| %>
+        <a href="<%= wechat_member_setmeal_path(setmeal)%>" class="weui-grid">
+          <p class="weui-grid__label"><%= setmeal.name %></p>
+        </a>
+      <% end %>
+    </div>
+  </div>
+
   <% if @card %>
     <div class="weui-panel__hd"><%= @clubname.member_club.name %></div>
     <% @card.each do |card| %>

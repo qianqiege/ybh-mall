@@ -1,11 +1,16 @@
 class Wechat::MemberController < Wechat::BaseController
   before_action :set_card, only: [:card]
+  before_action :set_setmeal, only: [:setmeal]
   before_action :store_location, only: [:card,:equity]
 
   before_action :set_equity, only: [:equity]
   def card
     @no_fotter = true
     @slides = Slide.top(4)
+    @setmeal = Setmeal.all
+  end
+
+  def setmeal
   end
 
   def equity
@@ -24,6 +29,10 @@ class Wechat::MemberController < Wechat::BaseController
 
   def store_location
     session[:return_to] = request.url if request.get?
+  end
+
+  def set_setmeal
+    @setmeal = Setmeal.find(params[:format])
   end
 
 end
