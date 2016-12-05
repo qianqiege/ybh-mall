@@ -69,5 +69,6 @@ class Mall::OrdersController < Mall::BaseController
   def pay
     @no_fotter = true
     @order = current_user.orders.find(params[:id])
+    @trade_merge_pay_params = @order.fast_pay.trade_merge_pay_params
   end
 end
