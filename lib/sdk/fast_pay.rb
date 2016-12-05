@@ -62,6 +62,8 @@ module Sdk
       }
       params = default_params.merge(options)
       signed_params = { sign: sign(params) }.merge(params)
+      logger.info sign_params
+
       signed_params.sort_by{ |k, v| k }.to_h
     end
 

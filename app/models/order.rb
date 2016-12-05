@@ -8,6 +8,10 @@ class Order < ApplicationRecord
   validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 1 }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   validates :wechat_user, :address, presence: true
+  validates_uniqueness_of :number
+  validates_presence_of :number
+
+  before_create :generate_number
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '取消' }.freeze
 
@@ -43,8 +47,11 @@ class Order < ApplicationRecord
     end
   end
 
-  def number
-    100000000 + self.id
+  def generate_number
+    begin
+      salt = rand(99999..999999)
+      self.number = "#{Time.current.to_s(:number)}#{salt}"
+    end while self.class.exists?(number: number)
   end
 
   def trade_name
