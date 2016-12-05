@@ -19,15 +19,7 @@
           <span class="cashier-info-needpay">¥<%= money @order.price %></span>
         </div>
       </div>
-      <div class="cashier-body">
-        <span class="pay-type-title">支付方式</span>
-        <ul class="cashier-paytype">
-          <li class="weixinpay">
-            <i></i>微信支付<span></span>
-          </li>
-        </ul>
-      </div>
-      <% [:merchOrderNo, :orderNo, :partnerId, :paymentType, :returnUrl, :service, :sign, :signType, :tradeInfo, :version].each do |item| %>
+      <% @trade_merge_pay_params.keys.each do |item| %>
         <%= hidden_field_tag item, @trade_merge_pay_params[item] %>
       <% end %>
       <button id="cachier-fix-foot" class="cachier-fix-foot active">确认支付</button>

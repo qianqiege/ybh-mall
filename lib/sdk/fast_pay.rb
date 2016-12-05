@@ -62,8 +62,7 @@ module Sdk
       }
       params = default_params.merge(options)
       signed_params = { sign: sign(params) }.merge(params)
-      logger.info sign_params
-
+      logger.info signed_params
       signed_params.sort_by{ |k, v| k }.to_h
     end
 
@@ -85,6 +84,7 @@ module Sdk
         service: "fastPayTradeMergePay",
         tradeInfo: tradeInfo.to_json,
         returnUrl: @host + 'mall/orders',
+        notifyUrl: @host + 'mall/orders/notify',
         paymentType: "PAYMENT_TYPE_YJ"
       }
       sign_params(options)
@@ -137,6 +137,10 @@ module Sdk
       else
         {"success": false, resultMessage: "用户未绑定"}
       end
+    end
+
+    def logger
+      @logger ||= Logger.new('./log/fast_pay.log')
     end
 
   end

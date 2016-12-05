@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   validates_uniqueness_of :number
   validates_presence_of :number
 
-  before_create :generate_number
+  before_validation :generate_number
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '取消' }.freeze
 
