@@ -19,12 +19,28 @@ module Sdk
         method: method, url: url, timeout: 120,
         headers: @headers, payload: payload
       )
-      JSON.parse(respond.body)
+
+      # 验证签名
+      body = JSON.parse(respond.body)
+      sign_params = body["sign"]
+      body.delete("sign")
+
+      if(respond.body && sign_params == sign(body))
+        body
+      else
+        {"success": false, resultMessage: "信息被篡改"}
+      end
     end
 
     def sign(params)
       query_string = params.collect do |key, value|
-        "#{key}=#{value}"
+        # JSON.parse 时，0.00 会被转成 0.0
+        if key == 'buyerTotalAmount'
+          format_value = "%0.2f"% value
+          "#{key}=#{format_value}"
+        else
+          "#{key}=#{value}"
+        end
       end.sort * '&'
 
       to_sign_params = query_string.to_s + @secrect_key
