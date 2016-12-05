@@ -84,7 +84,7 @@ module Sdk
         service: "fastPayTradeMergePay",
         tradeInfo: tradeInfo.to_json,
         returnUrl: @host + 'mall/orders',
-        notifyUrl: @host + 'mall/orders/notify',
+        notifyUrl: @host + 'notifies/orders',
         paymentType: "PAYMENT_TYPE_YJ"
       }
       sign_params(options)

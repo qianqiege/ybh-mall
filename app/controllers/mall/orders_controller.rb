@@ -6,8 +6,6 @@ class Mall::OrdersController < Mall::BaseController
   include CurrentCart
   before_action :check_cart, only: [:confirm]
 
-  skip_before_filter :verify_authenticity_token, :only => [:notify]
-
   def index
     @title = params[:status] ? Order::STATUS_TEXT[params[:status].to_sym].to_s + '订单' : '全部订单'
     @orders = if params[:status]
@@ -72,29 +70,6 @@ class Mall::OrdersController < Mall::BaseController
     @no_fotter = true
     @order = current_user.orders.find(params[:id])
     @trade_merge_pay_params = @order.fast_pay.trade_merge_pay_params
-  end
-
-  # 支付通知回调
-  def notify
-    order = Order.find_by(number: params["merchOrderNo"])
-    if(order.present?)
-      order.fast_pay.logger.info params
-      remote_sign = params[:sign]
-
-      params.delete(:sign)
-      params.delete(:action)
-      params.delete(:controller)
-
-      local_sign = order.fast_pay.sign(params)
-      if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
-        order.pay!
-        render json: "success", layout: nil
-      else
-        render json: "fail", layout: nil
-      end
-    else
-      render json: "fail", layout: nil
-    end
   end
 
 end

@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index] do
       get :confirm, on: :collection
-      post :notify, on: :collection
       get :pay, on: :member
     end
     resource :sms_code, only: [:show]
@@ -67,6 +66,10 @@ Rails.application.routes.draw do
     post 'body_weight/create'
     post 'heart/create'
     post 'pressure/create'
+  end
+
+  resources :notifies do
+    post :orders, on: :collection
   end
 
   root "wechat/home#index"
