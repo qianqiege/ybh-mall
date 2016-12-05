@@ -9,9 +9,8 @@ class Order < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   validates :wechat_user, :address, presence: true
   validates_uniqueness_of :number
-  validates_presence_of :number
 
-  before_validation :generate_number
+  before_create :generate_number
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '取消' }.freeze
 
