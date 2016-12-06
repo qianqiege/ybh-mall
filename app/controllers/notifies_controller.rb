@@ -14,7 +14,7 @@ class NotifiesController < ApplicationController
 
       local_sign = order.fast_pay.sign(params)
       if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
-        order.tradeNo = params[:tradeNo]
+        order.trade_nos = params[:tradeNo]
         order.pay
         order.save!
         render json: "success", layout: nil
