@@ -1,0 +1,18 @@
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title"><%= @wechat_info.nickname %></h4>
+            </div>
+            <div class="weui-media-box__hd">
+              <img src="<%= @wechat_info.headimgurl %>" class="weui-media-box__thumb",>
+            </div>
+        </a>
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">基础信息</h4>
+                <p class="weui-media-box__desc"><%= @wechat_info.auth_hash %></p>
+            </div>
+        </a>
+    </div>
+</div>
