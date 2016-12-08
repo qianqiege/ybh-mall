@@ -1,1 +1,233 @@
 <%= title '健康档案' %>
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+        <div class="row head">
+            <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
+              <div class="img">
+                  <%= image_tag "person.png",size: "100x100",class:"vam" %>
+              </div>
+                <div class ="rname">
+                  <h3><%= @record["name"] %><small> <span class="label label-primary">ID :<%= @record["id_number"] %></span></small></h3>
+                  <div class="weui-flex">
+                              <div class="weui-flex__item">
+                                汉族
+                              </div>
+                              <div class="weui-flex__item">
+                                <%= @record["sex"] %>
+                              </div>
+                              <div class="weui-flex__item">
+                                <%= @record["phone"] %>
+                              </div>
+                  </div>
+
+                  <div class="weui-flex">
+
+                    <div class="weui-flex__item">
+                      <%= icon('calendar') %> <%= @record["birthday"] %>
+                    </div>
+                    <div class="weui-flex__item">
+                      <%= icon('user-circle-o') %> <%= @record["occupation"] %>
+                    </div>
+                  </div>
+
+                  <div class="weui-flex">
+                    <div class="weui-flex__item">
+                      <%= icon('venus-mars') %> <%= @record["marriage"] %>
+                    </div>
+                    <div class="weui-flex__item">
+                      <%= icon('home') %> <%= @record["address"] %>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="font">
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">目前健康状况</h4>
+              <p class="weui-media-box__desc">目前患有疾病：<%= @record["health_status"]["item_a"] %></p>
+              <p class="weui-media-box__desc">过去的一段时间疲劳程度：<%= @record["health_status"]["item_b1"] %></p>
+              <p class="weui-media-box__desc">同一年前相比体重浮动是：<%= @record["health_status"]["item_b2"] %></p>
+              <p class="weui-media-box__desc">是否试图减过体重：<%= @record["health_status"]["item_b3"] %></p>
+              <p class="weui-media-box__desc">您不歇气一次可以爬几层楼梯：<%= @record["health_status"]["item_b8"] %></p>
+              <p class="weui-media-box__desc">半年内是否测过血压：<%= @record["health_status"]["item_b4"] %></p>
+              <p class="weui-media-box__desc">半年是否内测过血脂：<%= @record["health_status"]["item_b5"] %></p>
+              <p class="weui-media-box__desc">是否经常有颈部、骨关节疼痛：<%= @record["health_status"]["item_b6"] %></p>
+              <p class="weui-media-box__desc">近一年是否主过医院：<%= @record["health_status"]["item_b7"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">家族史</h4>
+              <p class="weui-media-box__desc">父亲患有哪种疾病：<%= @record["family_history"]["father"] %></p>
+              <p class="weui-media-box__desc">兄弟患有哪种疾病：<%= @record["family_history"]["brother"] %></p>
+              <p class="weui-media-box__desc">母亲患有哪种疾病：<%= @record["family_history"]["mother"] %></p>
+              <p class="weui-media-box__desc">子女患有哪种疾病：<%= @record["family_history"]["child"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">饮酒史</h4>
+              <p class="weui-media-box__desc">喝酒状态：<%= @record["drink_history"]["item_1"] %></p>
+              <p class="weui-media-box__desc">饮酒时间：<%= @record["drink_history"]["item_2"] %></p>
+              <p class="weui-media-box__desc">饮酒次数：<%= @record["drink_history"]["item_3"] %></p>
+              <p class="weui-media-box__desc">饮酒量：<%= @record["drink_history"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">吸烟史</h4>
+              <p class="weui-media-box__desc">您现在的吸烟状态是：<%= @record["smoke_history"]["item_1"] %></p>
+              <p class="weui-media-box__desc">您的吸烟时间是：<%= @record["smoke_history"]["item_2"] %></p>
+              <p class="weui-media-box__desc">您每日平均吸烟量是：<%= @record["smoke_history"]["item_3"] %></p>
+              <p class="weui-media-box__desc">您是否处在被动吸烟环境：<%= @record["smoke_history"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">查体</h4>
+              <p class="weui-media-box__desc">多久体检：<%= @record["check_body"]["item_1"] %></p>
+              <p class="weui-media-box__desc">最近一次体检时间：<%= @record["check_body"]["item_2"] %></p>
+              <p class="weui-media-box__desc">拥有的家庭医疗器械：<%= @record["check_body"]["item_3"] %></p>
+              <p class="weui-media-box__desc">穿戴设备：<%= @record["check_body"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">睡眠</h4>
+              <p class="weui-media-box__desc">目前的睡眠状态是：<%= @record["sleep_habit"]["item_1"] %></p>
+              <p class="weui-media-box__desc">每天睡眠时间：<%= @record["sleep_habit"]["item_2"] %></p>
+              <p class="weui-media-box__desc">午睡时间：<%= @record["sleep_habit"]["item_3"] %></p>
+              <p class="weui-media-box__desc">熬夜频率：<%= @record["sleep_habit"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">情志态</h4>
+              <p class="weui-media-box__desc">适应社会环境程度：<%= @record["emotional_state"]["item_1"] %></p>
+              <p class="weui-media-box__desc">生气频次：<%= @record["emotional_state"]["item_2"] %></p>
+              <p class="weui-media-box__desc">无故伤悲频次：<%= @record["emotional_state"]["item_3"] %></p>
+              <p class="weui-media-box__desc">常害怕频次：<%= @record["emotional_state"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">环境态</h4>
+              <p class="weui-media-box__desc">同一般人比对冬天，冷空调、电扇等的耐寒程度：<%= @record["environment_state"]["item_1"] %></p>
+              <p class="weui-media-box__desc">工作环境是否有绿植：<%= @record["environment_state"]["item_2"] %></p>
+              <p class="weui-media-box__desc">生活环境是否有粉尘污染：<%= @record["environment_state"]["item_3"] %></p>
+              <p class="weui-media-box__desc">适应外界自然变化的程度：<%= @record["environment_state"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">运动习惯</h4>
+              <p class="weui-media-box__desc">每周的运动次数：<%= @record["exercise_habit"]["item_1"] %></p>
+              <p class="weui-media-box__desc">每次的运动时间：<%= @record["exercise_habit"]["item_2"] %></p>
+              <p class="weui-media-box__desc">目前运动方式：<%= @record["exercise_habit"]["item_3"] %></p>
+              <p class="weui-media-box__desc">出行方式：<%= @record["exercise_habit"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">职业态</h4>
+              <p class="weui-media-box__desc">每天坐着时间：<%= @record["exercise_habit"]["item_1"] %></p>
+              <p class="weui-media-box__desc">多久起身活动：<%= @record["exercise_habit"]["item_2"] %></p>
+              <p class="weui-media-box__desc">工作间隙做哪些活动：<%= @record["exercise_habit"]["item_3"] %></p>
+              <p class="weui-media-box__desc">出行方式：<%= @record["exercise_habit"]["item_4"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">排泄</h4>
+              <p class="weui-media-box__desc">小便情况：<%= @record["excretion"]["item_1"] %></p>
+              <p class="weui-media-box__desc">大便情况：<%= @record["excretion"]["item_2"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">饮食运动习惯</h4>
+              <p class="weui-media-box__desc">豆制品：<%= @record["eating_habit"]["item_2"] %></p>
+              <p class="weui-media-box__desc">蔬菜：<%= @record["eating_habit"]["item_3"] %></p>
+              <p class="weui-media-box__desc">水果：<%= @record["eating_habit"]["item_4"] %></p>
+              <p class="weui-media-box__desc">主副食比例：<%= @record["eating_habit"]["item_1"] %></p>
+              <p class="weui-media-box__desc">畜禽鱼肉蛋：<%= @record["eating_habit"]["item_8"] %></p>
+              <p class="weui-media-box__desc">食物种类数量：<%= @record["eating_habit"]["item_9"] %></p>
+              <p class="weui-media-box__desc">鸡蛋：<%= @record["eating_habit"]["item_5"] %></p>
+              <p class="weui-media-box__desc">果仁：<%= @record["eating_habit"]["item_6"] %></p>
+              <p class="weui-media-box__desc">摄盐量：<%= @record["eating_habit"]["item_7"] %></p>
+              <p class="weui-media-box__desc">每天大约饮水：<%= @record["eating_habit"]["item_10"] %></p>
+              <p class="weui-media-box__desc">牛奶的用量：<%= @record["eating_habit"]["item_12"] %></p>
+              <p class="weui-media-box__desc">习惯的饮料种类：<%= @record["eating_habit"]["item_11"] %></p>
+          </div>
+      </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">体格检查</h4>
+              <p class="weui-media-box__desc">身高：<%= @record["physical_examination"]["height"] %></p>
+              <p class="weui-media-box__desc">臀围：<%= @record["physical_examination"]["hipline"] %></p>
+              <p class="weui-media-box__desc">腰臀比：<%= @record["physical_examination"]["waist_to_hipratio"] %></p>
+              <p class="weui-media-box__desc">舒张压：<%= @record["physical_examination"]["min_BloodPressure"] %></p>
+              <p class="weui-media-box__desc">总胆固醇：<%= @record["physical_examination"]["total_cholesterol"] %></p>
+              <p class="weui-media-box__desc">高密度脂蛋白：<%= @record["physical_examination"]["high_density_lipoprotein"] %></p>
+              <p class="weui-media-box__desc">空腹血糖：<%= @record["physical_examination"]["b_BloodGlucose"] %></p>
+              <p class="weui-media-box__desc">同型半胱氨酸：<%= @record["physical_examination"]["homocysteine"] %></p>
+              <p class="weui-media-box__desc">谷丙转氨酶：<%= @record["physical_examination"]["glutamic_pyruvic_transaminase"] %></p>
+              <p class="weui-media-box__desc">尿素氮：<%= @record["physical_examination"]["usea_nitrogen"] %></p>
+              <p class="weui-media-box__desc">体重：<%= @record["physical_examination"]["weight"] %></p>
+              <p class="weui-media-box__desc">体重指数：<%= @record["physical_examination"]["baric_index"] %></p>
+              <p class="weui-media-box__desc">腰围：<%= @record["physical_examination"]["waistline"] %></p>
+              <p class="weui-media-box__desc">收缩压：<%= @record["physical_examination"]["max_BloodPressure"] %></p>
+              <p class="weui-media-box__desc">甘油三酯：<%= @record["physical_examination"]["triglyceride"] %></p>
+              <p class="weui-media-box__desc">低密度脂蛋白：<%= @record["physical_examination"]["low_density_lipoprotein"] %></p>
+              <p class="weui-media-box__desc">糖化血红蛋白：<%= @record["physical_examination"]["glycosylated_hemoglobin"] %></p>
+              <p class="weui-media-box__desc">谷草转氨酶：<%= @record["physical_examination"]["glutamic_oxaloacetic_transaminase"] %></p>
+              <p class="weui-media-box__desc">肌酐：<%= @record["physical_examination"]["creatinine"] %></p>
+              <p class="weui-media-box__desc">血尿酸：<%= @record["physical_examination"]["blood_uric_acid"] %></p>
+              <p class="weui-media-box__desc">B 超：<%= @record["physical_examination"]["ultrasound"] %>正常</p>
+              <p class="weui-media-box__desc">心电图：<%= @record["physical_examination"]["electrocardiogram"] %>正常</p>
+              <p class="weui-media-box__desc">影像学检查：<%= @record["physical_examination"]["image_analysis"] %>正常</p>
+          </div>
+      </div>
+  </div>
+</div>

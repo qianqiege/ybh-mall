@@ -79,3 +79,58 @@
     text-overflow: ellipsis;
   }
 }
+
+.rname{
+  display: inline-block;
+  margin-left: 0px;
+}
+
+.weui-media-box__desc {
+    font-family:'microsoft Yahei';
+    color: black;
+    font-size: 15px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+.weui-media-box__title{
+  font-family:'microsoft Yahei';
+  font-size: 20px;
+  color: black;
+}
+
+body {
+  font-family: microsoft Yahei;
+}
+
+.label-primary {
+    background-color: #428bca;
+}
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.img{
+  display: inline-block;
+  float: left;
+}
+
+.zdiv{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+@import "font-awesome-sprockets";
+@import "font-awesome";

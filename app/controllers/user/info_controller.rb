@@ -5,8 +5,9 @@ class User::InfoController < Wechat::BaseController
   end
 
   def helath_record
+    @idcard = VipRecord.find(params[:format])
     mall = Sdk::Mall.new
-    @record = mall.record(100000000000000013)
+    @record = mall.record(@idcard.identity_card)
   end
 
   def wechat_info
