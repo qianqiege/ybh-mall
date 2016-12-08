@@ -19,16 +19,37 @@
               <%= image_tag("category.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">分类</p>
             </a>
-            <% if @identity_card %>
-              <a href="<%= user_root_path(@identity_card) %>" class="weui-tabbar__item">
+              <% if @identity_card.nil? %>
+              <a href="<%= user_binding_path(current_user.id) %>" class="weui-tabbar__item">
                 <%= image_tag("person.png", class: "weui-tabbar__icon") %>
                 <p class="weui-tabbar__label">我的</p>
               </a>
-            <% else %>
-              <a href="<%= user_binding_new_path(current_user.id) %>" class="weui-tabbar__item">
-                <%= image_tag("person.png", class: "weui-tabbar__icon") %>
-                <p class="weui-tabbar__label">我的</p>
-              </a>
+              <% else %>
+                <% if @user.user_id.nil? %>
+                  <% if @identity_card.identity_card.nil? %>
+                    <a href="<%= user_binding_path(current_user.id) %>" class="weui-tabbar__item">
+                      <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                      <p class="weui-tabbar__label">我的</p>
+                    </a>
+                  <% else %>
+                    <a href="<%= user_root_path(@identity_card.id) %>" class="weui-tabbar__item">
+                    <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                      <p class="weui-tabbar__label">我的</p>
+                    </a>
+                  <% end %>
+              <% else %>
+                <% if @identity_card.identity_card.nil? %>
+                  <a href="<%= user_supplement_path(current_user.id) %>" class="weui-tabbar__item">
+                    <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                    <p class="weui-tabbar__label">我的</p>
+                  </a>
+                <% else %>
+                  <a href="<%= user_root_path(@identity_card.id) %>" class="weui-tabbar__item">
+                  <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                    <p class="weui-tabbar__label">我的</p>
+                  </a>
+                <% end %>
+              <% end %>
             <% end %>
           </div>
 

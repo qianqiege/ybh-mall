@@ -104,7 +104,8 @@ module Wechat
     end
 
     def identity_card
-      @identity_card = VipRecord.connection.select_all("SELECT `vip_records`.`user_id`,`vip_records`.`identity_card` from wechat_users,users,vip_records where wechat_users.user_id=vip_records.id and users.id=wechat_users.user_id and wechat_users.id= #{current_user.id} ")
+      @user = WechatUser.where(id:current_user).take
+      @identity_card = VipRecord.where(user_id:current_user.user_id).take
     end
 
     def wechat_reauthorize_url(url, scope)

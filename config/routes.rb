@@ -50,8 +50,11 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
-    root "info#show"
-    get 'binding/new'
+    root "info#home"
+    get '/binding',to: 'binding#new'
+    get '/supplement',to: 'supplement#new'
+    get '/record', to: 'info#helath_record'
+    get '/w_info', to: 'info#wechat_info'
   end
 
   namespace :examine do
