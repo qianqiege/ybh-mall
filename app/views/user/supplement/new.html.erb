@@ -1,1 +1,22 @@
-<%= title '信息补充' %>
+<%= title '补充身份证号' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+<%= form_for @vip_record,url:{action: "update"},html: {class: "nifty_form"} do |f| %>
+<div class="weui-cells__title">必填信息</div>
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell weui-cell_warn">
+        <div class="weui-cell__hd"><label for="" class="weui-label">身份证号</label></div>
+        <div class="weui-cell__bd">
+            <%= f.text_field :identity_card ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入身份证"%>
+        </div>
+        <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+        </div>
+    </div>
+</div>
+
+<div class="weui-btn-area">
+    <%= f.submit "更新" ,class:"weui-btn weui-btn_primary" %>
+</div>
+<% end %>
