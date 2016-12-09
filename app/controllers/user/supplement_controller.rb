@@ -4,7 +4,18 @@ class User::SupplementController < Wechat::BaseController
   end
 
   def edit_record
+    @edit = VipRecord.new
+  end
 
+  def create
+    @edit = VipRecord.new(id_params)
+    respond_to do |format|
+      if @edit.save
+        format.html { redirect_to user_edit_record_path , notice: '恭喜您，保存成功!' }
+      else
+        format.html { redirect_to user_edit_record_path , notice: '非常抱歉，预约失败!' }
+      end
+    end
   end
 
   def update

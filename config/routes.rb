@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     get '/w_info', to: 'info#wechat_info'
     get '/edit_record', to: 'supplement#edit_record'
     post 'supplement/update'
+    post 'supplement/create'
   end
 
   namespace :examine do
