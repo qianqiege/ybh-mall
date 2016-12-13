@@ -3,11 +3,27 @@
   <div class="weui-panel__bd">
     <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
       <div class="weui-media-box__hd">
-        <img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb",>
+        <% if !@wechat_user.nil?%>
+          <img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb",>
+        <% else %>
+          <%= image_tag "ybyt04.png" ,class:"weui-media-box__thumb" ,size: "50x55" %>
+        <% end %>
       </div>
       <div class="weui-media-box__bd">
-        <h4 class="weui-media-box__title"><%= @wechat_user.nickname %></h4>
-        <p class="weui-media-box__desc">会员号：<%= @vip_record.member_number %></p>
+        <h4 class="weui-media-box__title">
+          <% if !@wechat_user.nil?%>
+            <%= @wechat_user.nickname %>
+          <% else %>
+            御邦医通
+          <% end %>
+        </h4>
+        <p class="weui-media-box__desc">会员号：
+          <% if !@wechat_user.nil?%>
+            <%= @vip_record.member_number %>
+          <% else %>
+            0000 0000
+          <% end %>
+        </p>
       </div>
       </a>
   </div>
@@ -28,14 +44,23 @@
             <span class="weui-cell__ft"></span>
           </a>
 
-          <a class="weui-cell weui-cell_access" href="<%= user_record_path(@vip_record.id) %>">
-            <div class="weui-cell__hd"></div>
-            <div class="weui-cell__bd weui-cell_primary">
-              <p>我的健康档案</p>
-            </div>
-            <span class="weui-cell__ft"></span>
-          </a>
-
+          <% if !@vip_record.nil?%>
+            <a class="weui-cell weui-cell_access" href="<%= user_record_path(@vip_record.id) %>">
+              <div class="weui-cell__hd"></div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>我的健康档案</p>
+              </div>
+              <span class="weui-cell__ft"></span>
+            </a>
+          <% else %>
+            <a class="weui-cell weui-cell_access" href="">
+              <div class="weui-cell__hd"></div>
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>我的健康档案</p>
+              </div>
+              <span class="weui-cell__ft"></span>
+            </a>
+          <% end %>
           <a class="weui-cell weui-cell_access" href="javascript:;">
             <div class="weui-cell__hd"></div>
             <div class="weui-cell__bd weui-cell_primary">
