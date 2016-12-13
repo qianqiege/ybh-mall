@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     post 'body_weight/create'
     post 'heart/create'
     post 'pressure/create'
+    post 'heart/api_create'
   end
 
   root "wechat/home#index"
