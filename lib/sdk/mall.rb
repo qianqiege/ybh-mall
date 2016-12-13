@@ -31,8 +31,12 @@ module Sdk
       exec(:get, "record/check?id_number=#{identity_card}")
     end
 
+    # def examination_input(identity_card,heart_rate)
+    #   exec(:post, "examination_input/heart_rate?",{id_number: identity_card , heart_rate: heart_rate})
+    # end
+
     def examination_input(identity_card,heart_rate)
-      exec(:post, "examination_input/heart_rate?",{id_number: identity_card , heart_rate: heart_rate})
+      exec(:post, "examination_input/heart_rate?id_number=#{identity_card}&heart_rate=#{heart_rate}")
     end
   end
 end
