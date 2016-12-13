@@ -1,7 +1,11 @@
 class User::InfoController < Wechat::BaseController
   def home
-    @vip_record = VipRecord.find(params[:format])
-    @wechat_user = WechatUser.find(current_user)
+    if !@vip_record.nil?
+      @vip_record = VipRecord.find(params[:format])
+    end
+    if !@wechat_user.nil?
+      @wechat_user = WechatUser.find(current_user)
+    end
   end
 
   def helath_record
