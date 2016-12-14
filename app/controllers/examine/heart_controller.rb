@@ -17,7 +17,7 @@ class Examine::HeartController < Examine::BaseController
     end
     @id_number = User.where(id: WechatUser.where(id: current_user.id )).take
     mall = Sdk::Mall.new
-    mall.examination_input(@id_number.identity_ca.to_i,heart_params[:value])
+    mall.examination_input(@id_number.identity_card.to_i,heart_params[:value])
   end
 
   def heart_params
