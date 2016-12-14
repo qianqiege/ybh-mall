@@ -1,4 +1,4 @@
-ActiveAdmin.register VipRecord do
+ActiveAdmin.register MemberRecord do
   menu parent: I18n.t("active_admin.menu.user_manage")
   permit_params :name, :sex, :address, :birthday, :identity_card , :telephone, :mobile, :emergency_contact, :member_number, :initiation_time,:user_id
 
@@ -21,7 +21,7 @@ form(:html => { :multipart => true }) do |f|
     f.input :sex
     f.input :address
     f.input :birthday
-    f.input :identity_card 
+    f.input :identity_card
     f.input :telephone
     f.input :mobile
     f.input :emergency_contact

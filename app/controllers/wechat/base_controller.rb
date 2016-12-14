@@ -106,7 +106,7 @@ module Wechat
     def identity_card
       @user = WechatUser.where(id:current_user).take
       if !@identity_card.nil?
-        @identity_card = VipRecord.where(user_id:current_user.user_id).take
+        @identity_card = MemberRecord.where(user_id:current_user.user_id).take
       end
     end
 
