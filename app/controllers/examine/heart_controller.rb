@@ -18,7 +18,6 @@ class Examine::HeartController < Examine::BaseController
 
     @id_number = VipRecord.where(user_id: User.where(id: WechatUser.where(id: current_user.id ))).take
     mall = Sdk::Mall.new
-    byebug
     mall.examination_input(@id_number.identity_card.to_i,heart_params[:value])
   end
 
