@@ -15,13 +15,13 @@ ActiveAdmin.register MemberRecord do
 #   permitted
 # end
 
-form(:html => { :multipart => true }) do |f|
-  f.inputs "档案" do
-    f.input :affiliation
-    f.input :member_number
-    f.input :initiation_time
-    f.input :user
+  form(:html => { :multipart => true }) do |f|
+    f.inputs "档案" do
+      f.input :affiliation
+      f.input :member_number
+      f.input :initiation_time
+      f.input :user
+    end
+    f.actions
   end
-  f.actions
-end
 end
