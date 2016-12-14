@@ -8,13 +8,13 @@
   <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">收缩压</label></div>
       <div class="weui-cell__bd">
-        <%= f.text_field :systolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入收缩压"%>
+        <%= f.text_field :systolic_pressure,class:"weui-input",type:"digit",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入收缩压"%>
       </div>
   </div>
   <div class="weui-cell">
       <div class="weui-cell__hd"><label class="weui-label">舒张压</label></div>
       <div class="weui-cell__bd">
-        <%= f.text_field :diastolic_pressure,class:"weui-input",type:"tel",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入舒张压"%>
+        <%= f.text_field :diastolic_pressure,class:"weui-input",type:"digit",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入舒张压"%>
       </div>
   </div>
 </div>
