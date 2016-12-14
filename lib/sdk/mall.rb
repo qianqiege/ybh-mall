@@ -27,8 +27,8 @@ module Sdk
       exec(:get, "patient_records")
     end
 
-    def record(identity_card)
-      exec(:get, "record/check?id_number=#{identity_card}")
+    def record(id_number)
+      exec(:get, "record/check?id_number=#{id_number}")
     end
 
     # def examination_input(identity_card,heart_rate)

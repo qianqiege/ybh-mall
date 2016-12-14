@@ -103,11 +103,9 @@ module Wechat
       end
     end
 
-    def identity_card
-      @user = WechatUser.where(id:current_user).take
-      if !@identity_card.nil?
-        @identity_card = MemberRecord.where(user_id:current_user.user_id).take
-      end
+    def verification
+      @user = User.where(id:current_user.user_id).take
+      byebug
     end
 
     def wechat_reauthorize_url(url, scope)

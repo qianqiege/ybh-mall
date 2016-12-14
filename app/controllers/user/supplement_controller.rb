@@ -30,6 +30,6 @@ class User::SupplementController < Wechat::BaseController
   end
 
   def id_params
-    params.require(:vip_record).permit!
+    params.require(:memeber_record).permit!
   end
 end

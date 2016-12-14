@@ -7,7 +7,6 @@
       </div>
       <div class="weui-media-box__bd">
         <h4 class="weui-media-box__title"><%= @wechat_user.nickname %></h4>
-        <p class="weui-media-box__desc">会员号：<%= @vip_record.member_number %></p>
       </div>
       </a>
   </div>
@@ -28,7 +27,7 @@
             <span class="weui-cell__ft"></span>
           </a>
 
-          <a class="weui-cell weui-cell_access" href="<%= user_record_path(@vip_record.id) %>">
+          <a class="weui-cell weui-cell_access" href="<%= user_record_path %>">
             <div class="weui-cell__hd"></div>
             <div class="weui-cell__bd weui-cell_primary">
               <p>我的健康档案</p>
