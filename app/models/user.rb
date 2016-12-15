@@ -9,7 +9,7 @@ class User < ApplicationRecord
     telphone
   end
 
-  validates :telphone, presence: true, length: {is: 11}
+  validates :telphone, uniqueness: true, presence: true, length: {is: 11}
   validates :password, presence: true, length: { in: 6..20 }
-  validates :identity_card, presence: true, length: { is: 18 }
+  validates :identity_card, uniqueness: true, presence: true, length: { is: 18 }
 end
