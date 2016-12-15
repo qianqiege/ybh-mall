@@ -10,7 +10,6 @@ class User::BindingController < Wechat::BaseController
       @user = User.new(telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card])
       @current_user = current_user.id
       if @user.save && @wechat = WechatUser.where('id LIKE ?',"%#{@current_user}%").update_all(user_id: @user.id)
-        flash[:notice] = '绑定成功'
         redirect_to user_root_path
       else
         flash[:notice] = '绑定失败'
