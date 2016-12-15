@@ -104,7 +104,7 @@ module Wechat
     end
 
     def verification
-      @user = WechatUser.where(id:current_user.user_id).take
+      @user = WechatUser.where(id:current_user.id).take
     end
 
     def wechat_reauthorize_url(url, scope)
