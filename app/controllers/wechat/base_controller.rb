@@ -3,9 +3,9 @@ module Wechat
   class BaseController < ApplicationController
     layout "wechat"
 
-    helper_method :current_user, :identity_card
+    helper_method :current_user, :verification
 
-    before_action :get_wechat_sns_info, :current_user, :identity_card
+    before_action :get_wechat_sns_info, :current_user, :verification
 
     private
     def get_wechat_sns_info
@@ -103,11 +103,8 @@ module Wechat
       end
     end
 
-    def identity_card
-      @user = WechatUser.where(id:current_user).take
-      if !@identity_card.nil?
-        @identity_card = VipRecord.where(user_id:current_user.user_id).take
-      end
+    def verification
+      @user = WechatUser.where(id:current_user.id).take
     end
 
     def wechat_reauthorize_url(url, scope)

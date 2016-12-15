@@ -15,6 +15,12 @@ class Examine::HeartController < Examine::BaseController
         format.html { redirect_to examine_heart_path, notice: '保存失败'}
       end
     end
+
+    @id_number = User.where(id:current_user.user_id).take
+    if !@id_number.identity_card.nil?
+      mall = Sdk::Mall.new
+      mall.api_heart_rate(@id_number.identity_card,heart_params[:value])
+    end
   end
 
   def heart_params

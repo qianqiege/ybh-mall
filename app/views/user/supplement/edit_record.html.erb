@@ -3,65 +3,29 @@
   <div class="notice"><%=flash[:notice]%></div>
 <% end %>
 <%= form_for @edit,url:{action: "create"},html: {class: "nifty_form"} do |f| %>
- <div class="weui-cells__title">基础信息</div>
+ <div class="weui-cells__title">会员信息</div>
  <div class="weui-cells weui-cells_form">
       <div class="weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">姓名：</label></div>
+          <div class="weui-cell__hd"><label class="weui-label">属地：</label></div>
           <div class="weui-cell__bd">
-            <%= f.text_field :name ,class:"weui-input",type:"text", placeholder:"请输入姓名"%>
+            <%= f.text_field :affiliation ,class:"weui-input",type:"text", placeholder:"请输入归属地"%>
           </div>
       </div>
       <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">手机：</label></div>
+        <div class="weui-cell__hd"><label class="weui-label">会员编号：</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :mobile ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入手机号"%>
+          <%= f.text_field :member_number ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入会员编号"%>
         </div>
     </div>
+
     <div class="weui-cell">
-      <div class="weui-cell__hd"><label class="weui-label">住宅电话：</label></div>
-      <div class="weui-cell__bd">
-        <%= f.text_field :telephone  ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入住宅电话"%>
-      </div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">生日：</label></div>
+        <div class="weui-cell__hd"><label class="weui-label">入会时间：</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :birthday ,class:"weui-input",type:"datetime-local"%>
+          <%= f.text_field :initiation_time ,class:"weui-input",type:"datetime-local"%>
         </div>
     </div>
  </div>
- <div class="weui-cells weui-cells_radio">
-     <label class="weui-cell weui-check__label" for="x11">
-       <label class="weui-label">性别：</label>
-         <div class="weui-cell__ft">
-           <%= f.radio_button :sex, "男" %>
-           <%= f.label :sex, "男" %>
-           <%= f.radio_button :sex, "女"  %>
-           <%= f.label :sex, "女" %>
-         </div>
-     </label>
-   </div>
-   <div class="weui-cells weui-cells_form">
-      <div class="weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">地址：</label></div>
-          <div class="weui-cell__bd">
-            <%= f.text_field :address  ,class:"weui-input",type:"text", placeholder:"请输入地址"%>
-          </div>
-      </div>
-        <div class="weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">身份证：</label></div>
-          <div class="weui-cell__bd">
-            <%= f.text_field :identity_card ,class:"weui-input",type:"number",pattern:"[0-9]*", placeholder:"请输入身份证号"%>
-          </div>
-      </div>
-      <div class="weui-cell">
-          <div class="weui-cell__hd"><label class="weui-label">紧急联系人：</label></div>
-          <div class="weui-cell__bd">
-            <%= f.text_field :emergency_contact  ,class:"weui-input",type:"text", placeholder:"请输入紧急联系人"%>
-          </div>
-      </div>
-   </div>
    <div class="weui-btn-area">
-       <%= f.submit "保存" ,class:"weui-btn weui-btn_primary" %>
+       <%= f.submit "提交" ,class:"weui-btn weui-btn_primary" %>
    </div>
 <% end %>

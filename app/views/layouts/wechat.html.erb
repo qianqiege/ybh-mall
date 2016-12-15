@@ -20,29 +20,15 @@
               <p class="weui-tabbar__label">分类</p>
             </a>
             <% if @user.user_id.nil? %>
-              <a href="<%= user_binding_path(current_user.id) %>" class="weui-tabbar__item">
+              <a href="<%= user_binding_path %>" class="weui-tabbar__item">
                 <%= image_tag("person.png", class: "weui-tabbar__icon") %>
                 <p class="weui-tabbar__label">我的</p>
               </a>
             <% else %>
-              <% if @identity_card.nil? %>
-                <a href="<%= user_edit_record_path(current_user.id) %>" class="weui-tabbar__item">
-                  <%= image_tag("person.png", class: "weui-tabbar__icon") %>
-                  <p class="weui-tabbar__label">我的</p>
-                </a>
-              <% else %>
-                <% if @identity_card.identity_card == ""%>
-                  <a href="<%= user_id_card_path(@identity_card.id) %>" class="weui-tabbar__item">
-                    <%= image_tag("person.png", class: "weui-tabbar__icon") %>
-                    <p class="weui-tabbar__label">我的</p>
-                  </a>
-                <% else %>
-                  <a href="<%= user_root_path(@identity_card.id) %>" class="weui-tabbar__item">
-                  <%= image_tag("person.png", class: "weui-tabbar__icon") %>
-                    <p class="weui-tabbar__label">我的</p>
-                  </a>
-                <% end %>
-              <% end %>
+              <a href="<%= user_root_path %>" class="weui-tabbar__item">
+                <%= image_tag("person.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">我的</p>
+              </a>
             <% end %>
           </div>
 

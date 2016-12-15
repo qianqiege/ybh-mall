@@ -1,7 +1,8 @@
 ActiveAdmin.register User do
   menu parent: I18n.t("active_admin.menu.user_manage")
   permit_params :telphone,
-                :password
+                :password,
+                :identity_card
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -14,4 +15,13 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  form(:html => { :multipart => true }) do |f|
+    f.inputs "档案" do
+      f.input :telphone
+      f.input :password
+      f.input :identity_card
+    end
+    f.actions
+  end
 end

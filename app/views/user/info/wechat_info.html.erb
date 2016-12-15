@@ -8,11 +8,62 @@
               <img src="<%= @wechat_info.headimgurl %>" class="weui-media-box__thumb",>
             </div>
         </a>
-        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">基础信息</h4>
-                <p class="weui-media-box__desc"><%= @wechat_info.auth_hash %></p>
-            </div>
-        </a>
     </div>
 </div>
+
+<div class="weui-cells__title">性别</div>
+<div class="weui-cells weui-cells_radio">
+  <% if @wechat_info.auth_hash[:sex] == 1 %>
+    <label class="weui-cell weui-check__label" for="x11">
+        <div class="weui-cell__bd">
+            <p>男</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="radio" class="weui-check" name="radio1" id="x11">
+            <span class="weui-icon-checked"></span>
+        </div>
+    </label>
+  <% else %>
+    <label class="weui-cell weui-check__label" for="x12">
+
+        <div class="weui-cell__bd">
+            <p>女</p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="radio" name="radio1" class="weui-check" id="x12" checked="checked">
+            <span class="weui-icon-checked"></span>
+        </div>
+    </label>
+  <% end %>
+</div>
+
+<div class="weui-cells__title">国家/地区</div>
+<div class="weui-cells weui-cells_radio">
+    <label class="weui-cell weui-check__label" for="x11">
+        <div class="weui-cell__bd">
+            <p><%= @wechat_info.auth_hash[:country]%></p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="radio" class="weui-check" name="radio1" id="x11">
+            <span class="weui-icon-checked"></span>
+        </div>
+    </label>
+    <label class="weui-cell weui-check__label" for="x11">
+        <div class="weui-cell__bd">
+            <p><%= @wechat_info.auth_hash[:province]%></p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="radio" class="weui-check" name="radio1" id="x11">
+            <span class="weui-icon-checked"></span>
+        </div>
+    </label>
+      <label class="weui-cell weui-check__label" for="x11">
+        <div class="weui-cell__bd">
+            <p><%= @wechat_info.auth_hash[:city]%></p>
+        </div>
+        <div class="weui-cell__ft">
+            <input type="radio" class="weui-check" name="radio1" id="x11">
+            <span class="weui-icon-checked"></span>
+        </div>
+    </label>
+  </div>

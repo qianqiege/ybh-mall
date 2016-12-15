@@ -52,12 +52,13 @@ Rails.application.routes.draw do
   namespace :user do
     root "info#home"
     get '/binding',to: 'binding#new'
-    get '/id_card',to: 'supplement#new'
     get '/record', to: 'info#helath_record'
     get '/w_info', to: 'info#wechat_info'
     get '/edit_record', to: 'supplement#edit_record'
+    get '/m_info', to: 'info#member_info'
     post 'supplement/update'
     post 'supplement/create'
+    post 'bind_phone', to: 'binding#bind_phone'
   end
 
   namespace :examine do
