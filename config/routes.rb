@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     get '/edit_record', to: 'supplement#edit_record'
     post 'supplement/update'
     post 'supplement/create'
+    post 'bind_phone', to: 'binding#bind_phone'
   end
 
   namespace :examine do
