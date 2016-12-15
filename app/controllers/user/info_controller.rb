@@ -12,4 +12,8 @@ class User::InfoController < Wechat::BaseController
   def wechat_info
     @wechat_info = WechatUser.find(current_user)
   end
+
+  def member_info
+    @member = MemberRecord.where(user_id: current_user.user_id).take
+  end
 end

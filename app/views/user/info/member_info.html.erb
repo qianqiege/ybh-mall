@@ -1,0 +1,55 @@
+<%= title '会员档案' %>
+<% if !@member.nil? %>
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="row head">
+              <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
+                  <div class ="rname">
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                          <div class="weui-cell__hd"></div>
+                          <div class="weui-cell__bd weui-cell_primary">
+                            <p>会员编号：<%= @member.member_number %></p>
+                          </div>
+                          <span class="weui-cell__ft"></span>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
+                  <div class ="rname">
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                          <div class="weui-cell__hd"></div>
+                          <div class="weui-cell__bd weui-cell_primary">
+                            <p>入会时间：<%= datetime @member.initiation_time %></p>
+                          </div>
+                          <span class="weui-cell__ft"></span>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
+                  <div class ="rname">
+                    <div class="weui-flex">
+                        <div class="weui-flex__item">
+                          <div class="weui-cell__hd"></div>
+                          <div class="weui-cell__bd weui-cell_primary">
+                            <p>会员归属：<%= @member.affiliation %></p>
+                          </div>
+                          <span class="weui-cell__ft"></span>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<% else %>
+  <div class="center">
+      <div class="weui-cell__bd weui-cell_primary">
+          <p class="red">对不起，您是普通会员。没有相关信息！</p>
+      </div>
+    </div>
+  </div>
+<% end %>

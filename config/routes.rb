@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     get '/record', to: 'info#helath_record'
     get '/w_info', to: 'info#wechat_info'
     get '/edit_record', to: 'supplement#edit_record'
+    get '/m_info', to: 'info#member_info'
     post 'supplement/update'
     post 'supplement/create'
     post 'bind_phone', to: 'binding#bind_phone'
