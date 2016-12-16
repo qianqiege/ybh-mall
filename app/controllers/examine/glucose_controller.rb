@@ -10,10 +10,15 @@ class Examine::GlucoseController < Examine::BaseController
     @glucose = current_user.blood_glucoses.build(glucose_params)
     respond_to do |format|
       if @glucose.save
-        format.html { redirect_to examine_glucose_path, notice: '保存成功'}
+        format.html { redirect_to examine_glucose_path, notice: '上传成功'}
       else
-        format.html { redirect_to examine_glucose_path, notice: '保存失败'}
+        format.html { redirect_to examine_glucose_path, notice: '上传失败'}
       end
+    end
+    @id_number = User.where(id:current_user.user_id).take
+    if !@id_number.identity_card.nil?
+      mall = Sdk::Mall.new
+      mall.api_blood_glucose(@id_number.identity_card,glucose_params[:ante_cibum],glucose_params[:after_a_meal])
     end
   end
 

@@ -10,10 +10,15 @@ class Examine::BodyTemperatureController < Examine::BaseController
     @temperature = current_user.temperatures.build(temperature_params)
     respond_to do |format|
       if @temperature.save
-        format.html { redirect_to examine_temperature_path, notice: '保存成功'}
+        format.html { redirect_to examine_temperature_path, notice: '上传成功'}
       else
-        format.html { redirect_to examine_temperature_path, notice: '保存失败'}
+        format.html { redirect_to examine_temperature_path, notice: '上传失败'}
       end
+    end
+    @id_number = User.where(id:current_user.user_id).take
+    if !@id_number.identity_card.nil?
+      mall = Sdk::Mall.new
+      mall.api_temperature(@id_number.identity_card,temperature_params[:value])
     end
   end
 

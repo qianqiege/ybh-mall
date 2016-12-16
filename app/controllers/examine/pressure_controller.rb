@@ -10,10 +10,15 @@ class Examine::PressureController < Examine::BaseController
     @pressure = current_user.blood_pressures.build(pressure_params)
     respond_to do |format|
       if @pressure.save
-        format.html { redirect_to examine_pressure_path, notice: '保存成功'}
+        format.html { redirect_to examine_pressure_path, notice: '上传成功'}
       else
-        format.html { redirect_to examine_pressure_path, notice: '保存失败'}
+        format.html { redirect_to examine_pressure_path, notice: '上传失败'}
       end
+    end
+    @id_number = User.where(id:current_user.user_id).take
+    if !@id_number.identity_card.nil?
+      mall = Sdk::Mall.new
+      mall.api_blood_pressure(@id_number.identity_card,pressure_params[:diastolic_pressure],pressure_params[:systolic_pressure])
     end
   end
 

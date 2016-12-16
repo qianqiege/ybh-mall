@@ -10,10 +10,15 @@ class Examine::BodyWeightController < Examine::BaseController
     @weight = current_user.weights.build(weight_params)
     respond_to do |format|
       if @weight.save
-        format.html { redirect_to examine_weight_path, notice: '保存成功'}
+        format.html { redirect_to examine_weight_path, notice: '上传成功'}
       else
-        format.html { redirect_to examine_weight_path, notice: '保存失败'}
+        format.html { redirect_to examine_weight_path, notice: '上传失败'}
       end
+    end
+    @id_number = User.where(id:current_user.user_id).take
+    if !@id_number.identity_card.nil?
+      mall = Sdk::Mall.new
+      mall.api_weight(@id_number.identity_card,weight_params[:value])
     end
   end
 

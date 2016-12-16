@@ -35,21 +35,21 @@ module Sdk
       exec(:post, "examination_input/heart_rate?id_number=#{identity_card}&heart_rate=#{heart_rate}")
     end
 
-    # def api_blood_glucose(identity_card,b_BloodGlucose,a_BloodGlucose)
-    #   exec(:post, "examination_input/blood_glucose?id_number=#{identity_card}&b_BloodGlucose=#{b_BloodGlucose}&a_BloodGlucose=#{a_BloodGlucose}")
-    # end
-    #
-    # def api_blood_pressure(identity_card,heart_rate)
-    #   exec(:post, "examination_input/blood_pressure?id_number=#{identity_card}&heart_rate=#{heart_rate}")
-    # end
-    #
-    # def api_temperature(identity_card,heart_rate)
-    #   exec(:post, "examination_input/temperature?id_number=#{identity_card}&heart_rate=#{heart_rate}")
-    # end
-    #
-    # def api_weight(identity_card,heart_rate)
-    #   exec(:post, "examination_input/weight?id_number=#{identity_card}&heart_rate=#{heart_rate}")
-    # end
+    def api_blood_glucose(identity_card,b_glucose,a_glucose)
+      exec(:post, "examination_input/blood_glucose?id_number=#{identity_card}&b_BloodGlucose=#{b_glucose}&a_BloodGlucose=#{a_glucose}")
+    end
+
+    def api_blood_pressure(identity_card,diastolic,systolic)
+      exec(:post, "examination_input/blood_pressure?id_number=#{identity_card}&min_BloodPressure=#{diastolic}&max_BloodPressure=#{systolic}")
+    end
+
+    def api_temperature(identity_card,temperature)
+      exec(:post, "examination_input/temperature?id_number=#{identity_card}&temperature=#{temperature}")
+    end
+
+    def api_weight(identity_card,weight)
+      exec(:post, "examination_input/weight?id_number=#{identity_card}&weight=#{weight}")
+    end
 
     # def examination_input
     #   exec(:post,"examination_input/heart_rate?id_number=11111111111111&heart_rate=95")
