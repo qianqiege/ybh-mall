@@ -10,9 +10,9 @@ class Examine::HeartController < Examine::BaseController
     @heart = current_user.heart_rates.build(heart_params)
     respond_to do |format|
       if @heart.save
-        format.html { redirect_to examine_heart_path, notice: '保存成功'}
+        format.html { redirect_to examine_heart_path, notice: '上传成功'}
       else
-        format.html { redirect_to examine_heart_path, notice: '保存失败'}
+        format.html { redirect_to examine_heart_path, notice: '上传失败'}
       end
     end
 
