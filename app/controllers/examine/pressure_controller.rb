@@ -15,6 +15,11 @@ class Examine::PressureController < Examine::BaseController
         format.html { redirect_to examine_pressure_path, notice: '保存失败'}
       end
     end
+    @id_number = User.where(id:current_user.user_id).take
+    if !@id_number.identity_card.nil?
+      mall = Sdk::Mall.new
+      mall.api_blood_pressure(@id_number.identity_card,pressure_params[:diastolic_pressure],pressure_params[:systolic_pressure])
+    end
   end
 
   def pressure_params
