@@ -21,15 +21,16 @@ module Sdk
       )
 
       # 验证签名
-      body = JSON.parse(respond.body)
-      sign_params = body["sign"]
-      body.delete("sign")
+      # body = JSON.parse(respond.body)
+      # sign_params = body["sign"]
+      # body.delete("sign")
 
-      if(respond.body && sign_params == sign(body))
-        body
-      else
-        {"success": false, resultMessage: "信息被篡改"}
-      end
+      # if(respond.body && sign_params == sign(body))
+      #   body
+      # else
+      #   {"success": false, resultMessage: "信息被篡改"}
+      # end
+      body = JSON.parse(respond.body)
     end
 
     def sign(params)
