@@ -1,6 +1,6 @@
 ActiveAdmin.register MemberRecord do
   menu parent: I18n.t("active_admin.menu.user_manage")
-  permit_params :member_number, :initiation_time,:user_id,:affiliation
+  permit_params :member_number, :initiation_time,:user_id,:affiliation,:membership_card_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -21,6 +21,7 @@ ActiveAdmin.register MemberRecord do
       f.input :member_number
       f.input :initiation_time
       f.input :user
+      f.input :membership_card
     end
     f.actions
   end

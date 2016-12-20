@@ -9,5 +9,5 @@ class MembershipCard < ApplicationRecord
   # 会员权益
   has_many :member_equities
   # 会员档案
-  belongs_to :member_record
+  has_many :member_records
 end
