@@ -79,5 +79,9 @@ Rails.application.routes.draw do
     post :orders, on: :collection
   end
 
+  resources :product_program do
+    post :products, on: :collection
+  end
+
   root "wechat/home#index"
 end
