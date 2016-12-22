@@ -8,9 +8,7 @@ ActiveAdmin.register Order do
   controller do
     def update
       if params[:order] && params[:order][:status] == 'cancel' && resource.may_make_cancel?
-        resource.make_cancel
-        resource.status = 'cancel'
-        resource.save
+        resource.make_cancel!
         redirect_to resource_path, notice: 'Cancel!'
       else
         super
