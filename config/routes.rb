@@ -77,6 +77,7 @@ Rails.application.routes.draw do
 
   resources :notifies do
     post :orders, on: :collection
+    post :refund, on: :collection
   end
 
   root "wechat/home#index"
