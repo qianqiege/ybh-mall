@@ -6,14 +6,14 @@ class NotifiesController < ApplicationController
     order = Order.find_by(number: params["merchOrderNo"])
     if(order.present?)
       order.fast_pay.logger.info params
-      # remote_sign = params[:sign]
+      remote_sign = params[:sign]
 
-      # params.delete(:sign)
-      # params.delete(:action)
-      # params.delete(:controller)
+      params.delete(:sign)
+      params.delete(:action)
+      params.delete(:controller)
 
-      # local_sign = order.fast_pay.sign(params)
-      # if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
+      local_sign = order.fast_pay.sign(params)
+      if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
       if (params[:fastPayStatus] == "FINISHED")
         order.trade_nos = params["tradeNo"]
         order.pay
@@ -25,5 +25,10 @@ class NotifiesController < ApplicationController
     else
       render json: "fail", layout: nil
     end
+  end
+
+  def refund
+    # TODO: 退款流程
+    render json: "success", layout: nil
   end
 end
