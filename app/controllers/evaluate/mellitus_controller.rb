@@ -1,4 +1,4 @@
-class Evaluate::MellitusController < ApplicationController
+class Wechat::MellitusController < Wechat::BaseController
   def index
   end
 end
