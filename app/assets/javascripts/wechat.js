@@ -18,7 +18,7 @@
 // require turbolinks
 //= require wechat/base
 //= require wechat/home
-
+//= require evaluate/mellitus
 //= require mall/base
 //= require mall/home
 //= require mall/products

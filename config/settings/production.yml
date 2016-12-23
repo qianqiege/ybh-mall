@@ -31,6 +31,9 @@ weixin:
         - type: "view"
           name: "健康检测"
           url: "http://ybhm.ybyt.cc/examine/home"
+        - type: "view"
+          name: "疾病风险评估"
+          url: "http://ybhm.ybyt.cc/evaluate/index"
 
 external:
   api_url: http://qolm.ybyt.cc/open_api/v1/
