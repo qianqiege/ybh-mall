@@ -1,3 +1,78 @@
-// Place all the styles related to the evaluate::mellitus controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#p1,#p2,#p3 {
+	min-height: 100%;
+	margin: 0 auto 0;
+}
+
+#p1 table {
+	margin: auto;
+	width: 96%
+}
+
+#p2 {
+	display: none;
+	font-size: 15px;
+	background: white;
+	color: white;
+	text-align: center;
+	position: relative
+}
+.btn-clicked{
+  border:0.1rem solid#009AD8;
+  background-color:white;
+  color:#009AD8
+}
+.half {
+	height: 50%;
+	display: table;
+	margin: auto
+}
+
+.mid {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center
+}
+
+#p3 {
+	background: white;
+	display: none;
+	font-size: 15px
+}
+
+#p3 table {
+	margin: 1 0 1 0;
+	text-align: center;
+}
+
+.border{
+	border: 1px;
+	border-style: dashed;
+}
+
+.body{
+	text-align: center;
+}
+
+.auto{
+	padding-left: 90%;
+	width: auto;
+	height: auto;
+}
+
+.float{
+	float: right;
+}
+
+.title-padding-left{
+	padding-left: 20%;
+}
+
+.weui-title{
+	margin-top: .77em;
+	margin-bottom: .3em;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #999;
+	font-size: 14px;
+}

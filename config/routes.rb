@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :evaluate do
+    get '/index',to: 'mellitus#index'
+    post '/search',to: 'mellitus#search'
+  end
+
   mount ChinaCity::Engine => '/china_city'
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
