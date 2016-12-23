@@ -33,7 +33,7 @@ weixin:
           url: "http://ybhm.ybyt.cc/examine/home"
 
 external:
-  api_url: http://qolmdev.ybyt.cc/open_api/v1/
+  api_url: http://qolm.ybyt.cc/open_api/v1/
   app_id: 3ZwZPp85UT0CdHRXruKmZxlPkQEG7RXkCLZptNvUwhDRRQggdtR70WQq81S7MVSxpunyvCz3_2qxDRZlzbngGw==
   secret_key: EnjQnB1OFLozWnx78zyhslyAuTUSkqc46NStANW/RhmdiVwD8bWfKjhH9Mv4gULaQmr9+LI9Senwt8Lp0EeQSg==
 
