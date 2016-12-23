@@ -34,8 +34,8 @@ weixin:
 
 external:
   api_url: http://qolmdev.ybyt.cc/open_api/v1/
-  app_id: ygrbKuR9IM80HE177s4IdS0wj3VBasDEkwiP_2Ed1bLynL2kf3waixipGmGcrcMygMAd4Vv7XlrxAvGOxmbNwQ==
-  secret_key: ae1FXlBIZEK1A/GtI4RSqSXwRulcA/bbTOwfobNPP+GtbL7+cCz1gJ74rHDFThvoZnfbL0Hprju1Mnr2UWXh3g==
+  app_id: 3ZwZPp85UT0CdHRXruKmZxlPkQEG7RXkCLZptNvUwhDRRQggdtR70WQq81S7MVSxpunyvCz3_2qxDRZlzbngGw==
+  secret_key: EnjQnB1OFLozWnx78zyhslyAuTUSkqc46NStANW/RhmdiVwD8bWfKjhH9Mv4gULaQmr9+LI9Senwt8Lp0EeQSg==
 
 fast_pay:
   url: http://openapi.yijifu.net/gateway.html
