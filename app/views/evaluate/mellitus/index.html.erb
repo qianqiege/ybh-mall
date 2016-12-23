@@ -56,7 +56,7 @@
 					<td class="gap"/>
 					<td>
 						<div id="agePanel" onclick="showSelect('age')" class="ui-select">
-							<span>请选择您的年龄</span><l>V</l>
+							<span class="weui-cells__title">请选择您的年龄</span>
 							<div id="age" class="select" style="display:none;">
 								<div class="option" value="0" onclick="onAgeChange(this, event)">20-24岁</div>
 								<div class="option" value="4" onclick="onAgeChange(this, event)">25-34岁</div>
@@ -73,83 +73,82 @@
 				</tr>
 
 				<tr>
-					<td>
-						<div class="pg">
-							<div class="pn">体重<l class="pi">(kg)</l></div>
-							<div class="pv"><l id="weightTxt">60</l>kg</div>
+					<td class="weui-check__label">
+						<div>
+							<div class="weui-cells__title">体重<l class="pi">(kg)</l></div>
+							<div class="weui-cells__title"><l id="weightTxt">60</l>kg</div>
 						</div>
 					</td>
 					<td class="gap"/>
 					<td>
 						<div class="ui-slider">
-							<div class="slider-value" id="weight-v">60</div>
+							<div class="slider-value weui-cells__title" id="weight-v">60</div>
 							<input id="weight" oninput="onweight()" type="range" value="60" min="40" max="110" step="1"/>
 						</div>
 					</td>
 				</tr>
 
 				<tr>
-					<td>
-					    <div class="pg">
-							<div class="pn">身高<l class="pi">(cm)</l></div>
-							<div class="pv"> <l id="heightTxt">160</l>cm</div>
+					<td class="weui-cells__label">
+					    <div>
+							<div class="weui-cells__title">身高<l class="pi">(cm)</l></div>
+							<div class="weui-cells__title"> <l id="heightTxt">160</l>cm</div>
 						</div>
 					</td>
 					<td class="gap"/>
-					<td>
+					<td class="weui-cells__label">
 						<div class="ui-slider">
-							<div class="slider-value" id="height-v">160</div>
+							<div class="slider-value weui-cells__title" id="height-v">160</div>
 							<input id="height" oninput="onheight()" type="range" value="160" min="139" max="208"/>
 						</div>
 					</td>
 				</tr>
 
 				<tr>
-					<td>
-						<div class="pg">
-							<div class="pn">腰围<l class="pi">(cm)</l></div>
-							<div class="pv"> <l id="girdleTxt">80</l>cm</div>
+					<td class="weui-cells__label">
+						<div>
+							<div class="weui-cells__title">腰围<l class="pi">(cm)</l></div>
+							<div class="weui-cells__title"> <l id="girdleTxt">80</l>cm</div>
 						</div>
 					</td>
 					<td class="gap"/>
 					<td>
 						<div class="ui-slider">
-							<div class="slider-value" id="girdle-v">80</div>
+							<div class="slider-value weui-cells__title" id="girdle-v">80</div>
 							<input id="girdle" oninput="ongirdle()" type="range" value="80" min="65" max="100"/>
 						</div>
 					</td>
 				</tr>
 
 				<tr>
-					<td>
-						<div class="pg">
-							<div class="pn">收缩压<l class="pi">(mmHg)</l></div>
-							<div class="pv"> <l id="pressureTxt">135</l>mmHg</div>
+					<td class="weui-cells__label">
+						<div>
+							<div class="weui-title">收缩压<l class="pi">(mmHg)</l></div>
+							<div class="weui-cells__title"> <l id="pressureTxt">135</l>mmHg</div>
 						</div>
 					</td>
 					<td class="gap"/>
 					<td>
 						<div class="ui-slider">
-							<div class="slider-value" id="pressure-v">135</div>
+							<div class="slider-value weui-cells__title" id="pressure-v">135</div>
 							<input id="pressure" oninput="onpressure()" type="range" value="135" min="100" max="180"/>
 						</div>
 					</td>
 				</tr>
 
 				<tr>
-					<td style="border-bottom:none">
-						<div class="pg" style="margin-bottom:0px">
-							<div class="pn">糖尿病家族史</div>
-							<div class="pi">包含父母子女兄妹</div>
-							<div class="pv" id="hist">无</label>
+					<td class="weui-cells__label">
+						<div>
+							<div class="weui-cells__title">糖尿病家族史</div>
+							<div class="weui-cells__title" id="hist">无</label>
 						</div>
 					</td>
-					<td class="gap" style="border-bottom:none"/>
-					<td style="border-bottom:none">
-						<div style="display:table;width:100%">
-							<div id="btnYes" class="btn" onclick="onHistYesClick()" />有</div>
+					<td class="gap"/>
+					<td class="weui-check__label">
+						<div class="weui-cell">
+							<div id="btnYes" class="weui-cells__title" onclick="onHistYesClick()" />有</div>
 							<div class="btn-gap"></div>
-							<div id="btnNo" class="btn btn-clicked" onclick="onHistNoClick()" />无</div>
+							<div id="btnNo" class="weui-cells__title" onclick="onHistNoClick()" />无</div>
 						</div>
 					</td>
 				</tr>
@@ -181,12 +180,11 @@
 		<div id="p3">
 			<script>updatePageHeight("p3", false);</script>
 			<div class="resP" id="resP">
-				<div class="resT">糖尿病风险评估结果</div>
 				<div class="resBorder1">
 					<div class="resBorder2">
 						<div class="resBorder3">
-							<canvas width="20px" height="20px"id="scoreCanv"></canvas>
-							<div class="">
+							<!-- <canvas width="10" height="180" id="scoreCanv"></canvas> -->
+							<div>
 								<div class="resT">评分</div>
 								<div class="resT" id="score">17</div>
 								<div class="resT" id="risk">低风险</div>

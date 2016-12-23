@@ -167,6 +167,7 @@ function cal()
   //!输出结果
   drawScore(ts);
   setText('score', ts);
+  document.getElementById('score').innerHTML = score;
   setText('score2', ts);
 
   if(ts >= 25)
