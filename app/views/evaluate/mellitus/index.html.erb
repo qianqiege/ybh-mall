@@ -183,8 +183,8 @@
 				<div class="resBorder1">
 					<div class="resBorder2">
 						<div class="resBorder3">
-							<!-- <canvas width="10" height="180" id="scoreCanv"></canvas> -->
-							<div>
+							<canvas width="20" height="20" id="scoreCanv" style="display:none;"></canvas>
+							<div class="mid">
 								<div class="resT">评分</div>
 								<div class="resT" id="score">17</div>
 								<div class="resT" id="risk">低风险</div>
@@ -198,12 +198,7 @@
 
 				<tr>
 					<td>
-						<div class="rpg" style="margin:0 0.8rem 0.8rem 0">
-							<div class="rpv">计算结果</div>
-						</div>
-					</td>
-					<td>
-						<div class="res" style="margin:0 0 0.8rem 0.6rem;">
+						<div class="res">
 							您此次评分结果为<l id="score2">17</l>分
 						</div>
 					</td>
@@ -211,24 +206,18 @@
 
 				<tr>
 					<td>
-						<div class="rpg" style="margin:0.8rem 0.8rem 0 0">
-							<div class="rpv">我们建议您</div>
-						</div>
-					</td>
-					<td>
-						<div class="res" style="margin:1 0 0 1">
+						<div class="res">
 							<div id="risk2">您目前得糖尿病的风险不高，还请继续保持健康的生活方式，祝您健康。</div>
-							<div id="risk3" style="display:none">您属于糖尿病高危人群，请尽早就诊，进行口服葡萄糖耐量试验检查。</div>
+							<div id="risk3">您属于糖尿病高危人群，请尽早就诊，进行口服葡萄糖耐量试验检查。</div>
 						</div>
 					</td>
 				</tr>
 
 				<tr>
 					<td colspan="3" style="border:none">
-						<div class="btn btn-main" onclick="reCal()">重新计算</div>
+						<div class="weui-btn weui-btn_warn btn" onclick="reCal()">重新计算</div>
 					</td>
 				</tr>
-
 			</table>
 		</div>
 	</body>
