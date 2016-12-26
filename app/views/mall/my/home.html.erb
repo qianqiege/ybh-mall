@@ -26,7 +26,7 @@
           </a>
         </li>
         <li class="flex-item5">
-          <a href="<%= mall_orders_path(status: 'wait_send')  %>">
+          <a href="<%= mall_orders_path(status: 'wait_send') %>">
             <i class="ico-status waitSend">
               <% if @wait_send_order_count > 0 %>
                 <em><%= @wait_send_order_count %></em>
@@ -42,7 +42,7 @@
           </a>
         </li>
         <li class="flex-item5">
-          <a href="">
+          <a href="<%= mall_orders_path() %>">
             <i class="ico-status allOrders">
               <% if @all_order_count > 0 %>
                 <em><%= @all_order_count %></em>

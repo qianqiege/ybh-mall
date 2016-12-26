@@ -21,7 +21,7 @@ $(function () {
 
   // 删除收货地址
   $(".address_delete_btn").on('click', function() {
-    $.confirm('确定要删除此商品吗？', function(e) {
+    $.confirm('确定要删除此地址吗？', function(e) {
       if (e) {
         $.ajax({
           type: "DELETE",

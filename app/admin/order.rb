@@ -16,6 +16,15 @@ ActiveAdmin.register Order do
     end
   end
 
+  member_action :make_cancel, method: :put do
+    if resource.may_make_cancel?
+      resource.make_cancel!
+      redirect_to :back, notice: "Cancel!"
+    else
+      redirect_to :back, notice: "操作失败!"
+    end
+  end
+
   index do
     selectable_column
     id_column
@@ -26,7 +35,9 @@ ActiveAdmin.register Order do
     column :status do |order|
       Order::STATUS_TEXT[order.status.to_sym]
     end
-    actions
+    actions defaults: true do |order|
+      link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+    end
   end
 
   form(:html => { :multipart => true }) do |f|

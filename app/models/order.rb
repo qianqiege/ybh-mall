@@ -12,7 +12,7 @@ class Order < ApplicationRecord
 
   before_create :generate_number
 
-  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '取消' }.freeze
+  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消' }.freeze
 
   include AASM
   aasm column: :status do
