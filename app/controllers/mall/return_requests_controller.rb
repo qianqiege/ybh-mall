@@ -10,8 +10,7 @@ class Mall::ReturnRequestsController < Mall::BaseController
     @return_request.order = @line_item.order
     if @return_request.save
       flash[:success] = '提交成功'
-      # 到show页面
-      redirect_to :back
+      redirect_to mall_order_path(@return_request.order)
     else
       render :new
     end

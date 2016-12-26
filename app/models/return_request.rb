@@ -3,4 +3,5 @@ class ReturnRequest < ApplicationRecord
   belongs_to :line_item
   belongs_to :order
   validates :desc, length: { minimum: 10 }
+  validates :line_item, presence: true
 end

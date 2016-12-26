@@ -48,6 +48,7 @@
         <span>详细地址：</span>
         <%= f.text_field :detail, class: 'gray84' %>
       </li>
+      <%= hidden_field_tag 'choose_address_id', params[:choose_address_id] %>
     </ul>
   </div>
   <div class="address-btn add-address">

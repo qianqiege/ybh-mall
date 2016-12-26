@@ -2,7 +2,7 @@ class Mall::AddressesController < Mall::BaseController
   before_action :set_address, only: [:edit, :update, :destroy, :make_default]
 
   def index
-    @addresses = current_user.addresses
+    @addresses = current_user.addresses.order(id: :desc)
   end
 
   def new
@@ -13,7 +13,11 @@ class Mall::AddressesController < Mall::BaseController
     @address = current_user.addresses.new(address_params)
     if @address.save
       flash[:success] = '收货地址创建成功'
-      redirect_to confirm_mall_orders_path(address_id: @address.id)
+      if params[:choose_address_id].present?
+        redirect_to confirm_mall_orders_path(address_id: @address.id)
+      else
+        redirect_to mall_addresses_path
+      end
     else
       render :new
     end
@@ -45,7 +49,7 @@ class Mall::AddressesController < Mall::BaseController
   end
 
   def choose
-    @addresses = current_user.addresses
+    @addresses = current_user.addresses.order(id: :desc)
   end
 
   private
