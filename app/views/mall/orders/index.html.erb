@@ -15,7 +15,7 @@
           <% @orders.each do |order| %>
             <li>
               <div class="order-head">
-                <p><span>订单号:<%= order.number %></span><b><%= Order::STATUS_TEXT[order.status.to_sym] %></b></p>
+                <p><span>订单号:<%= link_to order.number, mall_order_path(order) %></span><b><%= order.human_state %></b></p>
               </div>
 
               <div class="address-confirm order-address">
@@ -40,7 +40,12 @@
                         <a href="<%= mall_product_path(line_item.product) %>">
                           <p class="name"><%= line_item.product.name %></p>
                         </a>
-                        <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
+                        <div class="gray84 option">
+                          <%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %>
+                          <% if order.wait_confirm? %>
+                            <%= link_to '申请', new_mall_return_request_path(line_item_id: line_item), class: 'fr apply_for_btn' %>
+                          <% end %>
+                        </div>
                         <div class="info clearfix">
                           <span class="fr"><small>x</small><%= line_item.quantity %></span>
                           <p class="fl price">¥<span><%= money line_item.unit_price %></span></p>

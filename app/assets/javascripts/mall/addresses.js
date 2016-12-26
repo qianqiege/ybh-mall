@@ -21,7 +21,7 @@ $(function () {
 
   // 删除收货地址
   $(".address_delete_btn").on('click', function() {
-    $.confirm('确定要删除此商品吗？', function(e) {
+    $.confirm('确定要删除此地址吗？', function(e) {
       if (e) {
         $.ajax({
           type: "DELETE",
@@ -42,7 +42,8 @@ $(function () {
 
   // 设置默认收货地址
   $(".set-default-btn").on('click', function() {
-    var radioEle = $(this).children().first();
+    var radioEle = $(this);
+    console.log(radioEle)
     if ( radioEle.hasClass('setDef') ) {
       return;
     }

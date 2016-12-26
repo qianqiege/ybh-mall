@@ -35,7 +35,13 @@ zh-CN:
         price: '金额'
         quantity: '数量'
         status: '状态'
+      return_request:
+        quantity: '提交数量'
+        desc: '问题描述'
+        tp: '类型'
+        order: '所属订单'
     models:
       product: "商品"
       address: '收货地址'
       order: '订单'
+      return_request: '退换货请求'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220022107) do
+ActiveRecord::Schema.define(version: 20161226094641) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -163,14 +163,6 @@ ActiveRecord::Schema.define(version: 20161220022107) do
     t.decimal  "price",                            precision: 10
   end
 
-  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "vip_type_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at",         null: false
@@ -279,6 +271,18 @@ ActiveRecord::Schema.define(version: 20161220022107) do
     t.datetime "updated_at",       null: false
     t.string   "tel"
     t.integer  "spine_build_id"
+  end
+
+  create_table "return_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "line_item_id"
+    t.integer  "order_id"
+    t.integer  "quantity",                   default: 1
+    t.text     "desc",         limit: 65535
+    t.integer  "tp",                         default: 0
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["line_item_id"], name: "index_return_requests_on_line_item_id", using: :btree
+    t.index ["order_id"], name: "index_return_requests_on_order_id", using: :btree
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

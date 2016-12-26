@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       put :remove, on: :member
     end
     resource :cart, only: [:show]
-    resources :orders, only: [:create, :index] do
+    resources :orders, only: [:create, :index, :show] do
       get :confirm, on: :collection
       get :pay, on: :member
     end
@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       put :make_default, on: :member
       get :choose, on: :collection
     end
+    resources :return_requests, only: [:new, :create]
     get 'my', to: 'my#home'
   end
 

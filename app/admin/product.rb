@@ -15,7 +15,7 @@ ActiveAdmin.register Product do
     selectable_column
     id_column
 
-    column "产品图片" do |slide|
+    column "商品图片" do |slide|
       image_tag(slide.image_url, size: "72x45", :alt => "product image")
     end
     column :name
