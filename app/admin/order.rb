@@ -9,7 +9,7 @@ ActiveAdmin.register Order do
     def update
       if params[:order] && params[:order][:status] == 'cancel' && resource.may_make_cancel?
         resource.make_cancel!
-        redirect_to resource_path, notice: 'Cancel!'
+        redirect_to resource_path, notice: '已取消订单!'
       else
         super
       end
@@ -19,7 +19,16 @@ ActiveAdmin.register Order do
   member_action :make_cancel, method: :put do
     if resource.may_make_cancel?
       resource.make_cancel!
-      redirect_to :back, notice: "Cancel!"
+      redirect_to :back, notice: "已取消订单!"
+    else
+      redirect_to :back, notice: "操作失败!"
+    end
+  end
+
+  member_action :send_product, method: :put do
+    if resource.may_send_product?
+      resource.send_product!
+      redirect_to :back, notice: "已设为发货状态!"
     else
       redirect_to :back, notice: "操作失败!"
     end
@@ -37,6 +46,7 @@ ActiveAdmin.register Order do
     end
     actions defaults: true do |order|
       link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+      link_to '设为已发货', send_product_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_send?
     end
   end
 

@@ -36,8 +36,12 @@
           </a>
         </li>
         <li class="flex-item5">
-          <a href="">
-            <i class="ico-status waitComfirm"></i>
+          <a href="<%= mall_orders_path(status: 'wait_confirm') %>">
+            <i class="ico-status waitComfirm">
+              <% if @wait_confirm_order_count > 0 %>
+                <em><%= @wait_confirm_order_count %></em>
+              <% end %>
+            </i>
             待收货
           </a>
         </li>
@@ -52,7 +56,7 @@
           </a>
         </li>
         <li class="flex-item5">
-          <a href="">
+          <a href="<%= mall_orders_path(status: 'wait_confirm') %>">
             <i class="ico-status returns">
             </i>
             退换货

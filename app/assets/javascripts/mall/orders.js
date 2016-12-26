@@ -12,4 +12,8 @@ $(function () {
     showFlash('#loadingToast', '提交订单中')
     $("#confirm_order").submit();
   })
+
+  $("#return_request_btn").on('click', function() {
+    $("#new_return_request").submit();
+  })
 });

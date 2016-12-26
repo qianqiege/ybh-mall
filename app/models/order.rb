@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :wechat_user
   belongs_to :address
   has_many :line_items, -> { where in_cart: false }, dependent: :destroy
+  has_many :return_requests
 
   default_scope { order(id: :desc) }
 
@@ -18,9 +19,9 @@ class Order < ApplicationRecord
   aasm column: :status do
     # 待付款，初始状态
     state :pending, initial: true
-    # 待发货
+    # 待发货, 已支付状态
     state :wait_send
-    # 待收货确认
+    # 待收货确认, 已发货状态
     state :wait_confirm
     # 退换货
     state :return_change
@@ -43,6 +44,10 @@ class Order < ApplicationRecord
           line_item.product.back_shop_count(line_item.quantity)
         end
       end
+    end
+
+    event :send_product do
+      transitions from: :wait_send, to: :wait_confirm
     end
   end
 

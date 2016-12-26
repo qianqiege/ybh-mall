@@ -103,6 +103,9 @@
       color: #000;
       font-size: 14px;
     }
+    span.line {
+      width: 100%;
+    }
     input, select, textarea {
       width: 60%;
       background-color: #fff;
@@ -110,6 +113,10 @@
       border-radius: 5px;
       line-height: 20px;
       padding: 5px 10px;
+    }
+    textarea.line {
+      width: 100%;
+      outline: none;
     }
     select {
       outline: none;
