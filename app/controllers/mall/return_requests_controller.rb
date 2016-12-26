@@ -7,6 +7,7 @@ class Mall::ReturnRequestsController < Mall::BaseController
 
   def create
     @return_request = @line_item.return_requests.new(return_request_params)
+    @return_request.order = @line_item.order
     if @return_request.save
       flash[:success] = '提交成功'
       # 到show页面

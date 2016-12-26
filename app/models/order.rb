@@ -66,4 +66,7 @@ class Order < ApplicationRecord
     @fast_pay ||= Sdk::FastPay.new(self)
   end
 
+  def human_state
+    STATUS_TEXT[self.status.to_sym]
+  end
 end

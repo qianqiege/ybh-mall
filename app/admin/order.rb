@@ -42,7 +42,7 @@ ActiveAdmin.register Order do
     column :price
     column :quantity
     column :status do |order|
-      Order::STATUS_TEXT[order.status.to_sym]
+      order.human_state
     end
     actions defaults: true do |order|
       link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
@@ -61,7 +61,7 @@ ActiveAdmin.register Order do
       row :wechat_user
       row :price
       row :status do |order|
-        Order::STATUS_TEXT[order.status.to_sym]
+        order.human_state
       end
       row :quantity
       row :address

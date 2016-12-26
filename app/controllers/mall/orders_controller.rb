@@ -15,6 +15,10 @@ class Mall::OrdersController < Mall::BaseController
     end
   end
 
+  def show
+    @order = current_user.orders.find(params[:id])
+  end
+
   def create
     # 需要处理两种特殊情况，第一种是商品突然下架，第二种是商品突然库存不够
     # 这两种情况都不会生成订单，而是重定向到订单确认页面后，由用户重新提交订单

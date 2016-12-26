@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       put :remove, on: :member
     end
     resource :cart, only: [:show]
-    resources :orders, only: [:create, :index] do
+    resources :orders, only: [:create, :index, :show] do
       get :confirm, on: :collection
       get :pay, on: :member
     end
