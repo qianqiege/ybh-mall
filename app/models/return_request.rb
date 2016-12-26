@@ -3,5 +3,9 @@ class ReturnRequest < ApplicationRecord
   belongs_to :line_item
   belongs_to :order
   validates :desc, length: { minimum: 10 }
-  validates :line_item, presence: true
+  validates :line_item, :order, presence: true
+
+  def human_tp
+    HUMAN_TYPE[self.tp.to_s]
+  end
 end

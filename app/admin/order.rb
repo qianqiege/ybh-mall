@@ -3,7 +3,7 @@ ActiveAdmin.register Order do
 
   permit_params :status
 
-  actions :index, :edit, :update, :show
+  actions :index, :show
 
   controller do
     def update
@@ -45,8 +45,12 @@ ActiveAdmin.register Order do
       order.human_state
     end
     actions defaults: true do |order|
-      link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
-      link_to '设为已发货', send_product_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_send?
+      span do
+        link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+      end
+      span do
+        link_to '设为已发货', send_product_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_send?
+      end
     end
   end
 
@@ -59,8 +63,13 @@ ActiveAdmin.register Order do
     attributes_table do
       row :id
       row :wechat_user
-      row :price
-      row :status do |order|
+      row '手机号码' do
+        order.wechat_user.mobile
+      end
+      row :price do
+        money order.price
+      end
+      row :status do
         order.human_state
       end
       row :quantity

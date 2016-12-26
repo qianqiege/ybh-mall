@@ -39,6 +39,7 @@ zh-CN:
         quantity: '提交数量'
         desc: '问题描述'
         tp: '类型'
+        order: '所属订单'
     models:
       product: "商品"
       address: '收货地址'

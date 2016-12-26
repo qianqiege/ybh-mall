@@ -13,10 +13,10 @@ class Mall::AddressesController < Mall::BaseController
     @address = current_user.addresses.new(address_params)
     if @address.save
       flash[:success] = '收货地址创建成功'
-      if params[:choose_address_id].present?
-        redirect_to confirm_mall_orders_path(address_id: @address.id)
-      else
+      if params[:from_new].present?
         redirect_to mall_addresses_path
+      else
+        redirect_to confirm_mall_orders_path(address_id: @address.id)
       end
     else
       render :new
@@ -37,7 +37,8 @@ class Mall::AddressesController < Mall::BaseController
 
   def destroy
     flash[:success] = '收货地址删除成功'
-    @address.destroy
+    @address.wechat_user_id = nil
+    @address.save validate: true
     render nothing: true, status: :ok
   end
 
