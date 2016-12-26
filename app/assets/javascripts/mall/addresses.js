@@ -42,7 +42,8 @@ $(function () {
 
   // 设置默认收货地址
   $(".set-default-btn").on('click', function() {
-    var radioEle = $(this).children().first();
+    var radioEle = $(this);
+    console.log(radioEle)
     if ( radioEle.hasClass('setDef') ) {
       return;
     }
