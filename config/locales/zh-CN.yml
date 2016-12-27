@@ -40,8 +40,18 @@ zh-CN:
         desc: '问题描述'
         tp: '类型'
         order: '所属订单'
+      admin_user:
+        email: '邮箱'
+        password: '密码'
+        password_confirmation: '确认密码'
+        role_name: '角色'
+        sign_in_count: '登录次数'
+        created_at: '创建时间'
+        current_sign_in_at: '当前登录时间'
+        role_name_label: '角色'
     models:
       product: "商品"
       address: '收货地址'
       order: '订单'
       return_request: '退换货请求'
+      admin_user: '后台用户'
