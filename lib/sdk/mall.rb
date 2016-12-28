@@ -51,9 +51,9 @@ module Sdk
       exec(:post, "examination_input/weight?id_number=#{identity_card}&weight=#{weight}")
     end
 
-    # def examination_input
-    #   exec(:post,"examination_input/heart_rate?id_number=11111111111111&heart_rate=95")
-    # end
+    def tds_report(identity_card)
+      exec(:get, "mall/tds_report?id_number=#{identity_card}")
+    end
 
   end
 end
