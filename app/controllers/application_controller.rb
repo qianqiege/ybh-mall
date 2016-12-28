@@ -23,4 +23,6 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
+
+  # ApiAuth.authentic?(signed_request, secrect_key)
 end

@@ -27,10 +27,6 @@ module Sdk
       exec(:get, "record/check?id_number=#{identity_card}")
     end
 
-    # def examination_input(identity_card,heart_rate)
-    #   exec(:post, "examination_input/heart_rate?",{id_number: identity_card , heart_rate: heart_rate})
-    # end
-
     def api_heart_rate(identity_card,heart_rate)
       exec(:post, "examination_input/heart_rate?id_number=#{identity_card}&heart_rate=#{heart_rate}")
     end
@@ -54,6 +50,6 @@ module Sdk
     def tds_report(identity_card)
       exec(:get, "mall/tds_report?id_number=#{identity_card}")
     end
-
+    
   end
 end
