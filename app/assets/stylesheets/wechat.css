@@ -24,6 +24,7 @@
  *= require serve/serve
  *= require examine/examine
  *= require mall/my
+ *= require user/info
  *= require_self
  *= require evaluate/mellitus
  */
