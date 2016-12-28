@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   belongs_to :wechat_user
   belongs_to :address
   has_many :line_items, -> { where in_cart: false }, dependent: :destroy
+  has_many :return_requests
 
   default_scope { order(id: :desc) }
 
@@ -12,15 +13,15 @@ class Order < ApplicationRecord
 
   before_create :generate_number
 
-  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '取消' }.freeze
+  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消' }.freeze
 
   include AASM
   aasm column: :status do
     # 待付款，初始状态
     state :pending, initial: true
-    # 待发货
+    # 待发货, 已支付状态
     state :wait_send
-    # 待收货确认
+    # 待收货确认, 已发货状态
     state :wait_confirm
     # 退换货
     state :return_change
@@ -44,6 +45,10 @@ class Order < ApplicationRecord
         end
       end
     end
+
+    event :send_product do
+      transitions from: :wait_send, to: :wait_confirm
+    end
   end
 
   def generate_number
@@ -61,4 +66,7 @@ class Order < ApplicationRecord
     @fast_pay ||= Sdk::FastPay.new(self)
   end
 
+  def human_state
+    STATUS_TEXT[self.status.to_sym]
+  end
 end

@@ -1,0 +1,157 @@
+
+#p1,#p2,#p3 {
+	min-height: 100%;
+	margin: 0 auto 0;
+}
+
+#p1 table {
+	margin: auto;
+	width: 96%
+}
+
+#p2 {
+	display: none;
+	font-size: 15px;
+	background: white;
+	color: white;
+	text-align: center;
+	position: relative
+}
+.btn-clicked{
+  border:0.1rem solid#009AD8;
+  background-color:white;
+  color:#009AD8
+}
+.half {
+	height: 50%;
+	display: table;
+	margin: auto
+}
+
+.mid {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center
+}
+
+#p3 {
+	background: white;
+	display: none;
+	font-size: 15px
+}
+
+#p3 table {
+	margin: 1 0 1 0;
+	text-align: center;
+}
+#p3 table tr td:first-child {
+	border-right: 0.1rem solid #AAA
+}
+
+#p3 table tr:first-child td {
+	border-bottom: 0.1rem solid #AAA
+}
+
+.resP {
+	font-size: 2rem;
+	background: #009AD8;
+	color: white;
+	padding: 2rem 0 2rem 0
+}
+
+.resT {
+	text-align: center;
+	margin: auto;
+	font-size: 18px;
+}
+
+.resBorder1 {
+	display: table;
+	margin: auto;
+	margin-top: 0.5rem;
+	width: 19.6rem;
+	height: 19.6rem;
+	border: 0.1rem solid white;
+	border-radius: 19.6rem;
+}
+
+.resBorder2 {
+	display: table;
+	margin: auto;
+	margin-top: 0.25rem;
+	width: 18.6rem;
+	height: 18.6rem;
+	border: 0.3rem solid white;
+	border-radius: 18.6rem
+}
+
+.resBorder3 {
+	display: table;
+	margin: auto;
+	margin-top: 0.8rem;
+	position: relative;
+	width: 17rem;
+	height: 17rem;
+}
+
+.mid {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center
+}
+
+.rpv {
+	padding: auto;
+	margin: auto;
+	font-size: 15px;
+	color: inherit;
+	white-space: nowrap;
+	text-align: center;
+}
+.rpg {
+	border: 1px solid;
+	border-radius: 1px;
+}
+.res {
+	font-size: 15px;
+	text-align: left;
+	text-align: center;
+}
+
+.btn {
+	background-color: #009AD8;
+}
+//自定义
+
+.body{
+	text-align: center;
+}
+
+.auto{
+	padding-left: 100%;
+	width: auto;
+	height: auto;
+}
+
+.float{
+	float: right;
+}
+
+.title-padding-left{
+	padding-left: 20%;
+}
+
+.weui-title{
+	margin-top: .77em;
+	margin-bottom: .3em;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #999;
+	font-size: 14px;
+}
+
+.option{
+	// padding-left: 10%;
+	color: #999;
+	font-size: 14px;
+}

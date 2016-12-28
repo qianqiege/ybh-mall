@@ -46,7 +46,7 @@
   li {
     line-height: 68px;
   }
-} 
+}
 
 .weixinpay {
   i {
@@ -132,5 +132,19 @@
   margin: 0 -1px -1px;
   padding: 15px;
   border: 1px solid #ddd;
-  background: #f4f4f4
+  background: #f4f4f4;
+  .gray84 {
+    .apply_for_btn {
+      display: inline-block;
+      padding: 0 16px;
+      border-radius: 5px;
+      line-height: 26px;
+      height: 26px;
+      font-size: 13px;
+      vertical-align: middle;
+      color: #fff;
+      text-decoration: none;
+      background-color: #ad0e11;
+    }
+  }
 }

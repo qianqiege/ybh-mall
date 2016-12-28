@@ -1,5 +1,5 @@
 $(function () {
-  $(".address-confirm").on('click', function() {
+  $(".address-confirm-btn").on('click', function() {
     window.location = '/mall/addresses/choose?choose_address_id=' + $(this).data('address-id')
   })
 
@@ -11,5 +11,9 @@ $(function () {
     }
     showFlash('#loadingToast', '提交订单中')
     $("#confirm_order").submit();
+  })
+
+  $("#return_request_btn").on('click', function() {
+    $("#new_return_request").submit();
   })
 });

@@ -1,6 +1,6 @@
 ActiveAdmin.register AdminUser do
   menu parent: I18n.t("active_admin.menu.user_manage")
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :role_name
 
   index do
     selectable_column
@@ -9,6 +9,7 @@ ActiveAdmin.register AdminUser do
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
+    column :role_name_label
     actions
   end
 
@@ -22,6 +23,7 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      f.input :role_name, as: :select, collection: AdminUser::ROLE_NAME_DATA.invert, include: true
     end
     f.actions
   end

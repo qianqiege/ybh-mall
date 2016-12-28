@@ -31,14 +31,21 @@ weixin:
         - type: "view"
           name: "健康检测"
           url: "http://ybhm.ybyt.cc/examine/home"
+        - type: "view"
+          name: "疾病风险评估"
+          url: "http://ybhm.ybyt.cc/evaluate/index"
 
 external:
-  api_url: http://qolmdev.ybyt.cc/open_api/v1/
-  app_id: ygrbKuR9IM80HE177s4IdS0wj3VBasDEkwiP_2Ed1bLynL2kf3waixipGmGcrcMygMAd4Vv7XlrxAvGOxmbNwQ==
-  secret_key: ae1FXlBIZEK1A/GtI4RSqSXwRulcA/bbTOwfobNPP+GtbL7+cCz1gJ74rHDFThvoZnfbL0Hprju1Mnr2UWXh3g==
+  api_url: http://qolm.ybyt.cc/open_api/v1/
+  app_id: 3ZwZPp85UT0CdHRXruKmZxlPkQEG7RXkCLZptNvUwhDRRQggdtR70WQq81S7MVSxpunyvCz3_2qxDRZlzbngGw==
+  secret_key: EnjQnB1OFLozWnx78zyhslyAuTUSkqc46NStANW/RhmdiVwD8bWfKjhH9Mv4gULaQmr9+LI9Senwt8Lp0EeQSg==
 
 fast_pay:
-  url: http://openapi.yijifu.net/gateway.html
-  secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
-  partner_id: 20160606020000748137
+  url: <%= ENV['FAST_PAY_URL'] %>
+  secrect_key: <%= ENV['FAST_PAY_KEY'] %>
+  partner_id: <%= ENV['FAST_PAY_PARTNER_ID'] %>
   host: "http://ybhm.ybyt.cc/"
+  # url: http://openapi.yijifu.net/gateway.html
+  # secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
+  # partner_id: 20160606020000748137
+  # host: "http://ybhm.ybyt.cc/"

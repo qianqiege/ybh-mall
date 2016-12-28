@@ -46,6 +46,10 @@ module Sdk
     def api_weight(identity_card,weight)
       exec(:post, "examination_input/weight?id_number=#{identity_card}&weight=#{weight}")
     end
+
+    def tds_report(identity_card)
+      exec(:get, "mall/tds_report?id_number=#{identity_card}")
+    end
     
   end
 end

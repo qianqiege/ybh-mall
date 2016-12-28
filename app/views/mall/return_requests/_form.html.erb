@@ -1,0 +1,41 @@
+<%= form_for [:mall, @return_request] do |f| %>
+  <% if @return_request.errors.any? %>
+    <div class="notice">
+      <h3><%= "#{@return_request.errors.count}个错误:" %></h3>
+      <ul>
+        <% @return_request.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="address-box city-group">
+    <ul>
+      <li class='clearfix'>
+        <span class='line'>商品名称：<%= @line_item.product.name %></span>
+      </li>
+      <li class="clearfix">
+        <span class='line'>商品图片：<%= image_tag @line_item.product.image_url, width: "50", height: "50" %></span>
+      </li>
+      <li class="clearfix">
+        <span class='line'>购买数量：<%= @line_item.quantity %></span>
+      </li>
+      <li class="clearfix">
+        <span>类型</span>
+        <%= f.select :tp, options_for_select(ReturnRequest::HUMAN_TYPE.invert, 0) %>
+      </li>
+      <li class="clearfix">
+        <span>提交数量</span>
+        <%= f.select :quantity, options_for_select(@line_item.quantity.downto(1).to_a, 1) %>
+      </li>
+      <li class="clearfix">
+        <span>问题描述</span>
+        <%= f.text_area :desc, class: 'gray84 line', rows: 5 %>
+      </li>
+      <%= hidden_field_tag 'line_item_id', @line_item.id  %>
+    </ul>
+  </div>
+  <div class="address-btn add-address">
+    <a id="return_request_btn">提交</a>
+  </div>
+<% end %>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :evaluate do
+    get '/index',to: 'mellitus#index'
+    post '/search',to: 'mellitus#search'
+  end
+
   mount ChinaCity::Engine => '/china_city'
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -26,7 +31,7 @@ Rails.application.routes.draw do
       put :remove, on: :member
     end
     resource :cart, only: [:show]
-    resources :orders, only: [:create, :index] do
+    resources :orders, only: [:create, :index, :show] do
       get :confirm, on: :collection
       get :pay, on: :member
     end
@@ -35,6 +40,7 @@ Rails.application.routes.draw do
       put :make_default, on: :member
       get :choose, on: :collection
     end
+    resources :return_requests, only: [:new, :create]
     get 'my', to: 'my#home'
   end
 
@@ -56,6 +62,7 @@ Rails.application.routes.draw do
     get '/w_info', to: 'info#wechat_info'
     get '/edit_record', to: 'supplement#edit_record'
     get '/m_info', to: 'info#member_info'
+    get '/tds', to: 'info#tds_record'
     post 'supplement/update'
     post 'supplement/create'
     post 'bind_phone', to: 'binding#bind_phone'
@@ -77,6 +84,7 @@ Rails.application.routes.draw do
 
   resources :notifies do
     post :orders, on: :collection
+    post :refund, on: :collection
   end
 
   resources :product_program do

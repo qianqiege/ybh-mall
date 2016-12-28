@@ -28,9 +28,12 @@ weixin:
         - type: "view"
           name: "龙氏脊筑服务"
           url: "http://spddev.ybyt.cc/"
+        - type: "view"
+          name: "疾病风险评估"
+          url: "http://ybhm.ybyt.cc/evaluate/index"
 
 external:
-  api_url: http://120.25.81.41:10010/open_api/v1/
+  api_url: http://qolm.ybyt.cc/open_api/v1/
   app_id: 3ZwZPp85UT0CdHRXruKmZxlPkQEG7RXkCLZptNvUwhDRRQggdtR70WQq81S7MVSxpunyvCz3_2qxDRZlzbngGw==
   secret_key: EnjQnB1OFLozWnx78zyhslyAuTUSkqc46NStANW/RhmdiVwD8bWfKjhH9Mv4gULaQmr9+LI9Senwt8Lp0EeQSg==
 
