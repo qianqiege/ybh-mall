@@ -127,10 +127,17 @@
 	text-align: center;
 }
 
-.auto{
-	padding-left: 100%;
-	width: auto;
-	height: auto;
+.none{
+	display:none;
+}
+.font_color{
+	color: #009AD8;
+}
+
+.gap{
+	// padding-left: 20%;
+	width: 106px;;
+	height: 70px;;
 }
 
 .float{
@@ -152,6 +159,99 @@
 
 .option{
 	// padding-left: 10%;
+	color: #999;
+	font-size: 14px;
+}
+//
+// input[type=range] {
+//     // -webkit-appearance: none;
+//     border-radius: 10px; /*这个属性设置使填充进度条时的图形为圆角*/
+// }
+// input[type=range]::-webkit-slider-thumb {
+//     -webkit-appearance: none;
+// }
+//
+// input[type=range]::-webkit-slider-runnable-track {
+//     height: 15px;
+//     border-radius: 10px; /*将轨道设为圆角的*/
+//     box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112; /*轨道内置阴影效果*/
+// }
+// input[type=range]:focus {
+//     outline: none;
+// }
+// input[type=range]::-webkit-slider-thumb {
+//     -webkit-appearance: none;
+//     height: 25px;
+//     width: 25px;
+//     margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+//     background: #ffffff;
+//     border-radius: 50%; /*外观设置为圆形*/
+//     border: solid 0.125em rgba(205, 224, 230, 0.5); /*设置边框*/
+//     box-shadow: 0 .125em .125em #3b4547; /*添加底部阴影*/
+// }
+input[type="range"] {
+	// -webkit-box-shadow: 0 1px 0 0px #424242, 0 1px 0 #060607 inset, 0px 2px 10px 0px black inset, 1px 0px 2px rgba(0, 0, 0, 0.4) inset, 0 0px 1px rgba(0, 0, 0, 0.6) inset;
+	margin-top: 2px;
+	background-color: #009AD8;
+	// background-color: #272728;
+	border-radius: 15px;
+	// width: 400px;
+	-webkit-appearance: none;
+	height:10px;
+}
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	cursor: default;
+	top: -5px;
+	height: 15px;
+	width: 15px;
+	// transform: translateY(-4px);
+	// background: none repeat scroll 0 0 #777;
+	background-color: white;
+	border-radius: 15px;
+	border-color: black;
+	border:2px solid;
+	// -webkit-box-shadow: 0 -1px 1px black inset;
+}
+
+.black{
+	color: black;
+}
+
+.bonder{
+	border: 1px;
+	border-color: #f0ffff;
+	border-style: dashed;
+}
+
+.btn-clicked  {
+	border: none;
+	border-radius: 1px;;
+	color: white;
+	background-color: #009AD8;
+	text-align: center;
+	vertical-align: middle;
+
+	margin-top: .77em;
+	margin-bottom: .3em;
+	padding-left: 15px;
+	padding-right: 15px;
+	// color: #999;
+	color: white;
+	font-size: 14px;
+}
+
+.btn{
+	border: 0.1px solid #009AD8;
+	background-color: white;
+	color: #009AD8;
+	text-align: center;
+	vertical-align: middle;
+
+	margin-top: .77em;
+	margin-bottom: .3em;
+	padding-left: 15px;
+	padding-right: 15px;
 	color: #999;
 	font-size: 14px;
 }
