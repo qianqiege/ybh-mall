@@ -54,7 +54,11 @@ function drawScore(s)
   ctx.arc(x0, y0, r, startRad, endRad, false);
   ctx.stroke();
 }
-function toggleBtn(id1, id2){}
+function toggleBtn(id1, id2)
+{
+  e(id2).className="btn";
+  e(id1).className="btn-clicked";
+}
 function onSexMaleClick()
 {
   setText('sex','男');

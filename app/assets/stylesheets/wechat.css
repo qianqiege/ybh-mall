@@ -25,6 +25,7 @@
  *= require examine/examine
  *= require mall/my
  *= require user/info
+ *= require home/home
  *= require_self
  *= require evaluate/mellitus
  */

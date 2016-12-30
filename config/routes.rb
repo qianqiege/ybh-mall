@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :evaluate do
     get '/index',to: 'mellitus#index'
-    post '/search',to: 'mellitus#search'
+    get '/home',to: 'home#index'
   end
 
   mount ChinaCity::Engine => '/china_city'
