@@ -10,7 +10,11 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
-@import "wigu/active_admin_theme";
+
+$skinLogo: image-url("ybyt04.png") no-repeat center center;
+$skinActiveColor: #bf2835;
+
+@import "active_skin";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -22,22 +26,7 @@
   overflow: hidden;
 }
 
-
-#wrapper {
-  .flash {
-    &.flash_notice {
-      background-color: #12bf68;
-      border-bottom: #408d0c;
-    }
-  }
-}
-
-.col {
-  min-width: 100px;
-}
-.col-, .col-id, .col-selectable, .col-is_724member {
-  max-width: 35px;
-}
-.col-state {
-  max-width: 55px;
+#header h1.site_title {
+  background-size: 70%;
+  padding-left: 10px;
 }

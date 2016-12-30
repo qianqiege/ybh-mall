@@ -40,9 +40,9 @@ gem 'font-awesome-sass', '~> 4.7.0'
 # https://rubygems.org/gems/config
 gem 'config', '~> 1.3'
 
-# flat skin for activeadmin
-# https://github.com/activeadmin-plugins/active_admin_theme
-gem 'active_admin_theme'
+# https://github.com/rstgroup/active_skin
+# Flat skin for active admin.
+gem 'active_skin'
 
 # Flexible authentication solution for Rails with Warden
 # https://github.com/plataformatec/devise
