@@ -113,6 +113,17 @@ ActiveRecord::Schema.define(version: 20161226141553) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "health_programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "identity_card"
+    t.integer  "number"
+    t.string   "only_number"
+    t.datetime "time"
+    t.string   "coding"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "heart_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
@@ -162,6 +173,14 @@ ActiveRecord::Schema.define(version: 20161226141553) do
     t.datetime "updated_at",                                      null: false
     t.text     "remark",             limit: 65535
     t.decimal  "price",                            precision: 10
+  end
+
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

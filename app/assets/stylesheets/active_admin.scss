@@ -10,6 +10,7 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+@import "wigu/active_admin_theme";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -19,4 +20,24 @@
 .cke_chrome {
   width: 79.5% !important;
   overflow: hidden;
+}
+
+
+#wrapper {
+  .flash {
+    &.flash_notice {
+      background-color: #12bf68;
+      border-bottom: #408d0c;
+    }
+  }
+}
+
+.col {
+  min-width: 100px;
+}
+.col-, .col-id, .col-selectable, .col-is_724member {
+  max-width: 35px;
+}
+.col-state {
+  max-width: 55px;
 }
