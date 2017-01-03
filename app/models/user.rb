@@ -18,4 +18,8 @@ class User < ApplicationRecord
     MembershipCard.where(id: User.where(id: current_user.user_id)).take.discount
     #获取当前会员用户的会员卡折扣，没有为10折
   end
+
+  def idcard
+    User.find(current_user.user_id).take.identity_card
+  end
 end

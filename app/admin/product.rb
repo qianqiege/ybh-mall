@@ -9,7 +9,8 @@ ActiveAdmin.register Product do
                 :is_show,
                 :production,
                 :packaging,
-                :product_sort
+                :product_sort,
+                :only_number
 
   index do
     selectable_column
@@ -39,6 +40,7 @@ ActiveAdmin.register Product do
       f.input :is_show
       f.input :production
       f.input :product_sort
+      f.input :only_number
       f.input :packaging
       f.input :image, as: :file
       f.input :desc
