@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     get '/edit_record', to: 'supplement#edit_record'
     get '/m_info', to: 'info#member_info'
     get '/tds', to: 'info#tds_record'
+    get '/programs', to: 'info#helath_programs'
     post 'supplement/update'
     post 'supplement/create'
     post 'bind_phone', to: 'binding#bind_phone'

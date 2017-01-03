@@ -1,5 +1,5 @@
 <%= title '健康档案' %>
-<% if !@record.nil? %>
+<% if @record.nil? %>
   <div class="weui-panel weui-panel_access">
       <div class="weui-panel__bd">
           <div class="row head">
@@ -233,9 +233,16 @@
 <% else %>
   <div class="center">
       <div class="weui-cell__bd weui-cell_primary">
-          <p class="red">对不起，您并没有建立健康档案。没有相关信息！</p>
+          <p class="red">对不起，您并没有建立健康档案！</p>
       </div>
-      <a class="weui-cell weui-cell_access" href="qolm.ybyt.cc">御邦医通生命质量检测（御邦医通慢病健康管理）
-      </a>
   </div>
+  <div class="center">
+      <div class="weui-cell__bd weui-cell_primary">
+        <p class="font_centent">请您去
+          <a class="weui-cell_access blue" href="http://qolm.ybyt.cc">御邦医通生命质量检测
+          </a>
+        平台进行建立</p>
+      </div>
+  </div>
+
 <% end %>
