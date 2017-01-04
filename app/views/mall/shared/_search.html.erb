@@ -1,14 +1,14 @@
 <div class="weui-search-bar" id="searchBar">
-  <form class="weui-search-bar__form">
+  <%= search_form_for @q, url: mall_root_path, class: 'weui-search-bar__form' do |f| %>
     <div class="weui-search-bar__box">
       <i class="weui-icon-search"></i>
-      <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+      <%= f.search_field :name_cont, type: 'text', class: 'weui-search-bar__input', placeholder: '搜索' %>
       <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
     </div>
     <label class="weui-search-bar__label weixin-search-animal" id="searchText">
       <i class="weui-icon-search"></i>
       <span>商品搜索</span>
     </label>
-  </form>
+  <% end %>
   <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
 </div>
