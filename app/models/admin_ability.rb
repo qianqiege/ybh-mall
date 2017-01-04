@@ -7,7 +7,7 @@ class AdminAbility
     elsif user.role_name == 'db'
       can :manage, Order
       can :manage, ReturnRequest
-      can :read, ActiveAdmin::Page, name: "Dashboard"
     end
+    can :read, ActiveAdmin::Page, name: "Dashboard"
   end
 end
