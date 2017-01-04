@@ -3,7 +3,7 @@ class ServiceSpinebuild::ReservationController < ServiceSpinebuild::BaseControll
   end
 
   def my_record
-    @show_record = ReservationRecord.where(identity_card: User.where(id:current_user.user_id).identity_card)
+    @show_record = ReservationRecord.where(identity_card: User.where(id:current_user.user_id).take.identity_card)
   end
 
   def new
