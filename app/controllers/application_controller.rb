@@ -24,5 +24,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def access_denied(exception)
+    redirect_to '/admin/login', :alert => exception.message
+  end
+
   # ApiAuth.authentic?(signed_request, secrect_key)
 end
