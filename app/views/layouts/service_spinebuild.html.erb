@@ -11,15 +11,15 @@
             <%= yield %>
           </div>
           <div class="weui-tabbar">
-            <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+            <a href="<%= service_spinebuild_root_path %>" class="weui-tabbar__item weui-bar__item_on">
               <%= image_tag("home.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">首页</p>
             </a>
-            <a href="service_spinebuild/reservation/new" class="weui-tabbar__item">
+            <a href="<%= service_spinebuild_reservation_new_path %>" class="weui-tabbar__item">
               <%= image_tag("reservation.jpg", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">预约</p>
             </a>
-            <a href="javascript:;" class="weui-tabbar__item">
+            <a href="<%= service_spinebuild_my_record_path %>" class="weui-tabbar__item">
               <%= image_tag("person.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">我的</p>
             </a>

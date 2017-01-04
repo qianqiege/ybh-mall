@@ -1,0 +1,14 @@
+<%= title '我的预约信息' %>
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__hd">我的预约记录</div>
+  <% @show_record.each do |f| %>
+
+  <div class="weui-panel__bd">
+    <div class="weui-media-box weui-media-box_text">
+      <h4 class="weui-media-box__title">预约时间：<%= reservationtime f.time %></h4>
+      <p class="weui-media-box__desc">预约脊筑师：<%= f.spine_build.name %></p>
+    </div>
+  </div>
+
+  <% end %>
+</div>

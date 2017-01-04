@@ -2,6 +2,11 @@ class ServiceSpinebuild::ReservationController < ServiceSpinebuild::BaseControll
   def home
   end
 
+  def my_record
+    @reservation = ReservationRecord.where(identity_card: User.where(id:current_user.user_id).take.identity_card)
+    @show_record = @reservation.order(created_at: :desc).limit(5)
+  end
+
   def new
     @work = Workstation.all
     @rank = Rank.all
