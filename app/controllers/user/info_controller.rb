@@ -24,7 +24,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def helath_programs
-    @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card).pluck(:only_number)
-    @product = Product.where(only_number: @programs)
+    @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card)
+    @product = Product.where(only_number: @programs.pluck(:only_number))
   end
 end

@@ -1,1 +1,18 @@
 <%= title '我的方案' %>
+
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">健康方案（处方）</div>
+    <div class="weui-panel__bd">
+        <% @product.each do |f| %>
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+              <%= image_tag(f.image, class: "weui-media-box__thumb" ,size: "60x60") %>
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title"><%= f.name %></h4>
+                <p class="weui-media-box__desc"><%= f.desc %></p>
+            </div>
+        </a>
+        <% end %>
+    </div>
+</div>
