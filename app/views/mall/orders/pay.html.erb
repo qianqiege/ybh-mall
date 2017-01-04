@@ -1,4 +1,4 @@
-<form action="<%= Settings.fast_pay.url %>" method="post" name="formName" ">
+<form action="<%= Settings.fast_pay.url %>" method="post" name="formName">
   <div class='mobile_box'>
     <div class="page-title">
       <h2 class="text-cen">
@@ -11,7 +11,7 @@
         <div class="notice"><%= flash[:success] %></div>
       <% end %>
       <div class="cashier-total">
-       订单总额:  <span id="cashierTotal">¥<%= money @order.price %></span> 
+       订单总额:  <span id="cashierTotal">¥<%= money @order.price %></span>
       </div>
       <div class="cashier-info">
         还需支付：
