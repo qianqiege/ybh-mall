@@ -50,9 +50,9 @@ Rails.application.routes.draw do
 
   namespace :service_spinebuild do
     root "home#index"
-    get 'reservation/show_spine'
-    post 'reservation/create'
-    get 'reservation/new'
+    get '/show_spine', to: 'reservation#show_spine'
+    post '/reservation_create',to: 'reservation#create'
+    get '/reservation_new',to: 'reservation#new'
   end
 
   namespace :user do
