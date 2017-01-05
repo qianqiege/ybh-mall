@@ -36,7 +36,6 @@ class User::InfoController < Wechat::BaseController
       @programs.each do |program|
         if product = Product.find_by(only_number: program.only_number)
           @line_item = current_user.cart.add_product(product, program.number)
-          ap @line_item
           @line_item.save
         end
       end
