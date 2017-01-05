@@ -28,6 +28,11 @@ class User::InfoController < Wechat::BaseController
   def helath_programs
     @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card)
     @products = Product.where(only_number: @programs.pluck(:only_number))
+    @programs.each do |program|
+      @products.each do |product|
+        @line_item = current_user.cart.add_product(product, program.number)
+      end
+    end
   end
 
   def create_programs
@@ -40,7 +45,7 @@ class User::InfoController < Wechat::BaseController
       end
     else
       @programs.each do |program|
-        if product = Product.find_by(only_number: program.only_number)
+        @products.each do |product|
           @line_item = current_user.cart.add_product(product, program.number)
         end
       end
