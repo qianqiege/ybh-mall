@@ -28,7 +28,6 @@ class User::InfoController < Wechat::BaseController
   def helath_programs
     @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card)
     @products = Product.where(only_number: @programs.pluck(:only_number))
-    ap @programs
   end
 
   def create_programs
