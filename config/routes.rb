@@ -67,7 +67,9 @@ Rails.application.routes.draw do
     get '/programs', to: 'info#helath_programs'
     post 'supplement/update'
     post 'supplement/create'
-    post 'bind_phone', to: 'binding#bind_phone'
+    post '/bind_phone', to: 'binding#bind_phone'
+    post '/create_programs', to: 'info#create_programs'
+    patch '/create_programs', to: 'info#create_programs'
   end
 
   namespace :examine do

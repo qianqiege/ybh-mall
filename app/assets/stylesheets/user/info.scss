@@ -11,3 +11,30 @@
 .tds_title{
   font-size: 17px;
 }
+
+.button{
+    content: " ";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid rgba(0,0,0,.2);
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+.big-button{
+  width: 180px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.div-centent{
+  margin-left: 25%;
+  margin-right: 25%;
+}

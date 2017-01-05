@@ -3,7 +3,7 @@
 <div class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">健康方案（处方）</div>
     <div class="weui-panel__bd">
-        <% @product.each do |f| %>
+        <% @products.each do |f| %>
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
               <%= image_tag(f.image, class: "weui-media-box__thumb" ,size: "60x60") %>
@@ -15,4 +15,9 @@
         </a>
         <% end %>
     </div>
+</div>
+<div class="button-sp-area div-centent">
+  <%= form_for @line_item, url: {action: "create_programs"}, html: {class: "nifty_form"} do |f| %>
+    <%= f.submit "加入到购物车" ,class:"weui-btn weui-btn_mini weui-btn_primary big-button" %>
+  <% end %>
 </div>

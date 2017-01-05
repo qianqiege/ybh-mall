@@ -1,4 +1,6 @@
 class User::InfoController < Wechat::BaseController
+  before_action :helath_programs
+
   def home
     @wechat_user = WechatUser.find(current_user)
   end
@@ -25,6 +27,26 @@ class User::InfoController < Wechat::BaseController
 
   def helath_programs
     @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card)
-    @product = Product.where(only_number: @programs.pluck(:only_number))
+    @products = Product.where(only_number: @programs.pluck(:only_number))
+    ap @programs
   end
+
+  def create_programs
+    if params["commit"] == "加入到购物车"
+      @programs.each do |program|
+        if product = Product.find_by(only_number: program.only_number)
+          @line_item = current_user.cart.add_product(product, program.number)
+          ap @line_item
+          @line_item.save
+        end
+      end
+    else
+      @programs.each do |program|
+        if product = Product.find_by(only_number: program.only_number)
+          @line_item = current_user.cart.add_product(product, program.number)
+        end
+      end
+    end
+  end
+
 end
