@@ -1,0 +1,23 @@
+<%= title '我的方案' %>
+
+<% if @a == true %>
+<div id="toast">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+        <p class="weui-toast__content">添加成功</p>
+    </div>
+</div>
+<div id="test">
+    <a href="<%= mall_cart_path %>" class="weui-cells__title size">请您点击 “我” 进入您的购物车查看</a>
+  </div>
+</div>
+<% else %>
+  <div id="toast" style="display: none;">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+        <p class="weui-toast__content">已完成</p>
+    </div>
+  </div>
+<% end %>

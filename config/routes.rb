@@ -65,11 +65,11 @@ Rails.application.routes.draw do
     get '/m_info', to: 'info#member_info'
     get '/tds', to: 'info#tds_record'
     get '/programs', to: 'info#helath_programs'
+    get '/home_programs', to: 'info#programs'
     post 'supplement/update'
     post 'supplement/create'
     post '/bind_phone', to: 'binding#bind_phone'
-    post '/create_programs', to: 'info#create_programs'
-    patch '/create_programs', to: 'info#create_programs'
+    get '/create_programs', to: 'info#create_programs'
   end
 
   namespace :examine do

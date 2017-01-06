@@ -14,4 +14,10 @@ module ApplicationHelper
   def reservationtime(datetime)
     datetime.to_time.strftime('%Y-%m-%d %H:%M') unless datetime.nil?
   end
+
+  def program_time(datetime)
+    datetime = datetime - 28800
+    datetime.to_time.strftime('%Y-%m-%d %H:%M:%S') unless datetime.nil?
+  end
+
 end

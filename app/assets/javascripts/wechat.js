@@ -23,6 +23,7 @@
 //= require mall/home
 //= require mall/products
 //= require mall/authenticate
+//= require user/info
 
 //= require service/buildspine
 
