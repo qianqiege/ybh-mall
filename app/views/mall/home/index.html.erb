@@ -27,7 +27,7 @@
     </div>
   </div>
   <!-- end mall_menu -->
-  <div class="pro-area">
+  <div class="pro-area graybg">
     <div class="pro-tit">
       <h2>推荐用品</h2>
     </div>
@@ -37,15 +37,13 @@
           <li>
             <a href="<%= mall_product_path(product) %>">
               <%= image_tag product.image_url %>
-              <h5><%= product.name %></h5>
-              <p class="sub-title"><%= product.desc %></p>
-              <span class="tag">好货价</span>
-              <p class="item-price">
+              <h5 class='text-center'><%= product.name %></h5>
+              <p class="sub-title text-center"><%= product.desc %></p>
+              <p class="item-price text-center">
                 <em><%= money product.now_product_price %></em>
-                <% if product.original_product_price.present? %>
-                  <del><%= money product.original_product_price %></del>
-                <% end %>
-                <span class="pre-addcar"></span>
+                <%# <% if product.original_product_price.present? %>
+                <%#   <del><%= money product.original_product_price %></del>
+                <%# <% end %>
               </p>
             </a>
           </li>
