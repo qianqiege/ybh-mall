@@ -11,6 +11,12 @@
           <%= f.text_field :value ,class:"weui-input",type:"digit",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入体重值"%>
         </div>
     </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">身高</label></div>
+        <div class="weui-cell__bd">
+          <%= f.text_field :height ,class:"weui-input",type:"digit",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入身高值"%>
+        </div>
+    </div>
 </div>
 <div class="weui-btn-area">
     <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
