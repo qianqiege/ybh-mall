@@ -1,0 +1,56 @@
+<%= title '我的方案' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+<div>
+  <% if !@only_number.nil? %>
+  <div class="weui-panel weui-panel_access">
+    <div class="weui-panel__hd">健康方案（处方）</div>
+    <div class="weui-panel__bd">
+      <% @only_number.each do |only_number| %>
+        <% @product = Product.where(only_number: only_number["产品编号"]) %>
+        <% @product.each do |product| %>
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+          <div class="weui-media-box__hd">
+            <%= image_tag(product.image, class: "weui-media-box__thumb" ,size: "60x60") %>
+          </div>
+          <div class="weui-media-box__bd">
+            <h4 class="weui-media-box__title"><%= product.name %></h4>
+            <p class="weui-media-box__desc"><%= product.desc %></p>
+          </div>
+        </a>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="button-sp-area div-centent">
+    <% if !@line_item.nil? %>
+      <%= form_for @line_item, url: {action: "create_programs"}, html: {class: "nifty_form"} do |f| %>
+      <input type=hidden name=format value='<%= @time %>'/>
+      <%= f.submit "加入到购物车" ,class:"weui-btn weui-btn_mini weui-btn_primary big-button" %>
+      <% end %>
+    <% end %>
+  </div>
+  <% else %>
+  <div class="center">
+    <div class="weui-cell__bd weui-cell_primary">
+      <p class="red">对不起，您并没有健康方案！</p>
+    </div>
+  </div>
+  <div class="center">
+    <div class="weui-cell__bd weui-cell_primary">
+      <p class="font_centent">请您联系中医健康管理师</p>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% if @a == true %>
+  <div id="toast">
+    <div class="weui-mask_transparent"></div>
+    <div class="weui-toast">
+        <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+        <p class="weui-toast__content">已完成</p>
+    </div>
+  </div>
+<% end %>

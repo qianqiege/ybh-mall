@@ -1,0 +1,27 @@
+<%= title '我的方案' %>
+<% if !@time_programs.nil? %>
+  <div class="weui-cells__title">我的健康方案</div>
+  <div class="weui-cells">
+    <% @time_programs.each do |program| %>
+      <% @time = program_time program.time %>
+      <a class="weui-cell weui-cell_access" href="<%= user_programs_path(@time) %>">
+          <div class="weui-cell__bd">
+              <p class="font"><%= reservationtime program.time %></p>
+          </div>
+          <div class="weui-cell__ft">
+          </div>
+      </a>
+    <% end %>
+  </div>
+<% else %>
+  <div class="center">
+    <div class="weui-cell__bd weui-cell_primary">
+      <p class="red">对不起，您并没有健康方案！</p>
+    </div>
+  </div>
+  <div class="center">
+    <div class="weui-cell__bd weui-cell_primary">
+      <p class="font_centent">请您联系中医健康管理师</p>
+    </div>
+  </div>
+<% end %>
