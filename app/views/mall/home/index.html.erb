@@ -4,60 +4,8 @@
 
 <div class="home">
   <%= render 'shared/slide' %>
-  <div class="mail_menu">
-    <div class="weui-grids">
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">特价商品</p>
-      </a>
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">我的收藏</p>
-      </a>
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">我订过的</p>
-      </a>
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">在线客服</p>
-      </a>
-      <a href="<%= mall_orders_path() %>" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">我的订单</p>
-      </a>
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">付款单</p>
-      </a>
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">发货单</p>
-      </a>
-      <a href="javascript:;" class="weui-grid">
-        <div class="weui-grid__icon">
-          <%= image_tag 'icon_tabbar.png' %>
-        </div>
-        <p class="weui-grid__label">信息公告</p>
-      </a>
-    </div>
-  </div>
   <!-- end mall_menu -->
-  <div class="pro-area">
+  <div class="pro-area graybg">
     <div class="pro-tit">
       <h2>推荐用品</h2>
     </div>
@@ -67,15 +15,13 @@
           <li>
             <a href="<%= mall_product_path(product) %>">
               <%= image_tag product.image_url %>
-              <h5><%= product.name %></h5>
-              <p class="sub-title"><%= product.desc %></p>
-              <span class="tag">好货价</span>
-              <p class="item-price">
-                <em><%= money product.now_product_price %></em>
-                <% if product.original_product_price.present? %>
-                  <del><%= money product.original_product_price %></del>
-                <% end %>
-                <span class="pre-addcar"></span>
+              <h5 class='text-center'><%= product.name %></h5>
+              <p class="sub-title text-center"><%= product.desc %></p>
+              <p class="item-price text-center">
+                <em>¥<%= money product.now_product_price %></em>
+                <%# <% if product.original_product_price.present? %>
+                <%#   <del><%= money product.original_product_price %></del>
+                <%# <% end %>
               </p>
             </a>
           </li>

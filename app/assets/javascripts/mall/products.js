@@ -31,16 +31,20 @@ function add_cart_ajax(data) {
     data: data,
     dataType: 'json',
     success: function(data){
+      // xhr?
       if (data.location) {
         window.location.href = data.location;
         return;
       }
+
+      // 有错误时
       if (data.error_messages) {
         $.tips(data.error_messages);
         $("#carNum").text(parseInt(data.cart_real_product_count))
         return;
       }
 
+      // 点击直接购买时
       if (data.fast_buy) {
         window.location.href = '/mall/cart';
         return;
@@ -54,10 +58,12 @@ function add_cart_ajax(data) {
 }
 
 $(function () {
+  // 在购物车中增加商品数量
   $("#increase_btn").on('click', function() {
     $(this).product_count_increase_control();
   });
 
+  // 在购物车中减少商品数量
   $("#decrease_btn").on('click', function() {
     $(this).product_count_decrease_control();
   });

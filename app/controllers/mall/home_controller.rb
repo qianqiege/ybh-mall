@@ -1,6 +1,7 @@
 class Mall::HomeController < Mall::BaseController
   def index
     @slides = Slide.top(2)
-    @products = Product.where(is_show: true)
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true).where(is_show: true).order("id DESC")
   end
 end

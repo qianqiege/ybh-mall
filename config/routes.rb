@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create, :index, :show] do
       get :confirm, on: :collection
       get :pay, on: :member
+      post :make_cancel, on: :member
     end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do

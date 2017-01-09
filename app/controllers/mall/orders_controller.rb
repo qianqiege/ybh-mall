@@ -76,4 +76,13 @@ class Mall::OrdersController < Mall::BaseController
     @trade_merge_pay_params = @order.fast_pay.trade_merge_pay_params
   end
 
+  def make_cancel
+    @order = Order.find(params[:id])
+    if @order.may_make_cancel?
+      @order.make_cancel!
+      flash[:notice] = "已取消订单!"
+    else
+      flash[:notice] = "操作失败!"
+    end
+  end
 end

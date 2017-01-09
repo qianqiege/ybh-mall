@@ -13,10 +13,10 @@ class Mall::AddressesController < Mall::BaseController
     @address = current_user.addresses.new(address_params)
     if @address.save
       flash[:success] = '收货地址创建成功'
-      if params[:from_new].present?
-        redirect_to mall_addresses_path
-      else
+      if params[:from_order_confirm].present?
         redirect_to confirm_mall_orders_path(address_id: @address.id)
+      else
+        redirect_to mall_addresses_path
       end
     else
       render :new
