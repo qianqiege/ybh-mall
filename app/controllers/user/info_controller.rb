@@ -57,6 +57,7 @@ class User::InfoController < Wechat::BaseController
               @line_item = current_user.cart.add_product(product, quantity)
               if @line_item.save
                 redirect_to mall_cart_path
+                return
               end
             end
           end
