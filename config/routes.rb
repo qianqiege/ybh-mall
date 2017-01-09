@@ -92,8 +92,8 @@ Rails.application.routes.draw do
     post :refund, on: :collection
   end
 
-  resources :product_program do
-    post :products, on: :collection
+  resources :h_programs do
+    post :create, on: :collection
   end
 
   root "wechat/home#index"

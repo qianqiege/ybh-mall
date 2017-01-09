@@ -1,10 +1,8 @@
 ActiveAdmin.register HealthProgram do
-permit_params :name,
-              :identity_card,
-              :number,
-              :only_number,
+permit_params :identity_card,
               :time,
-              :coding
+              :coding,
+              :product
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
