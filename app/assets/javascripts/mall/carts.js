@@ -71,6 +71,7 @@ $(function () {
 
     $.confirm('确定要删除此商品吗？', function(e) {
       if (e) {
+        line_item_add_and_remove(url, line_item_id, "DELETE", $(this));
       }
     }.bind(this));
   })

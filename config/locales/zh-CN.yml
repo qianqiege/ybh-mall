@@ -35,6 +35,7 @@ zh-CN:
         price: '金额'
         quantity: '数量'
         status: '状态'
+        number: '编号'
       return_request:
         quantity: '提交数量'
         desc: '问题描述'
