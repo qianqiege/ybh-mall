@@ -60,17 +60,18 @@ Rails.application.routes.draw do
   namespace :user do
     root "info#home"
     get '/binding',to: 'binding#new'
-    get '/record', to: 'info#helath_record'
+    get '/record', to: 'info#health_record'
     get '/w_info', to: 'info#wechat_info'
     get '/edit_record', to: 'supplement#edit_record'
     get '/m_info', to: 'info#member_info'
     get '/tds', to: 'info#tds_record'
-    get '/programs', to: 'info#helath_programs'
+    get '/programs', to: 'info#health_programs'
+    get '/home_programs', to: 'info#programs'
     post 'supplement/update'
     post 'supplement/create'
     post '/bind_phone', to: 'binding#bind_phone'
-    post '/create_programs', to: 'info#create_programs'
     patch '/create_programs', to: 'info#create_programs'
+    post '/create_programs', to: 'info#create_programs'
   end
 
   namespace :examine do
