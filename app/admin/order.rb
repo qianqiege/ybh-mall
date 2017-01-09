@@ -41,6 +41,7 @@ ActiveAdmin.register Order do
     column :wechat_user
     column :price
     column :quantity
+    column :number
     column :status do |order|
       order.human_state
     end

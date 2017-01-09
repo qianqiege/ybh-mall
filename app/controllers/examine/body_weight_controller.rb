@@ -18,7 +18,8 @@ class Examine::BodyWeightController < Examine::BaseController
     @id_number = User.where(id:current_user.user_id).take
     if !@id_number.identity_card.nil?
       mall = Sdk::Mall.new
-      mall.api_weight(@id_number.identity_card,weight_params[:value])
+      mall.api_weight(@id_number.identity_card,weight_params[:value],weight_params[:height])
+      byebug
     end
   end
 
