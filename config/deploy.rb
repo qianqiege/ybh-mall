@@ -28,11 +28,11 @@ set :use_sudo, false
 
 # integrate whenever
 # when using bundler
-# set :whenever_command, "bundle exec whenever"
+set :whenever_command, "bundle exec whenever"
 # when using different environments
-# set :whenever_environment, defer { stage }
-# set :whenever_identifier, defer { "#{fetch(:application)}-#{fetch(:rails_env)}" }
-# require "whenever/capistrano"
+set :whenever_environment, defer { stage }
+set :whenever_identifier, defer { "#{fetch(:application)}-#{fetch(:rails_env)}" }
+require "whenever/capistrano"
 # https://github.com/javan/whenever/blob/master/lib/whenever/capistrano.rb
 
 # tasks

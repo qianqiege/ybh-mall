@@ -79,16 +79,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
         return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
       end
-      reply_text_message("关注公众账号")
-    end
-
-
-    # 关注公众账号
-    def handle_subscribe_event
-      if @keyword.present?
-        # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
-        return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
-      end
       open_id = @weixin_message.FromUserName
       user_basic_info = $wechat_client.user(open_id).result
 
@@ -100,7 +90,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
       reply_text_message("欢迎关注精英慢病健康管理服务")
     end
-
 
     # 取消关注
     def handle_unsubscribe_event

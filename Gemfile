@@ -75,6 +75,10 @@ gem 'api-auth', '~> 2.0', '>= 2.0.1'
 # A simple HTTP and REST client for Ruby, inspired by the Sinatra microframework style of specifying actions: get, put, post, delete.
 gem 'rest-client', '~> 2.0'
 
+# Clean ruby syntax for writing and deploying cron jobs.
+# https://github.com/javan/whenever
+gem 'whenever', '~> 0.9.7', :require => false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
