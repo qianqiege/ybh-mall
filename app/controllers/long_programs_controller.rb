@@ -10,7 +10,8 @@ class LongProgramsController < ApplicationController
                                       detail: params[:detail],
                                       blood_letting: params[:blood_letting],
                                       treatment: params[:treatment],
-                                      level: params[:level])
+                                      level: params[:level],
+                                      time: params[:time])
     if @long_programs.save
       render json: @long_programs
     else
