@@ -1,0 +1,2 @@
+class LongProgram < ApplicationRecord
+end
