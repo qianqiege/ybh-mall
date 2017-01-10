@@ -5,7 +5,7 @@ class User::InfoController < Wechat::BaseController
     @wechat_user = WechatUser.find(current_user)
   end
 
-  def helath_record
+  def health_record
     @idcard = User.find(current_user.user_id)
     mall = Sdk::Mall.new
     @record = mall.record(@idcard.identity_card)
