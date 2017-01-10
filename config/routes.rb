@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     get '/tds', to: 'info#tds_record'
     get '/programs', to: 'info#health_programs'
     get '/home_programs', to: 'info#programs'
+    get '/spinebuild_programs', to: 'info#spinebuild_programs'
     post 'supplement/update'
     post 'supplement/create'
     post '/bind_phone', to: 'binding#bind_phone'
@@ -94,6 +95,10 @@ Rails.application.routes.draw do
   end
 
   resources :h_programs do
+    post :create, on: :collection
+  end
+
+  resources :long_programs do
     post :create, on: :collection
   end
 

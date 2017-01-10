@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doctor: MyString
+  hospital: MyString
+  recipe_number: MyString
+  total: 9.99
+  detail: MyString
+  blood_letting: 1
+  treatment: 1
+
+two:
+  doctor: MyString
+  hospital: MyString
+  recipe_number: MyString
+  total: 9.99
+  detail: MyString
+  blood_letting: 1
+  treatment: 1
