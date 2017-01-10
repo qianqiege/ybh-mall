@@ -1,101 +1,31 @@
-<%= title '龙氏脊筑档案' %>
-<div class="page tabbar js_show">
-      <div class="page__bd" style="height: 100%;">
-        <div class="weui-tab">
-          <div class="weui-tab__panel no-pb">
-            <form id="show_cart" action="/mall/orders/confirm" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
-  <div class="mobile_box">
-    <div class="page-title">
-      <h2 class="text-cen">
-        <span>我的服务方案</span>
-      </h2>
-    </div>
-    <div class="wraper pt50 graybg">
-        <div class="car-box">
-          <ul class="pro-list-portrait">
-              <li>
-                <span class="radio radio_btn setDef" data-current-line-item-price=" 2800.00"></span>
-                <div class="img">
-                  <a href="/mall/products/4">
-                    <img src="/uploads/product/image/4/ybyt04.png" alt="Ybyt04">
-                  </a>
-                </div>
-                <div class="pro-m">
-                  <a href="/mall/products/4">
-                    <p class="name">测试2</p>
-                  </a>
-                  <div class="gray84 option">200</div>
-                  <div class="info clearfix">
-                    <p class="fl price">¥<span> 200.00</span></p>
-                  </div>
-                     <div class="fr amount">
-                        <input value="204" id="line_item_204" class="line_item_hidden_input" data-line-item-id="204" type="hidden" name="line_item_ids[]">
-                        <span class="decrease disable decrease_btn_ajax">-</span>
-                        <input type="text" data-shop-count="173" class="num buyNum" value="14" data-line_item_id="204" readonly="">
-                        <span class="increase increase_btn_ajax">+</span>
-                      </div>
-                  <span data-line_item_id="204" class="del"></span>
-                </div>
-              </li>
-              <li>
-                <span class="radio radio_btn setDef" data-current-line-item-price=" 2000.00"></span>
-                <div class="img">
-                  <a href="/mall/products/3">
-                    <img src="/uploads/product/image/3/ybyt04.png" alt="Ybyt04">
-                  </a>
-                </div>
-                <div class="pro-m">
-                  <a href="/mall/products/3">
-                    <p class="name">测试1</p>
-                  </a>
-                  <div class="gray84 option">深圳</div>
-                  <div class="info clearfix">
-                    <p class="fl price">¥<span> 200.00</span></p>
-                  </div>
-                     <div class="fr amount">
-                        <input value="205" id="line_item_205" class="line_item_hidden_input" data-line-item-id="205" type="hidden" name="line_item_ids[]">
-                        <span class="decrease disable decrease_btn_ajax">-</span>
-                        <input type="text" data-shop-count="191" class="num buyNum" value="10" data-line_item_id="205" readonly="">
-                        <span class="increase increase_btn_ajax">+</span>
-                      </div>
-                  <span data-line_item_id="205" class="del"></span>
-                </div>
-              </li>
-              <li>
-                <span class="radio radio_btn setDef" data-current-line-item-price=" 5460.00"></span>
-                <div class="img">
-                  <a href="/mall/products/1">
-                    <img src="/uploads/product/image/1/ybyt04.png" alt="Ybyt04">
-                  </a>
-                </div>
-                <div class="pro-m">
-                  <a href="/mall/products/1">
-                    <p class="name">肝净</p>
-                  </a>
-                  <div class="gray84 option">深圳</div>
-                  <div class="info clearfix">
-                    <p class="fl price">¥<span> 780.00</span></p>
-                  </div>
-                     <div class="fr amount">
-                        <input value="206" id="line_item_206" class="line_item_hidden_input" data-line-item-id="206" type="hidden" name="line_item_ids[]">
-                        <span class="decrease disable decrease_btn_ajax">-</span>
-                        <input type="text" data-shop-count="1898" class="num buyNum" value="7" data-line_item_id="206" readonly="">
-                        <span class="increase increase_btn_ajax">+</span>
-                      </div>
-                  <span data-line_item_id="206" class="del"></span>
-                </div>
-              </li>
-          </ul>
-        </div>
-        <!-- end car-box -->
-        <div class="cart-fixed-ft">
-          <span class="choose">
-            <i class="radio setDef"></i>
-            <span class="cart_check_all_line_item">全部取消</span>
-          </span>
-          <a class="commit" id="clearing_commit">结算</a>
-          <span class="mr15">合计：¥<span class="total" data-all_total_price=" 10260.00" id="total-price"> 10260.00</span></span>
-        </div>
-    </div>
+<%= title '龙氏脊筑方案' %>
+
+<% @spine.each do |spine| %>
+
+  <div class="car-box box">
+    <ul class="pro-list-portrait">
+      <li>
+        <span class="radio radio_btn setDef" data-current-line-item-price=" 5460.00"></span>
+        <a href="<%= service_spinebuild_program_item_path(spine.recipe_number) %>">
+          <div class="po-left">
+            <p class="name"><%= spine_time spine.time %></p>
+            <div class="gray84 option">城市：<%= spine.hospital %></div>
+
+            <div class="info clearfix">
+              <p class="fl price">¥<span><%= spine.total %></span></p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
   </div>
-</form>
+
+<% end %>
+<!-- end car-box -->
+<div class="cart-fixed-ft">
+  <span class="choose">
+    <i class="radio setDef"></i>
+    <span class="cart_check_all_line_item">全部取消</span>
+  </span>
+  <a class="commit" id="clearing_commit">结算</a>
+</div>

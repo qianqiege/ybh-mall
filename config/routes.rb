@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     get '/my_record', to: 'reservation#my_record'
     get '/spine_programs', to: 'programs#spinebuild_programs'
     get '/my', to: 'my#home'
+    get '/program_item',to:'programs#program_item'
   end
 
   namespace :user do
