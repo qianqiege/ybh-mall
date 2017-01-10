@@ -55,6 +55,8 @@ Rails.application.routes.draw do
     post '/reservation_create',to: 'reservation#create'
     get '/reservation_new',to: 'reservation#new'
     get '/my_record', to: 'reservation#my_record'
+    get '/spine_programs', to: 'programs#spinebuild_programs'
+    get '/my', to: 'my#home'
   end
 
   namespace :user do
@@ -67,7 +69,6 @@ Rails.application.routes.draw do
     get '/tds', to: 'info#tds_record'
     get '/programs', to: 'info#health_programs'
     get '/home_programs', to: 'info#programs'
-    get '/spinebuild_programs', to: 'info#spinebuild_programs'
     post 'supplement/update'
     post 'supplement/create'
     post '/bind_phone', to: 'binding#bind_phone'
