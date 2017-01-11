@@ -9,7 +9,7 @@ zh-CN:
       examine_manage: '健康检测'
       program_manage: '健康方案'
       record_manage: '档案管理'
-      coit_manage: '货币管理'
+      coin_manage: '货币管理'
   activerecord:
     attributes:
       product:
