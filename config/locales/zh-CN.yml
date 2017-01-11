@@ -1,12 +1,15 @@
 zh-CN:
   active_admin:
     menu:
-      mall: '商城'
+      mall: '商城管理'
       member_manage: '会员管理'
       serve_manage: '服务管理'
       user_manage: '人员管理'
       view_manage: '页面管理'
       examine_manage: '健康检测'
+      program_manage: '健康方案'
+      record_manage: '档案管理'
+      coin_manage: '货币管理'
   activerecord:
     attributes:
       product:

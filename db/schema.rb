@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226141553) do
+ActiveRecord::Schema.define(version: 20170111072112) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -114,14 +114,12 @@ ActiveRecord::Schema.define(version: 20161226141553) do
   end
 
   create_table "health_programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
     t.string   "identity_card"
-    t.integer  "number"
-    t.string   "only_number"
     t.datetime "time"
     t.string   "coding"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "product"
   end
 
   create_table "heart_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -153,6 +151,21 @@ ActiveRecord::Schema.define(version: 20161226141553) do
     t.index ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
     t.index ["order_id"], name: "index_line_items_on_order_id", using: :btree
     t.index ["product_id"], name: "index_line_items_on_product_id", using: :btree
+  end
+
+  create_table "long_programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "doctor"
+    t.string   "hospital"
+    t.string   "recipe_number"
+    t.decimal  "total",         precision: 10
+    t.string   "detail"
+    t.integer  "blood_letting"
+    t.integer  "treatment"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "identity_card"
+    t.string   "level"
+    t.datetime "time"
   end
 
   create_table "member_clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -236,6 +249,16 @@ ActiveRecord::Schema.define(version: 20161226141553) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "product_programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.string   "only_number"
+    t.string   "identity_card"
+    t.integer  "health_program_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
@@ -281,8 +304,8 @@ ActiveRecord::Schema.define(version: 20161226141553) do
     t.integer  "service_staff_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "tel"
     t.integer  "spine_build_id"
+    t.string   "identity_card"
   end
 
   create_table "return_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -295,6 +318,38 @@ ActiveRecord::Schema.define(version: 20161226141553) do
     t.datetime "updated_at",                             null: false
     t.index ["line_item_id"], name: "index_return_requests_on_line_item_id", using: :btree
     t.index ["order_id"], name: "index_return_requests_on_order_id", using: :btree
+  end
+
+  create_table "scoin_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "account"
+    t.string   "password"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scoin_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "scoin_user"
+    t.integer  "number"
+    t.string   "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "number"
+    t.string   "state"
+    t.integer  "scoin_account_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "scoin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "account"
+    t.string   "password"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -376,10 +431,13 @@ ActiveRecord::Schema.define(version: 20161226141553) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "password"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "telphone"
     t.string   "identity_card"
+    t.integer  "integral"
+    t.float    "s_coin",        limit: 24
+    t.float    "y_coin",        limit: 24
   end
 
   create_table "vip_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -410,6 +468,7 @@ ActiveRecord::Schema.define(version: 20161226141553) do
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"
     t.integer  "wechat_user_id"
+    t.string   "height"
   end
 
   create_table "workstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -1,0 +1,2 @@
+class ScoinAccount < ApplicationRecord
+end

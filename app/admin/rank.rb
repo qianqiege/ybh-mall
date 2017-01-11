@@ -1,5 +1,5 @@
 ActiveAdmin.register Rank do
-  menu parent: I18n.t("active_admin.menu.user_manage")
+  menu parent: I18n.t("active_admin.menu.serve_manage")
   permit_params :level
 
     form(:html => { :multipart => true }) do |f|
