@@ -1,5 +1,5 @@
 ActiveAdmin.register ReservationRecord do
-  menu parent: I18n.t("active_admin.menu.user_manage")
+  menu parent: I18n.t("active_admin.menu.serve_manage")
   permit_params :time, :name,:identity_card,:spine_build_id
 
     form(:html => { :multipart => true }) do |f|

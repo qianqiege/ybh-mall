@@ -1,4 +1,5 @@
 ActiveAdmin.register LongProgram do
+  menu parent: I18n.t("active_admin.menu.program_manage")
   permit_params :doctor,
                 :hospital,
                 :recipe_number,

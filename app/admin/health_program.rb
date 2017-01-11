@@ -1,8 +1,9 @@
 ActiveAdmin.register HealthProgram do
-permit_params :identity_card,
-              :time,
-              :coding,
-              :product
+  menu parent: I18n.t("active_admin.menu.program_manage")
+  permit_params :identity_card,
+                :time,
+                :coding,
+                :product
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
