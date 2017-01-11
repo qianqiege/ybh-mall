@@ -7,6 +7,6 @@ role :app, app_server
 role :db,  app_server, :primary => true
 set :deploy_to, "/var/www/ybhm.ybyt.cc"
 set :user, "deploy"
-set :rvm_ruby_string, "ruby-2.3.0"
+set :rvm_ruby_string, "ruby-2.2.2"
 set :branch, "master"
 set :rails_env, "production"
