@@ -1,0 +1,31 @@
+<%= title '龙氏脊筑方案' %>
+
+<% @spine.each do |spine| %>
+
+  <div class="car-box box">
+    <ul class="pro-list-portrait">
+      <li>
+        <span class="radio radio_btn setDef" data-current-line-item-price=" 5460.00"></span>
+        <a href="<%= service_spinebuild_program_item_path(spine.recipe_number) %>">
+          <div class="po-left">
+            <p class="name"><%= spine_time spine.time %></p>
+            <div class="gray84 option">城市：<%= spine.hospital %></div>
+
+            <div class="info clearfix">
+              <p class="fl price">¥<span><%= spine.total %></span></p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+<% end %>
+<!-- end car-box -->
+<div class="cart-fixed-ft">
+  <span class="choose">
+    <i class="radio setDef"></i>
+    <span class="cart_check_all_line_item">全部取消</span>
+  </span>
+  <a class="commit" id="clearing_commit">结算</a>
+</div>

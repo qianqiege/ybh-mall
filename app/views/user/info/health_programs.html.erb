@@ -10,15 +10,32 @@
       <% @only_number.each do |only_number| %>
         <% @product = Product.where(only_number: only_number["产品编号"]) %>
         <% @product.each do |product| %>
-        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-          <div class="weui-media-box__hd">
-            <%= image_tag(product.image, class: "weui-media-box__thumb" ,size: "60x60") %>
-          </div>
-          <div class="weui-media-box__bd">
-            <h4 class="weui-media-box__title"><%= product.name %></h4>
-            <p class="weui-media-box__desc"><%= product.desc %></p>
-          </div>
-        </a>
+            <div class="car-box box">
+              <ul class="pro-list-portrait">
+                  <li>
+                    <div class="img">
+                      <a href="/mall/products/1">
+                        <%= image_tag(product.image) %>
+                      </a>
+                    </div>
+                    <div class="pro-m">
+                      <a href="/mall/products/1">
+                        <p class="name"><%= product.name %></p>
+                      </a>
+                      <div class="gray84 option"><%= product.desc %></div>
+                      <div class="info clearfix">
+                        <p class="fl price"></p>
+                      </div>
+                         <div class="fr amount">
+                            <input value="206" id="line_item_206" class="line_item_hidden_input" data-line-item-id="206" type="hidden" name="line_item_ids[]">
+                            <span class="decrease disable">-</span>
+                            <input type="text" data-shop-count="1898" class="num buyNum" value="<%=only_number["数量"]%>" data-line_item_id="206" readonly="">
+                            <span class="increase">+</span>
+                          </div>
+                    </div>
+                  </li>
+              </ul>
+            </div>
       <% end %>
       <% end %>
     </div>
