@@ -1,15 +1,28 @@
 <%= title 'TDS数字中医' %>
   <div class="weui-panel weui-panel_access">
-      <div class="weui-panel__hd">TDS数字中医测试记录</div>
-      <div class="weui-panel__bd">
-          <% @tds_record.each do |f| %>
-          <a href="<%= f["report_url"] %>" class="weui-cell weui-cell_access weui-cell_link">
-            <div class="weui-media-box weui-media-box_text">
-                <h4 class="weui-media-box__title tds_title"><%= datetime f["created_at"] %></h4>
-                <% @json_result = JSON.parse(f["get_jsonResult"]) %>
-                <p class="tds_p">姓名：<%= @json_result[0]["Name"] %>，年龄：<%= @json_result[0]["Age"] %>，性别：<%= @json_result[0]["Sex"] %>，身份证：<%= @json_result[0]["ID_Card"] %>，体重：<%= @json_result[0]["Weight"] %>，身高：<%= @json_result[0]["Height"] %></p>
-            </div>
-          </a>
+      <% if !@tds_record.nil? %>
+        <div class="weui-panel__hd">TDS数字中医测试记录</div>
+        <div class="weui-panel__bd">
+            <% @tds_record.each do |f| %>
+            <a href="<%= f["report_url"] %>" class="weui-cell weui-cell_access weui-cell_link">
+              <div class="weui-media-box weui-media-box_text">
+                  <h4 class="weui-media-box__title tds_title"><%= datetime f["created_at"] %></h4>
+                  <% @json_result = JSON.parse(f["get_jsonResult"]) %>
+                  <p class="tds_p">姓名：<%= @json_result[0]["Name"] %>，年龄：<%= @json_result[0]["Age"] %>，性别：<%= @json_result[0]["Sex"] %>，身份证：<%= @json_result[0]["ID_Card"] %>，体重：<%= @json_result[0]["Weight"] %>，身高：<%= @json_result[0]["Height"] %></p>
+              </div>
+            </a>
+        </div>
+        <% end %>
+      <% else %>
+      <div class="center">
+        <div class="weui-cell__bd weui-cell_primary">
+          <p class="red">对不起，您并没有TDS测试记录！</p>
+        </div>
+      </div>
+      <div class="center">
+        <div class="weui-cell__bd weui-cell_primary">
+          <p class="font_centent">请您联系中医健康管理师</p>
+        </div>
       </div>
       <% end %>
   </div>
