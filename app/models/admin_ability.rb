@@ -11,6 +11,16 @@ class AdminAbility
       can :manage, Rank
       can :manage, SpineBuild
       can :manage, Workstation
+    elsif user.role_name == 'mall'
+      can :manage, Product
+      can :manage, ReturnRequest
+      can :manage, Order
+    elsif user.role_name == 'scoin_admin'
+      can :manage, ScoinAccount
+      can :manage, ScoinRecord
+    elsif user.role_name == 'activity_admin'
+      can :manage, Activity
+      can :manage, ActivityRule
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end
