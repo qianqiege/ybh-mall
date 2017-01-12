@@ -148,7 +148,11 @@ zh-CN:
         stop_time: '停止时间'
         start_time: '开始时间'
       activity_rule:
-        rule: '规则'
+        rule: '规则介绍'
+        max: '最大值'
+        min: '最小值'
+        y_coin: '易币'
+        scoin_type: 'S币包'
         activity_rule: '活动ID'
     models:
       product: "商品"
