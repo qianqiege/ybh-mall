@@ -13,7 +13,7 @@ class Order < ApplicationRecord
 
   before_create :generate_number
 
-  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消' }.freeze
+  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
 
   include AASM
   aasm column: :status do
@@ -23,6 +23,8 @@ class Order < ApplicationRecord
     state :wait_send
     # 待收货确认, 已发货状态
     state :wait_confirm
+    # 已收货
+    state :received
     # 退换货
     state :return_change
     # 取消
@@ -48,6 +50,10 @@ class Order < ApplicationRecord
 
     event :send_product do
       transitions from: :wait_send, to: :wait_confirm
+    end
+
+    event :receive do
+      transitions from: :wait_confirm, to: :received
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111072112) do
+ActiveRecord::Schema.define(version: 20170112073314) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -117,9 +117,9 @@ ActiveRecord::Schema.define(version: 20170111072112) do
     t.string   "identity_card"
     t.datetime "time"
     t.string   "coding"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "product"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "product",       limit: 65535
   end
 
   create_table "heart_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -235,6 +235,7 @@ ActiveRecord::Schema.define(version: 20170111072112) do
     t.string   "refund_reason"
     t.decimal  "refund_price",   precision: 10, scale: 2
     t.string   "number"
+    t.string   "express_number"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
@@ -247,16 +248,6 @@ ActiveRecord::Schema.define(version: 20170111072112) do
     t.integer  "order_item_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-  end
-
-  create_table "product_programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "number"
-    t.string   "only_number"
-    t.string   "identity_card"
-    t.integer  "health_program_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -324,16 +315,9 @@ ActiveRecord::Schema.define(version: 20170111072112) do
     t.string   "account"
     t.string   "password"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "scoin_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "scoin_user"
-    t.integer  "number"
-    t.string   "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.decimal  "number",     precision: 10
   end
 
   create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -342,14 +326,6 @@ ActiveRecord::Schema.define(version: 20170111072112) do
     t.integer  "scoin_account_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-  end
-
-  create_table "scoin_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "account"
-    t.string   "password"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -431,13 +407,12 @@ ActiveRecord::Schema.define(version: 20170111072112) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "password"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "telphone"
     t.string   "identity_card"
     t.integer  "integral"
-    t.float    "s_coin",        limit: 24
-    t.float    "y_coin",        limit: 24
+    t.integer  "scoin_account_id"
   end
 
   create_table "vip_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
