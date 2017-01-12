@@ -10,6 +10,7 @@ zh-CN:
       program_manage: '健康方案'
       record_manage: '档案管理'
       coin_manage: '货币管理'
+      activity_manage: '活动管理'
   activerecord:
     attributes:
       product:
@@ -99,6 +100,7 @@ zh-CN:
         type: '类型'
       user:
         telphone: '手机号码（用于登陆）'
+        y_coin: '易币'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
@@ -141,10 +143,19 @@ zh-CN:
         weight: '顺序'
         url: '点击图片跳转的链接'
         tp: '索要轮播图片的位置'
+      activity:
+        name: '活动名称'
+        stop_time: '停止时间'
+        start_time: '开始时间'
+      activity_rule:
+        rule: '规则'
+        activity_rule: '活动ID'
     models:
       product: "商品"
       address: '收货地址'
       order: '订单'
+      activity: '活动'
+      activity_rule: '活动规则'
       return_request: '退换货请求'
       admin_user: '后台用户'
       rank: '级别'
