@@ -6,9 +6,11 @@ class User::InfoController < Wechat::BaseController
   end
 
   def health_record
-    @idcard = User.find(current_user.user_id)
-    mall = Sdk::Mall.new
-    @record = mall.record(@idcard.identity_card)
+    if !current_user.user_id.nil?
+      @idcard = User.find(current_user.user_id)
+      mall = Sdk::Mall.new
+      @record = mall.record(@idcard.identity_card)
+    end
   end
 
   def wechat_info
@@ -20,15 +22,19 @@ class User::InfoController < Wechat::BaseController
   end
 
   def tds_record
-    @idcard = User.find(current_user.user_id)
-    mall = Sdk::Mall.new
-    @tds_record = mall.tds_report(@idcard.identity_card)
+    if !current_user.user_id.nil?
+      @idcard = User.find(current_user.user_id)
+      mall = Sdk::Mall.new
+      @tds_record = mall.tds_report(@idcard.identity_card)
+    end
   end
 
   def programs
-    @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card)
-    @time_programs = @programs.order(time: :desc).limit(10)
-    @time = params[:format]
+    if !current_user.user_id.nil?
+      @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card)
+      @time_programs = @programs.order(time: :desc).limit(10)
+      @time = params[:format]
+    end
   end
 
   def health_programs
