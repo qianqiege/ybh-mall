@@ -1,23 +1,13 @@
-ActiveAdmin.register ScoinRecord do
-  menu parent: I18n.t("active_admin.menu.coin_manage")
-  permit_params :number,:state,:scoin_account_id
-
-  form(:html => { :multipart => true }) do |f|
-    f.inputs "预约记录" do
-      f.input :scoin_account
-      f.input :state
-      f.input :number
-    end
-    f.actions
-  end
-
+ActiveAdmin.register Activity do
+  menu parent: I18n.t("active_admin.menu.activity_manage")
+  permit_params :name,:start_time,:stop_time
   index do
     selectable_column
     id_column
 
-    column :scoin_account
-    column :state
-    column :number
+    column :name
+    column :start_time
+    column :stop_time
     actions
   end
 # See permitted parameters documentation:

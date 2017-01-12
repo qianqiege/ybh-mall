@@ -1,6 +1,11 @@
 <%= title '我的钱包' %>
 <% if !@wallet.nil? %>
-  <% @wallet.each do |wallet| %>
-  <div>S币余额：<%= wallet.number %></div>
-  <% end %>
+  <div>S 币余额：<%= @wallet.number %></div>
+<% else %>
+  <div>S 币余额：0</div>
+<% end %>
+<% if !@yi_coin.y_coin.nil? %>
+  <div>易币余额：<%= @yi_coin.y_coin %></div>
+<% else %>
+  <div>易币余额：0</div>
 <% end %>
