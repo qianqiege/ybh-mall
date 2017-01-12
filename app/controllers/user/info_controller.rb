@@ -5,6 +5,12 @@ class User::InfoController < Wechat::BaseController
     @wechat_user = WechatUser.find(current_user)
   end
 
+  def wallet
+    if !current_user.user_id.nil?
+      @wallet = ScoinAccount.where(user_id: current_user.user_id)
+    end
+  end
+
   def health_record
     if !current_user.user_id.nil?
       @idcard = User.find(current_user.user_id)

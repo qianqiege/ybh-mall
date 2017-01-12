@@ -1,0 +1,6 @@
+<%= title '我的钱包' %>
+<% if !@wallet.nil? %>
+  <% @wallet.each do |wallet| %>
+  <div>S币余额：<%= wallet.number %></div>
+  <% end %>
+<% end %>
