@@ -1,0 +1,2 @@
+class ActivityRule < ApplicationRecord
+end
