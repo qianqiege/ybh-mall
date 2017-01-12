@@ -43,7 +43,7 @@
                         </a>
                         <div class="gray84 option">
                           <%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %>
-                          <% if order.wait_confirm? %>
+                          <% if order.received? %>
                             <%= link_to '申请', new_mall_return_request_path(line_item_id: line_item), class: 'fr apply_for_btn' %>
                           <% end %>
                         </div>
