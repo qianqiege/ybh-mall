@@ -9,10 +9,6 @@ log_path = ::File.expand_path('../../log/cron_log.log', __FILE__)
 FileUtils.touch log_path unless File.exist? log_path
 set :output, log_path
 
-# every 1.day, :at => '4:30 am' do
-#   rake 'users:update_coin'
-# end
-
-every 1.minutes do
+every 1.day, :at => '4:30 am' do
   rake 'users:update_coin'
 end
