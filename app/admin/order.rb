@@ -1,15 +1,21 @@
 ActiveAdmin.register Order do
   menu parent: I18n.t("active_admin.menu.mall")
 
-  permit_params :status
+  permit_params :status, :express_number
 
   actions :index, :show
+
 
   controller do
     def update
       if params[:order] && params[:order][:status] == 'cancel' && resource.may_make_cancel?
         resource.make_cancel!
         redirect_to resource_path, notice: '已取消订单!'
+      elsif params[:order] && params[:order][:express_number].present? && resource.may_send_product?
+        resource.express_number = params[:order][:express_number]
+        resource.save!
+        resource.send_product!
+        redirect_to resource_path, notice: '已设为发货状态!'
       else
         super
       end
@@ -25,13 +31,17 @@ ActiveAdmin.register Order do
     end
   end
 
-  member_action :send_product, method: :put do
-    if resource.may_send_product?
-      resource.send_product!
+  member_action :receive, method: :put do
+    if resource.may_receive?
+      resource.receive!
       redirect_to :back, notice: "已设为发货状态!"
     else
       redirect_to :back, notice: "操作失败!"
     end
+  end
+
+  member_action :express_number, method: :get do
+    render 'edit.html.arb', :layout => false
   end
 
   index do
@@ -45,12 +55,15 @@ ActiveAdmin.register Order do
     column :status do |order|
       order.human_state
     end
-    actions defaults: true do |order|
+    actions defaults: true, :only => [] do |order|
       span do
         link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
       end
       span do
-        link_to '设为已发货', send_product_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_send?
+        link_to '填写货运单号', express_number_admin_order_path(order, express_number: :yes), method: :get if order.wait_send?
+      end
+      span do
+        link_to '设为已收货', receive_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_confirm?
       end
     end
   end
@@ -78,6 +91,7 @@ ActiveAdmin.register Order do
       end
       row :quantity
       row :address
+      row :express_number
     end
     panel "订单项详情" do
       table_for order.line_items do |t|
@@ -88,5 +102,15 @@ ActiveAdmin.register Order do
         t.column('单价') { |line_item| line_item.unit_price }
       end
     end
+  end
+
+  # 目前只供填写货运单号使用，如果有其他用途需要做修改
+  form(:html => { :multipart => true }) do |f|
+    if params[:express_number].present?
+      f.inputs "填写货运单号" do
+        f.input :express_number
+      end
+    end
+    f.actions
   end
 end

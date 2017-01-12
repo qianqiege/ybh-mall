@@ -1,5 +1,6 @@
 zh-CN:
   active_admin:
+    express_number_model: '货运单号'
     menu:
       mall: '商城管理'
       member_manage: '会员管理'
@@ -39,6 +40,7 @@ zh-CN:
         quantity: '数量'
         status: '状态'
         number: '编号'
+        express_number: '货运单号'
       return_request:
         quantity: '提交数量'
         desc: '问题描述'
