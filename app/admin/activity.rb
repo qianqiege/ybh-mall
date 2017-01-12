@@ -1,5 +1,15 @@
 ActiveAdmin.register Activity do
-permit_params :name,:time
+  menu parent: I18n.t("active_admin.menu.activity_manage")
+  permit_params :name,:start_time,:stop_time
+  index do
+    selectable_column
+    id_column
+
+    column :name
+    column :start_time
+    column :stop_time
+    actions
+  end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

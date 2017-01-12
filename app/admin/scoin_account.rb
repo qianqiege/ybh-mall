@@ -1,6 +1,17 @@
 ActiveAdmin.register ScoinAccount do
   menu parent: I18n.t("active_admin.menu.coin_manage")
   permit_params :account, :password,:state,:user_id,:number
+
+  index do
+    selectable_column
+    id_column
+
+    column :user
+    column :account
+    column :password
+    column :number
+    actions
+  end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

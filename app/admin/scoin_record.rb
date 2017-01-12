@@ -10,6 +10,16 @@ ActiveAdmin.register ScoinRecord do
     end
     f.actions
   end
+
+  index do
+    selectable_column
+    id_column
+
+    column :scoin_account
+    column :state
+    column :number
+    actions
+  end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

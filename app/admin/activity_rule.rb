@@ -1,5 +1,14 @@
 ActiveAdmin.register ActivityRule do
-permit_params :rule,:activity_id
+  menu parent: I18n.t("active_admin.menu.activity_manage")
+  permit_params :rule,:activity_id
+  index do
+    selectable_column
+    id_column
+
+    column :activity_id
+    column :rule
+    actions
+  end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
