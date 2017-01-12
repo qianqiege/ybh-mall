@@ -75,6 +75,7 @@ Rails.application.routes.draw do
     post '/bind_phone', to: 'binding#bind_phone'
     patch '/create_programs', to: 'info#create_programs'
     post '/create_programs', to: 'info#create_programs'
+    get '/wallet', to: 'info#wallet'
   end
 
   namespace :examine do
