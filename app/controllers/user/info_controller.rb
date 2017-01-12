@@ -47,9 +47,12 @@ class User::InfoController < Wechat::BaseController
     if !@time.nil?
       @search_programs = @programs.where(time: @time).take.product
       @only_number = JSON.parse(@search_programs)
+      cart = current_user.cart || current_user.create_cart
       @only_number.each do |only_number|
-       if product = Product.find_by(only_number: "YB1")
-         @line_item = current_user.cart.add_product(product, 5)
+       if product = Product.find_by(only_number: "1010")
+         if !cart.nil?
+           @line_item = cart.add_product(product,1)
+         end
        end
      end
    end
@@ -67,6 +70,7 @@ class User::InfoController < Wechat::BaseController
             if !product.nil?
               quantity = only_number["数量"].to_i
               @line_item = current_user.cart.add_product(product, quantity)
+              ap @line_item
               if @line_item.save
                 redirect_to mall_cart_path
                 return

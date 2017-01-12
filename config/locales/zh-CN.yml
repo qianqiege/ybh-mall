@@ -127,11 +127,14 @@ zh-CN:
         user: '绑定用户ID（手机号）'
         membership_card: '会员卡ID'
       scoin_record:
-        number: 'S币包数量'
+        number: 'S币包类型'
         state: '状态'
+        scoin_account: 'S币账户'
       scoin_account:
-        account: '用户S币账户'
+        user: '用户ID（选择身份证号码）'
+        account: 'S币账户'
         password: '密码'
+        number: 'S币数量'
       slide:
         desc: '备注'
         image: '图片'

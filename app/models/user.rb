@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
 
   def name
-    telphone
+    identity_card
     # 使telephone在active_admin中用作name来显示
   end
 
