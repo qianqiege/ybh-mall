@@ -1,12 +1,12 @@
 ActiveAdmin.register ScoinRecord do
   menu parent: I18n.t("active_admin.menu.coin_manage")
-  permit_params :number,:state,:scoin_account_id
+  permit_params :state,:scoin_account_id,:scoin_type_id
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "预约记录" do
       f.input :scoin_account
       f.input :state
-      f.input :number
+      f.input :scoin_type
     end
     f.actions
   end
@@ -17,7 +17,7 @@ ActiveAdmin.register ScoinRecord do
 
     column :scoin_account
     column :state
-    column :number
+    column :scoin_type
     actions
   end
 # See permitted parameters documentation:
