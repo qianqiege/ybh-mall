@@ -1,0 +1,2 @@
+class ScoinType < ApplicationRecord
+end
