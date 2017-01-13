@@ -1,119 +1,274 @@
-require 'mina/rails'
-require 'mina/git'
-require 'mina/rvm' 
-# require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
-# require 'mina/rvm'    # for rvm support. (https://rvm.io)
-set :term_mode, nil
-# Basic settings:
-#   domain       - The hostname to SSH to.
-#   deploy_to    - Path to deploy into.
-#   repository   - Git repo to clone from. (needed by mina/git)
-#   branch       - Branch name to deploy. (needed by mina/git)
+require 'rvm/capistrano'
+require 'bundler/capistrano'
 
-set :application_name, 'YBH-mall'
+set :rvm_type, :user
 
-set :user, 'ybhmall'
-set :domain, '120.77.8.108'
-set :port, '10086'
-deploy_to =  '/home/ybhmall/public/rails'
-set :deploy_to, '/home/ybhmall/public/rails'
-set :repository, 'git@git.oschina.net:ybyt/YBH-mall.git'
-set :branch, 'master'
+# repo details
+set :scm, :git
+# need to clean shared/cached-copy if changed repository
+set :repository, "git@git.oschina.net:ybyt/YBH-mall.git"
+# set :branch, "master"
+set :git_enable_submodules, 1
 
-# Optional settings:
-#   set :user, 'foobar'          # Username in the server to SSH to.
-#   set :port, '30000'           # SSH port number.
-#   set :forward_agent, true     # SSH forward_agent.
+# bundler bootstrap
+set :bundle_without, [:darwin, :development, :test]
 
-# shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
-# set :shared_dirs, fetch(:shared_dirs, []).push('somedir')
-# set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
-set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
-set :shared_dirs, fetch(:shared_dirs, []).push('log')
-# This task is the environment that is loaded for all remote run commands, such as
-# `mina deploy` or `mina rake`.
-task :environment do
-  # If you're using rbenv, use this to load the rbenv environment.
-  # Be sure to commit your .ruby-version or .rbenv-version to your repository.
-  # invoke :'rbenv:load'
-  invoke :'rvm:use', 'ruby-2.2.2@default'
-  # For those using RVM, use this to load an RVM version@gemset.
-  # invoke :'rvm:use', 'ruby-1.9.3-p125@default'
-end
+# Multi stage
+# https://github.com/capistrano/capistrano/wiki/2.x-Multistage-Extension
+# https://github.com/VinceMD/Scem/wiki/Deploying-on-production
+set :stages, %w(production)
+set :default_stage, "production" # require config/deploy/staging.rb
+require 'capistrano/ext/multistage'
 
-# Put any custom commands you need to run at setup
-# All paths in `shared_dirs` and `shared_paths` will be created on their own.
-task :setup do
-  command %{rvm install ruby-2.2.2}
-  command %{mkdir -p "#{deploy_to}/shared/log"}
-  command %{chmod g+rx,u+rwx "#{deploy_to}/shared/log"}
+# server details
+default_run_options[:pty] = true # apparently helps with passphrase prompting
+ssh_options[:forward_agent] = true # tells cap to use my local private key
+set :deploy_via, :remote_cache
+set :use_sudo, false
 
-  command %{mkdir -p "#{deploy_to}/shared/config"}
-  command %{chmod g+rx,u+rwx "#{deploy_to}/shared/config"}
+# integrate whenever
+# when using bundler
+set :whenever_command, "bundle exec whenever"
+# when using different environments
+set :whenever_environment, defer { stage }
+set :whenever_identifier, defer { "#{fetch(:application)}-#{fetch(:rails_env)}" }
+require "whenever/capistrano"
+# https://github.com/javan/whenever/blob/master/lib/whenever/capistrano.rb
 
-  command %{touch "#{deploy_to}/shared/config/database.yml"}
-  command %{touch "#{deploy_to}/shared/config/secrets.yml"}
-  comment  %{Be sure to edit 'shared/config/database.yml' and 'shared/config/secrets.yml'.}
-
-  command %{mkdir -p "#{deploy_to}/shared/pids"}
-  command %{chmod g+rx,u+rwx "#{deploy_to}/shared/pids"}
-  command %{touch "#{deploy_to}/shared/pids/unicorn.pid"}
-
-  command %{mkdir -p "#{deploy_to}/shared/sockets"}
-  command %{chmod g+rx,u+rwx "#{deploy_to}/shared/sockets"}
-end
-
-desc "Deploys the current version to the server."
-task :deploy do
-  # uncomment this line to make sure you pushed your local branch to the remote origin
-  # invoke :'git:ensure_pushed'
-  deploy do
-    # Put things that will set up an empty directory into a fully set-up
-    # instance of your project.
-    invoke :'git:clone'
-    invoke :'deploy:link_shared_paths'
-    invoke :'bundle:install'
-    invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
-
+# tasks
+namespace :deploy do
+  task :start, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
   end
 
-  # you can use `run :local` to run tasks on local machine before of after the deploy scripts
-  # run(:local){ say 'done' }
-end
-
-task :reload do
-  invoke :'unicorn:restart'
-end
-
-
-namespace :unicorn do
-
-#                                                                    Start task
-# ------------------------------------------------------------------------------
-  desc "Start unicorn"
-  task :start => :environment do
-    comment 'Start Unicorn'
-    command %{cd #{deploy_to}/current && unicorn -c config/unicorn.rb -E production -D}
+  task :stop, :roles => :app do
+    # Do nothing.
   end
 
-#                                                                     Stop task
-# ------------------------------------------------------------------------------
-  desc "Stop unicorn"
-  task :stop do
-    comment 'Stop Unicorn'
-    command %{test -s "#{deploy_to}/shared/pids/unicorn.pid" && kill -QUIT `cat "#{deploy_to}/shared/pids/unicorn.pid"` && rm -rf "#{deploy_to}/shared/pids/unicorn.pid" && echo "Stop Ok" || echo >&2 "Not running"}
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
   end
 
-#                                                                  Restart task
-# ------------------------------------------------------------------------------
-  desc "Restart unicorn using 'upgrade'"
-  task :restart => :environment do
-    invoke 'unicorn:stop'
-    invoke 'unicorn:start'
+  desc "Symlink shared resources on each release"
+  task :symlink_shared, :roles => :app do
+    %w{database settings.local}.each do |file|
+      run "ln -nfs #{shared_path}/config/#{file}.yml #{release_path}/config/#{file}.yml"
+    end
+
+    # link dirs in public/
+    %w{uploads}.each do |dir|
+      run "mkdir -p #{shared_path}/public/#{dir}"
+      run "ln -nfs #{shared_path}/public/#{dir} #{release_path}/public/#{dir}"
+    end
+  end
+
+  desc "Initialize configuration using example files provided in the distribution"
+  task :upload_config do
+    %w{config}.each do |dir|
+      run "mkdir -p #{shared_path}/#{dir}"
+    end
+
+    Dir["config/*.yml.example"].each do |file|
+      top.upload(File.expand_path(file), "#{shared_path}/config/#{File.basename(file, '.example')}")
+    end
+  end
+
+  desc 'Visit the app'
+  task :visit_web do
+    system "open #{app_url}"
   end
 end
-# For help in making your deploy script, see the Mina documentation:
-#
-#  - https://github.com/mina-deploy/mina/tree/master/docs
+
+after 'deploy:setup', 'deploy:upload_config'
+after 'deploy:update_code', 'deploy:symlink_shared'
+after 'deploy:restart', 'deploy:visit_web'
+after 'deploy:migrations', 'deploy:cleanup'
+
+set :keep_releases, 7 # number for keeping old releases
+after 'deploy', 'deploy:cleanup'
+
+namespace :db do
+  desc "Create db for current env"
+  task :create do
+    run "cd #{current_path}; bundle exec rake db:create RAILS_ENV=#{rails_env}"
+    puts 'could be able to run `cap deploy:migrate` now'
+  end
+
+  desc "Populates the Production Database"
+  task :seed do
+    puts "\n\n=== Populating the Production Database! ===\n\n"
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
+end
+
+# http://guides.rubyonrails.org/asset_pipeline.html#precompiling-assets
+# https://github.com/capistrano/capistrano/blob/master/lib/capistrano/recipes/deploy/assets.rb
+load 'deploy/assets' unless (ARGV.join == "deploy:update" || ARGV.last == 'deploy:update')
+# then we got these tasks:
+# cap deploy:assets:clean      # Run the asset clean rake task.
+# cap deploy:assets:precompile # Run the asset precompilation rake task.
+namespace :remote do
+  desc "Open the rails console on one of the remote servers"
+  task :console, :roles => :app do
+    hostname = find_servers_for_task(current_task).first
+    command = "cd #{current_path} && bundle exec rails console #{fetch(:rails_env)}"
+    if fetch(:rvm_ruby_string)
+      # set rvm shell and get ride of "'"
+      # https://github.com/wayneeseguin/rvm/blob/master/lib/rvm/capistrano.rb
+      rvm_shell = %{rvm_path=$HOME/.rvm $HOME/.rvm/bin/rvm-shell "#{fetch(:rvm_ruby_string)}"}
+      command = %{#{rvm_shell} -c "#{command}"}
+    else
+      command = %{source ~/.profile && "#{command}"}
+    end
+    exec %{ssh -l #{user} #{hostname} -t '#{command}'}
+  end
+
+  desc "run rake task. e.g.: `cap remote:rake db:version`"
+  task :rake do
+    ARGV.values_at(Range.new(ARGV.index('remote:rake')+1, -1)).each do |rake_task|
+      top.run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake #{rake_task}"
+    end
+    exit(0)
+  end
+
+  desc "run remote command. e.g.: `cap remote:run 'tail -n 10 log/production.log'`"
+  task :run do
+    command = ARGV.values_at(Range.new(ARGV.index('remote:run')+1, -1))
+    top.run "cd #{current_path}; RAILS_ENV=#{rails_env} #{command*' '}"
+    exit(0)
+  end
+
+  desc 'run specified rails code on server. e.g.: `cap remote:runner p User.all` or `cap remote:runner "User.all.each{ |u| p u }"`'
+  task :runner do
+    command=ARGV.values_at(Range.new(ARGV.index('remote:runner')+1,-1))
+    top.run "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec rails runner '#{command*' '}'"
+    exit(0)
+  end
+
+  desc "tail log on remote server"
+  task :tail_log do
+    top.run "tail -f #{current_path}/log/#{rails_env}.log" do |channel, stream, data|
+      puts "#{data}"
+      break if stream == :err
+    end
+    exit(0)
+  end
+end
+
+namespace :update do
+  desc "Dump remote database into tmp/, download file to local machine, import into local database"
+  task :database do
+    # config
+    remote_db_yml_path          = "#{shared_path}/config/database.yml"
+    remote_db_yml_on_local_path = "tmp/database_#{rails_env}.yml"
+
+    # First lets get the remote database config file so that we can read in the database settings
+    get remote_db_yml_path, remote_db_yml_on_local_path
+
+    # load the remote settings within the database file
+    remote_settings = YAML::load_file(remote_db_yml_on_local_path)[rails_env]
+
+    remote_sql_file_path        = "#{current_path}/tmp/#{rails_env}-#{remote_settings["database"]}-dump.sql"
+    remote_sql_gz_file_path     = "#{remote_sql_file_path}.gz"
+    local_sql_file_path         = "tmp/#{rails_env}-#{remote_settings["database"]}-#{Time.now.strftime("%Y-%m-%d_%H:%M:%S")}.sql"
+    local_sql_gz_file_path      = "#{local_sql_file_path}.gz"
+
+    # we also need the local settings so that we can import the fresh database properly
+    local_settings = YAML::load_file("config/database.yml")[rails_env]
+
+    # dump the remote database and store it in the current path's tmp directory.
+    run "mysqldump -u'#{remote_settings["username"]}' -p'#{remote_settings["password"]}' #{"-h '#{remote_settings["host"]}'" if remote_settings["host"]} '#{remote_settings["database"]}' > #{remote_sql_file_path}"
+
+    # gzip db
+    run "gzip -f #{remote_sql_file_path}"
+
+    # download gz file to local
+    get remote_sql_gz_file_path, local_sql_gz_file_path
+
+    # unzip sql
+    run_locally "gunzip #{local_sql_gz_file_path}"
+
+    # import db to local db
+    # may need to run `RAILS_ENV=production rake db:create` on local first
+    run_locally("mysql -u#{local_settings["username"]} #{"-p#{local_settings["password"]}" if local_settings["password"]} #{local_settings["database"]} < #{local_sql_file_path}")
+
+    # now that we have the upated production dump file we should use the local settings to import this db.
+  end
+
+  desc "Mirrors the remote shared public directory with your local copy, doesn't download symlinks"
+  task :shared_assets do
+    run_locally "if [ -e public/uploads ]; then mv public/uploads public/uploads_back; fi"
+    # using rsync so that it only copies what it needs
+    run_locally("rsync --recursive --times --rsh=ssh --compress --human-readable --progress #{user}@#{app_server}:#{shared_path}/system/ public/system/")
+
+    run_locally("rsync --recursive --times --rsh=ssh --compress --human-readable --progress #{user}@#{app_server}:#{shared_path}/public/uploads/ public/uploads/")
+  end
+
+  namespace :remote do
+    desc "update the remote database with the local database"
+    task :database do
+      input = ''
+      # STDOUT.puts "Are you SURE to update the databse of remote?(YES)"
+      # confirmation = STDIN.gets.chomp
+      confirmation = Capistrano::CLI.ui.ask("Are you SURE to update the databse of remote?(YES)")
+      abort "Interrupt.." unless confirmation == "YES"
+      # config database.yml on both sides
+      remote_db_yml_path          = "#{shared_path}/config/database.yml"
+      remote_db_yml_on_local_path = "tmp/database_#{rails_env}.yml"
+
+      # First get the local database config to remote
+      get remote_db_yml_path, remote_db_yml_on_local_path
+
+      # load the local settings within the database file
+      local_settings = YAML::load_file("config/database.yml")[rails_env]
+
+      # set the sql path on both sides
+      local_sql_file_path = "tmp/#{rails_env}-#{local_settings['database']}-dump.sql"
+      local_sql_gz_file_path = "#{local_sql_file_path}.gz"
+      remote_sql_file_path = "#{current_path}/tmp/#{rails_env}-#{local_settings['database']}-#{Time.now.strftime("%Y-%m-%d_%H:%M:%S")}.sql"
+      remote_sql_gz_file_path = "#{remote_sql_file_path}.gz"
+
+      # we also need the remote settings so that we can import the fresh dataabse properly
+      remote_settings = YAML::load_file(remote_db_yml_on_local_path)[rails_env]
+
+      # dump the local database and store it in the tmp dir
+      if local_settings['adapter'] == 'postgresql'
+        run_locally "PGPASSWORD='#{local_settings['password']}' pg_dump  -U #{local_settings["username"]} #{"-h '#{local_settings["host"]}'" if local_settings["host"]} -c -O '#{local_settings["database"]}' > #{local_sql_file_path}"
+      elsif local_settings['adapter'] == 'mysql2'
+        run_locally "mysqldump -u'#{local_settings["username"]}' #{"-p#{local_settings["password"]}" if local_settings["password"]} #{"-h '#{local_settings["host"]}'" if local_settings["host"]} '#{local_settings["database"]}' > #{local_sql_file_path}"
+      else
+        raise "not supports #{local_settings['adapter']}"
+      end
+
+      # gzip db
+      run_locally "gzip -f #{local_sql_file_path}"
+
+      # send the gz file to remote
+      upload local_sql_gz_file_path, remote_sql_gz_file_path
+
+      # unzip sql
+      run "gunzip #{remote_sql_gz_file_path}"
+
+      # import db to remote db
+      # may need to run `RAILS_ENV=production rake db:create` on remote first
+      if local_settings['adapter'] == 'postgresql'
+        run "PGPASSWORD='#{remote_settings['password']}' psql -U #{remote_settings['username']} -d #{remote_settings["database"]} -f #{remote_sql_file_path}"
+      elsif local_settings['adapter'] == 'mysql2'
+        run "mysql -u#{remote_settings["username"]} #{"-p#{remote_settings["password"]}" if remote_settings["password"]} #{remote_settings["database"]} < #{remote_sql_file_path}"
+      else
+        raise "not supports #{local_settings['adapter']}"
+      end
+
+      # now that we have the updated production dump file we should use the remote settings to import this db
+    end
+
+    desc "Mirrors the local shared public directory with the remote copy, doesn't download symlinks"
+    task :shared_assets do
+      run "cp -R #{shared_path}/system #{shared_path}/system_back"
+      run "cp -R #{shared_path}/public/uploads/ #{shared_path}/public/uploads_back"
+      run_locally("rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/system #{user}@#{app_server}:#{shared_path}/")
+      run_locally("rsync --recursive --times --rsh=ssh --compress --human-readable --progress public/uploads/ #{user}@#{app_server}:#{shared_path}/public/uploads")
+    end
+  end
+end
