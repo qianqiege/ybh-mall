@@ -25,7 +25,7 @@ class ServiceSpinebuild::ReservationController < ServiceSpinebuild::BaseControll
   end
 
   def show_spine
-    data = SpineBuild.where(rank_id:params[:work_id],workstation_id: params[:rank_id])
+    data = SpineBuild.where(rank_id:params[:rank_id],workstation_id: params[:work_id])
     render json: data, layout: nil
   end
 
