@@ -131,7 +131,7 @@ zh-CN:
         user: '绑定用户ID（手机号）'
         membership_card: '会员卡ID'
       scoin_record:
-        number: 'S币包类型'
+        scoin_type: 'S币包'
         state: '状态'
         scoin_account: 'S币账户'
       scoin_account:
@@ -156,8 +156,14 @@ zh-CN:
         y_coin: '易币'
         scoin_type: 'S币包'
         activity_rule: '活动ID'
+      scoin_type:
+        name: '包名称'
+        once: '一次性数量（第一天给的S币数量）'
+        everyday: '每一天给的数量'
+        count: '总计（估计数量）'
     models:
       product: "商品"
+      scoin_type: 'S币包'
       address: '收货地址'
       order: '订单'
       activity: '活动'
