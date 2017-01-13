@@ -27,7 +27,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 # Ruby wrapper for integrate Wechat Open Platform into Rails projects
 # https://github.com/lanrion/weixin_rails_middleware
 gem 'weixin_rails_middleware', '~> 1.3', '>= 1.3.2'
@@ -94,13 +93,13 @@ group :development do
 
   # Use Capistrano for deployment
   gem 'capistrano', "~> 2.15.5"
-  gem 'rvm-capistrano', '~> 1.4.1', :require => false
-  gem 'awesome_print'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'mina'
+gem 'mina-unicorn', :require => false
+gem 'unicorn'
 gem 'rails-i18n'
 gem 'china_sms'
 gem 'china_city'
