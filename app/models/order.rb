@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :wechat_user
+  belongs_to :user
   belongs_to :address
   belongs_to :activity
   has_many :line_items, -> { where in_cart: false }, dependent: :destroy
@@ -9,10 +10,12 @@ class Order < ApplicationRecord
 
   validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 1 }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
-  validates :wechat_user, :address, presence: true
+  validates :wechat_user, :user, :address, presence: true
   validates_uniqueness_of :number
 
+  before_validation :set_user
   before_create :generate_number
+
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
 
@@ -63,6 +66,12 @@ class Order < ApplicationRecord
       salt = rand(99999..999999)
       self.number = "#{Time.current.to_s(:number)}#{salt}"
     end while self.class.exists?(number: number)
+  end
+
+  # 订单应该绑定user_id，而不是wechat_user_id
+  # 暂时先保存，后续需去掉wechat_user_id
+  def set_user
+    self.user_id = wechat_user.user_id
   end
 
   def trade_name

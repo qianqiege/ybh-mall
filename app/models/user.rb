@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_one :member_record
   has_one :wechat_user
-  has_one :order
+  has_many :orders
   has_many :examine_records
 
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}

@@ -45,7 +45,12 @@ class Mall::OrdersController < Mall::BaseController
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
     # 3. 生成订单
-    @order = current_user.orders.new(address_id: params[:address_id], price: price, quantity: quantity)
+    @order = current_user.orders.new(
+      address_id: params[:address_id],
+      price: price,
+      quantity: quantity,
+      activity_id: params[:activity_id]
+    )
 
     if @order.save
       # 4. 清空购物车已生成订单的商品
@@ -68,6 +73,7 @@ class Mall::OrdersController < Mall::BaseController
     @all_line_item_count =  @line_items.sum { |line_item| line_item.quantity }
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
+    @activities = Activity.all
   end
 
   def pay

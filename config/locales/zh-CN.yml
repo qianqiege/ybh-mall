@@ -35,8 +35,9 @@ zh-CN:
       order:
         address: '收货地址'
         address_id: '收货地址'
-        wechat_user: '所属用户'
-        wechat_user_id: '所属用户'
+        wechat_user: '所属微信用户'
+        wechat_user_id: '所属微信用户'
+        user_id: '用户'
         price: '金额'
         quantity: '数量'
         status: '状态'

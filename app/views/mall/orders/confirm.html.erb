@@ -49,6 +49,18 @@
           <% end %>
         </ul>
       </div>
+
+      <div class="weui-cells">
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+              <label for="" class="weui-label">参与活动</label>
+          </div>
+          <div class="weui-cell__bd">
+            <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select" %>
+          </div>
+        </div>
+      </div>
+
       <div class="cart-fixed-ft">
         <a class="commit" id="confirm_order_btn">提交订单</a>
         <span class="mr15">共<%= @all_line_item_count %>件，合计：¥<span class="total" data-all_total_price="<%= money @total_price %>" id="total-price"><%= money @total_price %></span></span>
