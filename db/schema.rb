@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113063743) do
+ActiveRecord::Schema.define(version: 20170114061406) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -345,6 +345,7 @@ ActiveRecord::Schema.define(version: 20170113063743) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.decimal  "number",     precision: 10
+    t.integer  "order_id"
   end
 
   create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -353,15 +354,18 @@ ActiveRecord::Schema.define(version: 20170113063743) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "scoin_type_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
   end
 
   create_table "scoin_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.decimal  "once",       precision: 10
-    t.decimal  "everyday",   precision: 10
-    t.decimal  "count",      precision: 10
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.decimal  "once",        precision: 10
+    t.decimal  "everyday",    precision: 10
+    t.decimal  "count",       precision: 10
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.decimal  "limit_count", precision: 10
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

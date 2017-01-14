@@ -3,7 +3,7 @@ ActiveAdmin.register ScoinRecord do
   permit_params :state,:scoin_account_id,:scoin_type_id
 
   form(:html => { :multipart => true }) do |f|
-    f.inputs "预约记录" do
+    f.inputs "S币记录" do
       f.input :scoin_account
       f.input :state
       f.input :scoin_type
