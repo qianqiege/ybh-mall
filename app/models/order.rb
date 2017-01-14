@@ -6,6 +6,9 @@ class Order < ApplicationRecord
   has_many :line_items, -> { where in_cart: false }, dependent: :destroy
   has_many :return_requests
 
+  has_many :scoin_account_order_relations, dependent: :destroy
+  has_many :scoin_accounts, through: :scoin_account_order_relations, dependent: :destroy
+
   default_scope { order(id: :desc) }
 
   validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 1 }
@@ -15,7 +18,6 @@ class Order < ApplicationRecord
 
   before_validation :set_user
   before_create :generate_number
-
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
 

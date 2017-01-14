@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114115719) do
+ActiveRecord::Schema.define(version: 20170114121036) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -340,6 +340,13 @@ ActiveRecord::Schema.define(version: 20170114115719) do
     t.index ["order_id"], name: "index_return_requests_on_order_id", using: :btree
   end
 
+  create_table "scoin_account_order_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "order_id"
+    t.integer  "scoin_account_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "scoin_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "account"
     t.string   "password"
@@ -347,7 +354,6 @@ ActiveRecord::Schema.define(version: 20170114115719) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.decimal  "number",     precision: 10
-    t.integer  "order_id"
   end
 
   create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
