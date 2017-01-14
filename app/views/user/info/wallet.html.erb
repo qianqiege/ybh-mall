@@ -6,7 +6,9 @@
       <% @scoin_account.each do |account| %>
         <label class="weui-cell weui-check__label" for="x11">
             <div class="weui-cell__bd">
-                <p>账户：<%= account.account %></p>
+                <div>
+                  <div>账户：<%= account.account %><div style="float:right;"><%= account.number %></div></div>
+                </div>
             </div>
         </label>
       <% end %>
