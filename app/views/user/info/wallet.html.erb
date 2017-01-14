@@ -1,39 +1,41 @@
 <%= title '我的钱包' %>
 
-<% if !@scoin_account.nil? %>
-<div class="weui-cells__title">已拥有的S币账户：</div>
-<div class="weui-cells weui-cells_radio">
-    <% @scoin_account.each do |account| %>
-      <label class="weui-cell weui-check__label" for="x11">
-          <div class="weui-cell__bd">
-              <p>账户：<%= account.account %></p>
-          </div>
-      </label>
-    <% end %>
-  </div>
+<% if !@scoin_account.length == 0 %>
+  <div class="weui-cells__title">已拥有的S币账户：</div>
+  <div class="weui-cells weui-cells_radio">
+      <% @scoin_account.each do |account| %>
+        <label class="weui-cell weui-check__label" for="x11">
+            <div class="weui-cell__bd">
+                <p>账户：<%= account.account %></p>
+            </div>
+        </label>
+      <% end %>
+    </div>
 <% else %>
-<div class="weui-cells__title">已拥有的S币账户：</div>
-<div class="weui-cells weui-cells_radio">
+  <div class="weui-cells__title">已拥有的S币账户：</div>
+  <div class="weui-cells weui-cells_radio">
       <label class="weui-cell weui-check__label" for="x11">
           <div class="weui-cell__bd">
-              <p>S 币账户：未开户</p>
+            <p>账户：未拥有S币账户</p>
           </div>
       </label>
-  </div>
+    </div>
 <% end %>
 
-<% if !@wallet.number.nil? %>
-<div class="weui-cells__title">已拥有的S币余额：</div>
-<div class="weui-cells weui-cells_radio">
-      <label class="weui-cell weui-check__label" for="x11">
-          <div class="weui-cell__bd">
-              <div>S 币余额：<%= @wallet.number %></div>
-          </div>
-      </label>
-  </div>
+<% if !@wallet.nil? %>
+  <% if !@wallet.number.nil? %>
+    <div class="weui-cells__title">已拥有的S币余额：</div>
+    <div class="weui-cells weui-cells_radio">
+        <label class="weui-cell weui-check__label" for="x11">
+            <div class="weui-cell__bd">
+                <div>S 币余额：<%= @wallet.number %></div>
+            </div>
+        </label>
+    </div>
+  <% end %>
 <% else %>
-<div class="weui-cells__title">已拥有的S币余额：</div>
-<div class="weui-cells weui-cells_radio">
+  <div class="weui-cells__title">已拥有的S币余额：</div>
+  <div class="weui-cells weui-cells_radio">
       <label class="weui-cell weui-check__label" for="x11">
           <div class="weui-cell__bd">
               <div>S 币余额：0</div>
