@@ -9,6 +9,7 @@ class User::InfoController < Wechat::BaseController
     if !current_user.user_id.nil?
       @wallet = ScoinAccount.find_by(user_id: current_user.user_id)
       @yi_coin = User.find_by(id: current_user.user_id)
+      @scoin_account = ScoinAccount.where(user_id:current_user.user_id)
     end
   end
 

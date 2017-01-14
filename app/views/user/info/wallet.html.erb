@@ -1,12 +1,63 @@
 <%= title '我的钱包' %>
-<% if !@wallet.number.nil? %>
-  <div>S 币余额：<%= @wallet.number %></div>
+
+<% if !@scoin_account.nil? %>
+<div class="weui-cells__title">已拥有的S币账户：</div>
+<div class="weui-cells weui-cells_radio">
+    <% @scoin_account.each do |account| %>
+      <label class="weui-cell weui-check__label" for="x11">
+          <div class="weui-cell__bd">
+              <p>账户：<%= account.account %></p>
+          </div>
+      </label>
+    <% end %>
+  </div>
 <% else %>
-  <div>S 币余额：0</div>
+<div class="weui-cells__title">已拥有的S币账户：</div>
+<div class="weui-cells weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="x11">
+          <div class="weui-cell__bd">
+              <p>S 币账户：未开户</p>
+          </div>
+      </label>
+  </div>
+<% end %>
+
+<% if !@wallet.number.nil? %>
+<div class="weui-cells__title">已拥有的S币余额：</div>
+<div class="weui-cells weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="x11">
+          <div class="weui-cell__bd">
+              <div>S 币余额：<%= @wallet.number %></div>
+          </div>
+      </label>
+  </div>
+<% else %>
+<div class="weui-cells__title">已拥有的S币余额：</div>
+<div class="weui-cells weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="x11">
+          <div class="weui-cell__bd">
+              <div>S 币余额：0</div>
+          </div>
+      </label>
+  </div>
 <% end %>
 
 <% if !@yi_coin.y_coin.nil? %>
-  <div>易币余额：<%= @yi_coin.y_coin %></div>
+<div class="weui-cells__title">已拥有的易币余额：</div>
+<div class="weui-cells weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="x11">
+          <div class="weui-cell__bd">
+              <div>易币余额：<%= @yi_coin.y_coin %></div>
+          </div>
+      </label>
+  </div>
 <% else %>
-  <div>易币余额：0</div>
+<div class="weui-cells__title">已拥有的易币余额：</div>
+<div class="weui-cells weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="x11">
+          <div class="weui-cell__bd">
+              <div>易币余额：0</div>
+          </div>
+      </label>
+  </div>
 <% end %>
