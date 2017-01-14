@@ -10,6 +10,11 @@ class User::InfoController < Wechat::BaseController
       @wallet = ScoinAccount.find_by(user_id: current_user.user_id)
       @yi_coin = User.find_by(id: current_user.user_id)
       @scoin_account = ScoinAccount.where(user_id:current_user.user_id)
+      @money = ScoinAccount.where(user_id: current_user.user_id)
+      @sum = 0
+      @money.each do |m|
+        @sum = @sum + m.number
+      end
     end
   end
 

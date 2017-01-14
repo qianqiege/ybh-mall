@@ -1,6 +1,6 @@
 <%= title '我的钱包' %>
 
-<% if !@scoin_account.length == 0 %>
+<% if !@scoin_account[0].nil? %>
   <div class="weui-cells__title">已拥有的S币账户：</div>
   <div class="weui-cells weui-cells_radio">
       <% @scoin_account.each do |account| %>
@@ -22,17 +22,15 @@
     </div>
 <% end %>
 
-<% if !@wallet.nil? %>
-  <% if !@wallet.number.nil? %>
+<% if !@sum.nil? %>
     <div class="weui-cells__title">已拥有的S币余额：</div>
     <div class="weui-cells weui-cells_radio">
         <label class="weui-cell weui-check__label" for="x11">
             <div class="weui-cell__bd">
-                <div>S 币余额：<%= @wallet.number %></div>
+                <div>S 币余额：<%= @sum%></div>
             </div>
         </label>
     </div>
-  <% end %>
 <% else %>
   <div class="weui-cells__title">已拥有的S币余额：</div>
   <div class="weui-cells weui-cells_radio">
