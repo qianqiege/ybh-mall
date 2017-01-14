@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114102433) do
+ActiveRecord::Schema.define(version: 20170114115719) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(version: 20170114102433) do
 
   create_table "activity_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rule"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "activity_id"
-    t.decimal  "max",           precision: 10
-    t.decimal  "min",           precision: 10
+    t.decimal  "max",           precision: 10, scale: 2
+    t.decimal  "min",           precision: 10, scale: 2
     t.decimal  "y_coin",        precision: 10
     t.integer  "scoin_type_id"
   end
