@@ -79,6 +79,10 @@ gem 'rest-client', '~> 2.0'
 # https://github.com/javan/whenever
 gem 'whenever', '~> 0.9.7', :require => false
 
+# https://rubygems.org/gems/activeadmin_addons
+# Set of addons to help with the activeadmin ui
+gem 'activeadmin_addons', '~> 0.10.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
