@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :wechat_user
   belongs_to :address
+  belongs_to :activity
   has_many :line_items, -> { where in_cart: false }, dependent: :destroy
   has_many :return_requests
 
@@ -74,5 +75,9 @@ class Order < ApplicationRecord
 
   def human_state
     STATUS_TEXT[self.status.to_sym]
+  end
+
+  def name
+    number
   end
 end

@@ -1,11 +1,11 @@
 ActiveAdmin.register ActivityRule do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :rule,:activity_id,:max,:min,:y_coin,:scoin_type
+  permit_params :rule,:activity_id,:max,:min,:y_coin,:scoin_type_id
   index do
     selectable_column
     id_column
 
-    column :activity_id
+    column :activity
     column :rule
     column :max
     column :min

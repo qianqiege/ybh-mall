@@ -42,6 +42,7 @@ zh-CN:
         status: '状态'
         number: '编号'
         express_number: '货运单号'
+        activity: '参加活动'
       return_request:
         quantity: '提交数量'
         desc: '问题描述'
@@ -134,11 +135,14 @@ zh-CN:
         scoin_type: 'S币包'
         state: '状态'
         scoin_account: 'S币账户'
+        start_at: "开始时间"
+        end_at: "结束时间"
       scoin_account:
         user: '用户ID（选择身份证号码）'
         account: 'S币账户'
         password: '密码'
         number: 'S币数量'
+        order: '订单'
       slide:
         desc: '备注'
         image: '图片'
@@ -155,12 +159,13 @@ zh-CN:
         min: '最小值'
         y_coin: '易币'
         scoin_type: 'S币包'
-        activity_rule: '活动ID'
+        activity: '活动'
       scoin_type:
         name: '包名称'
         once: '一次性数量（第一天给的S币数量）'
         everyday: '每一天给的数量'
         count: '总计（估计数量）'
+        limit_count: '赠送包总量'
     models:
       product: "商品"
       scoin_type: 'S币包'

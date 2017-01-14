@@ -1,12 +1,13 @@
 ActiveAdmin.register ScoinRecord do
   menu parent: I18n.t("active_admin.menu.coin_manage")
-  permit_params :state,:scoin_account_id,:scoin_type_id
+  permit_params :state, :scoin_account_id, :scoin_type_id, :start_at, :end_at
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "S币记录" do
       f.input :scoin_account
-      f.input :state
       f.input :scoin_type
+      f.input :start_at, as: :datepicker
+      f.input :end_at, as: :datepicker
     end
     f.actions
   end
@@ -16,8 +17,9 @@ ActiveAdmin.register ScoinRecord do
     id_column
 
     column :scoin_account
-    column :state
     column :scoin_type
+    column :start_at
+    column :end_at
     actions
   end
 # See permitted parameters documentation:

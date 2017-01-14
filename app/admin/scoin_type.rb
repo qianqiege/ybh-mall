@@ -1,13 +1,13 @@
 ActiveAdmin.register ScoinType do
   menu parent: I18n.t("active_admin.menu.coin_manage")
-  permit_params :name,:once,:everyday,:count
+  permit_params :name,:once,:everyday,:count, :limit_count
 
   form(:html => { :multipart => true }) do |f|
-    f.inputs "预约记录" do
+    f.inputs "S币包" do
       f.input :name
       f.input :once
       f.input :everyday
-      f.input :count
+      f.input :limit_count
     end
     f.actions
   end
@@ -20,6 +20,7 @@ ActiveAdmin.register ScoinType do
     column :once
     column :everyday
     column :count
+    column :limit_count
     actions
   end
 # See permitted parameters documentation:

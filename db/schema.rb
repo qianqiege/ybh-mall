@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114061406) do
+ActiveRecord::Schema.define(version: 20170114082937) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 20170114061406) do
 
   create_table "activity_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rule"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "activity_id"
-    t.decimal  "max",         precision: 10
-    t.decimal  "min",         precision: 10
-    t.decimal  "y_coin",      precision: 10
-    t.string   "scoin_type"
+    t.decimal  "max",           precision: 10
+    t.decimal  "min",           precision: 10
+    t.decimal  "y_coin",        precision: 10
+    t.integer  "scoin_type_id"
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -263,6 +263,7 @@ ActiveRecord::Schema.define(version: 20170114061406) do
     t.decimal  "refund_price",   precision: 10, scale: 2
     t.string   "number"
     t.string   "express_number"
+    t.integer  "activity_id"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end

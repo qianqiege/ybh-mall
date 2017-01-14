@@ -1,7 +1,7 @@
 ActiveAdmin.register Order do
   menu parent: I18n.t("active_admin.menu.mall")
 
-  permit_params :status, :express_number
+  permit_params :status, :express_number, :activity_id
 
   actions :index, :show
 
@@ -49,6 +49,7 @@ ActiveAdmin.register Order do
     id_column
 
     column :wechat_user
+    column :activity
     column :price
     column :quantity
     column :number
@@ -90,6 +91,7 @@ ActiveAdmin.register Order do
         order.human_state
       end
       row :quantity
+      row :activity
       row :address
       row :express_number
     end
