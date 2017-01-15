@@ -83,6 +83,10 @@ gem 'whenever', '~> 0.9.7', :require => false
 # Set of addons to help with the activeadmin ui
 gem 'activeadmin_addons', '~> 0.10.1'
 
+# Track changes to your models' data. Good for auditing or versioning.
+# https://github.com/airblade/paper_trail/blob/4.0-stable/README.md
+gem 'paper_trail', '~> 4.0.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

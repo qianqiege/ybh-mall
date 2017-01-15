@@ -1,4 +1,6 @@
 class ScoinAccount < ApplicationRecord
+  has_paper_trail
+
   belongs_to :user
   has_many :scoin_account_order_relations, dependent: :destroy
   has_many :orders, through: :scoin_account_order_relations, dependent: :destroy

@@ -1,4 +1,5 @@
 class ActivityRule < ApplicationRecord
+  has_paper_trail
   belongs_to :activity
   belongs_to :scoin_type
 

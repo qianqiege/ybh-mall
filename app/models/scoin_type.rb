@@ -1,4 +1,5 @@
 class ScoinType < ApplicationRecord
+  has_paper_trail
   DEFAULT_CALCULATE_DAY = 365
 
   has_many :scoin_records

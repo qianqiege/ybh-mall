@@ -1,4 +1,5 @@
 class ScoinAccountOrderRelation < ApplicationRecord
+  has_paper_trail
   DEFAULT_CALCULATE_DAY = 365
 
   belongs_to :order

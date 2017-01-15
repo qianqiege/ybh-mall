@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :set_paper_trail_whodunnit
 
   def render_success(msg = nil, data = {})
     render :json => {
@@ -26,6 +27,10 @@ class ApplicationController < ActionController::Base
 
   def access_denied(exception)
     redirect_to '/admin/login', :alert => exception.message
+  end
+
+  def user_for_paper_trail
+    admin_user_signed_in? ? current_admin_user.try(:email) : 'Unknown user'
   end
 
   # ApiAuth.authentic?(signed_request, secrect_key)

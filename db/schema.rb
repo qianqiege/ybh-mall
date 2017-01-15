@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115050802) do
+ActiveRecord::Schema.define(version: 20170115071023) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -463,6 +463,16 @@ ActiveRecord::Schema.define(version: 20170115050802) do
     t.integer  "integral"
     t.integer  "scoin_account_id"
     t.decimal  "y_coin",           precision: 10
+  end
+
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "item_type",                     null: false
+    t.integer  "item_id",                       null: false
+    t.string   "event",                         null: false
+    t.string   "whodunnit"
+    t.text     "object",     limit: 4294967295
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
   create_table "vip_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
