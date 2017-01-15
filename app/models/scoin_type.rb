@@ -6,7 +6,7 @@ class ScoinType < ApplicationRecord
 
   before_validation :calculate_count
 
-  validates :name, :once, :everyday, :count, :limit_count, presence: true
+  validates :name, :once, :everyday, :count, :remain_count, presence: true
 
   def calculate_count
     self.count = once + everyday * 365

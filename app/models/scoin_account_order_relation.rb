@@ -18,8 +18,9 @@ class ScoinAccountOrderRelation < ApplicationRecord
     rules = order.activity.activity_rules.match_rules(order.price)
     scoin_records_attributes = []
     rules.map do |rule|
-      limit_count = rule.scoin_type.limit_count
-      if(limit_count > 0)
+      remain_count = rule.scoin_type.remain_count || 0
+      present_count = rule.scoin_type.present_count || 0
+      if(remain_count > 0)
         scoin_account.number ||= 0
         scoin_account.number += rule.scoin_type.once
         scoin_records_attributes << {
@@ -27,7 +28,7 @@ class ScoinAccountOrderRelation < ApplicationRecord
           start_at: 1.day.from_now,
           end_at: (DEFAULT_CALCULATE_DAY + 1).day.from_now
         }
-        rule.scoin_type.update_attributes(limit_count: (limit_count - 1))
+        rule.scoin_type.update_attributes(remain_count: (remain_count - 1), present_count: (present_count + 1))
       end
     end
     scoin_account.scoin_records_attributes = scoin_records_attributes
