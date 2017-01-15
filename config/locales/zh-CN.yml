@@ -166,7 +166,7 @@ zh-CN:
         once: '一次性数量（第一天给的S币数量）'
         everyday: '每一天给的数量'
         count: '总计（估计数量）'
-        limit_count: '赠送包总量'
+        limit_count: '赠送包剩余总量'
     models:
       product: "商品"
       scoin_type: 'S币包'
