@@ -79,6 +79,7 @@ Rails.application.routes.draw do
     get '/wallet_scoin', to: 'info#wallet_scoin'
     get '/record_home', to: 'info#record_home'
     get '/programs_home' ,to: 'info#programs_home'
+    get '/scoin_info',to: 'info#scoin_info'
   end
 
   namespace :examine do

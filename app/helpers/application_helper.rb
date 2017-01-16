@@ -23,4 +23,8 @@ module ApplicationHelper
   def spine_time(datetime)
     datetime.to_time.strftime('%Y-%m-%d %H:%M') unless datetime.nil?
   end
+
+  def date(datetime)
+    datetime.to_time.strftime('%Y-%m-%d') unless datetime.nil?
+  end
 end

@@ -1,18 +1,20 @@
-<%= title '我的钱包' %>
+<%= title '我的S币' %>
 
 <% if !@scoin_account[0].nil? %>
   <div class="weui-cells__title">已拥有的S币账户：</div>
   <div class="weui-cells weui-cells_radio">
       <% @scoin_account.each do |account| %>
-        <label class="weui-cell weui-check__label" for="x11">
-            <div class="weui-cell__bd">
-                <div>
-                  <div>账户：<%= account.account %><div style="float:right;"><%= account.number %></div></div>
-                </div>
-            </div>
-        </label>
+        <a class="weui-cell weui-cell_access", href="<%= user_scoin_info_path(account.id) %>">
+          <label class="weui-cell weui-check__label" for="x11">
+              <div class="weui-cell__bd">
+                  <div>
+                    <div>账户：<%= account.account %><div style="float:right;"><%= account.number %></div></div>
+                  </div>
+              </div>
+          </label>
+        </a>
       <% end %>
-    </div>
+  </div>
 <% else %>
   <div class="weui-cells__title">已拥有的S币账户：</div>
   <div class="weui-cells weui-cells_radio">

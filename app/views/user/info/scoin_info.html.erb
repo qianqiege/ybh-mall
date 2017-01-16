@@ -1,0 +1,32 @@
+<%= title '账户详细信息' %>
+<table class="table">
+    <thead>
+        <tr>
+            <td class="td">账户</td>
+            <td class="td">S币包</td>
+            <td class="td">结束时间</td>
+            <td class="td">目前收益</td>
+        </tr>
+    </thead>
+    <% if !@scoin_record.nil? %>
+      <tbody>
+        <% @scoin_record.each do |scoin| %>
+          <tr class="center">
+              <td class="td"><%= scoin.scoin_account.account %></td>
+              <td class="td"><%= scoin.scoin_type.name %></td>
+              <td class="td"><%= date scoin.end_at %></td>
+              <td class="td"></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <tbody>
+          <tr class="center">
+              <td class="td"></td>
+              <td class="td"></td>
+              <td class="td"></td>
+              <td class="td"></td>
+          </tr>
+      </tbody>
+    <% end %>
+</table>
