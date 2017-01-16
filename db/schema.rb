@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115071023) do
+ActiveRecord::Schema.define(version: 20170116105323) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20170115071023) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.integer  "activity_id"
-    t.decimal  "max",           precision: 10, scale: 2
-    t.decimal  "min",           precision: 10, scale: 2
+    t.decimal  "max",           precision: 10, scale: 3
+    t.decimal  "min",           precision: 10, scale: 3
     t.decimal  "y_coin",        precision: 10
     t.integer  "scoin_type_id"
   end
@@ -351,9 +351,9 @@ ActiveRecord::Schema.define(version: 20170115071023) do
     t.string   "account"
     t.string   "password"
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.decimal  "number",     precision: 10
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.decimal  "number",     precision: 10, scale: 1
   end
 
   create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -368,11 +368,11 @@ ActiveRecord::Schema.define(version: 20170115071023) do
 
   create_table "scoin_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.decimal  "once",          precision: 10
-    t.decimal  "everyday",      precision: 10
+    t.integer  "once"
+    t.decimal  "everyday",      precision: 10, scale: 1
     t.decimal  "count",         precision: 10
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.decimal  "remain_count",  precision: 10
     t.decimal  "present_count", precision: 10
   end
