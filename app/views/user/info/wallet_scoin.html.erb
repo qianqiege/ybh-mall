@@ -43,23 +43,3 @@
       </label>
   </div>
 <% end %>
-
-<% if !@yi_coin.y_coin.nil? %>
-<div class="weui-cells__title">已拥有的易币余额：</div>
-<div class="weui-cells weui-cells_radio">
-      <label class="weui-cell weui-check__label" for="x11">
-          <div class="weui-cell__bd">
-              <div>易币余额：<%= @yi_coin.y_coin %></div>
-          </div>
-      </label>
-  </div>
-<% else %>
-<div class="weui-cells__title">已拥有的易币余额：</div>
-<div class="weui-cells weui-cells_radio">
-      <label class="weui-cell weui-check__label" for="x11">
-          <div class="weui-cell__bd">
-              <div>易币余额：0</div>
-          </div>
-      </label>
-  </div>
-<% end %>

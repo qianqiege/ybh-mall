@@ -5,9 +5,8 @@ class User::InfoController < Wechat::BaseController
     @wechat_user = WechatUser.find(current_user)
   end
 
-  def wallet
+  def wallet_scoin
     if !current_user.user_id.nil?
-      @yi_coin = User.find_by(id: current_user.user_id)
       @scoin_account = ScoinAccount.where(user_id:current_user.user_id)
       @money = ScoinAccount.where(user_id: current_user.user_id)
       @sum = 0
