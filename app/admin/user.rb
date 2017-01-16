@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   menu parent: I18n.t("active_admin.menu.user_manage")
   permit_params :telphone,
+                :email,
                 :password,
                 :identity_card
   # See permitted parameters documentation:
@@ -19,6 +20,7 @@ ActiveAdmin.register User do
   form(:html => { :multipart => true }) do |f|
     f.inputs "档案" do
       f.input :telphone
+      f.input :email
       f.input :password
       f.input :identity_card
     end
