@@ -9,6 +9,11 @@
       <ul>
         <li class='clearfix'>
           <span class='line'>编号：<%= @order.number %></span>
+          <% if !@order.express_number.nil? %>
+            <span class='line'>快递单号：<%= @order.express_number %></span>
+          <% else %>
+            <span class='line'>快递单号：未发货</span>
+          <% end %>
           <span class='line'>状态：<%= @order.human_state %></span>
           <span class='line'>数量：<%= @order.quantity %></span>
           <span class='line'>总价：<%= money @order.price %>元</span>
