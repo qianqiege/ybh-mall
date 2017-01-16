@@ -20,6 +20,7 @@ ActiveAdmin.register ScoinRecord do
     column :scoin_type
     column :start_at
     column :end_at
+    column :created_at
     actions
   end
 # See permitted parameters documentation:

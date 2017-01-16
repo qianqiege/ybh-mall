@@ -138,6 +138,7 @@ zh-CN:
         scoin_account: 'S币账户'
         start_at: "开始时间"
         end_at: "结束时间"
+        created_at: "创建时间"
       scoin_account:
         user: '用户ID（选择身份证号码）'
         account: 'S币账户'
