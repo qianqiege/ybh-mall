@@ -20,6 +20,7 @@ class AdminAbility
       can :manage, ScoinRecord
       can :manage, ScoinType
       can :manage, Order
+      can :manage, ScoinAccountOrderRelation
     elsif user.role_name == 'activity_admin'
       can :manage, Activity
       can :manage, ActivityRule

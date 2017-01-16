@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :products, only: [:show]
     get 'authenticate_phone', to: 'authenticate#phone'
     post 'bind_phone', to: 'authenticate#bind_phone'
+    get 'activity', to: 'activity#home'
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
       put :remove, on: :member
