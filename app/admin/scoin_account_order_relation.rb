@@ -3,7 +3,7 @@ ActiveAdmin.register ScoinAccountOrderRelation do
   permit_params :order_id, :scoin_account_id
 
   collection_action :user_orders, method: :get do
-    user_id = ScoinAccount.find_by(params[:q][:scoin_account_id_eq]).try(:user_id)
+    user_id = ScoinAccount.find(params[:q][:scoin_account_id_eq]).try(:user_id)
     query = params[:q]
     query.delete(:scoin_account_id_eq)
     query[:user_id_eq] = user_id
