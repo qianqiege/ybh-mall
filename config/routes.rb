@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   mount WeixinRailsMiddleware::Engine, at: "/"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # NOTE： 这里的命名空间加上Wechat，本意是所有微信相关的，都放到这个命名空间下,但是后面好像用歪了
+  # 后续需要重构
   namespace :wechat do
     root "home#index"
     resources :setmeals
@@ -110,4 +113,12 @@ Rails.application.routes.draw do
   end
 
   root "wechat/home#index"
+
+  # 这里添加跟PC端相关路由
+  devise_for :users, :controllers => { :sessions => "web/sessions" }
+
+  namespace :web do
+    root "home#index"
+  end
+
 end

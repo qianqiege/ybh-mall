@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title><%= content_for?(:title) ? yield(:title) : "御邦商城" %></title>
+
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'web', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'web', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="flash">
+    <% flash.each do |type, msg| %>
+      <%= msg %>
+    <% end %>
+    </div>
+
+    <%= yield %>
+  </body>
+</html>
