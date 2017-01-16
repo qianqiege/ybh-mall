@@ -13,7 +13,7 @@ class ScoinAccountOrderRelation < ApplicationRecord
 
   # 绑定订单时
   # 1. 自动创建 scoin_records
-  # 2. 自动赠送第一天记录
+  # 2. 自动赠送开通送第一次  +  第一天的
   # 3. 包数量不足，不增加赠送S币记录
   def add_scoin_records
     rules = order.activity.activity_rules.match_rules(order.price)
@@ -23,11 +23,11 @@ class ScoinAccountOrderRelation < ApplicationRecord
       present_count = rule.scoin_type.present_count || 0
       if(remain_count > 0)
         scoin_account.number ||= 0
-        scoin_account.number += rule.scoin_type.once
+        scoin_account.number += (rule.scoin_type.once + rule.scoin_type.everyday)
         scoin_records_attributes << {
           scoin_type_id: rule.scoin_type_id,
           start_at: 1.day.from_now,
-          end_at: (DEFAULT_CALCULATE_DAY + 1).day.from_now
+          end_at: (DEFAULT_CALCULATE_DAY - 1).day.from_now
         }
         rule.scoin_type.update_attributes(remain_count: (remain_count - 1), present_count: (present_count + 1))
       end
