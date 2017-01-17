@@ -16,6 +16,10 @@ class ScoinAccountOrderRelation < ApplicationRecord
     if(order.activity.nil?)
       errors.add(:order_id, "该订单没参与任何活动")
     end
+
+    if(order.user_id != scoin_account.user_id)
+      errors.add(:order_id, "该订单不属于当前用户,无法绑定")
+    end
   end
 
   # 绑定订单时
