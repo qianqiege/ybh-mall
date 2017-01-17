@@ -2,7 +2,7 @@
 
 <div class='container border-gray-white'>
   <div class='fl index-activity'>
-    <%= form_tag confirm_web_orders_path, method: :get do %>
+    <%= form_tag web_orders_path do %>
       <ul class='tag'>
         <% @line_items.each do |line_item| %>
           <%= hidden_field "line_item_ids", "", value: line_item.id, id: "line_item_#{line_item.id}" %>
@@ -20,8 +20,11 @@
           </li>
         <% end %>
       </ul>
+      <div>
+        参与活动：<%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select" %>
+      </div>
       <% if !@line_items.blank? %>
-        <%= submit_tag "结算" %>
+        <%= submit_tag "提交订单" %>
       <% end %>
     <% end %>
   </div>

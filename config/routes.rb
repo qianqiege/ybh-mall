@@ -122,6 +122,8 @@ Rails.application.routes.draw do
     get 'mall', to: 'mall#index'
     resources :line_items, only: [:create, :destroy]
     resource :cart, only: [:show]
-    resources :orders, only: [:create]
+    resources :orders, only: [:create] do
+      get :confirm, on: :collection
+    end
   end
 end
