@@ -7,9 +7,16 @@ class ScoinAccountOrderRelation < ApplicationRecord
   validates :order_id, :scoin_account_id, presence: true
   validates :order_id , uniqueness: { scope: :scoin_account_id,
       message: "一个订单只能绑定一个用户,请不要重复绑定" }
+  before_validation :validate_order
   after_create :add_scoin_records
 
   private
+
+  def validate_order
+    if(order.activity.nil?)
+      errors.add(:order_id, "该订单没参与任何活动")
+    end
+  end
 
   # 绑定订单时
   # 1. 自动创建 scoin_records
