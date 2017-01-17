@@ -17,9 +17,10 @@ class ScoinAccount < ApplicationRecord
   # 计算每天需要自动赠送的S币
   def calculate_number
     scoin_records.includes(:scoin_type).ongoing.each do |record|
-      self.number += record.scoin_type.everyday
+      updated_number = self.number || 0
+      updated_number += record.scoin_type.everyday
     end
-    update_attributes(number: self.number)
+    update_attributes(number: updated_number)
   end
 
 end
