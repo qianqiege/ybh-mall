@@ -13,13 +13,15 @@ class Order < ApplicationRecord
 
   validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 1 }
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
-  validates :wechat_user, :user, :address, presence: true
+  # 暂时把address和wechat_user的验证去掉
+  validates :user, presence: true
   validates_uniqueness_of :number
 
   before_validation :set_user
   before_create :generate_number
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
+  PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
 
   include AASM
   aasm column: :status do
@@ -73,7 +75,7 @@ class Order < ApplicationRecord
   # 订单应该绑定user_id，而不是wechat_user_id
   # 暂时先保存，后续需去掉wechat_user_id
   def set_user
-    self.user_id = wechat_user.user_id
+    self.user_id = wechat_user.user_id if wechat_user.present?
   end
 
   def trade_name
@@ -86,6 +88,10 @@ class Order < ApplicationRecord
 
   def human_state
     STATUS_TEXT[self.status.to_sym]
+  end
+
+  def pay_type_state
+    PAY_TYPE_TEXT[self.pay_tp.to_s]
   end
 
   def name

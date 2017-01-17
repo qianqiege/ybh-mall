@@ -39,8 +39,6 @@ class Mall::LineItemsController < Mall::BaseController
     render 'carts_line_item.json.jbuilder'
   end
 
-
-
   private
 
   def set_line_item

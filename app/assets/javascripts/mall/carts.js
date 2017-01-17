@@ -107,11 +107,15 @@ $(function () {
     if ( radioEle.hasClass('setDef') ) {
       totalEle.text(totalEle.data('all_total_price'));
       allLineItemRadioEle.addClass('setDef');
-      allHiddenInputEle.val(allHiddenInputEle.data("line-item-id"));
+      allHiddenInputEle.each(function() {
+        $(this).val( $(this).data("line-item-id") );
+      })
     } else {
       totalEle.text("0.00");
       allLineItemRadioEle.removeClass('setDef');
-      allHiddenInputEle.val("");
+      allHiddenInputEle.each(function() {
+        $(this).val("");
+      })
     }
   })
 
@@ -121,14 +125,14 @@ $(function () {
         totalPriceEle = $("#total-price"),
         hiddenInputEle = $(this).parent().find(".line_item_hidden_input");
 
-    $(this).toggleClass('setDef');
-
     if ( $(this).hasClass('setDef') ) {
-      totalPriceEle.text( (totalPriceEle.text() - 0 + parseFloat(currentLineItemPriceVal)).formatMoney() );
-      hiddenInputEle.val(hiddenInputEle.data('current-line-item-price'));
-    } else {
+      $(this).removeClass('setDef');
       totalPriceEle.text( (totalPriceEle.text() - 0 - parseFloat(currentLineItemPriceVal)).formatMoney() );
       hiddenInputEle.val("");
+    } else {
+      $(this).addClass('setDef');
+      totalPriceEle.text( (totalPriceEle.text() - 0 + parseFloat(currentLineItemPriceVal)).formatMoney() );
+      hiddenInputEle.val(hiddenInputEle.data('current-line-item-price'));
     }
   })
 });

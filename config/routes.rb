@@ -119,6 +119,9 @@ Rails.application.routes.draw do
 
   namespace :web do
     root "home#index"
+    get 'mall', to: 'mall#index'
+    resources :line_items, only: [:create, :destroy]
+    resource :cart, only: [:show]
+    resources :orders, only: [:create]
   end
-
 end

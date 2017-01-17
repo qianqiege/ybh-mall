@@ -40,6 +40,17 @@ ActiveAdmin.register Order do
     end
   end
 
+  member_action :pay, method: :put do
+    if resource.may_pay?
+      resource.pay_tp = 1
+      resource.save!
+      resource.pay!
+      redirect_to :back, notice: "已设为线下支付!"
+    else
+      redirect_to :back, notice: "操作失败!"
+    end
+  end
+
   member_action :express_number, method: :get do
     render 'edit.html.arb', :layout => false
   end
@@ -54,12 +65,18 @@ ActiveAdmin.register Order do
     column :price
     column :quantity
     column :number
+    column '付款类型' do |order|
+      order.pay_type_state
+    end
     column :status do |order|
       order.human_state
     end
-    actions defaults: true, :only => [] do |order|
+    column '订单操作' do |order|
       span do
         link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+      end
+      span do
+        link_to '设为线下支付', pay_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
       end
       span do
         link_to '填写货运单号', express_number_admin_order_path(order, express_number: :yes), method: :get if order.wait_send?
@@ -68,6 +85,7 @@ ActiveAdmin.register Order do
         link_to '设为已收货', receive_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_confirm?
       end
     end
+    actions defaults: true
   end
 
   form(:html => { :multipart => true }) do |f|

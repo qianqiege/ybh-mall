@@ -1,0 +1,22 @@
+<div class="layout border-bottom bg-gray-white">
+  <div class="site-bar container">
+    <ul class="fl">
+      <li><a class="fun-homepage" href="javascript:;">设为首页</a></li>
+      <li class="spacer"></li>
+      <li><a class="fun-favorite" href="javascript:;">收藏本站</a></li>
+    </ul>
+    <ul class="fr">
+      <% if user_signed_in? %>
+        <li><a href="/"><%= current_user.email %></a></li>
+        <li class="spacer"></li>
+        <li><%= link_to('退出登录', destroy_user_session_path, :method => :delete) %></li>
+      <% else %>
+        <li><%= link_to('登录', new_session_path(:user)) %></li>
+        <li class="spacer"></li>
+        <li><%= link_to('注册', new_registration_path(:user)) %></li>
+      <% end %>
+      <li class="spacer"></li>
+      <li><a href="">我的订单</a></li>
+    </ul>
+  </div>
+</div>

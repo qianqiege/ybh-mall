@@ -1,0 +1,23 @@
+<%= render 'web/shared/topbar' %>
+
+<div class='container border-gray-white'>
+  <div class='fl index-activity'>
+    <ul class='tag'>
+      <% @products.each do |product| %>
+        <li class='index-pic'>
+          <div>
+            <a href="">
+              <%= image_tag product.image_url if product.image_url %>
+            </a>
+          </div>
+          <div class='title text-ellipsis'><%= product.name %></div>
+          <div class="price">￥<%= money product.now_product_price %></div>
+          <p><%= link_to '加入购物车', web_line_items_path(quantity: 1, product_id: product.id), method: 'post' %></p>
+        </li>
+      <% end %>
+    </ul>
+    <div>
+      <a href="<%= web_cart_path %>">购物车(<span><%= current_cart_count %></span>)</a>
+    </div>
+  </div>
+</div>
