@@ -1,5 +1,6 @@
 class Cart < ApplicationRecord
   belongs_to :wechat_user
+  belongs_to :user
   has_many :line_items, -> { where in_cart: true }
 
   def add_product(product, quantity)

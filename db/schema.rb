@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116121406) do
+ActiveRecord::Schema.define(version: 20170117114441) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 20170116121406) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "wechat_user_id"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
     t.index ["wechat_user_id"], name: "index_carts_on_wechat_user_id", using: :btree
   end
 
@@ -207,14 +209,6 @@ ActiveRecord::Schema.define(version: 20170116121406) do
     t.decimal  "price",                            precision: 10
   end
 
-  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "vip_type_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at",         null: false
@@ -265,6 +259,7 @@ ActiveRecord::Schema.define(version: 20170116121406) do
     t.string   "express_number"
     t.integer  "activity_id"
     t.integer  "user_id"
+    t.integer  "pay_tp",                                  default: 0
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
