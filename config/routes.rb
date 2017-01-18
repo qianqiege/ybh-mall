@@ -125,5 +125,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:create, :index] do
       get :confirm, on: :collection
     end
+    resources :addresses, only: [:new, :create]
   end
 end

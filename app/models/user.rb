@@ -8,14 +8,16 @@ class User < ApplicationRecord
   has_many :orders
   has_one :cart
   has_many :examine_records
+  has_many :addresses
 
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}
   validates :identity_card, uniqueness: true, presence: true, length: { is: 18 }
 
-  def name
-    identity_card
-    # 使telephone在active_admin中用作name来显示
-  end
+  # 已经有真实姓名了，暂时去掉
+  # def name
+  #   identity_card
+  #   # 使telephone在active_admin中用作name来显示
+  # end
 
   def discount
     MembershipCard.where(id: User.where(id: current_user.user_id)).take.discount
@@ -24,5 +26,15 @@ class User < ApplicationRecord
 
   def idcard
     User.find(current_user.user_id).take.identity_card
+  end
+
+  def recommend_address
+    if default_address = addresses.find_by(is_default: true)
+      default_address
+    elsif used_address = addresses.find_by(id: self.used_address_id)
+      used_address
+    else
+      addresses.last
+    end
   end
 end

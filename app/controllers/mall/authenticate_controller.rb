@@ -13,7 +13,7 @@ class Mall::AuthenticateController < Mall::BaseController
       if identity_card_user.present?
         current_user.update_user identity_card_user
       else
-        user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile])
+        user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile], name: params[:name])
         if user.save
           current_user.update_user user
         else

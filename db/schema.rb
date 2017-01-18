@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117114441) do
+ActiveRecord::Schema.define(version: 20170118084854) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20170117114441) do
     t.integer  "wechat_user_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
     t.index ["wechat_user_id"], name: "index_addresses_on_wechat_user_id", using: :btree
   end
 
@@ -467,6 +469,8 @@ ActiveRecord::Schema.define(version: 20170117114441) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "used_address_id"
+    t.string   "name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

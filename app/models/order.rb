@@ -19,6 +19,7 @@ class Order < ApplicationRecord
 
   before_validation :set_user
   before_create :generate_number
+  after_create :set_used_address
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
   PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
@@ -96,5 +97,16 @@ class Order < ApplicationRecord
 
   def name
     number
+  end
+
+  private
+
+  def set_used_address
+    self.user.used_address_id = self.address_id
+    self.user.save validate: false
+    if self.wechat_user.present?
+      self.wechat_user.used_address_id = self.address_id
+      self.wechat_user.save validate: false
+    end
   end
 end

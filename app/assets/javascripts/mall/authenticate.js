@@ -38,7 +38,9 @@ $(function () {
     var mobile = $.trim($("#txtCustomerID").val()).replace(/\s/g, ""),
         code = $.trim($("#txtValidatedCode").val()).replace(/\s/g, ""),
         identity_card = $.trim($("#identity_card").val()).replace(/\s/g, ""),
-        password = $.trim($("#password").val()).replace(/\s/g, "");
+        password = $.trim($("#password").val()).replace(/\s/g, ""),
+        name = $.trim($("#name").val()).replace(/\s/g, "");
+
 
     if (!validateMobile(mobile)) {
       showFlash("#toast-custom", '无效的手机号码');
@@ -57,6 +59,11 @@ $(function () {
 
     if(password == "") {
       showFlash("#toast-custom", '请输入密码');
+      return;
+    }
+
+    if(name == "") {
+      showFlash("#toast-custom", '请输入真实姓名');
       return;
     }
 

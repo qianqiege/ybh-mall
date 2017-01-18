@@ -65,6 +65,9 @@ ActiveAdmin.register Order do
     column :price
     column :quantity
     column :number
+    column "真实姓名" do |order|
+      order.user.try(:name)
+    end
     column '付款类型' do |order|
       order.pay_type_state
     end
