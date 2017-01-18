@@ -25,7 +25,7 @@ class ScoinAccountOrderRelation < ApplicationRecord
   # 绑定订单时
   # 1. 自动创建 scoin_records
   # 2. 自动赠送开通送第一次  +  第一天的
-  # 3. 包数量不足，不增加赠送S币记录
+  # 3. 包数量不足，不增加赠送S货币记录
   def add_scoin_records
     rules = order.activity.activity_rules.match_rules(order.price)
     scoin_records_attributes = []

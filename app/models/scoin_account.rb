@@ -14,7 +14,7 @@ class ScoinAccount < ApplicationRecord
     account
   end
 
-  # 计算每天需要自动赠送的S币
+  # 计算每天需要自动赠送的S货币
   def calculate_number
     scoin_records.includes(:scoin_type).ongoing.each do |record|
       self.number += record.scoin_type.everyday
