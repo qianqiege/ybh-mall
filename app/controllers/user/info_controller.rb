@@ -31,7 +31,9 @@ class User::InfoController < Wechat::BaseController
   end
 
   def scoin_info
-    @scoin_record = ScoinRecord.where(id: params[:format])
+    @id = params[:format]
+    @scoin_record = ScoinRecord.where(scoin_account_id: @id)
+    @scoin_account = ScoinAccount.find_by(id: @id)
   end
 
   def member_info
