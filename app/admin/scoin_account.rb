@@ -7,6 +7,7 @@ ActiveAdmin.register ScoinAccount do
       f.input :user
       f.input :account
       f.input :password
+      f.input :number
     end
     f.actions
   end

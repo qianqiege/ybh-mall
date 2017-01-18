@@ -5,13 +5,11 @@
   <div class="weui-cells weui-cells_radio">
       <% @scoin_account.each do |account| %>
         <a class="weui-cell weui-cell_access", href="<%= user_scoin_info_path(account.id) %>">
-          <label class="weui-cell weui-check__label" for="x11">
-              <div class="weui-cell__bd">
-                  <div>
-                    <div>账户：<%= account.account %><div style="float:right;"><%= account.number %></div></div>
-                  </div>
+          <div class="weui-cell__bd">
+              <div>
+                <div class="account">账户：<%= account.account %><div class="float-right"><%= account.number %></div></div>
               </div>
-          </label>
+          </div>
         </a>
       <% end %>
   </div>
