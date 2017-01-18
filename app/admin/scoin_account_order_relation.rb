@@ -11,7 +11,7 @@ ActiveAdmin.register ScoinAccountOrderRelation do
   end
 
   form do |f|
-    f.inputs "S币账户" do
+    f.inputs "S货币账户" do
       # f.input :order
       # f.input :scoin_account
       f.input :order_id, as: :nested_select,

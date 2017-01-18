@@ -3,7 +3,7 @@ ActiveAdmin.register ScoinAccount do
   permit_params :account, :password,:state,:user_id,:number, :order_id
 
   form do |f|
-    f.inputs "S币账户" do
+    f.inputs "S货币账户" do
       f.input :user
       f.input :account
       f.input :password
