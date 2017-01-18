@@ -36,7 +36,9 @@ $(function () {
     event.preventDefault();
 
     var mobile = $.trim($("#txtCustomerID").val()).replace(/\s/g, ""),
-        code = $.trim($("#txtValidatedCode").val()).replace(/\s/g, "");
+        code = $.trim($("#txtValidatedCode").val()).replace(/\s/g, ""),
+        identity_card = $.trim($("#identity_card").val()).replace(/\s/g, ""),
+        password = $.trim($("#password").val()).replace(/\s/g, "");
 
     if (!validateMobile(mobile)) {
       showFlash("#toast-custom", '无效的手机号码');
@@ -45,6 +47,16 @@ $(function () {
 
     if(!validateCode(code)) {
       showFlash("#toast-custom", '无效的验证码');
+      return;
+    }
+
+    if(!validateIdentityCard(identity_card)) {
+      showFlash("#toast-custom", '无效的身份证号码');
+      return;
+    }
+
+    if(password == "") {
+      showFlash("#toast-custom", '请输入密码');
       return;
     }
 

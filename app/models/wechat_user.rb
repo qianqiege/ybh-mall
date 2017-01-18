@@ -45,6 +45,10 @@ class WechatUser < ApplicationRecord
     self.update_attribute(:mobile, mobile)
   end
 
+  def update_user(user)
+    self.update_attribute(:user, user)
+  end
+
   def recommend_address
     if default_address = addresses.find_by(is_default: true)
       default_address

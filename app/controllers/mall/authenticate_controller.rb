@@ -9,7 +9,19 @@ class Mall::AuthenticateController < Mall::BaseController
   def bind_phone
     if sms_code_validate(params[:code], params[:mobile])
       current_user.update_mobile(params[:mobile])
-      # 绑定有折扣的会员vip
+      identity_card_user = User.find_by(identity_card: params[:identity_card])
+      if identity_card_user.present?
+        current_user.update_user identity_card_user
+      else
+        user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile])
+        if user.save
+          current_user.update_user user
+        else
+          flash[:notice] = '保存用户失败'
+          redirect_back fallback_location: mall_root_path
+          return
+        end
+      end
       redirect_to session[:return_to]
     else
       flash[:notice] = '验证码无效或过期, 请重新发送验证码'

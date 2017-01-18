@@ -2,6 +2,11 @@ class Web::OrdersController < Web::BaseController
   include CurrentCart
   before_action :set_cart, only: [:create]
 
+  def confirm
+    @line_items = current_cart.line_items.where(id: params[:line_item_ids])
+    @activities = Activity.all
+  end
+
   def create
     # 没有像微信端那样加上确定库存的，这个可以以后再加
     line_items = current_cart.line_items.where(id: params[:line_item_ids])
@@ -16,6 +21,7 @@ class Web::OrdersController < Web::BaseController
     @order = current_user.orders.new(
       price: price,
       quantity: quantity,
+      activity_id: params[:activity_id]
     )
 
     if @order.save
@@ -24,11 +30,11 @@ class Web::OrdersController < Web::BaseController
         line_item.move_to_order(@order.id)
       end
       flash['notice'] = '成功生成订单'
-      redirect_to '/web/cart'
+      redirect_to '/web/mall'
     else
       logger.info @order.errors.messages
       flash[:notice] = "生成订单失败"
-      redirect_to '/web/cart'
+      redirect_to '/web/mall'
     end
   end
 end

@@ -9,6 +9,16 @@
     return !!/[0-9]{6}/.test(text);
   }
 
+  // 验证身份证号码
+  this.validateIdentityCard = function (text) {
+    return !!/^([0-9]){7,18}(x|X)?$/.test(text);
+  }
+
+  // 验证密码 字母开头，长度在6~18之间，只能包含字母、数字和下划线
+  this.validatePassword = function (text) {
+    return !!/^[a-zA-Z]\w{5,17}$/.test(text);
+  }
+
   // 格式化金额
   Number.prototype.formatMoney = function(c, d, t){
     var n = this,
