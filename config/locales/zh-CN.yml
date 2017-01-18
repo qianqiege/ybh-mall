@@ -105,6 +105,8 @@ zh-CN:
       user:
         telphone: '手机号码（用于登陆）'
         y_coin: '易币'
+        identity_card: '身份证'
+        name: '真实姓名'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
