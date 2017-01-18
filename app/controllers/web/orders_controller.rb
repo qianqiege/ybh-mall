@@ -30,11 +30,11 @@ class Web::OrdersController < Web::BaseController
         line_item.move_to_order(@order.id)
       end
       flash['notice'] = '成功生成订单'
-      redirect_to '/web/cart'
+      redirect_to '/web/mall'
     else
       logger.info @order.errors.messages
       flash[:notice] = "生成订单失败"
-      redirect_to '/web/cart'
+      redirect_to '/web/mall'
     end
   end
 end
