@@ -5,7 +5,7 @@
 <div class='container border-gray-white'>
   <div class='fl index-activity'>
     <%= form_tag confirm_web_orders_path, method: :get do %>
-      <ul class='tag'>
+      <ul class='tag clearfix'>
         <% @line_items.each do |line_item| %>
           <%= hidden_field "line_item_ids", "", value: line_item.id, id: "line_item_#{line_item.id}" %>
           <li class='index-pic'>

@@ -3,7 +3,7 @@
 <div class='container border-gray-white'>
   <div class='fl index-activity'>
     <%= form_tag web_orders_path do %>
-      <ul class='tag'>
+      <ul class='tag clearfix'>
         <% @line_items.each do |line_item| %>
           <%= hidden_field "line_item_ids", "", value: line_item.id, id: "line_item_#{line_item.id}" %>
           <li class='index-pic'>
@@ -22,6 +22,13 @@
       </ul>
       <div>
         参与活动：<%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select" %>
+      </div>
+      <div>
+        <p>选择地址:</p>
+        <% @addresses.each do |address| %>
+          <p><input value="<%= address.id %>" "<%= current_user.recommend_address.id == address.id ? 'checked' : nil if current_user.recommend_address %>" type="radio" name='address_id'><%= address.display_detail %></p>
+        <% end %>
+        <p><%= link_to '添加地址', new_web_address_path %></p>
       </div>
       <% if !@line_items.blank? %>
         <%= submit_tag "提交订单" %>
