@@ -4,9 +4,10 @@
 
 <div class='container border-gray-white'>
   <div class='fl index-activity'>
-    <%= form_tag confirm_web_orders_path, method: :get do %>
+    <% @orders.each do |order| %>
+      <div><p><span>订单号: <%= order.number %> 状态: <%= order.human_state %></span></p></div>
       <ul class='tag'>
-        <% @line_items.each do |line_item| %>
+        <% order.line_items.each do |line_item| %>
           <%= hidden_field "line_item_ids", "", value: line_item.id, id: "line_item_#{line_item.id}" %>
           <li class='index-pic'>
             <div>
@@ -16,15 +17,13 @@
             </div>
             <div class='title text-ellipsis'><%= line_item.product.try(:name) %></div>
             <div class="price">￥<%= money line_item.product.now_product_price %></div>
-            <p><%= link_to '加入购物车', web_line_items_path(quantity: 1, product_id: line_item.product.id), method: 'post' %></p>
             <p>数量：<%= line_item.quantity %></p>
-            <%= link_to '删除', web_line_item_path(line_item), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-danger btn-xs' %>
           </li>
         <% end %>
       </ul>
-      <% if !@line_items.blank? %>
-        <%= submit_tag "结算" %>
-      <% end %>
+      <div class="order-total">
+        <p>共<%= order.quantity %>件，合计：¥<%= money order.price %></p>
+      </div>
     <% end %>
   </div>
 </div>

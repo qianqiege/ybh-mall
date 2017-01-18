@@ -2,6 +2,10 @@ class Web::OrdersController < Web::BaseController
   include CurrentCart
   before_action :set_cart, only: [:create]
 
+  def index
+    @orders = current_user.orders
+  end
+
   def confirm
     @line_items = current_cart.line_items.where(id: params[:line_item_ids])
     @activities = Activity.all
@@ -30,7 +34,7 @@ class Web::OrdersController < Web::BaseController
         line_item.move_to_order(@order.id)
       end
       flash['notice'] = '成功生成订单'
-      redirect_to '/web/mall'
+      redirect_to '/web/orders'
     else
       logger.info @order.errors.messages
       flash[:notice] = "生成订单失败"
