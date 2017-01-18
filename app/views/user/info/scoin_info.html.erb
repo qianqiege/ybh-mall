@@ -12,10 +12,13 @@
       <tbody>
         <% @scoin_record.each do |scoin| %>
           <tr class="center">
-              <td class="td" style="width: 30%"><%= scoin.scoin_type.name %></td>
-              <td class="td" style="width: 30%"><%= date scoin.start_at %></td>
-              <td class="td" style="width: 30%"><%= date scoin.end_at %></td>
-              <td class="td" style="width: 10%">0</td>
+              <td class="td" style="width: 27%"><%= scoin.scoin_type.name %></td>
+              <td class="td" style="width: 27%"><%= date scoin.start_at %></td>
+              <td class="td" style="width: 27%"><%= date scoin.end_at %></td>
+              <% @time = (Date.current - Date.parse(scoin.start_at.to_s)).to_i %>
+              <% @now_everyday = scoin.scoin_type.everyday * @time %>
+              <% @now_count = scoin.scoin_type.once + @now_everyday %>
+              <td class="td" style="width: 19%"><%= @now_count %></td>
           </tr>
         <% end %>
       </tbody>
