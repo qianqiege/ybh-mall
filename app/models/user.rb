@@ -12,10 +12,6 @@ class User < ApplicationRecord
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}
   validates :identity_card, uniqueness: true, presence: true, length: { is: 18 }
 
-  def name
-    identity_card
-    # 使telephone在active_admin中用作name来显示
-  end
 
   def discount
     MembershipCard.where(id: User.where(id: current_user.user_id)).take.discount
