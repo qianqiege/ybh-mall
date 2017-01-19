@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118084854) do
+ActiveRecord::Schema.define(version: 20170119071355) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -211,6 +211,14 @@ ActiveRecord::Schema.define(version: 20170118084854) do
     t.decimal  "price",                            precision: 10
   end
 
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at",         null: false
@@ -351,6 +359,8 @@ ActiveRecord::Schema.define(version: 20170118084854) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.decimal  "number",     precision: 10, scale: 1
+    t.string   "state"
+    t.decimal  "amount",     precision: 10, scale: 1
   end
 
   create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -367,7 +377,7 @@ ActiveRecord::Schema.define(version: 20170118084854) do
     t.string   "name"
     t.integer  "once"
     t.decimal  "everyday",      precision: 10, scale: 1
-    t.decimal  "count",         precision: 10
+    t.decimal  "count",         precision: 10, scale: 1
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.decimal  "remain_count",  precision: 10
