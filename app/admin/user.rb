@@ -18,6 +18,17 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
+  index do
+    selectable_column
+    id_column
+
+    column :telphone
+    column :email
+    column :identity_card
+    column :name
+    actions defaults: true
+  end
+
   form(:html => { :multipart => true }) do |f|
     f.inputs "档案" do
       f.input :name
@@ -25,6 +36,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :identity_card
+      f.input :name
     end
     f.actions
   end

@@ -105,8 +105,8 @@ zh-CN:
       user:
         telphone: '手机号码（用于登陆）'
         y_coin: '易币'
-        identity_card: '身份证号码'
-        name: '姓名'
+        identity_card: '身份证'
+        name: '真实姓名'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
@@ -147,7 +147,6 @@ zh-CN:
         password: '密码'
         number: 'S货币数量'
         order: '订单'
-        state: '状态（开户状态）'
       slide:
         desc: '备注'
         image: '图片'
