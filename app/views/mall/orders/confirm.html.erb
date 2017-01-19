@@ -53,10 +53,24 @@
       <div class="weui-cells">
         <div class="weui-cell weui-cell_select weui-cell_select-after">
           <div class="weui-cell__hd">
-              <label for="" class="weui-label">参与活动</label>
+            <label for="" class="weui-label">参与活动</label>
           </div>
           <div class="weui-cell__bd">
-            <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select" %>
+            <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "不参加活动" %>
+          </div>
+        </div>
+      </div>
+      <div class="weui-cells"  id="scoin_account">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label for="" class="weui-label">S币账号</label></div>
+          <div class="weui-cell__bd">
+            <%= text_field_tag 'account', '', class: "weui-input", placeholder: "输入S币账号" %>
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label for="" class="weui-label">S币密码</label></div>
+          <div class="weui-cell__bd">
+            <%= password_field_tag 'password', '', class: "weui-input", placeholder: "输入S币密码" %>
           </div>
         </div>
       </div>
