@@ -3,7 +3,8 @@ ActiveAdmin.register User do
   permit_params :telphone,
                 :email,
                 :password,
-                :identity_card
+                :identity_card,
+                :name
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -19,6 +20,7 @@ ActiveAdmin.register User do
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "档案" do
+      f.input :name
       f.input :telphone
       f.input :email
       f.input :password
@@ -26,4 +28,16 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
+  index do
+    selectable_column
+    id_column
+
+    column :name
+    column :telphone
+    column :identity_card
+    column :password
+    actions
+  end
+
 end
