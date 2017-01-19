@@ -5,30 +5,33 @@
             <td class="td">S货币包</td>
             <td class="td">开始时间</td>
             <td class="td">结束时间</td>
-            <td class="td" style="width: 10%">收益</td>
+            <td class="td">收益</td>
+            <td class="td">预计总收益</td>
         </tr>
     </thead>
     <% if !@scoin_record[0].nil? %>
       <tbody>
         <% @scoin_record.each do |scoin| %>
           <tr class="center">
-              <td class="td" style="width: 27%"><%= scoin.scoin_type.name %></td>
-              <td class="td" style="width: 27%"><%= date scoin.start_at %></td>
-              <td class="td" style="width: 27%"><%= date scoin.end_at %></td>
+              <td class="td" style="width: 20%"><%= scoin.scoin_type.name %></td>
+              <td class="td" style="width: 22%"><%= date scoin.start_at %></td>
+              <td class="td" style="width: 22%"><%= date scoin.end_at %></td>
               <% @time = (Date.current - Date.parse(scoin.start_at.to_s)).to_i %>
               <% @now_everyday = scoin.scoin_type.everyday * @time %>
               <% @now_count = scoin.scoin_type.once + @now_everyday %>
-              <td class="td" style="width: 19%"><%= @now_count %></td>
+              <td class="td" style="width: 16%"><%= @now_count %></td>
+              <td class="td" style="width: 20%"><%= scoin.scoin_type.count %></td>
           </tr>
         <% end %>
       </tbody>
     <% else %>
       <tbody>
           <tr class="center">
-              <td class="td" style="width: 30%" >null</td>
-              <td class="td" style="width: 30%" >null</td>
-              <td class="td" style="width: 30%" >null</td>
-              <td class="td" style="width: 10%" >0</td>
+              <td class="td" style="width: 20%" >null</td>
+              <td class="td" style="width: 22%" >null</td>
+              <td class="td" style="width: 22%" >null</td>
+              <td class="td" style="width: 16%" >0</td>
+              <td class="td" style="width: 20%" >0</td>
           </tr>
       </tbody>
     <% end %>

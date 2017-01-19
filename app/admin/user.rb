@@ -31,6 +31,7 @@ ActiveAdmin.register User do
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "档案" do
+      f.input :name
       f.input :telphone
       f.input :email
       f.input :password
@@ -39,4 +40,16 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
+  index do
+    selectable_column
+    id_column
+
+    column :name
+    column :telphone
+    column :identity_card
+    column :password
+    actions
+  end
+
 end

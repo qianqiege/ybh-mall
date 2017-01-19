@@ -8,7 +8,7 @@ class ScoinAccount < ApplicationRecord
   has_many :scoin_records, dependent: :destroy
   accepts_nested_attributes_for :scoin_records
 
-  validates :user_id, :account, presence: true
+  validates :user_id, :account, presence: true, uniqueness: true
 
   def name
     account
