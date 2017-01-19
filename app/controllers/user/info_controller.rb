@@ -8,11 +8,10 @@ class User::InfoController < Wechat::BaseController
   def wallet_scoin
     if !current_user.user_id.nil?
       @scoin_account = ScoinAccount.where(user_id:current_user.user_id)
-      @money = ScoinAccount.where(user_id: current_user.user_id)
       @sum = 0
-      @money.each do |m|
-        if !m.number.nil?
-          @sum = @sum + m.number
+      @scoin_account.each do |scoin|
+        if !scoin.number.nil?
+          @sum = @sum + scoin.number
         end
       end
     end

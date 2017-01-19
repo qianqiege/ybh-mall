@@ -46,8 +46,6 @@
 <% end %>
 </body>
 
-
-
   <div class="weui-cells__title">S货币账户详细信息：</div>
   <table class="table">
       <thead>
@@ -56,7 +54,7 @@
               <td class="td">状态</td>
               <td class="td">数量</td>
               <td class="td">开户时间</td>
-              <td class="td">拥有者</td>
+              <td class="td">预计总收益</td>
           </tr>
       </thead>
       <% if !@scoin_account[0].nil? %>
@@ -67,19 +65,18 @@
                 <td class="td" style="width: 15%"><%= account.state %></td>
                 <td class="td" style="width: 10%"><%= account.number %></td>
                 <td class="td" style="width: 20%"><%= date account.created_at %></td>
-                <td class="td" style="width: 18%"><%= account.user.name %></td>
-
+                <td class="td" style="width: 18%"><%= account.amount %></td>
             </tr>
           <% end %>
         </tbody>
       <% else %>
         <tbody>
             <tr class="center">
+                <td class="td" style="width: 26%" >null</td>
+                <td class="td" style="width: 15%" >null</td>
+                <td class="td" style="width: 10%" >null</td>
                 <td class="td" style="width: 20%" >null</td>
-                <td class="td" style="width: 22%" >null</td>
-                <td class="td" style="width: 22%" >null</td>
-                <td class="td" style="width: 16%" >0</td>
-                <td class="td" style="width: 20%" >0</td>
+                <td class="td" style="width: 18%" >null</td>
             </tr>
         </tbody>
       <% end %>
