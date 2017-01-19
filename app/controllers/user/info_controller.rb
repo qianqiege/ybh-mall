@@ -9,11 +9,19 @@ class User::InfoController < Wechat::BaseController
     if !current_user.user_id.nil?
       @scoin_account = ScoinAccount.where(user_id:current_user.user_id)
       @sum = 0
+      @count = 0
       @scoin_account.each do |scoin|
         if !scoin.number.nil?
           @sum = @sum + scoin.number
         end
+        if !scoin.id.nil?
+          @scoin_type = ScoinType.where(id: ScoinRecord.where(scoin_account_id: scoin.id).pluck(:scoin_type_id))
+          @scoin_type.each do |type|
+            @count = @count + type.count
+          end
+        end
       end
+      ap @count
     end
   end
 
