@@ -8,14 +8,21 @@ class Mall::AuthenticateController < Mall::BaseController
 
   def bind_phone
     if sms_code_validate(params[:code], params[:mobile])
-      current_user.update_mobile(params[:mobile])
-      identity_card_user = User.find_by(identity_card: params[:identity_card], telphone: params[:mobile])
-      if identity_card_user.present?
-        current_user.update_user identity_card_user
+      user = User.where(identity_card: params[:identity_card]).or(User.where(telphone: params[:mobile])).first
+      if user.present?
+        if user.binding_wechat_user?
+          flash[:notice] = '此手机号或身份证号被某个微信号绑定过，需要先解绑'
+          redirect_back fallback_location: mall_root_path
+          return
+        else
+          current_user.update_user user
+          current_user.update_mobile(params[:mobile])
+        end
       else
         user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile], name: params[:name])
         if user.save
           current_user.update_user user
+          current_user.update_mobile(params[:mobile])
         else
           flash[:notice] = '保存用户失败'
           redirect_back fallback_location: mall_root_path
