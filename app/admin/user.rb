@@ -36,7 +36,6 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :identity_card
-      f.input :name
     end
     f.actions
   end
