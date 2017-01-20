@@ -28,4 +28,5 @@
  *= require home/home
  *= require_self
  *= require evaluate/mellitus
+ *= require mall/confirm
  */

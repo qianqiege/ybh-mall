@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  attr_accessor :account, :password
+
   belongs_to :wechat_user
   belongs_to :user
   belongs_to :address
@@ -19,7 +21,7 @@ class Order < ApplicationRecord
 
   before_validation :set_user
   before_create :generate_number
-  after_create :set_used_address
+  after_create :set_used_address, :create_scoin_account
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
   PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
@@ -107,6 +109,20 @@ class Order < ApplicationRecord
     if self.wechat_user.present?
       self.wechat_user.used_address_id = self.address_id
       self.wechat_user.save validate: false
+    end
+  end
+
+  def create_scoin_account
+    begin
+      s_account = ScoinAccount.find_by(account: account)
+      if s_account.nil?
+        s_account = ScoinAccount.create!(account: account, password: password, user_id: user_id)
+      end
+
+      ScoinAccountOrderRelation.create!(order: self, scoin_account: s_account)
+    rescue ActiveRecord::ActiveRecordError => e
+      errors.add(:user_id, e.message)
+      raise ActiveRecord::Rollback
     end
   end
 end

@@ -8,7 +8,20 @@ class ScoinAccountOrderRelation < ApplicationRecord
   validates :order_id , uniqueness: { scope: :scoin_account_id,
       message: "一个订单只能绑定一个用户,请不要重复绑定" }
   before_validation :validate_order
-  after_create :add_scoin_records
+  # after_create :add_scoin_records
+
+  include AASM
+  aasm column: :status do
+    state :pending, initial: true
+    state :finished
+
+    event :done do
+      transitions from: :pending, to: :finished
+      after do
+        add_scoin_records
+      end
+    end
+  end
 
   private
 
