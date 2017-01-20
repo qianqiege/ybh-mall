@@ -9,7 +9,7 @@ class Mall::AuthenticateController < Mall::BaseController
   def bind_phone
     if sms_code_validate(params[:code], params[:mobile])
       current_user.update_mobile(params[:mobile])
-      identity_card_user = User.find_by(identity_card: params[:identity_card])
+      identity_card_user = User.find_by(identity_card: params[:identity_card], telphone: params[:mobile])
       if identity_card_user.present?
         current_user.update_user identity_card_user
       else
