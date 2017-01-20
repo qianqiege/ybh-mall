@@ -11,6 +11,16 @@ ActiveAdmin.register Activity do
     f.actions
   end
 
+  member_action :set_default, method: :put do
+    Activity.update_all is_default: false
+    resource.is_default = true
+    if resource.save
+      redirect_to :back, notice: "已设为默认活动!"
+    else
+      redirect_to :back, notice: "操作失败!"
+    end
+  end
+
   index do
     selectable_column
     id_column
@@ -18,7 +28,12 @@ ActiveAdmin.register Activity do
     column :name
     column :start_time
     column :stop_time
-    actions
+    column :is_default
+    actions do |activity|
+      span do
+        link_to '设为默认活动', set_default_admin_activity_path(activity), method: :put, data: { confirm: 'Are you sure?' } unless activity.is_default
+      end
+    end
   end
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
