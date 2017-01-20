@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     end
     resources :return_requests, only: [:new, :create]
     get 'my', to: 'my#home'
+    post 'my/unbinding_wechat_user/:id', to: 'my#unbinding_wechat_user'
   end
 
   namespace :service do
