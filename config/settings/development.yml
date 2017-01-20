@@ -1,5 +1,6 @@
 sms_password: '575bf5a52d5e2d4a9d6957d2245c30c8'
 sms_tpl_id: 1628154
+scoin_account_tpl_id: 1698562
 weixin:
   api_id: wxe96e65edf5433086
   api_secret: f66087db281933b1a7aa737535532a2f
