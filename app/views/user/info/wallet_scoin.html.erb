@@ -1,9 +1,9 @@
 <%= title '我的S货币' %>
 
 <body class="size15">
-<% if !@scoin_account.length == 0 %>
+<% if @scoin_account.length == 1 %>
   <div class="weui-cells__title">S货币账户：</div>
-  <% byebug %>
+
   <div class="weui-cells weui-cells_radio size15">
       <% @scoin_account.each do |account| %>
         <% if !account.nil? %>
@@ -60,7 +60,7 @@
               <td class="td">预计总收益</td>
           </tr>
       </thead>
-      <% if !@scoin_account.length == 0 %>
+      <% if @scoin_account.length == 1 %>
         <tbody>
           <% @scoin_account.each do |account| %>
             <% if !account.nil? %>
