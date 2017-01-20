@@ -41,14 +41,37 @@
 
 .td{
   border:solid #add9c0;
-   border-width:0px 1px 1px 0px;
-    padding:10px 0px;
+  border-width:0px 1px 1px 0px;
+  padding:10px 0px;
+  font-size: 10px;
   }
+
 .table{
   border:solid #add9c0;
-   border-width:1px 0px 0px 1px;
+  border-width:1px 0px 0px 1px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
  }
 
  .center{
    text-align: center;
  }
+
+ .float-right{
+   text-align: right;
+   float: right;
+ }
+
+ .account{
+   text-align: left;
+ }
+
+ .size15{
+   font-size: 15px;
+ }
+
+.p_count{
+  font-size: 8px;
+  color: red;
+}

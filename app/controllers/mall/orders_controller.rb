@@ -36,6 +36,12 @@ class Mall::OrdersController < Mall::BaseController
       return
     end
 
+    if params[:activity_id].present? && (params[:account].empty? || params[:password].empty?)
+      flash[:error] = '参加活动，必须填写S币账号和密码'
+      redirect_to confirm_mall_orders_path
+      return
+    end
+
     line_items = current_cart.line_items.where(id: session[:line_item_ids])
 
     # 去掉库存为0的商品
@@ -49,7 +55,9 @@ class Mall::OrdersController < Mall::BaseController
       address_id: params[:address_id],
       price: price,
       quantity: quantity,
-      activity_id: params[:activity_id]
+      activity_id: params[:activity_id],
+      account: params[:account],
+      password: params[:password]
     )
 
     if @order.save
@@ -63,7 +71,7 @@ class Mall::OrdersController < Mall::BaseController
       redirect_to pay_mall_order_path(@order)
     else
       logger.info @order.errors.messages
-      flash[:success] = "生成订单失败"
+      flash[:success] = @order.errors.messages.values.join(",")
       redirect_to confirm_mall_orders_path(address_id: params[:address_id])
     end
   end

@@ -1,47 +1,89 @@
-<%= title '我的S币' %>
+<%= title '我的S货币' %>
 
-<% if !@scoin_account[0].nil? %>
-  <div class="weui-cells__title">已拥有的S币账户：</div>
-  <div class="weui-cells weui-cells_radio">
+<body class="size15">
+<% if @scoin_account.length == 1 %>
+  <div class="weui-cells__title">S货币账户：</div>
+
+  <div class="weui-cells weui-cells_radio size15">
       <% @scoin_account.each do |account| %>
-        <a class="weui-cell weui-cell_access", href="<%= user_scoin_info_path(account.id) %>">
-          <label class="weui-cell weui-check__label" for="x11">
-              <div class="weui-cell__bd">
-                  <div>
-                    <div>账户：<%= account.account %><div style="float:right;"><%= account.number %></div></div>
-                  </div>
-              </div>
-          </label>
-        </a>
+        <% if !account.nil? %>
+          <a class="weui-cell weui-cell_access", href="<%= user_scoin_info_path(account.id) %>">
+            <div class="weui-cell__bd">
+                <div>
+                  <div class="account">账户：<%= account.account %></div>
+                </div>
+            </div>
+          </a>
+        <% end %>
       <% end %>
   </div>
 <% else %>
-  <div class="weui-cells__title">已拥有的S币账户：</div>
+  <div class="weui-cells__title">S货币账户：</div>
   <div class="weui-cells weui-cells_radio">
       <label class="weui-cell weui-check__label" for="x11">
           <div class="weui-cell__bd">
-            <p>账户：未拥有S币账户</p>
+            <p>账户：未拥有S货币账户</p>
           </div>
       </label>
     </div>
 <% end %>
 
 <% if !@sum.nil? %>
-    <div class="weui-cells__title">已拥有的S币余额：</div>
-    <div class="weui-cells weui-cells_radio">
+    <div class="weui-cells__title">S货币余额：</div>
+    <div class="weui-cells weui-cells_radio size15">
         <label class="weui-cell weui-check__label" for="x11">
             <div class="weui-cell__bd">
-                <div>S 币余额：<%= @sum%></div>
+                <div>S货币余额：<%= @sum%></div>
+                <p class="p_count">提示：此余额为参与御易健商城活动赠送的S货币余额</p>
             </div>
         </label>
     </div>
 <% else %>
-  <div class="weui-cells__title">已拥有的S币余额：</div>
+  <div class="weui-cells__title">已拥有的S货币余额：</div>
   <div class="weui-cells weui-cells_radio">
       <label class="weui-cell weui-check__label" for="x11">
           <div class="weui-cell__bd">
-              <div>S 币余额：0</div>
+              <div>S货币余额：0</div>
           </div>
       </label>
   </div>
 <% end %>
+</body>
+
+  <div class="weui-cells__title">S货币账户详细信息：</div>
+  <table class="table">
+      <thead>
+          <tr>
+              <td class="td">账户</td>
+              <td class="td">状态</td>
+              <td class="td">数量</td>
+              <td class="td">开户时间</td>
+              <td class="td">预计总收益</td>
+          </tr>
+      </thead>
+      <% if @scoin_account.length == 1 %>
+        <tbody>
+          <% @scoin_account.each do |account| %>
+            <% if !account.nil? %>
+              <tr class="center">
+                  <td class="td" style="width: 26%"><%= account.account %></td>
+                  <td class="td" style="width: 15%"><%= account.state %></td>
+                  <td class="td" style="width: 10%"><%= account.number %></td>
+                  <td class="td" style="width: 20%"><%= date account.created_at %></td>
+                  <td class="td" style="width: 18%"><%= @count %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      <% else %>
+        <tbody>
+            <tr class="center">
+                <td class="td" style="width: 26%" >null</td>
+                <td class="td" style="width: 15%" >null</td>
+                <td class="td" style="width: 10%" >null</td>
+                <td class="td" style="width: 20%" >null</td>
+                <td class="td" style="width: 18%" >null</td>
+            </tr>
+        </tbody>
+      <% end %>
+  </table>

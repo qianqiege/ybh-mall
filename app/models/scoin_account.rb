@@ -8,13 +8,13 @@ class ScoinAccount < ApplicationRecord
   has_many :scoin_records, dependent: :destroy
   accepts_nested_attributes_for :scoin_records
 
-  validates :user_id, :account, presence: true
+  validates :user_id, :account, presence: true, uniqueness: true
 
   def name
     account
   end
 
-  # 计算每天需要自动赠送的S币
+  # 计算每天需要自动赠送的S货币
   def calculate_number
     scoin_records.includes(:scoin_type).ongoing.each do |record|
       self.number += record.scoin_type.everyday

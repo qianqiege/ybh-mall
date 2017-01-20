@@ -9,7 +9,7 @@ class AdminUser < ApplicationRecord
                     db: '仓库管理员',
                     spinebuild:'筑脊部管理员',
                     mall:'商城管理员',
-                    scoin_admin:'S币管理员',
+                    scoin_admin:'S货币管理员',
                     activity_admin:'活动管理员'}.freeze
 
   def role_name_label

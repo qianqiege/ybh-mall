@@ -7,14 +7,42 @@ class ScoinAccountOrderRelation < ApplicationRecord
   validates :order_id, :scoin_account_id, presence: true
   validates :order_id , uniqueness: { scope: :scoin_account_id,
       message: "一个订单只能绑定一个用户,请不要重复绑定" }
-  after_create :add_scoin_records
+  before_validation :validate_order
+  # after_create :add_scoin_records
+
+  include AASM
+  aasm column: :status do
+    state :pending, initial: true
+    state :finished
+
+    event :done do
+      transitions from: :pending, to: :finished
+      after do
+        add_scoin_records
+      end
+    end
+  end
+
+  def user_name
+    order.user.name
+  end
 
   private
+
+  def validate_order
+    if(order.activity.nil?)
+      errors.add(:order_id, "该订单没参与任何活动")
+    end
+
+    if(order.user_id != scoin_account.user_id)
+      errors.add(:order_id, "该订单不属于当前用户,无法绑定")
+    end
+  end
 
   # 绑定订单时
   # 1. 自动创建 scoin_records
   # 2. 自动赠送开通送第一次  +  第一天的
-  # 3. 包数量不足，不增加赠送S币记录
+  # 3. 包数量不足，不增加赠送S货币记录
   def add_scoin_records
     rules = order.activity.activity_rules.match_rules(order.price)
     scoin_records_attributes = []

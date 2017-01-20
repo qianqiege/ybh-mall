@@ -121,6 +121,7 @@ Rails.application.routes.draw do
   namespace :web do
     root "home#index"
     get 'mall', to: 'mall#index'
+    get 'scoin', to: 'scoin#home'
     resources :line_items, only: [:create, :destroy]
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index] do
