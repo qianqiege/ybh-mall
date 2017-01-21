@@ -11,24 +11,24 @@ weixin:
   menu:
     button:
     - type: "view"
-      name: "御邦会"
+      name: "御易健"
       sub_button:
         - type: "view"
           name: "首页"
           url: "http://ybhm.ybyt.cc/wechat"
         - type: "view"
-          name: "我的"
-          url: "http://ybhm.ybyt.cc/user"
-    - name: "商城"
+          name: "服务首页"
+          url: "http://ybhm.ybyt.cc/service"
+    - name: "御易健商城"
       sub_button:
         - type: "view"
           name: "商城首页"
           url: "http://ybhm.ybyt.cc/mall"
-    - name: "服务"
+    - name: "我的"
       sub_button:
         - type: "view"
-          name: "服务首页"
-          url: "http://ybhm.ybyt.cc/service"
+          name: "我的"
+          url: "http://ybhm.ybyt.cc/user"
         - type: "view"
           name: "健康检测"
           url: "http://ybhm.ybyt.cc/examine/home"
