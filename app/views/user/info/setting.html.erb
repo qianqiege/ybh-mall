@@ -1,0 +1,54 @@
+<%= title '我的信息' %>
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel__bd">
+    <a href="<%= user_w_info_path %>" class="weui-media-box weui-media-box_appmsg">
+      <div class="weui-media-box__hd">
+        <% if !@wechat_user.nil? %>
+          <img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb",>
+        <% else %>
+          <%= image_tag "ybyt04.png" ,class:"weui-media-box__thumb" ,size: "50x55" %>
+        <% end %>
+      </div>
+      <div class="weui-media-box__bd">
+        <h4 class="weui-media-box__title">
+          <% if !@wechat_user.nil?%>
+            <%= @wechat_user.nickname %>
+          <% else %>
+            御邦医通
+          <% end %>
+        </h4>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">我的信息</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+
+          <div class="weui-form-preview">
+            <div class="weui-form-preview__bd">
+              <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">手机号码</label>
+                <span class="weui-form-preview__value"><%= @wechat_user.mobile %></span>
+              </div>
+              <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">身份证号码</label>
+                <span class="weui-form-preview__value"><%= @wechat_user.user.try(:identity_card) %></span>
+              </div>
+            </div>
+            <div class="weui-form-preview__ft">
+              <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

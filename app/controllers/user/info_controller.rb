@@ -5,6 +5,14 @@ class User::InfoController < Wechat::BaseController
     @wechat_user = WechatUser.find(current_user)
   end
 
+  def setting
+    if !(current_user.mobile.present? && current_user.user.present?)
+      redirect_to '/user/binding'
+      return
+    end
+    @wechat_user = WechatUser.find(current_user)
+  end
+
   def wallet_scoin
     if !current_user.user_id.nil?
       @scoin_account = ScoinAccount.where(user_id:current_user.user_id)

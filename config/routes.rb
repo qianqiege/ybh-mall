@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     get '/record_home', to: 'info#record_home'
     get '/programs_home' ,to: 'info#programs_home'
     get '/scoin_info',to: 'info#scoin_info'
+    get '/setting', to: 'info#setting'
   end
 
   namespace :examine do
