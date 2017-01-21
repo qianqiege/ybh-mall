@@ -23,6 +23,10 @@ class ScoinAccountOrderRelation < ApplicationRecord
     end
   end
 
+  def user_name
+    order.user.name
+  end
+
   private
 
   def validate_order

@@ -22,7 +22,7 @@
                 <span class="radio radio_btn setDef" data-current-line-item-price="<%= money line_item.total_price %>"></span>
                 <div class="img">
                   <a href="<%= mall_product_path(line_item.product) %>">
-                    <%= image_tag line_item.product.image_url %>
+                    <%= image_tag line_item.product.image_url(:product_icon) if line_item.product.image_url.present? %>
                   </a>
                 </div>
                 <div class="pro-m">

@@ -1,6 +1,6 @@
 $(function () {
   // 创建和编辑收货地址
-  $("#create_address_btn").on('click', function() {
+  $("#create_address_btn").on('click', function(event) {
     event.preventDefault();
 
     if ($("#new_address").length > 0) {

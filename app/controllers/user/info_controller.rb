@@ -21,7 +21,6 @@ class User::InfoController < Wechat::BaseController
           end
         end
       end
-      ap @count
     end
   end
 

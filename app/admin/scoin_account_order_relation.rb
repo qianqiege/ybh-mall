@@ -39,6 +39,7 @@ ActiveAdmin.register ScoinAccountOrderRelation do
 
     column :order
     column :scoin_account
+    column :user_name
     column :status
     column '操作' do |relation|
       span do

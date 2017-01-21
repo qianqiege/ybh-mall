@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     end
     resources :return_requests, only: [:new, :create]
     get 'my', to: 'my#home'
+    post 'my/unbinding_wechat_user/:id', to: 'my#unbinding_wechat_user'
   end
 
   namespace :service do
@@ -120,6 +121,7 @@ Rails.application.routes.draw do
   namespace :web do
     root "home#index"
     get 'mall', to: 'mall#index'
+    get 'scoin', to: 'scoin#home'
     resources :line_items, only: [:create, :destroy]
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index] do

@@ -30,4 +30,5 @@
 //= require mall/lib
 //= require mall/addresses
 //= require mall/orders
+//= require mall/my
 //= require mall/confirm
