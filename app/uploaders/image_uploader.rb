@@ -54,4 +54,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_limit => [54, 54]
   end
 
+  version :product_icon do
+    process :resize_to_fill => [173 * 5, 173 * 5]
+  end
 end
