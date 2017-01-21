@@ -36,8 +36,8 @@ class Mall::OrdersController < Mall::BaseController
       return
     end
 
-    if params[:activity_id].present? && (params[:account].empty? || params[:password].empty?)
-      flash[:error] = '参加活动，必须填写S币账号和密码'
+    if params[:activity_id].present? && params[:account].nil?
+      flash[:error] = '参加活动，必须填写S币账号'
       redirect_to confirm_mall_orders_path
       return
     end
