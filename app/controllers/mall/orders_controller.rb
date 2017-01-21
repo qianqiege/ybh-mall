@@ -82,6 +82,7 @@ class Mall::OrdersController < Mall::BaseController
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
     @activities = Activity.all
+    @scoin_account = ScoinAccount.where(user_id: current_user.user_id).take
   end
 
   def pay
