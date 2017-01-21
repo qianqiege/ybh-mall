@@ -88,7 +88,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       @new_user.set_userinfo(user_basic_info)
       @new_user.save
 
-      reply_text_message("欢迎关注精英慢病健康管理服务")
+      reply_text_message("欢迎关注御易健平台")
     end
 
     # 取消关注
