@@ -60,6 +60,7 @@
           </div>
         </div>
       </div>
+      <% if @scoin_account.nil? %>
         <div class="weui-cells"  id="scoin_account">
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">S币账号</label></div>
@@ -69,7 +70,9 @@
           </div>
           <div class="weui-panel__hd confirm_font_red">提示：本邮箱将用来为您开通S货币账户</div>
         </div>
-
+      <% else %>
+        <input type=hidden name=account value='<%= @scoin_account.id %>'/>
+      <% end %>
       <div class="cart-fixed-ft">
         <a class="commit" id="confirm_order_btn">提交订单</a>
         <span class="mr15">共<%= @all_line_item_count %>件，合计：¥<span class="total" data-all_total_price="<%= money @total_price %>" id="total-price"><%= money @total_price %></span></span>
