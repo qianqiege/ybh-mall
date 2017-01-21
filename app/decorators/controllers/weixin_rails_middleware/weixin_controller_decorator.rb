@@ -93,7 +93,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
     # 取消关注
     def handle_unsubscribe_event
+      open_id = @weixin_message.FromUserName
+      user = WechatUser.find_by open_id: open_id
+      if(user.present?)
+        user.update_attributes(subscribe: 0)
+      end
+
       Rails.logger.info("取消关注")
+      render_nothing
     end
 
     # 扫描带参数二维码事件: 2. 用户已关注时的事件推送
