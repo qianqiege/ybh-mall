@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_for_paper_trail
-    admin_user_signed_in? ? current_admin_user.try(:email) : 'Unknown user'
+    admin_user_signed_in? ? current_admin_user.try(:email) : '系统自动创建'
   end
 
   # ApiAuth.authentic?(signed_request, secrect_key)
