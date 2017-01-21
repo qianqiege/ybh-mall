@@ -1,5 +1,5 @@
 <%= form_tag(mall_orders_path, method: :post, id: 'confirm_order') do %>
-  <div class='mobile_box'>
+  <div class='mobile_box bottom'>
     <div class="page-title">
       <h2 class="text-cen">
         <span>确认订单</span>
@@ -71,7 +71,7 @@
           <div class="weui-panel__hd confirm_font_red">提示：本邮箱将用来为您开通S货币账户</div>
         </div>
       <% else %>
-        <input type=hidden name=account value='<%= @scoin_account.id %>'/>
+        <input type=hidden name=account value='<%= @scoin_account.account %>'/>
       <% end %>
       <div class="cart-fixed-ft">
         <a class="commit" id="confirm_order_btn">提交订单</a>
