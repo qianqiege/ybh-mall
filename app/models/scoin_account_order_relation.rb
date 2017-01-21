@@ -63,6 +63,9 @@ class ScoinAccountOrderRelation < ApplicationRecord
       end
     end
     scoin_account.scoin_records_attributes = scoin_records_attributes
+    if scoin_account.state == "未开户"
+      scoin_account.state = "已开户"
+    end
     scoin_account.save
 
     # 发送短信
