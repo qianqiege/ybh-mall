@@ -1,5 +1,6 @@
 sms_password: '575bf5a52d5e2d4a9d6957d2245c30c8'
 sms_tpl_id: 1628154
+scoin_account_tpl_id: 1698562
 weixin:
   api_id: wxafc43cbd018d7237
   api_secret: 2010d4939d948a6c715b8115704e677f
@@ -10,24 +11,24 @@ weixin:
   menu:
     button:
     - type: "view"
-      name: "御邦会"
+      name: "御易健"
       sub_button:
         - type: "view"
           name: "首页"
           url: "http://ybhm.ybyt.cc/wechat"
         - type: "view"
-          name: "我的"
-          url: "http://ybhm.ybyt.cc/user"
-    - name: "商城"
+          name: "服务首页"
+          url: "http://ybhm.ybyt.cc/service"
+    - name: "御易健商城"
       sub_button:
         - type: "view"
           name: "商城首页"
           url: "http://ybhm.ybyt.cc/mall"
-    - name: "服务"
+    - name: "我的"
       sub_button:
         - type: "view"
-          name: "服务首页"
-          url: "http://ybhm.ybyt.cc/service"
+          name: "我的"
+          url: "http://ybhm.ybyt.cc/user"
         - type: "view"
           name: "健康检测"
           url: "http://ybhm.ybyt.cc/examine/home"

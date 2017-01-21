@@ -43,7 +43,7 @@ ActiveAdmin.register ScoinAccountOrderRelation do
     column :status
     column '操作' do |relation|
       span do
-        link_to '账户设为开通', make_done_admin_scoin_account_order_relation_path(relation), method: :put, data: { confirm: 'Are you sure?' } if relation.pending?
+        link_to '账户设为开通', make_done_admin_scoin_account_order_relation_path(relation), method: :put, data: { confirm: 'Are you sure?' } if relation.pending? && (relation.order.wait_send? || relation.order.wait_confirm? || relation.order.received?)
       end
     end
 

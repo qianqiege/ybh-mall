@@ -56,7 +56,7 @@
             <label for="" class="weui-label">参与活动</label>
           </div>
           <div class="weui-cell__bd">
-            <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "不参加活动" %>
+            <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.first.id) ,  class: "weui-select", include_blank: "不参加活动" %>
           </div>
         </div>
       </div>
@@ -64,15 +64,10 @@
         <div class="weui-cell">
           <div class="weui-cell__hd"><label for="" class="weui-label">S币账号</label></div>
           <div class="weui-cell__bd">
-            <%= text_field_tag 'account', '', class: "weui-input", placeholder: "输入S币账号" %>
+            <%= text_field_tag 'account', '', class: "weui-input", placeholder: "请输入您的真实邮箱" %>
           </div>
         </div>
-        <div class="weui-cell">
-          <div class="weui-cell__hd"><label for="" class="weui-label">S币密码</label></div>
-          <div class="weui-cell__bd">
-            <%= password_field_tag 'password', '', class: "weui-input", placeholder: "输入S币密码" %>
-          </div>
-        </div>
+        <div class="weui-panel__hd confirm_font_red">提示：本邮箱将用来为您开通S货币账户</div>
       </div>
 
       <div class="cart-fixed-ft">

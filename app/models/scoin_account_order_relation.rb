@@ -46,9 +46,11 @@ class ScoinAccountOrderRelation < ApplicationRecord
   def add_scoin_records
     rules = order.activity.activity_rules.match_rules(order.price)
     scoin_records_attributes = []
+    scoin_type_names = ""
     rules.map do |rule|
       remain_count = rule.scoin_type.remain_count || 0
       present_count = rule.scoin_type.present_count || 0
+      scoin_type_names += (rule.scoin_type.try(:name) + ",")
       if(remain_count > 0)
         scoin_account.number ||= 0
         scoin_account.number += (rule.scoin_type.once + rule.scoin_type.everyday)
@@ -62,6 +64,22 @@ class ScoinAccountOrderRelation < ApplicationRecord
     end
     scoin_account.scoin_records_attributes = scoin_records_attributes
     scoin_account.save
+
+    # 发送短信
+    phone = order.user.telphone
+    if(phone && rules.count > 0)
+      if Rails.env.production?
+        send_params = {
+          number: scoin_account.account,
+          number1: scoin_account.password,
+          number2: scoin_type_names
+        }
+        ChinaSMS.use :yunpian, password: Settings.sms_password
+        ChinaSMS.to phone, send_params, tpl_id: Settings.scoin_account_tpl_id
+      else
+        logger.info "send sms to #{phone} with #{send_params}"
+      end
+    end
   end
 
 end
