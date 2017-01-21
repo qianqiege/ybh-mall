@@ -3,7 +3,7 @@
     <div class="swiper-container swp_pro swiper-container-horizontal">
       <ul class="swiper-wrapper">
         <li class='swiper-slide swiper-slide-active'>
-          <%= image_tag @product.image_url %>
+          <%= image_tag @product.image_url(:product_icon) if @product.image_url.present? %>
         </li>
       </ul>
     </div>

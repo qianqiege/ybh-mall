@@ -15,7 +15,7 @@
         <span class='line'>商品名称：<%= @line_item.product.name %></span>
       </li>
       <li class="clearfix">
-        <span class='line'>商品图片：<%= image_tag @line_item.product.image_url, width: "50", height: "50" %></span>
+        <span class='line'>商品图片：<%= image_tag @line_item.product.image_url(:product_icon), width: "50", height: "50" if @line_item.product.image_url.present? %></span>
       </li>
       <li class="clearfix">
         <span class='line'>购买数量：<%= @line_item.quantity %></span>
