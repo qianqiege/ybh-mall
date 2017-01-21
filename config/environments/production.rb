@@ -84,4 +84,19 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => "ybhm.ybyt.cc" }
+  config.action_mailer.asset_host = "ybhm.ybyt.cc"
+  config.action_mailer.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+    address:              'smtp.qiye.163.com',
+    port:                 25,
+    domain:               'ybyt.cc',
+    user_name:            'yubangyitong@ybyt.cc',
+    password:             'ybyt/666666',
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
 end

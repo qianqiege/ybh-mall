@@ -39,3 +39,11 @@ fast_pay:
   secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
   partner_id: 20160606020000748137
   host: "http://ybhm.ybyt.cc/"
+
+notification:
+  exception_email_prefix: '[YBH mall production Exception]'
+  exception_email_sender_address: '<yubangyitong@ybyt.cc>'
+  notification_receivers:
+    - 448426851@qq.com
+    - yubangyitong@ybyt.cc
+    - skjmy@outlook.com
