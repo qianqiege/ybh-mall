@@ -36,11 +36,11 @@ class Mall::OrdersController < Mall::BaseController
       return
     end
 
-    if params[:activity_id].present? && params[:account].nil?
-      flash[:error] = '参加活动，必须填写S币账号'
-      redirect_to confirm_mall_orders_path
-      return
-    end
+      if params[:activity_id].present? && params[:account].nil?
+        flash[:error] = '参加活动，必须填写S币账号'
+        redirect_to confirm_mall_orders_path
+        return
+      end
 
     line_items = current_cart.line_items.where(id: session[:line_item_ids])
 
@@ -82,7 +82,6 @@ class Mall::OrdersController < Mall::BaseController
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
     @activities = Activity.all
-    @scoin_account_id = ScoinAccount.where(user_id: current_user.user_id).take
   end
 
   def pay
