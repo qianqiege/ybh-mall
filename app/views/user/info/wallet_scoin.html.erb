@@ -1,55 +1,57 @@
 <%= title '我的S货币' %>
 <body class="size15">
-  <% if @scoin_account.length == 1 %>
-  <div class="s_font_a">
-    <a href="http://gglbinary.com/login.jsp",class="weui-cell weui-cell_access">点击进入S货币官网（Coinspact中国区官网）</a>
-  </div>
-  <div class="weui-cells__title">S货币账户：</div>
-
-  <div class="weui-cells weui-cells_radio size15">
-      <% @scoin_account.each do |account| %>
-        <% if !account.nil? %>
-          <a class="weui-cell weui-cell_access", href="<%= user_scoin_info_path(account.id) %>">
-            <div class="weui-cell__bd">
-                <div>
-                  <div class="account">账户：<%= account.account %></div>
-                </div>
-            </div>
-          </a>
-        <% end %>
-      <% end %>
-  </div>
-<% else %>
-  <div class="weui-cells__title">S货币账户：</div>
-  <div class="weui-cells weui-cells_radio">
-      <label class="weui-cell weui-check__label" for="x11">
-          <div class="weui-cell__bd">
-            <p>账户：未拥有S货币账户</p>
-          </div>
-      </label>
+  <% byebug %>
+  <% if !@scoin_account.nil? %>
+    <% if @scoin_account.length == 1 %>
+    <div class="s_font_a">
+      <a href="http://gglbinary.com/login.jsp",class="weui-cell weui-cell_access">点击进入S货币官网（Coinspact中国区官网）</a>
     </div>
-<% end %>
+    <div class="weui-cells__title">S货币账户：</div>
 
-<% if !@sum.nil? %>
-    <div class="weui-cells__title">S货币余额：</div>
     <div class="weui-cells weui-cells_radio size15">
+        <% @scoin_account.each do |account| %>
+          <% if !account.nil? %>
+            <a class="weui-cell weui-cell_access", href="<%= user_scoin_info_path(account.id) %>">
+              <div class="weui-cell__bd">
+                  <div>
+                    <div class="account">账户：<%= account.account %></div>
+                  </div>
+              </div>
+            </a>
+          <% end %>
+        <% end %>
+    </div>
+  <% else %>
+    <div class="weui-cells__title">S货币账户：</div>
+    <div class="weui-cells weui-cells_radio">
         <label class="weui-cell weui-check__label" for="x11">
             <div class="weui-cell__bd">
-                <div>S货币余额：<%= @sum%></div>
-                <p class="p_count">提示：此余额为参与御易健商城活动赠送的S货币余额</p>
+              <p>账户：未拥有S货币账户</p>
+            </div>
+        </label>
+      </div>
+  <% end %>
+
+  <% if !@sum.nil? %>
+      <div class="weui-cells__title">S货币余额：</div>
+      <div class="weui-cells weui-cells_radio size15">
+          <label class="weui-cell weui-check__label" for="x11">
+              <div class="weui-cell__bd">
+                  <div>S货币余额：<%= @sum%></div>
+                  <p class="p_count">提示：此余额为参与御易健商城活动赠送的S货币余额</p>
+              </div>
+          </label>
+      </div>
+  <% else %>
+    <div class="weui-cells__title">已拥有的S货币余额：</div>
+    <div class="weui-cells weui-cells_radio">
+        <label class="weui-cell weui-check__label" for="x11">
+            <div class="weui-cell__bd">
+                <div>S货币余额：0</div>
             </div>
         </label>
     </div>
-<% else %>
-  <div class="weui-cells__title">已拥有的S货币余额：</div>
-  <div class="weui-cells weui-cells_radio">
-      <label class="weui-cell weui-check__label" for="x11">
-          <div class="weui-cell__bd">
-              <div>S货币余额：0</div>
-          </div>
-      </label>
-  </div>
-<% end %>
+  <% end %>
 </body>
 
   <div class="weui-cells__title">S货币账户详细信息：</div>
@@ -89,3 +91,25 @@
         </tbody>
       <% end %>
   </table>
+<% else %>
+<table class="table">
+  <thead>
+      <tr>
+          <td class="td">账户</td>
+          <td class="td">状态</td>
+          <td class="td">数量</td>
+          <td class="td">开户时间</td>
+          <td class="td">预计总收益</td>
+      </tr>
+      <tbody>
+          <tr class="center">
+              <td class="td" style="width: 26%" >null</td>
+              <td class="td" style="width: 15%" >null</td>
+              <td class="td" style="width: 10%" >null</td>
+              <td class="td" style="width: 20%" >null</td>
+              <td class="td" style="width: 18%" >null</td>
+          </tr>
+      </tbody>
+  </thead>
+</table>
+<% end %>
