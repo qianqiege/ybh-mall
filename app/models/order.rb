@@ -116,7 +116,7 @@ class Order < ApplicationRecord
     begin
       s_account = ScoinAccount.find_by(account: account)
       if s_account.nil?
-        s_account = ScoinAccount.create!(account: account, password: "yyj123456", user_id: user_id)
+        s_account = ScoinAccount.create!(account: account, password: "yyj123456", user_id: user_id, state: "未开户")
       end
 
       ScoinAccountOrderRelation.create!(order: self, scoin_account: s_account)
