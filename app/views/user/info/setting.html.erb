@@ -40,15 +40,14 @@
                 <span class="weui-form-preview__value"><%= @wechat_user.user.try(:identity_card) %></span>
               </div>
             </div>
-            <div class="weui-form-preview__ft">
-              <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
-            </div>
+            <% if false %>
+              <div class="weui-form-preview__ft">
+                <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
