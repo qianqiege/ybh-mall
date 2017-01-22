@@ -97,12 +97,11 @@ class User::InfoController < Wechat::BaseController
             if !product.nil?
               quantity = only_number["数量"].to_i
               @line_item = current_user.cart.add_product(product, quantity)
-              if @line_item.save
-                redirect_to mall_cart_path
-                return
-              end
+              @line_item.save
             end
           end
+          redirect_to mall_cart_path
+          return
         end
       end
     end
