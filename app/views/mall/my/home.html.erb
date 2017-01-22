@@ -4,8 +4,10 @@
       <div class="nickname">
         <div class="nick-item">
           <h3><%= current_user.name %> <%= current_user.mobile %> <%= current_user.user.name %></h3>
-          <h3>身份证: <%= current_user.user.identity_card %></h3>
-          <h3><%= link_to '解绑', 'javascript:;', class: 'btn-normal remove_binding_wechat_user_btn', data: {id: current_user.id} %></h3>
+          <% if false %>
+            <h3>身份证: <%= current_user.user.identity_card %></h3>
+            <h3><%= link_to '解绑', 'javascript:;', class: 'btn-normal remove_binding_wechat_user_btn', data: {id: current_user.id} %></h3>
+          <% end %>
         </div>
       </div>
       <div class="module-title">
