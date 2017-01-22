@@ -76,6 +76,9 @@
                   <td class="td" style="width: 18%"><%= @count %></td>
               </tr>
             <% end %>
+            <% if account.state == "未开户" %>
+              <p class="weui-cells__title p_count">您的S货币账户未开户，我们将会在30天内为您开户</p>
+            <% end %>
           <% end %>
         </tbody>
       <% else %>
