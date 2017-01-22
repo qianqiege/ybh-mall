@@ -19,7 +19,6 @@ class Examine::BodyWeightController < Examine::BaseController
     if !@id_number.identity_card.nil?
       mall = Sdk::Mall.new
       mall.api_weight(@id_number.identity_card,weight_params[:value],weight_params[:height])
-      byebug
     end
   end
 
