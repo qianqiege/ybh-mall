@@ -24,6 +24,9 @@ class AdminAbility
     elsif user.role_name == 'activity_admin'
       can :manage, Activity
       can :manage, ActivityRule
+    elsif user.role_name == 'market'
+      can :manage, Product
+      can :manage, Slide
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end
