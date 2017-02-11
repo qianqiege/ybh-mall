@@ -63,7 +63,7 @@ class Mall::OrdersController < Mall::BaseController
     if @order.save
       # 4. 清空购物车已生成订单的商品
       line_items.each do |line_item|
-        line_item.move_to_order(@order.id)
+        line_item.move_to_order(@order.id) if line_item.cart_id == current_cart.id
       end
       # 5. 清空session
       session[:line_item_ids] = nil
