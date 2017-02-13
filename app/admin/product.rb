@@ -40,11 +40,11 @@ ActiveAdmin.register Product do
       f.input :shop_count
       f.input :is_show
       f.input :production
-      f.input :product_sort,:as => :ckeditor
+      f.input :product_sort
       f.input :only_number
       f.input :packaging
       f.input :image, as: :file
-      f.input :desc
+      f.input :desc,:as => :ckeditor
     end
     f.actions
   end
