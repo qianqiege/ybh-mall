@@ -20,6 +20,7 @@ ActiveAdmin.register Product do
       image_tag(slide.image_url, size: "72x45", :alt => "product image")
     end
     column :name
+    column :only_number
     column :now_product_price
     column :original_product_price
     column :is_show
