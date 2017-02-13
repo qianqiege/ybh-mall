@@ -20,6 +20,7 @@ ActiveAdmin.register Product do
       image_tag(slide.image_url, size: "72x45", :alt => "product image")
     end
     column :name
+    column :only_number
     column :now_product_price
     column :original_product_price
     column :is_show
@@ -39,7 +40,7 @@ ActiveAdmin.register Product do
       f.input :shop_count
       f.input :is_show
       f.input :production
-      f.input :product_sort
+      f.input :product_sort,:as => :ckeditor
       f.input :only_number
       f.input :packaging
       f.input :image, as: :file
