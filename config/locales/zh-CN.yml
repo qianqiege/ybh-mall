@@ -108,6 +108,8 @@ zh-CN:
         y_coin: '易币'
         identity_card: '身份证'
         name: '真实姓名'
+        invitation_card: '邀请码'
+        invitation_user: '邀请人'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
