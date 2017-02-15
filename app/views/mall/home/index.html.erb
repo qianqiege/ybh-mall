@@ -16,7 +16,7 @@
             <a href="<%= mall_product_path(product) %>">
               <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
               <h5 class='text-center'><%= product.name %></h5>
-              <p class="sub-title text-center"><%= product.desc %></p>
+              <div class="sub-title text-center"><%= raw product.desc %></div>
               <p class="item-price text-center">
                 <em>¥<%= money product.now_product_price %></em>
                 <%# <% if product.original_product_price.present? %>

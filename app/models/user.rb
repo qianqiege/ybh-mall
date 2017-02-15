@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :examine_records
   has_many :addresses
 
+  validates :invitation_card, uniqueness: true
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}
   validates :identity_card, uniqueness: true, presence: true, length: { is: 18 }
 
