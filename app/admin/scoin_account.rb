@@ -6,6 +6,7 @@ ActiveAdmin.register ScoinAccount do
     f.inputs "S货币账户" do
       f.input :user
       f.input :account
+      f.input :email
       f.input :password
       f.input :state
     end
@@ -19,6 +20,7 @@ ActiveAdmin.register ScoinAccount do
     column :user
     column :account
     column :password
+    column :email
     column :number
     column :state
     actions

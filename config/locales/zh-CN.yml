@@ -147,9 +147,11 @@ zh-CN:
       scoin_account:
         user: '用户ID（选择身份证号码）'
         account: 'S货币账户'
+        email: '账户邮箱绑定'
         password: '密码'
         number: 'S货币数量'
         order: '订单'
+        state: '状态'
       slide:
         desc: '备注'
         image: '图片'
