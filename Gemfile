@@ -32,6 +32,10 @@ gem 'jbuilder', '~> 2.5'
 # https://github.com/lanrion/weixin_rails_middleware
 gem 'weixin_rails_middleware', '~> 1.3', '>= 1.3.2'
 
+# rQRCode is a library for encoding QR Codes. The simple interface allows you to create QR Code data structures ready to be displayed in the way you choose.
+# https://github.com/whomwah/rqrcode
+gem 'rqrcode', '~> 0.10.1'
+
 # Wechat high level API wrapper written in Ruby
 # https://github.com/lanrion/weixin_authorize
 gem 'weixin_authorize', '~> 1.6', '>= 1.6.4'

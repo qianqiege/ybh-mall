@@ -1,6 +1,7 @@
 class User::BindingController < Wechat::BaseController
   def new
     @no_fotter = true
+    @invitation_user = params[:invitation_user] || ""
   end
 
   def bind_phone

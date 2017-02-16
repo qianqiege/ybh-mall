@@ -1,1 +1,3 @@
-您的邀请码为：<%= @Invitation.invitation_card %>
+<div class="qr-code">
+  <%= raw @qrcode.as_html %>
+</div>
