@@ -1,6 +1,6 @@
 ActiveAdmin.register ScoinAccount do
   menu parent: I18n.t("active_admin.menu.coin_manage")
-  permit_params :account, :password,:state,:user_id,:number, :order_id,:state
+  permit_params :account, :password,:state,:user_id,:number, :order_id,:email
 
   form do |f|
     f.inputs "S货币账户" do
