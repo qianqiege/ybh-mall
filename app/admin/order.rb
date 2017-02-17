@@ -98,6 +98,8 @@ ActiveAdmin.register Order do
 
   filter :status, as: :select, collection: Order::STATUS_TEXT.invert
   filter :wechat_user_mobile, as: :string
+  filter :user
+  filter :user_id
 
   show do |order|
     attributes_table do
