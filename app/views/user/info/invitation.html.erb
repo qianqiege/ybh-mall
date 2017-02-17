@@ -1,3 +1,28 @@
+<%= title '邀请好友' %>
+<% if !@invitation_card.nil? %>
+  <div class="weui-panel__hd">您的邀请码：<%= @invitation_card %></div>
+<% else %>
+  <div class="weui-panel__hd">您的二维码：</div>
+<% end %>
 <div class="qr-code">
   <%= raw @qrcode.as_html %>
+</div>
+
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">我邀请的用户</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+
+          <a class="weui-cell weui-cell_access" href="<%= user_invitation_friend_path %>">
+            <div class="weui-cell__bd weui-cell_primary">
+              <div class="weui-panel__hd">我的邀请</div>
+            </div>
+            <span class="weui-cell__ft"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
