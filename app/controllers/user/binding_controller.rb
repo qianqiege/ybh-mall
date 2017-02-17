@@ -13,7 +13,7 @@ class User::BindingController < Wechat::BaseController
       if !params[:invitation_user].nil?
         @invitation_user = User.find_by(invitation_card: params[:invitation_user])
         if !@invitation_user.nil?
-          @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card,invitation_user: @invitation_user.name)
+          @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card,invitation_user: @invitation_user.id)
           @current_user = current_user.id
           if @user.save && @wechat = WechatUser.where('id LIKE ?',"%#{@current_user}%").update_all(user_id: @user.id)
             redirect_to user_root_path

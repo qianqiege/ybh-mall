@@ -13,8 +13,8 @@ class User::InfoController < Wechat::BaseController
 
   def invitation_friend
     if !current_user.user_id.nil?
-      @my_name = User.find(current_user.user_id).name
-      @invitation_friend = User.where(invitation_user: @my_name)
+      @my_name = User.find(current_user.user_id)
+      @invitation_friend = User.where(invitation_user: @my_name.id)
     end
   end
 
