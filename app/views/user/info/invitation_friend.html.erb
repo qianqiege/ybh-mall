@@ -1,0 +1,17 @@
+<%= title '我邀请的好友' %>
+<table class="table">
+    <thead>
+        <tr>
+            <td class="td">邀请好友</td>
+            <td class="td">邀请时间</td>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @invitation_friend.each do |invitation_friend| %>
+          <td class="td"><%= invitation_friend.invitation_user %></td>
+          <td class="td"><%= date invitation_friend.created_at %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>

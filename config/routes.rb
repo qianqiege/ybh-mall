@@ -86,6 +86,7 @@ Rails.application.routes.draw do
     get '/scoin_info',to: 'info#scoin_info'
     get '/setting', to: 'info#setting'
     get '/invitation', to: 'info#invitation'
+    get '/invitation_friend', to:'info#invitation_friend'
   end
 
   namespace :examine do

@@ -10,6 +10,13 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  def invitation_friend
+    if !current_user.user_id.nil?
+      @my_name = User.find(current_user.user_id).name
+      @invitation_friend = User.where(invitation_user: @my_name)
+    end
+  end
+
   def home
     @wechat_user = WechatUser.find(current_user)
   end
