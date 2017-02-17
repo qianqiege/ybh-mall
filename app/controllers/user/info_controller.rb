@@ -5,6 +5,7 @@ class User::InfoController < Wechat::BaseController
     if current_user.user
       url = user_binding_url({invitation_user: current_user.user.invitation_card})
       @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+      @invitation_card = User.find(current_user.user_id).invitation_card
     else
       redirect_to '/user/binding'
     end
