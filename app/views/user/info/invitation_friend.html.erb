@@ -7,11 +7,11 @@
         </tr>
     </thead>
     <tbody>
-      <tr>
         <% @invitation_friend.each do |invitation_friend| %>
-          <td class="td"><%= invitation_friend.invitation_user %></td>
+        <tr>
+          <td class="td"><%= invitation_friend.name %></td>
           <td class="td"><%= date invitation_friend.created_at %></td>
+        </tr>
         <% end %>
-      </tr>
     </tbody>
   </table>

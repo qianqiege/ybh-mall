@@ -22,7 +22,7 @@ class Mall::AuthenticateController < Mall::BaseController
         if !params[:invitation_user].nil?
           @invitation_user = User.find_by(invitation_card: params[:invitation_user])
           if !@invitation_user.nil?
-            user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile], name: params[:name],invitation_user: @invitation_user)
+            user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile], name: params[:name],invitation_user: @invitation_user.id)
             if user.save
               current_user.update_user user
               current_user.update_mobile(params[:mobile])
