@@ -24,7 +24,7 @@ class ScoinAccountOrderRelation < ApplicationRecord
   end
 
   def user_name
-    order.user.name
+    order.try(:user).try(:name)
   end
 
   private
