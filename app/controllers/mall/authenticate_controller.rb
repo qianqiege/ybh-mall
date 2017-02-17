@@ -19,14 +19,29 @@ class Mall::AuthenticateController < Mall::BaseController
           current_user.update_mobile(params[:mobile])
         end
       else
-        user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile], name: params[:name])
-        if user.save
-          current_user.update_user user
-          current_user.update_mobile(params[:mobile])
-        else
-          flash[:notice] = '保存用户失败'
-          redirect_back fallback_location: mall_root_path
-          return
+        if !params[:invitation_user].nil?
+          @invitation_user = User.find_by(invitation_card: params[:invitation_user])
+          if !@invitation_user.nil?
+            user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile], name: params[:name],invitation_user: @invitation_user)
+            if user.save
+              current_user.update_user user
+              current_user.update_mobile(params[:mobile])
+            else
+              flash[:notice] = '保存用户失败'
+              redirect_back fallback_location: mall_root_path
+              return
+            end
+          else
+            user = User.new(identity_card: params[:identity_card], password: params[:password], telphone: params[:mobile], name: params[:name])
+            if user.save
+              current_user.update_user user
+              current_user.update_mobile(params[:mobile])
+            else
+              flash[:notice] = '保存用户失败'
+              redirect_back fallback_location: mall_root_path
+              return
+            end
+          end
         end
       end
       redirect_to session[:return_to]
