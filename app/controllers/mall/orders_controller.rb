@@ -57,7 +57,8 @@ class Mall::OrdersController < Mall::BaseController
       quantity: quantity,
       activity_id: params[:activity_id],
       account: params[:account],
-      password: params[:password]
+      password: params[:password],
+      payment: params[:payment]
     )
 
     if @order.save
@@ -88,7 +89,7 @@ class Mall::OrdersController < Mall::BaseController
   def pay
     @no_fotter = true
     @order = current_user.orders.find(params[:id])
-    @trade_merge_pay_params = @order.fast_pay.trade_merge_pay_params
+    @trade_merge_pay_params = @order.fast_pay.trade_merge_pay_params(@order.payment)
   end
 
   def make_cancel

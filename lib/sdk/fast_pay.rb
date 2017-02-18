@@ -64,7 +64,10 @@ module Sdk
       signed_params.sort_by{ |k, v| k }.to_h
     end
 
-    def trade_merge_pay_params
+    # 生成普通交易支付参数
+    # PAYMENT_TYPE_WECHAT
+    # PAYMENT_TYPE_YJ
+    def trade_merge_pay_params(pay_type = "PAYMENT_TYPE_YJ")
       salt = rand(999999999..9999999999)
       order_no = "#{Time.current.to_s(:number)}#{salt}"
 
@@ -83,15 +86,22 @@ module Sdk
         tradeInfo: tradeInfo.to_json,
         returnUrl: @host + 'mall/orders',
         notifyUrl: @host + 'notifies/orders',
-        paymentType: "PAYMENT_TYPE_YJ"
+        paymentType: pay_type
       }
+
+      if pay_type == 'PAYMENT_TYPE_WECHAT'
+        options[:openid] =  @order.wechat_user.open_id
+      end
+
       sign_params(options)
     end
 
     # 普通交易支付
-    def trade_merge_pay
-      exec(:post, @url, trade_merge_pay_params)
-    end
+    # PAYMENT_TYPE_WECHAT
+    # PAYMENT_TYPE_YJ
+    # def trade_merge_pay(pay_type = "PAYMENT_TYPE_YJ")
+    #   exec(:post, @url, trade_merge_pay_params(pay_type))
+    # end
 
     # 交易查询
     def trade_merge_query

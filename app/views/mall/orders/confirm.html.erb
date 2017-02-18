@@ -59,6 +59,15 @@
             <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.first.id) ,  class: "weui-select", include_blank: "不参加活动" %>
           </div>
         </div>
+
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+          <div class="weui-cell__hd">
+            <label for="" class="weui-label">支付方式</label>
+          </div>
+          <div class="weui-cell__bd">
+            <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) ,  class: "weui-select" %>
+          </div>
+        </div>
       </div>
       <% if @scoin_account.nil? %>
         <div class="weui-cells"  id="scoin_account">
