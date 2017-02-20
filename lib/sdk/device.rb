@@ -20,7 +20,11 @@ module Sdk
 
       logger.info(result)
 
-      result
+      if Nokogiri::XML(result).errors.empty?
+        Hash.from_xml(result)
+      else
+        result
+      end
     end
 
     # 加密
