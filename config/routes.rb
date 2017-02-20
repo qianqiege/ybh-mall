@@ -117,6 +117,7 @@ Rails.application.routes.draw do
   end
 
   root "wechat/home#index"
+  post 'putmessage' => 'devices#putmessage'
 
   # 这里添加跟PC端相关路由
   devise_for :users, :controllers => { :sessions => "web/sessions" }
