@@ -18,7 +18,6 @@ class Examine::PressureController < Examine::BaseController
         end
       end
       if !@id_number.identity_card.nil?
-        ap @id_number.identity_card
         mall = Sdk::Mall.new
         mall.api_blood_pressure(@id_number.identity_card,pressure_params[:diastolic_pressure],pressure_params[:systolic_pressure])
       end
