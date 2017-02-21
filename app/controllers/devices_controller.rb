@@ -14,12 +14,12 @@ class DevicesController < ApplicationController
       case type
       when "101"
         # 血压
-        @blood_pressures = BloodPressure.new(diastolic_pressure: pressure["lat"],systolic_pressure: pressure["lng"],phone: info["mo"],state: state,created_at: info["rsptime"])
+        @blood_pressures = BloodPressure.new(diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
         @blood_pressures.save
         idcard = User.find_by(telphone: info["mo"])
         if !idcard.nil?
           mall = Sdk::Mall.new
-          mall.api_blood_pressure(idcard.identity_card,pressure["lat"],pressure["lng"])
+          mall.api_blood_pressure(idcard.identity_card,pressure["pdp"],pressure["pcp"])
         end
       when "102"
         # 血糖
