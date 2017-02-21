@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218103417) do
+ActiveRecord::Schema.define(version: 20170221073223) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -84,18 +84,22 @@ ActiveRecord::Schema.define(version: 20170218103417) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"
-    t.integer  "wechat_user_id"
     t.float    "ante_cibum",        limit: 24
     t.float    "after_a_meal",      limit: 24
+    t.string   "phone"
+    t.string   "state"
+    t.integer  "user_id"
   end
 
   create_table "blood_pressures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "examine_record_id"
-    t.integer  "wechat_user_id"
     t.float    "diastolic_pressure", limit: 24
     t.float    "systolic_pressure",  limit: 24
+    t.string   "phone"
+    t.string   "state"
+    t.integer  "user_id"
   end
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -150,8 +154,10 @@ ActiveRecord::Schema.define(version: 20170218103417) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "examine_record_id"
-    t.integer  "wechat_user_id"
     t.integer  "value"
+    t.string   "phone"
+    t.string   "state"
+    t.integer  "user_id"
   end
 
   create_table "house_poperties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -462,7 +468,9 @@ ActiveRecord::Schema.define(version: 20170218103417) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"
-    t.integer  "wechat_user_id"
+    t.string   "phone"
+    t.string   "state"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -527,8 +535,10 @@ ActiveRecord::Schema.define(version: 20170218103417) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"
-    t.integer  "wechat_user_id"
     t.string   "height"
+    t.string   "phone"
+    t.string   "state"
+    t.integer  "user_id"
   end
 
   create_table "workstations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

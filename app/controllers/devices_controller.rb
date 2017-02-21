@@ -35,9 +35,11 @@ class DevicesController < ApplicationController
         # 温度
       else
       end
-      render json: "success", layout: nil
+      response = { success: 200, errmsg: "保存成功" }
+      render xml: response.to_xml(root: 'data'), layout: nil
     else
-      render json: "fail", layout: nil
+      response = { success: 400, errmsg: "保存失败" }
+      render xml: response.to_xml(root: 'data'), layout: nil
     end
   end
 end
