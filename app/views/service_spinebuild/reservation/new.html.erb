@@ -1,5 +1,5 @@
 <%= title '龙氏脊筑服务预约' %>
-<% if flash[:notice] %>
+<!-- <% if flash[:notice] %>
   <div class="notice"><%=flash[:notice]%></div>
 <% end %>
 <%= form_for @reservation, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
@@ -55,4 +55,7 @@
   <div class="weui-btn-area">
       <%= f.submit "预约" ,class:"weui-btn weui-btn_primary" %>
   </div>
-<% end %>
+<% end %> -->
+<form name="shooterform" method="get" class="red">
+    <marquee width=400 behavior=alternate direction=left align=middle border=1>系统维护中，暂不支持预约哦~~</marquee>
+</form>
