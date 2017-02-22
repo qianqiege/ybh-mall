@@ -15,9 +15,13 @@
               <%= image_tag("home.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">首页</p>
             </a>
-            <a href="javascript:;" class="weui-tabbar__item">
+            <!-- <a href="javascript:;" class="weui-tabbar__item">
               <%= image_tag("category.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">分类</p>
+            </a> -->
+            <a href="<%= mall_root_path %>" class="weui-tabbar__item <%= controller_name == "carts" ? 'weui-bar__item_on' : nil %>">
+              <%= image_tag("cart.png", class: "weui-tabbar__icon") %>
+              <p class="weui-tabbar__label">商城</p>
             </a>
             <% if @user.user_id.nil? %>
               <a href="<%= user_binding_path %>" class="weui-tabbar__item">
