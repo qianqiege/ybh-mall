@@ -209,5 +209,6 @@ zh-CN:
       weight: '体重检测'
       heart_rate: '心率检测'
       examine_record: '检测记录'
+      health_examine: '检测项目'
       scoin_account_order_relation: '账户订单绑定'
       paper_trail/version: '操作记录'
