@@ -19,13 +19,17 @@ class DevicesController < ApplicationController
           # 如果没有找到手机号对应的UserID，将不绑定UserID
           @blood_pressures = BloodPressure.new(user_id: idcard.id,diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @blood_pressures.save
-          if !idcard.nil?
-            mall = Sdk::Mall.new
-            mall.api_blood_pressure(idcard.identity_card,pressure["pdp"],pressure["pcp"])
-          end
+          @heart_rate = HeartRate.new(user_id: idcard.id,value: pressure["pm"],phone: info["mo"],state: state,created_at: info["rsptime"])
+          @heart_rate.save
+          mall = Sdk::Mall.new
+          mall.api_blood_pressure(idcard.identity_card,pressure["pdp"],pressure["pcp"])
+          sdk_mall = Sdk::Mall.new
+          sdk_mall.api_heart_rate(idcard.identity_card,pressure["pm"])
         else
           @blood_pressures = BloodPressure.new(diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @blood_pressures.save
+          @heart_rate = HeartRate.new(value: pressure["pm"],phone: info["mo"],state: state,created_at: info["rsptime"])
+          @heart_rate.save
         end
       when "102"
         # 血糖
