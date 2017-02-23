@@ -9,6 +9,12 @@ class User < ApplicationRecord
   has_one :cart
   has_many :examine_records
   has_many :addresses
+  has_many :unines
+  has_many :temperatures
+  has_many :blood_glucoses
+  has_many :blood_pressures
+  has_many :weights
+  has_many :heart_rates
 
   validates :invitation_card, uniqueness: true
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}

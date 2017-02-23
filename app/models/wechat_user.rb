@@ -3,11 +3,6 @@ class WechatUser < ApplicationRecord
   has_many :addresses
   has_many :orders
   belongs_to :user
-  has_many :temperatures
-  has_many :blood_glucoses
-  has_many :blood_pressures
-  has_many :weights
-  has_many :heart_rates
   has_many :line_items, through: :orders
 
   serialize :access_token_info, JSON
