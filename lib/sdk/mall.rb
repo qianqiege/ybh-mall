@@ -35,6 +35,10 @@ module Sdk
       exec(:post, "examination_input/blood_glucose?id_number=#{identity_card}&value=#{value}&item_type=#{mens_type}")
     end
 
+    def api_blood_glucose(identity_card,value,mens_type)
+      exec(:post, "examination_input/blood_glucose?id_number=#{identity_card}&value=#{value}&item_type=#{mens_type}")
+    end
+
     def api_blood_pressure(identity_card,diastolic,systolic)
       exec(:post, "examination_input/blood_pressure?id_number=#{identity_card}&min_BloodPressure=#{diastolic}&max_BloodPressure=#{systolic}")
     end
