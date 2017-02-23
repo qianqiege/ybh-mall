@@ -1,6 +1,6 @@
 class BloodGlucose < ApplicationRecord
   belongs_to :examine_record
-  belongs_to :wechat_user
-  validates :after_a_meal, presence: true
-  validates :ante_cibum, presence: true
+  belongs_to :user
+  validates :mens_type, presence: true
+  validates :value, presence: true
 end

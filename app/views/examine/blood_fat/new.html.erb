@@ -1,0 +1,39 @@
+<%= title '血脂' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+<%= form_for @blood_fat, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+<div class="weui-cells__title">血脂测试</div>
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">血脂</label></div>
+        <div class="weui-cell__bd">
+          <%= f.text_field :value ,class:"weui-input",type:"number",placeholder:"请输入血脂值"%>
+        </div>
+    </div>
+</div>
+<div class="weui-btn-area">
+    <%= f.submit "上传" ,class:"weui-btn weui-btn_primary" %>
+</div>
+<% end %>
+
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>血脂值/mmol/L</th><th>状态</th><th>测量时间</th>
+    </tr>
+    <% @search.each do |search|%>
+    <% if @search %>
+      <tr>
+      	<th><%= search.value %></th>
+        <% if search.value > 3 && search.value < 5.2 %>
+          <th class="green">正常</th>
+        <% else %>
+          <th class="red">异常</th>
+        <% end %>
+        <th><%= datetime search.created_at %></th>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
