@@ -1,3 +1,4 @@
+# https://github.com/activeadmin/activeadmin/blob/master/app/assets/stylesheets/active_admin/components/_status_tags.scss
 module ActiveAdmin::ViewsHelper
   def order_status_color(status)
     case status
@@ -15,7 +16,7 @@ module ActiveAdmin::ViewsHelper
   end
 
   def order_pay_type_state_color(status)
-    if status
+    if status.to_i == 0
       :yes
     else
       :no
