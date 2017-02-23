@@ -96,11 +96,13 @@ Rails.application.routes.draw do
     get '/temperature', to: 'body_temperature#new'
     get '/weight', to: 'body_weight#new'
     get '/heart', to: 'heart#new'
+    get '/unine', to: 'unine#new'
     post 'glucose/create'
     post 'body_temperature/create'
     post 'body_weight/create'
     post 'heart/create'
     post 'pressure/create'
+    post 'unine/create'
   end
 
   resources :notifies do
