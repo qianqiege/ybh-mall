@@ -5,16 +5,20 @@
 <%= form_for @glucose, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
 <div class="weui-cells__title">血糖测试</div>
 <div class="weui-cells weui-cells_form">
-    <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">餐前</label></div>
-        <div class="weui-cell__bd">
-          <%= f.text_field :ante_cibum ,class:"weui-input",type:"digit",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入血糖值"%>
+    <div class="weui-cells">
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+            <div class="weui-cell__hd">
+                <label for="" class="weui-label">时间点</label>
+            </div>
+            <div class="weui-cell__bd">
+              <%= f.select :mens_type, [["请选择","0"],["餐前", "1"],["餐后","2"],["睡前","3"],["睡后","4"]], {}, class: "weui-select" %>
+            </div>
         </div>
-    </div>
+      </div>
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">餐后</label></div>
+        <div class="weui-cell__hd"><label class="weui-label">血糖值</label></div>
         <div class="weui-cell__bd">
-          <%= f.text_field :after_a_meal ,class:"weui-input",type:"digit",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入血糖值"%>
+          <%= f.text_field :value ,class:"weui-input",type:"digit",pattern:"[1-9][0-9]*(\.[0-9]+)?$", placeholder:"请输入血糖值"%>
         </div>
     </div>
 </div>
@@ -26,20 +30,24 @@
 <div class="weui-btn-area">
   <table class="hovertable">
     <tr>
-    	<th>餐前/毫摩尔</th><th>餐后/毫摩尔</th><th>测量时间</th>
+    	<th>血糖值/毫摩尔</th><th>时间点</th><th>测量时间</th>
     </tr>
-    <% @search.each do |search|%>
+    <% @search.each do |search| %>
         <tr>
-          <% if search.ante_cibum > 3.8 && search.ante_cibum < 6.2 %>
-            <th class="green"><%= search.ante_cibum %></th>
+          <% if search.value == 3.8 && search.value == 6.2 %>
+            <th class="green"><%= search.value %></th>
           <% else %>
-            <th class="red"><%= search.ante_cibum %></th>
+            <th class="red"><%= search.value %></th>
           <% end %>
-
-          <% if search.after_a_meal > 6.6 && search.after_a_meal < 9.5 %>
-            <th class="green"><%= search.after_a_meal %></th>
-          <% else %>
-            <th class="red"><%= search.after_a_meal %></th>
+          <% case search.mens_type %>
+          <% when 1 %>
+            <th>餐前</th>
+          <% when 2 %>
+            <th>餐后</th>
+          <% when 3 %>
+            <th>睡前</th>
+          <% else 4 %>
+            <th>睡后</th>
           <% end %>
           <th><%= datetime search.updated_at %></th>
         </tr>
