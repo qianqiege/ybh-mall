@@ -69,10 +69,10 @@ ActiveAdmin.register Order do
       order.user.try(:name)
     end
     column '付款类型' do |order|
-      order.pay_type_state
+      status_tag order.pay_type_state, order_pay_type_state_color(order.pay_tp)
     end
     column :status do |order|
-      order.human_state
+      status_tag order.human_state, order_status_color(order.status)
     end
     column '订单操作' do |order|
       span do
