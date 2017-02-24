@@ -11,7 +11,6 @@ class DevicesController < ApplicationController
       info = data["msg"]
       type = info["type"]
       state = "设备上传"
-      ap data
       idcard = User.find_by(telphone: info["mo"])
       case type
       when "101"
