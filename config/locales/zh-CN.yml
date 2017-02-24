@@ -1,6 +1,7 @@
 zh-CN:
   active_admin:
     express_number_model: '货运单号'
+    edit_price_model: '更改价格'
     menu:
       mall: '商城管理'
       member_manage: '会员管理'

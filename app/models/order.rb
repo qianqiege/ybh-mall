@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   validates_uniqueness_of :number
 
   before_validation :set_user
-  before_create :generate_number
+  before_create :generate_number, :copy_price_to_initial_price
   after_create :set_used_address, :create_scoin_account
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
@@ -73,6 +73,10 @@ class Order < ApplicationRecord
       salt = rand(99999..999999)
       self.number = "#{Time.current.to_s(:number)}#{salt}"
     end while self.class.exists?(number: number)
+  end
+
+  def copy_price_to_initial_price
+    self.initial_price = price
   end
 
   # 订单应该绑定user_id，而不是wechat_user_id

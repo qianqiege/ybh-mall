@@ -16,4 +16,8 @@ class AdminUser < ApplicationRecord
   def role_name_label
     ROLE_NAME_DATA[self.role_name.to_sym]
   end
+
+  def change_order?
+    self.email == "change_order@ybyt.com"
+  end
 end

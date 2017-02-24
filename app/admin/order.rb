@@ -1,7 +1,7 @@
 ActiveAdmin.register Order do
   menu parent: I18n.t("active_admin.menu.mall")
 
-  permit_params :status, :express_number, :activity_id, :user_id
+  permit_params :status, :express_number, :activity_id, :user_id, :price
 
   actions :index, :show
 
@@ -53,6 +53,14 @@ ActiveAdmin.register Order do
 
   member_action :express_number, method: :get do
     render 'edit.html.arb', :layout => false
+  end
+
+  member_action :edit_price, method: :get do
+    render 'edit.html.arb', :layout => false
+  end
+
+  action_item :edit_price do
+    link_to '更改价格', edit_price_admin_order_path(resource), method: :get if current_admin_user.change_order?
   end
 
   index do
@@ -136,6 +144,11 @@ ActiveAdmin.register Order do
     if params[:express_number].present?
       f.inputs "填写货运单号" do
         f.input :express_number
+      end
+    end
+    if current_admin_user.change_order?
+      f.inputs "价格" do
+        f.input :price
       end
     end
     f.actions
