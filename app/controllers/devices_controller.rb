@@ -11,7 +11,6 @@ class DevicesController < ApplicationController
       info = data["msg"]
       type = info["type"]
       state = "设备上传"
-      ap data
       idcard = User.find_by(telphone: info["mo"])
       case type
       when "101"
@@ -39,7 +38,6 @@ class DevicesController < ApplicationController
           @blood_glucose.save
           idcard = User.find_by(telphone: info["mo"])
           mall = Sdk::Mall.new
-          ap pressure["bds"]
           mall.api_blood_glucose(idcard.identity_card,pressure["bds"],pressure["mensType"])
         else
           @blood_glucose = BloodGlucose.new(value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
