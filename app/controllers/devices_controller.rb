@@ -11,6 +11,7 @@ class DevicesController < ApplicationController
       info = data["msg"]
       type = info["type"]
       state = "设备上传"
+      ap data
       idcard = User.find_by(telphone: info["mo"])
       case type
       when "101"
@@ -19,12 +20,11 @@ class DevicesController < ApplicationController
           # 如果没有找到手机号对应的UserID，将不绑定UserID
           @blood_pressures = BloodPressure.new(user_id: idcard.id,diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @blood_pressures.save
+          mall = Sdk::Mall.new
           @heart_rate = HeartRate.new(user_id: idcard.id,value: pressure["pm"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @heart_rate.save
-          mall = Sdk::Mall.new
+          mall.api_heart_rate(idcard.identity_card,pressure["pm"])
           mall.api_blood_pressure(idcard.identity_card,pressure["pdp"],pressure["pcp"])
-          sdk_mall = Sdk::Mall.new
-          sdk_mall.api_heart_rate(idcard.identity_card,pressure["pm"])
         else
           @blood_pressures = BloodPressure.new(diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @blood_pressures.save
@@ -39,6 +39,7 @@ class DevicesController < ApplicationController
           @blood_glucose.save
           idcard = User.find_by(telphone: info["mo"])
           mall = Sdk::Mall.new
+          ap pressure["bds"]
           mall.api_blood_glucose(idcard.identity_card,pressure["bds"],pressure["mensType"])
         else
           @blood_glucose = BloodGlucose.new(value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
@@ -92,11 +93,11 @@ class DevicesController < ApplicationController
         end
       else
       end
-      response = { success: "200", errmsg: "保存成功" }
-      render xml: response.to_xml(root: 'data'), layout: nil
+      # response = { success: "200", errmsg: "保存成功" }
+      # render xml: response.to_xml(root: 'data'), layout: nil
     else
-      response = { success: "400", errmsg: "保存失败" }
-      render xml: response.to_xml(root: 'data'), layout: nil
+      # response = { success: "400", errmsg: "保存失败" }
+      # render xml: response.to_xml(root: 'data'), layout: nil
     end
   end
 end
