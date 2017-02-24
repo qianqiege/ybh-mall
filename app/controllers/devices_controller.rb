@@ -39,9 +39,9 @@ class DevicesController < ApplicationController
           @blood_glucose.save
           idcard = User.find_by(telphone: info["mo"])
           mall = Sdk::Mall.new
-          mall.api_blood_glucose(idcard.identity_card,pressure["pds"],pressure["mensType"])
+          mall.api_blood_glucose(idcard.identity_card,pressure["bds"],pressure["mensType"])
         else
-          @blood_glucose = BloodGlucose.new(value: pressure["pds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
+          @blood_glucose = BloodGlucose.new(value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @blood_glucose.save
         end
       when "103"
