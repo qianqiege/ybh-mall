@@ -57,4 +57,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :product_icon do
     process :resize_to_fill => [173 * 5, 173 * 5]
   end
+
+  version :product_show_icon do
+    process :resize_to_fill => [375, 240]
+  end
 end
