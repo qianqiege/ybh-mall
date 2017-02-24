@@ -6,7 +6,8 @@
     max-height: 500px;
     -webkit-transition: all .3s linear;
     transition: all .3s linear;
-    height: 240px;
+    // height: 240px;
+    height: 375px;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -23,12 +24,12 @@
       transition-property: transform;
       box-sizing: content-box;
       transform: translateZ(0);
-      padding-top: 30px;
+      // padding-top: 30px;
       li {
         text-align: center;
         img {
-          height: 173px;
-          width: 173px;
+          height: 100%;
+          width: 100%;
           vertical-align: top;
         }
       }
