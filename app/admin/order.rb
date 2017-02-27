@@ -1,7 +1,7 @@
 ActiveAdmin.register Order do
   menu parent: I18n.t("active_admin.menu.mall")
 
-  permit_params :status, :express_number, :activity_id, :user_id, :price
+  permit_params :status, :express_number, :activity_id, :user_id, :price, :remark
 
   actions :index, :show
 
@@ -59,7 +59,7 @@ ActiveAdmin.register Order do
     render 'edit.html.arb', :layout => false
   end
 
-  action_item :edit_price do
+  action_item :edit_price, only: :show do
     link_to '更改价格', edit_price_admin_order_path(resource), method: :get if current_admin_user.change_order?
   end
 
@@ -117,6 +117,9 @@ ActiveAdmin.register Order do
       row '手机号码' do
         order.wechat_user.mobile
       end
+      row :initial_price do
+        money order.initial_price
+      end
       row :price do
         money order.price
       end
@@ -127,6 +130,7 @@ ActiveAdmin.register Order do
       row :activity
       row :address
       row :express_number
+      row :remark
     end
     panel "订单项详情" do
       table_for order.line_items do |t|
@@ -149,6 +153,7 @@ ActiveAdmin.register Order do
     if current_admin_user.change_order?
       f.inputs "价格" do
         f.input :price
+        f.input :remark
       end
     end
     f.actions
