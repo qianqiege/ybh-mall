@@ -15,7 +15,8 @@ class User < ApplicationRecord
   has_many :blood_pressures
   has_many :weights
   has_many :heart_rates
-  has_many :blood_fat
+  has_many :blood_fats
+  belongs_to :organization
 
   validates :invitation_card, uniqueness: true
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}
