@@ -61,8 +61,8 @@ class DevicesController < ApplicationController
         if !idcard.nil?
           @unine = Unine.new(user_id: idcard.id,value:pressure["ua"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @unine.save
-          # mall = Sdk::Mall.new
-          # mall.api_Unine(idcard.identity_card,pressure["weight"])
+          mall = Sdk::Mall.new
+          mall.api_unine(idcard.identity_card,pressure["ua"])
         else
           @unine = Unine.new(value:pressure["ua"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @unine.save
@@ -72,8 +72,8 @@ class DevicesController < ApplicationController
         if !idcard.nil?
           @blood_fat = BloodFat.new(user_id: idcard.id,value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @blood_fat.save
-          # mall = Sdk::Mall.new
-          # mall.api_temperature(idcard.identity_card,pressure["tc"])
+          mall = Sdk::Mall.new
+          mall.api_blood_fat(idcard.identity_card,pressure["tc"])
         else
           @blood_fat = BloodFat.new(value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @blood_fat.save
