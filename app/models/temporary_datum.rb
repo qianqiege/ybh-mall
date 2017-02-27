@@ -1,0 +1,2 @@
+class TemporaryDatum < ApplicationRecord
+end
