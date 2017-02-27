@@ -13,6 +13,7 @@ zh-CN:
       record_manage: '档案管理'
       coin_manage: '货币管理'
       activity_manage: '活动管理'
+      company_manage: '机构管理'
   activerecord:
     attributes:
       product:
@@ -27,6 +28,9 @@ zh-CN:
         image: '展示图片'
         desc: '描述'
         product_sort: '类别'
+      organization:
+        name: "机构名称"
+        only_number: "机构编号"
       address:
         contact_name: '收货人姓名'
         mobile: '手机号码'
@@ -114,6 +118,7 @@ zh-CN:
         name: '真实姓名'
         invitation_card: '邀请码'
         invitation_user: '邀请人'
+        organization: '机构ID'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
@@ -218,3 +223,4 @@ zh-CN:
       unine: '尿酸检测'
       scoin_account_order_relation: '账户订单绑定'
       paper_trail/version: '操作记录'
+      organization: '机构'
