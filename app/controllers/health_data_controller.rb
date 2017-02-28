@@ -4,13 +4,18 @@ class HealthDataController < ApplicationController
   def create
     idcard = params["identity_card"]
     phone_account = params["phone"]
-    only_number = params["only_number"]
-    @temporary_data = TemporaryData.new(identity_card: idcard,phone: phone_account,only_number: only_number)
-
+    @temporary_data = TemporaryDatum.new(identity_card: idcard,phone: phone_account)
     if @temporary_data.save
       render json: @temporary_data
     else
       render_error("错误")
+    end
+    count = TemporaryDatum.count
+    if count > 50
+      @data = TemporaryDatum.limit(50).order(id: :desc).offset(50)
+      @data.each do |data|
+        data.destroy
+      end
     end
   end
 end
