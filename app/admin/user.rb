@@ -7,7 +7,7 @@ ActiveAdmin.register User do
                 :name,
                 :invitation_card,
                 :invitation_user,
-                :organization
+                :organization_id
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -31,7 +31,7 @@ ActiveAdmin.register User do
     column :name
     column :invitation_card
     column :invitation_user
-    column :organization_id
+    column :organization
     actions defaults: true
   end
 
