@@ -37,8 +37,8 @@ zh-CN:
       order:
         address: '收货地址'
         address_id: '收货地址'
-        wechat_user: '所属微信用户'
-        wechat_user_id: '所属微信用户'
+        wechat_user: '微信用户'
+        wechat_user_id: '微信用户'
         wechat_user_mobile: '微信用户绑定手机'
         user_name: '用户真实姓名'
         pay_tp: '付款类型'
@@ -51,6 +51,7 @@ zh-CN:
         activity: '参加活动'
         initial_price: '原始价格'
         remark: '备注'
+        payment: '支付类型'
       return_request:
         quantity: '提交数量'
         desc: '问题描述'

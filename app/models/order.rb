@@ -25,6 +25,7 @@ class Order < ApplicationRecord
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
   PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
+  PAYMENT_TEXT = { PAYMENT_TYPE_WECHAT: '微信支付', PAYMENT_TYPE_YJ: '银行卡支付' }.freeze
 
   include AASM
   aasm column: :status do
@@ -94,11 +95,15 @@ class Order < ApplicationRecord
   end
 
   def human_state
-    STATUS_TEXT[self.status.to_sym]
+    STATUS_TEXT[self.status.to_sym] if self.status
   end
 
   def pay_type_state
-    PAY_TYPE_TEXT[self.pay_tp.to_s]
+    PAY_TYPE_TEXT[self.pay_tp.to_s] if self.pay_tp
+  end
+
+  def payment_label
+    PAYMENT_TEXT[self.payment.to_sym] if self.payment
   end
 
   def name
