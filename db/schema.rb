@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224012148) do
+ActiveRecord::Schema.define(version: 20170227142423) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -80,15 +80,24 @@ ActiveRecord::Schema.define(version: 20170224012148) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "blood_fats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "value",      limit: 24
+    t.string   "phone"
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "blood_glucoses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "examine_record_id"
-    t.float    "ante_cibum",        limit: 24
-    t.float    "after_a_meal",      limit: 24
     t.string   "phone"
     t.string   "state"
     t.integer  "user_id"
+    t.float    "value",             limit: 24
+    t.integer  "mens_type"
   end
 
   create_table "blood_pressures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -271,6 +280,7 @@ ActiveRecord::Schema.define(version: 20170224012148) do
     t.integer  "pay_tp",                                  default: 0
     t.string   "payment"
     t.decimal  "initial_price",  precision: 10, scale: 2
+    t.string   "remark"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
@@ -464,6 +474,15 @@ ActiveRecord::Schema.define(version: 20170224012148) do
     t.string   "phone"
     t.string   "state"
     t.integer  "user_id"
+  end
+
+  create_table "unines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.float    "value",      limit: 24
+    t.string   "phone"
+    t.string   "state"
+    t.integer  "user_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

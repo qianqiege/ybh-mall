@@ -49,6 +49,8 @@ zh-CN:
         number: '编号'
         express_number: '货运单号'
         activity: '参加活动'
+        initial_price: '原始价格'
+        remark: '备注'
       return_request:
         quantity: '提交数量'
         desc: '问题描述'
