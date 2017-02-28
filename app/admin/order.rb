@@ -79,6 +79,9 @@ ActiveAdmin.register Order do
     column '付款类型' do |order|
       status_tag order.pay_type_state, order_pay_type_state_color(order.pay_tp)
     end
+    column '支付类型' do |order|
+      order.payment_label
+    end
     column "支付操作" do |order|
       link_to '设为线下支付', pay_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
     end
@@ -106,6 +109,7 @@ ActiveAdmin.register Order do
 
   filter :status, as: :select, collection: Order::STATUS_TEXT.invert
   filter :pay_tp, as: :select, collection: Order::PAY_TYPE_TEXT.invert
+  filter :payment, as: :select, collection: Order::PAYMENT_TEXT.invert
   filter :wechat_user_mobile, as: :string
   filter :user_name, as: :string
 
