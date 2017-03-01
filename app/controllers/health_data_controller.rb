@@ -2,7 +2,7 @@ class HealthDataController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def create
-    idcard = params["identity_card"]
+    idcard = params["id_number"]
     phone_account = params["phone"]
     @temporary_data = TemporaryDatum.new(identity_card: idcard,phone: phone_account)
     if @temporary_data.save
