@@ -27,32 +27,32 @@ module Sdk
       exec(:get, "record/check?id_number=#{identity_card}")
     end
 
-    def api_heart_rate(identity_card,heart_rate)
-      exec(:post, "examination_input/heart_rate?id_number=#{identity_card}&heart_rate=#{heart_rate}")
+    def api_heart_rate(identity_card,heart_rate,phone)
+      exec(:post, "examination_input/heart_rate?id_number=#{identity_card}&heart_rate=#{heart_rate}&phone=#{phone}")
     end
 
-    def api_blood_fat(identity_card,blood_fat)
-      exec(:post, "examination_input/blood_fat?id_number=#{identity_card}&blood_fat=#{blood_fat}")
+    def api_blood_fat(identity_card,blood_fat,phone)
+      exec(:post, "examination_input/blood_fat?id_number=#{identity_card}&blood_fat=#{blood_fat}&phone=#{phone}")
     end
 
-    def api_unine(identity_card,unine)
-      exec(:post, "examination_input/unine?id_number=#{identity_card}&unine=#{unine}")
+    def api_unine(identity_card,unine,phone)
+      exec(:post, "examination_input/unine?id_number=#{identity_card}&unine=#{unine}&phone=#{phone}")
     end
 
-    def api_blood_glucose(identity_card,value,mens_type)
-      exec(:post, "examination_input/blood_glucose?id_number=#{identity_card}&value=#{value}&item_type=#{mens_type}")
+    def api_blood_glucose(identity_card,value,mens_type,phone)
+      exec(:post, "examination_input/blood_glucose?id_number=#{identity_card}&value=#{value}&item_type=#{mens_type}&phone=#{phone}")
     end
 
-    def api_blood_pressure(identity_card,diastolic,systolic)
-      exec(:post, "examination_input/blood_pressure?id_number=#{identity_card}&min_BloodPressure=#{diastolic}&max_BloodPressure=#{systolic}")
+    def api_blood_pressure(identity_card,diastolic,systolic,phone)
+      exec(:post, "examination_input/blood_pressure?id_number=#{identity_card}&min_BloodPressure=#{diastolic}&max_BloodPressure=#{systolic}&phone=#{phone}")
     end
 
-    def api_temperature(identity_card,temperature)
-      exec(:post, "examination_input/temperature?id_number=#{identity_card}&temperature=#{temperature}")
+    def api_temperature(identity_card,temperature,phone)
+      exec(:post, "examination_input/temperature?id_number=#{identity_card}&temperature=#{temperature}&phone=#{phone}")
     end
 
-    def api_weight(identity_card,weight)
-      exec(:post, "examination_input/weight?id_number=#{identity_card}&weight=#{weight}")
+    def api_weight(identity_card,weight,phone)
+      exec(:post, "examination_input/weight?id_number=#{identity_card}&weight=#{weight}&phone=#{phone}")
     end
 
     def tds_report(identity_card)
