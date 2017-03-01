@@ -11,8 +11,8 @@ class HealthDataController < ApplicationController
       render_error("错误")
     end
     count = TemporaryDatum.count
-    if count > 50
-      @data = TemporaryDatum.limit(50).order(id: :desc).offset(50)
+    if count > 1
+      @data = TemporaryDatum.limit(1).order(id: :desc).offset(1)
       @data.each do |data|
         data.destroy
       end
