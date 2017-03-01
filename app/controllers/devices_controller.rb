@@ -43,7 +43,7 @@ class DevicesController < ApplicationController
           @blood_glucose = BloodGlucose.new(user_id: idcard.id,value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"],)
           @blood_glucose.save
           if !temporary[0].nil?
-            mall.api_blood_glucose(idcard.identity_card,pressure["bds"],pressure["mensType"],info["mo"])
+            mall.api_blood_glucose(temporary[0].identity_card,pressure["bds"],pressure["mensType"],info["mo"])
           else
             mall.api_blood_glucose(idcard.identity_card,pressure["bds"],pressure["mensType"],info["mo"])
           end
