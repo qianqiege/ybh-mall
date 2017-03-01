@@ -12,7 +12,11 @@ class DevicesController < ApplicationController
       type = info["type"]
       state = "设备上传"
       temporary = TemporaryDatum.where(phone: info["mo"]).limit(1).order(created_at: :desc)
-      idcard = User.find_by(identity_card: temporary[0].identity_card)
+      if !temporary[0].nil?
+        idcard = User.find_by(identity_card: temporary[0].identity_card)
+      else
+        idcard = User.find_by(telphone: info["mo"])
+      end
       mall = Sdk::Mall.new
       case type
       when "101"
