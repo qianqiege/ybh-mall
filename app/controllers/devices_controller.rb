@@ -109,6 +109,18 @@ class DevicesController < ApplicationController
           @api_temperature = Temperature.new(value:pressure["etg"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @api_temperature.save
         end
+      when '108'
+        png_hex = info["param"]["ecgpng"]
+        id = info["param"]["id"]
+
+        dir = Rails.root.join('public', 'uploads', 'ecg');
+        FileUtils.mkdir_p(dir) unless File.directory?(dir)
+        # FIXME: 这里用id做文件名，需要跟对方确认是否唯一，如果不唯一，请对方提供其他标示
+        File.open("#{dir}/#{id}.png", "wb"){|fh|
+          png_hex.scan(/.{2}/) { |e| fh.putc(e.hex) }
+        }
+        # FIXME: 这里是图片地址，用于传给慢病
+        image_url = helpers.asset_url("uploads/ecg/#{id}.png")
       else
       end
       response = { success: "200", errmsg: "保存成功" }
