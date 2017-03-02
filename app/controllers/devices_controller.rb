@@ -111,7 +111,7 @@ class DevicesController < ApplicationController
         end
       when '108'
         png_hex = info["param"]["ecgpng"]
-        id = info["param"]["id"]
+        id = Digest::MD5.hexdigest(info["param"]["id"])
 
         dir = Rails.root.join('public', 'uploads', 'ecg');
         FileUtils.mkdir_p(dir) unless File.directory?(dir)
