@@ -107,7 +107,7 @@ ActiveAdmin.register Order do
     f.actions
   end
 
-  filter :status, as: :select, collection: Order::STATUS_TEXT.invert
+  filter :status, as: :select, collection: Order::STATUS_TEXT.invert, multiple: true
   filter :pay_tp, as: :select, collection: Order::PAY_TYPE_TEXT.invert
   filter :payment, as: :select, collection: Order::PAYMENT_TEXT.invert
   filter :wechat_user_mobile, as: :string
