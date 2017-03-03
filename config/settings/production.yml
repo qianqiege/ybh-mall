@@ -16,13 +16,13 @@ weixin:
         - type: "view"
           name: "首页"
           url: "http://ybhm.ybyt.cc/wechat"
-        - type: "view"
-          name: "服务首页"
-          url: "http://ybhm.ybyt.cc/service"
+        # - type: "view"
+        #   name: "服务首页"
+        #   url: "http://ybhm.ybyt.cc/service"
     - name: "御易健商城"
       sub_button:
         - type: "view"
-          name: "商城首页"
+          name: "商城"
           url: "http://ybhm.ybyt.cc/mall"
     - name: "我的"
       sub_button:
