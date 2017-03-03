@@ -55,6 +55,10 @@ module Sdk
       exec(:post, "examination_input/weight?id_number=#{identity_card}&weight=#{weight}&phone=#{phone}")
     end
 
+    def api_ECG(identity_card,url,phone)
+      exec(:post, "examination_input/ECG?id_number=#{identity_card}&url=#{url}&phone=#{phone}")
+    end
+
     def tds_report(identity_card)
       exec(:get, "mall/tds_report?id_number=#{identity_card}")
     end
