@@ -121,6 +121,11 @@ class DevicesController < ApplicationController
         }
         # FIXME: 这里是图片地址，用于传给慢病
         image_url = helpers.asset_url("uploads/ecg/#{id}.png")
+        if !temporary[0].nil?
+          mall.api_ECG(temporary[0].identity_card,image_url,info["mo"])
+        else
+          mall.api_ECG(idcard.identity_card,image_url,info["mo"])
+        end
       else
       end
       response = { success: "200", errmsg: "保存成功" }

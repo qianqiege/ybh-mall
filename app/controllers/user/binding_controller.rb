@@ -15,6 +15,7 @@ class User::BindingController < Wechat::BaseController
           @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card,invitation_user: @invitation_user.id)
           @current_user = current_user.id
           if @user.save && @wechat = WechatUser.where('id LIKE ?',"%#{@current_user}%").update_all(user_id: @user.id)
+            flash[:notice] = '绑定成功'
             redirect_to root_path
             return
           else
@@ -25,6 +26,7 @@ class User::BindingController < Wechat::BaseController
           @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card)
           @current_user = current_user.id
           if @user.save && @wechat = WechatUser.where('id LIKE ?',"%#{@current_user}%").update_all(user_id: @user.id)
+            flash[:notice] = '绑定成功'
             redirect_to root_path
             return
           else
