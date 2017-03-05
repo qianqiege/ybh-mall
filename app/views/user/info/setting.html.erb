@@ -28,7 +28,6 @@
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">
         <div class="weui-cells">
-
           <div class="weui-form-preview">
             <div class="weui-form-preview__bd">
               <div class="weui-form-preview__item">
@@ -46,8 +45,60 @@
               </div>
             <% end %>
           </div>
+
+          <div class="weui-cell">
+            <div class="weui-uploader">
+              <div class="weui-uploader__hd">
+                <p class="weui-uploader__title"><%= @identity_cards.count < 2 ? "上传身份证": "身份证信息"%></p>
+              </div>
+              <div class="weui-uploader__bd">
+                  <ul class="weui-uploader__files" id="uploaderFiles">
+                  <% @identity_cards.each  do |identity_card|%>
+                    <li class="weui-uploader__file">
+                      <%= image_tag(identity_card.image_url, :alt => "身份证", :class => "identity-card-img") %>
+                    </li>
+                  <% end%>
+                  </ul>
+
+                  <% if @identity_cards.count < 2 %>
+                    <div class="weui-uploader__input-box">
+                      <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                    </div>
+                  <% end %>
+              </div>
+            </div>
+          </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<%= content_for :weixin_api do %>
+  <script type="text/javascript">
+    wx.ready(function () {
+      $('#uploaderInput').click(function(){
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+              var localIds = res.localIds;
+              wx.uploadImage({
+                localId: localIds,
+                isShowProgressTips: 1,
+                success: function (res) {
+                  var serverId = res.serverId;
+                  $.post('/user/upload_image', {serverId: serverId}, function(res){
+                    location.reload();
+                  });
+                }
+              });
+          }
+        });
+      });
+    });
+  </script>
+<% end %>

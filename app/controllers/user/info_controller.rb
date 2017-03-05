@@ -28,6 +28,14 @@ class User::InfoController < Wechat::BaseController
       return
     end
     @wechat_user = WechatUser.find(current_user)
+    @identity_cards = current_user.user.identity_cards
+  end
+
+  def upload_image
+    url = $wechat_client.download_media_url(params["serverId"])
+    current_user.user.identity_cards.create(remote_image_url: url)
+
+    render_success
   end
 
   def wallet_scoin

@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :weights
   has_many :heart_rates
   has_many :blood_fats
+  has_many :identity_cards
   belongs_to :organization
 
   validates :invitation_card, uniqueness: true

@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     get '/programs_home' ,to: 'info#programs_home'
     get '/scoin_info',to: 'info#scoin_info'
     get '/setting', to: 'info#setting'
+    post '/upload_image', to: 'info#upload_image'
     get '/invitation', to: 'info#invitation'
     get '/invitation_friend', to:'info#invitation_friend'
   end
