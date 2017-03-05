@@ -85,7 +85,7 @@
           sizeType: ['original', 'compressed'],
           sourceType: ['album', 'camera'],
           success: function (res) {
-              var localIds = res.localIds;
+              var localIds = res.localIds.toString();
               wx.uploadImage({
                 localId: localIds,
                 isShowProgressTips: 1,
@@ -98,6 +98,8 @@
               });
           }
         });
+
+        return false;
       });
     });
   </script>
