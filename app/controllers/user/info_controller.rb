@@ -29,6 +29,7 @@ class User::InfoController < Wechat::BaseController
     end
     @wechat_user = WechatUser.find(current_user)
     @identity_cards = current_user.user.identity_cards
+    @show_upload_btn = @identity_cards.count < 4
   end
 
   def upload_image
