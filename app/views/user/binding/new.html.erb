@@ -1,4 +1,4 @@
-<%= title '账号绑定' %>
+<%= title '注册御易健账号' %>
 
 <%= form_tag(user_bind_phone_path, method: :post, id: 'bind_phone_form') do %>
   <div class='mobile_box'>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="login_control">
-        <div class="login_label">密码</div>
+        <div class="login_label">请设置登录御易健平台密码</div>
         <div class="login_content">
           <%= password_field_tag :password %>
         </div>
@@ -42,7 +42,7 @@
       <div class="login_control">
         <div class="login_label">邀请码（选填）</div>
         <div class="login_content">
-          <%= text_field_tag :invitation_user, @invitation_user %>
+          <%= text_field_tag :invitation_id, @invitation_user %>
         </div>
       </div>
 
