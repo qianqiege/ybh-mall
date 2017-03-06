@@ -1,5 +1,7 @@
 <%= title '首页' %>
-
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
 <div class="home">
   <%= render 'shared/slide' %>
 

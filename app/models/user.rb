@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :blood_fats
   has_many :identity_cards
   belongs_to :organization
+  belongs_to :invitation, class_name: 'User', foreign_key: 'invitation_id'
 
   validates :invitation_card, uniqueness: true
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}

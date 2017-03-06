@@ -120,7 +120,7 @@ zh-CN:
         identity_card: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'
-        invitation_user: '邀请人'
+        invitation_id: '邀请人'
         organization: '机构'
       spine_build:
         name: '筑脊师名字'
