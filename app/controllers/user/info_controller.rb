@@ -3,7 +3,7 @@ class User::InfoController < Wechat::BaseController
 
   def invitation
     if current_user.user
-      url = user_binding_url({invitation_user: current_user.user.invitation_card})
+      url = user_binding_url({invitation_id: current_user.user.invitation_card})
       @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
       @invitation_card = User.find(current_user.user_id).invitation_card
     else
@@ -14,7 +14,7 @@ class User::InfoController < Wechat::BaseController
   def invitation_friend
     if !current_user.user_id.nil?
       @my_name = User.find(current_user.user_id)
-      @invitation_friend = User.where(invitation_user: @my_name.id)
+      @invitation_friend = User.where(invitation_id: @my_name.id)
     end
   end
 
