@@ -9,19 +9,7 @@ ActiveAdmin.register User do
                 :invitation_user,
                 :organization_id,
                 :invitation_id
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-
+                
   index do
     selectable_column
     id_column
@@ -44,22 +32,23 @@ ActiveAdmin.register User do
       f.input :password
       f.input :identity_card
       f.input :invitation_card
-      f.input :invitation_user
       f.input :invitation_id
       f.input :organization
     end
     f.actions
   end
 
-  index do
-    selectable_column
-    id_column
-
-    column :name
-    column :telphone
-    column :identity_card
-    column :password
-    actions
+  show do |user|
+    attributes_table do
+      row :id
+      row :telphone
+      row :email
+      row :identity_card
+      row :name
+      row :invitation_card
+      row :invitation_id
+      row :organization
+    end
   end
 
 end
