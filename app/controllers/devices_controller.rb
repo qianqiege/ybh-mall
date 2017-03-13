@@ -23,18 +23,19 @@ class DevicesController < ApplicationController
           @blood_pressures.save
           @heart_rate = HeartRate.new(user_id: idcard.id,value: pressure["pm"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @heart_rate.save
-          if !temporary[0].nil?
-            mall.api_heart_rate(temporary[0].identity_card,pressure["pm"],info["mo"])
-            mall.api_blood_pressure(temporary[0].identity_card,pressure["pdp"],pressure["pcp"],info["mo"])
-          else
+          if !idcard.nil?
             mall.api_heart_rate(idcard.identity_card,pressure["pm"],info["mo"])
             mall.api_blood_pressure(idcard.identity_card,pressure["pdp"],pressure["pcp"],info["mo"])
           end
-        else
+        elsif !temporary[0].nil?
           @blood_pressures = BloodPressure.new(diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @blood_pressures.save
           @heart_rate = HeartRate.new(value: pressure["pm"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @heart_rate.save
+          if !temporary[0].identity_card.nil?
+            mall.api_heart_rate(temporary[0].identity_card,pressure["pm"],info["mo"])
+            mall.api_blood_pressure(temporary[0].identity_card,pressure["pdp"],pressure["pcp"],info["mo"])
+          end
         end
       when "102"
         # 血糖
@@ -42,28 +43,30 @@ class DevicesController < ApplicationController
           # 如果没有找到手机号对应的UserID，将不绑定UserID
           @blood_glucose = BloodGlucose.new(user_id: idcard.id,value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"],)
           @blood_glucose.save
-          if !temporary[0].nil?
-            mall.api_blood_glucose(temporary[0].identity_card,pressure["bds"],pressure["mensType"],info["mo"])
-          else
+          if !idcard.identity_card.nil?
             mall.api_blood_glucose(idcard.identity_card,pressure["bds"],pressure["mensType"],info["mo"])
           end
-        else
+        elsif !temporary[0].nil?
           @blood_glucose = BloodGlucose.new(value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @blood_glucose.save
+          if !temporary[0].identity_card.nil?
+            mall.api_blood_glucose(temporary[0].identity_card,pressure["bds"],pressure["mensType"],info["mo"])
+          end
         end
       when "103"
         # 体重
         if !idcard.nil?
           @weight = Weight.new(user_id: idcard.id,value:pressure["weight"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @weight.save
-          if !temporary[0].nil?
-            mall.api_weight(temporary[0].identity_card,pressure["weight"],info["mo"])
-          else
+          if !idcard.identity_card.nil?
             mall.api_weight(idcard.identity_card,pressure["weight"],info["mo"])
           end
-        else
+        elsif !temporary[0].nil?
           @weight = Weight.new(value:pressure["weight"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @weight.save
+          if !temporary[0].identity_card.nil?
+            mall.api_weight(temporary[0].identity_card,pressure["weight"],info["mo"])
+          end
         end
       when "104"
         # 体脂
@@ -72,42 +75,45 @@ class DevicesController < ApplicationController
         if !idcard.nil?
           @unine = Unine.new(user_id: idcard.id,value:pressure["ua"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @unine.save
-          if !temporary[0].nil?
-            mall.api_unine(temporary[0].identity_card,pressure["ua"],info["mo"])
-          else
+          if !idcard.identity_card.nil?
             mall.api_unine(idcard.identity_card,pressure["ua"],info["mo"])
           end
-        else
+        elsif !temporary[0].nil?
           @unine = Unine.new(value:pressure["ua"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @unine.save
+          if !temporary[0].identity_card.nil?
+            mall.api_unine(temporary[0].identity_card,pressure["ua"],info["mo"])
+          end
         end
       when "106"
         # 血脂
         if !idcard.nil?
           @blood_fat = BloodFat.new(user_id: idcard.id,value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @blood_fat.save
-          if !temporary[0].nil?
-            mall.api_blood_fat(temporary[0].identity_card,pressure["tc"],info["mo"])
-          else
+          if !idcard.identity_card.nil?
             mall.api_blood_fat(idcard.identity_card,pressure["tc"],info["mo"])
           end
-        else
+        elsif !temporary[0].identity_card.nil?
           @blood_fat = BloodFat.new(value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @blood_fat.save
+          if !temporary[0].identity_card.nil?
+            mall.api_blood_fat(temporary[0].identity_card,pressure["tc"],info["mo"])
+          end
         end
       when "107"
         # 温度
         if !idcard.nil?
           @api_temperature = Temperature.new(user_id: idcard.id,value:pressure["etg"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @api_temperature.save
-          if !temporary[0].nil?
-            mall.api_temperature(temporary[0].identity_card,pressure["etg"],info["mo"])
-          else
+          if !idcard.identity_card.nil?
             mall.api_temperature(idcard.identity_card,pressure["etg"],info["mo"])
           end
-        else
+        elsif !temporary[0].nil?
           @api_temperature = Temperature.new(value:pressure["etg"],phone:info["mo"],state: state,created_at: info["rsptime"])
           @api_temperature.save
+          if !temporary[0].identity_card.nil?
+            mall.api_temperature(temporary[0].identity_card,pressure["etg"],info["mo"])
+          end
         end
       when '108'
         png_hex = info["param"]["ecgpng"]
@@ -123,10 +129,10 @@ class DevicesController < ApplicationController
         image_url = helpers.asset_url("uploads/ecg/#{id}.png")
         if !temporary[0].nil?
           mall.api_ECG(temporary[0].identity_card,image_url,info["mo"])
-        else
-          mall.api_ECG(idcard.identity_card,image_url,info["mo"])
         end
       else
+        response = { success: "404", errmsg: "没有找到对象" }
+        render xml: response.to_xml(root: 'data'), layout: nil
       end
       response = { success: "200", errmsg: "保存成功" }
       render xml: response.to_xml(root: 'data'), layout: nil
