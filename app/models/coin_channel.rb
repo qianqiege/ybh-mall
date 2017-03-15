@@ -1,0 +1,2 @@
+class CoinChannel < ApplicationRecord
+end
