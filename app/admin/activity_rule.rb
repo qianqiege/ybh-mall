@@ -20,8 +20,8 @@ ActiveAdmin.register ActivityRule do
       f.input :rule
       f.input :max
       f.input :min
-      f.input :y_coin
       f.input :scoin_type
+      f.input :y_coin
     end
     f.actions
   end
