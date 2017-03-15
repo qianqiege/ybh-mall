@@ -127,6 +127,7 @@ zh-CN:
         invitation_card: '邀请码'
         invitation_id: '邀请人'
         organization: '机构'
+        coin: '易币'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
