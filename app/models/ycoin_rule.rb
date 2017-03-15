@@ -1,0 +1,2 @@
+class YcoinRule < ApplicationRecord
+end
