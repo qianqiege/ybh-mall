@@ -25,9 +25,10 @@ ActiveAdmin.register Product do
     column :original_product_price
     column :is_show
     column :shop_count
-    column :desc
+    column '产品描述' do |product|
+      truncate(raw product.desc)
+    end
     column :production
-    column :packaging
     column :product_sort
     actions
   end
@@ -48,4 +49,29 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
+
+  show do |user|
+    attributes_table do
+      row :name
+      row :only_number
+      row :now_product_price
+      row :original_product_price
+      row :is_show
+      row :shop_count
+      row :production
+      row :product_sort
+      row '产品描述' do |product|
+        truncate(raw product.desc)
+      end
+    end
+  end
+
+  filter :name, as: :select
+  filter :only_number, as: :select
+  filter :now_product_price, as: :select
+  filter :original_product_price, as: :select
+  filter :is_show, as: :select
+  filter :shop_count, as: :select
+  filter :production, as: :select
+  filter :product_sort, as: :select
 end
