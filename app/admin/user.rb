@@ -16,7 +16,6 @@ ActiveAdmin.register User do
     id_column
 
     column :telphone
-    column :email
     column :identity_card
     column :name
     column :invitation_card
@@ -54,4 +53,8 @@ ActiveAdmin.register User do
     end
   end
 
+  filter :name, as: :select
+  filter :identity_card, as: :select
+  filter :telphone, as: :select
+  filter :invitation_id, as: :string
 end
