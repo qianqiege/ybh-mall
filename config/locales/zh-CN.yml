@@ -38,6 +38,11 @@ zh-CN:
         province: '省份'
         city: '城市'
         street: '区或街道'
+      coin_channel:
+        name: '投放渠道（名称）'
+      ycoin_rule:
+        name: '规则名称'
+        number: '赠送数量'
       order:
         address: '收货地址'
         address_id: '收货地址'
@@ -122,6 +127,7 @@ zh-CN:
         invitation_card: '邀请码'
         invitation_id: '邀请人'
         organization: '机构'
+        coin: '易币'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
@@ -228,3 +234,6 @@ zh-CN:
       paper_trail/version: '操作记录'
       organization: '机构'
       identity_card: '身份证'
+      coin_channel: '货币投放渠道'
+      ycoin_rule: '易币赠送规则'
+      temporary_datum: '临时数据'

@@ -8,7 +8,8 @@ ActiveAdmin.register User do
                 :invitation_card,
                 :invitation_user,
                 :organization_id,
-                :invitation_id
+                :invitation_id,
+                :coin
 
   index do
     selectable_column
@@ -20,6 +21,7 @@ ActiveAdmin.register User do
     column :invitation_card
     column :invitation_id
     column :organization
+    column :coin
     actions defaults: true
   end
 
@@ -47,6 +49,7 @@ ActiveAdmin.register User do
       row :invitation_card
       row :invitation_id
       row :organization
+      row :coin
     end
   end
 
