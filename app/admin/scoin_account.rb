@@ -32,5 +32,4 @@ ActiveAdmin.register ScoinAccount do
   filter :email, as: :select
   filter :number, as: :select
   filter :state, as: :select
-
 end

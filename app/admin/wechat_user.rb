@@ -15,4 +15,7 @@ ActiveAdmin.register WechatUser do
 
     actions
   end
+
+  filter :nickname, as: :select
+  filter :user, as: :select
 end
