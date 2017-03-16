@@ -28,4 +28,16 @@ ActiveAdmin.register AdminUser do
     f.actions
   end
 
+  show do |admin_user|
+    attributes_table do
+      row :id
+      row :email
+      row :password
+      row :password_confirmation
+      row :role_name
+      row :created_at
+      row :sign_in_count
+    end
+  end
+
 end
