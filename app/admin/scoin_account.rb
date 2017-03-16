@@ -26,4 +26,11 @@ ActiveAdmin.register ScoinAccount do
     column :state
     actions
   end
+
+  filter :user, as: :select
+  filter :account, as: :select
+  filter :email, as: :select
+  filter :number, as: :select
+  filter :state, as: :select
+
 end

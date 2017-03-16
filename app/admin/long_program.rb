@@ -10,18 +10,21 @@ ActiveAdmin.register LongProgram do
                 :identity_card,
                 :level,
                 :time
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
 
+  form(:html => { :multipart => true }) do |f|
+    f.inputs "龙氏脊筑方案" do
+    f.input :doctor
+    f.input :hospital
+    f.input :identity_card
+    f.input :recipe_number
+    f.input :total
+    f.input :detail
+    f.input :blood_letting
+    f.input :treatment
+    f.input :level
+    f.input :time, as: :datepicker
+    end
+  f.actions
+  end
 
 end

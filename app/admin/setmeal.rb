@@ -28,8 +28,10 @@ ActiveAdmin.register Setmeal do
       f.input :content, :as => :ckeditor
       f.input :type
       f.input :const
-
     end
     f.actions
   end
+
+  filter :name, as: :select
+
 end
