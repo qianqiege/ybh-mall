@@ -22,6 +22,7 @@ ActiveAdmin.register User do
     column :invitation_id
     column :organization
     column :coin
+    column :type
     actions defaults: true
   end
 
@@ -35,6 +36,7 @@ ActiveAdmin.register User do
       f.input :invitation_card
       f.input :invitation_id
       f.input :organization
+      f.input :type, as: :select, collection: ["Doctor", "Patient"]
     end
     f.actions
   end

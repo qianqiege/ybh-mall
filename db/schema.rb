@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305113807) do
+ActiveRecord::Schema.define(version: 20170319070534) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -135,6 +135,12 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
+  create_table "coin_channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "examine_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "idcard"
@@ -157,6 +163,7 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.text     "product",       limit: 65535
+    t.integer  "user_id"
   end
 
   create_table "heart_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -538,6 +545,10 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.string   "invitation_card"
     t.string   "invitation_user"
     t.integer  "organization_id"
+    t.integer  "invitation_id"
+    t.decimal  "coin",                   precision: 10
+    t.string   "identity"
+    t.string   "type"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
@@ -589,6 +600,14 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.string   "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ycoin_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.decimal  "number",          precision: 10
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "coin_channel_id"
   end
 
 end

@@ -53,4 +53,5 @@ class User < ApplicationRecord
       addresses.last
     end
   end
+
 end

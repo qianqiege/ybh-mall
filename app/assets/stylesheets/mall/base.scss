@@ -95,3 +95,20 @@
   color: #000;
   text-decoration: none;
 }
+
+.weui-agree {
+  .checkbox {
+    -webkit-appearance: none;
+    appearance: none;
+    outline: 0;
+    font-size: 0;
+    border: 1px solid #D1D1D1;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    width: 13px;
+    height: 13px;
+    position: relative;
+    vertical-align: 0;
+    top: 2px;
+  }
+}
