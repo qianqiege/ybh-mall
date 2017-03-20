@@ -58,7 +58,7 @@ class User < ApplicationRecord
   end
 
   def create_invitation_id
-    presented_records.create(user_id: invitation_id, number: 10, reason: "邀请好友赠送")
+    presented_records.create(user_id: invitation_id, number: 50, reason: "邀请好友赠送")
   end
 
 end
