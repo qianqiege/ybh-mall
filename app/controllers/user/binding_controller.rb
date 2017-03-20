@@ -14,7 +14,7 @@ class User::BindingController < Wechat::BaseController
         @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card)
 
         if(@invitation_user.present?)
-          @user.invitation_id = invitation_user.id
+          @user.invitation_id = @invitation_user.id
         end
 
         if(params[:is_doctor])
