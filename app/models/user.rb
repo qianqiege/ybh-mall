@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include PresentedConcern
+
+  after_create :create_invitation_id
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -52,6 +55,12 @@ class User < ApplicationRecord
     else
       addresses.last
     end
+  end
+
+  def create_invitation_id
+    invitation = User.find_by(invitation_id: id)
+    byebug
+    presented_records.create(user_id: invitation, number: 10, reason: "邀请好友赠送")
   end
 
 end
