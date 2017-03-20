@@ -58,9 +58,7 @@ class User < ApplicationRecord
   end
 
   def create_invitation_id
-    invitation = User.find_by(invitation_id: id)
-    byebug
-    presented_records.create(user_id: invitation, number: 10, reason: "邀请好友赠送")
+    presented_records.create(user_id: invitation_id, number: 10, reason: "邀请好友赠送")
   end
 
 end
