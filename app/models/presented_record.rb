@@ -9,6 +9,9 @@ class PresentedRecord < ApplicationRecord
   validates :number, presence: true
 
   def update_ycoin
+    ybyt = User.find_by(identity_card: 100000000000000000)
+    ybyt.y_coin -= number
+    ybyt.save
     user.y_coin += number
     user.save
   end
