@@ -73,21 +73,19 @@ ActiveAdmin.register Order do
     column :price
     column :quantity
     column :number
-    column "真实姓名" do |order|
-      order.user.try(:name)
-    end
     column '付款类型' do |order|
       status_tag order.pay_type_state, order_pay_type_state_color(order.pay_tp)
     end
     column '支付类型' do |order|
       order.payment_label
     end
-    column "支付操作" do |order|
-      link_to '设为线下支付', pay_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
-    end
     column :status do |order|
       status_tag order.human_state, order_status_color(order.status)
     end
+    column "支付操作" do |order|
+      link_to '设为线下支付', pay_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+    end
+    column '创建时间',:created_at
     column '订单操作' do |order|
       span do
         link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?

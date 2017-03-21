@@ -28,6 +28,11 @@ zh-CN:
         image: '展示图片'
         desc: '描述'
         product_sort: '类别'
+      presented_record:
+        presentable_type: '收入支出相关'
+        number: '数量'
+        reason: '收入支出渠道'
+        created_at: '创建日期'
       organization:
         name: "机构（公司）名称"
         only_number: "机构（公司）编号"
@@ -62,7 +67,7 @@ zh-CN:
         pay_tp: '付款类型'
         user_id: '用户'
         price: '金额'
-        quantity: '数量'
+        quantity: '产品数量'
         status: '订单状态'
         number: '编号'
         express_number: '货运单号'
@@ -247,3 +252,4 @@ zh-CN:
       ycoin_rule: '易币赠送规则'
       temporary_datum: '临时数据'
       lssue_currency: '货币发行'
+      presented_record: '易币收入支出记录'
