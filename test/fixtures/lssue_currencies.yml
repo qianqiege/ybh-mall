@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: MyString
+  count: 9.99
+  income: 9.99
+  expenditure: 9.99
+
+two:
+  account: MyString
+  count: 9.99
+  income: 9.99
+  expenditure: 9.99
