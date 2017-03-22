@@ -69,6 +69,9 @@ ActiveAdmin.register Order do
 
     column :wechat_user
     column :user_id
+    column '邀请人' do |order|
+      User.find_by(invitation_card: order.user.invitation_id).name
+    end
     column :activity
     column :price
     column :quantity
