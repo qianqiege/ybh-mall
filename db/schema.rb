@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319091851) do
+ActiveRecord::Schema.define(version: 20170322014404) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -221,6 +221,16 @@ ActiveRecord::Schema.define(version: 20170319091851) do
     t.datetime "time"
   end
 
+  create_table "lssue_currencies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "account"
+    t.decimal  "count",           precision: 10
+    t.decimal  "income",          precision: 10
+    t.decimal  "expenditure",     precision: 10
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "organization_id"
+  end
+
   create_table "member_clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
@@ -239,14 +249,6 @@ ActiveRecord::Schema.define(version: 20170319091851) do
     t.datetime "updated_at",                                      null: false
     t.text     "remark",             limit: 65535
     t.decimal  "price",                            precision: 10
-  end
-
-  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "vip_type_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -309,9 +311,12 @@ ActiveRecord::Schema.define(version: 20170319091851) do
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "only_number"
+    t.decimal  "ycoin",       precision: 10
+    t.string   "address"
+    t.string   "phone"
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -354,6 +359,7 @@ ActiveRecord::Schema.define(version: 20170319091851) do
     t.integer  "shop_count",                                                    default: 0
     t.integer  "lock_shop_count",                                               default: 0
     t.string   "only_number"
+    t.integer  "priority",                                                      default: 0
   end
 
   create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -557,7 +563,6 @@ ActiveRecord::Schema.define(version: 20170319091851) do
     t.string   "invitation_user"
     t.integer  "organization_id"
     t.integer  "invitation_id"
-    t.decimal  "coin",                   precision: 10
     t.string   "identity"
     t.string   "type"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

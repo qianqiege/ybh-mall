@@ -28,6 +28,7 @@ zh-CN:
         image: '展示图片'
         desc: '描述'
         product_sort: '类别'
+        priority: '权重(数字越大排在前)'
       presented_record:
         presentable_type: '收入支出相关'
         number: '数量'
