@@ -22,7 +22,8 @@ ActiveAdmin.register User do
     column :invitation_id
     column :organization
     column :y_coin
-    column :type
+    column '身份',:type
+    column '注册时间',:created_at
     actions defaults: true
   end
 
@@ -52,6 +53,7 @@ ActiveAdmin.register User do
       row :invitation_id
       row :organization
       row :y_coin
+      row :created_at
     end
   end
 
