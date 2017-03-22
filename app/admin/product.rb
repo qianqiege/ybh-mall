@@ -25,6 +25,7 @@ ActiveAdmin.register Product do
     column :original_product_price
     column :is_show
     column :shop_count
+    column :priority
     column '产品描述' do |product|
       truncate(raw product.desc)
     end
@@ -45,6 +46,7 @@ ActiveAdmin.register Product do
       f.input :only_number
       f.input :packaging
       f.input :image, as: :file
+      f.input :priority
       f.input :desc,:as => :ckeditor
     end
     f.actions
@@ -60,6 +62,7 @@ ActiveAdmin.register Product do
       row :shop_count
       row :production
       row :product_sort
+      row :priority
       row '产品描述' do |product|
         truncate(raw product.desc)
       end
