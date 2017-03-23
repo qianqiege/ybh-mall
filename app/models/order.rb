@@ -122,15 +122,17 @@ class Order < ApplicationRecord
   end
 
   def create_scoin_account
-    begin
-      s_account = ScoinAccount.find_by(account: account)
-      if s_account.nil?
-        s_account = ScoinAccount.create!(account: account, password: "QWER1234!", user_id: user_id, state: "未开户")
+    if !activity_id.nil?
+      begin
+        s_account = ScoinAccount.find_by(account: account)
+        if s_account.nil?
+          s_account = ScoinAccount.create!(account: account, password: "QWER1234!", user_id: user_id, state: "未开户")
+        end
+        ScoinAccountOrderRelation.create!(order: self, scoin_account: s_account)
+      rescue ActiveRecord::ActiveRecordError => e
+        errors.add(:user_id, e.message)
+        raise ActiveRecord::Rollback
       end
-      ScoinAccountOrderRelation.create!(order: self, scoin_account: s_account)
-    rescue ActiveRecord::ActiveRecordError => e
-      errors.add(:user_id, e.message)
-      raise ActiveRecord::Rollback
     end
   end
 
