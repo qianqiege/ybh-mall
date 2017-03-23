@@ -69,11 +69,6 @@ ActiveAdmin.register Order do
 
     column :wechat_user
     column :user_id
-    column '邀请人' do |order|
-      if !order.user.invitation_id.nil?
-        User.find_by(invitation_card: order.user.invitation_id).name
-      end
-    end
     column :activity
     column :price
     column :quantity
