@@ -10,7 +10,8 @@ ActiveAdmin.register Product do
                 :production,
                 :packaging,
                 :product_sort,
-                :only_number
+                :only_number,
+                :priority
 
   index do
     selectable_column
