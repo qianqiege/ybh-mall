@@ -76,7 +76,6 @@ class User::InfoController < Wechat::BaseController
 
   def query_wallet
     @ycoin = User.find(current_user.user_id)
-    ap @ycoin
     @coin = QueryCoin.query(params[:username], params[:password])
     logger.info @coin
   end
