@@ -58,6 +58,26 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  def wallet
+  end
+
+  def do_query_wallet
+    if !params[:username].present? || !params[:password].present?
+      render json: { status: 'error', message: '请填写用户名和密码' }
+    else
+      if QueryCoin.query(params[:username], params[:password])
+        render json: { status: 'ok' }
+      else
+        render json: { status: 'error', message: '登录失败，账号或密码不正确'}
+      end
+    end
+  end
+
+  def query_wallet
+    @coin = QueryCoin.query(params[:username], params[:password])
+    logger.info @coin
+  end
+
   def health_record
     if !current_user.user_id.nil?
       @idcard = User.find(current_user.user_id)

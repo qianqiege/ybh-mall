@@ -1,0 +1,29 @@
+<div class='wallet'>
+  <div class="weui-flex profile">
+    <div>
+      <div class="placeholder">
+        <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
+      </div>
+    </div>
+    <div class="weui-flex__item profile-text">
+      <div class="placeholder"><%= current_user.nickname %></div>
+    </div>
+  </div>
+  <div class="weui-flex middle-text">
+    <div class="weui-flex__item"><div class="placeholder text-center">账户资产</div></div>
+  </div>
+  <div class="weui-flex bottom-text">
+    <div class="weui-flex__item" style="border-right: 1px solid #bbb;">
+      <div class="placeholder text-center">
+        <p>S币数量</p>
+        <p>333.9</p>
+      </div>
+    </div>
+    <div class="weui-flex__item">
+      <div class="placeholder text-center">
+        <p>易币数量</p>
+        <p>205</p>
+      </div>
+    </div>
+  </div>
+</div>
