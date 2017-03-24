@@ -59,6 +59,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def wallet
+    @ycoin = User.find(current_user.user_id)
   end
 
   def do_query_wallet
@@ -74,6 +75,8 @@ class User::InfoController < Wechat::BaseController
   end
 
   def query_wallet
+    @ycoin = User.find(current_user.user_id)
+    ap @ycoin
     @coin = QueryCoin.query(params[:username], params[:password])
     logger.info @coin
   end
