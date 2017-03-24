@@ -15,14 +15,16 @@
   <div class="weui-flex bottom-text">
     <div class="weui-flex__item" style="border-right: 1px solid #bbb;">
       <div class="placeholder text-center">
-        <p>S币数量</p>
-        <p>333.9</p>
+        <p>易币数量</p>
+        <% if !@ycoin.nil? %>
+        <p><%= @ycoin.y_coin %></p>
+        <% end %>
       </div>
     </div>
     <div class="weui-flex__item">
       <div class="placeholder text-center">
-        <p>易币数量</p>
-        <p>205</p>
+        <p>积分</p>
+        <p>0</p>
       </div>
     </div>
   </div>
