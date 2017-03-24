@@ -50,8 +50,8 @@ class Order < ApplicationRecord
         end
 
         @pay = self.fast_pay.trade_merge_query
-        if !@pay.nil?
-          invitation = User.find_by(self.user_id).invitation_id
+        if @pay["resultMessage"] == "成功"
+          invitation = User.find(self.user_id).invitation_id
           if @pay.price > 3640
             presented_records.create(user_id: invitation, number: 500, reason: "推荐好友消费")
           else
