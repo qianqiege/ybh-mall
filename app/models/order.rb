@@ -48,6 +48,17 @@ class Order < ApplicationRecord
         line_items.each do |line_item|
           line_item.product.pay_reduce_shop_count(line_item.quantity)
         end
+
+        @pay = self.fast_pay.trade_merge_query
+        if @pay["resultMessage"] == "成功"
+          invitation = User.find(self.user_id).invitation_id
+          if @pay.price > 3640
+            presented_records.create(user_id: invitation, number: 500, reason: "推荐好友消费")
+          else
+            presented_records.create(user_id: invitation, number: 100, reason: "推荐好友消费")
+          end
+        end
+
       end
     end
 
