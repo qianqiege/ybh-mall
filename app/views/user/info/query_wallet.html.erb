@@ -1,0 +1,47 @@
+<%= render 'wallet_header' %>
+
+<div class='wallet-title'>
+  CoinSpace
+</div>
+
+<div class="wallet-content">
+  <div class="weui-flex profile">
+    <div>
+      <div class="placeholder">
+        <%= image_tag "wallet-1.png" %>
+      </div>
+    </div>
+    <div class="weui-flex__item text">
+      <p>冻结数量</p>
+      <p style="color: #c5a706"><%= @coin[:HeldCoins] if @coin %></p>
+    </div>
+  </div>
+</div>
+
+<div class="wallet-content">
+  <div class="weui-flex profile">
+    <div>
+      <div class="placeholder">
+        <%= image_tag "wallet-2.png" %>
+      </div>
+    </div>
+    <div class="weui-flex__item text">
+      <p>可售数量</p>
+      <p style="color: #6c9fa2"><%= @coin[:CoinsAvailable] if @coin %></p>
+    </div>
+  </div>
+</div>
+
+<div class="wallet-content">
+  <div class="weui-flex profile">
+    <div>
+      <div class="placeholder">
+        <%= image_tag "wallet-3.png" %>
+      </div>
+    </div>
+    <div class="weui-flex__item text">
+      <p>可用现金</p>
+      <p style="color: #03c239"><%= @coin[:CashAccount] if @coin %></p>
+    </div>
+  </div>
+</div>

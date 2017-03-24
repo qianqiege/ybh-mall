@@ -32,3 +32,4 @@
 //= require mall/orders
 //= require mall/my
 //= require mall/confirm
+//= require user/info
