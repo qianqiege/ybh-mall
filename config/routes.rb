@@ -128,6 +128,10 @@ Rails.application.routes.draw do
     post :create, on: :collection
   end
 
+  resources :health_record_give_ycoin do
+    post :create, on: :collection
+  end
+
   root "wechat/home#index"
   post 'putmessage' => 'devices#putmessage'
 
