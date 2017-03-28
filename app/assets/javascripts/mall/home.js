@@ -11,6 +11,11 @@ $(function () {
     $searchInput.val('');
   }
 
+  setTimeout(hide, 3000);
+  function hide() {
+    $('#toast').hide();
+  }
+
   function cancelSearch(){
     hideSearchResult();
     $searchBar.removeClass('weui-search-bar_focusing');
