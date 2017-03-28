@@ -14,7 +14,9 @@ class DevicesController < ApplicationController
       idcard = User.find_by(telphone: info["mo"])
       mall = Sdk::Mall.new
       temporary = TemporaryDatum.where(phone: info["mo"]).limit(1).order(created_at: :desc)
-      @user = User.find_by(identity_card: temporary.identity_card)
+      temporary.each do |temp|
+        @user = User.find_by(identity_card: temp.identity_card)
+      end
       case type
       when "101"
         # 血压
