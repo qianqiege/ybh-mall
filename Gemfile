@@ -95,6 +95,20 @@ gem 'paper_trail', '~> 4.0.2'
 # https://github.com/smartinez87/exception_notification
 gem 'exception_notification', '~> 4.1', '>= 4.1.4'
 
+# Create beautiful JavaScript charts with one line of Ruby
+# http://chartkick.com/
+# NOTE: 需要更改数据库时区： https://github.com/ankane/groupdate#for-mysql
+# mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
+gem 'chartkick', '~> 2.2', '>= 2.2.3'
+
+# Gem that includes Highcharts (Interactive JavaScript charts for your web projects), in the Rails Asset Pipeline introduced in Rails 3.1
+# https://rubygems.org/gems/highcharts-rails
+gem 'highcharts-rails', '~> 5.0', '>= 5.0.7'
+
+# The simplest way to group temporal data
+# https://github.com/ankane/groupdate
+gem 'groupdate', '~> 3.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
