@@ -17,10 +17,10 @@ class Examine::PressureController < Examine::BaseController
           format.html { redirect_to examine_pressure_path, notice: '上传失败'}
         end
       end
-      if !@id_number.identity_card.nil?
-        mall = Sdk::Mall.new
-        mall.api_blood_pressure(@id_number.identity_card,pressure_params[:diastolic_pressure],pressure_params[:systolic_pressure])
-      end
+      # if !@id_number.identity_card.nil?
+      #   mall = Sdk::Mall.new
+      #   mall.api_blood_pressure(@id_number.identity_card,pressure_params[:diastolic_pressure],pressure_params[:systolic_pressure])
+      # end
     else
       redirect_to '/user/binding'
       return
