@@ -14,14 +14,19 @@ class DevicesController < ApplicationController
       idcard = User.find_by(telphone: info["mo"])
       mall = Sdk::Mall.new
       temporary = TemporaryDatum.where(phone: info["mo"]).limit(1).order(created_at: :desc)
+      @user = User.find_by(identity_card: temporary.identity_card)
       case type
       when "101"
         # 血压
         if !temporary[0].nil?
           @blood_pressures = BloodPressure.new(diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
-          @blood_pressures.save
           @heart_rate = HeartRate.new(value: pressure["pm"],phone: info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @heart_rate.user_id = @user.id
+            @blood_pressures.user_id = @user.id
+          end
           @heart_rate.save
+          @blood_pressures.save
           if !temporary[0].identity_card.nil?
             mall.api_heart_rate(temporary[0].identity_card,pressure["pm"],info["mo"])
             mall.api_blood_pressure(temporary[0].identity_card,pressure["pdp"],pressure["pcp"],info["mo"])
@@ -29,9 +34,13 @@ class DevicesController < ApplicationController
         elsif !idcard.nil?
           # 如果没有找到手机号对应的UserID，将不绑定UserID
           @blood_pressures = BloodPressure.new(user_id: idcard.id,diastolic_pressure: pressure["pdp"],systolic_pressure: pressure["pcp"],phone: info["mo"],state: state,created_at: info["rsptime"])
-          @blood_pressures.save
+          if(@user.present?)
+            @heart_rate.user_id = @user.id
+            @blood_pressures.user_id = @user.id
+          end
           @heart_rate = HeartRate.new(user_id: idcard.id,value: pressure["pm"],phone: info["mo"],state: state,created_at: info["rsptime"])
           @heart_rate.save
+          @blood_pressures.save
           if !idcard.nil?
             mall.api_heart_rate(idcard.identity_card,pressure["pm"],info["mo"])
             mall.api_blood_pressure(idcard.identity_card,pressure["pdp"],pressure["pcp"],info["mo"])
@@ -41,6 +50,9 @@ class DevicesController < ApplicationController
         # 血糖
         if !temporary[0].nil?
           @blood_glucose = BloodGlucose.new(value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @blood_glucose.user_id = @user.id
+          end
           @blood_glucose.save
           if !temporary[0].identity_card.nil?
             mall.api_blood_glucose(temporary[0].identity_card,pressure["bds"],pressure["mensType"],info["mo"])
@@ -48,6 +60,9 @@ class DevicesController < ApplicationController
         elsif !idcard.nil?
           # 如果没有找到手机号对应的UserID，将不绑定UserID
           @blood_glucose = BloodGlucose.new(user_id: idcard.id,value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"],)
+          if(@user.present?)
+            @blood_glucose.user_id = @user.id
+          end
           @blood_glucose.save
           if !idcard.identity_card.nil?
             mall.api_blood_glucose(idcard.identity_card,pressure["bds"],pressure["mensType"],info["mo"])
@@ -57,12 +72,18 @@ class DevicesController < ApplicationController
         # 体重
         if !temporary[0].nil?
           @weight = Weight.new(value:pressure["weight"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @weight.user_id = @user.id
+          end
           @weight.save
           if !temporary[0].identity_card.nil?
             mall.api_weight(temporary[0].identity_card,pressure["weight"],info["mo"])
           end
         elsif !idcard.nil?
           @weight = Weight.new(user_id: idcard.id,value:pressure["weight"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @weight.user_id = @user.id
+          end
           @weight.save
           if !idcard.identity_card.nil?
             mall.api_weight(idcard.identity_card,pressure["weight"],info["mo"])
@@ -74,12 +95,18 @@ class DevicesController < ApplicationController
         # 尿酸
         if !temporary[0].nil?
           @unine = Unine.new(value:pressure["ua"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @unine.user_id = @user.id
+          end
           @unine.save
           if !temporary[0].identity_card.nil?
             mall.api_unine(temporary[0].identity_card,pressure["ua"],info["mo"])
           end
         elsif !idcard.nil?
           @unine = Unine.new(user_id: idcard.id,value:pressure["ua"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @unine.user_id = @user.id
+          end
           @unine.save
           if !idcard.identity_card.nil?
             mall.api_unine(idcard.identity_card,pressure["ua"],info["mo"])
@@ -91,9 +118,15 @@ class DevicesController < ApplicationController
           mall.api_blood_fat(temporary[0].identity_card,pressure["tc"],info["mo"])
         elsif !temporary[0].identity_card.nil?
           @blood_fat = BloodFat.new(value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @blood_fat.user_id = @user.id
+          end
           @blood_fat.save
           if !idcard.nil?
             @blood_fat = BloodFat.new(user_id: idcard.id,value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
+            if(@user.present?)
+              @blood_fat.user_id = @user.id
+            end
             @blood_fat.save
             if !idcard.identity_card.nil?
               mall.api_blood_fat(idcard.identity_card,pressure["tc"],info["mo"])
@@ -104,12 +137,18 @@ class DevicesController < ApplicationController
         # 温度
         if !temporary[0].nil?
           @api_temperature = Temperature.new(value:pressure["etg"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @api_temperature.user_id = @user.id
+          end
           @api_temperature.save
           if !temporary[0].identity_card.nil?
             mall.api_temperature(temporary[0].identity_card,pressure["etg"],info["mo"])
           end
         elsif !idcard.nil?
           @api_temperature = Temperature.new(user_id: idcard.id,value:pressure["etg"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          if(@user.present?)
+            @api_temperature.user_id = @user.id
+          end
           @api_temperature.save
           if !idcard.identity_card.nil?
             mall.api_temperature(idcard.identity_card,pressure["etg"],info["mo"])

@@ -29,6 +29,12 @@ zh-CN:
         desc: '描述'
         product_sort: '类别'
         priority: '权重(数字越大排在前)'
+      appraise:
+        user_id: '用户'
+        result: '评价'
+        category: '评价结果'
+        number: '方案号/订单号'
+        doctor_name: '医生名字'
       presented_record:
         presentable_type: '收入支出相关'
         number: '数量'

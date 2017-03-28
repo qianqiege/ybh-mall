@@ -68,8 +68,13 @@ class Mall::OrdersController < Mall::BaseController
       end
       # 5. 清空session
       session[:line_item_ids] = nil
-      # 6. 跳转到支付页面
-      redirect_to pay_mall_order_path(@order)
+      if params["payment"] != "PAYMENT_TYPE_NULL"
+        # 6. 跳转到支付页面
+        redirect_to pay_mall_order_path(@order)
+      else
+        flash[:notice] = "已完成订单，等待工作人员确认收款!"
+        redirect_to mall_my_path
+      end
     else
       logger.info @order.errors.messages
       flash[:success] = @order.errors.messages.values.join(",")

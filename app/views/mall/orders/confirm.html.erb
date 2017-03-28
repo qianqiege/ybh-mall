@@ -53,7 +53,7 @@
       <div class="weui-cells">
         <div class="weui-cell weui-cell_select weui-cell_select-after">
           <div class="weui-cell__hd">
-            <label for="" class="weui-label">参与活动</label>
+            <label for="" class="weui-label" >参与活动</label>
           </div>
           <div class="weui-cell__bd">
             <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.first.id) ,  class: "weui-select", include_blank: "不参加活动" %>
@@ -65,7 +65,7 @@
             <label for="" class="weui-label">支付方式</label>
           </div>
           <div class="weui-cell__bd">
-            <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) ,  class: "weui-select" %>
+            <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"],["线下支付", "PAYMENT_TYPE_NULL"]]) ,  class: "weui-select" %>
           </div>
         </div>
       </div>
