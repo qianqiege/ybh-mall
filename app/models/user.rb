@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one :wechat_user
   has_many :orders
   has_one :cart
+  has_many :appraise
   has_many :examine_records
   has_many :addresses
   has_many :unines
