@@ -99,6 +99,9 @@ gem 'exception_notification', '~> 4.1', '>= 4.1.4'
 # http://chartkick.com/
 # NOTE: 需要更改数据库时区： https://github.com/ankane/groupdate#for-mysql
 # mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
+# SET sql_mode = ''
+# set global sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+# set session sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
 gem 'chartkick', '~> 2.2', '>= 2.2.3'
 
 # Gem that includes Highcharts (Interactive JavaScript charts for your web projects), in the Rails Asset Pipeline introduced in Rails 3.1

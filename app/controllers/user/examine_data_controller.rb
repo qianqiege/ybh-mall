@@ -36,16 +36,16 @@ class User::ExamineDataController < Wechat::BaseController
   def show_pressure
     if !current_user.user_id.nil?
       @show = BloodPressure.where(user_id: current_user.user_id)
-      # @systolic_pressure = []
-      # @diastolic_pressure = []
-      # i = 0
-      # @show.each do |show|
-      #   @systolic_pressure[i] = show.systolic_pressure
-      #   @diastolic_pressure[i] = show.diastolic_pressure
-      #   i =i + 1
-      # end
-      # ap @systolic_pressure
-      # ap @diastolic_pressure
+      @options = {
+        colors: ["#ff0000", "#add9c0"],
+        xAxis: {
+          type: 'datetime',
+          labels: {
+            format: '{value:%m-%d}',
+            align: 'left'
+          }
+        }
+      }
     end
   end
 
