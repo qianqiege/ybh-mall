@@ -1,0 +1,31 @@
+<%= title '我的血压监测数据' %>
+
+<% if !@show.nil? %>
+<!-- <%= line_chart [
+  {name: "systolic_pressure", data: {"Football" => 10, "Basketball" => 5}},
+  {name: "diastolic_pressure", data: {"Football" => 15, "Basketball" => 7}}
+] %> -->
+  <div class="weui-btn-area">
+    <table class="hovertable table">
+      <tr>
+      	<th>收缩压</th><th>舒张压</th><th>测量时间</th>
+      </tr>
+      <% @show.each do |search|%>
+      <tr>
+        <% if search.systolic_pressure > 89 && search.systolic_pressure < 141 %>
+          <td class="green td"><%= search.systolic_pressure %></td>
+        <% else %>
+          <td class="red td"><%= search.systolic_pressure %></td>
+        <% end %>
+
+        <% if search.diastolic_pressure > 59 && search.diastolic_pressure < 91 %>
+          <td class="green td"><%= search.diastolic_pressure %></td>
+        <% else %>
+          <td class="red td"><%= search.diastolic_pressure %></td>
+        <% end %>
+        <td class="td"><%= date search.updated_at %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>

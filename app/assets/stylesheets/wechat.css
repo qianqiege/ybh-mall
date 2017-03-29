@@ -29,4 +29,5 @@
  *= require_self
  *= require evaluate/mellitus
  *= require mall/confirm
+ *= require user/data_examine
  */

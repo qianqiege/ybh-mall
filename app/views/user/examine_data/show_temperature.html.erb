@@ -1,0 +1,19 @@
+<%= title '我的体温监测数据' %>
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>体温值</th><th>状态</th><th>测量时间</th>
+    </tr>
+    <% @show.each do |search|%>
+    <tr>
+    	<th><%= search.value %>℃</th>
+      <% if search.value > 35 && search.value < 37.6 %>
+        <th class="green">正常</th>
+      <% else %>
+        <th class="red">异常</th>
+      <% end %>
+      <th><%= datetime search.updated_at %></th>
+    </tr>
+    <% end %>
+  </table>
+</div>
