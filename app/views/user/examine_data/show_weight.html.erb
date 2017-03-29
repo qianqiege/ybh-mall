@@ -1,0 +1,16 @@
+<%= title '我的体重监测数据' %>
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>体重值 kg</th><th>测量时间</th>
+    </tr>
+    <% if !@show.nil? %>
+    <% @show.each do |search|%>
+      <tr>
+      	<th><%= search.value %></th>
+        <th><%= datetime search.updated_at %></th>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

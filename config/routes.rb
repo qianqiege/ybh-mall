@@ -91,6 +91,15 @@ Rails.application.routes.draw do
     post '/upload_image', to: 'info#upload_image'
     get '/invitation', to: 'info#invitation'
     get '/invitation_friend', to:'info#invitation_friend'
+    # show_examine
+    get '/data_home',to: 'examine_data#health_data_home'
+    get '/show_temperature', to: 'examine_data#show_temperature'
+    get '/show_blood_fat', to: 'examine_data#show_blood_fat'
+    get '/show_weight', to: 'examine_data#show_weight'
+    get '/show_glucose', to: 'examine_data#show_glucose'
+    get '/show_heart', to: 'examine_data#show_heart'
+    get '/show_pressure', to: 'examine_data#show_pressure'
+    get '/show_unine', to: 'examine_data#show_unine'
   end
 
   namespace :examine do
