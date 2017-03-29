@@ -92,7 +92,6 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
-    chartkick (2.2.3)
     china_city (0.0.4)
       jquery-rails
       rails (>= 3.1.0)
@@ -140,13 +139,9 @@ GEM
     formtastic_i18n (0.6.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    groupdate (3.2.0)
-      activesupport (>= 3)
     has_scope (0.7.0)
       actionpack (>= 4.1, < 5.1)
       activesupport (>= 4.1, < 5.1)
-    highcharts-rails (5.0.7)
-      railties (>= 3.1)
     highline (1.7.7)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -339,7 +334,6 @@ DEPENDENCIES
   cancancan
   capistrano (~> 2.15.5)
   carrierwave (~> 0.11.2)
-  chartkick (~> 2.2, >= 2.2.3)
   china_city
   china_sms
   ckeditor (~> 4.2)
@@ -348,8 +342,6 @@ DEPENDENCIES
   devise
   exception_notification (~> 4.1, >= 4.1.4)
   font-awesome-sass (~> 4.7.0)
-  groupdate (~> 3.2)
-  highcharts-rails (~> 5.0, >= 5.0.7)
   inherited_resources!
   jbuilder (~> 2.5)
   jquery-rails

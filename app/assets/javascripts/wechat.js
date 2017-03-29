@@ -33,6 +33,3 @@
 //= require mall/my
 //= require mall/confirm
 //= require user/info
-
-//= require highcharts
-//= require chartkick
