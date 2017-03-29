@@ -35,7 +35,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_pressure
     if !current_user.user_id.nil?
-      @show = BloodPressure.where(user_id: current_user.user_id).pluck(:systolic_pressure)
+      @show = BloodPressure.where(user_id: current_user.user_id)
       # @systolic_pressure = []
       # @diastolic_pressure = []
       # i = 0
@@ -46,7 +46,6 @@ class User::ExamineDataController < Wechat::BaseController
       # end
       # ap @systolic_pressure
       # ap @diastolic_pressure
-      ap @show
     end
   end
 
