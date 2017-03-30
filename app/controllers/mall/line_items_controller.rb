@@ -18,7 +18,8 @@ class Mall::LineItemsController < Mall::BaseController
 
   # 购物车增加商品数量
   def add
-    @line_item.quantity += 1
+    @quantity = params[:quantity].to_i || 1
+    @line_item.quantity += @quantity
     @line_item.save
     @action = 'add'
     render 'carts_line_item.json.jbuilder'
@@ -26,7 +27,8 @@ class Mall::LineItemsController < Mall::BaseController
 
   # 购物车减少商品数量
   def remove
-    @line_item.quantity -= 1
+    @quantity = params[:quantity].to_i || 1
+    @line_item.quantity -= @quantity
     @line_item.save
     @action = 'remove'
     render 'carts_line_item.json.jbuilder'
