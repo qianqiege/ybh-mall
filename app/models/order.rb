@@ -51,18 +51,18 @@ class Order < ApplicationRecord
         end
       end
 
-      @pay = self.fast_pay.trade_merge_query
-      if @pay["resultMessage"] == "成功"
-          invitation = User.find(self.user_id).invitation_id
-          Rails.logger.info(invitation)
-          Rails.logger.info(self)
-          Rails.logger.info(presented_records)
-          if self.price.to_f > 3640
-              presented_records.create(user_id: invitation, number: 500, reason: "推荐好友消费")
-          else
-              presented_records.create(user_id: invitation, number: 100, reason: "推荐好友消费")
-          end
-      end
+      # @pay = self.fast_pay.trade_merge_query
+      # if @pay["resultMessage"] == "成功"
+      #     invitation = User.find(self.user_id).invitation_id
+      #     Rails.logger.info(invitation)
+      #     Rails.logger.info(self)
+      #     Rails.logger.info(presented_records)
+      #     if self.price.to_f > 3640
+      #         presented_records.create(user_id: invitation, number: 500, reason: "推荐好友消费")
+      #     else
+      #         presented_records.create(user_id: invitation, number: 100, reason: "推荐好友消费")
+      #     end
+      # end
     end
 
     event :make_cancel do
