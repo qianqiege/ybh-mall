@@ -1,13 +1,12 @@
 ActiveAdmin.register Activity do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :name,:start_time,:stop_time,:currency_type,:is_show
+  permit_params :name,:start_time,:stop_time
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "S货币记录" do
       f.input :name
       f.input :start_time, as: :datepicker
       f.input :stop_time, as: :datepicker
-      f.input :is_show
     end
     f.actions
   end
@@ -29,7 +28,6 @@ ActiveAdmin.register Activity do
     column :name
     column :start_time
     column :stop_time
-    column :is_show
     column :is_default
     actions do |activity|
       span do

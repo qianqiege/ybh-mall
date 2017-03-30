@@ -9,7 +9,7 @@ module Mall
     protected
 
     def bind_phone?
-      current_user.user_id.present?
+      current_user.mobile.present? && current_user.user.present?
     end
 
     private
