@@ -19,9 +19,9 @@
               <div class="sub-title text-center"><%= raw product.desc %></div>
               <p class="item-price text-center">
                 <em>¥<%= money product.now_product_price %></em>
-                <% if product.ycoin_price.present? %>
-                  <del><%= product.ycoin_price %></del>
-                <% end %>
+                <%# <% if product.original_product_price.present? %>
+                <%#   <del><%= money product.original_product_price %></del>
+                <%# <% end %>
               </p>
             </a>
           </li>
