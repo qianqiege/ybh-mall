@@ -11,7 +11,8 @@ ActiveAdmin.register Product do
                 :packaging,
                 :product_sort,
                 :only_number,
-                :priority
+                :priority,
+                :ycoin_price
 
   index do
     selectable_column
@@ -24,6 +25,7 @@ ActiveAdmin.register Product do
     column :only_number
     column :now_product_price
     column :original_product_price
+    column :ycoin_price
     column :is_show
     column :shop_count
     column :priority
@@ -40,6 +42,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :now_product_price
       f.input :original_product_price
+      f.input :ycoin_price
       f.input :shop_count
       f.input :is_show
       f.input :production
@@ -63,6 +66,7 @@ ActiveAdmin.register Product do
       row :shop_count
       row :production
       row :product_sort
+      row :ycoin_price
       row :priority
       row '产品描述' do |product|
         truncate(raw product.desc)

@@ -20,6 +20,7 @@ zh-CN:
         name: "标题"
         original_product_price: "原价"
         now_product_price: "现价"
+        ycoin_price: "易币价"
         only_number: "产品编号"
         is_show: "是否显示"
         shop_count: '库存'
@@ -201,6 +202,7 @@ zh-CN:
         name: '活动名称'
         stop_time: '停止时间'
         start_time: '开始时间'
+        is_show: '是否赠送S货币'
         is_default: '是否默认活动'
       activity_rule:
         rule: '规则介绍'
