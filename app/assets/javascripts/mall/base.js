@@ -4,6 +4,10 @@
     return !!/^(13[0-9]|15[012356789]|17[0123456789]|18[0-9]|14[57])[0-9]{8}$/.test(text);
   }
 
+  this.isNumber = function (n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
   // 验证短信验证码
   this.validateCode = function (text) {
     return !!/[0-9]{6}/.test(text);
