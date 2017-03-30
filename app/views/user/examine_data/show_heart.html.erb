@@ -5,6 +5,9 @@
     	<th>心率值 次/分</th><th>状态</th><th>测量时间</th>
     </tr>
     <% if !@show.nil? %>
+    <%= line_chart [
+      {name: "心率", data: @show.pluck(:updated_at, :value)}
+    ], library: @options %>
     <% @show.each do |search|%>
       <tr>
       	<th><%= search.value %></th>

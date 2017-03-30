@@ -1,5 +1,8 @@
 <%= title '我的体温监测数据' %>
 <div class="weui-btn-area">
+  <%= line_chart [
+    {name: "体温", data: @show.pluck(:updated_at, :value)}
+  ], library: @options %>
   <table class="hovertable">
     <tr>
     	<th>体温值</th><th>状态</th><th>测量时间</th>

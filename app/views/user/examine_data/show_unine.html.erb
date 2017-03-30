@@ -1,5 +1,8 @@
 <%= title '我的尿酸监测数据' %>
 <div class="weui-btn-area">
+  <%= line_chart [
+    {name: "尿酸", data: @show.pluck(:updated_at, :value)}
+  ], library: @options %>
   <table class="hovertable">
     <tr>
     	<th>尿酸值/umol/L</th><th>状态</th><th>测量时间</th>

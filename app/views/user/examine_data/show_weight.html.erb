@@ -1,5 +1,8 @@
 <%= title '我的体重监测数据' %>
 <div class="weui-btn-area">
+  <%= line_chart [
+    {name: "体重", data: @show.pluck(:updated_at, :value)}
+  ], library: @options %>
   <table class="hovertable">
     <tr>
     	<th>体重值 kg</th><th>测量时间</th>
