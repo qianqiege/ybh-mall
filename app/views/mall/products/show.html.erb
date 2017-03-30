@@ -10,6 +10,9 @@
     <div class="pro-info">
       <p class="name"><%= @product.name %></p>
       <p class="price">¥<%= money @product.now_product_price %></p>
+      <% if !@product.ycoin_price.nil? %>
+        <p style="font-size:15px;"><%= @product.ycoin_price %></p>
+      <% end %>
     </div>
   </div>
 
