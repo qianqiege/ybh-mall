@@ -202,6 +202,7 @@ zh-CN:
         name: '活动名称'
         stop_time: '停止时间'
         start_time: '开始时间'
+        is_show: '是否赠送S货币'
         is_default: '是否默认活动'
       activity_rule:
         rule: '规则介绍'
