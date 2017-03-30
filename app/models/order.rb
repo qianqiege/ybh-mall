@@ -49,8 +49,6 @@ class Order < ApplicationRecord
         line_items.each do |line_item|
           line_item.product.pay_reduce_shop_count(line_item.quantity)
         end
-      end
-
       # @pay = self.fast_pay.trade_merge_query
       # if @pay["resultMessage"] == "成功"
       #     invitation = User.find(self.user_id).invitation_id

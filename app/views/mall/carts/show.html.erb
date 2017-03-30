@@ -37,7 +37,7 @@
                      <div class="fr amount">
                         <%= hidden_field "line_item_ids", "", value: line_item.id, id: "line_item_#{line_item.id}", class: 'line_item_hidden_input', data: { "line-item-id" => line_item.id } %>
                         <span class="decrease disable decrease_btn_ajax">-</span>
-                        <input type="text" data-shop-count="<%= line_item.product.shop_count %>" class="num buyNum" value="<%= line_item.quantity %>" data-line_item_id="<%= line_item.id %>" readonly="">
+                        <input type="text" data-shop-count="<%= line_item.product.shop_count %>" class="num buyNum" data-quantity="<%= line_item.quantity %>" value="<%= line_item.quantity %>" data-line_item_id="<%= line_item.id %>">
                         <span class="increase increase_btn_ajax">+</span>
                       </div>
                     <% else %>

@@ -10,9 +10,6 @@
     <div class="pro-info">
       <p class="name"><%= @product.name %></p>
       <p class="price">¥<%= money @product.now_product_price %></p>
-      <% if !@product.ycoin_price.nil? %>
-        <p style="font-size:15px;"><%= @product.ycoin_price %></p>
-      <% end %>
     </div>
   </div>
 
@@ -24,7 +21,7 @@
     <li class="arrow-right">
       <div class="fr amount">
         <span class="decrease disable" id="decrease_btn">-</span>
-        <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="">
+        <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="" style="width: 60px;">
         <span class="increase" id="increase_btn">+</span>
       </div>
       <span class="choosed">购买数量(<%= @product.shop_count > 0 ? '有货' : '无货' %>)</span>
