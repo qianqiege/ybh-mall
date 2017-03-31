@@ -8,10 +8,10 @@ class Mall::LineItemsController < Mall::BaseController
 
   # 加入购物车和立即购买
   def create
-    quantity = params[:quantity].to_i
+    @quantity = params[:quantity].to_i
     product = Product.find(params[:product_id])
 
-    @line_item = current_cart.add_product(product, quantity)
+    @line_item = current_cart.add_product(product, @quantity)
     @line_item.save
     render 'carts_line_item.json.jbuilder'
   end
