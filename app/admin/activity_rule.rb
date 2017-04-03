@@ -1,6 +1,6 @@
 ActiveAdmin.register ActivityRule do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :rule,:activity_id,:max,:min,:y_coin,:scoin_type_id
+  permit_params :rule,:activity_id,:max,:min,:y_coin,:coin_type_id
   index do
     selectable_column
     id_column
@@ -10,7 +10,7 @@ ActiveAdmin.register ActivityRule do
     column :max
     column :min
     column :y_coin
-    column :scoin_type
+    column :coin_type
     actions
   end
 
@@ -20,7 +20,7 @@ ActiveAdmin.register ActivityRule do
       f.input :rule
       f.input :max
       f.input :min
-      f.input :scoin_type
+      f.input :coin_type
       f.input :y_coin
     end
     f.actions

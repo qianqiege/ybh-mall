@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :heart_rates
   has_many :blood_fats
   has_many :identity_cards
+  has_many :ycoin_records, dependent: :destroy, as: :account
+
   belongs_to :organization
   belongs_to :invitation, class_name: 'User', foreign_key: 'invitation_id'
 
