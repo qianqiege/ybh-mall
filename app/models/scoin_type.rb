@@ -1,15 +1,7 @@
-class ScoinType < ApplicationRecord
-  has_paper_trail
+class ScoinType < CoinType
   DEFAULT_CALCULATE_DAY = 365
 
-  has_many :scoin_records
-  has_one :activity_rule
+  has_many :scoin_records, class_name: "ScoinRecord", foreign_key: "coin_type_id", dependent: :destroy
 
-  before_validation :calculate_count
-
-  validates :name, :once, :everyday, :count, :remain_count, presence: true
-
-  def calculate_count
-    self.count = once + everyday * 365
-  end
+  validates :remain_count, presence: true
 end

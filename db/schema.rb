@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328060916) do
+ActiveRecord::Schema.define(version: 20170404031539) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -37,13 +37,14 @@ ActiveRecord::Schema.define(version: 20170328060916) do
 
   create_table "activity_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rule"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "activity_id"
-    t.decimal  "max",           precision: 10, scale: 3
-    t.decimal  "min",           precision: 10, scale: 3
-    t.decimal  "y_coin",        precision: 10
-    t.integer  "scoin_type_id"
+    t.decimal  "max",          precision: 10, scale: 3
+    t.decimal  "min",          precision: 10, scale: 3
+    t.decimal  "y_coin",       precision: 10
+    t.integer  "coin_type_id"
+    t.decimal  "percent",      precision: 10, scale: 2
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -149,6 +150,31 @@ ActiveRecord::Schema.define(version: 20170328060916) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "coin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "state"
+    t.integer  "account_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "coin_type_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "type"
+    t.string   "account_type"
+  end
+
+  create_table "coin_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "once"
+    t.decimal  "everyday",      precision: 10, scale: 1
+    t.decimal  "count",         precision: 10, scale: 1
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.decimal  "remain_count",  precision: 10
+    t.decimal  "present_count", precision: 10
+    t.string   "type"
+    t.integer  "days"
   end
 
   create_table "examine_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -259,6 +285,14 @@ ActiveRecord::Schema.define(version: 20170328060916) do
     t.datetime "updated_at",                                      null: false
     t.text     "remark",             limit: 65535
     t.decimal  "price",                            precision: 10
+  end
+
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -430,27 +464,6 @@ ActiveRecord::Schema.define(version: 20170328060916) do
     t.string   "state"
     t.decimal  "amount",     precision: 10, scale: 1
     t.string   "email"
-  end
-
-  create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "state"
-    t.integer  "scoin_account_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "scoin_type_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
-  end
-
-  create_table "scoin_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "once"
-    t.decimal  "everyday",      precision: 10, scale: 1
-    t.decimal  "count",         precision: 10, scale: 1
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.decimal  "remain_count",  precision: 10
-    t.decimal  "present_count", precision: 10
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

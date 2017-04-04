@@ -1,13 +1,13 @@
-ActiveAdmin.register ScoinType do
+ActiveAdmin.register YcoinType do
   menu parent: I18n.t("active_admin.menu.coin_manage")
-  permit_params :name,:once,:everyday,:count, :remain_count
+  permit_params :name,:once,:everyday,:count,:days
 
   form(:html => { :multipart => true }) do |f|
-    f.inputs "s货币包" do
+    f.inputs "y货币包" do
       f.input :name
       f.input :once
       f.input :everyday
-      f.input :remain_count
+      f.input :days
     end
     f.actions
   end
@@ -20,8 +20,7 @@ ActiveAdmin.register ScoinType do
     column :once
     column :everyday
     column :count
-    column :remain_count
-    column :present_count
+    column :days
     actions
   end
 
@@ -29,7 +28,5 @@ ActiveAdmin.register ScoinType do
   filter :once, as: :select
   filter :everyday, as: :select
   filter :count, as: :select
-  filter :remain_count, as: :select
-  filter :present_count, as: :select
 
 end

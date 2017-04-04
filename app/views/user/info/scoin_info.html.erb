@@ -13,27 +13,27 @@
       <tbody>
         <% @scoin_record.each do |scoin| %>
           <tr class="center">
-              <td class="td" style="width: 20%"><%= scoin.scoin_type.name %></td>
+              <td class="td" style="width: 20%"><%= scoin.coin_type.name %></td>
               <td class="td" style="width: 22%"><%= date scoin.start_at %></td>
               <td class="td" style="width: 22%"><%= date scoin.end_at %></td>
               <% @time = (Date.current - Date.parse(scoin.start_at.to_s)).to_i %>
               <!-- //获取当前时间和账户开始时间有几天 -->
               <% if @time > 0 %>
               <!-- //判断天数是否小于等于0 -->
-                <% @now_everyday = scoin.scoin_type.everyday * @time %>
+                <% @now_everyday = scoin.coin_type.everyday * @time %>
                 <!-- //S币包一天送的数量 × 天数 -->
-                <% @now_count = scoin.scoin_type.once + @now_everyday + scoin.scoin_type.everyday %>
+                <% @now_count = scoin.coin_type.once + @now_everyday + scoin.coin_type.everyday %>
                 <!-- //计算第一次赠送的 + （一天送的 × 天数） + 一天送的次数 -->
                 <td class="td" style="width: 16%"><%= @now_count %></td>
                 <!-- //就是目前总收益 -->
               <% else %>
               <!-- //如果天数等于0，就计算一天赠送的 + 第一次赠送的 -->
-                <% @now_count = scoin.scoin_type.once + scoin.scoin_type.everyday %>
+                <% @now_count = scoin.coin_type.once + scoin.coin_type.everyday %>
                 <!-- //计算第一次赠送的 + 一天送的次数 -->
                 <td class="td" style="width: 16%"><%= @now_count %></td>
                 <!-- //就是目前总收益 -->
               <% end %>
-              <td class="td" style="width: 20%"><%= scoin.scoin_type.count %></td>
+              <td class="td" style="width: 20%"><%= scoin.coin_type.count %></td>
           </tr>
         <% end %>
       </tbody>

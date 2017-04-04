@@ -176,11 +176,12 @@ zh-CN:
         initiation_time: '入会时间'
         user: '绑定用户ID（手机号）'
         membership_card: '会员卡ID'
-      scoin_record:
-        scoin_type: 'S货币包'
+      coin_record:
+        coin_type: '货币包'
         state: '状态'
-        scoin_account: 'S货币账户'
+        account: '货币账户'
         start_at: "开始时间"
+        type: "货币类型"
         end_at: "结束时间"
         created_at: "创建时间"
       scoin_account:
@@ -207,18 +208,21 @@ zh-CN:
         max: '最大值'
         min: '最小值'
         y_coin: '易币'
-        scoin_type: 'S货币包'
+        coin_type: '货币包'
         activity: '活动'
-      scoin_type:
+        percent: '赠送推荐人比率(0.1即10%)'
+      coin_type:
         name: '包名称'
         once: '一次性数量（第一天给的S货币数量）'
         everyday: '每一天给的数量'
         count: '总计（估计数量）'
         remain_count: '赠送包剩余总量'
         present_count: '赠送总量'
+        days: '赠送天数'
     models:
       product: "商品"
       scoin_type: 'S货币包'
+      ycoin_type: '易币包'
       address: '收货地址'
       order: '订单'
       activity: '活动'
@@ -241,7 +245,7 @@ zh-CN:
       member_record: '会员档案/信息'
       slide: '滚动图片'
       scoin_account: 'S货币账户'
-      scoin_record: 'S货币记录'
+      coin_record: '货币记录'
       blood_glucose: '血糖检测'
       blood_pressure: '血压检测'
       temperature: '体温检测'

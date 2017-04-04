@@ -49,7 +49,7 @@ class User::InfoController < Wechat::BaseController
           @sum = @sum + scoin.number
         end
         if !scoin.id.nil?
-          @scoin_type = ScoinType.where(id: ScoinRecord.where(scoin_account_id: scoin.id).pluck(:scoin_type_id))
+          @scoin_type = ScoinType.where(id: ScoinRecord.where(account_id: scoin.id).pluck(:coin_type_id))
           @scoin_type.each do |type|
             @count = @count + type.count
           end
