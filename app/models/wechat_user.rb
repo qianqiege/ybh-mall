@@ -10,6 +10,7 @@ class WechatUser < ApplicationRecord
 
   validates :open_id, presence: true, uniqueness: true
 
+  delegate :y_coin, to: :user, allow_nil: true
   alias_attribute :name, :nickname
 
   def set_userinfo user_basic_info

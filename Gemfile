@@ -112,6 +112,10 @@ gem 'highcharts-rails', '~> 5.0', '>= 5.0.7'
 # https://github.com/ankane/groupdate
 gem 'groupdate', '~> 3.2'
 
+# Ransack is the successor to the MetaSearch gem. It improves and expands upon MetaSearch's functionality, but does not have a 100%-compatible API
+# https://rubygems.org/gems/ransack
+gem 'ransack', '~> 1.8', '>= 1.8.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

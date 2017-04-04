@@ -30,10 +30,13 @@ Rails.application.routes.draw do
     get 'authenticate_phone', to: 'authenticate#phone'
     post 'bind_phone', to: 'authenticate#bind_phone'
     get 'activity', to: 'activity#home'
+    get 'activity/:id/scoin_type_count', to: 'activity#scoin_type_count'
+
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
       put :remove, on: :member
     end
+
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index, :show] do
       get :confirm, on: :collection

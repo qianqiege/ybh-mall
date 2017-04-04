@@ -16,10 +16,7 @@
     <div class="weui-flex__item" style="border-right: 1px solid #bbb;">
       <div class="placeholder text-center">
         <p>易币数量</p>
-        <p>0</p>
-        <!-- <% if !@ycoin.nil? %>
-        <p><%= @ycoin.y_coin %></p>
-        <% end %> -->
+        <p><%= current_user && current_user.y_coin || 0 %></p>
       </div>
     </div>
     <div class="weui-flex__item">
