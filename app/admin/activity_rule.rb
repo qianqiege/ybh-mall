@@ -1,6 +1,6 @@
 ActiveAdmin.register ActivityRule do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :rule,:activity_id,:max,:min,:y_coin,:coin_type_id
+  permit_params :rule,:activity_id,:max,:min,:y_coin,:coin_type_id,:percent
   index do
     selectable_column
     id_column
@@ -11,6 +11,7 @@ ActiveAdmin.register ActivityRule do
     column :min
     column :y_coin
     column :coin_type
+    column :percent
     actions
   end
 
@@ -21,6 +22,7 @@ ActiveAdmin.register ActivityRule do
       f.input :max
       f.input :min
       f.input :coin_type
+      f.input :percent
       f.input :y_coin
     end
     f.actions
