@@ -13,7 +13,7 @@ zh-CN:
       record_manage: '档案管理'
       coin_manage: '货币管理'
       activity_manage: '活动管理'
-      company_manage: '机构管理'
+      company_manage: '机构（公司）'
   activerecord:
     attributes:
       product:
@@ -28,9 +28,30 @@ zh-CN:
         image: '展示图片'
         desc: '描述'
         product_sort: '类别'
+        priority: '权重(数字越大排在前)'
+      appraise:
+        user_id: '用户'
+        result: '评价'
+        category: '评价结果'
+        number: '方案号/订单号'
+        doctor_name: '医生名字'
+      presented_record:
+        presentable_type: '收入支出相关'
+        number: '数量'
+        reason: '收入支出渠道'
+        created_at: '创建日期'
       organization:
-        name: "机构名称"
-        only_number: "机构编号"
+        name: "机构（公司）名称"
+        only_number: "机构（公司）编号"
+        ycoin: "持有易币数量"
+        address: "机构（公司）地址"
+        phone: "机构（公司）电话"
+      lssue_currency:
+        account: "发行期数"
+        count: "总持有数量"
+        income: "总收入"
+        expenditure: "总支出"
+        organization: "发行机构（公司）"
       address:
         contact_name: '收货人姓名'
         mobile: '手机号码'
@@ -53,7 +74,7 @@ zh-CN:
         pay_tp: '付款类型'
         user_id: '用户'
         price: '金额'
-        quantity: '数量'
+        quantity: '产品数量'
         status: '订单状态'
         number: '编号'
         express_number: '货运单号'
@@ -126,7 +147,7 @@ zh-CN:
         name: '真实姓名'
         invitation_card: '邀请码'
         invitation_id: '邀请人'
-        organization: '机构'
+        organization: '机构（公司）'
         coin: '易币'
       spine_build:
         name: '筑脊师名字'
@@ -155,11 +176,12 @@ zh-CN:
         initiation_time: '入会时间'
         user: '绑定用户ID（手机号）'
         membership_card: '会员卡ID'
-      scoin_record:
-        scoin_type: 'S货币包'
+      coin_record:
+        coin_type: '货币包'
         state: '状态'
-        scoin_account: 'S货币账户'
+        account: '货币账户'
         start_at: "开始时间"
+        type: "货币类型"
         end_at: "结束时间"
         created_at: "创建时间"
       scoin_account:
@@ -186,18 +208,21 @@ zh-CN:
         max: '最大值'
         min: '最小值'
         y_coin: '易币'
-        scoin_type: 'S货币包'
+        coin_type: '货币包'
         activity: '活动'
-      scoin_type:
+        percent: '赠送推荐人比率(0.1即10%)'
+      coin_type:
         name: '包名称'
         once: '一次性数量（第一天给的S货币数量）'
         everyday: '每一天给的数量'
         count: '总计（估计数量）'
         remain_count: '赠送包剩余总量'
         present_count: '赠送总量'
+        days: '赠送天数'
     models:
       product: "商品"
       scoin_type: 'S货币包'
+      ycoin_type: '易币包'
       address: '收货地址'
       order: '订单'
       activity: '活动'
@@ -220,7 +245,7 @@ zh-CN:
       member_record: '会员档案/信息'
       slide: '滚动图片'
       scoin_account: 'S货币账户'
-      scoin_record: 'S货币记录'
+      coin_record: '货币记录'
       blood_glucose: '血糖检测'
       blood_pressure: '血压检测'
       temperature: '体温检测'
@@ -232,8 +257,10 @@ zh-CN:
       unine: '尿酸检测'
       scoin_account_order_relation: '账户订单绑定'
       paper_trail/version: '操作记录'
-      organization: '机构'
+      organization: '机构（公司）'
       identity_card: '身份证'
       coin_channel: '货币投放渠道'
       ycoin_rule: '易币赠送规则'
       temporary_datum: '临时数据'
+      lssue_currency: '货币发行'
+      presented_record: '易币收入支出记录'

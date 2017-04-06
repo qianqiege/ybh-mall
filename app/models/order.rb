@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   attr_accessor :account, :password
+  include PresentedConcern
 
   belongs_to :wechat_user
   belongs_to :user
@@ -48,6 +49,9 @@ class Order < ApplicationRecord
         line_items.each do |line_item|
           line_item.product.pay_reduce_shop_count(line_item.quantity)
         end
+
+        # 购买赠送
+        add_ycoin_records
       end
     end
 
@@ -122,15 +126,48 @@ class Order < ApplicationRecord
   end
 
   def create_scoin_account
-    begin
-      s_account = ScoinAccount.find_by(account: account)
-      if s_account.nil?
-        s_account = ScoinAccount.create!(account: account, password: "QWER1234!", user_id: user_id, state: "未开户")
+    scoin_type_count = Activity.search(id_eq: activity_id, activity_rules_coin_type_type_eq: "ScoinType").result.count
+
+    # 有赠送s货币才需要开通账号
+    if activity_id.present? && scoin_type_count >= 1
+      begin
+        s_account = ScoinAccount.find_by(account: account)
+        if s_account.nil?
+          s_account = ScoinAccount.create!(account: account, password: "QWER1234!", user_id: user_id, state: "未开户")
+        end
+        ScoinAccountOrderRelation.create!(order: self, scoin_account: s_account)
+      rescue ActiveRecord::ActiveRecordError => e
+        errors.add(:user_id, e.message)
+        raise ActiveRecord::Rollback
       end
-      ScoinAccountOrderRelation.create!(order: self, scoin_account: s_account)
-    rescue ActiveRecord::ActiveRecordError => e
-      errors.add(:user_id, e.message)
-      raise ActiveRecord::Rollback
+    end
+  end
+
+  # 1. 添加每天自动赠送规则
+  # 2. 赠送第一天数据和第一次记录
+  # 3. 如果有邀请人，赠送邀请人易币
+  def add_ycoin_records
+    rules = activity.activity_rules.match_rules(price)
+    rules.map do |rule|
+      if rule.coin_type.type == 'YcoinType'
+        user.ycoin_records.create!(
+          coin_type_id: rule.coin_type_id,
+          start_at: 1.day.from_now,
+          end_at: (rule.coin_type.days - 1).day.from_now
+        )
+        current_time = Time.current.strftime('%Y-%m-%d %H:%M:%S')
+
+        presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次第一次赠送,订单id为:#{id}")
+        presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "首次第一天赠送,订单id为:#{id},时间：#{current_time}")
+
+        # 推荐好友消费赠送
+        invitation = User.find(user_id).invitation_id
+        if(rule.percent.present? && invitation.present?)
+          present_count = rule.percent * price
+          presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id为:#{id}")
+        end
+
+      end
     end
   end
 

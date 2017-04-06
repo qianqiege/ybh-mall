@@ -1,0 +1,31 @@
+<%= title '我的血糖监测数据' %>
+<div class="weui-btn-area">
+  <table class="hovertable">
+    <tr>
+    	<th>血糖值/毫摩尔</th><th>时间点</th><th>测量时间</th>
+    </tr>
+    <%= line_chart [
+      {name: "血糖", data: @show.pluck(:updated_at, :value)}
+    ], library: @options %>
+    <% @show.each do |search| %>
+        <tr>
+          <% if search.value == 3.8 && search.value == 6.2 %>
+            <th class="green"><%= search.value %></th>
+          <% else %>
+            <th class="red"><%= search.value %></th>
+          <% end %>
+          <% case search.mens_type %>
+          <% when 2 %>
+            <th>餐前</th>
+          <% when 1 %>
+            <th>餐后</th>
+          <% when 3 %>
+            <th>睡前</th>
+          <% else 4 %>
+            <th>睡后</th>
+          <% end %>
+          <th><%= datetime search.updated_at %></th>
+        </tr>
+    <% end %>
+  </table>
+</div>

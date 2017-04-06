@@ -48,18 +48,20 @@ class ScoinAccountOrderRelation < ApplicationRecord
     scoin_records_attributes = []
     scoin_type_names = ""
     rules.map do |rule|
-      remain_count = rule.scoin_type.remain_count || 0
-      present_count = rule.scoin_type.present_count || 0
-      scoin_type_names += (rule.scoin_type.try(:name) + ",")
-      if(remain_count > 0)
-        scoin_account.number ||= 0
-        scoin_account.number += (rule.scoin_type.once + rule.scoin_type.everyday)
-        scoin_records_attributes << {
-          scoin_type_id: rule.scoin_type_id,
-          start_at: 1.day.from_now,
-          end_at: (DEFAULT_CALCULATE_DAY - 1).day.from_now
-        }
-        rule.scoin_type.update_attributes(remain_count: (remain_count - 1), present_count: (present_count + 1))
+      if rule.coin_type.type == 'ScoinType'
+        remain_count = rule.coin_type.remain_count || 0
+        present_count = rule.coin_type.present_count || 0
+        scoin_type_names += (rule.coin_type.try(:name) + ",")
+        if(remain_count > 0)
+          scoin_account.number ||= 0
+          scoin_account.number += (rule.coin_type.once + rule.coin_type.everyday)
+          scoin_records_attributes << {
+            coin_type_id: rule.coin_type_id,
+            start_at: 1.day.from_now,
+            end_at: (DEFAULT_CALCULATE_DAY - 1).day.from_now
+          }
+          rule.coin_type.update_attributes(remain_count: (remain_count - 1), present_count: (present_count + 1))
+        end
       end
     end
     scoin_account.scoin_records_attributes = scoin_records_attributes

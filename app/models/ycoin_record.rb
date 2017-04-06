@@ -1,0 +1,2 @@
+class YcoinRecord < CoinRecord
+end

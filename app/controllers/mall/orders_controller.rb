@@ -36,10 +36,13 @@ class Mall::OrdersController < Mall::BaseController
       return
     end
 
-    if params[:activity_id].present? && params[:account].nil?
-      flash[:error] = '参加活动，必须填写S币账号'
-      redirect_to confirm_mall_orders_path
-      return
+    if params[:activity_id].present? && params[:account].blank?
+      scoin_type_count = Activity.search(id_eq: params[:activity_id], activity_rules_coin_type_type_eq: "ScoinType").result.count
+      if scoin_type_count >= 1
+        flash[:error] = '参加活动，必须填写S币账号'
+        redirect_to confirm_mall_orders_path
+        return
+      end
     end
 
     line_items = current_cart.line_items.where(id: session[:line_item_ids])
@@ -68,8 +71,13 @@ class Mall::OrdersController < Mall::BaseController
       end
       # 5. 清空session
       session[:line_item_ids] = nil
-      # 6. 跳转到支付页面
-      redirect_to pay_mall_order_path(@order)
+      if params["payment"] != "PAYMENT_TYPE_NULL"
+        # 6. 跳转到支付页面
+        redirect_to pay_mall_order_path(@order)
+      else
+        flash[:notice] = "已完成订单，等待工作人员确认收款!"
+        redirect_to mall_my_path
+      end
     else
       logger.info @order.errors.messages
       flash[:success] = @order.errors.messages.values.join(",")

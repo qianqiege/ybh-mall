@@ -1,8 +1,9 @@
 // 购物车页面，增加和减少商品数量，删除商品
-function line_item_add_and_remove(url, line_item_id, method, that) {
+function line_item_add_and_remove(url, line_item_id, method, that, quantity) {
   $.ajax({
     type: method,
     url: url,
+    data: { quantity: quantity },
     dataType: 'json',
     success: function(data) {
       if (data.error_messages) {
@@ -12,10 +13,12 @@ function line_item_add_and_remove(url, line_item_id, method, that) {
         case 'add':
           trgger_price_change(that, data.price)
           that.prev().val(data.quantity);
+          that.prev().data("quantity", data.quantity);
           break;
         case 'remove':
           trgger_price_change(that, 0 - data.price)
           that.next().val(data.quantity);
+          that.next().data("quantity", data.quantity);
           break;
         case 'delete':
           window.location.reload();
@@ -45,7 +48,7 @@ $(function () {
     var line_item_id = $(this).prev().data("line_item_id"),
         url = "/mall/line_items/" + line_item_id + "/add";
 
-    line_item_add_and_remove(url, line_item_id, "PUT", $(this));
+    line_item_add_and_remove(url, line_item_id, "PUT", $(this), 1);
   })
 
   // 减少购物车商品数目
@@ -61,7 +64,51 @@ $(function () {
       return;
     }
 
-    line_item_add_and_remove(url, line_item_id, "PUT", $(this));
+    line_item_add_and_remove(url, line_item_id, "PUT", $(this), 1);
+  })
+
+  // 更改商品的数量
+  $(".buyNum").on('keyup', function() {
+    var line_item_id = $(this).data("line_item_id"),
+        $currentNum = $(this).val(),
+        $databaseNum = parseInt($(this).data("quantity")),
+        $databaseShopCount = parseInt($(this).data("shop-count"));
+
+    if ("" == $currentNum || parseInt($currentNum) == $databaseNum) {
+      return;
+    }
+
+    if (!isNumber($currentNum)) {
+      $.tips('不能输入非数字');
+      $(this).val($databaseNum);
+      return;
+    }
+
+    if (parseInt($currentNum) <= 0) {
+      $.tips('最小购买数量为1');
+      $(this).val($databaseNum);
+      return;
+    }
+
+    if (parseInt($currentNum) > $databaseShopCount) {
+      $.tips('最大购买数量为' + $databaseShopCount);
+      $(this).val($databaseNum);
+      return;
+    }
+
+    if (parseInt($currentNum) > $databaseNum) {
+      // 增加商品
+      var quantity = parseInt($currentNum) - $databaseNum,
+          url = "/mall/line_items/" + line_item_id + "/add";
+
+      line_item_add_and_remove(url, line_item_id, "PUT", $(this).next(), quantity);
+    } else {
+      var quantity = $databaseNum - parseInt($currentNum),
+          url = "/mall/line_items/" + line_item_id + "/remove";
+
+      line_item_add_and_remove(url, line_item_id, "PUT", $(this).prev(), quantity);
+    }
+
   })
 
   // 删除商品
@@ -71,7 +118,7 @@ $(function () {
 
     $.confirm('确定要删除此商品吗？', function(e) {
       if (e) {
-        line_item_add_and_remove(url, line_item_id, "DELETE", $(this));
+        line_item_add_and_remove(url, line_item_id, "DELETE", $(this), 1);
       }
     }.bind(this));
   })

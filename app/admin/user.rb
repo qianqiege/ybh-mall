@@ -9,7 +9,7 @@ ActiveAdmin.register User do
                 :invitation_user,
                 :organization_id,
                 :invitation_id,
-                :coin
+                :y_coin
 
   index do
     selectable_column
@@ -21,7 +21,9 @@ ActiveAdmin.register User do
     column :invitation_card
     column :invitation_id
     column :organization
-    column :coin
+    column :y_coin
+    column '身份',:type
+    column '注册时间',:created_at
     actions defaults: true
   end
 
@@ -35,6 +37,7 @@ ActiveAdmin.register User do
       f.input :invitation_card
       f.input :invitation_id
       f.input :organization
+      f.input :type, as: :select, collection: ["Doctor", "Patient"]
     end
     f.actions
   end
@@ -49,7 +52,8 @@ ActiveAdmin.register User do
       row :invitation_card
       row :invitation_id
       row :organization
-      row :coin
+      row :y_coin
+      row :created_at
     end
   end
 

@@ -14,19 +14,12 @@
  *= require wechat/home
  *= require wechat/member
  *= require wechat/weui_ext
- *= require mall/base
- *= require mall/home
- *= require mall/products
- *= require mall/authenticate
- *= require mall/carts
- *= require mall/addresses
- *= require mall/orders
  *= require serve/serve
  *= require examine/examine
- *= require mall/my
  *= require user/info
  *= require home/home
  *= require_self
  *= require evaluate/mellitus
- *= require mall/confirm
+ *= require user/data_examine
+ *= require_directory ./mall
  */

@@ -30,10 +30,13 @@ Rails.application.routes.draw do
     get 'authenticate_phone', to: 'authenticate#phone'
     post 'bind_phone', to: 'authenticate#bind_phone'
     get 'activity', to: 'activity#home'
+    get 'activity/:id/scoin_type_count', to: 'activity#scoin_type_count'
+
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
       put :remove, on: :member
     end
+
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index, :show] do
       get :confirm, on: :collection
@@ -81,6 +84,9 @@ Rails.application.routes.draw do
     patch '/create_programs', to: 'info#create_programs'
     post '/create_programs', to: 'info#create_programs'
     get '/wallet_scoin', to: 'info#wallet_scoin'
+    get '/wallet', to: 'info#wallet'
+    post '/do_query_wallet', to: 'info#do_query_wallet'
+    get '/query_wallet', to: 'info#query_wallet'
     get '/record_home', to: 'info#record_home'
     get '/programs_home' ,to: 'info#programs_home'
     get '/scoin_info',to: 'info#scoin_info'
@@ -88,6 +94,15 @@ Rails.application.routes.draw do
     post '/upload_image', to: 'info#upload_image'
     get '/invitation', to: 'info#invitation'
     get '/invitation_friend', to:'info#invitation_friend'
+    # show_examine
+    get '/data_home',to: 'examine_data#health_data_home'
+    get '/show_temperature', to: 'examine_data#show_temperature'
+    get '/show_blood_fat', to: 'examine_data#show_blood_fat'
+    get '/show_weight', to: 'examine_data#show_weight'
+    get '/show_glucose', to: 'examine_data#show_glucose'
+    get '/show_heart', to: 'examine_data#show_heart'
+    get '/show_pressure', to: 'examine_data#show_pressure'
+    get '/show_unine', to: 'examine_data#show_unine'
   end
 
   namespace :examine do
@@ -122,6 +137,10 @@ Rails.application.routes.draw do
   end
 
   resources :health_data do
+    post :create, on: :collection
+  end
+
+  resources :health_record_give_ycoin do
     post :create, on: :collection
   end
 

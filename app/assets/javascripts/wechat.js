@@ -19,16 +19,11 @@
 //= require wechat/base
 //= require wechat/home
 //= require evaluate/mellitus
-//= require mall/base
-//= require mall/home
-//= require mall/products
-//= require mall/authenticate
 
 //= require service/buildspine
 
-//= require mall/carts
-//= require mall/lib
-//= require mall/addresses
-//= require mall/orders
-//= require mall/my
-//= require mall/confirm
+//= require_directory ./mall
+//= require user/info
+
+//= require highcharts
+//= require chartkick

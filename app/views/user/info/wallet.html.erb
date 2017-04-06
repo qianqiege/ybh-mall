@@ -1,0 +1,43 @@
+<%= render 'wallet_header' %>
+
+<div class='wallet-title'>
+  CoinSpace
+</div>
+
+<div class="wallet-login">
+  <div class="login-bg">
+    <%= image_tag "wallet_cs.png" %>
+  </div>
+  <div class="login-title">
+    <p class='text-center'>无法登入，请输入授权账号密码</p>
+    <div class="wallet-form">
+      <div class="weui-flex profile">
+        <div>
+          <div class="placeholder">
+            <label for="">User Name</label>
+          </div>
+        </div>
+        <div class="weui-flex__item input-text">
+          <input type="text" name="name" id="wallet-username">
+        </div>
+      </div>
+
+      <div class="weui-flex mt10" style="margin-left: 10px;">
+        <div>
+          <div class="placeholder">
+            <label for="">Password</label>
+          </div>
+        </div>
+        <div class="weui-flex__item input-text">
+          <input type="password" name="password" id="wallet-password">
+        </div>
+      </div>
+
+      <div class="weui-flex">
+        <div class="weui-flex__item">
+          <a href="javascript:;" id="submit-wallet" class="weui-btn weui-btn_mini weui-btn_primary submit-btn">SIGN IN</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

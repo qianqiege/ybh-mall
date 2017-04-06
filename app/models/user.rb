@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include PresentedConcern
+
+  after_create :create_invitation_id
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,6 +10,7 @@ class User < ApplicationRecord
   has_one :wechat_user
   has_many :orders
   has_one :cart
+  has_many :appraise
   has_many :examine_records
   has_many :addresses
   has_many :unines
@@ -17,6 +21,8 @@ class User < ApplicationRecord
   has_many :heart_rates
   has_many :blood_fats
   has_many :identity_cards
+  has_many :ycoin_records, dependent: :destroy, as: :account
+
   belongs_to :organization
   belongs_to :invitation, class_name: 'User', foreign_key: 'invitation_id'
 
@@ -53,4 +59,9 @@ class User < ApplicationRecord
       addresses.last
     end
   end
+
+  def create_invitation_id
+    presented_records.create(user_id: invitation_id, number: 50, reason: "邀请好友赠送")
+  end
+
 end

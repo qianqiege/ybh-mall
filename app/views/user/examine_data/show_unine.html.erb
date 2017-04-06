@@ -1,0 +1,24 @@
+<%= title '我的尿酸监测数据' %>
+<div class="weui-btn-area">
+  <%= line_chart [
+    {name: "尿酸", data: @show.pluck(:updated_at, :value)}
+  ], library: @options %>
+  <table class="hovertable">
+    <tr>
+    	<th>尿酸值/umol/L</th><th>状态</th><th>测量时间</th>
+    </tr>
+    <% if !@show.nil? %>
+    <% @show.each do |search|%>
+      <tr>
+      	<th><%= search.value %></th>
+        <% if search.value > 149 && search.value < 416 %>
+          <th class="green">正常</th>
+        <% else %>
+          <th class="red">异常</th>
+        <% end %>
+        <th><%= datetime search.created_at %></th>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305113807) do
+ActiveRecord::Schema.define(version: 20170404031539) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -37,13 +37,14 @@ ActiveRecord::Schema.define(version: 20170305113807) do
 
   create_table "activity_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rule"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "activity_id"
-    t.decimal  "max",           precision: 10, scale: 3
-    t.decimal  "min",           precision: 10, scale: 3
-    t.decimal  "y_coin",        precision: 10
-    t.integer  "scoin_type_id"
+    t.decimal  "max",          precision: 10, scale: 3
+    t.decimal  "min",          precision: 10, scale: 3
+    t.decimal  "y_coin",       precision: 10
+    t.integer  "coin_type_id"
+    t.decimal  "percent",      precision: 10, scale: 2
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -78,6 +79,16 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.string   "role_name",              default: "member"
     t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "appraises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "result"
+    t.string   "category"
+    t.string   "number"
+    t.string   "doctor_name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "blood_fats", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -135,6 +146,37 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
+  create_table "coin_channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "state"
+    t.integer  "account_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "coin_type_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "type"
+    t.string   "account_type"
+  end
+
+  create_table "coin_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "once"
+    t.decimal  "everyday",      precision: 10, scale: 1
+    t.decimal  "count",         precision: 10, scale: 1
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.decimal  "remain_count",  precision: 10
+    t.decimal  "present_count", precision: 10
+    t.string   "type"
+    t.integer  "days"
+  end
+
   create_table "examine_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "idcard"
@@ -157,6 +199,7 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.text     "product",       limit: 65535
+    t.integer  "user_id"
   end
 
   create_table "heart_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -212,6 +255,16 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.string   "identity_card"
     t.string   "level"
     t.datetime "time"
+  end
+
+  create_table "lssue_currencies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "account"
+    t.decimal  "count",           precision: 10
+    t.decimal  "income",          precision: 10
+    t.decimal  "expenditure",     precision: 10
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "organization_id"
   end
 
   create_table "member_clubs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -302,9 +355,12 @@ ActiveRecord::Schema.define(version: 20170305113807) do
 
   create_table "organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "only_number"
+    t.decimal  "ycoin",       precision: 10
+    t.string   "address"
+    t.string   "phone"
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -315,6 +371,17 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.integer  "order_item_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "presented_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "presentable_type"
+    t.integer  "presentable_id"
+    t.integer  "user_id"
+    t.decimal  "number",           precision: 10, scale: 2
+    t.string   "reason"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.index ["presentable_type", "presentable_id"], name: "index_presented_records_on_presentable_type_and_presentable_id", using: :btree
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -336,6 +403,7 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.integer  "shop_count",                                                    default: 0
     t.integer  "lock_shop_count",                                               default: 0
     t.string   "only_number"
+    t.integer  "priority",                                                      default: 0
   end
 
   create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -396,27 +464,6 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.string   "state"
     t.decimal  "amount",     precision: 10, scale: 1
     t.string   "email"
-  end
-
-  create_table "scoin_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "state"
-    t.integer  "scoin_account_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "scoin_type_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
-  end
-
-  create_table "scoin_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "once"
-    t.decimal  "everyday",      precision: 10, scale: 1
-    t.decimal  "count",         precision: 10, scale: 1
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.decimal  "remain_count",  precision: 10
-    t.decimal  "present_count", precision: 10
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -516,19 +563,19 @@ ActiveRecord::Schema.define(version: 20170305113807) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
     t.string   "telphone"
     t.string   "identity_card"
     t.integer  "integral"
     t.integer  "scoin_account_id"
-    t.decimal  "y_coin",                 precision: 10
-    t.string   "email",                                 default: "", null: false
-    t.string   "encrypted_password",                    default: "", null: false
+    t.decimal  "y_coin",                 precision: 10, scale: 2, default: "0.0"
+    t.string   "email",                                           default: "",    null: false
+    t.string   "encrypted_password",                              default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         default: 0,  null: false
+    t.integer  "sign_in_count",                                   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -538,6 +585,9 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.string   "invitation_card"
     t.string   "invitation_user"
     t.integer  "organization_id"
+    t.integer  "invitation_id"
+    t.string   "identity"
+    t.string   "type"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
@@ -589,6 +639,14 @@ ActiveRecord::Schema.define(version: 20170305113807) do
     t.string   "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ycoin_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.decimal  "number",          precision: 10
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "coin_channel_id"
   end
 
 end
