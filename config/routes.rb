@@ -104,6 +104,8 @@ Rails.application.routes.draw do
     get '/show_heart', to: 'examine_data#show_heart'
     get '/show_pressure', to: 'examine_data#show_pressure'
     get '/show_unine', to: 'examine_data#show_unine'
+    get '/ecg', to: 'examine_data#show_ecg'
+    get '/ecg_image', to: 'examine_data#ecg_image'
   end
 
   namespace :examine do
