@@ -1,59 +1,59 @@
 <%= title '我的动态监测数据' %>
-<div class="button_box">
-	<a href="<%= user_show_pressure_path %>" class="button_link">
-		血压
-		<span class="line line_top"></span>
-		<span class="line line_right"></span>
-		<span class="line line_bottom"></span>
-		<span class="line line_left"></span>
-	</a>
-	<a href="<%= user_show_glucose_path %>" class="button_link">
-		血糖
-		<span class="line line_top"></span>
-		<span class="line line_right"></span>
-		<span class="line line_bottom"></span>
-		<span class="line line_left"></span>
-	</a>
-	<a href="<%= user_show_heart_path %>" class="button_link">
-		心率
-		<span class="line line_top"></span>
-		<span class="line line_right"></span>
-		<span class="line line_bottom"></span>
-		<span class="line line_left"></span>
-	</a>
-	<a href="<%= user_show_unine_path %>" class="button_link">
-		尿酸
-		<span class="line line_top"></span>
-		<span class="line line_right"></span>
-		<span class="line line_bottom"></span>
-		<span class="line line_left"></span>
-	</a>
-	<a href="<%= user_show_weight_path %>" class="button_link">
-		体重
-		<span class="line line_top"></span>
-		<span class="line line_right"></span>
-		<span class="line line_bottom"></span>
-		<span class="line line_left"></span>
-	</a>
-  <a href="<%= user_show_temperature_path %>" class="button_link">
-    体温
-    <span class="line line_top"></span>
-    <span class="line line_right"></span>
-    <span class="line line_bottom"></span>
-    <span class="line line_left"></span>
-  </a>
-  <a href="<%= user_show_blood_fat_path %>" class="button_link">
-    血脂
-    <span class="line line_top"></span>
-    <span class="line line_right"></span>
-    <span class="line line_bottom"></span>
-    <span class="line line_left"></span>
-  </a>
-  <a href="<%= user_tds_path %>" class="button_link">
-    TDS
-    <span class="line line_top"></span>
-    <span class="line line_right"></span>
-    <span class="line line_bottom"></span>
-    <span class="line line_left"></span>
-  </a>
-</div>
+<%= render 'head' %>
+<!-- <div class="button_box" style="margin-top: 20px;"> -->
+	<div class="button_box h-data">
+		<a href="<%= user_show_pressure_path %>">
+			<%= image_tag "pressure.png", size: "80x80" ,class: "aimg" %>
+		</a>
+		<p>血压</p>
+	</div>
+
+	<div class="button_box h-data">
+		<a href="<%= user_show_glucose_path %>">
+			<%= image_tag "glucose.png", size: "80x80" ,class: "aimg"%>
+		</a>
+		<p>血糖</p>
+	</div>
+
+	<div class="button_box h-data">
+		<a href="<%= user_show_heart_path %>">
+			<%= image_tag "heart.png", size: "80x80" ,class: "aimg"%>
+		</a>
+		<p>心率</p>
+	</div>
+
+	<div class="button_box h-data">
+		<a href="<%= user_show_unine_path %>">
+			<%= image_tag "unine.png", size: "80x80" ,class: "aimg"%>
+		</a>
+		<p>尿酸</p>
+	</div>
+
+	<div class="button_box h-data">
+		<a href="<%= user_show_weight_path %>">
+			<%= image_tag "weight.png", size: "80x80" ,class: "aimg"%>
+		</a>
+		<p>体重</p>
+	</div>
+
+	<div class="button_box h-data">
+	  <a href="<%= user_show_temperature_path %>">
+			<%= image_tag "temperature.png", size: "80x80" ,class: "aimg"%>
+	  </a>
+		<p>体温</p>
+	</div>
+
+	<div class="button_box h-data">
+	  <a href="<%= user_show_blood_fat_path %>">
+			<%= image_tag "blood_fat.png", size: "80x80" ,class: "aimg"%>
+	  </a>
+		<p>血脂</p>
+	</div>
+
+	<div class="button_box h-data">
+	  <a href="<%= user_tds_path %>">
+			<%= image_tag "tds.jpg", size: "80x80" ,class: "aimg"%>
+	  </a>
+		<p>TDS</p>
+	</div>
+<!-- </div> -->
