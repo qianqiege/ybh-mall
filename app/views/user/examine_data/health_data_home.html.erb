@@ -1,59 +1,70 @@
 <%= title '我的动态监测数据' %>
 <%= render 'head' %>
 <!-- <div class="button_box" style="margin-top: 20px;"> -->
-	<div class="button_box h-data">
-		<a href="<%= user_show_pressure_path %>">
-			<%= image_tag "pressure.png", size: "80x80" ,class: "aimg" %>
-		</a>
-		<p>血压</p>
-	</div>
+<table style="text-align:center; margin-top: 20px;" width="100%">
 
-	<div class="button_box h-data">
-		<a href="<%= user_show_glucose_path %>">
-			<%= image_tag "glucose.png", size: "80x80" ,class: "aimg"%>
-		</a>
-		<p>血糖</p>
-	</div>
+	<tr>
+		<td>
+			<a href="<%= user_show_pressure_path %>">
+				<%= image_tag "pressure.png", size: "80x80" ,class: "aimg" %>
+			</a>
+			<p>血压</p>
+		</td>
+		<td>
+			<a href="<%= user_show_glucose_path %>">
+				<%= image_tag "glucose.png", size: "80x80" ,class: "aimg"%>
+			</a>
+			<p>血糖</p>
+		</td>
+		<td>
+			<a href="<%= user_show_heart_path %>">
+				<%= image_tag "heart.png", size: "80x80" ,class: "aimg"%>
+			</a>
+			<p>心率</p>
+		</td>
+	</tr>
 
-	<div class="button_box h-data">
-		<a href="<%= user_show_heart_path %>">
-			<%= image_tag "heart.png", size: "80x80" ,class: "aimg"%>
-		</a>
-		<p>心率</p>
-	</div>
+	<tr>
+		<td>
+			<a href="<%= user_show_unine_path %>">
+				<%= image_tag "unine.png", size: "80x80" ,class: "aimg"%>
+			</a>
+			<p>尿酸</p>
+		</td>
+		<td>
+			<a href="<%= user_show_weight_path %>">
+				<%= image_tag "weight.png", size: "80x80" ,class: "aimg"%>
+			</a>
+			<p>体重</p>
+		</td>
+		<td>
+			<a href="<%= user_show_temperature_path %>">
+				<%= image_tag "temperature.png", size: "80x80" ,class: "aimg"%>
+		  </a>
+			<p>体温</p>
+		</td>
+	</tr>
 
-	<div class="button_box h-data">
-		<a href="<%= user_show_unine_path %>">
-			<%= image_tag "unine.png", size: "80x80" ,class: "aimg"%>
-		</a>
-		<p>尿酸</p>
-	</div>
+	<tr>
+		<td>
+			<a href="<%= user_show_blood_fat_path %>">
+				<%= image_tag "blood_fat.png", size: "80x80" ,class: "aimg"%>
+		  </a>
+			<p>血脂</p>
+		</td>
+		<td>
+			<a href="<%= user_tds_path %>">
+				<%= image_tag "tds.png", size: "80x80" ,class: "aimg"%>
+		  </a>
+			<p>TDS</p>
+		</td>
+		<td>
+			<a href="<%= user_ecg_path %>">
+				<%= image_tag "ecg.png", size: "80x80" ,class: "aimg"%>
+		  </a>
+			<p>心电</p>
+		</td>
+	</tr>
 
-	<div class="button_box h-data">
-		<a href="<%= user_show_weight_path %>">
-			<%= image_tag "weight.png", size: "80x80" ,class: "aimg"%>
-		</a>
-		<p>体重</p>
-	</div>
-
-	<div class="button_box h-data">
-	  <a href="<%= user_show_temperature_path %>">
-			<%= image_tag "temperature.png", size: "80x80" ,class: "aimg"%>
-	  </a>
-		<p>体温</p>
-	</div>
-
-	<div class="button_box h-data">
-	  <a href="<%= user_show_blood_fat_path %>">
-			<%= image_tag "blood_fat.png", size: "80x80" ,class: "aimg"%>
-	  </a>
-		<p>血脂</p>
-	</div>
-
-	<div class="button_box h-data">
-	  <a href="<%= user_tds_path %>">
-			<%= image_tag "tds.jpg", size: "80x80" ,class: "aimg"%>
-	  </a>
-		<p>TDS</p>
-	</div>
+</table>
 <!-- </div> -->

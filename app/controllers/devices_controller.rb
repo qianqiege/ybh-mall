@@ -170,6 +170,9 @@ class DevicesController < ApplicationController
         image_url = helpers.asset_url("uploads/ecg/#{id}.png")
         if !temporary[0].nil?
           mall.api_ECG(temporary[0].identity_card,image_url,info["mo"])
+          @ecg = Ecg.new(user_id: temporary[0].id,url: image_url, phone: info["mo"])
+          if @ecg.save
+          end
         end
       else
         response = { success: "404", errmsg: "没有找到对象" }
