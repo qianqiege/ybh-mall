@@ -1,4 +1,5 @@
 <%= title '我的体温监测数据' %>
+<%= render 'head' %>
 <div class="weui-btn-area">
   <%= line_chart [
     {name: "体温", data: @show.pluck(:updated_at, :value)}

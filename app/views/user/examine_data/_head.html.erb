@@ -1,0 +1,14 @@
+<div class='wallet bg-size'>
+  <div class="weui-flex profile">
+    <div>
+      <div class="placeholder">
+        <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
+      </div>
+    </div>
+    <div class="weui-flex__item profile-text">
+      <div class="placeholder">
+        <p><%= current_user.user.name %></p>
+      </div>
+    </div>
+  </div>
+</div>
