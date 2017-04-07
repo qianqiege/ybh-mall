@@ -115,4 +115,14 @@ class User::ExamineDataController < Wechat::BaseController
     end
   end
 
+  def show_ecg
+    if !current_user.user_id.nil?
+      @show = Ecg.where(user_id: current_user.user_id).order(created_at: :desc)
+    end
+  end
+
+  def ecg_image
+    @show = Ecg.find(params[:format])
+  end
+
 end

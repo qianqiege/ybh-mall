@@ -1,0 +1,8 @@
+<%= title '我的心电监测' %>
+<%= render 'head' %>
+<div class="weui-btn-area">
+    <% @show.each do |search|%>
+    <a href="<%= user_ecg_image_path(search.id) %>" style="color: black;">检测日期：<%= date search.created_at %>
+    <% end %>
+
+</div>
