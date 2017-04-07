@@ -133,6 +133,10 @@ class User::InfoController < Wechat::BaseController
    end
   end
 
+  def account_details
+    @details = PresentedRecord.where(user_id: current_user.user_id).order(created_at: :desc)
+  end
+
   def create_programs
     if params["commit"] == "加入到购物车"
       @time = params[:format]

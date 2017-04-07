@@ -15,8 +15,10 @@
   <div class="weui-flex bottom-text">
     <div class="weui-flex__item" style="border-right: 1px solid #bbb;">
       <div class="placeholder text-center">
-        <p>易积分数量</p>
-        <p><%= current_user && current_user.y_coin || 0 %></p>
+        <a href="<%= user_details_path %>" class="weui-cell_access">
+          <p>易积分数量</p>
+          <p><%= current_user && current_user.y_coin || 0 %></p>
+        </a>
       </div>
     </div>
     <div class="weui-flex__item">

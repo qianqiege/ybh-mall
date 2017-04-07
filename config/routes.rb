@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     post '/upload_image', to: 'info#upload_image'
     get '/invitation', to: 'info#invitation'
     get '/invitation_friend', to:'info#invitation_friend'
+    get '/details', to: 'info#account_details'
     # show_examine
     get '/data_home',to: 'examine_data#health_data_home'
     get '/show_temperature', to: 'examine_data#show_temperature'
