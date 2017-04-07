@@ -50,14 +50,15 @@ class DevicesController < ApplicationController
         end
       when "102"
         # 血糖
+        value = pressure["bds"].to_i / 10
         if !temporary[0].nil?
-          @blood_glucose = BloodGlucose.new(value: pressure["bds"],mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
+          @blood_glucose = BloodGlucose.new(value: value,mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
           if(@user.present?)
             @blood_glucose.user_id = @user.id
           end
           @blood_glucose.save
           if !temporary[0].identity_card.nil?
-            mall.api_blood_glucose(temporary[0].identity_card,pressure["bds"],pressure["mensType"],info["mo"])
+            mall.api_blood_glucose(temporary[0].identity_card,value,pressure["mensType"],info["mo"])
           end
         elsif !idcard.nil?
           # 如果没有找到手机号对应的UserID，将不绑定UserID
