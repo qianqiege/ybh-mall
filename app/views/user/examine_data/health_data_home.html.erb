@@ -1,7 +1,9 @@
 <%= title '我的动态监测数据' %>
 <%= render 'head' %>
 <!-- <div class="button_box" style="margin-top: 20px;"> -->
-	<div class="button_box h-data">
+<div class="b-data">
+
+	<div class="button_box h-data" >
 		<a href="<%= user_show_pressure_path %>">
 			<%= image_tag "pressure.png", size: "80x80" ,class: "aimg" %>
 		</a>
@@ -21,7 +23,9 @@
 		</a>
 		<p>心率</p>
 	</div>
+</div>
 
+<div class="b-data">
 	<div class="button_box h-data">
 		<a href="<%= user_show_unine_path %>">
 			<%= image_tag "unine.png", size: "80x80" ,class: "aimg"%>
@@ -42,7 +46,9 @@
 	  </a>
 		<p>体温</p>
 	</div>
+</div>
 
+<div>
 	<div class="button_box h-data">
 	  <a href="<%= user_show_blood_fat_path %>">
 			<%= image_tag "blood_fat.png", size: "80x80" ,class: "aimg"%>
@@ -56,4 +62,6 @@
 	  </a>
 		<p>TDS</p>
 	</div>
+
+</div>
 <!-- </div> -->
