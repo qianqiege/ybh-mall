@@ -145,7 +145,7 @@ class Order < ApplicationRecord
 
   # 1. 添加每天自动赠送规则
   # 2. 赠送第一天数据和第一次记录
-  # 3. 如果有邀请人，赠送邀请人易币
+  # 3. 如果有邀请人，赠送邀请人易积分
   def add_ycoin_records
     rules = activity.activity_rules.match_rules(price)
     rules.map do |rule|

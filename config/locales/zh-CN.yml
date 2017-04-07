@@ -43,7 +43,7 @@ zh-CN:
       organization:
         name: "机构（公司）名称"
         only_number: "机构（公司）编号"
-        ycoin: "持有易币数量"
+        ycoin: "持有易积分数量"
         address: "机构（公司）地址"
         phone: "机构（公司）电话"
       lssue_currency:
@@ -142,13 +142,13 @@ zh-CN:
         type: '类型'
       user:
         telphone: '手机号码（用于登陆）'
-        y_coin: '易币'
+        y_coin: '易积分'
         identity_card: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'
         invitation_id: '邀请人'
         organization: '机构（公司）'
-        coin: '易币'
+        coin: '易积分'
       spine_build:
         name: '筑脊师名字'
         workstation: '工作站ID（筑脊师归属管理的工作站）'
@@ -207,7 +207,7 @@ zh-CN:
         rule: '规则介绍'
         max: '最大值'
         min: '最小值'
-        y_coin: '易币'
+        y_coin: '易积分'
         coin_type: '货币包'
         activity: '活动'
         percent: '赠送推荐人比率(0.1即10%)'
@@ -222,7 +222,7 @@ zh-CN:
     models:
       product: "商品"
       scoin_type: 'S货币包'
-      ycoin_type: '易币包'
+      ycoin_type: '易积分包'
       address: '收货地址'
       order: '订单'
       activity: '活动'
@@ -260,7 +260,7 @@ zh-CN:
       organization: '机构（公司）'
       identity_card: '身份证'
       coin_channel: '货币投放渠道'
-      ycoin_rule: '易币赠送规则'
+      ycoin_rule: '易积分赠送规则'
       temporary_datum: '临时数据'
       lssue_currency: '货币发行'
-      presented_record: '易币收入支出记录'
+      presented_record: '易积分收入支出记录'
