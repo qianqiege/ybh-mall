@@ -119,22 +119,21 @@ class DevicesController < ApplicationController
         # 血脂
         if !temporary[0].identity_card.nil?
           mall.api_blood_fat(temporary[0].identity_card,pressure["tc"],info["mo"])
-        elsif !temporary[0].identity_card.nil?
           @blood_fat = BloodFat.new(value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
           if(@user.present?)
             @blood_fat.user_id = @user.id
           end
           @blood_fat.save
-          if !idcard.nil?
-            @blood_fat = BloodFat.new(user_id: idcard.id,value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
-            if(@user.present?)
-              @blood_fat.user_id = @user.id
-            end
-            @blood_fat.save
-            if !idcard.identity_card.nil?
-              mall.api_blood_fat(idcard.identity_card,pressure["tc"],info["mo"])
-            end
-          end
+          # if !idcard.nil?
+          #   @blood_fat = BloodFat.new(user_id: idcard.id,value:pressure["tc"],phone:info["mo"],state: state,created_at: info["rsptime"])
+          #   if(@user.present?)
+          #     @blood_fat.user_id = @user.id
+          #   end
+          #   @blood_fat.save
+          #   if !idcard.identity_card.nil?
+          #     mall.api_blood_fat(idcard.identity_card,pressure["tc"],info["mo"])
+          #   end
+          # end
         end
       when "107"
         # 温度
