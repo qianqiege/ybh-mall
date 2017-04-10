@@ -203,3 +203,82 @@ a{
     font-size: 11px;
   }
 }
+
+// .button-coin{
+//     font-family: microsoft Yahei;
+//     position: relative;
+//     display: block;
+//     // padding-left: 14px;
+//     // padding-right: 14px;
+//     box-sizing: border-box;
+//     font-size: 18px;
+//     text-align: center;
+//     text-decoration: none;
+//     color: #fff;
+//     line-height: 2.55555556;
+//     border-radius: 5px;
+//     /* -webkit-tap-highlight-color: rgba(0,0,0,0); */
+//     overflow: hidden;
+//     width: 50%;
+//     border:1px solid ;
+// }
+//
+// .weiui-button-coin {
+//     position: relative;
+//     /* display: block; */
+//     margin-left: auto;
+//     margin-right: auto;
+//     padding-left: 14px;
+//     padding-right: 14px;
+//     box-sizing: border-box;
+//     font-size: 18px;
+//     text-align: center;
+//     text-decoration: none;
+//     color: #fff;
+//     line-height: 2.55555556;
+//     border-radius: 5px;
+//     -webkit-tap-highlight-color: rgba(0,0,0,0);
+//     overflow: hidden;
+// }
+//
+// .weiui-button{
+//     content: " ";
+//     width: 200%;
+//     height: 200%;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     border: 1px solid rgba(0,0,0,.2);
+//     -webkit-transform: scale(.5);
+//     transform: scale(.5);
+//     -webkit-transform-origin: 0 0;
+//     transform-origin: 0 0;
+//     box-sizing: border-box;
+//     border-radius: 10px;
+// }
+
+.button-zs{
+  float: left;
+  color: #0093FF;
+  width: 50%;
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  background-color: white;
+  font-family: microsoft Yahei;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.button-dh{
+  float: right;
+  background-color: #0066FF;
+  width: 50%;
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  font-family: microsoft Yahei;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
