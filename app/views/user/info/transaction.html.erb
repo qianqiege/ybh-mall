@@ -1,7 +1,7 @@
 <%= render 'wallet_header' %>
 
 <%= line_chart [
-  {name: "数量", data: @show.pluck(:updated_at, :number)}
+  {name: "数量", data: @show.order(created_at: :desc).pluck(:created_at, :number)}
 ], library: @options %>
   <!-- <a class="weui-btn weui-btn_primary" id="txtlogin">赠送</a>
   <a class="weui-btn weui-btn_primary" id="txtlogin">兑换</a> -->

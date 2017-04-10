@@ -24,7 +24,7 @@ class User::InfoController < Wechat::BaseController
 
   def transaction
     if !current_user.user_id.nil?
-      @show = PresentedRecord.where(user_id: current_user.user_id).order(created_at: :desc)
+      @show = PresentedRecord.where(user_id: current_user.user_id)
       @options = {
         colors: ["#ff0000", "#add9c0"],
         xAxis: {
