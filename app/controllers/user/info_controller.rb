@@ -22,6 +22,22 @@ class User::InfoController < Wechat::BaseController
     @wechat_user = WechatUser.find(current_user)
   end
 
+  def transaction
+    if !current_user.user_id.nil?
+      @show = PresentedRecord.where(user_id: current_user.user_id)
+      @options = {
+        colors: ["#ff0000", "#add9c0"],
+        xAxis: {
+          type: 'datetime',
+          labels: {
+            format: '{value:%m-%d}',
+            align: 'right'
+          }
+        }
+      }
+    end
+  end
+
   def setting
     if !(current_user.mobile.present? && current_user.user.present?)
       redirect_to '/user/binding'
