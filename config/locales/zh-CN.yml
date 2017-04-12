@@ -40,6 +40,7 @@ zh-CN:
         number: '数量'
         reason: '收入支出渠道'
         created_at: '创建日期'
+        is_effective: '是否有效'
       organization:
         name: "机构（公司）名称"
         only_number: "机构（公司）编号"
@@ -142,7 +143,8 @@ zh-CN:
         type: '类型'
       user:
         telphone: '手机号码（用于登陆）'
-        y_coin: '易积分'
+        locking_y: '锁定积分'
+        available_y: '可兑换积分'
         identity_card: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'

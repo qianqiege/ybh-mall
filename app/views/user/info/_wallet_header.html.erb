@@ -16,8 +16,8 @@
     <div class="weui-flex__item" style="border-right: 1px solid #bbb;">
       <div class="placeholder text-center">
         <a href="<%= user_details_path %>" class="weui-cell_access">
-          <p>易积分数量</p>
-          <p><%= current_user && current_user.y_coin || 0 %></p>
+          <p>易积分总数量</p>
+          <p><%= current_user && current_user.locking_y.to_i + current_user.available_y.to_i || 0 %></p>
         </a>
       </div>
     </div>
@@ -25,7 +25,7 @@
       <div class="placeholder text-center">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
           <p>可兑换易积分</p>
-          <p>0</p>
+          <p><%= current_user && current_user.available_y.to_i || 0 %></p>
         </a>
       </div>
     </div>

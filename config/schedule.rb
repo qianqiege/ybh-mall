@@ -12,3 +12,7 @@ set :output, log_path
 every 1.day, :at => '4:30 am' do
   rake 'users:update_coin'
 end
+
+every 1.day, :at => '12:00 pm' do
+  rake 'presented_record:update_available_y'
+end

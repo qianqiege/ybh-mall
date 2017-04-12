@@ -9,7 +9,7 @@ ActiveAdmin.register User do
                 :invitation_user,
                 :organization_id,
                 :invitation_id,
-                :y_coin
+                :locking_y
 
   index do
     selectable_column
@@ -20,8 +20,9 @@ ActiveAdmin.register User do
     column :name
     column :invitation_card
     column :invitation_id
-    column :organization
-    column :y_coin
+    # column :organization
+    column :available_y
+    column :locking_y
     column '身份',:type
     column '注册时间',:created_at
     actions defaults: true
@@ -52,12 +53,14 @@ ActiveAdmin.register User do
       row :invitation_card
       row :invitation_id
       row :organization
-      row :y_coin
+      row :available_y
+      row :locking_y
       row :created_at
     end
   end
 
   filter :name, as: :select
+  filter :id, as: :select
   filter :identity_card, as: :select
   filter :telphone, as: :select
   filter :invitation_id, as: :string
