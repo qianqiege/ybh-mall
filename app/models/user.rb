@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_paper_trail
+  # 操作记录
   include PresentedConcern
 
   after_create :create_invitation_id
