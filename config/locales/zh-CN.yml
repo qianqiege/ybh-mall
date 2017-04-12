@@ -40,6 +40,7 @@ zh-CN:
         number: '数量'
         reason: '收入支出渠道'
         created_at: '创建日期'
+        is_effective: '是否有效'
       organization:
         name: "机构（公司）名称"
         only_number: "机构（公司）编号"
