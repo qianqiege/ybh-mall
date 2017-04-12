@@ -60,6 +60,7 @@ ActiveAdmin.register User do
   end
 
   filter :name, as: :select
+  filter :id, as: :select
   filter :identity_card, as: :select
   filter :telphone, as: :select
   filter :invitation_id, as: :string
