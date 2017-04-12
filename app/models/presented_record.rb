@@ -4,6 +4,7 @@ class PresentedRecord < ApplicationRecord
   belongs_to :presentable, polymorphic: true
 
   after_create :update_ycoin
+  before_create :update_is_effective
 
   validates :user_id, presence: true
   validates :number, presence: true
@@ -18,7 +19,11 @@ class PresentedRecord < ApplicationRecord
         end
       end
     end
-    user.y_coin += number
+    user.locking_y += number
     user.save
+  end
+
+  def update_is_effective
+    self.is_effective = 1
   end
 end
