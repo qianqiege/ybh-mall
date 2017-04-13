@@ -1,0 +1,34 @@
+<%= render 'wallet_header' %>
+<%= title '赠送到御易建账户' %>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+<p style="font-size: 1px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
+  <span style="color:red;font-size:1.5px;">提示：</span>
+  易积分将实时转入对方账户，无法退款，请确认后操作
+</p>
+  <!-- <form class="weui-search-bar__form" method="post">
+    <div class="weui-search-bar" id="search_bar" style="padding-top:10px;">
+      <div class="weui-search-bar__box">
+          <span style="position: absolute;">对方账户：</span>
+          <i class="weui-icon-search"></i>
+          <input type="search" class="weui-search-bar__input" placeholder="手机号/身份证号" style="padding-left:80px;"/>
+          <a href="javascript:" class="weui-icon-clear"></a>
+      </div>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
+    </div>
+    <a href="<%= user_create_gift_path %>" class="button-dh button-margin">赠送</a>
+  </form> -->
+
+  <%= form_tag(user_create_gift_path,method: :post,id: 'create_gift_form') do %>
+    <div class="weui-search-bar" id="search_bar" style="padding-top:10px;">
+      <div class="weui-search-bar__box">
+          <span style="position: absolute;">对方账户：</span>
+          <i class="weui-icon-search"></i>
+          <input type="search" class="weui-search-bar__input" placeholder="手机号/身份证号" style="padding-left:80px;" name="mobile">
+          <a href="javascript:" class="weui-icon-clear"></a>
+      </div>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
+    </div>
+    <%= submit_tag "赠送" ,class:"button-dh button-margin"%>
+  <% end %>

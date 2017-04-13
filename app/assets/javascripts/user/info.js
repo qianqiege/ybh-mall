@@ -23,4 +23,9 @@ $(function () {
       }
     })
   })
+
+  $(".showtoast").click(function(){
+    $('#dialog1').attr("style","");
+  })
+
 });

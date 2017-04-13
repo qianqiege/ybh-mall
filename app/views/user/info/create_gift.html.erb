@@ -1,0 +1,40 @@
+<div style="text-align:center;margin-top: 20px;">
+
+  <%= image_tag "person.png",size: "70x70"  %>
+  <div class="资料">
+    <span class="电话"><%= @gift_user.telphone %></span>
+    <br/>
+    <span class="名字"><%= @gift_user.name %></span>
+  </div>
+</div>
+
+<%= form_tag(user_gift_user_path,method: :post,id: 'gift_user_form') %>
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>转账金额</p>
+            <div class="金额表单">
+                <p style="font-size: 48px;float: left;position: absolute;">￥</p>
+                <input name = "price" maxlength="8" type="number" style="float: right;border: 0px;font-size: 48px;display: inline-block;width: 88%;margin-top: 6px;padding-left: 0px;margin-left: 0px;" >
+                <div style="clear:both"></div>
+            </div>
+            <div class="这是分割线" style="min-height: 2px;max-height: 2px;width: 100%;background-color: #F1F0F0;"></div>
+            <input class="备注" placeholder="添加备注  (20字以内)" style="border: 0;font-family: microsoft Yahei;width: 100%;font-size: 16px;margin-top: 1px;">
+        </div>
+    </div>
+</div>
+<input name = "id" style="display: none;" value="<%= @gift_user.id %>">
+<a href="javascript:;" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认转账</a>
+
+<div id="dialog1" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">确认转账</strong></div>
+        <div class="weui-dialog__bd">是否确认转账到该用户？</div>
+        <div class="weui-dialog__ft">
+            <a href="<%= user_gift_account_path %>" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <button type="submit" class="weui-dialog__btn weui-dialog__btn_primary gift-user">确认</button>
+        </div>
+    </div>
+</div>
+</form>
