@@ -24,6 +24,6 @@ class PresentedRecord < ApplicationRecord
   end
 
   def update_is_effective
-    self.is_effective = 1
+    # self.is_effective = 1
   end
 end

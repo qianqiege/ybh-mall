@@ -157,14 +157,15 @@ class Order < ApplicationRecord
         )
         current_time = Time.current.strftime('%Y-%m-%d %H:%M:%S')
 
-        presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次第一次赠送,订单id为:#{id}")
-        presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "首次第一天赠送,订单id为:#{id},时间：#{current_time}")
+        # 在易积分记录表中插入一条积分收支记录，默认为有效记录，积分计入到锁定积分中
+        presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Locking")
+        presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Locking")
 
         # 推荐好友消费赠送
         invitation = User.find(user_id).invitation_id
         if(rule.percent.present? && invitation.present?)
           present_count = rule.percent * price
-          presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id为:#{id}")
+          presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Locking")
         end
 
       end
