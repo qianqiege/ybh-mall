@@ -1,0 +1,2 @@
+class Available < PresentedRecord
+end

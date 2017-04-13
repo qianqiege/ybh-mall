@@ -11,6 +11,33 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  def create_gift
+    search_user = params["mobile"]
+    case search_user.length
+    when 11
+      @gift_user = User.find_by(telphone: search_user)
+    when 18
+      @gift_user = User.find_by(identity_card: search_user)
+    else
+    end
+  end
+
+  def gift_user
+    available = User.find_by(id: current_user.user_id)
+    if available.available_y > params["price"].to_i
+      available.update(available_y: available.available_y - params["price"].to_i)
+      gift = User.find_by(id: params["id"].to_i)
+      gift.update(available_y: gift.available_y + params["price"].to_i)
+      if gift.save && available.save
+        PresentedRecord.create(user_id: available.id, number: "-#{params["price"].to_i}", reason: "转账",is_effective:0,type:"Available")
+        PresentedRecord.create(user_id: params["id"].to_i, number: params["price"].to_i, reason: "转账",is_effective:0,type:"Available")
+        flash[:notice] = '赠送成功'
+        redirect_to user_gift_account_path
+        return
+      end
+    end
+  end
+
   def invitation_friend
     if !current_user.user_id.nil?
       @my_name = User.find(current_user.user_id)

@@ -96,6 +96,12 @@ Rails.application.routes.draw do
     get '/invitation_friend', to:'info#invitation_friend'
     get '/details', to: 'info#account_details'
     get '/transaction', to: 'info#transaction'
+    get '/gift', to: 'info#gift'
+    get '/gift_account', to: 'info#gift_account'
+    get '/exchange', to: 'info#exchange'
+    post '/create_gift', to: 'info#create_gift'
+    get '/create_gift', to: 'info#create_gift'
+    post '/gift_user', to: 'info#gift_user'
     # show_examine
     get '/data_home',to: 'examine_data#health_data_home'
     get '/show_temperature', to: 'examine_data#show_temperature'
