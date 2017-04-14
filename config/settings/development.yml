@@ -11,27 +11,30 @@ weixin:
   menu:
     button:
     - type: "view"
-      name: "御邦会"
+      name: "御易健"
       sub_button:
         - type: "view"
           name: "首页"
-          url: "http://ybhm.ybyt.c/wechat"
+          url: "http://ybhm.ybyt.cc/wechat"
+        # - type: "view"
+        #   name: "服务首页"
+        #   url: "http://ybhm.ybyt.cc/service"
+    - name: "御易健商城"
+      sub_button:
+        - type: "view"
+          name: "商城"
+          url: "http://ybhm.ybyt.cc/mall"
+    - name: "我的"
+      sub_button:
         - type: "view"
           name: "我的"
-          url: "http://ybhm.ybyt.c/wechat/my/my_info"
-    - name: "商城"
-      sub_button:
+          url: "http://ybhm.ybyt.cc/user"
         - type: "view"
-          name: "商城首页"
-          url: "http://spddev.ybyt.cc/"
-    - name: "服务"
-      sub_button:
-        - type: "view"
-          name: "龙氏脊筑服务"
-          url: "http://spddev.ybyt.cc/"
+          name: "健康检测"
+          url: "http://ybhm.ybyt.cc/examine/home"
         - type: "view"
           name: "疾病风险评估"
-          url: "http://ybhm.ybyt.cc/evaluate/index"
+          url: "http://ybhm.ybyt.cc/evaluate/home"
 
 external:
   api_url: http://qolm.ybyt.cc/open_api/v1/
