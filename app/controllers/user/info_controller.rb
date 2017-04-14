@@ -11,6 +11,10 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  def gift_account
+    @user_available_y = User.find_by(id: current_user.user_id)
+  end
+
   def create_gift
     search_user = params["mobile"]
     case search_user.length
