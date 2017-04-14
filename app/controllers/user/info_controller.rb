@@ -33,11 +33,11 @@ class User::InfoController < Wechat::BaseController
     # 判断当前用户的可兑换积分数量是否大于赠送积分
     if available.available_y > number
       # 更新当前用户的 可兑换积分 （可兑换积分 - 赠送积分数量）
-      available.update(available_y: (available.available_y.to_i - number)
+      available.update(available_y: available.available_y.to_i - number)
       # 查找 要赠送的用户记录
       gift = User.find_by(id: params["id"].to_i)
       # 更新 被赠送积分的用户 的可兑换积分 （可兑换积分 + 赠送积分数量）
-      gift.update(available_y: (gift.available_y.to_i + number))
+      gift.update(available_y: gift.available_y.to_i + number)
       # 判断是否更新成功
       if gift.save && available.save
         # 更新成功后，在积分记录表添加 收支记录
