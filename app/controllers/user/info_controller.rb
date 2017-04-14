@@ -48,8 +48,16 @@ class User::InfoController < Wechat::BaseController
           flash[:notice] = '赠送成功'
           redirect_to user_gift_account_path
           return
+        else
+          flash[:notice] = '赠送失败'
+          redirect_to user_gift_account_path
+          return
         end
       end
+    else
+      flash[:notice] = '赠送失败，赠送数量不合法'
+      redirect_to user_gift_account_path
+      return
     end
   end
 
