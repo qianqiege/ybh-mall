@@ -3,10 +3,19 @@
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<p style="font-size: 1px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
-  <span style="color:red;font-size:1.5px;">提示：</span>
+
+<% if @user_available_y.available_y.to_i > 500 %>
+<p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
+  <span style="color:red;font-size:15px;">提示：</span>
   易积分将实时转入对方账户，无法退款，请确认后操作
 </p>
+<% else %>
+  <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
+    <span style="color:red;font-size:15px;">提示：</span>
+    对不起，您的可兑换易积分数量低于500，根据我公司规定，您暂时不可以使用赠送功能。
+  </p>
+<% end %>
+
   <!-- <form class="weui-search-bar__form" method="post">
     <div class="weui-search-bar" id="search_bar" style="padding-top:10px;">
       <div class="weui-search-bar__box">
@@ -30,5 +39,7 @@
       </div>
       <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
     </div>
-    <%= submit_tag "赠送" ,class:"button-dh button-margin"%>
+    <% if @user_available_y.available_y.to_i > 500 %>
+      <%= submit_tag "赠送" ,class:"wei_but_new weui-btn_primary button-dh button-margin"%>
+    <% end %>
   <% end %>
