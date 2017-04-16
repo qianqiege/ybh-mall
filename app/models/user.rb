@@ -26,6 +26,8 @@ class User < ApplicationRecord
   has_many :identity_cards
   has_many :ycoin_records, dependent: :destroy, as: :account
 
+  has_many :recommenders, :class_name => "WechatUser", :foreign_key => "recommender_id"
+
   belongs_to :organization
   belongs_to :invitation, class_name: 'User', foreign_key: 'invitation_id'
 

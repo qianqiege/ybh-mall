@@ -39,12 +39,14 @@
         </div>
       </div>
 
-      <div class="login_control">
-        <div class="login_label">邀请码（选填）</div>
-        <div class="login_content">
-          <%= text_field_tag :invitation_id, @invitation_user %>
+      <% if current_user.recommender.nil? %>
+        <div class="login_control">
+          <div class="login_label">邀请码（选填）</div>
+          <div class="login_content">
+            <%= text_field_tag :invitation_id, @invitation_user %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="weui-cells__title">必填信息</div>
       <div class="weui-cells weui-cells_form">
