@@ -12,6 +12,7 @@ ActiveAdmin.register WechatUser do
     column :nickname
     column :subscribe
     column :auth_hash
+    column :recommender
 
     actions
   end
