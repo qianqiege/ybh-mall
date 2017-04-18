@@ -1,4 +1,5 @@
 class Integral < ApplicationRecord
+  has_paper_trail
   belongs_to :user
 
   before_create :update_number
