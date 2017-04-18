@@ -3,13 +3,18 @@ class WechatUser < ApplicationRecord
   has_many :addresses
   has_many :orders
   belongs_to :user
+  # 推荐人
+  belongs_to :recommender, :class_name => "User", :foreign_key => "recommender_id"
+
   has_many :line_items, through: :orders
 
   serialize :access_token_info, JSON
   serialize :auth_hash, Hash
 
   validates :open_id, presence: true, uniqueness: true
-  
+
+  delegate :locking_y, to: :user, allow_nil: true
+  delegate :available_y, to: :user, allow_nil: true
   alias_attribute :name, :nickname
 
   def set_userinfo user_basic_info

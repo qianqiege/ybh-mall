@@ -1,6 +1,16 @@
 class User::BindingController < Wechat::BaseController
   def new
+    if current_user.user.present?
+      flash[:notice] = '您已注册，无须重复注册'
+      redirect_to root_path
+    end
     @no_fotter = true
+    @recommender = User.find_by(invitation_card: params[:invitation_id])
+
+    # 如果当前用户没有推荐人，自动添加推荐人
+    if current_user.recommender.nil? && @recommender.present?
+      current_user.update_attributes(recommender: @recommender)
+    end
     @invitation_user = params[:invitation_id] || ""
   end
 
@@ -11,36 +21,33 @@ class User::BindingController < Wechat::BaseController
 
       # 生成随机邀请码
       @invitation_card = rand(1000000000..9999999999)
-      # 判断是否有 邀请人的ID
-      if !params[:invitation_id].nil?
-        # 有的话 查找到这个邀请人
-        @invitation_user = User.find_by(invitation_card: params[:invitation_id])
-        # 注册，创建新的用户
-        @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card)
 
-        # 判断是否有邀请人
-        if(@invitation_user.present?)
-          # 如果有，创建新用户的时候绑定邀请人ID
-          @user.invitation_id = @invitation_user.id
-        end
+      @invitation_user = User.find_by(invitation_card: params[:invitation_id])
 
-        # 判断是否选择了 CheckBox 确定身份
-        if(params[:is_doctor])
-          @user.type = "Doctor"
-        else
-          @user.type = "Patient"
-        end
+      @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card)
 
-        # 保存 新创建的用户 和更新微信用户绑定的User_id
-        if @user.save && @wechat = WechatUser.find(current_user.id).update(user_id: @user.id)
-          flash[:notice] = '恭喜您，注册成功'
-          redirect_to root_path
-          return
-        else
-          flash[:notice] = '对不起，注册失败'
-          redirect_back fallback_location: user_binding_path
-        end
+      # 如果原来已经有推荐人了，注册直接绑定推荐人
+      if current_user.recommender.present?
+        @user.invitation_id = current_user.recommender.id
+      elsif @invitation_user.present?
+        @user.invitation_id = @invitation_user.id
       end
+
+      if(params[:is_doctor])
+        @user.type = "Doctor"
+      else
+        @user.type = "Patient"
+      end
+
+      if @user.save && @wechat = WechatUser.find(current_user.id).update(user_id: @user.id)
+        flash[:notice] = '恭喜您，注册成功'
+        redirect_to root_path
+        return
+      else
+        flash[:notice] = '对不起，注册失败'
+        redirect_back fallback_location: user_binding_path
+      end
+
     else
       flash[:notice] = '验证码无效或过期, 请重新发送验证码'
       redirect_back fallback_location: user_binding_path

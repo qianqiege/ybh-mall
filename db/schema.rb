@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407015047) do
+ActiveRecord::Schema.define(version: 20170416085612) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -178,6 +178,15 @@ ActiveRecord::Schema.define(version: 20170407015047) do
     t.integer  "days"
   end
 
+  create_table "ecgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "url"
+    t.integer  "user_id"
+    t.string   "phone"
+    t.string   "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "examine_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "idcard"
@@ -288,6 +297,14 @@ ActiveRecord::Schema.define(version: 20170407015047) do
     t.decimal  "price",                            precision: 10
   end
 
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at",         null: false
@@ -374,6 +391,8 @@ ActiveRecord::Schema.define(version: 20170407015047) do
     t.string   "reason"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.boolean  "is_effective"
+    t.string   "type"
     t.index ["presentable_type", "presentable_id"], name: "index_presented_records_on_presentable_type_and_presentable_id", using: :btree
   end
 
@@ -569,7 +588,7 @@ ActiveRecord::Schema.define(version: 20170407015047) do
     t.string   "identity_card"
     t.integer  "integral"
     t.integer  "scoin_account_id"
-    t.decimal  "y_coin",                 precision: 10, scale: 2, default: "0.0"
+    t.decimal  "locking_y",              precision: 10, scale: 2, default: "0.0"
     t.string   "email",                                           default: "",    null: false
     t.string   "encrypted_password",                              default: "",    null: false
     t.string   "reset_password_token"
@@ -588,6 +607,7 @@ ActiveRecord::Schema.define(version: 20170407015047) do
     t.integer  "invitation_id"
     t.string   "identity"
     t.string   "type"
+    t.decimal  "available_y",            precision: 10, scale: 2
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
@@ -621,6 +641,7 @@ ActiveRecord::Schema.define(version: 20170407015047) do
     t.string   "mobile"
     t.integer  "used_address_id"
     t.integer  "user_id"
+    t.integer  "recommender_id"
   end
 
   create_table "weights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
