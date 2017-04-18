@@ -18,8 +18,13 @@
         <a href="<%= user_details_path %>" class="weui-cell_access">
           <p>易积分总数量</p>
           <% available = Integral.find_by(user_id: current_user.user_id) %>
-          <% number = available.bronze + available.silver + available.gold %>
-          <p><%= current_user && available.locking + number || 0 %></p>
+          <% number = 0 %>
+          <% if !available.nil? %>
+            <% number = available.bronze + available.silver + available.gold %>
+            <p><%= current_user && available.locking + number || 0 %></p>
+          <% else %>
+            <p>0</p>
+          <% end %>
         </a>
       </div>
     </div>
