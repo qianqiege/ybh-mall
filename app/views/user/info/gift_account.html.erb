@@ -4,7 +4,7 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<% if @user_available_y.available_y.to_i > 500 %>
+<% if @user_available_y > 500 %>
 <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
   <span style="color:red;font-size:15px;">提示：</span>
   易积分将实时转入对方账户，无法退款，请确认后操作
@@ -39,7 +39,7 @@
       </div>
       <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
     </div>
-    <% if @user_available_y.available_y.to_i > 500 %>
+    <% if @user_available_y > 500 %>
       <%= submit_tag "赠送" ,class:"wei_but_new weui-btn_primary button-dh button-margin"%>
     <% end %>
   <% end %>

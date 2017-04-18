@@ -105,6 +105,14 @@ zh-CN:
       serve:
         serve_name: '服务名称'
         url: '服务链接'
+      integral:
+        user_id: '用户'
+        locking: '锁定积分'
+        available: '可兑换积分'
+        bronze: '青铜积分（3个月）'
+        silver: '白银积分（6个月）'
+        gold: '黄金积分（9个月）'
+        updated_at: '最后更新时间'
       reservation_record:
         time: '时间'
         name: '客户'
@@ -143,8 +151,6 @@ zh-CN:
         type: '类型'
       user:
         telphone: '手机号码（用于登陆）'
-        locking_y: '锁定积分'
-        available_y: '可兑换积分'
         identity_card: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'
@@ -247,6 +253,7 @@ zh-CN:
       member_record: '会员档案/信息'
       slide: '滚动图片'
       scoin_account: 'S货币账户'
+      integral: '易积分数量详表'
       coin_record: '货币记录'
       blood_glucose: '血糖检测'
       blood_pressure: '血压检测'

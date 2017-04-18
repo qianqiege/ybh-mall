@@ -18,7 +18,10 @@ class User::BindingController < Wechat::BaseController
     if sms_code_validate(params[:code], params[:mobile])
       current_user.update_mobile(params[:mobile])
       # 绑定有折扣的会员vip
+
+      # 生成随机邀请码
       @invitation_card = rand(1000000000..9999999999)
+
       @invitation_user = User.find_by(invitation_card: params[:invitation_id])
 
       @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card)

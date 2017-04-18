@@ -15,7 +15,6 @@ class WechatUser < ApplicationRecord
 
   delegate :locking_y, to: :user, allow_nil: true
   delegate :available_y, to: :user, allow_nil: true
-
   alias_attribute :name, :nickname
 
   def set_userinfo user_basic_info

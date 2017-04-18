@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include PresentedConcern
 
   after_create :create_invitation_id
+  after_create :create_integral
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,6 +13,7 @@ class User < ApplicationRecord
   has_one :wechat_user
   has_many :orders
   has_one :cart
+  has_one :integral
   has_many :ecgs
   has_many :appraise
   has_many :examine_records
@@ -68,6 +70,10 @@ class User < ApplicationRecord
   def create_invitation_id
     # 在易积分记录表中插入一条积分收支记录，默认为有效记录，积分计入到锁定积分中
     presented_records.create(user_id: invitation_id, number: 50, reason: "邀请好友赠送",is_effective:1,type:"Locking")
+  end
+
+  def create_integral
+    Integral.create(user_id: self.id)
   end
 
 end
