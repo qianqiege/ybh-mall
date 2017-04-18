@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_one :wechat_user
   has_many :orders
   has_one :cart
+  has_one :integral
   has_many :ecgs
   has_many :appraise
   has_many :examine_records

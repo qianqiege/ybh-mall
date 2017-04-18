@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bronze: 9.99
+  silver: 9.99
+  gold: 9.99
+  user_id: 1
+
+two:
+  bronze: 9.99
+  silver: 9.99
+  gold: 9.99
+  user_id: 1
