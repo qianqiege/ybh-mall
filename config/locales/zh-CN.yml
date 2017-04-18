@@ -107,6 +107,8 @@ zh-CN:
         url: '服务链接'
       integral:
         user_id: '用户'
+        locking: '锁定积分'
+        available: '可兑换积分'
         bronze: '青铜积分（3个月）'
         silver: '白银积分（6个月）'
         gold: '黄金积分（9个月）'
