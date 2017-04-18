@@ -8,7 +8,7 @@ ActiveAdmin.register User do
                 :invitation_card,
                 :invitation_user,
                 :organization_id,
-                :invitation_id,
+                :invitation_id
 
   index do
     selectable_column

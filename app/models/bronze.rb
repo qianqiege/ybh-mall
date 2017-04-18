@@ -1,0 +1,2 @@
+class Bronze < PresentedRecord
+end

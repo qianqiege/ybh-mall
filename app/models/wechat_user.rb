@@ -9,9 +9,6 @@ class WechatUser < ApplicationRecord
   serialize :auth_hash, Hash
 
   validates :open_id, presence: true, uniqueness: true
-
-  delegate :locking_y, to: :user, allow_nil: true
-  delegate :available_y, to: :user, allow_nil: true
   
   alias_attribute :name, :nickname
 
