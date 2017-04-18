@@ -21,7 +21,6 @@ ActiveAdmin.register User do
     column :invitation_card
     column :invitation_id
     # column :organization
-    column :available_y
     column :locking_y
     column '身份',:type
     column '注册时间',:created_at
@@ -53,7 +52,6 @@ ActiveAdmin.register User do
       row :invitation_card
       row :invitation_id
       row :organization
-      row :available_y
       row :locking_y
       row :created_at
     end
