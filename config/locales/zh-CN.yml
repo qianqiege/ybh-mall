@@ -151,7 +151,6 @@ zh-CN:
         type: '类型'
       user:
         telphone: '手机号码（用于登陆）'
-        locking_y: '锁定积分'
         identity_card: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'
