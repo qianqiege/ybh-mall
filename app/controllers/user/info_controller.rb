@@ -35,21 +35,26 @@ class User::InfoController < Wechat::BaseController
   def gift_user
     number = params["price"].to_i
     # 查找当前用户记录
+    if Integral.find_by(user_id: params["id"].to_i).nil?
+      Integral.create(user_id: params["id"].to_i)
+    end
     if number > 0
-      available = User.find_by(id: current_user.user_id)
+      integral = Integral.find_by(user_id: current_user.user_id)
       # 判断当前用户的可兑换积分数量是否大于赠送积分
-      if available.available_y > number
-        # 更新当前用户的 可兑换积分 （可兑换积分 - 赠送积分数量）
-        available.update(available_y: available.available_y.to_i - number)
+      if integral.available > number
+        # 更新当前用户的 可兑换积分 （可兑换积分(默认青铜积分) - 赠送积分数量）
+        integral.update(bronze: integral.bronze - number)
         # 查找 要赠送的用户记录
-        gift = User.find_by(id: params["id"].to_i)
-        # 更新 被赠送积分的用户 的可兑换积分 （可兑换积分 + 赠送积分数量）
-        gift.update(available_y: gift.available_y.to_i + number)
+        gift = Integral.find_by(user_id: params["id"].to_i)
+        # 更新 被赠送积分的用户 的可兑换积分 （可兑换积分(默认青铜积分) + 赠送积分数量）
+        gift.update(bronze: gift.bronze + number)
         # 判断是否更新成功
-        if gift.save && available.save
+        if gift.save && integral.save
+          # 更新 可兑换积分总数
+          gift.update(available: gift.bronze + gift.silver + gift.gold)
           # 更新成功后，在积分记录表添加 收支记录
-          PresentedRecord.create(user_id: available.id, number: "-#{params["price"].to_i}", reason: "转账",is_effective:0,type:"Available")
-          PresentedRecord.create(user_id: params["id"].to_i, number: params["price"].to_i, reason: "转账",is_effective:0,type:"Available")
+          PresentedRecord.create(user_id: integral.user_id, number: "-#{params["price"].to_i}", reason: "转账",is_effective:0,type:"Bronze")
+          PresentedRecord.create(user_id: params["id"].to_i, number: params["price"].to_i, reason: "转账",is_effective:0,type:"Bronze")
           # 提示 用户赠送成功 并返回到赠送页面
           flash[:notice] = '赠送成功'
           redirect_to user_gift_account_path
