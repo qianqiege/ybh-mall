@@ -11,6 +11,10 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  def exchange
+    @available_ycoin = User.find_by(id: current_user.user_id)
+  end
+
   def gift_account
     @user_available_y = User.find_by(id: current_user.user_id)
   end

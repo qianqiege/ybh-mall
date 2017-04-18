@@ -1,2 +1,17 @@
 <%= render 'wallet_header' %>
 <%= title '兑换' %>
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p>兑换数量</p>
+            <div>
+                <p style="font-size: 48px;float: left;position: absolute;">￥</p>
+                <input name = "price" maxlength="8" type="number" style="float: right;border: 0px;font-size: 48px;display: inline-block;width: 88%;margin-top: 6px;padding-left: 0px;margin-left: 0px;" >
+                <div style="clear:both"></div>
+            </div>
+            <div style="min-height: 2px;max-height: 2px;width: 100%;background-color: #F1F0F0;"></div>
+        </div>
+    </div>
+</div>
+<input name = "id" style="display: none;" value="<%= %>">
+<a href="javascript:;" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认兑换</a>
