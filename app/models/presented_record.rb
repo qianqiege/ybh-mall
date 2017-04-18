@@ -23,8 +23,9 @@ class PresentedRecord < ApplicationRecord
           end
         end
       end
-      user.locking_y += number
-      user.save
+      locking = Integral.find_by(user_id: user.id)
+      locking.locking += number
+      locking.save
     end
   end
 
