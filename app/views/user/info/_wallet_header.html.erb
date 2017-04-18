@@ -17,7 +17,9 @@
       <div class="placeholder text-center">
         <a href="<%= user_details_path %>" class="weui-cell_access">
           <p>易积分总数量</p>
-          <p><%= current_user && current_user.locking_y.to_i + current_user.available_y.to_i || 0 %></p>
+          <% available = Integral.find_by(user_id: current_user.user_id) %>
+          <% number = available.bronze + available.silver + available.gold %>
+          <p><%= current_user && current_user.locking_y + number || 0 %></p>
         </a>
       </div>
     </div>
@@ -25,7 +27,7 @@
       <div class="placeholder text-center">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
           <p>可兑换易积分</p>
-          <p><%= current_user && current_user.available_y.to_i || 0 %></p>
+          <p><%= current_user && number || 0 %></p>
         </a>
       </div>
     </div>
