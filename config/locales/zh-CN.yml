@@ -192,6 +192,7 @@ zh-CN:
         type: "货币类型"
         end_at: "结束时间"
         created_at: "创建时间"
+        level_type: '货币级别'
       scoin_account:
         user: '用户ID（选择身份证号码）'
         account: 'S货币账户'

@@ -12,17 +12,17 @@ namespace :coin do
         record.level_type = "Locking"
         record.save
       when "Locking"
-        if @time >= 0
+        if @time >= 90
           record.level_type = "Bronze"
           record.save
         end
       when "Bronze"
-        if @time >= 1
+        if @time >= 180
           record.level_type = "Silver"
           record.save
         end
       when "Silver"
-        if @time >= 2
+        if @time >= 270
           record.level_type = "Gold"
           record.save
         end
