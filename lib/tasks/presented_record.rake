@@ -11,7 +11,7 @@ namespace :presented_record do
 
       when "Locking"
         # 判断天数是否大于90天
-        if @time >= 0
+        if @time >= 90
           # 在User表中找到这条记录的 用户
           @integral = Integral.find_by(user_id: record.user_id)
           # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
@@ -54,7 +54,7 @@ namespace :presented_record do
 
       when "Bronze"
         # 判断天数是否大于180天
-        if @time >= 0
+        if @time >= 180
           # 在User表中找到这条记录的 用户
           @integral = Integral.find_by(user_id: record.user_id)
           # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
@@ -97,7 +97,7 @@ namespace :presented_record do
 
       when "Silver"
         # 判断天数是否大于270天
-        if @time >= 0
+        if @time >= 270
           # 在User表中找到这条记录的 用户
           @integral = Integral.find_by(user_id: record.user_id)
           # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
@@ -124,7 +124,7 @@ namespace :presented_record do
                                     reason: "白银积分变更黄金积分",
                                     is_effective:0,
                                     type:"Silver")
-              puts "生成易积分收支记录，青铜易积分中减#{record.number}"
+              puts "生成易积分收支记录，白银易积分中减#{record.number}"
 
               # 将刚刚从白银积分中减掉的积分 加到黄金易积分中
               PresentedRecord.create(user_id: record.user_id,
