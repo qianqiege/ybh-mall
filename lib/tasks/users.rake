@@ -11,7 +11,7 @@ namespace :users do
 
     YcoinRecord.includes(:coin_type).ongoing.each do |record|
       current_time = Time.current.strftime('%Y-%m-%d %H:%M:%S')
-      record.account.presented_records.create(user_id: record.account_id, number: record.coin_type.everyday, reason: "每天赠送",is_effective:1,type:"Locking")
+      record.account.presented_records.create(user_id: record.account_id, number: record.coin_type.everyday, reason: "每天赠送",is_effective:1,type:"#{record.level_type}")
     end
 
     puts "定时器结束，当前时间为#{Time.current}"

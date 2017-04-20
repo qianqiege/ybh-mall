@@ -1,6 +1,6 @@
 ActiveAdmin.register CoinRecord do
   menu parent: I18n.t("active_admin.menu.coin_manage")
-  permit_params :state, :account_id, :account_type, :coin_type_id, :start_at, :end_at
+  permit_params :level_type,:state, :account_id, :account_type, :coin_type_id, :start_at, :type,:end_at
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "货币记录" do
@@ -22,6 +22,7 @@ ActiveAdmin.register CoinRecord do
     column :start_at
     column :end_at
     column :type
+    column :level_type
     column :created_at
     actions
   end
