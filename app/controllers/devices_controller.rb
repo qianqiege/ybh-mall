@@ -158,19 +158,19 @@ class DevicesController < ApplicationController
         end
       when '108'
         png_hex = info["param"]["ecgpng"]
-        id = Digest::MD5.hexdigest(info["param"]["id"])
+        # id = Digest::MD5.hexdigest(info["param"]["id"])
 
-        dir = Rails.root.join('public', 'uploads', 'ecg');
-        FileUtils.mkdir_p(dir) unless File.directory?(dir)
+        # dir = Rails.root.join('public', 'uploads', 'ecg');
+        # FileUtils.mkdir_p(dir) unless File.directory?(dir)
         # FIXME: 这里用id做文件名，需要跟对方确认是否唯一，如果不唯一，请对方提供其他标示
-        File.open("#{dir}/#{id}.png", "wb"){|fh|
-          png_hex.scan(/.{2}/) { |e| fh.putc(e.hex) }
-        }
+        # File.open("#{dir}/#{id}.png", "wb"){|fh|
+          # png_hex.scan(/.{2}/) { |e| fh.putc(e.hex) }
+        # }
         # FIXME: 这里是图片地址，用于传给慢病
-        image_url = helpers.asset_url("uploads/ecg/#{id}.png")
+        # image_url = helpers.asset_url("uploads/ecg/#{id}.png")
         if !temporary[0].nil?
-          mall.api_ECG(temporary[0].identity_card,image_url,info["mo"])
-          @ecg = Ecg.new(user_id: temporary[0].id,url: image_url, phone: info["mo"])
+          mall.api_ECG(temporary[0].identity_card,png_hex,info["mo"])
+          @ecg = Ecg.new(user_id: temporary[0].id,url: png_hex, phone: info["mo"])
           if @ecg.save
           end
         end
@@ -178,8 +178,8 @@ class DevicesController < ApplicationController
         response = { success: "404", errmsg: "没有找到对象" }
         render xml: response.to_xml(root: 'data'), layout: nil
       end
-      # response = { success: "200", errmsg: "保存成功" }
-      # render xml: response.to_xml(root: 'data'), layout: nil
+      response = { success: "200", errmsg: "保存成功" }
+      render xml: response.to_xml(root: 'data'), layout: nil
     else
       response = { success: "400", errmsg: "保存失败" }
       render xml: response.to_xml(root: 'data'), layout: nil
