@@ -12,9 +12,13 @@
           </div>
           <% unless @no_fotter %>
             <div class="weui-tabbar">
-              <a href="<%= mall_root_path %>" class="weui-tabbar__item <%= controller_name == 'home' ? 'weui-bar__item_on' : nil %>">
+              <a href="/" class="weui-tabbar__item">
                 <%= image_tag("home.png", class: "weui-tabbar__icon") %>
-                <p class="weui-tabbar__label">首页</p>
+                <p class="weui-tabbar__label">御易建</p>
+              </a>
+              <a href="<%= mall_root_path %>" class="weui-tabbar__item <%= controller_name == 'home' ? 'weui-bar__item_on' : nil %>">
+                <%= image_tag("mall.png", class: "weui-tabbar__icon") %>
+                <p class="weui-tabbar__label">商城</p>
               </a>
               <!-- <a href="javascript:;" class="weui-tabbar__item">
                 <%= image_tag("category.png", class: "weui-tabbar__icon") %>
@@ -28,7 +32,7 @@
                 <%= image_tag("discover.png", class: "weui-tabbar__icon") %>
                 <p class="weui-tabbar__label">发现</p>
               </a> -->
-              <a href="<%= mall_my_path %>" class="weui-tabbar__item <%= ['my', 'addresses', 'orders'].include?(controller_name) ? 'weui-bar__item_on' : nil %>"">
+              <a href="<%= mall_my_path %>" class="weui-tabbar__item <%= ['my', 'addresses', 'orders'].include?(controller_name) ? 'weui-bar__item_on' : nil %>">
                 <%= image_tag("person.png", class: "weui-tabbar__icon") %>
                 <p class="weui-tabbar__label">我的</p>
               </a>
