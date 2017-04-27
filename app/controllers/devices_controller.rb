@@ -169,7 +169,6 @@ class DevicesController < ApplicationController
         # FIXME: 这里是图片地址，用于传给慢病
         # image_url = helpers.asset_url("uploads/ecg/#{id}.png")
         if !temporary[0].nil?
-          byebug
           mall.api_ECG(temporary[0].identity_card,png_hex,info["mo"])
           @ecg = Ecg.new(user_id: idcard.id,url: png_hex, phone: info["mo"])
           if @ecg.save
