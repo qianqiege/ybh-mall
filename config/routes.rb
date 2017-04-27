@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :wechat do
     root "home#index"
     resources :setmeals
+    get 'direct_seeding',to: 'direct_seeding#home'
   end
 
   namespace :wechat do
