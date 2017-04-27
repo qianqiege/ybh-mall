@@ -12,28 +12,22 @@ weixin:
     button:
     - type: "view"
       name: "御易健"
-      sub_button:
-        - type: "view"
-          name: "首页"
-          url: "http://ybhm.ybyt.cc/wechat"
+      url: "http://ybhm.ybyt.cc/wechat"
         # - type: "view"
         #   name: "服务首页"
         #   url: "http://ybhm.ybyt.cc/service"
     - name: "御易健商城"
-      sub_button:
-        - type: "view"
-          name: "商城"
-          url: "http://ybhm.ybyt.cc/mall"
+      url: "http://ybhm.ybyt.cc/mall"
     - name: "我的"
       sub_button:
         - type: "view"
-          name: "我的"
+          name: "我的信息"
           url: "http://ybhm.ybyt.cc/user"
         - type: "view"
           name: "健康检测"
           url: "http://ybhm.ybyt.cc/examine/home"
         - type: "view"
-          name: "疾病风险评估"
+          name: "风险评估"
           url: "http://ybhm.ybyt.cc/evaluate/home"
 
 external:
