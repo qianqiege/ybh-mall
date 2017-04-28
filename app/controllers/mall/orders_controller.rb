@@ -67,8 +67,8 @@ class Mall::OrdersController < Mall::BaseController
         @locking.update(locking: 0)
       else
         locking = @locking.locking - (price * 10)
+        integral = price * 10
         price = 0
-        integral = integral + (price * 10)
         PresentedRecord.create(user_id: params["id"], number: "-#{price * 10}", reason: "消费",is_effective:0,type:"Locking")
         # 更新用户积分
         @locking.update(locking: locking)
@@ -88,7 +88,7 @@ class Mall::OrdersController < Mall::BaseController
       payment: params[:payment]
     )
 
-    if !integral.nil?
+    if integral > 0
       @order.integral = integral * 10
     end
 
