@@ -44,21 +44,23 @@ class Mall::OrdersController < Mall::BaseController
         return
       end
     end
-
     line_items = current_cart.line_items.where(id: session[:line_item_ids])
 
     # 去掉库存为0的商品
     line_items = line_items.reject { |line_item| line_item.quantity == 0 }
     # 1. 计算金额(不包含下架的商品)
     price = line_items.to_a.sum { |item| item.total_price }
-
+    # 2. 计算商品数量(不包含下架的商品)
+    quantity = line_items.to_a.sum { |item| item.quantity }
     # 查询当前易积分
     @locking = Integral.find_by(user_id: current_user.user_id)
+    integral = 0
 
     if @locking.locking > 0
 
       if price >= @locking.locking / 10
         price = price - @locking.locking / 10
+        integral = integral + (@locking.locking / 10)
         # 生成消费记录
         PresentedRecord.create(user_id: params["id"], number: "-#{@locking.locking}", reason: "消费",is_effective:0,type:"Locking")
         # 更新用户积分
@@ -66,6 +68,7 @@ class Mall::OrdersController < Mall::BaseController
       else
         locking = @locking.locking - (price * 10)
         price = 0
+        integral = integral + (price * 10)
         PresentedRecord.create(user_id: params["id"], number: "-#{price * 10}", reason: "消费",is_effective:0,type:"Locking")
         # 更新用户积分
         @locking.update(locking: locking)
@@ -74,9 +77,6 @@ class Mall::OrdersController < Mall::BaseController
       @locking.save
 
     end
-
-    # 2. 计算商品数量(不包含下架的商品)
-    quantity = line_items.to_a.sum { |item| item.quantity }
     # 3. 生成订单
     @order = current_user.orders.new(
       address_id: params[:address_id],
@@ -87,6 +87,10 @@ class Mall::OrdersController < Mall::BaseController
       password: params[:password],
       payment: params[:payment]
     )
+
+    if !integral.nil?
+      @order.integral = integral * 10
+    end
 
     if @order.save
       # 4. 清空购物车已生成订单的商品
@@ -109,7 +113,6 @@ class Mall::OrdersController < Mall::BaseController
       flash[:success] = @order.errors.messages.values.join(",")
       redirect_to confirm_mall_orders_path(address_id: params[:address_id])
     end
-    byebug
   end
 
   def confirm

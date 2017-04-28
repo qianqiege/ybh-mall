@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   default_scope { order(id: :desc) }
 
   validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 1 }
-  validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+  # validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   # 暂时把address和wechat_user的验证去掉
   validates :user, presence: true
   validates_uniqueness_of :number

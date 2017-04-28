@@ -5,7 +5,7 @@ $(function () {
 
   $("#confirm_order_btn").on('click', function() {
     event.preventDefault();
-    if ($.trim($("#total-price").data('all_total_price')) == "0.00") {
+    if ($.trim($("#total-price").data('all_total_price')) < "0.00") {
       $.tips('库存不足，请再等等，或购买其他商品');
       return;
     }

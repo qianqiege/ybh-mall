@@ -71,6 +71,7 @@ ActiveAdmin.register Order do
     column :user_id
     column :activity
     column :price
+    column :integral
     column :quantity
     column :number
     column '付款类型' do |order|
@@ -125,6 +126,7 @@ ActiveAdmin.register Order do
       row :price do
         money order.price
       end
+      row :integral
       row :status do
         order.human_state
       end

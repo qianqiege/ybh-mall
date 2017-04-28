@@ -75,6 +75,7 @@ zh-CN:
         pay_tp: '付款类型'
         user_id: '用户'
         price: '金额'
+        integral: '积分'
         quantity: '产品数量'
         status: '订单状态'
         number: '编号'
