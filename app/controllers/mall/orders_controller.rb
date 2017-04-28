@@ -51,6 +51,30 @@ class Mall::OrdersController < Mall::BaseController
     line_items = line_items.reject { |line_item| line_item.quantity == 0 }
     # 1. 计算金额(不包含下架的商品)
     price = line_items.to_a.sum { |item| item.total_price }
+
+    # 查询当前易积分
+    @locking = Integral.find_by(user_id: current_user.user_id)
+
+    if @locking.locking > 0
+
+      if price >= @locking.locking / 10
+        price = price - @locking.locking / 10
+        # 生成消费记录
+        PresentedRecord.create(user_id: params["id"], number: "-#{@locking.locking}", reason: "消费",is_effective:0,type:"Locking")
+        # 更新用户积分
+        @locking.update(locking: 0)
+      else
+        locking = @locking.locking - (price * 10)
+        price = 0
+        PresentedRecord.create(user_id: params["id"], number: "-#{price * 10}", reason: "消费",is_effective:0,type:"Locking")
+        # 更新用户积分
+        @locking.update(locking: locking)
+      end
+
+      @locking.save
+
+    end
+
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
     # 3. 生成订单
@@ -69,6 +93,8 @@ class Mall::OrdersController < Mall::BaseController
       line_items.each do |line_item|
         line_item.move_to_order(@order.id) if line_item.cart_id == current_cart.id
       end
+
+
       # 5. 清空session
       session[:line_item_ids] = nil
       if params["payment"] != "PAYMENT_TYPE_NULL"
@@ -83,6 +109,7 @@ class Mall::OrdersController < Mall::BaseController
       flash[:success] = @order.errors.messages.values.join(",")
       redirect_to confirm_mall_orders_path(address_id: params[:address_id])
     end
+    byebug
   end
 
   def confirm
@@ -91,7 +118,8 @@ class Mall::OrdersController < Mall::BaseController
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
     @activities = Activity.where(is_show: true)
-    @scoin_account = ScoinAccount.where(user_id: current_user.user_id).take
+    @scoin_account = ScoinAccount.find_by(user_id: current_user.user_id)
+    @locking = Integral.find_by(user_id: current_user.user_id).locking
   end
 
   def pay
