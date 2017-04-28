@@ -1,12 +1,12 @@
 <style type="text/css">
-    
+
     .weui-tab__panel{
         background: #FDFFFC
     }
 
     .info{
-        background: #C92B2F;
-
+        /*background: #C92B2F;*/
+        background: url(/assets/wallet_bg-348bc514c64b982352e77affd7cb6620f7147ea39e8dcc8791baefee874a1b8c.png) no-repeat;
     }
 
     .zdiv{
@@ -37,7 +37,7 @@
 
     .weui-panel_access{
         border-bottom: 0.2rem solid #235789;
-        
+
     }
 
     .weui-panel_access:first-child{
@@ -50,7 +50,7 @@
 
 <%= title '健康档案' %>
 <% if !@record.nil? %>
-  <div class="weui-panel weui-panel_access info">
+  <div class="weui-panel weui-panel_access info" style="margin-top:0px;">
       <div class="weui-panel__bd">
           <div class="row head">
               <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
