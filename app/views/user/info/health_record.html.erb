@@ -1,6 +1,56 @@
+<style type="text/css">
+    
+    .weui-tab__panel{
+        background: #FDFFFC
+    }
+
+    .info{
+        background: #C92B2F;
+
+    }
+
+    .zdiv{
+        display: flex;
+    }
+
+    .img{
+        flex: 1;
+    }
+
+    .rname{
+        color: #FDFFFC;
+        flex: 3;
+    }
+
+
+    .rname .small .bg-w{
+        background-color: : #FDFFFC!important;
+    }
+
+    .flex-a .weui-flex__item:nth-child(3){
+        flex:2;
+    }
+
+    .fa {
+        color: #F1D302;
+    }
+
+    .weui-panel_access{
+        border-bottom: 0.2rem solid #235789;
+        
+    }
+
+    .weui-panel_access:first-child{
+        border: 0;
+    }
+
+
+</style>
+
+
 <%= title '健康档案' %>
 <% if !@record.nil? %>
-  <div class="weui-panel weui-panel_access">
+  <div class="weui-panel weui-panel_access info">
       <div class="weui-panel__bd">
           <div class="row head">
               <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
@@ -8,8 +58,8 @@
                     <%= image_tag "person.png",size: "100x100",class:"vam" %>
                 </div>
                   <div class ="rname">
-                    <h3><%= @record["name"] %><small> <span class="label label-primary">ID :<%= @record["id_number"] %></span></small></h3>
-                    <div class="weui-flex">
+                    <h3><%= @record["name"] %><small> <span class="label label-primary bg-w">ID :<%= @record["id_number"] %></span></small></h3>
+                    <div class="weui-flex flex-a">
                         <div class="weui-flex__item">汉族</div>
                         <div class="weui-flex__item">
                           <%= @record["sex"] %>
