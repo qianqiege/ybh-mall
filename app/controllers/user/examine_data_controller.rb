@@ -5,9 +5,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_blood_fat
     if !current_user.user_id.nil?
-      @show = BloodFat.where(user_id: current_user.user_id)
+      @show = BloodFat.where(user_id: current_user.user_id).limit(10)
       @options = {
-        colors: ["#ff0000", "#add9c0"],
+        colors: ["#00CD00", "#1E90FF"],
         xAxis: {
           type: 'datetime',
           labels: {
@@ -21,9 +21,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_temperature
     if !current_user.user_id.nil?
-      @show = Temperature.where(user_id: current_user.user_id)
+      @show = Temperature.where(user_id: current_user.user_id).limit(10)
       @options = {
-        colors: ["#ff0000", "#add9c0"],
+        colors: ["#00CD00", "#1E90FF"],
         xAxis: {
           type: 'datetime',
           labels: {
@@ -37,9 +37,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_weight
     if !current_user.user_id.nil?
-      @show = Weight.where(user_id: current_user.user_id)
+      @show = Weight.where(user_id: current_user.user_id).limit(10)
       @options = {
-        colors: ["#ff0000", "#add9c0"],
+        colors: ["#00CD00", "#1E90FF"],
         xAxis: {
           type: 'datetime',
           labels: {
@@ -53,9 +53,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_glucose
     if !current_user.user_id.nil?
-      @show = BloodGlucose.where(user_id: current_user.user_id)
+      @show = BloodGlucose.where(user_id: current_user.user_id).limit(10)
       @options = {
-        colors: ["#ff0000", "#add9c0"],
+        colors: ["#00CD00", "#1E90FF"],
         xAxis: {
           type: 'datetime',
           labels: {
@@ -69,9 +69,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_heart
     if !current_user.user_id.nil?
-      @show = HeartRate.where(user_id: current_user.user_id)
+      @show = HeartRate.where(user_id: current_user.user_id).limit(10)
       @options = {
-        colors: ["#ff0000", "#add9c0"],
+        colors: ["#00CD00", "#1E90FF"],
         xAxis: {
           type: 'datetime',
           labels: {
@@ -85,9 +85,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_pressure
     if !current_user.user_id.nil?
-      @show = BloodPressure.where(user_id: current_user.user_id).order(updated_at: :desc)
+      @show = BloodPressure.where(user_id: current_user.user_id).order(updated_at: :desc).limit(10)
       @options = {
-        colors: ["#ff0000", "#add9c0"],
+        colors: ["#00CD00", "#1E90FF"],
         xAxis: {
           type: 'datetime',
           labels: {
@@ -101,9 +101,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_unine
     if !current_user.user_id.nil?
-      @show = Unine.where(user_id: current_user.user_id).order(updated_at: :desc)
+      @show = Unine.where(user_id: current_user.user_id).order(updated_at: :desc).limit(10)
       @options = {
-        colors: ["#ff0000", "#add9c0"],
+        colors: ["#00CD00", "#1E90FF"],
         xAxis: {
           type: 'datetime',
           labels: {
@@ -117,7 +117,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_ecg
     if !current_user.user_id.nil?
-      @show = Ecg.where(user_id: current_user.user_id).order(created_at: :desc)
+      @show = Ecg.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
     end
   end
 
