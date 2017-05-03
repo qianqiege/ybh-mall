@@ -171,8 +171,10 @@ class DevicesController < ApplicationController
         if !temporary[0].nil?
           mall.api_ECG(temporary[0].identity_card,png_hex,info["mo"])
           @ecg = Ecg.new(user_id: idcard.id,url: png_hex, phone: info["mo"])
-          if @ecg.save
+          if(@user.present?)
+            @ecg.user_id = @user.id
           end
+          @ecg.save
         end
       else
         response = { success: "404", errmsg: "没有找到对象" }
