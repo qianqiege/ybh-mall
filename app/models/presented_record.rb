@@ -26,6 +26,7 @@ class PresentedRecord < ApplicationRecord
       if Integral.find_by(user_id: user.id).nil?
         Integral.create(user_id: user.id)
       end
+
       locking = Integral.find_by(user_id: user.id)
       locking.locking += number
       locking.save
