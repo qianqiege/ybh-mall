@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   default_scope { order(id: :desc) }
 
   validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 1 }
-  validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+  # validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   # 暂时把address和wechat_user的验证去掉
   validates :user, presence: true
   validates_uniqueness_of :number
@@ -148,6 +148,7 @@ class Order < ApplicationRecord
   # 2. 赠送第一天数据和第一次记录
   # 3. 如果有邀请人，赠送邀请人易积分
   def add_ycoin_records
+    rule_p = 0
     if !self.activity_id.nil?
       rules = activity.activity_rules.match_rules(price)
       rules.map do |rule|
@@ -159,6 +160,7 @@ class Order < ApplicationRecord
           )
           current_time = Time.current.strftime('%Y-%m-%d %H:%M:%S')
 
+          rule_p = rule_p + rule.percent
           # 在易积分记录表中插入一条积分收支记录，默认为有效记录，积分计入到锁定积分中
           presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Locking")
           presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Locking")
@@ -169,19 +171,20 @@ class Order < ApplicationRecord
             present_count = rule.percent * price
             presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Locking")
           end
-
         end
       end
     else
-      i_price = (self.price * 0.03) * 10
+      i_price = self.price * rule_p
       integral = Integral.find_by(user_id: User.find(self.user.invitation_id).id)
-      if !integral.nil?
+      if integral.nil?
         Integral.create(user_id: User.find(self.user.invitation_id).id)
       end
       integral.update(locking: integral.locking + i_price)
       integral.save
-      presented_records.create(user_id: User.find(self.user.invitation_id).id, number: integral.locking + i_price, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Locking")
+      presented_records.create(user_id: User.find(self.user.invitation_id).id, number: i_price, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Locking")
     end
+    # 消费返还 110%
+    presented_records.create(user_id: self.user_id, number: self.price * 1.2, reason: "购买产品返还积分",is_effective:1,type:"Locking")
   end
 
   def add_ycoin_invitation

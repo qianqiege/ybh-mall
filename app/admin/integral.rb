@@ -1,7 +1,7 @@
 ActiveAdmin.register Integral do
 menu parent: I18n.t("active_admin.menu.coin_manage")
 
-permit_params :bronze, :silver, :gold, :user_id, :locking, :available
+permit_params :exchange, :user_id, :locking, :available
 
   index do
     selectable_column
@@ -10,9 +10,7 @@ permit_params :bronze, :silver, :gold, :user_id, :locking, :available
     column :user_id
     column :locking
     column :available
-    column :bronze
-    column :silver
-    column :gold
+    column :exchange
     column :updated_at
     actions defaults: true
   end
@@ -22,9 +20,7 @@ permit_params :bronze, :silver, :gold, :user_id, :locking, :available
       f.input :user
       f.input :locking
       f.input :available
-      f.input :bronze
-      f.input :silver
-      f.input :gold
+      f.input :exchange
     end
     f.actions
   end

@@ -1,0 +1,2 @@
+class Exchange < PresentedRecord
+end
