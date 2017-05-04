@@ -53,30 +53,31 @@ class Mall::OrdersController < Mall::BaseController
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
     # 查询当前易积分
-    @locking = Integral.find_by(user_id: current_user.user_id)
+    @integral_coin = Integral.find_by(user_id: current_user.user_id)
+
+    # 人民币 ：易积分  1:2
     integral = 0
 
-    if @locking.locking > 0
+    if @integral_coin.available > 0 || @integral_coin.exchange > 0
 
-      if price >= @locking.locking / 10
-        price = price - @locking.locking / 10
-        integral = integral + (@locking.locking / 10)
-        # 生成消费记录
-        PresentedRecord.create(user_id: params["id"], number: "-#{@locking.locking}", reason: "消费",is_effective:0,type:"Locking")
-        # 更新用户积分
-        @locking.update(locking: 0)
-      else
-        locking = @locking.locking - (price * 10)
-        integral = price * 10
+      if @integral_coin.available >= price
+        @integral_coin.update(available: @integral_coin.available - price)
         price = 0
-        PresentedRecord.create(user_id: params["id"], number: "-#{price * 10}", reason: "消费",is_effective:0,type:"Locking")
-        # 更新用户积分
-        @locking.update(locking: locking)
+        integral = price + integral
+      elsif @integral_coin.exchange >= price
+        @integral_coin.update(exchange: @integral_coin.exchange - price)
+        price = 0
+        integral = price + integral
+      elsif @integral_coin.available <= price
+        price = price - @integral_coin.available
+        integral = @integral_coin.available
+      elsif @integral_coin.exchange <= price
+        price = price - @integral_coin.exchange
+        integral = @integral_coin.available
       end
 
-      @locking.save
-
     end
+
     # 3. 生成订单
     @order = current_user.orders.new(
       address_id: params[:address_id],
@@ -89,7 +90,7 @@ class Mall::OrdersController < Mall::BaseController
     )
 
     if integral > 0
-      @order.integral = integral * 10
+      @order.integral = integral
     end
 
     if @order.save
@@ -122,7 +123,7 @@ class Mall::OrdersController < Mall::BaseController
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
     @activities = Activity.where(is_show: true)
     @scoin_account = ScoinAccount.find_by(user_id: current_user.user_id)
-    @locking = Integral.find_by(user_id: current_user.user_id).locking
+    @locking = Integral.find_by(user_id: current_user.user_id).available
   end
 
   def pay
