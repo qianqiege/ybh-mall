@@ -1,2 +1,0 @@
-class Silver < PresentedRecord
-end
