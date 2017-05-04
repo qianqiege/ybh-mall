@@ -109,10 +109,8 @@ zh-CN:
       integral:
         user_id: '用户'
         locking: '锁定积分'
-        available: '可兑换积分'
-        bronze: '青铜积分（3个月）'
-        silver: '白银积分（6个月）'
-        gold: '黄金积分（9个月）'
+        available: '可使用积分'
+        exchange: '可兑换积分'
         updated_at: '最后更新时间'
       reservation_record:
         time: '时间'
