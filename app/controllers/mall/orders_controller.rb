@@ -53,30 +53,30 @@ class Mall::OrdersController < Mall::BaseController
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
     # 查询当前易积分
-    @integral_coin = Integral.find_by(user_id: current_user.user_id)
+    # @integral_coin = Integral.find_by(user_id: current_user.user_id)
 
-    # 人民币 ：易积分  1:2
-    integral = 0
-
-    if @integral_coin.available > 0 || @integral_coin.exchange > 0
-
-      if @integral_coin.available >= price
-        @integral_coin.update(available: @integral_coin.available - price)
-        integral = price + integral
-        price = 0
-      elsif @integral_coin.exchange >= price
-        @integral_coin.update(exchange: @integral_coin.exchange - price)
-        integral = price + integral
-        price = 0
-      elsif @integral_coin.available <= price
-        price = price - @integral_coin.available
-        integral = @integral_coin.available
-      elsif @integral_coin.exchange <= price
-        price = price - @integral_coin.exchange
-        integral = @integral_coin.available
-      end
-
-    end
+    # # 人民币 ：易积分  1:2
+    # integral = 0
+    #
+    # if @integral_coin.available > 0 || @integral_coin.exchange > 0
+    #
+    #   if @integral_coin.available >= price
+    #     @integral_coin.update(available: @integral_coin.available - price)
+    #     integral = price + integral
+    #     price = 0
+    #   elsif @integral_coin.exchange >= price
+    #     @integral_coin.update(exchange: @integral_coin.exchange - price)
+    #     integral = price + integral
+    #     price = 0
+    #   elsif @integral_coin.available <= price
+    #     price = price - @integral_coin.available
+    #     integral = @integral_coin.available
+    #   elsif @integral_coin.exchange <= price
+    #     price = price - @integral_coin.exchange
+    #     integral = @integral_coin.available
+    #   end
+    #
+    # end
 
     # 自定义价格
     price = params[:custom_price].present? ? params[:custom_price] : price
@@ -91,10 +91,6 @@ class Mall::OrdersController < Mall::BaseController
       password: params[:password],
       payment: params[:payment]
     )
-
-    if integral > 0
-      @order.integral = integral
-    end
 
     if @order.save
       # 4. 清空购物车已生成订单的商品
@@ -127,7 +123,7 @@ class Mall::OrdersController < Mall::BaseController
     @activities = Activity.where(is_show: true)
     @scoin_account = ScoinAccount.find_by(user_id: current_user.user_id)
     if Integral.find_by(user_id: current_user.user_id)
-      @locking = Integral.find_by(user_id: current_user.user_id).available
+      @integral = Integral.find_by(user_id: current_user.user_id)
     end
   end
 
