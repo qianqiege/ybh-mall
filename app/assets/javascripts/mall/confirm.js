@@ -21,4 +21,28 @@ $(function(){
       $("#scoin_account").hide();
     }
   });
+
+  $("#integral_available").on('change keyup', function() {
+
+    var size = $(this).data("size");
+    var value = $.trim($(this).val());
+
+    if ( value < 0 || value > size ) {
+      $.tips("最大可用积分为: " + size);
+      $(this).val(size);
+    }
+
+  })
+
+  $("#integral_money").on('change keyup', function() {
+
+    var size = $(this).data("size");
+    var value = $.trim($(this).val());
+
+    if ( value < 0 || value > size ) {
+      $.tips("最大可用现金为: " + size);
+      $(this).val(size);
+    }
+
+  })
 })

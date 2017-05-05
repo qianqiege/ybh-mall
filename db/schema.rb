@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505013152) do
+ActiveRecord::Schema.define(version: 20170505094821) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -38,17 +38,18 @@ ActiveRecord::Schema.define(version: 20170505013152) do
 
   create_table "activity_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rule"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.integer  "activity_id"
-    t.decimal  "max",          precision: 10, scale: 3
-    t.decimal  "min",          precision: 10, scale: 3
-    t.decimal  "y_coin",       precision: 10
+    t.decimal  "max",                     precision: 10, scale: 3
+    t.decimal  "min",                     precision: 10, scale: 3
+    t.decimal  "y_coin",                  precision: 10
     t.integer  "coin_type_id"
-    t.decimal  "percent",      precision: 10, scale: 2
-    t.decimal  "bronze",       precision: 10, scale: 2
-    t.decimal  "silver",       precision: 10, scale: 2
-    t.decimal  "gold",         precision: 10, scale: 2
+    t.decimal  "percent",                 precision: 10, scale: 2
+    t.decimal  "bronze",                  precision: 10, scale: 2
+    t.decimal  "silver",                  precision: 10, scale: 2
+    t.decimal  "gold",                    precision: 10, scale: 2
+    t.float    "percentage",   limit: 24
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -251,6 +252,7 @@ ActiveRecord::Schema.define(version: 20170505013152) do
     t.decimal  "locking",    precision: 10
     t.decimal  "available",  precision: 10
     t.decimal  "exchange",   precision: 10
+    t.decimal  "cash",       precision: 10
   end
 
   create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -399,6 +401,7 @@ ActiveRecord::Schema.define(version: 20170505013152) do
     t.datetime "updated_at",                                null: false
     t.boolean  "is_effective"
     t.string   "type"
+    t.integer  "record_id"
     t.index ["presentable_type", "presentable_id"], name: "index_presented_records_on_presentable_type_and_presentable_id", using: :btree
   end
 
@@ -613,6 +616,7 @@ ActiveRecord::Schema.define(version: 20170505013152) do
     t.integer  "invitation_id"
     t.string   "identity"
     t.string   "type"
+    t.string   "status"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

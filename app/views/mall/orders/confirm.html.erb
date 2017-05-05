@@ -100,13 +100,13 @@
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">易积分数量</label></div>
             <div class="weui-cell__bd">
-              <%= number_field_tag 'integral', '', class: "weui-input", placeholder: "可用#{@integral.available}易积分" %>
+              <%= number_field_tag 'integral_available', '', class: "weui-input", placeholder: "可用#{@integral.available}易积分", data: { size: @integral.available } %>
             </div>
           </div>
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">现金余额</label></div>
             <div class="weui-cell__bd">
-              <%= number_field_tag 'money', '', class: "weui-input", placeholder: "可用#{@integral.cash}现金" %>
+              <%= number_field_tag 'integral_money', '', class: "weui-input", placeholder: "可用#{@integral.cash}现金",  data: { size: @integral.cash } %>
             </div>
           </div>
         </div>
