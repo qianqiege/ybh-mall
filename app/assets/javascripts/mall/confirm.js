@@ -10,7 +10,7 @@ $(function(){
           showFlash('#loadingToast', '数据加载中')
         },
         success: function(data) {
-          if(data.scoin_type_count >= 1){
+          if(data.result == "ok"){
             $("#scoin_account").show();
           } else {
             $("#scoin_account").hide();
