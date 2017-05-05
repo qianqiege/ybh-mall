@@ -16,16 +16,6 @@ namespace :coin do
           record.level_type = "Bronze"
           record.save
         end
-      when "Bronze"
-        if @time >= 180
-          record.level_type = "Silver"
-          record.save
-        end
-      when "Silver"
-        if @time >= 270
-          record.level_type = "Gold"
-          record.save
-        end
       end
     end
 

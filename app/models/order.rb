@@ -149,7 +149,6 @@ class Order < ApplicationRecord
   # 2. 赠送第一天数据和第一次记录
   # 3. 如果有邀请人，赠送邀请人易积分
   def add_ycoin_records
-    rule_p = 0
     if !self.activity_id.nil?
       rules = activity.activity_rules.match_rules(price)
       rules.map do |rule|
@@ -161,32 +160,23 @@ class Order < ApplicationRecord
           )
           current_time = Time.current.strftime('%Y-%m-%d %H:%M:%S')
 
-          rule_p = rule_p + rule.percent
           # 在易积分记录表中插入一条积分收支记录，默认为有效记录，积分计入到锁定积分中
-          presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Locking")
-          presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Locking")
+          if rule.coin_type.once > 0 && rule.coin_type.everyday > 0
+            presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Available")
+            presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Available")
+          end
 
           # 推荐好友消费赠送
           invitation = User.find(user_id).invitation_id
-          if(rule.percent.present? && invitation.present?)
+          if(rule.percent.present? && invitation.present? && self.price != 0)
             present_count = rule.percent * price
-            presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Locking")
+            presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available")
+          end
+          if rule.percentage.present? && self.price != 0
+            presented_records.create(user_id: self.user_id, number: self.price * rule.percentage, reason: "购买产品返还积分",is_effective:1,type:"Locking")
           end
         end
       end
-    else
-      i_price = self.price * rule_p
-      integral = Integral.find_by(user_id: User.find(self.user.invitation_id).id)
-      if integral.nil?
-        Integral.create(user_id: User.find(self.user.invitation_id).id)
-      end
-      integral.update(locking: integral.locking + i_price)
-      integral.save
-      presented_records.create(user_id: User.find(self.user.invitation_id).id, number: i_price, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Locking")
-    end
-    # 消费返还 110%
-    if self.price > 0
-      presented_records.create(user_id: self.user_id, number: self.price * 100000, reason: "购买产品返还积分",is_effective:1,type:"Locking")
     end
   end
 
@@ -239,7 +229,7 @@ class Order < ApplicationRecord
   end
 
   def staff_integral
-    user_invitation = User.find(current_user.user_id)
+    user_invitation = User.find(self.user_id)
     while !user_invitation.nil?
       user_invitation = User.find(user_invitation.id).invitation
       if user_invitation.nil? || user_invitation.status == "staff"
@@ -248,9 +238,9 @@ class Order < ApplicationRecord
     end
 
     if Integral.find_by(user_id: user_invitation.id)
-      Integral.create(user_id: user_invitation.id, Locking: 0 ,available: 0, exchange: 0)
+      Integral.create(user_id: user_invitation.id, locking: 0 ,available: 0, exchange: 0)
     end
-    presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请赠送" , is_effective: 1 , type: "Locking", record_id: record.id)
+    presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请赠送" , is_effective: 1 , type: "Available")
   end
 
 end
