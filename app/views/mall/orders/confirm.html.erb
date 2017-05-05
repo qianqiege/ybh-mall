@@ -69,6 +69,7 @@
           </div>
         </div>
       </div>
+
       <% if @scoin_account.nil? %>
         <div class="weui-cells"  id="scoin_account">
           <div class="weui-cell">
@@ -85,12 +86,12 @@
 
       <% if @total_price >= @locking && @locking > 0 %>
         <% @total_price = @total_price - @locking %>
-        <p class="confirm_font_red" style="position: fixed;bottom: 146px;left: 75px;">尊敬的用户，您的易积分有<%= @locking %>，可抵扣<%= @locking %>人民币</p>
+        <p class="confirm_font_red" style="position: fixed;bottom: 105px;left: 75px;">尊敬的用户，您的易积分有<%= @locking %>，可抵扣<%= @locking %>人民币</p>
       <% elsif @locking > 0 %>
-        <p class="confirm_font_red" style="position: fixed;bottom: 146px;left: 25px;">尊敬的用户，您的易积分可抵扣<%= @total_price %>人民币,剩余积分<%= @locking - @total_price %></p>
+        <p class="confirm_font_red" style="position: fixed;bottom: 105px;left: 25px;">尊敬的用户，您的易积分可抵扣<%= @total_price %>人民币,剩余积分<%= @locking - @total_price %></p>
         <% @total_price = 0 %>
       <% end %>
-    
+
       <% if current_cart.custom_price_products? %>
         <div class="weui-cells">
           <div class="weui-cell">
