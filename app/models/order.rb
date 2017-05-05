@@ -53,6 +53,7 @@ class Order < ApplicationRecord
         # 购买赠送
         add_ycoin_records
         add_ycoin_invitation
+        staff_integral
       end
     end
 
@@ -184,10 +185,72 @@ class Order < ApplicationRecord
       presented_records.create(user_id: User.find(self.user.invitation_id).id, number: i_price, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Locking")
     end
     # 消费返还 110%
-    presented_records.create(user_id: self.user_id, number: self.price * 1.2, reason: "购买产品返还积分",is_effective:1,type:"Locking")
+    if self.price > 0
+      presented_records.create(user_id: self.user_id, number: self.price * 1.2, reason: "购买产品返还积分",is_effective:1,type:"Locking")
+    end
   end
 
   def add_ycoin_invitation
+    if !self.integral.nil? && self.integral > 0
+
+      count_integral = 0
+      surplus_integral = 0
+      p_record = PresentedRecord.where("user_id = ? AND is_effective = ? AND type = ?", self.user_id , 1 , "Available")
+
+      while self.integral >= surplus_integral
+
+        p_record.each do |record|
+          # 收支记录中的 number 大于所用的数量
+          if record.number >= self.integral
+            count_integral = count_integral + record.number - self.integral
+            if record.update(is_effective: 0)
+              presented_records.create(user_id: self.user_id, number: "-#{self.integral}", reason: "消费" , is_effective: 0 , type: "Available", record_id: record.id)
+              if record.number - self.integral > 0
+                presented_records.create(user_id: self.user_id, number: record.number - self.integral , reason: "消费剩余" , is_effective: 1 , type: "Available", record_id: record.id)
+              end
+            end
+            if surplus_integral == 0 || surplus_integral < 0
+              break
+            end
+          # 收支记录中的 number 大于所用的数量
+          else
+            if surplus_integral != 0 && surplus_integral > 0
+              surplus_integral = surplus_integral - record.number
+            else
+              surplus_integral = self.integral - record.number
+            end
+            if record.update(is_effective: 0)
+              presented_records.create(user_id: self.user_id, number: "-#{record.number}", reason: "消费" , is_effective: 0 , type: "Available", record_id: record.id)
+              if surplus_integral < 0
+                presented_records.create(user_id: self.user_id, number: surplus_integral * -1, reason: "消费剩余" , is_effective: 0 , type: "Available", record_id: record.id)
+              end
+            end
+            if surplus_integral == 0 || surplus_integral < 0
+              break
+            end
+          end
+        end
+        if surplus_integral == 0 || surplus_integral < 0
+          break
+        end
+      end
+
+    end
+  end
+
+  def staff_integral
+    user_invitation = User.find(current_user.user_id)
+    while !user_invitation.nil?
+      user_invitation = User.find(user_invitation.id).invitation
+      if user_invitation.nil? || user_invitation.status == "staff"
+        break
+      end
+    end
+
+    if Integral.find_by(user_id: user_invitation.id)
+      Integral.create(user_id: user_invitation.id, Locking: 0 ,available: 0, exchange: 0)
+    end
+    presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请赠送" , is_effective: 1 , type: "Locking", record_id: record.id)
   end
 
 end

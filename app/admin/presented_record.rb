@@ -12,6 +12,7 @@ ActiveAdmin.register PresentedRecord do
     column :created_at
     # column :organization
     column :is_effective
+    column :record_id
     column :type
   end
 end
