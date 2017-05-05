@@ -5,6 +5,10 @@ $(function () {
 
   $("#confirm_order_btn").on('click', function() {
     event.preventDefault();
+    if( $("#custom_price").length > 0 && ( $.trim($("#custom_price").val()) == "" || $.trim($("#custom_price").val()) <= 0 ) ) {
+      $.tips('必须填定自定义价格');
+      return;
+    }
     showFlash('#loadingToast', '提交订单中')
     $("#confirm_order").submit();
   })

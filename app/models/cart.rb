@@ -2,6 +2,7 @@ class Cart < ApplicationRecord
   belongs_to :wechat_user
   belongs_to :user
   has_many :line_items, -> { where in_cart: true }
+  has_many :all_products, through: :line_items, source: :product
 
   def add_product(product, quantity)
     current_item = line_items.find_by(product_id: product.id)
@@ -34,5 +35,10 @@ class Cart < ApplicationRecord
   # 真正能够购买的商品总数量
   def real_product_count
     reload.line_items.to_a.sum { |item| item.real_quantity }
+  end
+
+  # 判断所有的产品是否自定义价格
+  def custom_price_products?
+    !all_products.where(is_custom_price: false).exists?
   end
 end

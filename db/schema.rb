@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170416085612) do
+ActiveRecord::Schema.define(version: 20170505013152) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 20170416085612) do
     t.decimal  "y_coin",       precision: 10
     t.integer  "coin_type_id"
     t.decimal  "percent",      precision: 10, scale: 2
+    t.decimal  "bronze",       precision: 10, scale: 2
+    t.decimal  "silver",       precision: 10, scale: 2
+    t.decimal  "gold",         precision: 10, scale: 2
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -163,6 +166,7 @@ ActiveRecord::Schema.define(version: 20170416085612) do
     t.datetime "end_at"
     t.string   "type"
     t.string   "account_type"
+    t.string   "level_type"
   end
 
   create_table "coin_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -240,6 +244,15 @@ ActiveRecord::Schema.define(version: 20170416085612) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "integrals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.decimal  "locking",    precision: 10
+    t.decimal  "available",  precision: 10
+    t.decimal  "exchange",   precision: 10
+  end
+
   create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "product_id"
     t.integer "cart_id"
@@ -297,14 +310,6 @@ ActiveRecord::Schema.define(version: 20170416085612) do
     t.decimal  "price",                            precision: 10
   end
 
-  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "vip_type_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at",         null: false
@@ -359,6 +364,7 @@ ActiveRecord::Schema.define(version: 20170416085612) do
     t.string   "payment"
     t.decimal  "initial_price",  precision: 10, scale: 2
     t.string   "remark"
+    t.decimal  "integral",       precision: 10
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
@@ -417,12 +423,13 @@ ActiveRecord::Schema.define(version: 20170416085612) do
     t.string   "standard_number"
     t.string   "serial_number"
     t.text     "desc",                   limit: 65535
-    t.datetime "created_at",                                                                null: false
-    t.datetime "updated_at",                                                                null: false
+    t.datetime "created_at",                                                                    null: false
+    t.datetime "updated_at",                                                                    null: false
     t.integer  "shop_count",                                                    default: 0
     t.integer  "lock_shop_count",                                               default: 0
     t.string   "only_number"
     t.integer  "priority",                                                      default: 0
+    t.boolean  "is_custom_price",                                               default: false
   end
 
   create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -582,19 +589,18 @@ ActiveRecord::Schema.define(version: 20170416085612) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",                                                      null: false
-    t.datetime "updated_at",                                                      null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "telphone"
     t.string   "identity_card"
     t.integer  "integral"
     t.integer  "scoin_account_id"
-    t.decimal  "locking_y",              precision: 10, scale: 2, default: "0.0"
-    t.string   "email",                                           default: "",    null: false
-    t.string   "encrypted_password",                              default: "",    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                   default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -607,7 +613,6 @@ ActiveRecord::Schema.define(version: 20170416085612) do
     t.integer  "invitation_id"
     t.string   "identity"
     t.string   "type"
-    t.decimal  "available_y",            precision: 10, scale: 2
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
