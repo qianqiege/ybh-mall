@@ -9,7 +9,8 @@ if @line_item.errors.any?
     end
   end
 else
-  # 商品单价，购物车页面中增加减少商品使用
+  # 商品价格，购物车页面中增加减少商品使用
+  # @line_item.price 为商品单价，@quantity为数量
   json.price money(@line_item.price * @quantity)
   # 商品总价格
   json.current_line_item_price money @line_item.total_price

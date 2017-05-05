@@ -37,6 +37,7 @@ class Mall::LineItemsController < Mall::BaseController
   # 删除商品
   def destroy
     @line_item.destroy
+    @quantity = params[:quantity].to_i || 1
     @action = 'delete'
     render 'carts_line_item.json.jbuilder'
   end
