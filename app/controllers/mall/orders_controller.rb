@@ -78,6 +78,9 @@ class Mall::OrdersController < Mall::BaseController
 
     end
 
+    # 自定义价格
+    price = params[:custom_price].present? ? params[:custom_price] : price
+
     # 3. 生成订单
     @order = current_user.orders.new(
       address_id: params[:address_id],
