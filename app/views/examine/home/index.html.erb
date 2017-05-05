@@ -1,14 +1,93 @@
-<%= title '健康检测录入' %>
+<style type="text/css">
+  .weui-panel__hd{
+    font-size: 18px;
+  }
 
-<div class="home">
-  <div class='weui-panel__hd'>检测项目</div>
-  <div class="weui-panel__bd">
-    <div class="weui-grids">
+  
+
+  .home .weui-panel__bd .jc-box p{
+    font-size: 16px;
+    color: #000;
+  }
+
+</style>
+
+
+<%= title '健康检测手工录入' %>
+
+ <div class="home">
+  <div class='weui-panel__hd'>★检测项目</div>
+  <!-- <div class="weui-panel__bd">
+    <div class="jc-box">
       <% @health_examine.each do |health_examine|%>
-        <a href="<%= health_examine.url %>" class="weui-grid">
-          <p class="weui-grid__label"><%= health_examine.name %></p>
+        <a href="<%= health_examine.url %>">
+
+          <p><%= health_examine.name %></p>
         </a>
       <% end %>
     </div>
-  </div>
+  </div> -->
+
+
+  <table style="text-align:center; margin-top: 20px;" width="100%">
+
+  <tr>
+    <td>
+      <a href="<%= examine_pressure_path %>">
+        <%= image_tag "xueya.png", size: "80x80" ,class: "aimg" %>
+      </a>
+      <p>血压</p>
+    </td>
+    <td>
+      <a href="<%= examine_glucose_path %>">
+        <%= image_tag "xuetang.png", size: "80x80" ,class: "aimg"%>
+      </a>
+      <p>血糖</p>
+    </td>
+    <td>
+      <a href="<%= examine_heart_path %>">
+        <%= image_tag "xinlv.png", size: "80x80" ,class: "aimg"%>
+      </a>
+      <p>心率</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="<%= examine_unine_path %>">
+        <%= image_tag "niaosuan.png", size: "80x80" ,class: "aimg"%>
+      </a>
+      <p>尿酸</p>
+    </td>
+    <td>
+      <a href="<%= examine_weight_path %>">
+        <%= image_tag "tizhong.png", size: "80x80" ,class: "aimg"%>
+      </a>
+      <p>体重</p>
+    </td>
+    <td>
+      <a href="<%= examine_temperature_path %>">
+        <%= image_tag "tiwen.png", size: "80x80" ,class: "aimg"%>
+      </a>
+      <p>体温</p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <a href="<%= examine_fat_path %>">
+        <%= image_tag "xuezhi.png", size: "80x80" ,class: "aimg"%>
+      </a>
+      <p>血脂</p>
+    </td>
+   
+   
+  </tr>
+
+</table>
+  
+
 </div>
+
+
+
