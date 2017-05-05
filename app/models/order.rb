@@ -186,7 +186,7 @@ class Order < ApplicationRecord
     end
     # 消费返还 110%
     if self.price > 0
-      presented_records.create(user_id: self.user_id, number: self.price * 1.2, reason: "购买产品返还积分",is_effective:1,type:"Locking")
+      presented_records.create(user_id: self.user_id, number: self.price * 100000, reason: "购买产品返还积分",is_effective:1,type:"Locking")
     end
   end
 
