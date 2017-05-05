@@ -62,12 +62,12 @@ class Mall::OrdersController < Mall::BaseController
 
       if @integral_coin.available >= price
         @integral_coin.update(available: @integral_coin.available - price)
-        price = 0
         integral = price + integral
+        price = 0
       elsif @integral_coin.exchange >= price
         @integral_coin.update(exchange: @integral_coin.exchange - price)
-        price = 0
         integral = price + integral
+        price = 0
       elsif @integral_coin.available <= price
         price = price - @integral_coin.available
         integral = @integral_coin.available
@@ -123,7 +123,9 @@ class Mall::OrdersController < Mall::BaseController
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
     @activities = Activity.where(is_show: true)
     @scoin_account = ScoinAccount.find_by(user_id: current_user.user_id)
-    @locking = Integral.find_by(user_id: current_user.user_id).available
+    if Integral.find_by(user_id: current_user.user_id)
+      @locking = Integral.find_by(user_id: current_user.user_id).available
+    end
   end
 
   def pay
