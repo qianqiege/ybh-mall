@@ -32,7 +32,7 @@ weixin:
       sub_button:
         - type: "view"
           name: "疾病风险评估"
-          url: "http://ybhm.ybyt.cc/evaluate/home"
+          url: "http://ybhm.ybyt.cc/evaluate/index"
         - type: "view"
           name: "玩玩小游戏"
           url: "http://qolm.ybyt.cc/_game/llk/"
