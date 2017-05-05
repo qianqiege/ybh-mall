@@ -13,12 +13,12 @@ class User::InfoController < Wechat::BaseController
 
   def exchange
     available = Integral.find_by(user_id: current_user.user_id)
-    @available_ycoin = available.bronze + available.silver + available.gold
+    @available_ycoin = available.available + available.exchange
   end
 
   def gift_account
     available = Integral.find_by(user_id: current_user.user_id)
-    @user_available_y = available.bronze + available.silver + available.gold
+    @user_available_y = available.available + available.exchange + available.locking
   end
 
   def create_gift
@@ -43,18 +43,18 @@ class User::InfoController < Wechat::BaseController
       # 判断当前用户的可兑换积分数量是否大于赠送积分
       if integral.available > number
         # 更新当前用户的 可兑换积分 （可兑换积分(默认青铜积分) - 赠送积分数量）
-        integral.update(bronze: integral.bronze - number)
+        integral.update(available: integral.available - number)
         # 查找 要赠送的用户记录
         gift = Integral.find_by(user_id: params["id"].to_i)
         # 更新 被赠送积分的用户 的可兑换积分 （可兑换积分(默认青铜积分) + 赠送积分数量）
-        gift.update(bronze: gift.bronze + number)
+        gift.update(available: gift.available + number)
         # 判断是否更新成功
         if gift.save && integral.save
           # 更新 可兑换积分总数
-          gift.update(available: gift.bronze + gift.silver + gift.gold)
+          gift.update(available: gift.available)
           # 更新成功后，在积分记录表添加 收支记录
-          PresentedRecord.create(user_id: integral.user_id, number: "-#{params["price"].to_i}", reason: "转账",is_effective:0,type:"Bronze")
-          PresentedRecord.create(user_id: params["id"].to_i, number: params["price"].to_i, reason: "转账",is_effective:0,type:"Bronze")
+          PresentedRecord.create(user_id: integral.user_id, number: "-#{params["price"].to_i}", reason: "转账",is_effective:0,type:"Available")
+          PresentedRecord.create(user_id: params["id"].to_i, number: params["price"].to_i, reason: "转账",is_effective:0,type:"Available")
           # 提示 用户赠送成功 并返回到赠送页面
           flash[:notice] = '赠送成功'
           redirect_to user_gift_account_path
