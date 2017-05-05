@@ -69,6 +69,7 @@
           </div>
         </div>
       </div>
+
       <% if @scoin_account.nil? %>
         <div class="weui-cells"  id="scoin_account">
           <div class="weui-cell">
@@ -89,6 +90,17 @@
       <% elsif @locking > 0 %>
         <p class="confirm_font_red" style="position: fixed;bottom: 105px;left: 25px;">尊敬的用户，您的易积分可抵扣<%= @total_price %>人民币,剩余积分<%= @locking - @total_price %></p>
         <% @total_price = 0 %>
+      <% end %>
+
+      <% if current_cart.custom_price_products? %>
+        <div class="weui-cells">
+          <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">自定义价格</label></div>
+            <div class="weui-cell__bd">
+              <%= number_field_tag 'custom_price', '', class: "weui-input", placeholder: "请输入您的自定义价格" %>
+            </div>
+          </div>
+        </div>
       <% end %>
 
       <div class="cart-fixed-ft">

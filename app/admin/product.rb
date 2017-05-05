@@ -11,7 +11,8 @@ ActiveAdmin.register Product do
                 :packaging,
                 :product_sort,
                 :only_number,
-                :priority
+                :priority,
+                :is_custom_price
 
   index do
     selectable_column
@@ -42,6 +43,7 @@ ActiveAdmin.register Product do
       f.input :original_product_price
       f.input :shop_count
       f.input :is_show
+      f.input :is_custom_price
       f.input :production
       f.input :product_sort
       f.input :only_number
@@ -60,6 +62,7 @@ ActiveAdmin.register Product do
       row :now_product_price
       row :original_product_price
       row :is_show
+      row :is_custom_price
       row :shop_count
       row :production
       row :product_sort
