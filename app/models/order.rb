@@ -53,6 +53,7 @@ class Order < ApplicationRecord
         # 购买赠送
         add_ycoin_records
         add_ycoin_invitation
+        staff_integral
       end
     end
 
@@ -235,6 +236,21 @@ class Order < ApplicationRecord
       end
 
     end
+  end
+
+  def staff_integral
+    user_invitation = User.find(current_user.user_id)
+    while !user_invitation.nil?
+      user_invitation = User.find(user_invitation.id).invitation
+      if user_invitation.nil? || user_invitation.status == "staff"
+        break
+      end
+    end
+
+    if Integral.find_by(user_id: user_invitation.id)
+      Integral.create(user_id: user_invitation.id, Locking: 0 ,available: 0, exchange: 0)
+    end
+    presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请赠送" , is_effective: 1 , type: "Locking", record_id: record.id)
   end
 
 end
