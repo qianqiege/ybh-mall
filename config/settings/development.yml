@@ -22,12 +22,13 @@ weixin:
         - type: "view"
           name: "健康数据录入"
           url: "http://ybhm.ybyt.cc/examine/home"
-    - name: "商城"
+    - name: "御易健商城"
+      url: "http://ybhm.ybyt.cc/mall"
       sub_button:
         - type: "view"
           name: "商城"
           url: "http://ybhm.ybyt.cc/mall"
-    - name: "娱乐"
+    - name: "健康娱乐"
       sub_button:
         - type: "view"
           name: "疾病风险评估"
