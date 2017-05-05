@@ -27,10 +27,10 @@ weixin:
     - name: "我的"
       sub_button:
         - type: "view"
-          name: "我的"
+          name: "我的信息档案"
           url: "http://ybhm.ybyt.cc/user"
         - type: "view"
-          name: "健康检测"
+          name: "健康数据录入"
           url: "http://ybhm.ybyt.cc/examine/home"
         - type: "view"
           name: "疾病风险评估"
