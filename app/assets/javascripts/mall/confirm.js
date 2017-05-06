@@ -65,4 +65,11 @@ $(function(){
     $("#total-price").text( (total_price - real_value - money_value).formatMoney() )
 
   })
+
+  $("#custom_price").on('change keyup', function() {
+      value = parseFloat($.trim($(this).val())),
+      total_price = parseFloat($.trim($("#total-price").data("all_total_price")));
+      $("#total-price").text( (total_price + value ).formatMoney() )
+  })
+
 })
