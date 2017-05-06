@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 9.99
+  reason: MyString
+  is_effective: false
+  user_id: 1
+
+two:
+  number: 9.99
+  reason: MyString
+  is_effective: false
+  user_id: 1

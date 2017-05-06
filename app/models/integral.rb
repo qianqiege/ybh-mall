@@ -3,6 +3,7 @@ class Integral < ApplicationRecord
   belongs_to :user
 
   validates :locking,:available,:exchange,numericality: { greater_than_or_equal_to: -1 }
+  validates :user_id, uniqueness: true
 
   before_create :update_number
 

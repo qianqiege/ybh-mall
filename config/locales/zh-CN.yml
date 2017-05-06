@@ -42,6 +42,11 @@ zh-CN:
         reason: '收入支出渠道'
         created_at: '创建日期'
         is_effective: '是否有效'
+      cash_record:
+        number: '数量'
+        reason: '收入支出渠道'
+        is_effective: "是否有效"
+        created_at: '创建日期'
       organization:
         name: "机构（公司）名称"
         only_number: "机构（公司）编号"
@@ -112,6 +117,7 @@ zh-CN:
         locking: '锁定积分'
         available: '可使用积分'
         exchange: '可兑换积分'
+        cash: '现金余额'
         updated_at: '最后更新时间'
       reservation_record:
         time: '时间'
@@ -232,6 +238,7 @@ zh-CN:
         present_count: '赠送总量'
         days: '赠送天数'
     models:
+      cash_record: '现金余额记录'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'
@@ -257,7 +264,7 @@ zh-CN:
       member_record: '会员档案/信息'
       slide: '滚动图片'
       scoin_account: 'S货币账户'
-      integral: '易积分数量详表'
+      integral: '钱包'
       coin_record: '货币记录'
       blood_glucose: '血糖检测'
       blood_pressure: '血压检测'

@@ -52,6 +52,58 @@ class Mall::OrdersController < Mall::BaseController
     price = line_items.to_a.sum { |item| item.total_price }
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
+
+    integral_available = params["integral_available"].to_i
+    integral_money = params["integral_money"].to_i
+
+    if integral_money > 0 && integral_available > 0
+      price = price - (integral_money + integral_available)
+    end
+
+    # 自定义价格
+    price = params[:custom_price].present? ? params[:custom_price] : price
+
+    # 3. 生成订单
+    @order = current_user.orders.new(
+      address_id: params[:address_id],
+      price: price,
+      quantity: quantity,
+      activity_id: params[:activity_id],
+      account: params[:account],
+      password: params[:password],
+      payment: params[:payment]
+    )
+
+    if !integral_money.nil? && !integral_available.nil?
+      @order.cash = integral_money
+      @order.integral = integral_available
+    else
+      @order.cash = 0
+      @order.integral = 0
+    end
+
+    if @order.save
+      # 4. 清空购物车已生成订单的商品
+      line_items.each do |line_item|
+        line_item.move_to_order(@order.id) if line_item.cart_id == current_cart.id
+      end
+
+
+      # 5. 清空session
+      session[:line_item_ids] = nil
+      if params["payment"] != "PAYMENT_TYPE_NULL"
+        # 6. 跳转到支付页面
+        redirect_to pay_mall_order_path(@order)
+      else
+        flash[:notice] = "已完成订单，等待工作人员确认收款!"
+        redirect_to mall_my_path
+      end
+    else
+      logger.info @order.errors.messages
+      flash[:success] = @order.errors.messages.values.join(",")
+      redirect_to confirm_mall_orders_path(address_id: params[:address_id])
+    end
+
     # 查询当前易积分
     # @integral_coin = Integral.find_by(user_id: current_user.user_id)
 
@@ -77,42 +129,6 @@ class Mall::OrdersController < Mall::BaseController
     #   end
     #
     # end
-
-    # 自定义价格
-    price = params[:custom_price].present? ? params[:custom_price] : price
-
-    # 3. 生成订单
-    @order = current_user.orders.new(
-      address_id: params[:address_id],
-      price: price,
-      quantity: quantity,
-      activity_id: params[:activity_id],
-      account: params[:account],
-      password: params[:password],
-      payment: params[:payment]
-    )
-
-    if @order.save
-      # 4. 清空购物车已生成订单的商品
-      line_items.each do |line_item|
-        line_item.move_to_order(@order.id) if line_item.cart_id == current_cart.id
-      end
-
-
-      # 5. 清空session
-      session[:line_item_ids] = nil
-      if params["payment"] != "PAYMENT_TYPE_NULL"
-        # 6. 跳转到支付页面
-        redirect_to pay_mall_order_path(@order)
-      else
-        flash[:notice] = "已完成订单，等待工作人员确认收款!"
-        redirect_to mall_my_path
-      end
-    else
-      logger.info @order.errors.messages
-      flash[:success] = @order.errors.messages.values.join(",")
-      redirect_to confirm_mall_orders_path(address_id: params[:address_id])
-    end
   end
 
   def confirm

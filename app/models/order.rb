@@ -54,6 +54,7 @@ class Order < ApplicationRecord
         add_ycoin_records
         add_ycoin_invitation
         staff_integral
+        add_cash_record
       end
     end
 
@@ -237,10 +238,28 @@ class Order < ApplicationRecord
       end
     end
 
-    if Integral.find_by(user_id: user_invitation.id)
+    if Integral.find_by(user_id: user_invitation.id).nil?
       Integral.create(user_id: user_invitation.id, locking: 0 ,available: 0, exchange: 0)
     end
     presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请赠送" , is_effective: 1 , type: "Available")
+  end
+
+  def add_cash_record
+    if self.cash > 0
+      CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:1)
+    end
+
+    is_custom = Product.find(self.line_items[0].product_id).is_custom_price
+    if is_custom == true
+      CashRecord.create(user_id: self.user_id, number: self.price, reason: "充值", is_effective:1)
+      integral = Integral.find_by(user_id: self.user_id)
+      integral.update(cash: integral.cash + self.price)
+    end
+  end
+
+  def remove_cash_integral
+    integral = Integral.find_by(user_id: self.user_id)
+    integral.update(available: integral.available - self.available, cash: integral.cash - self.cash)
   end
 
 end
