@@ -237,7 +237,7 @@ class Order < ApplicationRecord
       end
     end
 
-    if Integral.find_by(user_id: user_invitation.id)
+    if Integral.find_by(user_id: user_invitation.id).nil?
       Integral.create(user_id: user_invitation.id, locking: 0 ,available: 0, exchange: 0)
     end
     presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请赠送" , is_effective: 1 , type: "Available")

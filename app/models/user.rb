@@ -71,15 +71,13 @@ class User < ApplicationRecord
   def create_invitation_id
     # 在易积分记录表中插入一条积分收支记录，默认为有效记录，积分计入到锁定积分中
     presented_records.create(user_id: invitation_id, number: 6, reason: "邀请好友赠送",is_effective:1,type:"Available")
-    if Integral.create(user_id: self.id ,locking: 0, available:0 ,exchange: 0)
-      presented_records.create(user_id: self.id, number: 3, reason: "注册赠送",is_effective:1,type:"Available")
+    if Integral.find_by(user_id: self.id).nil?
+      Integral.create(user_id: self.id ,locking: 0, available:0 ,exchange: 0)
     end
+    presented_records.create(user_id: self.id, number: 3, reason: "注册赠送",is_effective:1,type:"Available")
   end
 
   def create_integral
-    #  if Integral.create(user_id: self.id)
-
-    #  end
   end
 
 end
