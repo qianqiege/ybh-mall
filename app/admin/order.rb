@@ -72,6 +72,7 @@ ActiveAdmin.register Order do
     column :activity
     column :price
     column :integral
+    column "现金余额",:cash
     column :quantity
     column :number
     column '付款类型' do |order|

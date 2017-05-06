@@ -12,6 +12,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :authentication_keys => [:telphone]
   has_one :member_record
   has_one :wechat_user
+  has_many :cash_record
   has_many :orders
   has_one :cart
   has_one :integral
