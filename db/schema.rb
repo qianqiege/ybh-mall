@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505094821) do
+ActiveRecord::Schema.define(version: 20170506032829) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -134,6 +134,15 @@ ActiveRecord::Schema.define(version: 20170505094821) do
     t.integer  "user_id"
     t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
     t.index ["wechat_user_id"], name: "index_carts_on_wechat_user_id", using: :btree
+  end
+
+  create_table "cash_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.decimal  "number",       precision: 10
+    t.string   "reason"
+    t.boolean  "is_effective"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -312,6 +321,14 @@ ActiveRecord::Schema.define(version: 20170505094821) do
     t.decimal  "price",                            precision: 10
   end
 
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at",         null: false
@@ -367,6 +384,7 @@ ActiveRecord::Schema.define(version: 20170505094821) do
     t.decimal  "initial_price",  precision: 10, scale: 2
     t.string   "remark"
     t.decimal  "integral",       precision: 10
+    t.decimal  "cash",           precision: 10
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end

@@ -30,4 +30,15 @@ class NotifiesController < ApplicationController
     # TODO: 退款流程
     render json: "success", layout: nil
   end
+
+  def idata
+    username = Settings.idata.own_username
+    password = Settings.idata.own_password
+    if (params[:u] == username && params[:p] == password)
+      # 这里写接受到数据的逻辑
+      render json: {"code":"0000","msg":"操作成功"}, layout: nil
+    else
+      render json: {"code":"1001","msg":"登陆失败"}, layout: nil
+    end
+  end
 end
