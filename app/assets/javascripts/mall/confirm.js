@@ -58,7 +58,7 @@ $(function(){
 
     if ( value + money_value > total_price ) {
       $.tips("不能超过总计金额: " + total_price);
-      $(this).val( (total_price - money_value).formatMoney() );
+      $(this).val( (  total_price - money_value).formatMoney() );
     }
 
     real_value = parseFloat($.trim($(this).val())) || 0
@@ -67,9 +67,19 @@ $(function(){
   })
 
   $("#custom_price").on('change keyup', function() {
-      value = parseFloat($.trim($(this).val())),
-      total_price = parseFloat($.trim($("#total-price").data("all_total_price")));
-      $("#total-price").text( (value ).formatMoney() )
+    custom_price = parseFloat($.trim($(this).val())),
+    integral_money = parseFloat($.trim($("#integral_money").val())) || 0,
+    integral_available = parseFloat($.trim($("#integral_available").val())) || 0,
+
+    real_value = custom_price - integral_money - integral_available;
+    $("#total-price").data("all_total_price", custom_price);
+    if(real_value < 0) {
+      $.tips("不能自定义价格: " + custom_price.formatMoney());
+      $("#integral_money").val(0);
+      $("#integral_available").val(0);
+    } else {
+      $("#total-price").text((real_value).formatMoney());
+    }
   })
 
 })
