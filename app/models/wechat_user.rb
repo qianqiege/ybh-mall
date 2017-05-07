@@ -58,4 +58,15 @@ class WechatUser < ApplicationRecord
       addresses.last
     end
   end
+
+  def update_wechat_info
+    user_basic_info = $wechat_client.user(open_id).result
+    self.set_userinfo(user_basic_info)
+    self.save
+  end
+
+  def idata
+    @idata ||= Sdk::Idata.new(self)
+  end
+
 end

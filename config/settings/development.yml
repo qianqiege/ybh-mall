@@ -46,3 +46,9 @@ fast_pay:
   secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
   partner_id: 20160606020000748137
   host: "http://ybhm.ybyt.cc/"
+
+idata:
+  url: http://test.idata-power.com:7001/DRS/
+  username: test201508
+  password: goodwork
+  org_code: 010203
