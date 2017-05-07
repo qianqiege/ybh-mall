@@ -61,7 +61,9 @@ class Mall::OrdersController < Mall::BaseController
     end
 
     # 自定义价格
-    price = params[:custom_price].present? ? params[:custom_price] : price
+    if params[:custom_price].present?
+      price = params[:custom_price].to_f - (integral_money + integral_available)
+    end
 
     # 3. 生成订单
     @order = current_user.orders.new(
