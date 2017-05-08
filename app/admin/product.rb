@@ -13,6 +13,7 @@ ActiveAdmin.register Product do
                 :only_number,
                 :priority,
                 :is_custom_price
+                :is_consumption
 
   index do
     selectable_column
@@ -44,6 +45,7 @@ ActiveAdmin.register Product do
       f.input :shop_count
       f.input :is_show
       f.input :is_custom_price
+      f.input "是否为消费",:is_consumption
       f.input :production
       f.input :product_sort
       f.input :only_number

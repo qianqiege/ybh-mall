@@ -254,7 +254,7 @@ class Order < ApplicationRecord
     end
 
     is_custom = Product.find(self.line_items[0].product_id).is_custom_price
-    if is_custom == true
+    if is_custom == true && is_consumption == true
       CashRecord.create(user_id: self.user_id, number: self.price, reason: "充值", is_effective:1)
       integral = Integral.find_by(user_id: self.user_id)
       integral.update(cash: integral.cash + self.price)
