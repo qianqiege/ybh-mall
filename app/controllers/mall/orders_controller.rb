@@ -38,7 +38,7 @@ class Mall::OrdersController < Mall::BaseController
 
     if params[:activity_id].present? && params[:account].blank?
       scoin_type_count = Activity.search(id_eq: params[:activity_id], activity_rules_coin_type_type_eq: "ScoinType").result.count
-      if scoin_type_count >= 1
+      if scoin_type_count == 1
         flash[:error] = '参加活动，必须填写S币账号'
         redirect_to confirm_mall_orders_path
         return
