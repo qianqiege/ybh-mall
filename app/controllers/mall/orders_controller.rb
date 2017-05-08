@@ -71,10 +71,13 @@ class Mall::OrdersController < Mall::BaseController
       price: price,
       quantity: quantity,
       activity_id: params[:activity_id],
-      account: params[:account],
       password: params[:password],
       payment: params[:payment]
     )
+
+    if params[:account].present?
+      @order.account = params[:account]
+    end
 
     if !integral_money.nil? && !integral_available.nil?
       @order.cash = integral_money
