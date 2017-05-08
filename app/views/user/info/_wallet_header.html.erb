@@ -41,7 +41,7 @@
       <div class="placeholder text-center">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
           <p>可兑换</p>
-          <p><%= current_user && available.available || 0 %></p>
+          <p><%= current_user && available.exchange || 0 %></p>
         </a>
       </div>
     </div>
@@ -59,7 +59,7 @@
       <div class="placeholder text-center">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
           <p>现金余额</p>
-          <p><%= current_user && available.available || 0 %></p>
+          <p><%= current_user && available.cash || 0 %></p>
         </a>
       </div>
     </div>
