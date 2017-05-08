@@ -22,6 +22,7 @@ zh-CN:
         now_product_price: "现价"
         only_number: "产品编号"
         is_show: "是否显示"
+        is_consumption: "是否为消费产品"
         shop_count: '库存'
         packaging: '包装'
         production: '厂家'
