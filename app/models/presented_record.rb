@@ -31,9 +31,11 @@ class PresentedRecord < ApplicationRecord
       locking.locking += number
       locking.save
     else
-      available = Integral.find_by(user_id: user.id)
-      available.available += number
-      available.save
+      if self.is_effective == true && self.type == "Available"
+        available = Integral.find_by(user_id: user.id)
+        available.available += number
+        available.save
+      end
     end
   end
 

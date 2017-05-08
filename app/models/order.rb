@@ -243,21 +243,21 @@ class Order < ApplicationRecord
       Integral.create(user_id: user_invitation.id, locking: 0 ,available: 0, exchange: 0)
     end
 
-    rules = ActivityRule.find_by(activity_id: Activity.find(self.activity_id))
-
-    presented_records.create(user_id: user_invitation.id, number: self.price * rules.percentage, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available")
+    presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available")
   end
 
   def add_cash_record
-    if self.cash > 0
-      CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:1)
-    end
-
-    is_custom = Product.find(self.line_items[0].product_id).is_custom_price
-    if is_custom == true
+    integral = Integral.find_by(user_id: self.user_id)
+    is_custom = Product.find(self.line_items[0].product_id)
+    if is_custom.is_custom_price == true && is_custom.is_consumption == false
       CashRecord.create(user_id: self.user_id, number: self.price, reason: "充值", is_effective:1)
-      integral = Integral.find_by(user_id: self.user_id)
       integral.update(cash: integral.cash + self.price)
+    elsif is_custom.is_custom_price == true && is_custom.is_consumption == true && integral.cash >= self.price
+        CashRecord.create(user_id: self.user_id, number: "-#{self.price}", reason: "消费", is_effective:1)
+        integral.update(cash: integral.cash - self.price)
+    elsif self.cash > 0 && is_custom.is_custom_price == false && is_custom.is_consumption == true
+      CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:1)
+      integral.update(cash: integral.cash - self.cash)
     end
   end
 

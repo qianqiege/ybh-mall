@@ -32,9 +32,8 @@ namespace :presented_record do
              locking = @integral.locking - record.number
              available = @integral.available + record.number
              # 更新用户的锁定积分和可用积分
-             if @integral.update(locking: locking,available: available)
+             if @integral.update(locking: locking)
                puts "更新锁定积分总数为#{locking}"
-               puts "更新可用积分总数为#{available}"
                # 更新成功后，将这条记录判定为无效记录，避免重复计算
                record.is_effective = 0
                # 将修改保存到数据库
