@@ -5,7 +5,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_blood_fat
     if !current_user.user_id.nil?
-      @show = BloodFat.where(user_id: current_user.user_id).limit(10)
+      @show = BloodFat.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -21,7 +21,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_temperature
     if !current_user.user_id.nil?
-      @show = Temperature.where(user_id: current_user.user_id).limit(10)
+      @show = Temperature.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -37,7 +37,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_weight
     if !current_user.user_id.nil?
-      @show = Weight.where(user_id: current_user.user_id).limit(10)
+      @show = Weight.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -53,7 +53,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_glucose
     if !current_user.user_id.nil?
-      @show = BloodGlucose.where(user_id: current_user.user_id).limit(10)
+      @show = BloodGlucose.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -69,7 +69,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_heart
     if !current_user.user_id.nil?
-      @show = HeartRate.where(user_id: current_user.user_id).limit(10)
+      @show = HeartRate.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -122,7 +122,7 @@ class User::ExamineDataController < Wechat::BaseController
   end
 
   def ecg_image
-    @show = Ecg.find(params[:format])
+    @show = Ecg.find(params[:format]).order(created_at: :desc).limit(10)
   end
 
 end
