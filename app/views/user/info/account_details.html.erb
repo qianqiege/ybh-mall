@@ -23,11 +23,13 @@
   </div>
   <div class="weui-flex bottom-text">
 
+    <% integral = Integral.find_by(user_id: current_user.user_id) %>
+
     <div class="weui-flex__item">
       <div class="placeholder text-center">
         <a href="" class="weui-cell_access">
           <p>可使用</p>
-          <p>0</p>
+          <p><%= integral.available || 0%></p>
         </a>
       </div>
     </div>
@@ -36,7 +38,7 @@
       <div class="placeholder text-center">
         <a href="" class="weui-cell_access">
           <p>可赠送</p>
-          <p>0</p>
+          <p><%= integral.exchange || 0 %></p>
         </a>
       </div>
     </div>
@@ -45,12 +47,12 @@
       <div class="placeholder text-center">
         <a href="" class="weui-cell_access">
           <p>锁定</p>
-          <p>0</p>
+          <p><%= integral.locking || 0 %></p>
         </a>
       </div>
     </div>
 
-    
+
 
   </div>
 </div>
@@ -64,7 +66,7 @@
             <td class="td">姓名</td>
             <td class="td">收入支出渠道</td>
             <td class="td">数量</td>
-            
+
             <td class="td">时间</td>
         </tr>
     </thead>
@@ -79,7 +81,7 @@
                 <% if details.is_effective == true %>
                   <% value = "No" %>
                 <% end %>
-                
+
                 <td class="td" style="width: 25%"><%= date details.created_at %></td>
             </tr>
           <% end %>
