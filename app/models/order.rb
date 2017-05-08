@@ -241,7 +241,10 @@ class Order < ApplicationRecord
     if Integral.find_by(user_id: user_invitation.id).nil?
       Integral.create(user_id: user_invitation.id, locking: 0 ,available: 0, exchange: 0)
     end
-    presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请赠送" , is_effective: 1 , type: "Available")
+
+    rules = ActivityRule.find_by(activity_id: Activity.find(self.activity_id))
+
+    presented_records.create(user_id: user_invitation.id, number: self.price * rules.percentage, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available")
   end
 
   def add_cash_record

@@ -56,13 +56,13 @@ class Mall::OrdersController < Mall::BaseController
     integral_available = params["integral_available"].to_i
     integral_money = params["integral_money"].to_i
 
-    if integral_money > 0 && integral_available > 0
-      price = price - (integral_money + integral_available)
-    end
-
     # 自定义价格
     if params[:custom_price].present?
       price = params[:custom_price].to_f - (integral_money + integral_available)
+    else
+      if integral_money.present? && integral_available.present?
+        price = price - (integral_money + integral_available)
+      end
     end
 
     # 3. 生成订单
