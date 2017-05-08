@@ -1,3 +1,13 @@
+<style type="text/css">
+  .weui-flex__item{
+    border-right: 1px solid #bbb;
+  }
+
+  .weui-flex__item:last-child{
+    border: 0;
+  }
+</style>
+
 <div class='wallet'>
   <div class="weui-flex profile">
     <div>
@@ -13,10 +23,10 @@
     <div class="weui-flex__item"><div class="placeholder text-center">账户资产</div></div>
   </div>
   <div class="weui-flex bottom-text">
-    <div class="weui-flex__item" style="border-right: 1px solid #bbb;">
+    <div class="weui-flex__item">
       <div class="placeholder text-center">
         <a href="<%= user_details_path %>" class="weui-cell_access">
-          <p>易积分总数量</p>
+          <p>易积分</p>
           <% available = Integral.find_by(user_id: current_user.user_id) %>
           <% number = 0 %>
           <% if !available.nil? %>
@@ -30,10 +40,29 @@
     <div class="weui-flex__item">
       <div class="placeholder text-center">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
-          <p>可兑换易积分</p>
+          <p>可兑换</p>
           <p><%= current_user && available.available || 0 %></p>
         </a>
       </div>
     </div>
+
+    <div class="weui-flex__item">
+      <div class="placeholder text-center">
+        <a href="<%= user_transaction_path %>" class="weui-cell_access">
+          <p>可提现</p>
+          <p><%= current_user && available.available || 0 %></p>
+        </a>
+      </div>
+    </div>
+
+    <div class="weui-flex__item">
+      <div class="placeholder text-center">
+        <a href="<%= user_transaction_path %>" class="weui-cell_access">
+          <p>现金余额</p>
+          <p><%= current_user && available.available || 0 %></p>
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>
