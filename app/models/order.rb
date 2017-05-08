@@ -132,7 +132,7 @@ class Order < ApplicationRecord
     scoin_type_count = Activity.search(id_eq: activity_id, activity_rules_coin_type_type_eq: "ScoinType").result.count
 
     # 有赠送s货币才需要开通账号
-    if activity_id.present? && scoin_type_count >= 1 && !account.nil?
+    if activity_id.present? && scoin_type_count == 1 && !account.nil?
       begin
         s_account = ScoinAccount.find_by(account: account)
         if s_account.nil?
