@@ -29,7 +29,7 @@
       <div class="placeholder text-center">
         <a href="" class="weui-cell_access">
           <p>可使用</p>
-          <p><%= integral.available || 0%></p>
+          <p><%= integral.available + integral.exchange || 0 %></p>
         </a>
       </div>
     </div>
@@ -46,11 +46,21 @@
     <div class="weui-flex__item">
       <div class="placeholder text-center">
         <a href="" class="weui-cell_access">
+          <p>可增值</p>
+          <p><%= integral.exchange || 0 %></p>
+        </a>
+      </div>
+    </div>
+
+    <div class="weui-flex__item">
+      <div class="placeholder text-center">
+        <a href="" class="weui-cell_access">
           <p>锁定</p>
           <p><%= integral.locking || 0 %></p>
         </a>
       </div>
     </div>
+
 
 
 

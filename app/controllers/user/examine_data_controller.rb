@@ -122,7 +122,7 @@ class User::ExamineDataController < Wechat::BaseController
   end
 
   def ecg_image
-    @show = Ecg.find(params[:format]).order(created_at: :desc).limit(10)
+    @show = Ecg.find(params[:format]).order(created_at: :desc)
   end
 
 end
