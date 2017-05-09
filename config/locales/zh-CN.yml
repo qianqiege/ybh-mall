@@ -12,8 +12,10 @@ zh-CN:
       program_manage: '健康方案'
       record_manage: '档案管理'
       coin_manage: '货币管理'
+      coin_record_manage: '货币记录'
       activity_manage: '活动管理'
       company_manage: '机构（公司）'
+      wallet_manage: '钱包/账户'
   activerecord:
     attributes:
       product:
@@ -118,7 +120,8 @@ zh-CN:
         locking: '锁定积分'
         available: '可使用积分'
         exchange: '可兑换积分'
-        cash: '现金余额'
+        cash: '代金券'
+        money: '余额（人民币）'
         updated_at: '最后更新时间'
       reservation_record:
         time: '时间'
@@ -239,7 +242,7 @@ zh-CN:
         present_count: '赠送总量'
         days: '赠送天数'
     models:
-      cash_record: '现金余额记录'
+      cash_record: '代金券收支明细'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'
@@ -265,8 +268,8 @@ zh-CN:
       member_record: '会员档案/信息'
       slide: '滚动图片'
       scoin_account: 'S货币账户'
-      integral: '钱包'
-      coin_record: '货币记录'
+      integral: '用户钱包账户'
+      coin_record: '积分包记录'
       blood_glucose: '血糖检测'
       blood_pressure: '血压检测'
       temperature: '体温检测'
@@ -281,8 +284,8 @@ zh-CN:
       organization: '机构（公司）'
       identity_card: '身份证'
       coin_channel: '货币投放渠道'
-      ycoin_rule: '易积分赠送规则'
       temporary_datum: '临时数据'
       lssue_currency: '货币发行'
-      presented_record: '易积分收支记录'
+      presented_record: '易积分收支明细'
       ecg: '心电检测'
+      money_record: '现金收支明细'

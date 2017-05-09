@@ -1,5 +1,5 @@
 ActiveAdmin.register CoinRecord do
-  menu parent: I18n.t("active_admin.menu.coin_manage")
+  menu parent: I18n.t("active_admin.menu.coin_record_manage")
   permit_params :level_type,:state, :account_id, :account_type, :coin_type_id, :start_at, :type,:end_at
 
   form(:html => { :multipart => true }) do |f|

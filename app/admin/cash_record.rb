@@ -1,5 +1,5 @@
 ActiveAdmin.register CashRecord do
-  menu parent: I18n.t("active_admin.menu.coin_manage")
+  menu parent: I18n.t("active_admin.menu.coin_record_manage")
   index do
     selectable_column
     id_column
