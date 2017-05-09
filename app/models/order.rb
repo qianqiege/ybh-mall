@@ -49,11 +49,10 @@ class Order < ApplicationRecord
         line_items.each do |line_item|
           line_item.product.pay_reduce_shop_count(line_item.quantity)
         end
-
         # 购买赠送
         add_ycoin_records
         add_ycoin_invitation
-        staff_integral
+        # staff_integral
         add_cash_record
       end
     end
