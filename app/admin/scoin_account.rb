@@ -1,5 +1,5 @@
 ActiveAdmin.register ScoinAccount do
-  menu parent: I18n.t("active_admin.menu.coin_manage")
+  menu parent: I18n.t("active_admin.menu.wallet_manage")
   permit_params :account, :password,:state,:user_id,:number, :order_id,:email
 
   form do |f|

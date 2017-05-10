@@ -1,17 +1,46 @@
 <%= render 'wallet_header' %>
 <%= title '兑换' %>
+<% if @available_ycoin >= 400 %>
+<p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
+  <span style="color:red;font-size:15px;">提示：</span>
+  提交兑换申请后，三个工作日内汇入指定账户（支付宝、微信、银行卡，需提交相关账户信息）
+</p>
+<% else %>
+  <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
+    <span style="color:red;font-size:15px;">提示：</span>
+    对不起，您的可兑换易积分数量低于400，根据我公司规定，您暂时不可以使用提现。
+  </p>
+<% end %>
 <div class="weui-cells">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            <p>兑换数量</p>
+            <p style="font-size: 15px;">兑换数量</p>
             <div>
-                <p style="font-size: 48px;float: left;position: absolute;">￥</p>
-                <input name = "price" maxlength="8" type="number" style="float: right;border: 0px;font-size: 48px;display: inline-block;width: 88%;margin-top: 6px;padding-left: 0px;margin-left: 0px;" >
+                <p style="font-size: 30px;float: left;position: absolute;">Y</p>
+                <input name = "price" maxlength="8" type="number" style="float: right;border: 0px;font-size: 30px;display: inline-block;width: 88%;margin-top: 6px;padding-left: 0px;margin-left: 0px;" >
                 <div style="clear:both"></div>
             </div>
-            <div style="min-height: 2px;max-height: 2px;width: 100%;background-color: #F1F0F0;"></div>
+        </div>
+    </div>
+</div>
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <p style="font-size: 15px;">兑换账户</p>
+            <div>
+                <p style="font-size: 30px;float: left;position: absolute;">
+                <select name="account_type">
+                  <option value="0" style="font-size:10px;">微信</option>
+                  <option value="1">支付宝</option>
+                </select> </p>
+                <input name = "price" maxlength="8" type="number" style="float: right;border: 0px;font-size: 30px;display: inline-block;width: 88%;margin-top: 6px;padding-left: 0px;margin-left: 0px;" >
+                <div style="clear:both"></div>
+            </div>
+            <div style="min-height: 10px;max-height: 2px;width: 100%;background-color: #F1F0F0; font-size:10px;">提交兑换申请后，三个工作日内汇入指定账户</div>
         </div>
     </div>
 </div>
 <input name = "id" style="display: none;" value="<%= %>">
-<a href="javascript:;" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认兑换</a>
+<% if @available_ycoin > 400 %>
+  <a href="<%= user_create_exchange_path %>" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认兑换</a>
+<% end %>

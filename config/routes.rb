@@ -103,6 +103,7 @@ Rails.application.routes.draw do
     post '/create_gift', to: 'info#create_gift'
     get '/create_gift', to: 'info#create_gift'
     post '/gift_user', to: 'info#gift_user'
+    post '/create_exchange', to: 'info#create_exchange'
     # show_examine
     get '/data_home',to: 'examine_data#health_data_home'
     get '/show_temperature', to: 'examine_data#show_temperature'

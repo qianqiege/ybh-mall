@@ -108,32 +108,6 @@ class Mall::OrdersController < Mall::BaseController
       flash[:success] = @order.errors.messages.values.join(",")
       redirect_to confirm_mall_orders_path(address_id: params[:address_id])
     end
-
-    # 查询当前易积分
-    # @integral_coin = Integral.find_by(user_id: current_user.user_id)
-
-    # # 人民币 ：易积分  1:2
-    # integral = 0
-    #
-    # if @integral_coin.available > 0 || @integral_coin.exchange > 0
-    #
-    #   if @integral_coin.available >= price
-    #     @integral_coin.update(available: @integral_coin.available - price)
-    #     integral = price + integral
-    #     price = 0
-    #   elsif @integral_coin.exchange >= price
-    #     @integral_coin.update(exchange: @integral_coin.exchange - price)
-    #     integral = price + integral
-    #     price = 0
-    #   elsif @integral_coin.available <= price
-    #     price = price - @integral_coin.available
-    #     integral = @integral_coin.available
-    #   elsif @integral_coin.exchange <= price
-    #     price = price - @integral_coin.exchange
-    #     integral = @integral_coin.available
-    #   end
-    #
-    # end
   end
 
   def confirm

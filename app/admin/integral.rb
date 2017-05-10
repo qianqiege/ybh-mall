@@ -1,5 +1,5 @@
 ActiveAdmin.register Integral do
-menu parent: I18n.t("active_admin.menu.coin_manage")
+menu parent: I18n.t("active_admin.menu.wallet_manage")
 
 permit_params :exchange, :user_id, :locking, :available
 

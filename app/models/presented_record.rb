@@ -26,7 +26,6 @@ class PresentedRecord < ApplicationRecord
       if Integral.find_by(user_id: user.id).nil?
         Integral.create(user_id: user.id,locking: 0, available: 0, exchange:0)
       end
-
       locking = Integral.find_by(user_id: user.id)
       locking.locking += number
       locking.save
@@ -37,9 +36,5 @@ class PresentedRecord < ApplicationRecord
         available.save
       end
     end
-  end
-
-  def update_is_effective
-    # self.is_effective = 1
   end
 end
