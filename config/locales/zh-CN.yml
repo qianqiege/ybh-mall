@@ -241,6 +241,12 @@ zh-CN:
         remain_count: '赠送包剩余总量'
         present_count: '赠送总量'
         days: '赠送天数'
+      exchange_record:
+        user: '提现用户'
+        number: '数量'
+        type: '提现类型'
+        account: '提现账户'
+        created_at: '申请日期'
     models:
       cash_record: '代金券收支明细'
       product: "商品"
@@ -283,6 +289,7 @@ zh-CN:
       paper_trail/version: '操作记录'
       organization: '机构（公司）'
       identity_card: '身份证'
+      exchange_record: '提现申请记录'
       coin_channel: '货币投放渠道'
       temporary_datum: '临时数据'
       lssue_currency: '货币发行'
