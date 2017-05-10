@@ -52,7 +52,7 @@ class Order < ApplicationRecord
         # 购买赠送
         add_ycoin_records
         add_ycoin_invitation
-        staff_integral
+        # staff_integral
         add_cash_record
       end
     end
