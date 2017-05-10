@@ -12,7 +12,7 @@ ActiveAdmin.register Product do
                 :product_sort,
                 :only_number,
                 :priority,
-                :is_custom_price
+                :is_custom_price,
                 :is_consumption
 
   index do
