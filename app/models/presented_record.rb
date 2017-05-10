@@ -4,7 +4,6 @@ class PresentedRecord < ApplicationRecord
   belongs_to :presentable, polymorphic: true
 
   after_create :update_ycoin
-  before_create :update_is_effective
 
   validates :user_id, presence: true
   validates :number, presence: true

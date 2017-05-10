@@ -52,7 +52,7 @@ class Order < ApplicationRecord
         # 购买赠送
         add_ycoin_records
         add_ycoin_invitation
-        # staff_integral
+        staff_integral
         add_cash_record
       end
     end
@@ -230,19 +230,27 @@ class Order < ApplicationRecord
   end
 
   def staff_integral
-    user_invitation = User.find(self.user_id)
-    while !user_invitation.nil?
-      user_invitation = User.find(user_invitation.id).invitation
-      if user_invitation.nil? || user_invitation.status == "staff"
-        break
+    invitation = User.find(user_id).invitation_id
+
+    if invitation.present? && self.price != 0
+      user_invitation = User.find(invitation).invitation_id
+      # 如果 邀请人ID不为空继续循环
+      while user_invitation.present?
+        user_invitation = User.find(user_invitation).invitation_id
+        # 如果邀请人ID为空 或者 邀请人的身份是 staff 停止循环
+        if user_invitation.present? || User.find(user_invitation).status == "staff"
+          break
+        end
       end
     end
 
-    if Integral.find_by(user_id: user_invitation.id).nil?
-      Integral.create(user_id: user_invitation.id, locking: 0 ,available: 0, exchange: 0)
+    if Integral.find_by(user_id: user_invitation).nil?
+      Integral.create(user_id: user_invitation, locking: 0 ,available: 0, exchange: 0)
     end
 
-    presented_records.create(user_id: user_invitation.id, number: self.price * 0.03, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available")
+    if User.find(user_invitation).status == "staff"
+      presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available")
+    end
   end
 
   def add_cash_record
