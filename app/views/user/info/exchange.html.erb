@@ -1,3 +1,45 @@
+
+<style type="text/css">
+  form{
+    margin-left: 1rem;
+  }
+
+  form p{
+    line-height: 2rem;
+  }
+
+  input{
+    height: 1.8rem;
+    outline: none;
+    padding-left: 1rem;
+  }
+  select{
+    height: 1.9rem; margin:0.1rem 0.5rem 0 0;
+    width: 5rem; 
+  }
+
+  .account,.quantity,select{
+    border: 0;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+
+  .quantity{
+    width: 90%;
+  }
+
+  .zhanghu {
+    width: 90%;
+    display: flex;
+  }
+
+  .account{
+    flex: 1;
+  }
+
+</style>
+
+
 <%= render 'wallet_header' %>
 <%= title '兑换' %>
 <% if @available_ycoin >= 400 %>
@@ -11,7 +53,11 @@
     对不起，您的可兑换易积分数量低于400，根据我公司规定，您暂时不可以使用提现。
   </p>
 <% end %>
-<div class="weui-cells">
+
+
+
+
+<!-- <div class="weui-cells">
     <div class="weui-cell">
         <div class="weui-cell__bd">
             <p style="font-size: 15px;">兑换数量</p>
@@ -39,8 +85,27 @@
             <div style="min-height: 10px;max-height: 2px;width: 100%;background-color: #F1F0F0; font-size:10px;">提交兑换申请后，三个工作日内汇入指定账户</div>
         </div>
     </div>
-</div>
+</div> -->
+
+<form>
+  <p>兑换数量:</p>
+  <input type="number" name="quantity" class="quantity">
+  <div class="boders"></div>
+  <p>兑换账户:</p>
+  <div class="zhanghu">
+    <select name="account_type">
+      <option value="0" style="font-size:10px;">微信</option>
+       <option value="1">支付宝</option>
+  </select>
+  <input type="text" name="account" placeholder="请输入您的账号信息" class="account">
+  </div>
+</form>
+
+
+
 <input name = "id" style="display: none;" value="<%= %>">
+
 <% if @available_ycoin > 400 %>
+
   <a href="<%= user_create_exchange_path %>" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认兑换</a>
 <% end %>

@@ -15,11 +15,13 @@
 
     .img{
         flex: 1;
+        height: 60%;
+        margin-top: 5%;
     }
 
     .rname{
         color: #FDFFFC;
-        flex: 3;
+        flex: 4;
     }
 
 
@@ -55,7 +57,7 @@
           <div class="row head">
               <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
                 <div class="img">
-                    <%= image_tag "person.png",size: "100x100",class:"vam" %>
+                    <%= image_tag "person.png",size: "60x60",class:"vam" %>
                 </div>
                   <div class ="rname">
                     <h3><%= @record["name"] %><small> <span class="label label-primary bg-w">ID :<%= @record["id_number"] %></span></small></h3>
