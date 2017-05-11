@@ -3,6 +3,15 @@
         width: 90%;
         margin: auto;
     }
+
+    
+    #haveDiv div{
+      display: none;
+    }
+
+    
+    
+
 </style>
 
 <%= title '易积分收支明细' %>
@@ -27,8 +36,8 @@
 
     <div class="weui-flex__item">
       <div class="placeholder text-center">
-        <a href="" class="weui-cell_access">
-          <p>可使用</p>
+        <a class="weui-cell_access">
+          <p class="btnTab">可使用</p>
           <p><%= integral.available + integral.exchange || 0 %></p>
         </a>
       </div>
@@ -36,8 +45,8 @@
 
     <div class="weui-flex__item">
       <div class="placeholder text-center">
-        <a href="" class="weui-cell_access">
-          <p>可赠送</p>
+        <a  class="weui-cell_access">
+          <p class="btnTab">可赠送</p>
           <p><%= integral.exchange || 0 %></p>
         </a>
       </div>
@@ -45,8 +54,8 @@
 
     <div class="weui-flex__item">
       <div class="placeholder text-center">
-        <a href="" class="weui-cell_access">
-          <p>可增值</p>
+        <a class="weui-cell_access">
+          <p class="btnTab">可增值</p>
           <p><%= integral.exchange || 0 %></p>
         </a>
       </div>
@@ -54,8 +63,8 @@
 
     <div class="weui-flex__item">
       <div class="placeholder text-center">
-        <a href="" class="weui-cell_access">
-          <p>锁定</p>
+        <a class="weui-cell_access">
+          <p class="btnTab">锁定</p>
           <p><%= integral.locking || 0 %></p>
         </a>
       </div>
@@ -68,8 +77,8 @@
 </div>
 
 
-
-<div class="weui-cells__title">易积分收支明细：</div>
+<!-- 注释的是原来的表格 -->
+<!-- <div class="weui-cells__title">易积分收支明细：</div>
 <table class="table">
     <thead>
         <tr>
@@ -96,11 +105,45 @@
         <% end %>
       </tbody>
     <% end %>
-</table>
+</table> -->
 
-<div style="margin-top: 10px;display: flex;position: absolute;width: 100%;bottom: 58px;height:7%;">
+<!-- tab切换部分的块 -->
+<div id="haveDiv">
+  <div style="display: block;">可使用</div>
+  <div>可赠送</div>
+  <div >可增值</div>
+  <div>锁定</div>
+</div>
+<script type="text/javascript">
+  
+  var oTab=document.getElementsByClassName("btnTab");
+  //这里获取了全部的div,所以后面套数据时候的布局不要使用div
+  var oDiv=document.getElementById('haveDiv').getElementsByTagName("div"); 
+
+  // console.log(oTab.length);
+   
+ for(var i=0;i<oTab.length;i++){
+
+    oTab[i].index=i;
+    oTab[i].onclick=function(){
+
+      for(var j=0;j<oDiv.length;j++){
+      
+       oDiv[j].style.display = "none"//隐藏所有的tabDiv
+      }
+      oDiv[this.index].style.display = "block";
+
+    }
+
+  }
+
+
+</script>
+
+
+<div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 58px;height:7%;">
   <a class="button-zs" href="<%= user_gift_path %>">赠送</a>
-  <a class="button-dh" href="<%= user_exchange_path %>">兑换</a>
+  <!-- <a class="button-dh" href="<%= user_exchange_path %>">兑换</a> -->
 </div>
 
 
