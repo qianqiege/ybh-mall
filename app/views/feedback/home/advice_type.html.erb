@@ -1,0 +1,21 @@
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">问题类型</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+
+          <% @advice_types.each do |advice_type| %>
+				    <a class="weui-cell weui-cell_access" href="<%= feedback_advice_content_path(advice_type.id) %>">
+		            <div class="weui-cell__bd weui-cell_primary">
+		              <p><%= advice_type.name %></p>
+		            </div>
+		            <span class="weui-cell__ft"></span>
+		         </a>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+
+
+<div class="weui-cells weui-cells_form" style="margin-top: 0;">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <%= form_for :advice, url: feedback_advice_create_path, method: :post do |f| %>
+            	<div>
+            		<%= f.text_area :content, class: "weui-textarea", placeholder: "请输入问题" %>
+
+            	</div>
+
+	           <div>
+	           	 <input type="submit" value="提交问题" class="weui-btn weui-btn_mini weui-btn_primary">
+	           </div>
+            <% end %>
+        </div>
+   </div>
+</div>
+
+
+<div class="weui-panel weui-panel_access">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">问题详情</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+
+          <% @advices.each do |advice| %>
+                <a class="weui-cell weui-cell_access" href="<%= feedback_advice_response_path(advice.id) %>">
+                    <div class="weui-cell__bd weui-cell_primary">
+                      <p><%= advice.content %></p>
+                    </div>
+                    <span class="weui-cell__ft"></span>
+                </a>
+             <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
