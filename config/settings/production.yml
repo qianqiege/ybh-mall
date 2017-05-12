@@ -22,6 +22,9 @@ weixin:
         - type: "view"
           name: "健康数据录入"
           url: "http://ybhm.ybyt.cc/examine/home"
+        - type: "view"
+          name: "意见反馈"
+          url: "http://ybhm.ybyt.cc/feedback"
     - name: "御易健商城"
       url: "http://ybhm.ybyt.cc/mall"
       sub_button:

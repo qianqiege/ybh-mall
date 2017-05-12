@@ -69,6 +69,14 @@ Rails.application.routes.draw do
     get '/program_item',to:'programs#program_item'
   end
 
+  namespace :feedback do
+    root "home#index"
+    get '/advice_type', to: 'home#advice_type'
+    get '/advice_content/:id', to: 'home#advice_content', as: 'advice_content'
+    get '/advice_response/:id', to: 'home#advice_response', as: 'advice_response'
+    post '/advice_create', to: 'home#create'
+  end
+
   namespace :user do
     root "info#home"
     get '/binding',to: 'binding#new'

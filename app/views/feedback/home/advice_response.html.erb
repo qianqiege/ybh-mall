@@ -1,0 +1,17 @@
+<article class="weui-article" style="margin: 20px 40px; border: 1px solid red; border-radius: 10px;">
+    <h1 style="text-align: center;">问题详情</h1>
+    <section>
+        <section>
+            <h2>问题描述</h2>
+            <p style="text-indent: 2em"><%= @advice.content%></p>
+        </section>
+        <section>
+            <h2>问题回复</h2>
+            <% if @advice.response  %>
+                <p style="text-indent: 2em"><%= @advice.response %></p>
+            <% else %>
+                <p style="text-indent: 2em">我们已收到您的问题，将尽快给你答复!</p>
+            <% end %>
+        </section>
+    </section>
+</article>
