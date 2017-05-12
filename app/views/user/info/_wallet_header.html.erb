@@ -44,7 +44,7 @@
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
           <p>现金余额</p>
           <% available = Integral.find_by(user_id: current_user.user_id) %>
-          <p><%= current_user && available.cash + available.not_cash|| 0 %></p>
+          <p>0</p>
         </a>
       </div>
     </div>
