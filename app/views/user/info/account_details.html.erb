@@ -4,13 +4,10 @@
         margin: auto;
     }
 
-    
+
     #haveDiv div{
       display: none;
     }
-
-    
-    
 
 </style>
 
@@ -70,65 +67,146 @@
       </div>
     </div>
 
-
-
-
   </div>
 </div>
 
-
-<!-- 注释的是原来的表格 -->
-<!-- <div class="weui-cells__title">易积分收支明细：</div>
-<table class="table">
-    <thead>
-        <tr>
-            <td class="td">姓名</td>
-            <td class="td">收入支出渠道</td>
-            <td class="td">数量</td>
-            <td class="td">时间</td>
-        </tr>
-    </thead>
-    <% if @details.length >= 1 %>
-      <tbody>
-        <% @details.each do |details| %>
-          <% if !details.nil? %>
-            <tr class="center">
-                <td class="td" style="width: 20%"><%= details.user.name %></td>
-                <td class="td" style="width: 30%"><%= details.reason %></td>
-                <td class="td" style="width: 15%"><%= details.number %></td>
-                <% if details.is_effective == true %>
-                  <% value = "No" %>
-                <% end %>
-                <td class="td" style="width: 25%"><%= date details.created_at %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    <% end %>
-</table> -->
-
-<!-- tab切换部分的块 -->
 <div id="haveDiv">
-  <div style="display: block;">可使用</div>
-  <div>可赠送</div>
-  <div >可增值</div>
-  <div>锁定</div>
+  <div style="display: block;  padding-bottom:3.5rem;" class="weui-cells__title"> 可使用收支明细：
+    <table class="table">
+        <thead>
+            <tr>
+                <td class="td">姓名</td>
+                <td class="td">收入支出渠道</td>
+                <td class="td">数量</td>
+                <td class="td">时间</td>
+            </tr>
+        </thead>
+        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Available").order(created_at: :desc).limit(10) %>
+        <% if details.length >= 1 %>
+          <tbody>
+            <% details.each do |details| %>
+              <% if !details.nil? %>
+                <tr class="center">
+                    <td class="td" style="width: 20%"><%= details.user.name %></td>
+                    <td class="td" style="width: 30%"><%= details.reason %></td>
+                    <td class="td" style="width: 15%"><%= details.number %></td>
+                    <% if details.is_effective == true %>
+                      <% value = "No" %>
+                    <% end %>
+                    <td class="td" style="width: 25%"><%= date details.created_at %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
+    </table>
+  </div>
+  <div class="weui-cells__title" style="padding-bottom:3.5rem;">可赠送收支明细：
+    <table class="table">
+        <thead>
+            <tr>
+                <td class="td">姓名</td>
+                <td class="td">收入支出渠道</td>
+                <td class="td">数量</td>
+                <td class="td">时间</td>
+            </tr>
+        </thead>
+        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Exchange").order(created_at: :desc).limit(10) %>
+        <% if details.length >= 1 %>
+          <tbody>
+            <% details.each do |details| %>
+              <% if !details.nil? %>
+                <tr class="center">
+                    <td class="td" style="width: 20%"><%= details.user.name %></td>
+                    <td class="td" style="width: 30%"><%= details.reason %></td>
+                    <td class="td" style="width: 15%"><%= details.number %></td>
+                    <% if details.is_effective == true %>
+                      <% value = "No" %>
+                    <% end %>
+                    <td class="td" style="width: 25%"><%= date details.created_at %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
+    </table>
+  </div>
+  <div class="weui-cells__title" style="padding-bottom:3.5rem;">可增值收支明细：
+    <table class="table">
+        <thead>
+            <tr>
+                <td class="td">姓名</td>
+                <td class="td">收入支出渠道</td>
+                <td class="td">数量</td>
+                <td class="td">时间</td>
+            </tr>
+        </thead>
+        <% details = PresentedRecord.where(user_id: current_user.user_id).where(reason: "购买产品返还积分").order(created_at: :desc).limit(10) %>
+        <% if details.length >= 1 %>
+          <tbody>
+            <% details.each do |details| %>
+              <% if !details.nil? %>
+                <tr class="center">
+                    <td class="td" style="width: 20%"><%= details.user.name %></td>
+                    <td class="td" style="width: 30%"><%= details.reason %></td>
+                    <td class="td" style="width: 15%"><%= details.number %></td>
+                    <% if details.is_effective == true %>
+                      <% value = "No" %>
+                    <% end %>
+                    <td class="td" style="width: 25%"><%= date details.created_at %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
+    </table>
+  </div>
+  <div class="weui-cells__title" style="padding-bottom:3.5rem;">锁定收支明细：
+    <table class="table">
+        <thead>
+            <tr>
+                <td class="td">姓名</td>
+                <td class="td">收入支出渠道</td>
+                <td class="td">数量</td>
+                <td class="td">时间</td>
+            </tr>
+        </thead>
+        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Locking").order(created_at: :desc).limit(10) %>
+        <% if details.length >= 1 %>
+          <tbody>
+            <% details.each do |details| %>
+              <% if !details.nil? %>
+                <tr class="center">
+                    <td class="td" style="width: 20%"><%= details.user.name %></td>
+                    <td class="td" style="width: 30%"><%= details.reason %></td>
+                    <td class="td" style="width: 15%"><%= details.number %></td>
+                    <% if details.is_effective == true %>
+                      <% value = "No" %>
+                    <% end %>
+                    <td class="td" style="width: 25%"><%= date details.created_at %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
+    </table>
+  </div>
 </div>
 <script type="text/javascript">
-  
+
   var oTab=document.getElementsByClassName("btnTab");
   //这里获取了全部的div,所以后面套数据时候的布局不要使用div
-  var oDiv=document.getElementById('haveDiv').getElementsByTagName("div"); 
+  var oDiv=document.getElementById('haveDiv').getElementsByTagName("div");
 
   // console.log(oTab.length);
-   
+
  for(var i=0;i<oTab.length;i++){
 
     oTab[i].index=i;
     oTab[i].onclick=function(){
 
       for(var j=0;j<oDiv.length;j++){
-      
+
        oDiv[j].style.display = "none"//隐藏所有的tabDiv
       }
       oDiv[this.index].style.display = "block";
