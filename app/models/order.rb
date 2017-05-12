@@ -207,7 +207,7 @@ class Order < ApplicationRecord
 
           # 用户购买产品 返还用户易积分 购买产品返还的积分 为锁定积分 十五天后可用
           if rule.percentage.present? && self.price != 0
-            presented_records.create(user_id: self.user_id, number: self.price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Available", wight: 1)
+            presented_records.create(user_id: self.user_id, number: self.price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Locking", wight: 1)
           end
 
         end
