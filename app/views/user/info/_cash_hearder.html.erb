@@ -1,3 +1,4 @@
+
 <style type="text/css">
   .weui-flex__item{
     border-right: 1px solid #bbb;
@@ -6,6 +7,19 @@
   .weui-flex__item:last-child{
     border: 0;
   }
+
+	.button-tx{
+		    color: #0093FF;
+		    width: 100%;
+		    display: block;
+		    text-align: center;
+		    font-size: 16px;
+		    background-color: white;
+		    font-family: microsoft Yahei;
+		    padding-top: 2.5%;
+		    padding-bottom: 5px;
+	}
+
 </style>
 
 <div class='wallet'>
@@ -20,17 +34,17 @@
     </div>
   </div>
   <div class="weui-flex middle-text">
-    <div class="weui-flex__item"><div class="placeholder text-center">账户资产</div></div>
+    <div class="weui-flex__item"><div class="placeholder text-center">现金资产</div></div>
   </div>
   <div class="weui-flex bottom-text">
     <div class="weui-flex__item">
       <div class="placeholder text-center">
-        <a href="<%= user_details_path %>" class="weui-cell_access">
-          <p>易积分</p>
-          <% record = PresentedRecord.where(user_id: current_user.user_id) %>
+        <a href="#" class="weui-cell_access">
+          <p>可提现</p>
+          <% available = Integral.find_by(user_id: current_user.user_id) %>
           <% number = 0 %>
-          <% if !record.nil? %>
-            <p><%= current_user && record.sum(:number) || 0 %></p>
+          <% if !available.nil? %>
+            <p><%= current_user && available.cash  || 0 %></p>
           <% else %>
             <p>0</p>
           <% end %>
@@ -42,9 +56,8 @@
     <div class="weui-flex__item">
       <div class="placeholder text-center">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
-          <p>现金余额</p>
-          <% available = Integral.find_by(user_id: current_user.user_id) %>
-          <p><%= current_user && available.cash + available.not_cash|| 0 %></p>
+          <p>可使用</p>
+          <p><%= current_user && available.cash || 0 %></p>
         </a>
       </div>
     </div>

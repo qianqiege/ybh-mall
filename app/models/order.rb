@@ -170,22 +170,22 @@ class Order < ApplicationRecord
 
         # 判定条件，首次赠送 和 第一天赠送数量 大于0 执行创建方法
           if rule.coin_type.once > 0 && rule.coin_type.everyday > 0
-            presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Available")
-            presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Available")
+            presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 4)
+            presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 5)
           end
 
           # 推荐好友消费赠送 直推奖励
           invitation = User.find(user_id).invitation_id
           # 判定条件，规则中赠送推荐人比例不为空，金额不为0，活动是 YBJ 执行创建方法
-          if(rule.percent.present? && invitation.present? && self.price != 0 && self.activity_id == 7 )
+          if(rule.percent.present? && invitation.present? && self.price != 0 )
             # 赠送比例 乘 金额
             present_count = rule.percent * price
-            presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available")
+            presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available", wight: 3)
           end
 
           # 推荐好友 员工推荐奖励
           # 判定 当前订单用户是否有邀请人 订单金额是否大于0 订单活动是否是 YBJ
-          if invitation.present? && self.price != 0 && self.activity_id == 7
+          if invitation.present? && self.price != 0
             user_invitation = User.find(invitation).invitation_id
             # 如果 邀请人ID不为空继续循环
             while user_invitation.present?
@@ -197,17 +197,17 @@ class Order < ApplicationRecord
             end
             # 判定是否有钱包账户 如果没有创建新的钱包账户
             if Integral.find_by(user_id: user_invitation).nil?
-              Integral.create(user_id: user_invitation, locking: 0 ,available: 0, exchange: 0)
+              Integral.create(user_id: user_invitation)
             end
             # 判定邀请人是否是员工 是员工的情况下 执行员工邀请奖励
             if User.find(user_invitation).status == "staff"
-              presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available")
+              presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available", wight: 2)
             end
           end
 
           # 用户购买产品 返还用户易积分 购买产品返还的积分 为锁定积分 十五天后可用
           if rule.percentage.present? && self.price != 0
-            presented_records.create(user_id: self.user_id, number: self.price * rule.percentage, reason: "购买产品返还积分",is_effective:1,type:"Locking")
+            presented_records.create(user_id: self.user_id, number: self.price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Available", wight: 1)
           end
 
         end
@@ -217,14 +217,47 @@ class Order < ApplicationRecord
 
   # 支出易积分
   def remove_ycoin
-    # 查询当前用户的钱包账户
-    integral = Integral.find_by(user_id: self.user_id)
+    order_integral = self.integral
+    balance_number = 0
+    if order_integral > 0
+      # 查询当前用户所有积分记录
+      record = PresentedRecord.where(user_id: self.user_id).order(wight: :desc)
+        record.each do |record|
+          while order_integral > 0
+            if record.balance >= order_integral
+              presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "抵扣现金", is_effective:0, type: record.type ,record_id: record.id)
+              record.update(balance: record.balance - order_integral)
+              order_integral = 0
+              break
+            elsif record.balance <= order_integral
+              order_integral = order_integral - record.balance
+              presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id)
+              byebug
+              record.balance = 0
+              if record.save
+                break
+              end
+            end
+          end
 
-    # 判断当前订单所用的积分是否是合法的 大于账户中积分总数
-    if self.integral <= integral.available
-      # 生成积分记录
-      presented_records.create(user_id: self.user_id, number: "-#{self.integral}", reason: "消费",is_effective:1,type:"Available")
-    end
+          wallet = Integral.find_by(user_id: record.user_id)
+          case record.wight
+          when 1
+            if wallet.update(available: wallet.available - self.integral, not_exchange: wallet.not_exchange - self.integral, appreciation: wallet.appreciation - self.integral)
+              if order_integral <= 0
+                break
+              end
+            end
+          else
+            if wallet.update(available: wallet.available - self.integral, exchange: wallet.exchange - self.integral, not_appreciation: wallet.not_appreciation - self.integral)
+              if order_integral <= 0
+                break
+              end
+            end
+          end
+
+        end
+      end
   end
 
   # 收入代金券
@@ -237,7 +270,7 @@ class Order < ApplicationRecord
     # 如果 是自定义价格产品 非消费产品 便认定为充值 购买代金券
     if is_custom.is_custom_price == true && is_custom.is_consumption == false
       CashRecord.create(user_id: self.user_id, number: self.price, reason: "充值", is_effective:1)
-      integral.update(cash: integral.cash + self.price)
+      integral.update(not_cash: integral.not_cash + self.price)
     end
   end
 
@@ -250,14 +283,14 @@ class Order < ApplicationRecord
     is_custom = Product.find(self.line_items[0].product_id)
 
     # 如果 是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
-    if is_custom.is_custom_price == true && is_custom.is_consumption == true && integral.cash >= self.price
+    if is_custom.is_custom_price == true && is_custom.is_consumption == true && integral.not_cash >= self.price
       CashRecord.create(user_id: self.user_id, number: "-#{self.price}", reason: "消费", is_effective:0)
-      integral.update(cash: integral.cash - self.price)
+      integral.update(not_cash: integral.not_cash - self.price)
 
     # 如果 不是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
     elsif self.cash > 0 && is_custom.is_custom_price == false && is_custom.is_consumption == true
-      CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
-      integral.update(cash: integral.cash - self.cash)
+      CashRecord.create(user_id: self.user_id, number: "-#{self.not_cash}", reason: "消费", is_effective:0)
+      integral.update(not_cash: integral.not_cash - self.not_cash)
     end
   end
 

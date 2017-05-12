@@ -14,5 +14,7 @@ ActiveAdmin.register PresentedRecord do
     column :is_effective
     column :record_id
     column :type
+    column :balance
+    column "权重",:wight
   end
 end

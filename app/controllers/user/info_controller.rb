@@ -214,7 +214,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def account_details
-    @details = PresentedRecord.where(user_id: current_user.user_id).order(created_at: :desc).limit(20)
+
   end
 
   def create_programs

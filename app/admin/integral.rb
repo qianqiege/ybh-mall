@@ -11,19 +11,24 @@ permit_params :exchange, :user_id, :locking, :available
     column :locking
     column :available
     column :exchange
+    column :appreciation
     column :cash
+    column :not_exchange
+    column :not_cash
+    column :not_appreciation
+    column :count
     column :updated_at
     actions defaults: true
   end
 
-  form(:html => { :multipart => true }) do |f|
-    f.inputs "积分详表" do
-      f.input :user
-      f.input :locking
-      f.input :available
-      f.input :exchange
-    end
-    f.actions
-  end
+  # form(:html => { :multipart => true }) do |f|
+  #   f.inputs "积分详表" do
+  #     f.input :user
+  #     f.input :locking
+  #     f.input :available
+  #     f.input :exchange
+  #   end
+  #   f.actions
+  # end
 
 end

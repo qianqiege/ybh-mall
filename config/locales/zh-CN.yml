@@ -45,6 +45,8 @@ zh-CN:
         reason: '收入支出渠道'
         created_at: '创建日期'
         is_effective: '是否有效'
+        record_id: '记录ID'
+        balance: '余额'
       cash_record:
         number: '数量'
         reason: '收入支出渠道'
@@ -120,8 +122,12 @@ zh-CN:
         locking: '锁定积分'
         available: '可使用积分'
         exchange: '可兑换积分'
-        cash: '代金券'
-        money: '余额（人民币）'
+        appreciation: '可升值积分'
+        cash: '现金余额'
+        not_exchange: '不可兑换'
+        not_cash: '不可体现'
+        not_appreciation: '不可升值'
+        count: '总数'
         updated_at: '最后更新时间'
       reservation_record:
         time: '时间'
