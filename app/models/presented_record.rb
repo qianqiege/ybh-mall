@@ -39,9 +39,9 @@ class PresentedRecord < ApplicationRecord
       wallet.update(Locking: wallet.locking + number,appreciation: wallet.appreciation + number)
     end
 
-    if self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true
-      wallet.update(available: wallet.available + number, exchange: wallet.exchange + number, not_appreciation: wallet.not_appreciation + number)
-    end
+    #if self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true
+    #  wallet.update(available: wallet.available + number, exchange: wallet.exchange + number, not_appreciation: wallet.not_appreciation + number)
+   # end
 
   end
 
