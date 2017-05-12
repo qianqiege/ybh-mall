@@ -33,16 +33,10 @@ class PresentedRecord < ApplicationRecord
     if wallet.nil?
       #Integral.create(user_id: user.id)
       Integral.create(user_id: user.id, locking: 0, available: 0, exchange: 0, cash: 0, not_exchange:0, not_cash: 0, appreciation: 0, not_appreciation: 0, count: 0)
-    end
-
-    if self.is_effective == true && self.type == "Locking" && self.wight == 1
+    elsif self.is_effective == true && self.type == "Locking" && self.wight == 1
       wallet.update(Locking: wallet.locking + number,appreciation: wallet.appreciation + number)
+    elsif self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true
+      wallet.update(available: wallet.available + number, exchange: wallet.exchange + number, not_appreciation: wallet.not_appreciation + number)
     end
-
-    if self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true
-     wallet.update(available: wallet.available + number, exchange: wallet.exchange + number, not_appreciation: wallet.not_appreciation + number)
-    end
-
   end
-
 end
