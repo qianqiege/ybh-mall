@@ -50,7 +50,7 @@ class DevicesController < ApplicationController
         end
       when "102"
         # 血糖
-        value = pressure["bds"].to_i / 10
+        value = pressure["bds"].to_f / 10
         if !temporary[0].nil?
           @blood_glucose = BloodGlucose.new(value: value,mens_type: pressure["mensType"],phone: info["mo"],state: state,created_at: info["rsptime"])
           if(@user.present?)
