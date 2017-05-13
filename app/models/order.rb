@@ -232,7 +232,6 @@ class Order < ApplicationRecord
             elsif record.balance <= order_integral
               order_integral = order_integral - record.balance
               presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id)
-              byebug
               record.balance = 0
               if record.save
                 break
