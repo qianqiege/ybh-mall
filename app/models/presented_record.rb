@@ -34,9 +34,9 @@ class PresentedRecord < ApplicationRecord
       #Integral.create(user_id: user.id)
       Integral.create(user_id: user.id, locking: 0, available: 0, exchange: 0, cash: 0, not_exchange:0, not_cash: 0, appreciation: 0, not_appreciation: 0, count: 0)
     elsif self.is_effective == true && self.type == "Locking" && self.wight == 1
-      wallet.update(Locking: wallet.locking + number,appreciation: wallet.appreciation + number)
+      wallet.update(Locking: wallet.locking.to_f + number.to_f,appreciation: wallet.appreciation.to_f + number.to_f)
     elsif self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true
-      wallet.update(available: wallet.available + number, exchange: wallet.exchange + number, not_appreciation: wallet.not_appreciation + number)
+      wallet.update(available: wallet.available.to_f + number.to_f, exchange: wallet.exchange.to_f + number.to_f, not_appreciation: wallet.not_appreciation.to_f + number.to_f)
     end
   end
 end
