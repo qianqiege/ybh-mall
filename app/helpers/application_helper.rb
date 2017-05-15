@@ -27,4 +27,8 @@ module ApplicationHelper
   def date(datetime)
     datetime.to_time.strftime('%Y-%m-%d') unless datetime.nil?
   end
+
+  def unix_time_to_datatime(unix_time)
+    spine_time DateTime.strptime(unix_time,'%s')
+  end
 end

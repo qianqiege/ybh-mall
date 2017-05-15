@@ -58,7 +58,7 @@
               </div>
 
               <div class="order-total">
-                <p>共<%= order.quantity %>件，合计：¥<%= money order.price %></p>
+                <p class="clearfix"><span class="pull-left express_btn"><a class="btn-pay" href="<%= express_mall_order_path(order) %>">查看物流</a></span>共<%= order.quantity %>件，合计：¥<%= money order.price %></p>
               </div>
 
               <% if order.pending? %>

@@ -6,6 +6,14 @@ class Mall::OrdersController < Mall::BaseController
   include CurrentCart
   before_action :check_cart, only: [:confirm]
 
+  def express
+    @order = Order.find(params[:id])
+    express = Express.query @order.express_number
+    if express["status"].to_i == 200
+      @express_data = express["data"]
+    end
+  end
+
   def index
     @title = params[:status] ? Order::STATUS_TEXT[params[:status].to_sym].to_s + '订单' : '全部订单'
     @orders = if params[:status]
