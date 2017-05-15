@@ -1,0 +1,37 @@
+<div class='mobile_box'>
+  <div class="page-title">
+    <h2 class="text-cen">
+      <span>物流情况</span>
+    </h2>
+  </div>
+  <div class="wraper pt50">
+    <div class="address-box city-group">
+      <div class="order-list">
+        <ul>
+          <li class='clearfix'>
+            <div class="order-head">
+              <span class='line'>编号：<%= @order.number %></span>
+            </div>
+            <% if !@order.express_number.nil? %>
+              <div class="order-head">
+                <span class='line'>快递单号：<%= @order.express_number %></span>
+              </div>
+              <% if @express_data %>
+                <% @express_data.each do |data| %>
+                  <div class="order-head">
+                    <span class="line"><%= unix_time_to_datatime data["time"].to_s %>: <%= data['info'] %></span>
+                  </div>
+                <% end %>
+              <% else %>
+                <span class='line text-center'>未查到物流情况，或请重新刷新页面</span>
+                <span class='line text-center'><%= link_to "刷新", express_mall_order_path(@order) %></span>
+              <% end %>
+            <% else %>
+              <span class='line'>快递单号：未发货</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       get :confirm, on: :collection
       get :pay, on: :member
       post :make_cancel, on: :member
+      get :express, on: :member
     end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do
