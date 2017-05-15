@@ -31,8 +31,7 @@ class PresentedRecord < ApplicationRecord
   def update_ycoin
     wallet = Integral.find_by(user_id: user.id)
     if wallet.nil?
-      #Integral.create(user_id: user.id)
-      Integral.create(user_id: user.id, locking: 0, available: 0, exchange: 0, cash: 0, not_exchange:0, not_cash: 0, appreciation: 0, not_appreciation: 0, count: 0)
+      Integral.create(user_id: user.id)
     elsif self.is_effective == true && self.type == "Locking" && self.wight == 1
       wallet.update(locking: wallet.locking.to_f + number.to_f,appreciation: wallet.appreciation.to_f + number.to_f)
     elsif self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true
