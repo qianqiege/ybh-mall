@@ -1,11 +1,10 @@
 class Integral < ApplicationRecord
   has_paper_trail
   belongs_to :user
+  after_create :update_number
 
   validates :locking,:available,:exchange,:not_cash,:cash,:not_exchange,:not_appreciation,:appreciation, numericality: { greater_than_or_equal_to: -1 }
   validates :user_id, uniqueness: true
-
-  before_create :update_number
 
   def update_number
     if self.locking.nil? && self.available.nil? && self.appreciation.nil? && self.not_appreciation.nil? && self.not_exchange.nil? && self.not_cash.nil? && self.cash.nil? && self.exchange.nil?
