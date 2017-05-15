@@ -10,7 +10,7 @@
 
 	  def advice_content
 
-	  	@advices = Advice.where(advice_type_id: params[:id]).order("created_at DESC")
+	  	@advices = Advice.where(advice_type_id: params[:id], user_id: current_user.user_id).order("created_at DESC")
 
 	  	@@current_advice_type_id =  params[:id]
 	  	
@@ -25,7 +25,7 @@
 	  def create
 	  	@advice = Advice.new(advice_params)
 	  	@advice.advice_type_id = @@current_advice_type_id
-	  	@advice.user_id = current_user.id
+	  	@advice.user_id = current_user.user_id
 	  	if @advice.save
 	  		redirect_to feedback_advice_content_path(@advice.advice_type_id)
 	  	end
