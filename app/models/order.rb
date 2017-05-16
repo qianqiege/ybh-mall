@@ -191,7 +191,7 @@ class Order < ApplicationRecord
             while user_invitation.present?
               user_invitation = User.find(user_invitation).invitation_id
               # 如果邀请人ID为空 或者 邀请人的身份是 staff 停止循环
-              if user_invitation.present? || User.find(user_invitation).status == "staff"
+              if user_invitation.present? || User.find(user_invitation).status == "Staff"
                 break
               end
             end
@@ -200,9 +200,13 @@ class Order < ApplicationRecord
               Integral.create(user_id: user_invitation)
             end
             # 判定邀请人是否是员工 是员工的情况下 执行员工邀请奖励
-            if User.find(user_invitation).status == "staff"
-              presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "会员邀请消费赠送" , is_effective: 1 , type: "Available", wight: 2)
+            if user_invitation.present?
+              invitation_status = User.find(user_invitation).status
+              if invitation_status == "Staff"
+                presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "会员链接奖励" , is_effective: 1 , type: "Available", wight: 2)
+              end
             end
+
           end
 
           # 用户购买产品 返还用户易积分 购买产品返还的积分 为锁定积分 十五天后可用
@@ -255,8 +259,8 @@ class Order < ApplicationRecord
             end
           end
 
-        end
       end
+    end
   end
 
   # 收入代金券
