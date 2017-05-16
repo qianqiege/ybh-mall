@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     post 'bind_phone', to: 'authenticate#bind_phone'
     get 'activity', to: 'activity#home'
     get 'activity/:id/scoin_type_count', to: 'activity#scoin_type_count'
+    get 'programs_home', to: 'programs#home'
+    get 'programs_product', to: 'programs#product'
 
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
