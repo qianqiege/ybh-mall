@@ -3,11 +3,16 @@ class PresentedRecord < ApplicationRecord
   belongs_to :user
   belongs_to :presentable, polymorphic: true
 
+  before_create :update_status
+  after_create :update_record
   after_create :company_ycoin
   after_create :update_ycoin
 
-  validates :user_id, presence: true
+
+  validates :user, presence: true
   validates :number, presence: true
+  validates :status , presence: true
+  validates :wight , presence: true
 
   def company_ycoin
     # 公司首期发行货币
@@ -28,6 +33,12 @@ class PresentedRecord < ApplicationRecord
     end
   end
 
+  def update_status
+    if self.status.nil?
+      self.status = "系统创建"
+    end
+  end
+
   def update_ycoin
     wallet = Integral.find_by(user_id: user.id)
     if wallet.nil?
@@ -38,4 +49,26 @@ class PresentedRecord < ApplicationRecord
       wallet.update(available: wallet.available.to_f + number.to_f, exchange: wallet.exchange.to_f + number.to_f, not_appreciation: wallet.not_appreciation.to_f + number.to_f)
     end
   end
+
+  def update_record
+
+    if self.wight == 1
+      self.type = "Locking"
+    else
+      self.type = "Available"
+    end
+
+    if self.wight == 1
+      self.reason = '购买产品返还积分'
+    elsif self.wight == 2
+      self.reason = '会员链接奖励'
+    elsif self.wight == 6
+      self.reason = '邀请好友赠送'
+    elsif self.wight == 7
+      self.reason = '注册赠送'
+    end
+
+    self.save
+  end
+
 end
