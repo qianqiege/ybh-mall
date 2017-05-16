@@ -14,6 +14,5 @@ every 1.day, :at => '4:30 am' do
 end
 
 every 1.day, :at => '12:00 pm' do
-  rake 'presented_record:update_available_y'
-  rake 'coin:update_coin_type_level_type'
+  rake 'presented_record:update_locking_available'
 end
