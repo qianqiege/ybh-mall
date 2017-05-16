@@ -32,14 +32,19 @@ class Order < ApplicationRecord
   aasm column: :status do
     # 待付款，初始状态
     state :pending, initial: true
+
     # 待发货, 已支付状态
     state :wait_send
+
     # 待收货确认, 已发货状态
     state :wait_confirm
+
     # 已收货
     state :received
+
     # 退换货
     state :return_change
+
     # 取消
     state :cancel
 
