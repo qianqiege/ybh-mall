@@ -1,4 +1,5 @@
 ActiveAdmin.register Order do
+  has_paper_trail
   menu parent: I18n.t("active_admin.menu.mall")
 
   permit_params :status, :express_number, :activity_id, :user_id, :price, :remark
