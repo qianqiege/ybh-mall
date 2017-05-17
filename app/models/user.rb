@@ -75,8 +75,10 @@ class User < ApplicationRecord
   end
 
   def create_present
-    presented_records.create(user_id: invitation_id, number: 6, reason: "邀请好友赠送",is_effective:1,type:"Available",wight: 6)
     presented_records.create(user_id: self.id, number: 3, reason: "注册赠送",is_effective:1,type:"Available",wight: 7)
+    if !self.invitation_id.nil?
+      presented_records.create(user_id: self.invitation_id, number: 6, reason: "邀请好友赠送",is_effective:1,type:"Available",wight: 6)
+    end
   end
 
 end

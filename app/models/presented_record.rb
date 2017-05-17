@@ -11,7 +11,7 @@ class PresentedRecord < ApplicationRecord
 
   validates :user, presence: true
   validates :number, presence: true
-  validates :status , presence: true
+  # validates :status , presence: true
   validates :wight , presence: true
 
   def company_ycoin
@@ -52,23 +52,26 @@ class PresentedRecord < ApplicationRecord
 
   def update_record
 
-    if self.wight == 1
-      self.type = "Locking"
-    else
-      self.type = "Available"
-    end
+  if self.status == "人工创建"
 
-    if self.wight == 1
-      self.reason = '购买产品返还积分'
-    elsif self.wight == 2
-      self.reason = '会员链接奖励'
-    elsif self.wight == 6
-      self.reason = '邀请好友赠送'
-    elsif self.wight == 7
-      self.reason = '注册赠送'
-    end
+      if self.wight == 1
+        self.type = "Locking"
+      else
+        self.type = "Available"
+      end
 
-    self.save
+      if self.wight == 1
+        self.reason = '购买产品返还积分'
+      elsif self.wight == 2
+        self.reason = '会员链接奖励'
+      elsif self.wight == 6
+        self.reason = '邀请好友赠送'
+      elsif self.wight == 7
+        self.reason = '注册赠送'
+      end
+
+      self.save
+    end
   end
 
 end
