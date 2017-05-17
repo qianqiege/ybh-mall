@@ -97,6 +97,10 @@ zh-CN:
         initial_price: '原始价格'
         remark: '备注'
         payment: '支付类型'
+      wechat_user:
+        open_id: '微信open_id'
+        user: '用户姓名'
+        nickname: '微信昵称'
       return_request:
         quantity: '提交数量'
         desc: '问题描述'
@@ -256,7 +260,7 @@ zh-CN:
         account: '提现账户'
         created_at: '申请日期'
     models:
-      cash_record: '代金券收支明细'
+      cash_record: '现金收支明细'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'
@@ -303,4 +307,3 @@ zh-CN:
       lssue_currency: '货币发行'
       presented_record: '易积分收支明细'
       ecg: '心电检测'
-      money_record: '现金收支明细'
