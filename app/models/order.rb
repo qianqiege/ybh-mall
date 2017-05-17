@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  has_paper_trail
   attr_accessor :account, :password
   include PresentedConcern
 

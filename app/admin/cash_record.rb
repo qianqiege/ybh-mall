@@ -1,5 +1,4 @@
 ActiveAdmin.register CashRecord do
-  has_paper_trail
   menu parent: I18n.t("active_admin.menu.coin_record_manage")
 
   actions :index, :show ,:new ,:create

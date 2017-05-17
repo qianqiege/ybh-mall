@@ -1,5 +1,4 @@
 ActiveAdmin.register PresentedRecord do
-  has_paper_trail
   menu parent: I18n.t("active_admin.menu.coin_record_manage")
   actions :index, :show ,:new ,:create
   permit_params :user_id,:number,:status,:is_effective,:wight
