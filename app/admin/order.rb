@@ -93,7 +93,7 @@ ActiveAdmin.register Order do
         link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
       end
       span do
-        link_to '填写货运单号', express_number_admin_order_path(order, express_number: :yes), method: :get if order.wait_send?
+        link_to '填写货运单号', express_number_admin_order_path(order, express_number: :yes), method: :get if order.wait_send? || order.wait_confirm?
       end
       span do
         link_to '设为已收货', receive_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_confirm?
