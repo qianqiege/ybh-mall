@@ -64,4 +64,5 @@ ActiveAdmin.register User do
   filter :identity_card, as: :select
   filter :telphone, as: :select
   filter :invitation, as: :select
+  filter :status, as: :select
 end
