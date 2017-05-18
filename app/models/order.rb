@@ -233,18 +233,20 @@ class Order < ApplicationRecord
       # 查询当前用户所有积分记录
       record = PresentedRecord.where(user_id: self.user_id).order(wight: :desc)
         record.each do |record|
-          while order_integral > 0
-            if record.balance >= order_integral
-              presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "抵扣现金", is_effective:0, type: record.type ,record_id: record.id)
-              record.update(balance: record.balance - order_integral)
-              order_integral = 0
-              break
-            elsif record.balance <= order_integral
-              order_integral = order_integral - record.balance
-              presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id)
-              record.balance = 0
-              if record.save
+          if !record.balance.nil? && record.balance > 0
+            while order_integral > 0
+              if record.balance >= order_integral
+                presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "抵扣现金", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                record.update(balance: record.balance - order_integral)
+                order_integral = 0
                 break
+              elsif record.balance <= order_integral
+                order_integral = order_integral - record.balance
+                presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                record.balance = 0
+                if record.save
+                  break
+                end
               end
             end
           end

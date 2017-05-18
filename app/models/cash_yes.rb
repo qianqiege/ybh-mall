@@ -1,0 +1,2 @@
+class CashYes < CashRecord
+end

@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :ecgs
   has_many :appraise
   has_many :examine_records
+  has_many :exchange_records
   has_many :addresses
   has_many :unines
   has_many :temperatures

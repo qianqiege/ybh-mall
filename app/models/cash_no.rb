@@ -1,0 +1,2 @@
+class CashNo < CashRecord
+end

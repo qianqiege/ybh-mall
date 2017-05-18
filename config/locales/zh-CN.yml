@@ -257,8 +257,9 @@ zh-CN:
       exchange_record:
         user: '提现用户'
         number: '数量'
-        type: '提现类型'
+        status: '提现类型'
         account: '提现账户'
+        opening: '开户行'
         created_at: '申请日期'
     models:
       cash_record: '现金收支明细'

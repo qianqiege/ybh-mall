@@ -2,7 +2,7 @@ ActiveAdmin.register CashRecord do
   menu parent: I18n.t("active_admin.menu.coin_record_manage")
 
   actions :index, :show ,:new ,:create
-  permit_params :user_id,:number,:status,:is_effective,:wight,:reason
+  permit_params :user_id,:number,:status,:is_effective,:wight,:reason,:type
 
   index do
     selectable_column
@@ -13,6 +13,7 @@ ActiveAdmin.register CashRecord do
     column :number
     column :is_effective
     column :status
+    column :type
     column :created_at
     actions
   end
@@ -24,6 +25,7 @@ ActiveAdmin.register CashRecord do
       f.input :status, as: :select, collection: ["人工创建"]
       f.input :is_effective
       f.input :reason, as: :select, collection: [ '消费','充值' ]
+      f.input :type, as: :select, collection: { '可以体现' => 'CashYes', '不可体现' => 'CashNo' }
     end
     f.actions
   end
@@ -35,6 +37,7 @@ ActiveAdmin.register CashRecord do
       row :status
       row :is_effective
       row :created_at
+      row :type
     end
   end
 

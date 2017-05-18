@@ -12,7 +12,7 @@ class PresentedRecord < ApplicationRecord
   validates :user, presence: true
   validates :number, presence: true
   # validates :status , presence: true
-  validates :wight , presence: true
+  # validates :wight , presence: true
 
   def company_ycoin
     # 公司首期发行货币
