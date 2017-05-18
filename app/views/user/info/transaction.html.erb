@@ -1,5 +1,12 @@
 <%= render 'cash_hearder' %>
 
+<%= line_chart [
+  {name: "收支", data: @show.pluck(:updated_at, :number)}
+], library: @options %>
+
 <div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 58px;height:7%;">
-  <a class="button-tx" href="<%= user_exchange_path %>">赠送</a>
+  <a class="button-tx" href="<%= user_exchange_path %>">充值</a>
+</div>
+<div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 58px;height:7%;">
+  <a class="button-tx" href="<%= user_exchange_path %>">提现</a>
 </div>

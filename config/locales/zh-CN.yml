@@ -49,9 +49,11 @@ zh-CN:
         balance: '余额'
         status: '创建方式'
         wight: '赠送渠道（例如：邀请赠送）'
+        desc: '备注'
       cash_record:
         number: '数量'
         reason: '收入支出渠道'
+        type: '类型'
         is_effective: "是否有效"
         created_at: '创建日期'
       organization:
@@ -176,7 +178,7 @@ zh-CN:
         identity_card: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'
-        invitation_id: '邀请人'
+        invitation: '邀请人'
         organization: '机构（公司）'
         coin: '易积分'
       spine_build:
@@ -256,8 +258,9 @@ zh-CN:
       exchange_record:
         user: '提现用户'
         number: '数量'
-        type: '提现类型'
+        status: '提现类型'
         account: '提现账户'
+        opening: '开户行'
         created_at: '申请日期'
     models:
       cash_record: '现金收支明细'

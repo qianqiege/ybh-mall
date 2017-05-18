@@ -36,29 +36,47 @@ class User::InfoController < Wechat::BaseController
   end
 
   def gift_user
-    number = params["price"].to_i
+    integral = Integral.find_by(user_id: current_user.user_id)
+    number = params["quantity"].to_f
     # 查找当前用户记录
     if Integral.find_by(user_id: params["id"].to_i).nil?
       Integral.create(user_id: params["id"].to_i)
     end
     if number > 0
-      integral = Integral.find_by(user_id: current_user.user_id)
       # 判断当前用户的可兑换积分数量是否大于赠送积分
-      if integral.available > number
-        # 更新当前用户的 可兑换积分 （可兑换积分(默认青铜积分) - 赠送积分数量）
-        integral.update(available: integral.available - number)
-        # 查找 要赠送的用户记录
-        gift = Integral.find_by(user_id: params["id"].to_i)
-        # 更新 被赠送积分的用户 的可兑换积分 （可兑换积分(默认青铜积分) + 赠送积分数量）
-        gift.update(available: gift.available + number)
-        # 判断是否更新成功
-        if gift.save && integral.save
-          # 更新 可兑换积分总数
-          gift.update(available: gift.available)
-          # 更新成功后，在积分记录表添加 收支记录
-          PresentedRecord.create(user_id: integral.user_id, number: "-#{params["price"].to_i}", reason: "转账",is_effective:0,type:"Available")
-          PresentedRecord.create(user_id: params["id"].to_i, number: params["price"].to_i, reason: "转账",is_effective:0,type:"Available")
-          # 提示 用户赠送成功 并返回到赠送页面
+      if integral.exchange > number
+        order_integral = number
+        record = PresentedRecord.where(user_id: params["id"].to_i).order(wight: :desc)
+        record.each do |record|
+          if !record.balance.nil? && record.balance > 0
+            while order_integral > 0
+              if record.balance >= order_integral
+                PresentedRecord.create(user_id: integral.user_id, number: "-#{order_integral}", reason: "赠送/兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                record.update(balance: record.balance - order_integral)
+                order_integral = 0
+                break
+              elsif record.balance <= order_integral
+                order_integral = order_integral - record.balance
+                PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                record.balance = 0
+                if record.save
+                  break
+                end
+              end
+            end
+          end
+        end
+
+        PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:0,type:"Available")
+
+        if params["account_type"] == "支付宝"
+          exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: params["name"])
+        elsif params["account_type"] == "银行卡"
+          exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: params["bank_name"])
+        end
+
+        # integral_record = PresentedRecord.new(user_id: integral.user_id, number: "-#{params["price"].to_f}", reason: "转账",is_effective:0,type:"Available")
+        if exchange_record.save
           flash[:notice] = '赠送成功'
           redirect_to user_gift_account_path
           return
@@ -88,7 +106,7 @@ class User::InfoController < Wechat::BaseController
 
   def transaction
     if !current_user.user_id.nil?
-      @show = PresentedRecord.where(user_id: current_user.user_id)
+      @show = CashRecord.where(user_id: current_user.user_id)
       @options = {
         colors: ["#ff0000", "#add9c0"],
         xAxis: {
