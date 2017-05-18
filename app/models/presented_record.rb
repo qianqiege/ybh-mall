@@ -64,6 +64,8 @@ class PresentedRecord < ApplicationRecord
         self.reason = '购买产品返还积分'
       elsif self.wight == 2
         self.reason = '会员链接奖励'
+      elsif self.wight == 3
+        self.reason = '邀请好友消费赠送'
       elsif self.wight == 6
         self.reason = '邀请好友赠送'
       elsif self.wight == 7

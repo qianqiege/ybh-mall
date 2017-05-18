@@ -49,6 +49,7 @@ zh-CN:
         balance: '余额'
         status: '创建方式'
         wight: '赠送渠道（例如：邀请赠送）'
+        desc: '备注'
       cash_record:
         number: '数量'
         reason: '收入支出渠道'
