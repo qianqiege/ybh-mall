@@ -52,6 +52,7 @@ zh-CN:
       cash_record:
         number: '数量'
         reason: '收入支出渠道'
+        type: '类型'
         is_effective: "是否有效"
         created_at: '创建日期'
       organization:
@@ -176,7 +177,7 @@ zh-CN:
         identity_card: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'
-        invitation_id: '邀请人'
+        invitation: '邀请人'
         organization: '机构（公司）'
         coin: '易积分'
       spine_build:

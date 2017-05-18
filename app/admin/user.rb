@@ -19,7 +19,7 @@ ActiveAdmin.register User do
     column :identity_card
     column :name
     column :invitation_card
-    column :invitation_id
+    column :invitation
     # column :organization
     column '身份',:type
     column :status
@@ -35,7 +35,7 @@ ActiveAdmin.register User do
       f.input :password
       f.input :identity_card
       f.input :invitation_card
-      f.input :invitation_id
+      f.input :invitation
       f.input :organization
       f.input :type, as: :select, collection: ["Doctor", "Patient"]
       f.input :status, as: :select, collection: ["User", "Staff"]
@@ -63,5 +63,5 @@ ActiveAdmin.register User do
   filter :id, as: :select
   filter :identity_card, as: :select
   filter :telphone, as: :select
-  filter :invitation_id, as: :string
+  filter :invitation, as: :select
 end
