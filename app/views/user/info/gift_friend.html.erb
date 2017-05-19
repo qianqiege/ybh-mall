@@ -7,7 +7,7 @@
 <% if @user_available_y >= 400 %>
 <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
   <span style="color:red;font-size:15px;">提示：</span>
-  易积分将实时转入御邦医通公司，请确认后操作
+  易积分将实时转入对方账户，请确认后操作
 </p>
 <% else %>
   <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
@@ -29,17 +29,17 @@
     <a href="<%= user_create_gift_path %>" class="button-dh button-margin">赠送</a>
   </form> -->
 
-  <%= form_tag(user_create_gift_path,method: :post,id: 'create_gift_form') do %>
+  <%= form_tag(user_create_gift_friend_path,method: :post,id: 'create_gift_form') do %>
     <div class="weui-search-bar" id="search_bar" style="padding-top:10px;">
       <div class="weui-search-bar__box">
-          <span style="position: absolute;">御邦账户：</span>
+          <span style="position: absolute;">对方账户：</span>
           <i class="weui-icon-search"></i>
-          <input type="search" class="weui-search-bar__input" placeholder="75586700010" style="padding-left:80px;" name="mobile" value = "75586700010">
+          <input type="search" class="weui-search-bar__input" placeholder="手机号/身份证号码" style="padding-left:80px;" name="phone">
           <a href="javascript:" class="weui-icon-clear"></a>
       </div>
       <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
     </div>
     <% if @user_available_y >= 400 %>
-      <%= submit_tag "兑换" ,class:"wei_but_new weui-btn_primary button-dh button-margin"%>
+      <%= submit_tag "赠送" ,class:"wei_but_new weui-btn_primary button-dh button-margin"%>
     <% end %>
   <% end %>
