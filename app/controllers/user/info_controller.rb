@@ -42,7 +42,7 @@ class User::InfoController < Wechat::BaseController
     if Integral.find_by(user_id: params["id"].to_i).nil?
       Integral.create(user_id: params["id"].to_i)
     end
-    if number > 0
+    if number > 400
       # 判断当前用户的可兑换积分数量是否大于赠送积分
       if integral.exchange > number
         order_integral = number
@@ -87,7 +87,7 @@ class User::InfoController < Wechat::BaseController
         end
       end
     else
-      flash[:notice] = '赠送失败，赠送数量不合法'
+      flash[:notice] = '赠送失败，赠送数量小于400'
       redirect_to user_gift_account_path
       return
     end
