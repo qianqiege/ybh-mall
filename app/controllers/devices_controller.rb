@@ -158,23 +158,26 @@ class DevicesController < ApplicationController
         end
       when '108'
         png_hex = info["param"]["ecgpng"]
-        # id = Digest::MD5.hexdigest(info["param"]["id"])
 
-        # dir = Rails.root.join('public', 'uploads', 'ecg');
-        # FileUtils.mkdir_p(dir) unless File.directory?(dir)
-        # FIXME: 这里用id做文件名，需要跟对方确认是否唯一，如果不唯一，请对方提供其他标示
-        # File.open("#{dir}/#{id}.png", "wb"){|fh|
-          # png_hex.scan(/.{2}/) { |e| fh.putc(e.hex) }
-        # }
-        # FIXME: 这里是图片地址，用于传给慢病
-        # image_url = helpers.asset_url("uploads/ecg/#{id}.png")
-        if !temporary[0].nil?
-          mall.api_ECG(temporary[0].identity_card,png_hex,info["mo"])
-          @ecg = Ecg.new(user_id: idcard.id,url: png_hex, phone: info["mo"])
-          if(@user.present?)
-            @ecg.user_id = @user.id
+        if png_hex.present? && !png_hex.nil?
+          # id = Digest::MD5.hexdigest(info["param"]["id"])
+
+          # dir = Rails.root.join('public', 'uploads', 'ecg');
+          # FileUtils.mkdir_p(dir) unless File.directory?(dir)
+          # FIXME: 这里用id做文件名，需要跟对方确认是否唯一，如果不唯一，请对方提供其他标示
+          # File.open("#{dir}/#{id}.png", "wb"){|fh|
+            # png_hex.scan(/.{2}/) { |e| fh.putc(e.hex) }
+          # }
+          # FIXME: 这里是图片地址，用于传给慢病
+          # image_url = helpers.asset_url("uploads/ecg/#{id}.png")
+          if !temporary[0].nil?
+            mall.api_ECG(temporary[0].identity_card,png_hex,info["mo"])
+            @ecg = Ecg.new(user_id: idcard.id,url: png_hex, phone: info["mo"])
+            if(@user.present?)
+              @ecg.user_id = @user.id
+            end
+            @ecg.save
           end
-          @ecg.save
         end
       else
         response = { success: "404", errmsg: "没有找到对象" }
