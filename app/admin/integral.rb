@@ -1,7 +1,7 @@
 ActiveAdmin.register Integral do
 menu parent: I18n.t("active_admin.menu.wallet_manage")
 
-permit_params :exchange, :user_id, :locking, :available
+permit_params :exchange, :user_id, :locking, :available,:appreciation,:cash,:not_exchange,:not_appreciation,:count
 
   index do
     selectable_column
@@ -21,14 +21,20 @@ permit_params :exchange, :user_id, :locking, :available
     actions defaults: true
   end
 
-  # form(:html => { :multipart => true }) do |f|
-  #   f.inputs "积分详表" do
-  #     f.input :user
-  #     f.input :locking
-  #     f.input :available
-  #     f.input :exchange
-  #   end
-  #   f.actions
-  # end
+  form(:html => { :multipart => true }) do |f|
+    f.inputs "钱包" do
+      f.input :user
+      f.input :locking
+      f.input :available
+      f.input :exchange
+      f.input :appreciation
+      f.input :cash
+      f.input :not_exchange
+      f.input :not_cash
+      f.input :not_appreciation
+      f.input :count
+    end
+    f.actions
+  end
 
 end

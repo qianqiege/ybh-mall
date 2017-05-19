@@ -71,15 +71,15 @@
 
 <div style="text-align:center;margin-top: 20px;">
 
-  <% if !@w_user.nil? %>
-    <%= image_tag(@w_user.headimgurl,size: "70x70" ) %>
+  <% if !@w_friend.nil? %>
+    <%= image_tag(@w_friend.headimgurl,size: "70x70" ) %>
   <% else %>
     <%= image_tag("person.png" ,size: "70x70" ) %>
   <% end %>
   <div class="资料">
-    <span class="电话"><%= @gift_user.telphone %></span>
+    <span class="电话"><%= @gift_friend.telphone %></span>
     <br/>
-    <span class="名字"><%= @gift_user.name %></span>
+    <span class="名字"><%= @gift_friend.name %></span>
   </div>
 
 </div>
@@ -87,9 +87,9 @@
 <%= form_tag(controller: "info",action: "gift_user" ,method: "post") do %>
 
   <p>赠送数量:</p>
-  <input type="number" name="quantity" class="quantity">
-  <div class="boders"></div>
-  <p>赠送方式:</p>
+  <input type="number" name="quantity" class="quantity" style="margin-bottom: 20px;">
+  <!-- <div class="boders"></div> -->
+  <!-- <p>赠送方式:</p>
   <div class="zhanghu">
     <select name="account_type" id="a">
       <option value="无效账户">账户类型</option>
@@ -123,11 +123,11 @@
           document.getElementsByClassName('bank')[0].style.display = "none";
           document.getElementsByClassName('payBaby')[0].style.display = "none";
         }
-      }
-  </script>
+      } -->
+  <!-- </script> -->
 
-<input name = "id" style="display: none;" value="<%= @gift_user.id %>">
-<input name="type_coin" style="display: none;" value= "0" >
+<input name = "id" style="display: none;" value="<%= @gift_friend.id %>">
+<input name="type_coin" style="display: none;" value= "1" >
 <button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认转账</button>
 
 <% end %>

@@ -24,13 +24,28 @@ class User::InfoController < Wechat::BaseController
     @user_available_y = available.exchange
   end
 
+  def create_gift_friend
+    search_user = params["mobile"]
+    case search_user.length
+    when 11
+      @gift_friend = User.find_by(telphone: search_user)
+      @w_friend = WechatUser.find_by(user_id: @gift_friend.id)
+    when 18
+      @gift_friend = User.find_by(identity_card: search_user)
+      @w_friend = WechatUser.find_by(user_id: @gift_friend.id)
+    else
+    end
+  end
+
   def create_gift
     search_user = params["mobile"]
     case search_user.length
     when 11
       @gift_user = User.find_by(telphone: search_user)
+      @w_user = WechatUser.find_by(user_id: @gift_user.id)
     when 18
       @gift_user = User.find_by(identity_card: search_user)
+      @w_user = WechatUser.find_by(user_id: @gift_user.id)
     else
     end
   end
@@ -42,11 +57,12 @@ class User::InfoController < Wechat::BaseController
     if Integral.find_by(user_id: params["id"].to_i).nil?
       Integral.create(user_id: params["id"].to_i)
     end
+
     if number > 400
       # 判断当前用户的可兑换积分数量是否大于赠送积分
       if integral.exchange > number
         order_integral = number
-        record = PresentedRecord.where(user_id: params["id"].to_i).order(wight: :desc)
+        record = PresentedRecord.where(user_id: integral.user_id).order(wight: :desc)
         record.each do |record|
           if !record.balance.nil? && record.balance > 0
             while order_integral > 0
@@ -57,7 +73,7 @@ class User::InfoController < Wechat::BaseController
                 break
               elsif record.balance <= order_integral
                 order_integral = order_integral - record.balance
-                PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "赠送/兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
                 record.balance = 0
                 if record.save
                   break
@@ -66,9 +82,28 @@ class User::InfoController < Wechat::BaseController
             end
           end
         end
+        # flash[:notice] = '赠送成功'
+        # redirect_to user_gift_path
+        # return
+      end
+    else
+      flash[:notice] = '赠送失败，赠送的数量不能小于400'
+      redirect_to user_gift_account_path
+      return
+    end
 
-        PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:0,type:"Available")
+    if params["type_coin"] == "1"
+      invitation_record = PresentedRecord.new(user_id: params["id"], number: number, reason: "好友赠送", is_effective:1, type: "Available",wight: 11,is_effective: 1)
+      if invitation_record.save
+        flash[:notice] = '赠送成功'
+        redirect_to user_gift_path
+        return
+      end
+    end
 
+    if params["type_coin"] == "0"
+      if number > 400
+        PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
         if params["account_type"] == "支付宝"
           exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: params["name"])
         elsif params["account_type"] == "银行卡"
@@ -77,19 +112,19 @@ class User::InfoController < Wechat::BaseController
 
         # integral_record = PresentedRecord.new(user_id: integral.user_id, number: "-#{params["price"].to_f}", reason: "转账",is_effective:0,type:"Available")
         if exchange_record.save
-          flash[:notice] = '赠送成功'
+          flash[:notice] = '兑换成功'
           redirect_to user_gift_account_path
           return
         else
-          flash[:notice] = '赠送失败'
+          flash[:notice] = '兑换失败'
           redirect_to user_gift_account_path
           return
         end
+      else
+        flash[:notice] = '兑换失败，兑换数量不能小于400'
+        redirect_to user_gift_account_path
+        return
       end
-    else
-      flash[:notice] = '赠送失败，赠送数量小于400'
-      redirect_to user_gift_account_path
-      return
     end
   end
 
@@ -102,6 +137,11 @@ class User::InfoController < Wechat::BaseController
 
   def home
     @wechat_user = WechatUser.find(current_user)
+  end
+
+  def gift_friend
+    available = Integral.find_by(user_id: current_user.user_id)
+    @user_available_y = available.exchange
   end
 
   def transaction
