@@ -1,7 +1,7 @@
 ActiveAdmin.register PresentedRecord do
   menu parent: I18n.t("active_admin.menu.coin_record_manage")
   actions :index, :show ,:new ,:create
-  permit_params :user_id,:number,:status,:is_effective,:wight
+  permit_params :user_id,:number,:status,:is_effective,:wight,:desc
 
   index do
      selectable_column

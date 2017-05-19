@@ -51,12 +51,13 @@
       </div>
 
       <div class="weui-cells">
+        <span style="font-size:10px; margin-left: 15px; color: red;">请详细了解该活动的活动规则，选定活动、订单提交后不可更改</span>
         <div class="weui-cell weui-cell_select weui-cell_select-after">
           <div class="weui-cell__hd">
             <label for="" class="weui-label" >参与活动</label>
           </div>
           <div class="weui-cell__bd">
-            <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.first.id) ,  class: "weui-select", include_blank: "不参加活动" %>
+            <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.find_by(is_default: true).id) ,  class: "weui-select", include_blank: "不参加活动" %>
           </div>
         </div>
 
