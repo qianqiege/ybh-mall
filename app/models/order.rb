@@ -383,7 +383,7 @@ class Order < ApplicationRecord
 
   def get_line_items_info
     message = []
-    o.line_items.each do |line|  
+    self.line_items.each do |line|  
       quantity = line.quantity.to_s + " 份 "
       product_name = Product.find(line.product_id).name + ";   "
       message.push  quantity
