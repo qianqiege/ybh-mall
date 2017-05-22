@@ -61,8 +61,8 @@ class Mall::OrdersController < Mall::BaseController
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
 
-    integral_available = params["integral_available"].to_i
-    integral_money = params["integral_money"].to_i
+    integral_available = params["integral_available"].to_f
+    integral_money = params["integral_money"].to_f
 
     # 自定义价格
     if params[:custom_price].present?
