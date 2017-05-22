@@ -67,8 +67,6 @@ class Order < ApplicationRecord
         add_cash
         # # 消费代金券
         remove_cash
-        # # 发送模板消息
-        # send_template_msg
       end
     end
 
@@ -342,7 +340,6 @@ class Order < ApplicationRecord
     open_id = User.find(self.user_id).wechat_user.open_id
 
     $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
-
   end
 
   def send_product_templdate_msg
