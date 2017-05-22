@@ -68,12 +68,23 @@
                 <i class="weui-icon-warn"></i>
             </div>
         </div>
-        <label class="weui-agree">
+
+        <!-- 医生这里display: none -->
+        <label class="weui-agree" style="display: none;">
           <%= check_box_tag :is_doctor, 'true', false, class: 'checkbox weui-agree__checkbox'%>
           <span class="weui-agree__text">
             我是医生
           </span>
         </label>
+        
+        <!-- 服务条款位置 -->
+        <label class="weui-agree">
+          <span class="weui-agree__text">
+            阅读并同意<a href="./info/ybyt.html.erb">《御易健平台服务条款》</a>
+          </span>
+        </label>
+
+
       </div>
       <div class="weui-btn-area">
         <a class="weui-btn weui-btn_primary" id="txtlogin">验证</a>
