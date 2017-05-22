@@ -68,7 +68,7 @@ class Order < ApplicationRecord
         # # 消费代金券
         remove_cash
         # # 发送模板消息
-        send_template_msg
+        # send_template_msg
       end
     end
 
@@ -312,67 +312,63 @@ class Order < ApplicationRecord
 
   def send_template_msg
     data = {
-       "first": { 
-                "value":"您的订单已支付成功", 
-                "color":"颜色#173177" 
-            }, 
-            "keyword1":{ 
-                "value": self.number.to_s, 
-                "color":"颜色#173177" 
-            }, 
-            "keyword2":{ 
-                "value": self.price.to_i.to_s + "元", 
-                "color":"颜色#173177" 
-            }, 
-            "keyword3":{ 
-                "value": DateTime.parse(self.created_at.to_s).strftime('%Y年%m月%d日 %H:%M'), 
-                "color":"#173177" 
-            }, 
-            "remark":{ 
-                "value": get_line_items_info.join(""), 
-                "color":"颜色#173177" 
-            } 
+       "first": {
+                "value":"您的订单已支付成功",
+                "color":"颜色#173177"
+            },
+            "keyword1":{
+                "value": self.number,
+                "color":"颜色#173177"
+            },
+            "keyword2":{
+                "value": self.price.to_s + "元",
+                "color":"颜色#173177"
+            },
+            "keyword3":{
+                "value": DateTime.parse(self.created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
+                "color":"#173177"
+            },
+            "remark":{
+                "value": get_line_items_info.join(""),
+                "color":"颜色#173177"
+            }
     }
-
-
 
     Settings.weixin.template_id =  "lcZBK5Y_wzwz7FZbJ-PPfCV_ieroP3ucCAVGsdSvx9E"
     # Settings.weixin.template_id = "W3VOrnqPgxby4BKiSHFO8Eez79pjfGf_5HCXd98N-ok"
 
     url = Settings.weixin.host + "/mall/orders/" + self.id.to_s
- 
+
     open_id = User.find(self.user_id).wechat_user.open_id
 
     $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
-    
+
   end
 
   def send_product_templdate_msg
     data = {
-       "first": { 
-                "value":"你好，你的订单已发货", 
-                "color":"颜色#173177" 
-            }, 
-            "keyword1":{ 
-                "value": self.number, 
-                "color":"颜色#173177" 
-            }, 
-            "keyword2":{ 
-                "value": User.find(self.user_id).telphone, 
-                "color":"颜色#173177" 
-            },  
-            "remark":{ 
-                "value": "感谢您的光临~", 
-                "color":"颜色#173177" 
-            } 
+       "first": {
+                "value":"你好，你的订单已发货",
+                "color":"颜色#173177"
+            },
+            "keyword1":{
+                "value": self.number,
+                "color":"颜色#173177"
+            },
+            "keyword2":{
+                "value": User.find(self.user_id).telphone,
+                "color":"颜色#173177"
+            },
+            "remark":{
+                "value": "感谢您的光临~",
+                "color":"颜色#173177"
+            }
     }
-
-
 
     Settings.weixin.template_id =  "nA4JMQFs5HBRiIMwxInqj5TE94VXnHu7-I3o-VtjrBU"
     # Settings.weixin.template_id = "tYUWJ1saT3ZEH4YtV8JnUhqb94_okcU16b1gg-0RvaY"
     url = Settings.weixin.host + "/mall/orders/" + self.id.to_s
- 
+
     open_id = User.find(self.user_id).wechat_user.open_id
 
     $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
@@ -382,7 +378,7 @@ class Order < ApplicationRecord
 
   def get_line_items_info
     message = []
-    self.line_items.each do |line|  
+    self.line_items.each do |line|
       quantity = line.quantity.to_s + " 份 "
       product_name = Product.find(line.product_id).name + ";   "
       message.push  quantity
