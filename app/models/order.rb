@@ -305,6 +305,8 @@ class Order < ApplicationRecord
     elsif self.cash > 0 && is_custom.is_custom_price == false && is_custom.is_consumption == true
       CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
       # integral.update(not_cash: integral.not_cash - self.not_cash)
+    elsif is_custom.is_custom_price == false && is_consumption == true
+      CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
     end
   end
 
