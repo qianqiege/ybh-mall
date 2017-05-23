@@ -73,15 +73,15 @@ class WechatUser < ApplicationRecord
         data = {
           first: { 
             value:"欢迎您成为御易健会员", 
-            color:"颜色#173177" 
+            color:"#173177" 
           }, 
           keyword1:{ 
             value: User.find(self.user_id).identity_card, 
-            color:"颜色#173177" 
+            color:"#173177" 
           }, 
           keyword2:{ 
             value: self.nickname.to_s, 
-            color:"颜色#173177" 
+            color:"#173177" 
           }, 
           keyword3:{ 
             value: self.mobile.to_s, 
@@ -97,7 +97,7 @@ class WechatUser < ApplicationRecord
           },
           remark:{ 
             value: "感谢您的加入。", 
-            color:"颜色#173177" 
+            color:"#173177" 
           } 
         }
 
