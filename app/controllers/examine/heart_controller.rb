@@ -17,10 +17,10 @@ class Examine::HeartController < Examine::BaseController
           format.html { redirect_to examine_heart_path, notice: '上传失败'}
         end
       end
-      if !@id_number.identity_card.nil?
-        mall = Sdk::Mall.new
-        mall.api_heart_rate(@id_number.identity_card,heart_params[:value])
-      end
+      # if !@id_number.identity_card.nil?
+      #   mall = Sdk::Mall.new
+      #   mall.api_heart_rate(@id_number.identity_card,heart_params[:value])
+      # end
     else
       redirect_to '/user/binding'
       return
