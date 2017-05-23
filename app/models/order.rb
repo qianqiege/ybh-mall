@@ -53,6 +53,11 @@ class Order < ApplicationRecord
     event :pay do
       transitions from: :pending, to: :wait_send
       after do
+
+        # # 模板消息
+        send_template_msg 
+
+
         line_items.each do |line_item|
           line_item.product.pay_reduce_shop_count(line_item.quantity)
         end
@@ -67,8 +72,7 @@ class Order < ApplicationRecord
         add_cash
         # # 消费代金券
         remove_cash
-        # # 模板消息
-        send_template_msg 
+      
       end
     end
 
