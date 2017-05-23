@@ -6,6 +6,7 @@ class AdminAbility
       can :manage, :all
     elsif user.role_name == 'db'
       can :manage, Order
+      can :manage, Product
       can :manage, ReturnRequest
     elsif user.role_name == 'spinebuild'
       can :manage, Rank
@@ -27,6 +28,20 @@ class AdminAbility
     elsif user.role_name == 'market'
       can :manage, Product
       can :manage, Slide
+    elsif user.role_name == 'finance'
+      can :manage, Order
+      can :manage, ReturnRequest
+    elsif user.role_name == 'customer_service'
+      can :manage, Advice
+      can :manage, AdviceType
+      can :manage, User
+      can :manage, WechatUser
+      can :manage, Order
+      can :manage, ReturnRequest
+      can :manage, CashRecord
+      can :manage, PresentedRecord
+      can :manage, Integral
+      can :manage, ExchangeRecord
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end
