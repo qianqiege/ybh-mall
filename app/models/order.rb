@@ -54,10 +54,6 @@ class Order < ApplicationRecord
       transitions from: :pending, to: :wait_send
       after do
 
-        # # 模板消息
-        send_template_msg 
-
-
         line_items.each do |line_item|
           line_item.product.pay_reduce_shop_count(line_item.quantity)
         end
@@ -72,6 +68,8 @@ class Order < ApplicationRecord
         add_cash
         # # 消费代金券
         remove_cash
+        # # 模板消息
+        send_template_msg 
       
       end
     end
@@ -318,21 +316,22 @@ class Order < ApplicationRecord
   end
 
   def send_template_msg
+    order = Order.find(id)
     data = {
        "first": {
-                "value":"您的订单已支付成功",
+                "value": self.inspect,
                 "color":"颜色#173177"
             },
             "keyword1":{
-                "value": self.number,
+                "value": order.number,
                 "color":"颜色#173177"
             },
             "keyword2":{
-                "value": self.price.to_s + "元",
+                "value": order.price.to_s + "元",
                 "color":"颜色#173177"
             },
             "keyword3":{
-                "value": DateTime.parse(self.created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
+                "value": DateTime.parse(order.created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
                 "color":"#173177"
             },
             "remark":{
