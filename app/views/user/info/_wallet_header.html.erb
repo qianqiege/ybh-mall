@@ -7,12 +7,15 @@
     border: 0;
   }
   .box-btn{
-    
+    /*background: url(/assets/bg.png) no-repeat; */
+    /*background-size: 100% 100%;*/
     width: 60%;
     margin-left: 20%;
-    background: url(/assets/bg.png) no-repeat; 
-    background-size: 100% 100%;
+    /*text-shadow: 2px 2px 2px #eee;*/
+    border: 1px solid #bb0100;
+    box-shadow: 1px 1px 5px #f21f1d;
   }
+
 </style>
 
 <div class='wallet'>
@@ -33,7 +36,7 @@
     <div class="weui-flex__item" >
       <div class="placeholder text-center box-btn" >
         <a href="<%= user_details_path %>" class="weui-cell_access" >
-          <p>易积分</p>
+          <p class="qi">易积分</p>
           <% record = PresentedRecord.where(user_id: current_user.user_id) %>
           <% number = 0 %>
           <% if !record.nil? %>
