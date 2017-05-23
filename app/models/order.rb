@@ -299,7 +299,7 @@ class Order < ApplicationRecord
 
       # 如果 是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
       if is_custom.is_custom_price == true && is_custom.is_consumption == true && integral.not_cash >= self.price
-        CashRecord.create(user_id: self.user_id, number: "-#{self.price}", reason: "消费", is_effective:0)
+        CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
         # integral.update(not_cash: integral.not_cash - self.price)
 
       # 如果 不是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
