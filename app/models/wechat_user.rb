@@ -70,38 +70,36 @@ class WechatUser < ApplicationRecord
   end
 
   def send_template_msg 
-        p "@"*30
-        p self.inspect
         data = {
-             "first": { 
-                      "value":"欢迎您成为御易健会员", 
-                      "color":"颜色#173177" 
-                  }, 
-                  "keyword1":{ 
-                      "value": User.find(self.user_id).identity_card, 
-                      "color":"颜色#173177" 
-                  }, 
-                  "keyword2":{ 
-                      "value": self.nickname.to_s, 
-                      "color":"颜色#173177" 
-                  }, 
-                  "keyword3":{ 
-                      "value": self.mobile.to_s, 
-                      "color":"#173177" 
-                  }, 
-                  "keyword4":{
-                      "value": "请您进入御易健商城设置",
-                      "color":"#173177" 
-                  },
-                  "keyword5":{
-                      "value": DateTime.parse(self.created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
-                      "color":"#173177" 
-                  },
-                  "remark":{ 
-                      "value": "感谢您的加入。", 
-                      "color":"颜色#173177" 
-                  } 
-          }
+          first: { 
+            value:"欢迎您成为御易健会员", 
+            color:"颜色#173177" 
+          }, 
+          keyword1:{ 
+            value: User.find(self.user_id).identity_card, 
+            color:"颜色#173177" 
+          }, 
+          keyword2:{ 
+            value: self.nickname.to_s, 
+            color:"颜色#173177" 
+          }, 
+          keyword3:{ 
+            value: self.mobile.to_s, 
+            color:"#173177" 
+          }, 
+          keyword4:{
+            value: "请您进入御易健商城设置",
+            color:"#173177" 
+          },
+          keyword5:{
+            value: DateTime.parse(self.created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
+            color:"#173177" 
+          },
+          remark:{ 
+            value: "感谢您的加入。", 
+            color:"颜色#173177" 
+          } 
+        }
 
 
           Settings.weixin.template_id =  "EOh9eEjDXeArKy0odjDdVW6-GI8GnWIqWfg92eWEyFs"

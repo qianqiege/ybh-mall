@@ -316,28 +316,27 @@ class Order < ApplicationRecord
   end
 
   def send_template_msg
-    order = Order.find(id)
     data = {
-       "first": {
-                "value": self.inspect,
-                "color":"颜色#173177"
-            },
-            "keyword1":{
-                "value": order.number,
-                "color":"颜色#173177"
-            },
-            "keyword2":{
-                "value": order.price.to_s + "元",
-                "color":"颜色#173177"
-            },
-            "keyword3":{
-                "value": DateTime.parse(order.created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
-                "color":"#173177"
-            },
-            "remark":{
-                "value": get_line_items_info.join(""),
-                "color":"颜色#173177"
-            }
+      first: {
+        value: "您的订单支付成功",
+        color: "颜色#173177"
+      },
+      keyword1: {
+        value: number,
+        color: "颜色#173177"
+      },
+      keyword2: {
+        value: price.to_i.to_s + "元",
+        color:"颜色#173177"
+      },
+      keyword3: {
+        value: DateTime.parse(created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
+        color:"#173177"
+      },
+      remark: {
+        value: get_line_items_info.join(""),
+        color:"颜色#173177"
+      }
     }
 
     Settings.weixin.template_id =  "lcZBK5Y_wzwz7FZbJ-PPfCV_ieroP3ucCAVGsdSvx9E"
@@ -353,22 +352,22 @@ class Order < ApplicationRecord
 
   def send_product_templdate_msg
     data = {
-       "first": {
-                "value":"你好，你的订单已发货",
-                "color":"颜色#173177"
-            },
-            "keyword1":{
-                "value": self.number,
-                "color":"颜色#173177"
-            },
-            "keyword2":{
-                "value": User.find(self.user_id).telphone,
-                "color":"颜色#173177"
-            },
-            "remark":{
-                "value": "感谢您的光临~",
-                "color":"颜色#173177"
-            }
+      first: {
+        value: "你好，你的订单已发货",
+        color: "颜色#173177"
+      },
+      keyword1: {
+        value: number,
+        color:"颜色#173177"
+      },
+      keyword2:{
+        value: User.find(user_id).telphone,
+        color:"颜色#173177"
+      },
+      remark:{
+        value: "感谢您的光临~",
+        color:"颜色#173177"
+      }
     }
 
     Settings.weixin.template_id =  "nA4JMQFs5HBRiIMwxInqj5TE94VXnHu7-I3o-VtjrBU"
