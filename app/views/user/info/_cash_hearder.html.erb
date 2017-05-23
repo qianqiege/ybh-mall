@@ -20,6 +20,14 @@
 		    padding-bottom: 5px;
 	}
 
+  .box-btn{
+    border:1px solid #b0aeae;
+    width: 60%;
+    margin-left: 20%;
+    border-radius: 15%;
+    box-shadow: 1px 1px 5px #e0cccc;
+  }
+
 </style>
 
 <div class='wallet'>
@@ -38,7 +46,7 @@
   </div>
   <div class="weui-flex bottom-text">
     <div class="weui-flex__item">
-      <div class="placeholder text-center">
+      <div class="placeholder text-center box-btn">
         <a href="#" class="weui-cell_access">
           <p>可提现</p>
           <% available = Integral.find_by(user_id: current_user.user_id) %>
@@ -54,7 +62,7 @@
 
 
     <div class="weui-flex__item">
-      <div class="placeholder text-center">
+      <div class="placeholder text-center box-btn">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
           <p>可使用</p>
           <p><%= current_user && available.cash || 0 %></p>

@@ -6,6 +6,13 @@
   .weui-flex__item:last-child{
     border: 0;
   }
+  .box-btn{
+    border:1px solid #b0aeae;
+    width: 60%;
+    margin-left: 20%;
+    border-radius: 15%;
+    box-shadow: 1px 1px 5px #e0cccc;
+  }
 </style>
 
 <div class='wallet'>
@@ -23,9 +30,9 @@
     <div class="weui-flex__item"><div class="placeholder text-center">账户资产</div></div>
   </div>
   <div class="weui-flex bottom-text">
-    <div class="weui-flex__item">
-      <div class="placeholder text-center">
-        <a href="<%= user_details_path %>" class="weui-cell_access">
+    <div class="weui-flex__item" >
+      <div class="placeholder text-center box-btn" >
+        <a href="<%= user_details_path %>" class="weui-cell_access" >
           <p>易积分</p>
           <% record = PresentedRecord.where(user_id: current_user.user_id) %>
           <% number = 0 %>
@@ -40,7 +47,7 @@
 
 
     <div class="weui-flex__item">
-      <div class="placeholder text-center">
+      <div class="placeholder text-center box-btn">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
           <p>现金余额</p>
           <% available = Integral.find_by(user_id: current_user.user_id) %>
