@@ -7,7 +7,7 @@ class Examine::BodyTemperatureController < Examine::BaseController
   end
 
   def create
-    @id_number = User.where(id:current_user.user_id).take
+    @id_number = User.find(current_user.user_id)
     if !@id_number.nil?
       @temperature = Temperature.new(user_id: current_user.user_id,value: temperature_params[:value])
       respond_to do |format|
@@ -18,10 +18,10 @@ class Examine::BodyTemperatureController < Examine::BaseController
         end
       end
 
-      if !@id_number.identity_card.nil?
-        mall = Sdk::Mall.new
-        mall.api_temperature(@id_number.identity_card,temperature_params[:value])
-      end
+      # if !@id_number.identity_card.nil?
+      #   mall = Sdk::Mall.new
+      #   mall.api_temperature(@id_number.identity_card,temperature_params[:value])
+      # end
     else
       redirect_to '/user/binding'
       return
