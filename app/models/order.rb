@@ -69,8 +69,8 @@ class Order < ApplicationRecord
         # # 消费代金券
         remove_cash
         # # 模板消息
-        send_template_msg 
-      
+        send_template_msg
+
       end
     end
 
@@ -168,7 +168,7 @@ class Order < ApplicationRecord
 
   # 收入易积分
   def add_ycoin
-    
+
     # 1. 添加每天自动赠送规则
     # 2. 赠送第一天数据和第一次记录
     # 3. 如果有邀请人，赠送邀请人易积分
@@ -237,7 +237,6 @@ class Order < ApplicationRecord
   # 支出易积分
   def remove_ycoin
     order_integral = self.integral
-    balance_number = 0
     if order_integral > 0
       # 查询当前用户所有积分记录
       record = PresentedRecord.where(user_id: self.user_id).order(wight: :desc)
@@ -245,7 +244,7 @@ class Order < ApplicationRecord
           if !record.balance.nil? && record.balance > 0
             while order_integral > 0
               if record.balance >= order_integral
-                presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "抵扣现金", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
                 record.update(balance: record.balance - order_integral)
                 order_integral = 0
                 break
@@ -260,21 +259,21 @@ class Order < ApplicationRecord
             end
           end
 
-          wallet = Integral.find_by(user_id: record.user_id)
-          case record.wight
-          when 1
-            if wallet.update(available: wallet.available - self.integral, not_exchange: wallet.not_exchange - self.integral, appreciation: wallet.appreciation - self.integral)
-              if order_integral <= 0
-                break
-              end
-            end
-          else
-            if wallet.update(available: wallet.available - self.integral, exchange: wallet.exchange - self.integral, not_appreciation: wallet.not_appreciation - self.integral)
-              if order_integral <= 0
-                break
-              end
-            end
-          end
+          # wallet = Integral.find_by(user_id: record.user_id)
+          # case record.wight
+          # when 1
+          #   if wallet.update(available: wallet.available - self.integral, not_exchange: wallet.not_exchange - self.integral, appreciation: wallet.appreciation - self.integral)
+          #     if order_integral <= 0
+          #       break
+          #     end
+          #   end
+          # else
+          #   if wallet.update(available: wallet.available - self.integral, exchange: wallet.exchange - self.integral, not_appreciation: wallet.not_appreciation - self.integral)
+          #     if order_integral <= 0
+          #       break
+          #     end
+          #   end
+          # end
 
       end
     end
@@ -347,7 +346,7 @@ class Order < ApplicationRecord
     open_id = User.find(self.user_id).wechat_user.open_id
 
     $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
-    
+
   end
 
   def send_product_templdate_msg

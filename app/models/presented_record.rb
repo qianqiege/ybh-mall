@@ -47,6 +47,13 @@ class PresentedRecord < ApplicationRecord
       wallet.update(locking: wallet.locking.to_f + number.to_f,appreciation: wallet.appreciation.to_f + number.to_f)
     elsif self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true
       wallet.update(available: wallet.available.to_f + number.to_f, exchange: wallet.exchange.to_f + number.to_f, not_appreciation: wallet.not_appreciation.to_f + number.to_f)
+    elsif self.number < 0 && self.is_effective == false && self.reason == "消费积分"
+      case self.wight
+      when 1
+        wallet.update(available: wallet.available + self.number, not_exchange: wallet.not_exchange + self.number, appreciation: wallet.appreciation + self.number)
+      else
+        wallet.update(available: wallet.available + self.number, exchange: wallet.exchange + self.number, not_appreciation: wallet.not_appreciation + self.number)
+      end
     end
   end
 
