@@ -82,4 +82,12 @@ $(function(){
     }
   })
 
+
+  var values = $(".weui-cell__bd #activity_id option").value;
+  if (values == 1) {
+    $("#scoin_account").show()
+  }else {
+    $("#scoin_account").hide()
+  }
+
 })

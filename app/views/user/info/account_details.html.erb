@@ -17,6 +17,25 @@
     box-shadow: 1px 1px 5px #f21f1d;
   }
 
+  .lianjie {
+    display: flex;
+    background: #eee;
+  }
+
+  .lianjie a{
+    flex: 1;
+    /*text-align: center;*/
+    border-right: 1px solid #ccc;
+  }
+
+  .lianjie a:last-child {
+    border: 0;
+  }
+
+  .lianjie a div:first-child {
+    padding-left: 2.5rem;
+  }
+
 </style>
 
 <%= title '易积分收支明细' %>
@@ -218,9 +237,30 @@
 </script>
 
 
-<div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 58px;height:7%;">
-  <a class="button-zs" href="<%= user_gift_path %>">赠送</a>
+<div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 58px;height:7%;" class="lianjie">
+  <!-- <a class="button-zs" href="<%= user_gift_path %>">赠送</a> -->
   <!-- <a class="button-dh" href="<%= user_exchange_path %>">兑换</a> -->
+
+
+  <a class="weui-cell weui-cell_access" href="<%= user_gift_account_path %>">
+                    <div class="weui-cell__hd">
+                      <%= image_tag "account.png" ,style:"width:30px;margin-right:5px;display:block;" %>
+                    </div>
+                    <div class="weui-cell__bd weui-cell_primary">
+                        <p style="font-size:15px; margin-left:5px;">兑换积分</p>
+                    </div>
+                </a>
+                <a class="weui-cell weui-cell_access" href="<%= user_gift_friend_path %>">
+                    <div class="weui-cell__hd">
+                      <%= image_tag "friend.png" ,style:"width:30px;margin-right:5px;display:block;" %>
+                    </div>
+                    <div class="weui-cell__bd weui-cell_primary">
+                        <p style="font-size:15px; margin-left:5px;">赠送好友</p>
+                    </div>
+                </a>
+
+
+
 </div>
 
 
