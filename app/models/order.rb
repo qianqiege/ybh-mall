@@ -215,8 +215,10 @@ class Order < ApplicationRecord
                 user_invitation = user.id
                 break
               end
-            elsif invitation.status == "Staff"  || invitation.status == "staff"
-              user_invitation = invitation.id
+            end
+
+            if User.find(invitation).status == "Staff" || User.find(invitation).status == "staff"
+              user_invitation = invitation
             end
             # 判定是否有钱包账户 如果没有创建新的钱包账户
             if Integral.find_by(user_id: user_invitation).nil?
@@ -226,10 +228,10 @@ class Order < ApplicationRecord
             if user_invitation.present?
               invitation_status = User.find(user_invitation).status
               if invitation_status == "Staff" || invitation_status == "staff"
-                presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "会员链接奖励" , is_effective: 1 , type: "Available", wight: 2)
+                presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
               end
             elsif invitation.present? && invitation_status == "Staff" || invitation_status == "staff"
-              presented_records.create(user_id: invitation, number: self.price * rule.percent, reason: "会员链接奖励" , is_effective: 1 , type: "Available", wight: 2)
+              presented_records.create(user_id: invitation, number: self.price * rule.percent, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
             end
 
           end
