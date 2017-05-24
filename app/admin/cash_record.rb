@@ -25,7 +25,7 @@ ActiveAdmin.register CashRecord do
       f.input :status, as: :select, collection: ["人工创建"]
       f.input :is_effective
       f.input :reason, as: :select, collection: [ '消费','充值' ]
-      f.input :type, as: :select, collection: { '可以体现' => 'CashYes', '不可体现' => 'CashNo' }
+      f.input :type, as: :select, collection: { '可以提现' => 'CashYes', '不可提现' => 'CashNo' }
     end
     f.actions
   end

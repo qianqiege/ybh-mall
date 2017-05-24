@@ -28,7 +28,7 @@ ActiveAdmin.register PresentedRecord do
        f.input :number
        f.input :status, as: :select, collection: ["人工创建"]
        f.input :is_effective
-       f.input :wight, as: :select, collection: { '购买产品返还积分' => '1', '会员链接奖励' => '2', '注册赠送' => '7', '邀请好友赠送' => '6' , '邀请好友消费赠送' => '3'}
+       f.input :wight, as: :select, collection: { '购买产品返还积分' => '1', '会员链接奖励' => '2', '注册赠送' => '7', '邀请好友赠送' => '6' , '邀请好友消费赠送' => '3', '客服调配' => '3'}
        f.input :desc
      end
      f.actions
