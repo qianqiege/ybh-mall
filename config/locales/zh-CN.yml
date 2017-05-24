@@ -244,9 +244,7 @@ zh-CN:
         coin_type: '货币包'
         activity: '活动'
         percent: '赠送推荐人比率(0.1即10%)'
-        bronze: '青铜积分升值比率'
-        silver: '白银积分升值比率'
-        gold: '黄金积分升值比率'
+        staff: '赠送员工比例'
       coin_type:
         name: '包名称'
         once: '一次性数量（第一天给的S货币数量）'
