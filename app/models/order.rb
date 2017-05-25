@@ -217,8 +217,6 @@ class Order < ApplicationRecord
               end
             end
 
-            byebug
-
             if User.find(invitation).status == "Staff" || User.find(invitation).status == "staff"
               user_invitation = invitation
             end
