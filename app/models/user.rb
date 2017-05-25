@@ -123,4 +123,20 @@ class User < ApplicationRecord
           $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
   end
 
+
+
+
+  # 发送短信
+  def send_message
+    tpl_params = { number1: self.name }
+  
+    if Rails.env.production?
+      ChinaSMS.use :yunpian, password: Settings.sms_password
+      ChinaSMS.to telphone, tpl_params, tpl_id: Settings.register_tpl_id
+    else
+      logger.info "sms code send: #{tpl_params} to mobile: #{telphone}"
+    end
+    
+  end
+
 end

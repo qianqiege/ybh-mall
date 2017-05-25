@@ -43,6 +43,7 @@ class User::BindingController < Wechat::BaseController
         flash[:notice] = '恭喜您，注册成功'
         redirect_to root_path
         @user.send_template_msg
+        @user.send_message
         return
       else
         flash[:notice] = '对不起，注册失败'

@@ -361,7 +361,7 @@ class Order < ApplicationRecord
         color:"#173177"
       },
       remark:{
-        value: "感谢您的光临~",
+        value: "请在商城我的订单中查询物流信息",
         color:"#173177"
       }
     }
