@@ -232,6 +232,8 @@ class Order < ApplicationRecord
               end
             elsif invitation.present? && invitation_status == "Staff" || invitation_status == "staff"
               presented_records.create(user_id: invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
+            elsif User.find(self.user_id).status == "staff" || User.find(self.user_id).status == "Staff"
+              presented_records.create(user_id: invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
             end
 
           end
