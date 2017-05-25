@@ -69,8 +69,8 @@ class Order < ApplicationRecord
         # # 消费代金券
         remove_cash
         # # 模板消息
-        send_template_msg 
-      
+        send_template_msg
+
       end
     end
 
@@ -168,7 +168,7 @@ class Order < ApplicationRecord
 
   # 收入易积分
   def add_ycoin
-    
+
     # 1. 添加每天自动赠送规则
     # 2. 赠送第一天数据和第一次记录
     # 3. 如果有邀请人，赠送邀请人易积分
@@ -204,11 +204,21 @@ class Order < ApplicationRecord
             user_invitation = User.find(invitation).invitation_id
             # 如果 邀请人ID不为空继续循环
             while user_invitation.present?
-              user_invitation = User.find(user_invitation).invitation_id
-              # 如果邀请人ID为空 或者 邀请人的身份是 staff 停止循环
-              if user_invitation.present? || User.find(user_invitation).status == "Staff"
+              user = User.find(user_invitation)
+              if user.invitation_id.present?
+                user_invitation = user.invitation_id
+                # 如果邀请人ID为空 或者 邀请人的身份是 staff 停止循环
+                if user_invitation.present? || User.find(user_invitation).status == "Staff" || User.find(user_invitation).status == "staff"
+                  break
+                end
+              elsif !user.invitation_id.present? && User.find(user_invitation).status == "Staff" || User.find(user_invitation).status == "staff"
+                user_invitation = user.id
                 break
               end
+            end
+
+            if User.find(invitation).status == "Staff" || User.find(invitation).status == "staff"
+              user_invitation = invitation
             end
             # 判定是否有钱包账户 如果没有创建新的钱包账户
             if Integral.find_by(user_id: user_invitation).nil?
@@ -217,9 +227,11 @@ class Order < ApplicationRecord
             # 判定邀请人是否是员工 是员工的情况下 执行员工邀请奖励
             if user_invitation.present?
               invitation_status = User.find(user_invitation).status
-              if invitation_status == "Staff"
-                presented_records.create(user_id: user_invitation, number: self.price * rule.percent, reason: "会员链接奖励" , is_effective: 1 , type: "Available", wight: 2)
+              if invitation_status == "Staff" || invitation_status == "staff"
+                presented_records.create(user_id: user_invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
               end
+            elsif invitation.present? && invitation_status == "Staff" || invitation_status == "staff"
+              presented_records.create(user_id: invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
             end
 
           end
@@ -237,45 +249,27 @@ class Order < ApplicationRecord
   # 支出易积分
   def remove_ycoin
     order_integral = self.integral
-    balance_number = 0
     if order_integral > 0
       # 查询当前用户所有积分记录
       record = PresentedRecord.where(user_id: self.user_id).order(wight: :desc)
-        record.each do |record|
-          if !record.balance.nil? && record.balance > 0
-            while order_integral > 0
-              if record.balance >= order_integral
-                presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "抵扣现金", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
-                record.update(balance: record.balance - order_integral)
-                order_integral = 0
-                break
-              elsif record.balance <= order_integral
-                order_integral = order_integral - record.balance
-                presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
-                record.balance = 0
-                if record.save
-                  break
-                end
-              end
-            end
-          end
-
-          wallet = Integral.find_by(user_id: record.user_id)
-          case record.wight
-          when 1
-            if wallet.update(available: wallet.available - self.integral, not_exchange: wallet.not_exchange - self.integral, appreciation: wallet.appreciation - self.integral)
-              if order_integral <= 0
-                break
-              end
-            end
-          else
-            if wallet.update(available: wallet.available - self.integral, exchange: wallet.exchange - self.integral, not_appreciation: wallet.not_appreciation - self.integral)
-              if order_integral <= 0
+      record.each do |record|
+        if !record.balance.nil? && record.balance > 0
+          while order_integral > 0
+            if record.balance >= order_integral
+              presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+              record.update(balance: record.balance - order_integral)
+              order_integral = 0
+              break
+            elsif record.balance <= order_integral
+              order_integral = order_integral - record.balance
+              presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+              record.balance = 0
+              if record.save
                 break
               end
             end
           end
-
+        end
       end
     end
   end
@@ -304,7 +298,7 @@ class Order < ApplicationRecord
 
       # 如果 是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
       if is_custom.is_custom_price == true && is_custom.is_consumption == true && integral.not_cash >= self.price
-        CashRecord.create(user_id: self.user_id, number: "-#{self.price}", reason: "消费", is_effective:0)
+        CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
         # integral.update(not_cash: integral.not_cash - self.price)
 
       # 如果 不是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
@@ -347,7 +341,7 @@ class Order < ApplicationRecord
     open_id = User.find(self.user_id).wechat_user.open_id
 
     $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
-    
+
   end
 
   def send_product_templdate_msg
