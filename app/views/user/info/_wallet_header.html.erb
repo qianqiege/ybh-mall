@@ -36,7 +36,7 @@
     <div class="weui-flex__item" >
       <div class="placeholder text-center box-btn" >
         <a href="<%= user_details_path %>" class="weui-cell_access" >
-          <p class="qi">总积分</p>
+          <p class="qi">总易积分</p>
           <% record = PresentedRecord.where(user_id: current_user.user_id) %>
           <% number = 0 %>
           <% if !record.nil? %>
