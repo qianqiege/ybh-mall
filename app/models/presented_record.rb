@@ -3,7 +3,7 @@ class PresentedRecord < ApplicationRecord
   belongs_to :user
   belongs_to :presentable, polymorphic: true
 
-  before_create :update_status
+  before_create :update_status,:remove_update
   after_create :update_record
   after_create :company_ycoin
   after_create :update_ycoin
@@ -77,9 +77,43 @@ class PresentedRecord < ApplicationRecord
         self.reason = '邀请好友赠送'
       elsif self.wight == 7
         self.reason = '注册赠送'
+      elsif self.wight == 13
+        self.reason = '客服调配'
+      elsif self.wight == 14
+        self.reason = '消费'
       end
 
       self.save
+    end
+  end
+
+
+  def remove_update
+    if self.number < 0 && self.status == "人工创建"
+      order_integral = self.number * -1
+      if order_integral > 0
+        # 查询当前用户所有积分记录
+        record = PresentedRecord.where(user_id: self.user_id).order(wight: :desc)
+        record.each do |record|
+          if !record.balance.nil? && record.balance > 0
+            while order_integral > 0
+              if record.balance >= order_integral
+                PresentedRecord.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                record.update(balance: record.balance - order_integral)
+                order_integral = 0
+                break
+              elsif record.balance <= order_integral
+                order_integral = order_integral - record.balance
+                PresentedRecord.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                record.balance = 0
+                if record.save
+                  break
+                end
+              end
+            end
+          end
+        end
+      end
     end
   end
 
