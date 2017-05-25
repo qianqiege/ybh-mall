@@ -46,4 +46,12 @@ ActiveAdmin.register PresentedRecord do
      end
    end
 
+
+   filter :user, as: :select
+   filter :status, as: :select
+   filter :reason, as: :select
+   filter :number, as: :select
+   filter :type, as: :select
+   filter :is_effective, as: :select
+
 end
