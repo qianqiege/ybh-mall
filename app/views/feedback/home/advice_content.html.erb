@@ -5,7 +5,7 @@
         <div class="weui-cell__bd">
             <%= form_for :advice, url: feedback_advice_create_path, method: :post do |f| %>
             	<div>
-            		<%= f.text_area :content, class: "weui-textarea", placeholder: "请输入问题" %>
+            		<%= f.text_area :content, class: "weui-textarea", placeholder: "请输入问题(最少为6个字)" %>
 
             	</div>
 
