@@ -217,6 +217,8 @@ class Order < ApplicationRecord
               end
             end
 
+            byebug
+
             if User.find(invitation).status == "Staff" || User.find(invitation).status == "staff"
               user_invitation = invitation
             end
@@ -232,12 +234,12 @@ class Order < ApplicationRecord
               end
             elsif invitation.present? && invitation_status == "Staff" || invitation_status == "staff"
               presented_records.create(user_id: invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
-            elsif User.find(self.user_id).status == "staff" || User.find(self.user_id).status == "Staff"
-              presented_records.create(user_id: invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
             end
-
           end
 
+          if User.find(self.user_id).status == "staff" || User.find(self.user_id).status == "Staff"
+            presented_records.create(user_id: self.user_id, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
+          end
           # 用户购买产品 返还用户易积分 购买产品返还的积分 为锁定积分 十五天后可用
           if rule.percentage.present? && self.price != 0
             presented_records.create(user_id: self.user_id, number: self.price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Locking", wight: 1)
