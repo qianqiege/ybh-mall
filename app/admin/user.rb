@@ -65,4 +65,5 @@ ActiveAdmin.register User do
   filter :telphone, as: :select
   filter :invitation, as: :select
   filter :status, as: :select
+  filter :created_at
 end
