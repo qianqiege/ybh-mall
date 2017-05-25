@@ -322,7 +322,7 @@ class Order < ApplicationRecord
         color: "#173177"
       },
       keyword2: {
-        value: price.to_i.to_s + "元",
+        value: price.to_f.to_s + "元",
         color:"#173177"
       },
       keyword3: {
