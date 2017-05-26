@@ -4,14 +4,14 @@ class User::BindingController < Wechat::BaseController
       flash[:notice] = '您已注册，无须重复注册'
       redirect_to root_path
     end
-    @no_fotter = true
-    @recommender = User.find_by(invitation_card: params[:invitation_id])
+    # @no_fotter = true
+    # @recommender = User.find_by(invitation_card: params[:invitation_id])
 
     # 如果当前用户没有推荐人，自动添加推荐人
-    if current_user.recommender.nil? && @recommender.present?
-      current_user.update_attributes(recommender: @recommender)
-    end
-    @invitation_user = params[:invitation_id] || ""
+    # if current_user.recommender.nil? && @recommender.present?
+    #   current_user.update_attributes(recommender: @recommender)
+    # end
+    # @invitation_user = params[:invitation_id] || ""
   end
 
   def bind_phone
@@ -26,10 +26,12 @@ class User::BindingController < Wechat::BaseController
 
       @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card)
 
-      # 如果原来已经有推荐人了，注册直接绑定推荐人
-      if current_user.recommender.present?
-        @user.invitation_id = current_user.recommender.id
-      elsif @invitation_user.present?
+      # # 如果原来已经有推荐人了，注册直接绑定推荐人
+      # if current_user.recommender.present?
+      #   @user.invitation_id = current_user.recommender.id
+      # end
+
+      if @invitation_user.present?
         @user.invitation_id = @invitation_user.id
       end
 

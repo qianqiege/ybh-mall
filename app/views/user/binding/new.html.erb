@@ -39,14 +39,12 @@
         </div>
       </div>
 
-      <% if current_user.recommender.nil? %>
-        <div class="login_control">
-          <div class="login_label">邀请码（选填）</div>
-          <div class="login_content">
-            <%= text_field_tag :invitation_id, @invitation_user %>
-          </div>
+      <div class="login_control">
+        <div class="login_label">邀请码（选填）</div>
+        <div class="login_content">
+          <%= text_field_tag :invitation_id, @invitation_user %>
         </div>
-      <% end %>
+      </div>
 
       <div class="weui-cells__title">必填信息</div>
       <div class="weui-cells weui-cells_form">
@@ -76,7 +74,7 @@
             我是医生
           </span>
         </label>
-        
+
         <!-- 服务条款位置 -->
         <label class="weui-agree">
           <span class="weui-agree__text">

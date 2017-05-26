@@ -31,7 +31,7 @@ class User < ApplicationRecord
   has_many :identity_cards
   has_many :ycoin_records, dependent: :destroy, as: :account
 
-  has_many :recommenders, :class_name => "WechatUser", :foreign_key => "recommender_id"
+  # has_many :recommenders, :class_name => "WechatUser", :foreign_key => "recommender_id"
 
   belongs_to :organization
   belongs_to :invitation, class_name: 'User', foreign_key: 'invitation_id'
@@ -82,42 +82,42 @@ class User < ApplicationRecord
     end
   end
 
-    def send_template_msg 
+    def send_template_msg
         data = {
-          first: { 
-            value:"欢迎您成为御易健会员", 
-            color:"#173177" 
-          }, 
-          keyword1:{ 
-            value: identity_card, 
-            color:"#173177" 
-          }, 
-          keyword2:{ 
-            value: name, 
-            color:"#173177" 
-          }, 
-          keyword3:{ 
-            value: telphone, 
-            color:"#173177" 
-          }, 
+          first: {
+            value:"欢迎您成为御易健会员",
+            color:"#173177"
+          },
+          keyword1:{
+            value: identity_card,
+            color:"#173177"
+          },
+          keyword2:{
+            value: name,
+            color:"#173177"
+          },
+          keyword3:{
+            value: telphone,
+            color:"#173177"
+          },
           keyword4:{
             value: "请您进入御易健商城设置",
-            color:"#173177" 
+            color:"#173177"
           },
           keyword5:{
             value: DateTime.parse(created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
-            color:"#173177" 
+            color:"#173177"
           },
-          remark:{ 
-            value: "感谢您的加入。", 
-            color:"#173177" 
-          } 
+          remark:{
+            value: "感谢您的加入。",
+            color:"#173177"
+          }
         }
 
 
           Settings.weixin.template_id =  "EOh9eEjDXeArKy0odjDdVW6-GI8GnWIqWfg92eWEyFs"
           # Settings.weixin.template_id =  "eTwEAFZ2rdA4iFpna3phVwk786_gf7_gQP-z3TbEaG4"
-          url = Settings.weixin.host 
+          url = Settings.weixin.host
           open_id = self.wechat_user.open_id
 
           $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
@@ -129,14 +129,14 @@ class User < ApplicationRecord
   # 发送短信
   def send_message
     tpl_params = { number1: self.name }
-  
+
     if Rails.env.production?
       ChinaSMS.use :yunpian, password: Settings.sms_password
       ChinaSMS.to telphone, tpl_params, tpl_id: Settings.register_tpl_id
     else
       logger.info "sms code send: #{tpl_params} to mobile: #{telphone}"
     end
-    
+
   end
 
 end
