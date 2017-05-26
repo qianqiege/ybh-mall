@@ -1,3 +1,16 @@
+<style type="text/css">
+
+  #txtlogin {
+    background:#ccc;
+  }
+
+  #txtlogin.active {
+    background: #1aad19;z-index: 99;
+
+  }
+</style>
+
+
 <%= title '注册御易健账号' %>
 
 <%= form_tag(user_bind_phone_path, method: :post, id: 'bind_phone_form') do %>
@@ -77,16 +90,34 @@
 
         <!-- 服务条款位置 -->
         <label class="weui-agree">
+        <input type="checkbox" name="agreeCheck" id="agreeCheck">
           <span class="weui-agree__text">
             阅读并同意<a href="./info/ybyt.html.erb">《御易健平台服务条款》</a>
           </span>
         </label>
-
-
       </div>
       <div class="weui-btn-area">
         <a class="weui-btn weui-btn_primary" id="txtlogin">验证</a>
       </div>
+
+      <script type="text/javascript">
+        
+        $('#agreeCheck').click(function(){
+          if ($("#agreeCheck").is(':checked')) {
+            // console.log(1);
+            $('#txtlogin').addClass("active");
+
+          }else{
+            // console.log(2);
+             $('#txtlogin').removeClass("active");
+            
+            
+          }
+
+        })
+
+      </script>
+
     </div>
   </div>
 <% end %>

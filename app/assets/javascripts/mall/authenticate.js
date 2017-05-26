@@ -39,7 +39,8 @@ $(function () {
         code = $.trim($("#txtValidatedCode").val()).replace(/\s/g, ""),
         identity_card = $.trim($("#identity_card").val()).replace(/\s/g, ""),
         password = $.trim($("#password").val()).replace(/\s/g, ""),
-        name = $.trim($("#name").val()).replace(/\s/g, "");
+        name = $.trim($("#name").val()).replace(/\s/g, ""),
+        agreeCheck = $("#agreeCheck").is(':checked');
 
 
     if (!validateMobile(mobile)) {
@@ -66,7 +67,10 @@ $(function () {
       showFlash("#toast-custom", '请输入真实姓名');
       return;
     }
-
+    if( agreeCheck == false ) {
+      showFlash("#toast-custom", '请阅读并同意服务条款');
+      return;
+    }
     $("#bind_phone_form").submit();
   })
 
