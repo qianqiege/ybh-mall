@@ -4,7 +4,7 @@ class WechatUser < ApplicationRecord
   has_many :orders
   belongs_to :user
   # 推荐人
-  belongs_to :recommender, :class_name => "User", :foreign_key => "recommender_id"
+  # belongs_to :recommender, :class_name => "User", :foreign_key => "recommender_id"
 
   has_many :line_items, through: :orders
 

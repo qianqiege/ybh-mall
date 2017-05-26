@@ -1,6 +1,6 @@
 ActiveAdmin.register WechatUser do
   menu parent: I18n.t("active_admin.menu.user_manage")
-  permit_params :user_id,:recommender_id
+  permit_params :user_id
   index do
     selectable_column
     id_column
