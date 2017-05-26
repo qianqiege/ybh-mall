@@ -54,7 +54,14 @@ class PresentedRecord < ApplicationRecord
       else
         wallet.update(available: wallet.available + self.number, exchange: wallet.exchange + self.number, not_appreciation: wallet.not_appreciation + self.number)
       end
-    end
+     elsif self.reason ==  "赠送/兑换"
+       case self.wight
+       when 1
+         wallet.update(available: wallet.available + self.number, not_exchange: wallet.not_exchange + self.number, appreciation: wallet.appreciation + self.number)
+       else
+         wallet.update(available: wallet.available + self.number, exchange: wallet.exchange + self.number, not_appreciation: wallet.not_appreciation + self.number)
+       end
+     end
   end
 
   def update_record
