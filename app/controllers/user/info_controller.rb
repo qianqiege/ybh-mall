@@ -1,6 +1,10 @@
 class User::InfoController < Wechat::BaseController
   before_action :programs
 
+  def update_state
+    byebug
+  end
+
   def invitation
     if current_user.user
       url = user_binding_url({invitation_id: current_user.user.invitation_card})
@@ -58,7 +62,7 @@ class User::InfoController < Wechat::BaseController
       Integral.create(user_id: params["id"].to_i)
     end
 
-    if number > 400
+    if number >= 400
       # 判断当前用户的可兑换积分数量是否大于赠送积分
       if integral.exchange > number
         order_integral = number

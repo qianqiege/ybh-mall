@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # NOTE： 这里的命名空间加上Wechat，本意是所有微信相关的，都放到这个命名空间下,但是后面好像用歪了
   # 后续需要重构
+
   namespace :wechat do
     root "home#index"
     resources :setmeals
