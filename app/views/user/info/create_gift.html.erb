@@ -24,7 +24,6 @@
     margin-top: 1rem;
     width: 90%;
     padding:0.5rem 0.5rem 0 0.5rem;
-    border: 1px dashed #ccc;
   }
 
   .bank input,.payBaby input{
@@ -84,10 +83,9 @@
 
 </div>
 
-<%= form_tag(controller: "info",action: "gift_user" ,method: "post") do %>
-
+<form id="formd" method="post" action="<%= user_gift_user_path %>" >
   <p>赠送数量:</p>
-  <input type="number" name="quantity" class="quantity">
+  <input type="number" name="quantity" class="quantity" placeholder="请输入大于400(含400)并为20倍数的数字">
   <div class="boders"></div>
   <p>赠送方式:</p>
   <div class="zhanghu">
@@ -110,8 +108,16 @@
     <input type="text" name="account" placeholder="账号">
   </div>
 
+<input name = "id" style="display: none;" value="<%= @gift_user.id %>">
+<input name="type_coin" style="display: none;" value= "0" >
+<button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认转账</button>
 
-  <script type="text/javascript">
+</form>
+
+
+<script type="text/javascript">
+
+    // 1.选择不同付款方式的显示
       document.getElementById("a").onchange = function() {
         if( this.value == "银行卡" ) {
           document.getElementsByClassName('bank')[0].style.display = "block";
@@ -124,10 +130,49 @@
           document.getElementsByClassName('payBaby')[0].style.display = "none";
         }
       }
+
+
+      // 2.赠送数量验证
+
+      
+        
+      //     sub.onclick = function(e){
+      //       if (quantity.value < 400 && quantity.value%20 !== 0) {
+                
+      //           alert('must > 400');
+      //           return false;
+      //       }
+      //     }
+
+    //    sub.onsubmit = function(){
+    //     if(quantity.value < 400 && quantity.value%20 != 0){
+    //         alert("请您认真填写注册用户名！");
+    //         // e.preventDefault();
+    //         return false;
+    //     }
+    // }
+
+
+          // $('#sub').submit(function(){
+          //   if (quantity.value < 400 && quantity.value%20 !== 0) {
+          //     $('button[type=submit]', this).attr('disabled', 'disabled');
+          //   }
+              
+          // });
+
+          var formd = document.getElementById("formd");
+          var quantity = document.getElementsByClassName('quantity')[0];
+          formd.addEventListener("submit",function(e){  
+              console.log(quantity.value % 20 );
+              if(quantity.value >= 400 && quantity.value%20 == 0){
+                  
+              }else{
+                alert("请输入符合兑换标准的数值！");
+                e.preventDefault();
+              }
+
+
+          },false);
+
+
   </script>
-
-<input name = "id" style="display: none;" value="<%= @gift_user.id %>">
-<input name="type_coin" style="display: none;" value= "0" >
-<button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认转账</button>
-
-<% end %>
