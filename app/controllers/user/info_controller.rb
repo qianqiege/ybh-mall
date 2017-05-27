@@ -56,13 +56,14 @@ class User::InfoController < Wechat::BaseController
 
   def gift_user
     integral = Integral.find_by(user_id: current_user.user_id)
+    type = User.find(current_user.user_id).status
     number = params["quantity"].to_f
     # 查找当前用户记录
     if Integral.find_by(user_id: params["id"].to_i).nil?
       Integral.create(user_id: params["id"].to_i)
     end
 
-    if number >= 400
+    if type == "staff" || type == "Staff" ||number >= 400 && number%20 == 0
       # 判断当前用户的可兑换积分数量是否大于赠送积分
       if integral.exchange > number
         order_integral = number
@@ -91,8 +92,8 @@ class User::InfoController < Wechat::BaseController
         # return
       end
     else
-      flash[:notice] = '赠送失败，赠送的数量不能小于400'
-      redirect_to user_gift_account_path
+      flash[:notice] = '失败，数量不能小于400并且是20的倍数'
+      redirect_to user_details_path
       return
     end
 
@@ -100,22 +101,21 @@ class User::InfoController < Wechat::BaseController
       invitation_record = PresentedRecord.new(user_id: params["id"], number: number, reason: "好友赠送", is_effective:1, type: "Available",wight: 11,is_effective: 1)
       if invitation_record.save
         flash[:notice] = '赠送成功'
-        redirect_to user_gift_path
+        redirect_to user_details_path
         return
       end
     end
 
     if params["type_coin"] == "0"
-      if number > 400
+      if number >= 400 && number%20 == 0
         PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
         if params["account_type"] == "支付宝"
-          exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: params["name"])
+          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: params["name"],state: "false")
         elsif params["account_type"] == "银行卡"
-          exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: params["bank_name"])
+          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: params["bank_name"],state: "false")
         end
 
-        # integral_record = PresentedRecord.new(user_id: integral.user_id, number: "-#{params["price"].to_f}", reason: "转账",is_effective:0,type:"Available")
-        if exchange_record.save
+        if @exchange_record.save
           flash[:notice] = '兑换成功'
           redirect_to user_gift_account_path
           return
@@ -125,7 +125,7 @@ class User::InfoController < Wechat::BaseController
           return
         end
       else
-        flash[:notice] = '兑换失败，兑换数量不能小于400'
+        flash[:notice] = '兑换失败，兑换数量不能小于400并且是20的倍数'
         redirect_to user_gift_account_path
         return
       end

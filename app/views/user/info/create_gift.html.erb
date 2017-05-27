@@ -83,7 +83,8 @@
 
 </div>
 
-<form id="formd" method="post" action="<%= user_gift_user_path %>" >
+<%= form_tag(controller: "info",action: "gift_user" ,method: "post", id: "formd") do %>
+<!-- <form id="formd" method="post" action="<%= user_gift_user_path %>" > -->
   <p>赠送数量:</p>
   <input type="number" name="quantity" class="quantity" placeholder="请输入大于400(含400)并为20倍数的数字">
   <div class="boders"></div>
@@ -112,8 +113,8 @@
 <input name="type_coin" style="display: none;" value= "0" >
 <button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认转账</button>
 
-</form>
-
+<!-- </form> -->
+<% end %>
 
 <script type="text/javascript">
 
@@ -134,11 +135,11 @@
 
       // 2.赠送数量验证
 
-      
-        
+
+
       //     sub.onclick = function(e){
       //       if (quantity.value < 400 && quantity.value%20 !== 0) {
-                
+
       //           alert('must > 400');
       //           return false;
       //       }
@@ -157,17 +158,17 @@
           //   if (quantity.value < 400 && quantity.value%20 !== 0) {
           //     $('button[type=submit]', this).attr('disabled', 'disabled');
           //   }
-              
+
           // });
 
           var formd = document.getElementById("formd");
           var quantity = document.getElementsByClassName('quantity')[0];
-          formd.addEventListener("submit",function(e){  
+          formd.addEventListener("submit",function(e){
               console.log(quantity.value % 20 );
               if(quantity.value >= 400 && quantity.value%20 == 0){
-                  
+
               }else{
-                alert("请输入符合兑换标准的数值！");
+                alert("请输入符合兑换标准的数值");
                 e.preventDefault();
               }
 
