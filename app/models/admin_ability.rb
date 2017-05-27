@@ -31,6 +31,7 @@ class AdminAbility
     elsif user.role_name == 'finance'
       can :manage, Order
       can :manage, ReturnRequest
+      can :manage, ExchangeRecord
     elsif user.role_name == 'customer_service'
       can :manage, Advice
       can :manage, AdviceType
