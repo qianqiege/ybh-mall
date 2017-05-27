@@ -39,7 +39,9 @@
 </style>
 
 <%= title '易积分收支明细' %>
-
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
 <div class='wallet'>
   <div class="weui-flex profile">
     <div>

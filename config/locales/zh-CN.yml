@@ -259,6 +259,7 @@ zh-CN:
         status: '提现类型'
         account: '提现账户'
         opening: '开户行'
+        state: '是否处理'
         created_at: '申请日期'
     models:
       cash_record: '现金收支明细'

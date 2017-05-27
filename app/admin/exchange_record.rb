@@ -15,8 +15,22 @@ index do
   column :account
   column :opening
   column :name
+  column :state do |record|
+    if record.state == "true"
+      state = "已处理"
+    else
+      state = "待处理"
+    end
+  end
   column :created_at
-  actions defaults: true
+  # actions defaults: true
+  column '处理操作' do |record|
+    if record.state == "false"
+      span do
+        link_to '已处理',u_state_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
+      end
+    end
+  end
 end
 
 form(:html => { :multipart => true }) do |f|
@@ -30,5 +44,10 @@ form(:html => { :multipart => true }) do |f|
   end
   f.actions
 end
+
+  member_action :u_state, method: :put do
+    resource.u_state
+    redirect_to admin_exchange_records_path
+  end
 
 end
