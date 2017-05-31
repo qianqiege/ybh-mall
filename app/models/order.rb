@@ -203,7 +203,7 @@ class Order < ApplicationRecord
           if invitation.present? && self.price != 0
             user_invitation = User.find(invitation).invitation_id
             # 如果 邀请人ID不为空继续循环
-            while user_invitation.present?
+            while !user_invitation.nil?
               user = User.find(user_invitation)
               if user.invitation_id.present?
                 user_invitation = user.invitation_id
@@ -213,6 +213,8 @@ class Order < ApplicationRecord
                 end
               elsif !user.invitation_id.present? && User.find(user_invitation).status == "Staff" || User.find(user_invitation).status == "staff"
                 user_invitation = user.id
+                break
+              elsif user_invitation.nil? || user.invitation_id.nil?
                 break
               end
             end
