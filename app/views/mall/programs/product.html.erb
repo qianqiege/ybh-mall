@@ -1,6 +1,6 @@
 
 <style type="text/css">
-	
+
 	#content{
 		height: 100%;
 		width: 100%;
@@ -45,46 +45,46 @@
 
 </style>
 
-
 <div id="content">
-	<h2>原生态山茶油</h2>
-	<img class="proImg" />
+	<div class="pro-show">
+    <div class="swiper-container swp_pro swiper-container-horizontal">
+      <ul class="swiper-wrapper">
+        <li class='swiper-slide swiper-slide-active'>
+          <%= image_tag @program_product.image if @program_product.image.present? %>
+        </li>
+      </ul>
+    </div>
+    <div class="pro-info">
+      <p class="name"><%= raw @program_product.name %></p>
+    </div>
+  </div>
 	<div class="introduce">
 
 		<div class="itdPart">
-			<p>★山茶油的功效</p>
+			<p>★产品搭配功能</p>
 			<span>
-				<b>改善血液循环</b>
-				山茶油中含有多种功能性成分，长期使用具有明显预防心血管硬化、降血压、降血糖等功效，抑制各种疾病巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉
-			</span>
-			<span>
-				<b>促进消化吸收</b>
-				山茶油中含有多种功能性成分，长期使用具有明显预防心血管硬化、降血压、降血糖等功效，抑制各种疾病巴拉巴拉巴拉巴拉巴拉巴拉！
-			</span>
-			<span>
-				<b>抗衰、护肤</b>
-				山茶油中含有多种功能性成分，长期使用具有明显预防心血管硬化、降血压、降血糖等功效
+			<%= raw @program_product.features %>
 			</span>
 		</div>
 
 		<div class="itdPart">
-			<p>★主要成分</p>
+			<p>★单个产品功效</p>
 			<span>
-			维生素ABCDEFG
-			</span>
-		</div>
-
-		<div class="itdPart">
-			<p>★使用方法</p>
-			<span>
-			吃！生吃炒菜蒸煮烧烤！吃吃吃！
+			<%= raw @program_product.effect %>
 			</span>
 		</div>
 
 		<div class="itdPart">
 			<p>★适用人群</p>
 			<span>
-			谁都能吃！吃吧！！！
+			<%= raw @program_product.crowd %>
+			</span>
+		</div>
+
+		<div class="itdPart">
+			<p>★备注</p>
+			<span>
+			<%= raw @program_product.desc %>
 			</span>
 		</div>
 
