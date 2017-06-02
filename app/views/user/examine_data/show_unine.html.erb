@@ -12,7 +12,7 @@
     <% @show.each do |search|%>
       <tr>
       	<th><%= search.value %></th>
-        <% if search.value > 149 && search.value < 416 %>
+        <% if search.value > 0.42 && search.value < 0.20 %>
           <th class="green">正常</th>
         <% else %>
           <th class="red">异常</th>

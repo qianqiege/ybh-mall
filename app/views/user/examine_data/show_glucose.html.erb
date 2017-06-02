@@ -10,20 +10,35 @@
     ], library: @options %>
     <% @show.each do |search| %>
         <tr>
-          <% if search.value == 3.8 && search.value == 6.2 %>
-            <th class="green"><%= search.value %></th>
-          <% else %>
-            <th class="red"><%= search.value %></th>
-          <% end %>
           <% case search.mens_type %>
-          <% when 2 %>
-            <th>餐前</th>
           <% when 1 %>
+            <th>餐前</th>
+            <% if search.value > 4.4 && search.value < 6.1 %>
+              <th class="green"><%= search.value %></th>
+            <% else %>
+              <th class="red"><%= search.value %></th>
+            <% end %>
+          <% when 2 %>
             <th>餐后</th>
+            <% if search.value > 4.4 && search.value < 8 %>
+              <th class="green"><%= search.value %></th>
+            <% else %>
+              <th class="red"><%= search.value %></th>
+            <% end %>
           <% when 3 %>
             <th>睡前</th>
+            <% if search.value > 3.9 && search.value < 6.1 %>
+              <th class="green"><%= search.value %></th>
+            <% else %>
+              <th class="red"><%= search.value %></th>
+            <% end %>
           <% else 4 %>
-            <th>睡后</th>
+            <th>凌晨</th>
+            <% if search.value > 4.4 && search.value < 8 %>
+              <th class="green"><%= search.value %></th>
+            <% else %>
+              <th class="red"><%= search.value %></th>
+            <% end %>
           <% end %>
           <th><%= datetime search.updated_at %></th>
         </tr>
