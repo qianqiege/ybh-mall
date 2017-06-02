@@ -1,0 +1,24 @@
+<div class="home">
+  <%= render 'shared/slide' %>
+  <!-- end mall_menu -->
+  <div class="pro-area graybg">
+    <div class="pro-tit">
+      <h2>推荐方案</h2>
+    </div>
+    <div class="pro-list">
+      <ul>
+        <% @product_program.each do |product| %>
+          <li>
+            <a href="<%= mall_programs_product_path(product) %>">
+              <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
+              <h5 class='text-center'><%= product.name %></h5>
+              <div class="sub-title text-center"><%= raw product.desc %></div>
+              <p class="item-price text-center">
+              </p>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,14 @@ zh-CN:
       wallet_manage: '钱包/账户'
   activerecord:
     attributes:
+      program:
+        name: '方案名称'
+        features: '方案功能'
+        crowd: '产品功效'
+        effect: '适宜人群'
+        desc: '备注'
+        image: '图片'
+        is_show: '是否显示'
       product:
         name: "标题"
         original_product_price: "原价"
@@ -286,6 +294,7 @@ zh-CN:
       health_program: '产品方案'
       long_program: '龙氏脊筑方案'
       member_record: '会员档案/信息'
+      program: '方案'
       slide: '滚动图片'
       scoin_account: 'S货币账户'
       integral: '用户钱包账户'
