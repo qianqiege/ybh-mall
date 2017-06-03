@@ -145,4 +145,14 @@ class Mall::OrdersController < Mall::BaseController
       flash[:notice] = "操作失败!"
     end
   end
+
+  def receive
+    @order = Order.find(params[:id])
+    if @order.may_receive?
+      @order.receive!
+      flash[:notice] = "设置成功!"
+    else
+      flash[:notice] = "操作失败!"
+    end
+  end
 end
