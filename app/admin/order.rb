@@ -172,6 +172,23 @@ ActiveAdmin.register Order do
         t.column('单价') { |line_item| line_item.unit_price }
       end
     end
+
+    panel "物流信息" do
+      div do
+        if order.express_number.present? &&
+            (express = order.remote_express_info) &&
+            express["status"].to_i == 200
+
+          express["data"].each do |data|
+            div do
+              "#{unix_time_to_datatime(data['time'].to_s)}：#{data['info']}"
+            end
+          end
+        else
+          "未有物流信息，可能没有填写物流单号或者查不到信息"
+        end
+      end
+    end
   end
 
   # 目前只供填写货运单号使用，如果有其他用途需要做修改

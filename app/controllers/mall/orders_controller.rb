@@ -8,7 +8,7 @@ class Mall::OrdersController < Mall::BaseController
 
   def express
     @order = Order.find(params[:id])
-    express = Express.query @order.express_number
+    express = @order.remote_express_info
     if express["status"].to_i == 200
       @express_data = express["data"]
     end
