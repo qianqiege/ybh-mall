@@ -5,6 +5,32 @@ ActiveAdmin.register Order do
 
   actions :index, :show
 
+  csv do
+    column :wechat_user do |order|
+      order.wechat_user.try(:name)
+    end
+    column :user do |order|
+      order.user.try(:name)
+    end
+    column :activity do |order|
+      order.activity.try(:name)
+    end
+    column :price
+    column :integral
+    column :cash
+    column :quantity
+    column :number
+    column :pay_tp do |order|
+      order.pay_type_state
+    end
+    column :payment do |order|
+      order.payment_label
+    end
+    column :status do |order|
+      order.human_state
+    end
+    column :created_at
+  end
 
   controller do
     def update
