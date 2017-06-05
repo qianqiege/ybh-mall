@@ -22,8 +22,9 @@ namespace :presented_record do
           if !@integral.nil? && record.balance > 0 && @integral.locking >= record.balance
             # 条件为true,执行计算，从锁定积分中减掉，加到可用积分
              locking = @integral.locking - record.balance
+             available = @integral.available + record.balance
              # 更新用户的锁定积分和可用积分
-             if @integral.update(locking: locking)
+             if @integral.update(locking: locking,available: available)
                puts "更新锁定积分总数为#{locking}"
                # 更新成功后，将这条记录判定为无效记录，避免重复计算
                record.is_effective = 0
