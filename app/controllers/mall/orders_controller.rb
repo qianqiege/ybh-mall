@@ -95,6 +95,8 @@ class Mall::OrdersController < Mall::BaseController
       @order.integral = 0
     end
 
+    @order.desc = params[:custom_desc]
+
     if @order.save
       # 4. 清空购物车已生成订单的商品
       line_items.each do |line_item|
