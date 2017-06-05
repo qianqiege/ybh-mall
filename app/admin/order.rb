@@ -5,6 +5,32 @@ ActiveAdmin.register Order do
 
   actions :index, :show
 
+  csv do
+    column :wechat_user do |order|
+      order.wechat_user.try(:name)
+    end
+    column :user do |order|
+      order.user.try(:name)
+    end
+    column :activity do |order|
+      order.activity.try(:name)
+    end
+    column :price
+    column :integral
+    column :cash
+    column :quantity
+    column :number
+    column :pay_tp do |order|
+      order.pay_type_state
+    end
+    column :payment do |order|
+      order.payment_label
+    end
+    column :status do |order|
+      order.human_state
+    end
+    column :created_at
+  end
 
   controller do
     def update
@@ -144,6 +170,23 @@ ActiveAdmin.register Order do
         t.column('图片') { |line_item| image_tag(line_item.product.image_url, size: "72x45", :alt => "product image") }
         t.column('数量') { |line_item| line_item.quantity }
         t.column('单价') { |line_item| line_item.unit_price }
+      end
+    end
+
+    panel "物流信息" do
+      div do
+        if order.express_number.present? &&
+            (express = order.remote_express_info) &&
+            express["status"].to_i == 200
+
+          express["data"].each do |data|
+            div do
+              "#{unix_time_to_datatime(data['time'].to_s)}：#{data['info']}"
+            end
+          end
+        else
+          "未有物流信息，可能没有填写物流单号或者查不到信息"
+        end
       end
     end
   end

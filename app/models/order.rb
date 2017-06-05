@@ -136,6 +136,10 @@ class Order < ApplicationRecord
     number
   end
 
+  def remote_express_info
+    Express.query self.express_number
+  end
+
   private
 
   def set_used_address

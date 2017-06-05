@@ -8,7 +8,7 @@ class Mall::OrdersController < Mall::BaseController
 
   def express
     @order = Order.find(params[:id])
-    express = Express.query @order.express_number
+    express = @order.remote_express_info
     if express["status"].to_i == 200
       @express_data = express["data"]
     end
@@ -141,6 +141,16 @@ class Mall::OrdersController < Mall::BaseController
     if @order.may_make_cancel?
       @order.make_cancel!
       flash[:notice] = "已取消订单!"
+    else
+      flash[:notice] = "操作失败!"
+    end
+  end
+
+  def receive
+    @order = Order.find(params[:id])
+    if @order.may_receive?
+      @order.receive!
+      flash[:notice] = "设置成功!"
     else
       flash[:notice] = "操作失败!"
     end

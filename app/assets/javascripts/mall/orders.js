@@ -36,4 +36,24 @@ $(function () {
       }
     }.bind(this));
   })
+
+  $(".btn-receive").on('click', function() {
+    $.confirm('确定要设置为已收货吗？', function(e) {
+      var id = $(this).data('id');
+      if (e) {
+        $.ajax({
+          type: 'PUT',
+          url: '/mall/orders/' + id + '/receive',
+          data: {},
+          dataType: 'json',
+          success: function(data) {
+            window.location.reload();
+          },
+          error: function() {
+            $.tips('出错了');
+          }
+        })
+      }
+    }.bind(this));
+  })
 });
