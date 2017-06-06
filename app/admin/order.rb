@@ -1,7 +1,7 @@
 ActiveAdmin.register Order do
   menu parent: I18n.t("active_admin.menu.mall")
 
-  permit_params :status, :express_number, :activity_id, :user_id, :price, :remark, :desc
+  permit_params :status, :express_number, :activity_id, :user_id, :price, :remark
 
   actions :index, :show
 
@@ -101,7 +101,6 @@ ActiveAdmin.register Order do
     column "现金余额",:cash
     column :quantity
     column :number
-    column :desc
     column '付款类型' do |order|
       status_tag order.pay_type_state, order_pay_type_state_color(order.pay_tp)
     end
@@ -163,7 +162,6 @@ ActiveAdmin.register Order do
       row :address
       row :express_number
       row :remark
-      row :desc
     end
     panel "订单项详情" do
       table_for order.line_items do |t|

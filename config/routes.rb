@@ -47,7 +47,6 @@ Rails.application.routes.draw do
       get :pay, on: :member
       post :make_cancel, on: :member
       get :express, on: :member
-      put :receive, on: :member
     end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do
@@ -122,6 +121,8 @@ Rails.application.routes.draw do
     get '/create_gift', to: 'info#create_gift'
     post '/gift_user', to: 'info#gift_user'
     post '/create_exchange', to: 'info#create_exchange'
+    post '/create_deposit_exchange', to: 'info#create_deposit_exchange'
+    get '/deposit_pay', to: 'info#deposit_pay'
     # show_examine
     get '/data_home',to: 'examine_data#health_data_home'
     get '/show_temperature', to: 'examine_data#show_temperature'

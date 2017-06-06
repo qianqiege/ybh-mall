@@ -272,8 +272,6 @@ zh-CN:
         opening: '开户行'
         state: '是否处理'
         created_at: '申请日期'
-        review: '是否审核'
-        name: '账户姓名'
     models:
       cash_record: '现金收支明细'
       product: "商品"

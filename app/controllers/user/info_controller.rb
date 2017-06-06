@@ -20,7 +20,41 @@ class User::InfoController < Wechat::BaseController
     @available_ycoin = available.exchange
   end
 
+  #现金提现
   def create_exchange
+    format_data = {
+      account: params[:account], 
+      reason: "提现", 
+      status: params[:account_type], 
+      number: -params[:quantity].to_i, 
+      user_id: current_user.user_id
+    }
+    CashRecord.create(format_data)
+
+  end
+
+  #现金充值
+  def create_deposit_exchange
+    format_data = { 
+      reason: "充值", 
+      status: params[:account_type], 
+      number: params[:quantity].to_i,
+      payment: params[:payment],
+      is_effective: 1
+    }
+    @cash_record = User.find(current_user.user_id).cash_record.new(format_data)
+    if @cash_record.save
+      redirect_to user_deposit_pay_path(@cash_record)
+    end
+  end
+
+  #支付确认
+  def deposit_pay
+    @no_fotter = true
+    @cash_record = User.find(current_user.user_id).cash_record.find(params[:format])
+    @cash_record.price = @cash_record.number
+    @cash_record.trade_name = "账户充值"
+    @trade_merge_pay_params = @cash_record.fast_pay.trade_merge_pay_params(@cash_record.payment)
   end
 
   def gift_account

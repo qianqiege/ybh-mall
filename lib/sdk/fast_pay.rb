@@ -90,7 +90,11 @@ module Sdk
       }
 
       if pay_type == 'PAYMENT_TYPE_WECHAT'
-        options[:openid] =  @order.wechat_user.open_id
+        if @order.number.class == "String"
+          options[:openid] = @order.wechat_user.open_id
+        else
+          options[:openid] = User.find(@order.user_id).wechat_user.open_id
+        end
       end
 
       sign_params(options)

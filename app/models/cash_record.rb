@@ -1,4 +1,6 @@
 class CashRecord < ApplicationRecord
+
+  attr_accessor :price, :trade_name
   has_paper_trail
   belongs_to :user
 
@@ -14,9 +16,13 @@ class CashRecord < ApplicationRecord
   def update_cash
     wallet = Integral.find_by(user_id: user.id)
     if !wallet.nil?
-      wallet.not_cash += self.number
+      wallet.cash += self.number.to_f
       wallet.save
     end
   end
 
+
+  def fast_pay
+    @fast_pay ||= Sdk::FastPay.new(self)
+  end
 end

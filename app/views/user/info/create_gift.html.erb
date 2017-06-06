@@ -85,10 +85,10 @@
 
 <%= form_tag(controller: "info",action: "gift_user" ,method: "post", id: "formd") do %>
 <!-- <form id="formd" method="post" action="<%= user_gift_user_path %>" > -->
-  <p>兑换数量:</p>
+  <p>赠送数量:</p>
   <input type="number" name="quantity" class="quantity" placeholder="请输入大于400(含400)并为20倍数的数字">
   <div class="boders"></div>
-  <p>兑换方式:</p>
+  <p>赠送方式:</p>
   <div class="zhanghu">
     <select name="account_type" id="a">
       <option value="无效账户">账户类型</option>
@@ -111,7 +111,7 @@
 
 <input name = "id" style="display: none;" value="<%= @gift_user.id %>">
 <input name="type_coin" style="display: none;" value= "0" >
-<button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认兑换</button>
+<button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认转账</button>
 
 <!-- </form> -->
 <% end %>
