@@ -28,6 +28,7 @@ class AdminAbility
     elsif user.role_name == 'market'
       can :manage, Product
       can :manage, Slide
+      can :manage, Program
     elsif user.role_name == 'finance'
       can :manage, Order
       can :manage, ReturnRequest
