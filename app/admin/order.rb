@@ -19,7 +19,9 @@ ActiveAdmin.register Order do
     column :integral
     column :cash
     column :quantity
-    column :number
+    column :number do |order|
+      "#{order.number}\t"
+    end
     column :pay_tp do |order|
       order.pay_type_state
     end
