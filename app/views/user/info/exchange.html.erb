@@ -57,10 +57,10 @@
 
 
 <form>
-  <p>兑换数量:</p>
+  <p>提现数量:</p>
   <input type="number" name="quantity" class="quantity">
   <div class="boders"></div>
-  <p>兑换账户:</p>
+  <p>提现账户:</p>
   <div class="zhanghu">
     <select name="account_type">
       <option value="0" style="font-size:10px;">兑换账户</option>
@@ -76,5 +76,5 @@
 
 <% if @available_ycoin > 400 %>
 
-  <a href="<%= user_create_exchange_path %>" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认体现</a>
+  <a href="<%= user_create_exchange_path %>" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认提现</a>
 <% end %>
