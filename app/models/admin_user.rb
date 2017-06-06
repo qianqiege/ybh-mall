@@ -12,7 +12,8 @@ class AdminUser < ApplicationRecord
                     scoin_admin:'S货币管理员',
                     activity_admin:'活动管理员',
                     market: '市场部管理',
-                    finance:'财务管理',customer_service:'客户服务'}.freeze
+                    finance:'财务管理',
+                    customer_service:'客户服务'}.freeze
 
   def role_name_label
     ROLE_NAME_DATA[self.role_name.to_sym]
