@@ -8,6 +8,7 @@ class AdminAbility
       can :manage, Order
       can :manage, Product
       can :manage, ReturnRequest
+      can :manage, User
     elsif user.role_name == 'spinebuild'
       can :manage, Rank
       can :manage, SpineBuild
@@ -33,6 +34,7 @@ class AdminAbility
       can :manage, Order
       can :manage, ReturnRequest
       can :manage, ExchangeRecord
+      can :manage, User
     elsif user.role_name == 'customer_service'
       can :manage, Advice
       can :manage, AdviceType
