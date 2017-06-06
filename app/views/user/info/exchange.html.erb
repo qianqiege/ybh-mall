@@ -31,6 +31,7 @@
   .zhanghu {
     width: 90%;
     display: flex;
+    margin-bottom: 5px;
   }
 
   .account{
@@ -41,40 +42,54 @@
 
 
 <%= render 'cash_hearder' %>
-<%= title '兑换' %>
-<% if @available_ycoin >= 400 %>
-<p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
-  <span style="color:red;font-size:15px;">提示：</span>
-  提交兑换申请后，三个工作日内汇入指定账户（支付宝、微信、银行卡，需提交相关账户信息）
-</p>
+
+
+
+<% if params[:format].to_i != 1 %>
+  <%= form_tag(controller: "info", action:"create_exchange", method:"post") do %>
+    <p>提现金额:</p>
+    <input type="number" name="quantity" class="quantity">
+    <div class="boders"></div>
+    <p>提现账户:</p>
+    <div class="zhanghu">
+      <select name="account_type">
+        <option value="0" style="font-size:10px;">提现账户</option>
+        <option value="支付宝">支付宝</option>
+        <option value="银行卡">银行卡</option>
+    </select>
+    <input type="text" name="account" placeholder="请输入您的账号信息" class="account">
+    </div>
+    <div class="zhanghu">
+        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" value="确认提现">
+    </div>
+  <% end %>
 <% else %>
-  <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
-    <span style="color:red;font-size:15px;">提示：</span>
-    对不起，您的可兑换易积分数量低于400，根据我公司规定，您暂时不可以使用提现。
-  </p>
+  <%= form_tag(controller: "info", action:"create_deposit_exchange", method:"post") do %>
+    <p>充值金额:</p>
+    <input type="number" name="quantity" class="quantity">
+    <div class="boders"></div>
+    <div class="weui-cells">
+      <div class="weui-cell weui-cell_select weui-cell_select-after">
+        <div class="weui-cell__hd">
+          <label for="" class="weui-label">支付方式</label>
+        </div>
+        <div class="weui-cell__bd">
+          <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) ,  class: "weui-select" %>
+        </div>
+      </div>
+    </div>
+   
+    
+    <div class="zhanghu">
+        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" value="确认充值">
+    </div>
+  <% end %>
 <% end %>
 
 
 
-<form>
-  <p>兑换数量:</p>
-  <input type="number" name="quantity" class="quantity">
-  <div class="boders"></div>
-  <p>兑换账户:</p>
-  <div class="zhanghu">
-    <select name="account_type">
-      <option value="0" style="font-size:10px;">兑换账户</option>
-       <option value="1">支付宝</option>
-  </select>
-  <input type="text" name="account" placeholder="请输入您的账号信息" class="account">
-  </div>
-</form>
 
 
 
-<input name = "id" style="display: none;" value="<%= %>">
 
-<% if @available_ycoin > 400 %>
 
-  <a href="<%= user_create_exchange_path %>" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" >确认体现</a>
-<% end %>
