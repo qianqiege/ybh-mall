@@ -15,6 +15,13 @@ index do
   column :account
   column :opening
   column :name
+  column :review do |record|
+    if record.review == "true"
+      review = "已审核"
+    else
+      review = "待审核"
+    end
+  end
   column :state do |record|
     if record.state == "true"
       state = "已处理"
@@ -25,7 +32,12 @@ index do
   column :created_at
   # actions defaults: true
   column '处理操作' do |record|
-    if record.state == "false"
+    if record.review == "false"
+      span do
+        link_to '审核通过',u_review_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
+      end
+    end
+    if record.state == "false" && record.review == "true"
       span do
         link_to '已处理',u_state_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
       end
@@ -47,6 +59,11 @@ end
 
   member_action :u_state, method: :put do
     resource.u_state
+    redirect_to admin_exchange_records_path
+  end
+
+  member_action :u_review, method: :put do
+    resource.u_review
     redirect_to admin_exchange_records_path
   end
 
