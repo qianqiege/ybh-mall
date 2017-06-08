@@ -274,6 +274,7 @@ zh-CN:
         created_at: '申请日期'
     models:
       cash_record: '现金收支明细'
+      deposit: '现金充值记录'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'

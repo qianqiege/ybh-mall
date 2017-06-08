@@ -28,10 +28,25 @@
     width: 90%;
   }
 
-  .zhanghu {
+  /*.zhanghu {
     width: 90%;
     display: flex;
     margin-bottom: 5px;
+  }*/
+
+  .zhanghu {
+    width: 94%;
+    display: flex;
+  }
+
+  .zhanghu span{
+    font-size: 0.5rem;
+    color: #666;
+    line-height: 2rem;
+  }
+
+  .account{
+    flex: 1;
   }
 
   .account{
@@ -66,22 +81,14 @@
 <% else %>
   <%= form_tag(controller: "info", action:"create_deposit_exchange", method:"post") do %>
     <p>充值金额:</p>
-    <input type="number" name="quantity" class="quantity">
+    <input type="number" name="price" class="quantity">
     <div class="boders"></div>
-    <div class="weui-cells">
-      <div class="weui-cell weui-cell_select weui-cell_select-after">
-        <div class="weui-cell__hd">
-          <label for="" class="weui-label">支付方式</label>
-        </div>
-        <div class="weui-cell__bd">
-          <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) ,  class: "weui-select" %>
-        </div>
-      </div>
-    </div>
-   
+        <label for="" class="weui-label">支付方式</label>
+        <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) %>
+        <span> （支持银行卡和微信）</span>
     
     <div class="zhanghu">
-        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" value="确认充值">
+        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2; padding-bottom: 40px" value="确认充值">
     </div>
   <% end %>
 <% end %>

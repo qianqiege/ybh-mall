@@ -26,6 +26,31 @@ class NotifiesController < ApplicationController
     end
   end
 
+  # 充值支付通知回掉
+  def deposits
+    deposit = Deposit.find_by(number: params["merchOrderNo"])
+    if(deposit.present?)
+      deposit.fast_pay.logger.info params
+      remote_sign = params[:sign]
+
+      params.delete(:sign)
+      params.delete(:action)
+      params.delete(:controller)
+
+      local_sign = deposit.fast_pay.sign(params)
+      if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
+        deposit.trade_nos = params["tradeNo"]
+        deposit.pay
+        deposit.save!
+        render json: "success", layout: nil
+      else
+        render json: "fail", layout: nil
+      end
+    else
+      render json: "fail", layout: nil
+    end
+  end
+
   def refund
     # TODO: 退款流程
     render json: "success", layout: nil

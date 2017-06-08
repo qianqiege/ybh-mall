@@ -35,26 +35,21 @@ class User::InfoController < Wechat::BaseController
 
   #现金充值
   def create_deposit_exchange
-    format_data = { 
-      reason: "充值", 
-      status: params[:account_type], 
-      number: params[:quantity].to_i,
-      payment: params[:payment],
-      is_effective: 1
+    format_data = {   
+      price: params[:price].to_f,
+      payment: params[:payment]
     }
-    @cash_record = User.find(current_user.user_id).cash_record.new(format_data)
-    if @cash_record.save
-      redirect_to user_deposit_pay_path(@cash_record)
+    @deposit = User.find(current_user.user_id).deposits.new(format_data)
+    if @deposit.save
+      redirect_to user_deposit_pay_path(@deposit)
     end
   end
 
   #支付确认
   def deposit_pay
     @no_fotter = true
-    @cash_record = User.find(current_user.user_id).cash_record.find(params[:format])
-    @cash_record.price = @cash_record.number
-    @cash_record.trade_name = "账户充值"
-    @trade_merge_pay_params = @cash_record.fast_pay.trade_merge_pay_params(@cash_record.payment)
+    @deposit = User.find(current_user.user_id).deposits.find(params[:format])
+    @trade_merge_pay_params = @deposit.fast_pay.trade_merge_pay_params_deposit(@deposit.payment)
   end
 
   def gift_account
