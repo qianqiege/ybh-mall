@@ -21,7 +21,7 @@ zh-CN:
       program:
         name: '方案名称'
         features: '方案功能'
-        crowd: '产品功效'
+        crowd: '产品'
         effect: '适宜人群'
         desc: '备注'
         image: '图片'
