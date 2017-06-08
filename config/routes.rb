@@ -156,6 +156,7 @@ Rails.application.routes.draw do
 
   resources :notifies do
     post :orders, on: :collection
+    post :deposits, on: :collection
     post :refund, on: :collection
     post :idata, on: :collection
   end
