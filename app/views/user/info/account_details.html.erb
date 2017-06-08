@@ -131,7 +131,7 @@
                 <td class="td">时间</td>
             </tr>
         </thead>
-        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Exchange").order(created_at: :desc).limit(10) %>
+        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Exchange").order(created_at: :desc).limit(10) || PresentedRecord.where(user_id: current_user.user_id).where(type: "Available").order(created_at: :desc).limit(10) %>
         <% if details.length >= 1 %>
           <tbody>
             <% details.each do |details| %>
