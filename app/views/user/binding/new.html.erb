@@ -8,6 +8,17 @@
     background: #1aad19;z-index: 99;
 
   }
+
+  .radius {
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    text-indent: 20px;
+  }
+
+  .really {
+    font-size: 1.2rem;
+  }
+
 </style>
 
 
@@ -25,44 +36,11 @@
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
-      <div class="login_control">
-        <div>手机号</div>
-        <div class="login_tab">
-          <div class="login_content changearea">+86</div>
-          <div class="login_space"></div>
-          <div class="login_content login_phone">
-            <input placeholder="请输入您的手机号" id="txtCustomerID" type="tel" name="mobile">
-          </div>
-        </div>
-      </div>
 
-      <div class="login_control">
-        <div class="login_label">验证码</div>
-        <div class="login_content">
-          <input id="txtValidatedCode" placeholder="短信中6位数字" type="text" name="code">
-          <div id="smsgetCode" class="get_code fr">发送验证码</div>
-          <div id="resetText" class="get_code hide fr">重新发送(<span id="smsTimeText"></span>)</div>
-        </div>
-      </div>
 
-      <div class="login_control">
-        <div class="login_label">请设置登录御易健平台密码</div>
-        <div class="login_content">
-          <%= password_field_tag :password %>
-        </div>
-      </div>
-
-      <div class="login_control">
-        <div class="login_label">邀请码（选填）</div>
-        <div class="login_content">
-          <%= text_field_tag :invitation_id, @invitation_user %>
-        </div>
-      </div>
-
-      <div class="weui-cells__title">必填信息</div>
-      <div class="weui-cells weui-cells_form">
+        <div class="weui-cells__title">必填信息</div>
         <div class="weui-cell weui-cell_warn">
-            <div class="weui-cell__hd"><label for="" class="weui-label">真实姓名</label></div>
+            <div class="weui-cell__hd really"><label for="" class="weui-label">真实姓名</label></div>
             <div class="weui-cell__bd">
                 <%= text_field_tag :name %>
             </div>
@@ -71,14 +49,34 @@
             </div>
         </div>
         <div class="weui-cell weui-cell_warn">
-            <div class="weui-cell__hd"><label for="" class="weui-label">身份证号</label></div>
+            <div class="weui-cell__hd really"><label for="" class="weui-label">身份证号</label></div>
             <div class="weui-cell__bd">
                 <%= text_field_tag :identity_card %>
             </div>
             <div class="weui-cell__ft">
                 <i class="weui-icon-warn"></i>
             </div>
+        </div>  
+
+      <div class="login_control">
+        <div class="login_label">邀请码（选填）</div>
+        <div class="login_content radius">
+          <%= text_field_tag :invitation_id, @invitation_user %>
         </div>
+      </div>
+
+
+      <div class="login_control">
+        <div class="login_label">请设置登录御易健平台密码</div>
+        <div class="login_content radius">
+          <%= password_field_tag :password %>
+        </div>
+      </div>
+
+      
+      
+      <div class="weui-cells weui-cells_form">
+       
 
         <!-- 医生这里display: none -->
         <label class="weui-agree" style="display: none;">
@@ -87,6 +85,27 @@
             我是医生
           </span>
         </label>
+
+
+          <div class="login_control">
+            <div>手机号</div>
+            <div class="login_tab">
+              <div class="login_content changearea">+86</div>
+              <div class="login_space"></div>
+              <div class="login_content login_phone">
+                <input placeholder="请输入您的手机号" id="txtCustomerID" type="tel" name="mobile">
+              </div>
+            </div>
+          </div>
+
+          <div class="login_control">
+            <div class="login_label">验证码</div>
+            <div class="login_content">
+              <input id="txtValidatedCode" placeholder="短信中6位数字" type="text" name="code">
+              <div id="smsgetCode" class="get_code fr">发送验证码</div>
+              <div id="resetText" class="get_code hide fr">重新发送(<span id="smsTimeText"></span>)</div>
+            </div>
+        </div>        
 
         <!-- 服务条款位置 -->
         <label class="weui-agree">
