@@ -89,13 +89,37 @@ module Sdk
         paymentType: pay_type
       }
 
-      if pay_type == 'PAYMENT_TYPE_WECHAT'
-        if @order.number.class == "String"
-          options[:openid] = @order.wechat_user.open_id
-        else
-          options[:openid] = User.find(@order.user_id).wechat_user.open_id
-        end
-      end
+      options[:openid] =  @order.wechat_user.open_id
+
+      sign_params(options)
+    end
+
+        # 生成普通交易支付参数
+    # PAYMENT_TYPE_WECHAT
+    # PAYMENT_TYPE_YJ
+    def trade_merge_pay_params_deposit(pay_type = "PAYMENT_TYPE_YJ")
+      salt = rand(999999999..9999999999)
+      order_no = "#{Time.current.to_s(:number)}#{salt}"
+
+      tradeInfo = [{
+        merchOrderNo: @order.number,
+        sellerUserId: @partner_id,
+        tradeAmount: @order.price.to_f,
+        currency: "CNY",
+        goodsName: "账户充值"
+      }]
+
+      options = {
+        orderNo: order_no,
+        merchOrderNo: @order.number,
+        service: "fastPayTradeMergePay",
+        tradeInfo: tradeInfo.to_json,
+        returnUrl: @host + 'user/transaction',
+        notifyUrl: @host + 'notifies/deposits',
+        paymentType: pay_type
+      }
+
+      options[:openid] =  User.find(@order.user_id).wechat_user.open_id
 
       sign_params(options)
     end
