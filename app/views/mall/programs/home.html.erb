@@ -12,8 +12,8 @@
             <a href="<%= mall_programs_product_path(product) %>">
               <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
               <h5 class='text-center'><%= product.name %></h5>
-              <!-- <div class="sub-title text-center"><%= raw product.desc %></div>
-              <p class="item-price text-center">
+              <div class="sub-title text-center"><%= raw product.crowd %></div>
+              <!-- <p class="item-price text-center">
               </p> -->
             </a>
           </li>
