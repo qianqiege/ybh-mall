@@ -5,7 +5,6 @@ class User < ApplicationRecord
 
   after_create :create_invitation
   after_create :create_present
-  before_create :update_status
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
