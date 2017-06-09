@@ -9,15 +9,32 @@
 
   }
 
-  .radius {
-    border: 1px solid #ccc;
-    border-radius: 50px;
-    text-indent: 20px;
+  .weui-cells:after,.weui-cell:before,.weui-cells:before{
+    border:0;
   }
 
-  .really {
-    font-size: 1.2rem;
+  .really,.login_content {
+    font-size: 1rem;
   }
+
+  .weui-cell__bd {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .login_label,.phone,.changearea {
+    color: #999;
+  }
+
+  .weui-cell_warn .weui-cell__hd {
+    width: 19%;
+  }
+
+  .radius {
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+  }
+
+
 
 </style>
 
@@ -88,7 +105,7 @@
 
 
           <div class="login_control">
-            <div>手机号</div>
+            <div class="phone">手机号</div>
             <div class="login_tab">
               <div class="login_content changearea">+86</div>
               <div class="login_space"></div>
