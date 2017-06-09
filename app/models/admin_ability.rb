@@ -35,6 +35,7 @@ class AdminAbility
       can :manage, ReturnRequest
       can :manage, ExchangeRecord
       can :manage, User
+      can :manage, PresentedRecord
     elsif user.role_name == 'customer_service'
       can :manage, Advice
       can :manage, AdviceType
