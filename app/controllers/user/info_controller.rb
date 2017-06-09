@@ -2,7 +2,6 @@ class User::InfoController < Wechat::BaseController
   before_action :programs
 
   def update_state
-    byebug
   end
 
   def invitation
@@ -23,10 +22,10 @@ class User::InfoController < Wechat::BaseController
   #现金提现
   def create_exchange
     format_data = {
-      account: params[:account], 
-      reason: "提现", 
-      status: params[:account_type], 
-      number: -params[:quantity].to_i, 
+      account: params[:account],
+      reason: "提现",
+      status: params[:account_type],
+      number: -params[:quantity].to_i,
       user_id: current_user.user_id
     }
     CashRecord.create(format_data)
@@ -35,7 +34,7 @@ class User::InfoController < Wechat::BaseController
 
   #现金充值
   def create_deposit_exchange
-    format_data = {   
+    format_data = {
       price: params[:price].to_f,
       payment: params[:payment]
     }
@@ -230,7 +229,8 @@ class User::InfoController < Wechat::BaseController
   end
 
   def wallet
-    @ycoin = User.find(current_user.user_id)
+    @exchange_r = ExchangeRecord.where(user_id: current_user.user_id)
+    @cash = CashRecord.where(user_id: current_user.user_id).where(reason: "提现")
   end
 
   def do_query_wallet
