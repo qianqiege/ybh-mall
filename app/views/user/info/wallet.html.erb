@@ -6,8 +6,7 @@
           <tr>
               <td class="td">姓名</td>
               <td class="td">数量</td>
-              <td class="td">审核状态</td>
-              <td class="td">处理状态</td>
+              <td class="td">兑换进度</td>
               <td class="td">兑换日期</td>
               <td class="td">兑换状态</td>
           </tr>
@@ -18,11 +17,6 @@
               <tr class="center">
                   <td class="td" style="width: 15%"><%= exchange.user.name %></td>
                   <td class="td" style="width: 12%"><%= exchange.number %></td>
-                  <% if exchange.review == "true" %>
-                    <td class="td" style="width: 17%">已审核</td>
-                  <% else %>
-                    <td class="td" style="width: 17%">待审核</td>
-                  <% end %>
                   <% if exchange.state == "true" %>
                     <td class="td" style="width: 17%">已处理</td>
                   <% else %>
