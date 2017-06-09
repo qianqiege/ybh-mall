@@ -3,26 +3,22 @@ class ExchangeRecord < ApplicationRecord
 
   include AASM
   aasm column: :state do
-    state :false , :initial => true
-    state :true
+     state :pending , :initial => true
+     state :dealing
+     state :dealed
 
-    event :u_state do
-      transitions from: :false, to: :true
-      after do
-        self.save
-      end
-    end
-  end
+     event :pass do
+       transitions from: :pending, to: :dealing
+       after do
+         self.save
+       end
+     end
 
-  aasm column: :review do
-     state :false , :initial => true
-     state :true
-
-      event :u_review do
-        transitions from: :false, to: :true
-        after do
-           self.save
-        end
+     event :deal do
+       transitions from: :dealing, to: :dealed
+       after do
+         self.save
+       end
      end
    end
 

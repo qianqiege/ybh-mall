@@ -1,5 +1,46 @@
 <%= render 'wallet_header' %>
 
+<div style="display: block;  padding-bottom:3.5rem;" class="weui-cells__title"> 可使用收支明细：
+  <table class="table">
+      <thead>
+          <tr>
+              <td class="td">姓名</td>
+              <td class="td">数量</td>
+              <td class="td">审核状态</td>
+              <td class="td">处理状态</td>
+              <td class="td">兑换日期</td>
+              <td class="td">兑换状态</td>
+          </tr>
+      </thead>
+        <tbody>
+          <% @exchange_r.each do |exchange| %>
+            <% if !exchange.nil? %>
+              <tr class="center">
+                  <td class="td" style="width: 15%"><%= exchange.user.name %></td>
+                  <td class="td" style="width: 12%"><%= exchange.number %></td>
+                  <% if exchange.review == "true" %>
+                    <td class="td" style="width: 17%">已审核</td>
+                  <% else %>
+                    <td class="td" style="width: 17%">待审核</td>
+                  <% end %>
+                  <% if exchange.state == "true" %>
+                    <td class="td" style="width: 17%">已处理</td>
+                  <% else %>
+                    <td class="td" style="width: 17%">待处理</td>
+                  <% end %>
+                  <td class="td" style="width: 22%"><%= date exchange.created_at %></td>
+                  <% if exchange.state == "true" %>
+                    <td class="td" style="width: 20%">已完成</td>
+                  <% else %>
+                    <td class="td" style="width: 20%">未完成</td>
+                  <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+      </tbody>
+  </table>
+</div>
+
 <!-- <div class='wallet-title'>
   CoinSpace
 </div>
