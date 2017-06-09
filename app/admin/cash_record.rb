@@ -13,7 +13,7 @@ ActiveAdmin.register CashRecord do
     column :number
     column :is_effective
     column :status
-    column :type
+    column :account
     column :created_at
     actions
   end

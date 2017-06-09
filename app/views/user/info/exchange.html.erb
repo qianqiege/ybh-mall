@@ -58,25 +58,28 @@
 
 <%= render 'cash_hearder' %>
 
-
+<% unless @cash_record.status.blank? %>
+    <div class="notice">
+      <h3>金额或者账户错误</h3>
+    </div>
+<% end %>
 
 <% if params[:format].to_i != 1 %>
 
   <%= form_tag(controller: "info", action:"create_exchange", method:"post") do %>
     <p>提现金额:</p>
-    <input type="text" name="quantity" class="quantity">
+    <input type="number" name="quantity" class="quantity" step="0.01">
     <div class="boders"></div>
     <p>提现账户:</p>
     <div class="zhanghu">
       <select name="account_type">
-        <option value="0" style="font-size:10px;">提现账户</option>
         <option value="支付宝">支付宝</option>
         <option value="银行卡">银行卡</option>
     </select>
     <input type="number" name="account" placeholder="请输入您的账号信息" class="account">
     </div>
     <div class="zhanghu">
-        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2;" value="确认提现">
+        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2; padding-bottom: 40px" value="确认提现">
     </div>
   <% end %>
 

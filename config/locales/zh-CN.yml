@@ -62,8 +62,15 @@ zh-CN:
         number: '数量'
         reason: '收入支出渠道'
         type: '类型'
+        account: '账户账号'
         is_effective: "是否有效"
         created_at: '创建日期'
+      deposit:
+        user_id: '用户'
+        number: '充值订单号'
+        price: '充值金额'
+        status: '状态'
+        created_at: '充值订单创建时间'
       organization:
         name: "机构（公司）名称"
         only_number: "机构（公司）编号"

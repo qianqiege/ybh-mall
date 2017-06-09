@@ -1,5 +1,8 @@
 <%= render 'cash_hearder' %>
 
+<p class="flash" style="text-align: center; color: red">
+	<%= flash[:notice] %>
+</p>
 
 <div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 108px;height:7%;">
   <a class="button-tx" href="<%= user_exchange_path("1") %>">充值</a>
@@ -7,3 +10,12 @@
 <div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 58px;height:7%;">
   <a class="button-tx" href="<%= user_exchange_path("2") %>">提现</a>
 </div>
+
+
+<script>
+	$(function() {
+		setTimeout(function() {
+			$(".flash").hide();
+		},3000);
+	});
+</script>
