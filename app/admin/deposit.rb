@@ -21,14 +21,14 @@ index do
 	selectable_column
    	id_column
 
-   	column "用户", :user_id
-	column "充值订单号", :number
-	column "充值金额", :price
+   	column :user_id
+	  column :number
+	  column :price
     column '付款类型' do |deposit|
       deposit.payment == "PAYMENT_TYPE_YJ" ? "银行卡支付" : "微信支付"
     end
-    column "状态", :status
-    column "充值订单创建时间", :created_at
+    column :status
+    column :created_at
 
     actions
 end

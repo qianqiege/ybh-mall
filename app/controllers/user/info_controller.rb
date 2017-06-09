@@ -17,18 +17,29 @@ class User::InfoController < Wechat::BaseController
   def exchange
     available = Integral.find_by(user_id: current_user.user_id)
     @available_ycoin = available.exchange
+    @cash_record = CashRecord.new
   end
 
   #现金提现
   def create_exchange
-    format_data = {
-      account: params[:account],
-      reason: "提现",
-      status: params[:account_type],
-      number: -params[:quantity].to_i,
+     format_data = {
+      account: params[:account], 
+      reason: "提现", 
+      status: params[:account_type], 
+      number: -params[:quantity].to_f, 
       user_id: current_user.user_id
     }
-    CashRecord.create(format_data)
+    @cash_record = CashRecord.new(format_data)
+
+    if params[:account_type] == "支付宝" && params[:account].to_s.length != 11  
+      render  action: :exchange
+    elsif  params[:quantity].to_f <= 0
+      render action: :exchange
+    else
+      @cash_record.save
+      flash[:notice] = "申请提现成功"
+      redirect_to user_transaction_path
+    end
 
   end
 
