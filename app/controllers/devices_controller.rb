@@ -158,7 +158,6 @@ class DevicesController < ApplicationController
         end
       when '108'
         png_hex = info["param"]["ecgpng"]
-
         if png_hex.present? && !png_hex.nil?
           # id = Digest::MD5.hexdigest(info["param"]["id"])
 
@@ -172,7 +171,8 @@ class DevicesController < ApplicationController
           # image_url = helpers.asset_url("uploads/ecg/#{id}.png")
           if !temporary[0].nil?
             mall.api_ECG(temporary[0].identity_card,png_hex,info["mo"])
-            @ecg = Ecg.new(user_id: idcard.id,url: png_hex, phone: info["mo"])
+            u_id = User.find_by(identity_card: temporary[0].identity_card)
+            @ecg = Ecg.new(user_id: u_id.id,url: png_hex, phone: info["mo"])
             if(@user.present?)
               @ecg.user_id = @user.id
             end
