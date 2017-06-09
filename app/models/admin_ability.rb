@@ -36,6 +36,7 @@ class AdminAbility
       can :manage, ExchangeRecord
       can :manage, User
       can :manage, PresentedRecord
+      can :manage, CashRecord
     elsif user.role_name == 'customer_service'
       can :manage, Advice
       can :manage, AdviceType
