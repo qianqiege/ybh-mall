@@ -17,13 +17,15 @@
               <tr class="center">
                   <td class="td" style="width: 15%"><%= exchange.user.name %></td>
                   <td class="td" style="width: 12%"><%= exchange.number %></td>
-                  <% if exchange.state == "true" %>
-                    <td class="td" style="width: 17%">已处理</td>
-                  <% else %>
+                  <% if exchange.state == "pending" %>
+                    <td class="td" style="width: 17%">待审核</td>
+                  <% elsif exchange.state == "dealing" %>
                     <td class="td" style="width: 17%">待处理</td>
+                  <% elsif exchange.state == "dealed" %>
+                    <td class="td" style="width: 17%">已处理</td>
                   <% end %>
                   <td class="td" style="width: 22%"><%= date exchange.created_at %></td>
-                  <% if exchange.state == "true" %>
+                  <% if exchange.state == "dealed" %>
                     <td class="td" style="width: 20%">已完成</td>
                   <% else %>
                     <td class="td" style="width: 20%">未完成</td>
