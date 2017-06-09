@@ -69,6 +69,12 @@
             <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"],["线下支付", "PAYMENT_TYPE_NULL"]]) ,  class: "weui-select" %>
           </div>
         </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label for="" class="weui-label">备注</label></div>
+          <div class="weui-cell__bd">
+            <%= text_field_tag 'custom_desc', '', class: "weui-input", placeholder: "备注" %>
+          </div>
+        </div>
       </div>
 
       <% if @scoin_account.nil? %>
@@ -91,12 +97,6 @@
             <div class="weui-cell__hd"><label for="" class="weui-label">自定义价格</label></div>
             <div class="weui-cell__bd">
               <%= number_field_tag 'custom_price', '', class: "weui-input", placeholder: "请输入您的自定义价格" %>
-            </div>
-          </div>
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label for="" class="weui-label">备注</label></div>
-            <div class="weui-cell__bd">
-              <%= text_field_tag 'custom_desc', '', class: "weui-input", placeholder: "备注" %>
             </div>
           </div>
         </div>
