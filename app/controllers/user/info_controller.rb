@@ -23,15 +23,15 @@ class User::InfoController < Wechat::BaseController
   #现金提现
   def create_exchange
      format_data = {
-      account: params[:account], 
-      reason: "提现", 
-      status: params[:account_type], 
-      number: -params[:quantity].to_f, 
+      account: params[:account],
+      reason: "提现",
+      status: params[:account_type],
+      number: -params[:quantity].to_f,
       user_id: current_user.user_id
     }
     @cash_record = CashRecord.new(format_data)
 
-    if params[:account_type] == "支付宝" && params[:account].to_s.length != 11  
+    if params[:account_type] == "支付宝" && params[:account].to_s.length != 11
       render  action: :exchange
     elsif  params[:quantity].to_f <= 0
       render action: :exchange
@@ -180,6 +180,7 @@ class User::InfoController < Wechat::BaseController
 
   def home
     @wechat_user = WechatUser.find(current_user)
+    @user_type = User.find(current_user.user_id)
   end
 
   def gift_friend

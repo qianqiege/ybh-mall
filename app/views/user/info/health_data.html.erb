@@ -1,0 +1,72 @@
+<style type="text/css">
+
+  #txtlogin {
+    background:#ccc;
+  }
+
+  #txtlogin.active {
+    background: #1aad19;z-index: 99;
+
+  }
+
+  /*.radius {
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    text-indent: 20px;
+  }*/
+
+  .really,.login_content {
+    font-size: 1rem;
+  }
+
+  .weui-cell__bd {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .login_label,.phone,.changearea {
+    color: #999;
+  }
+
+  .weui-cell_warn .weui-cell__hd {
+    width: 19%;
+  }
+
+  .radius {
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+  }
+
+
+
+</style>
+
+
+<%= title '注册御易健账号' %>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_tag(user_health_data_path, method: :post, id: 'health_login_form') do %>
+  <div class='mobile_box'>
+    <div class="wraper pt10">
+      <div class="login_label"><span style="color:red;margin-left:15px;">提示：</span>邮箱和密码是您在
+        <a href="http://qolm.ybyt.cc" style="color:#999;">慢病健康管理平台 </a>的密码
+      </div>
+      <div class="login_control">
+        <div class="login_label">请填写邮箱</div>
+        <div class="login_content radius">
+          <%= text_field_tag :email %>
+        </div>
+      </div>
+      <div class="login_control">
+        <div class="login_label">请填写密码</div>
+        <div class="login_content radius">
+          <%= password_field_tag :password %>
+        </div>
+      </div>
+      <div class="weui-btn-area">
+        <button class="weui-btn weui-btn_primary" >验证</button>
+      </div>
+    </div>
+  </div>
+<% end %>

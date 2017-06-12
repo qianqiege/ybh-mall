@@ -36,6 +36,15 @@
             <span class="weui-cell__ft"></span>
           </a>
 
+          <% if @user_type.type == "Doctor" %>
+            <a class="weui-cell weui-cell_access" href="<%= user_health_data_path %>">
+              <div class="weui-cell__bd weui-cell_primary">
+                <p>健康监测</p>
+              </div>
+              <span class="weui-cell__ft"></span>
+            </a>
+          <% end %>
+
           <a class="weui-cell weui-cell_access" href="<%= user_wallet_path %>">
             <div class="weui-cell__bd weui-cell_primary">
               <p>我的钱包</p>

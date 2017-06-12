@@ -38,7 +38,7 @@ class User < ApplicationRecord
   belongs_to :invitation, class_name: 'User', foreign_key: 'invitation_id'
 
   validates :invitation_card, uniqueness: true
-  validates :telphone, uniqueness: true, presence: true, length: {is: 11}
+  # validates :telphone, uniqueness: true, presence: true, length: {is: 11}
   validates :identity_card, uniqueness: true, presence: true, length: { is: 18 }
 
   # 已经有真实姓名了，暂时去掉
