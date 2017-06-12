@@ -292,7 +292,6 @@ class Order < ApplicationRecord
     # 如果 是自定义价格产品 非消费产品 便认定为充值 购买代金券
     if is_custom.is_custom_price == true && is_custom.is_consumption == false
       CashRecord.create(user_id: self.user_id, number: self.price, reason: "充值", is_effective:1)
-      # integral.update(not_cash: integral.not_cash + self.price)
     end
   end
 

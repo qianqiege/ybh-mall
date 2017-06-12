@@ -19,7 +19,7 @@ class CashRecord < ApplicationRecord
 
   def update_not_cash
     wallet = Integral.find_by(user_id: user.id)
-    wallet.update(not_cash: self.not_cash + number)
+    wallet.update(not_cash: wallet.not_cash + number)
   end
 
 end
