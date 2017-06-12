@@ -25,17 +25,7 @@
       <% if @order.price > 0 %>
         <button id="cachier-fix-foot" class="cachier-fix-foot active">确认支付</button>
       <% else %>
-        
-        <a href="<%= mall_orders_path %>" class="cachier-fix-foot active payTrue">确定支付</a>
-
-          <script type="text/javascript">
-            var pay = document.getElementByClassName('payTrue');
-            pay.onclick = function(){
-              <% @order.pay! %>
-            }
-        </script>
-
-
+        <a href="<%= mall_exchange_pay_path(@order) %>" class="cachier-fix-foot active payTrue">确定支付</a>
       <% end %>
     </div>
   </div>

@@ -138,6 +138,11 @@ class Mall::OrdersController < Mall::BaseController
     @trade_merge_pay_params = @order.fast_pay.trade_merge_pay_params(@order.payment)
   end
 
+  def exchange_pay
+    @no_fotter = true
+    @order = Order.find(params["format"])
+  end
+
   def make_cancel
     @order = Order.find(params[:id])
     if @order.may_make_cancel?
