@@ -5,6 +5,7 @@ class CashRecord < ApplicationRecord
   belongs_to :user
 
   before_create :update_status
+  after_create :update_not_cash
 
   def update_status
     if self.status.nil?
@@ -15,4 +16,10 @@ class CashRecord < ApplicationRecord
   def fast_pay
     @fast_pay ||= Sdk::FastPay.new(self)
   end
+
+  def update_not_cash
+    wallet = Integral.find_by(user_id: user.id)
+    wallet.update(not_cash: wallet.not_cash + number)
+  end
+
 end
