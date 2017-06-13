@@ -9,6 +9,8 @@ class User::InfoController < Wechat::BaseController
   def health_data_post
     mall = Sdk::Mall.new
     mall.health_data(params[:email],params[:identity_card])
+    flash[:notice] = "上传成功"
+    redirect_to '/user/health_data'
   end
 
   def invitation
@@ -187,7 +189,11 @@ class User::InfoController < Wechat::BaseController
 
   def home
     @wechat_user = WechatUser.find(current_user)
-    @user_type = User.find(current_user.user_id)
+    if !current_user.user_id.nil?
+      @user_type = User.find(current_user.user_id)
+    else
+      redirect_to '/user/binding'
+    end
   end
 
   def gift_friend
