@@ -1,7 +1,14 @@
 class User::InfoController < Wechat::BaseController
   before_action :programs
 
-  def update_state
+  def health_data
+    @user_email = User.find(current_user.user_id)
+    @health_identity_card = params[:identity_card] || ""
+  end
+
+  def health_data_post
+    mall = Sdk::Mall.new
+    mall.health_data(params[:email],params[:identity_card])
   end
 
   def invitation
@@ -316,8 +323,14 @@ class User::InfoController < Wechat::BaseController
    end
   end
 
-  def account_details
-
+  def record_home
+    if current_user.user
+      url = user_health_data_url({identity_card: current_user.user.identity_card})
+      @health_rqrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+      @health_identity_card = User.find(current_user.user_id).identity_card
+    else
+      redirect_to '/user/binding'
+    end
   end
 
   def create_programs

@@ -85,7 +85,7 @@ Rails.application.routes.draw do
   namespace :user do
     root "info#home"
     get '/health_data',to: 'info#health_data'
-    post 'info/health_data'
+    post '/health_data', to: 'info#health_data_post'
     get '/binding',to: 'binding#new'
     get '/ybyt',to: 'info#ybyt'
     get '/record', to: 'info#health_record'
