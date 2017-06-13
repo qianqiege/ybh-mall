@@ -19,6 +19,7 @@ ActiveAdmin.register Order do
     column :integral
     column :cash
     column :quantity
+    column :desc
     column :number do |order|
       "#{order.number}\t"
     end
@@ -164,6 +165,7 @@ ActiveAdmin.register Order do
       row :address
       row :express_number
       row :remark
+      row :desc
     end
     panel "订单项详情" do
       table_for order.line_items do |t|
