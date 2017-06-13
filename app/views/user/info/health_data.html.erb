@@ -41,7 +41,7 @@
 </style>
 
 
-<%= title '注册御易健账号' %>
+<%= title '健康检测' %>
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
@@ -55,7 +55,7 @@
       <div class="login_control">
         <div class="login_label">请确认您的邮箱</div>
         <div class="login_content radius">
-          <input type="search" class="weui-search-bar__input" placeholder="请输入您的邮箱账号" name="emial" value = "<%= @user_email.email %>">
+          <input type="search" class="weui-search-bar__input" name="emial" value = "<%= @user_email.email %>">
         </div>
       </div>
       <div class="login_control">
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="weui-btn-area">
-        <button class="weui-btn weui-btn_primary" >开始检测</button>
+        <button class="weui-btn weui-btn_primary">上传</button>
       </div>
     </div>
   </div>
