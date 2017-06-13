@@ -1,66 +1,214 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    <head>
+        <meta charset="utf-8" />
+        <title>Metronic Admin Theme #1 | 500 Page Option 2</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
 
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+        <link href="http://fonts.lug.ustc.edu.cn/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    </head>
+    <body class=" page-500-full-page">
+        <div class="row">
+            <div class="col-md-12 page-500">
+                <div class=" number font-red"> 500 </div>
+                <div class=" details">
+                    <h3>Oops! Something went wrong.</h3>
+                    <p> 
+                        ऊप्स! हम कुछ समस्या हो रही है।.
+                        <br/> </p>
+                    <p>
+                        <a href="http://ybhm.ybyt.cc/feedback" class="btn red btn-outline">contact us</a>
+                        <br> </p>
+                </div>
+            </div>
+        </div>
+        <style>
+            body, h1, h2, h3, h4, h5, h6 {
+                font-family: "Open Sans",sans-serif;
+            }
+            *, :after, :before {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .page-404 .number,.page-500 .number {
+                letter-spacing: -10px;
+                line-height: 128px;
+                font-size: 128px;
+                font-weight: 300
+            }
 
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+            .page-404 .details,.page-500 .details {
+                margin-left: 40px;
+                display: inline-block
+            }
 
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+            .page-404 {
+                text-align: center
+            }
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
-</head>
+            .page-404 .number {
+                position: relative;
+                top: 35px;
+                display: inline-block;
+                margin-top: 0;
+                margin-bottom: 10px;
+                color: #7bbbd6;
+                text-align: right
+            }
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
+            .page-404-full-page .page-404,.page-500-full-page .page-500 {
+                margin-top: 100px
+            }
+
+            .page-404 .details {
+                padding-top: 0;
+                text-align: left
+            }
+
+            .page-500 {
+                text-align: center
+            }
+
+            .page-500 .number {
+                display: inline-block;
+                color: red;
+                text-align: right
+            }
+
+            .page-500 .details {
+                text-align: left
+            }
+
+            .page-404-full-page {
+                overflow-x: hidden;
+                padding: 20px;
+                margin-bottom: 20px;
+                background-color: #fafafa!important
+            }
+
+            .page-404-full-page .details input {
+                background-color: #fff
+            }
+
+            .page-500-full-page {
+                overflow-x: hidden;
+                padding: 20px;
+                background-color: #fafafa!important
+            }
+
+            .page-500-full-page .details input {
+                background-color: #fff
+            }
+
+            .page-404-3 {
+                background: #000!important
+            }
+
+            .page-404-3 .page-inner img {
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                position: absolute
+            }
+
+            .page-404-3 .error-404 {
+                color: #fff;
+                text-align: left;
+                padding: 70px 20px 0
+            }
+
+            .page-404-3 h1 {
+                color: #fff;
+                font-size: 130px;
+                line-height: 160px
+            }
+
+            .page-404-3 h2 {
+                color: #fff;
+                font-size: 30px;
+                margin-bottom: 30px
+            }
+
+            .page-404-3 p {
+                color: #fff;
+                font-size: 16px
+            }
+
+            @media (max-width:480px) {
+                .page-404 .details,.page-404 .number,.page-500 .details,.page-500 .number {
+                    text-align: center;
+                    margin-left: 0
+                }
+
+                .page-404-full-page .page-404 {
+                    margin-top: 30px
+                }
+
+                .page-404-3 .error-404 {
+                    text-align: left;
+                    padding-top: 10px
+                }
+
+                .page-404-3 .page-inner img {
+                    right: 0;
+                    bottom: 0;
+                    z-index: -1;
+                    position: fixed
+                }
+            }
+
+            .btn:not(.md-skip):not(.bs-select-all):not(.bs-deselect-all) {
+                font-size: 12px;
+                font-weight: 600;
+                text-transform: uppercase;
+                transition: box-shadow .28s cubic-bezier(.4,0,.2,1);
+                -webkit-border-radius: 2px;
+                -moz-border-radius: 2px;
+                -ms-border-radius: 2px;
+                -o-border-radius: 2px;
+                border-radius: 2px;
+                overflow: hidden;
+                position: relative;
+                user-select: none;
+                padding: 8px 14px 7px;
+            }
+
+            .alert, .badge, .btn-group>.btn:not(.md-skip):not(.bs-select-all):not(.bs-deselect-all), .btn.btn-link:not(.md-skip):not(.bs-select-all):not(.bs-deselect-all):hover, .btn:not(.md-skip):not(.bs-select-all):not(.bs-deselect-all), .icon-btn, .label:not(.md-skip), .md-shadow-z-1, .note, .panel, .social-icons li>a, .social-icons.social-icons-color>li>a, .well {
+                box-shadow: 0 1px 3px rgba(0,0,0,.1), 0 1px 2px rgba(0,0,0,.18);
+            }
+
+            .btn.btn-outline.red {
+                border-color: #e7505a;
+                color: #e7505a;
+                background: 0 0;
+            }
+            .btn:not(.btn-sm):not(.btn-lg) {
+                line-height: 1.44;
+            }
+            .btn {
+                outline: 0!important;
+                display: inline-block;
+                margin-bottom: 0;
+                font-weight: 400;
+                text-align: center;
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857;
+                border-radius: 4px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            a {
+                color: #337ab7;
+                text-decoration: none;
+            }
+        </style>
+    </body>
 </html>
