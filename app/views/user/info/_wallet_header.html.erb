@@ -37,11 +37,10 @@
       <div class="placeholder text-center box-btn" >
         <a href="<%= user_details_path %>" class="weui-cell_access" >
           <p class="qi">总易积分</p>
-          <% record = PresentedRecord.where(user_id: current_user.user_id).where("number < ? and status = ? ", 0, "人工创建") %>
-          <% record = record + PresentedRecord.where(user_id: current_user.user_id).where(status: "系统创建") %>
+          <% record = PresentedRecord.where(user_id: current_user.user_id) %>
           <% number = 0 %>
           <% if !record.nil? %>
-            <p><%= current_user && record.pluck(:number).sum || 0 %></p>
+            <p><%= current_user && record.pluck(:balance).sum || 0 %></p>
           <% else %>
             <p>0</p>
           <% end %>
