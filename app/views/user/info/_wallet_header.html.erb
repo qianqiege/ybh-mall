@@ -40,7 +40,7 @@
           <% record = PresentedRecord.where(user_id: current_user.user_id) %>
           <% number = 0 %>
           <% if !record.nil? %>
-            <p><%= current_user && record.pluck(:balance).sum || 0 %></p>
+            <p><%= current_user && record.sum(:balance) || 0 %></p>
           <% else %>
             <p>0</p>
           <% end %>
