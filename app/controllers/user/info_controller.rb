@@ -8,9 +8,9 @@ class User::InfoController < Wechat::BaseController
 
   def health_data_post
     mall = Sdk::Mall.new
-    mall.health_data(params[:email],params[:identity_card])
-    flash[:notice] = "上传成功"
-    redirect_to '/user/health_data'
+    email = params["email"]
+    id = params["identity_card"]
+    mall.health_data(email,id)
   end
 
   def invitation

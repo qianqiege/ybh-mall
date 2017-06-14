@@ -23,8 +23,8 @@ module Sdk
       JSON.parse(signed_request.execute)
     end
 
-    def health_data(email,identity_card)
-      exec(:post, "examination_input/create_auto_identity_card?email=#{email}&identity_card=#{identity_card}")
+    def health_data(email,id)
+      exec(:post, "examination_input/create_auto_identity_card?email=#{email}&identity_card=#{id}")
     end
 
     def record(identity_card)
