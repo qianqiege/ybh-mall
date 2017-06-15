@@ -10,7 +10,13 @@ class User::InfoController < Wechat::BaseController
     mall = Sdk::Mall.new
     email = params["email"]
     id = params["identity_card"]
-    mall.health_data(email,id)
+    if mall.health_data(email,id)
+      flash[:notice] = '上传成功'
+      redirect_to '/user/health_data'
+    else
+      flash[:notice] = '上传失败，邮箱或身份证有误'
+      redirect_to '/user/health_data'
+    end
   end
 
   def invitation
