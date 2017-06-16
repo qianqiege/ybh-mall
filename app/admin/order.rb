@@ -114,7 +114,7 @@ ActiveAdmin.register Order do
       status_tag order.human_state, order_status_color(order.status)
     end
     column "支付操作" do |order|
-      link_to '设为线下支付', pay_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+      link_to '确认付款', pay_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
     end
     column '创建时间',:created_at
     column '订单操作' do |order|
