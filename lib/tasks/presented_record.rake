@@ -19,8 +19,10 @@ namespace :presented_record do
         if @time >= fifteen_days && record.wight == 1
           @integral = Integral.find_by(user_id: record.user_id)
           # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
-          if !@integral.nil? && record.balance > 0 && @integral.locking >= record.balance
+
+          if !@integral.nil? && !record.balance.nil?
             # 条件为true,执行计算，从锁定积分中减掉，加到可用积分
+            ap @integral
              locking = @integral.locking - record.balance
              available = @integral.available + record.balance
              # 更新用户的锁定积分和可用积分
@@ -46,7 +48,7 @@ namespace :presented_record do
         if @time >= sex_months && record.wight == 1
           @integral = Integral.find_by(user_id: record.user_id)
           # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
-          if !@integral.nil? && record.balance > 0 && @integral.available >= record.balance
+          if !@integral.nil? && !record.balance.nil?
             # 条件为true,执行计算，从可用积分中减掉，加到可兑换积分
              available = @integral.available - record.balance
              exchange = @integral.exchange + record.balance
