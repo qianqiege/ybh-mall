@@ -81,6 +81,12 @@ class User < ApplicationRecord
     if !self.invitation_id.nil?
       presented_records.create(user_id: self.invitation_id, number: 6, reason: "邀请好友赠送",is_effective:1,type:"Available",wight: 6)
     end
+
+    if !self.invitation_id.nil?
+      presented_records.create(user_id: self.id, number: 30, reason: "（活动）被邀请奖励",is_effective:1,type:"Available",wight: 6)
+    else
+      presented_records.create(user_id: self.id, number: 10, reason: "（活动）注册奖励",is_effective:1,type:"Available",wight: 6)
+    end
   end
 
     def send_template_msg
