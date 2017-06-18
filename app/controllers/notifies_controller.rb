@@ -61,6 +61,7 @@ class NotifiesController < ApplicationController
     password = Settings.idata.own_password
     if (params[:u] == username && params[:p] == password)
       # 这里写接受到数据的逻辑
+      # 解析url,获取url,并更新数据和状态
       render json: {"code":"0000","msg":"操作成功"}, layout: nil
     else
       render json: {"code":"1001","msg":"登陆失败"}, layout: nil
