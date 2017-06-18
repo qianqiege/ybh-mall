@@ -7,6 +7,7 @@ class IdataRecord < ApplicationRecord
   validates :wechat_user, :recordable, presence: true
 
   after_create :post_data
+  after_update :send_template_msg
 
   # 这里需要补充词典内容
   DICT = {
@@ -145,33 +146,37 @@ class IdataRecord < ApplicationRecord
   end
 
   def send_template_msg
-    data = {
-      first: {
-        value: "#{wechat_user.nickname} #{DICT[service_id.to_sym][:serviceInfo]}",
-        color: "#FD878E"
-      },
-      keyword1: {
-        value: DICT[service_id.to_sym][:serviceName],
-        color: "#173177"
-      },
-      keyword2: {
-        value: Time.current.strftime('%Y-%m-%d %H:%M:%S'),
-        color: "#173177"
-      },
-      keyword3: {
-        value: message,
-        color: "#173177"
-      },
-      remark: {
-        value: "详细健康数据报告请点击查看",
-        color: "#FD878E"
+    if (state == 'notified')
+      str_message = message.gsub(/(\{.+\}，)|(\{.+\})/, '')
+      data = {
+        first: {
+          value: "#{wechat_user.nickname} #{DICT[service_id.to_sym][:serviceInfo]}",
+          color: "#FD878E"
+        },
+        keyword1: {
+          value: DICT[service_id.to_sym][:serviceName],
+          color: "#173177"
+        },
+        keyword2: {
+          value: Time.current.strftime('%Y-%m-%d %H:%M:%S'),
+          color: "#173177"
+        },
+        keyword3: {
+          value: str_message,
+          color: "#173177"
+        },
+        remark: {
+          value: "详细健康数据报告请点击查看",
+          color: "#FD878E"
+        }
       }
-    }
 
-    # 这里要换成正确的URL
-    url = Settings.weixin.host + "/wechat/idata"
-    open_id = wechat_user.open_id
+      # 这里要换成正确的URL
+      url = Settings.weixin.host + "/wechat/idata"
+      open_id = wechat_user.open_id
 
-    $wechat_client.send_template_msg(open_id, Settings.idata.template_id, url, "#FD878E", data)
+      $wechat_client.send_template_msg(open_id, Settings.idata.template_id, url, "#FD878E", data)
+    end
+    true
   end
 end

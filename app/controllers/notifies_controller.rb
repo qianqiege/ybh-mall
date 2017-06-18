@@ -60,9 +60,23 @@ class NotifiesController < ApplicationController
     username = Settings.idata.own_username
     password = Settings.idata.own_password
     if (params[:u] == username && params[:p] == password)
-      # 这里写接受到数据的逻辑
-      # 解析url,获取url,并更新数据和状态
-      render json: {"code":"0000","msg":"操作成功"}, layout: nil
+      if(params[:url])
+        respond = RestClient.get(params[:url], {accept: :json})
+        body = JSON.parse(respond.body)
+        record = IdataRecord.find(body["testRecordID"])
+        if (record)
+          record.update_attributes(
+            message: URI.decode(body["message"]),
+            detail: body["detail"],
+            service_id: body['serviceID'],
+            row_data: body,
+            state: 'notified'
+          )
+          render json: { "code":"0000","msg":"操作成功" }, layout: nil
+        end
+      else
+        render json: {"code":"0000","msg":"数据错误"}, layout: nil
+      end
     else
       render json: {"code":"1001","msg":"登陆失败"}, layout: nil
     end
