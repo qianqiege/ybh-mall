@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512023443) do
+ActiveRecord::Schema.define(version: 20170609031126) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.decimal  "silver",                  precision: 10, scale: 2
     t.decimal  "gold",                    precision: 10, scale: 2
     t.float    "percentage",   limit: 24
+    t.decimal  "staff",                   precision: 10, scale: 2
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.integer  "advice_type_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "user_id"
   end
 
   create_table "appraises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -151,12 +153,15 @@ ActiveRecord::Schema.define(version: 20170512023443) do
   end
 
   create_table "cash_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.decimal  "number",       precision: 10
+    t.decimal  "number",       precision: 10, scale: 2
     t.string   "reason"
     t.boolean  "is_effective"
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "status"
+    t.string   "type"
+    t.string   "account"
   end
 
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -206,6 +211,17 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.integer  "days"
   end
 
+  create_table "deposits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "trade_nos"
+    t.string   "number"
+    t.string   "payment"
+    t.string   "status"
+    t.integer  "user_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.decimal  "price",      precision: 10, scale: 2
+  end
+
   create_table "ecgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "url"
     t.integer  "user_id"
@@ -228,8 +244,11 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.datetime "updated_at",                null: false
     t.integer  "user_id"
     t.decimal  "number",     precision: 10
-    t.string   "type"
     t.string   "account"
+    t.string   "opening"
+    t.string   "status"
+    t.string   "name"
+    t.string   "state"
   end
 
   create_table "game_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -288,17 +307,17 @@ ActiveRecord::Schema.define(version: 20170512023443) do
 
   create_table "integrals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.decimal  "locking",          precision: 10
-    t.decimal  "available",        precision: 10
-    t.decimal  "exchange",         precision: 10
-    t.decimal  "cash",             precision: 10
-    t.decimal  "not_exchange",     precision: 10
-    t.decimal  "not_cash",         precision: 10
-    t.decimal  "appreciation",     precision: 10
-    t.decimal  "not_appreciation", precision: 10
-    t.decimal  "count",            precision: 10
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.decimal  "locking",          precision: 10, scale: 2
+    t.decimal  "available",        precision: 10, scale: 2
+    t.decimal  "exchange",         precision: 10, scale: 2
+    t.decimal  "cash",             precision: 10, scale: 2
+    t.decimal  "not_exchange",     precision: 10, scale: 2
+    t.decimal  "not_cash",         precision: 10, scale: 2
+    t.decimal  "appreciation",     precision: 10, scale: 2
+    t.decimal  "not_appreciation", precision: 10, scale: 2
+    t.decimal  "count",            precision: 10, scale: 2
   end
 
   create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -358,6 +377,14 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.decimal  "price",                            precision: 10
   end
 
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.datetime "created_at",         null: false
@@ -412,8 +439,9 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.string   "payment"
     t.decimal  "initial_price",  precision: 10, scale: 2
     t.string   "remark"
-    t.decimal  "integral",       precision: 10
-    t.decimal  "cash",           precision: 10
+    t.decimal  "integral",       precision: 10, scale: 2
+    t.decimal  "cash",           precision: 10, scale: 2
+    t.string   "desc"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
@@ -449,8 +477,10 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.boolean  "is_effective"
     t.string   "type"
     t.integer  "record_id"
-    t.decimal  "balance",          precision: 10
+    t.decimal  "balance",          precision: 10, scale: 2
     t.integer  "wight"
+    t.string   "status"
+    t.string   "desc"
     t.index ["presentable_type", "presentable_id"], name: "index_presented_records_on_presentable_type_and_presentable_id", using: :btree
   end
 
@@ -483,6 +513,18 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.integer  "priority",                                                      default: 0
     t.boolean  "is_custom_price",                                               default: false
     t.boolean  "is_consumption"
+  end
+
+  create_table "programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "desc"
+    t.string   "image"
+    t.boolean  "is_show"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "features"
+    t.string   "effect"
+    t.string   "crowd"
   end
 
   create_table "ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -700,7 +742,6 @@ ActiveRecord::Schema.define(version: 20170512023443) do
     t.string   "mobile"
     t.integer  "used_address_id"
     t.integer  "user_id"
-    t.integer  "recommender_id"
   end
 
   create_table "weights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
