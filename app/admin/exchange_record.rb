@@ -31,7 +31,7 @@ index do
   column '处理操作' do |record|
     if record.state == "pending"
       span do
-        link_to '审核通过',pending_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
+        link_to '审核通过',dealing_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
       end
       span do
         link_to '不通过',not_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
@@ -39,7 +39,7 @@ index do
     end
     if record.state == "dealing"
       span do
-        link_to '已处理',dealing_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
+        link_to '已处理',pending_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
       end
     end
   end
