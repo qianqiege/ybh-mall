@@ -58,8 +58,8 @@ fast_pay:
 
 idata:
   url: http://test.idata-power.com:7001/DRS/
-  username: test201508
-  password: goodwork
-  org_code: 010203
+  username: ybyt
+  password: a2d61138548c11e79f9200163e00307f
+  org_code: 063001
   own_username: 4dc4792efc5ce38c96ca7c89c27047f8
   own_password: 3835ea275ead062cbd409aa360c79478
