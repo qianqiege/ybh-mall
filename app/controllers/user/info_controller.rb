@@ -164,9 +164,9 @@ class User::InfoController < Wechat::BaseController
       if number >= 400 && number%20 == 0
         PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
         if params["account_type"] == "支付宝"
-          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: params["name"],state: "pending")
+          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: current_user.user.name,state: "pending")
         elsif params["account_type"] == "银行卡"
-          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: params["bank_name"],state: "pending")
+          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: current_user.user.name,state: "pending")
         end
 
         if @exchange_record.save
