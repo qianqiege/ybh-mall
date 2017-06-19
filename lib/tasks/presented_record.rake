@@ -22,7 +22,6 @@ namespace :presented_record do
 
           if !@integral.nil? && !record.balance.nil?
             # 条件为true,执行计算，从锁定积分中减掉，加到可用积分
-            ap @integral
              locking = @integral.locking - record.balance
              available = @integral.available + record.balance
              # 更新用户的锁定积分和可用积分
