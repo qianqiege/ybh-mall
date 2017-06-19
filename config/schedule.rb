@@ -13,6 +13,6 @@ every 1.day, :at => '4:30 am' do
   rake 'users:update_coin'
 end
 
-every 1.day, :at => '10:00 am' do
+every 1.day, :at => '9:40 am' do
   rake 'presented_record:update_locking_available'
 end
