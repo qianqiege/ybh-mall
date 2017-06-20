@@ -5,8 +5,6 @@ namespace :coin do
 
     CoinRecord.where(type:"YcoinRecord").each do |record|
       @time = (Date.current - Date.parse(record.created_at.to_s)).to_i
-      ap record
-      ap @time
       case record.level_type
       when ""
         record.level_type = "Locking"
