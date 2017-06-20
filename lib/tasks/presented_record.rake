@@ -1,7 +1,7 @@
 namespace :presented_record do
   desc "update locking to available of users"
   task update_locking_available: :environment do
-    puts "定时器启动，当前时间为#{Time.current}"
+    puts "定时器启动，当前时间#{Time.current}"
 
     # 查询有效的记录
     PresentedRecord.where(is_effective: 1).each do |record|
