@@ -147,6 +147,8 @@
                     <td class="td" style="width: 15%"><%= value = "待处理" %></td>
                     <% elsif details.state == "dealed" %>
                     <td class="td" style="width: 15%"><%= value = "已处理" %></td>
+                    <% elsif details.state == "not" %>
+                    <td class="td" style="width: 15%"><%= value = "审核失败" %></td>
                     <% end %>
                     <td class="td" style="width: 25%"><%= date details.created_at %></td>
                 </tr>
