@@ -1,6 +1,22 @@
 <%= render 'mall/shared/search' %>
 
 <%= title '御易健商城 ' %>
+<style type="text/css" media="screen">
+
+  .clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
+  }
+  .clearfix {
+    zoom: 1;
+  }
+
+
+</style>
+
+
 
 <div class="home">
   <%= render 'shared/slide' %>
@@ -10,7 +26,7 @@
       <h2>推荐用品</h2>
     </div>
     <div class="pro-list">
-      <ul>
+      <ul class="clearfix">
         <% @products.each do |product| %>
           <li>
             <a href="<%= mall_product_path(product) %>">

@@ -1,7 +1,7 @@
 namespace :presented_record do
   desc "update locking to available of users"
   task update_locking_available: :environment do
-    puts "定时器启动，当前时间为#{Time.current}"
+    puts "定时器启动，当前时间#{Time.current}"
 
     # 查询有效的记录
     PresentedRecord.where(is_effective: 1).each do |record|
@@ -22,7 +22,6 @@ namespace :presented_record do
 
           if !@integral.nil? && !record.balance.nil?
             # 条件为true,执行计算，从锁定积分中减掉，加到可用积分
-            ap @integral
              locking = @integral.locking - record.balance
              available = @integral.available + record.balance
              # 更新用户的锁定积分和可用积分

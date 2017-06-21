@@ -9,22 +9,16 @@
 
   }
 
-  /*.radius {
-    border: 1px solid #ccc;
-    border-radius: 50px;
-    text-indent: 20px;
-  }*/
-
   .really,.login_content {
     font-size: 1rem;
   }
 
   .weui-cell__bd {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #bbb;
   }
 
-  .login_label,.phone,.changearea {
-    color: #999;
+  .login_label,.phone,.changearea, .weui-cells__title {
+    color: #000;
   }
 
   .weui-cell_warn .weui-cell__hd {
@@ -33,10 +27,34 @@
 
   .radius {
     line-height: 30px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #bbb;
   }
 
+  .weui-cell:before, .weui-cells:before, .weui-cells:after {
+    border: 0;
+  }
 
+  .zhushi {
+    color: red;
+  }
+
+  input {
+    width: 100%; height: 30px;
+  }
+
+  .yzm {
+    position: relative;
+  }
+
+  #smsgetCode {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .weui-cells {
+    margin: 0;
+  }
 
 </style>
 
@@ -56,12 +74,22 @@
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
 
+      <div class="login_control">
+        <div class="login_label" style="font-size: 1.2rem; display: inline-block; width: 35%;">邀请码（选填）</div>
+        
+        <div class="login_content radius"  style="width: 60%; display: inline-block;">
+          <input type="text" name="invitation_id" id="invitation_id" value="">
+        </div>
+        <p class="zhushi">不填邀请码注册送10个易积分<br>通过好友邀请码注册送30个易积分</p>
+      </div>
+     
 
-        <div class="weui-cells__title">必填信息</div>
+
+        <div class="weui-cells__title" style="font-size: 1.2rem;">必填信息</div>
         <div class="weui-cell weui-cell_warn">
             <div class="weui-cell__hd really"><label for="" class="weui-label">真实姓名</label></div>
             <div class="weui-cell__bd">
-                <%= text_field_tag :name %>
+                <input type="text" name="name" id="name">
             </div>
             <div class="weui-cell__ft">
                 <i class="weui-icon-warn"></i>
@@ -70,25 +98,20 @@
         <div class="weui-cell weui-cell_warn">
             <div class="weui-cell__hd really"><label for="" class="weui-label">身份证号</label></div>
             <div class="weui-cell__bd">
-                <%= text_field_tag :identity_card %>
+                <input type="text" name="identity_card" id="identity_card">
             </div>
             <div class="weui-cell__ft">
                 <i class="weui-icon-warn"></i>
             </div>
         </div>
 
-      <div class="login_control">
-        <div class="login_label">邀请码（选填）</div>
-        <div class="login_content radius">
-          <%= text_field_tag :invitation_id, @invitation_user %>
-        </div>
-      </div>
+      
 
 
       <div class="login_control">
-        <div class="login_label">请设置登录御易健平台密码</div>
-        <div class="login_content radius">
-          <%= password_field_tag :password %>
+        <div class="login_label" style="font-size: 1rem;">请设置登录御易健平台密码</div>
+        <div class="login_content">
+          <input type="password" name="password" id="password">
         </div>
       </div>
 
@@ -112,14 +135,14 @@
               <div class="login_content changearea">+86</div>
               <div class="login_space"></div>
               <div class="login_content login_phone">
-                <input placeholder="请输入您的手机号" id="txtCustomerID" type="tel" name="mobile">
+                <input id="txtCustomerID" type="tel" name="mobile">
               </div>
             </div>
           </div>
 
           <div class="login_control">
             <div class="login_label">验证码</div>
-            <div class="login_content">
+            <div class="login_content yzm">
               <input id="txtValidatedCode" placeholder="短信中6位数字" type="text" name="code">
               <div id="smsgetCode" class="get_code fr">发送验证码</div>
               <div id="resetText" class="get_code hide fr">重新发送(<span id="smsTimeText"></span>)</div>
@@ -128,9 +151,9 @@
 
         <!-- 服务条款位置 -->
         <label class="weui-agree">
-        <input type="checkbox" name="agreeCheck" id="agreeCheck">
+        <input type="checkbox" name="agreeCheck" id="agreeCheck" style="width: 13px;">
           <span class="weui-agree__text">
-            阅读并同意<a href="./info/ybyt.html.erb">《御易健平台服务条款》</a>
+            阅读并同意<a href="<%= user_ybyt_path %>">《御易健平台服务条款》</a>
           </span>
         </label>
       </div>
