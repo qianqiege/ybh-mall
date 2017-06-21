@@ -29,6 +29,7 @@ namespace :presented_record do
                puts "更新锁定积分总数为#{locking}"
                # 更新成功后，将这条记录判定为无效记录，避免重复计算
                record.is_effective = 0
+               record.balance = 0
                # 将修改保存到数据库
                record.save
                # 将满足fifteen_days天的易积分从 锁定易积分中减掉
@@ -54,6 +55,7 @@ namespace :presented_record do
 
              # 更新成功后，将这条记录判定为无效记录，避免重复计算
              record.is_effective = 0
+             record.balance = 0
              # 将修改保存到数据库
              record.save
 
