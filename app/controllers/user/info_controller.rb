@@ -126,13 +126,13 @@ class User::InfoController < Wechat::BaseController
           if !record.balance.nil? && record.balance > 0
             while order_integral > 0
               if record.balance >= order_integral
-                PresentedRecord.create(user_id: integral.user_id, number: "-#{order_integral}", reason: "赠送/兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                PresentedRecord.create(user_id: integral.user_id, number: "-#{order_integral}", reason: "兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
                 record.update(balance: record.balance - order_integral)
                 order_integral = 0
                 break
               elsif record.balance <= order_integral
                 order_integral = order_integral - record.balance
-                PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "赠送/兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "兑换", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
                 record.balance = 0
                 if record.save
                   break
@@ -162,7 +162,6 @@ class User::InfoController < Wechat::BaseController
 
     if params["type_coin"] == "0"
       if number >= 400 && number%20 == 0
-        PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
         if params["account_type"] == "支付宝"
           @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: current_user.user.name,state: "pending")
         elsif params["account_type"] == "银行卡"
@@ -170,6 +169,7 @@ class User::InfoController < Wechat::BaseController
         end
 
         if @exchange_record.save
+          PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
           flash[:notice] = '兑换成功'
           redirect_to user_gift_account_path
           return
