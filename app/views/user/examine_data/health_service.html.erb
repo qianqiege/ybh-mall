@@ -1,0 +1,283 @@
+<style type="text/css" media="screen">
+
+    .clearfix:after {
+      content: " ";
+      display: block;
+      clear: both;
+      height: 0;
+    }
+    .clearfix {
+      zoom: 1;
+    }
+
+    .check,.allcheck {
+        width: 100%;
+        padding:10px 0;
+    }
+
+    .check .lables,.allcheck .lables{
+        display: inline-block;
+        margin-left: 25px;
+        font-size: 18px;
+        width: 63%;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .xianshi {
+        margin-left: 25px;
+        font-size: 18px;        
+    }
+
+    .check .lables input , .allcheck .lables input{
+        width: 20px;height: 20px;
+        background: #fff;
+        line-height: 20px;
+    }
+
+    .check p {
+        display: inline-block;
+        float: right;
+        width: 30%;
+        text-align: center;
+    }
+
+    .hideCheck {
+        margin-left: 10%;
+    }
+
+    .hideCheck .s-lable{
+        display: block;
+    }
+
+    .hideCheck .s-lable input {
+        display: none;
+    }
+
+</style>
+
+
+
+<div class="weui_cells weui_cells_checkbox">
+
+    <div class="allcheck clearfix">
+        <label class="lables">
+            <input type="checkbox" name="allcheck" value="全部项目" id="allcheck">
+            <span>全选</span>
+        </label>       
+    </div>    
+
+    <div class="check clearfix">
+        <label class="lables">
+            <input type="checkbox" name="xueya" value="血压" class="lei">
+            <span>血压</span>
+        </label>
+        <p class="more">▼</p>
+        <div class="hideCheck">
+            <label class="s-lable">
+                <input type="checkbox" name="xueya" value="完美档案">
+                <span>完美档案</span>
+            </label>  
+            <label class="s-lable">
+                <input type="checkbox" name="xueya" value="血压检测通知">
+                <span>血压检测通知</span>
+            </label>
+            <label class="s-lable">
+                <input type="checkbox" name="xueya" value="血压检测周报">
+                <span>血压检测周报</span>
+            </label>
+            <label class="s-lable">
+                <input type="checkbox" name="xueya" value="血压检测月报">
+                <span>血压检测月报</span>
+            </label>            
+            <label class="s-lable">
+                <input type="checkbox" name="xueya" value="高血压随访报告">
+                <span>高血压随访报告</span>
+            </label>                                            
+        </div>       
+    </div>
+    <div class="check clearfix">
+        <label class="lables">
+            <input type="checkbox" name="xuetang" value="血糖" class="lei">
+            <span>血糖</span>
+        </label>
+        <p class="more">▼</p> 
+        <div class="hideCheck">
+            <label class="s-lable">
+                <input type="checkbox" name="xuetang" value="血糖监测通知">
+                <span>血糖监测通知</span>
+            </label>  
+            <label class="s-lable">
+                <input type="checkbox" name="xuetang" value="血糖监测周报">
+                <span>血糖监测周报</span>
+            </label> 
+            <label class="s-lable">
+                <input type="checkbox" name="xuetang" value="血糖监测月报">
+                <span>血糖监测月报</span>
+            </label>
+            <label class="s-lable">
+                <input type="checkbox" name="xuetang" value="糖尿病随访报告">
+                <span>糖尿病随访报告</span>
+            </label>                                           
+        </div>              
+    </div>    
+    <div class="check clearfix">
+        <label class="lables">
+            <input type="checkbox" name="tizhong" value="体重" class="lei">
+            <span>体重</span>
+        </label>
+        <p class="more">▼</p> 
+        <div class="hideCheck">
+            <label class="s-lable">
+                <input type="checkbox" name="tizhong" value="体重监测通知">
+                <span>体重监测通知</span>
+            </label>  
+            <label class="s-lable">
+                <input type="checkbox" name="tizhong" value="体重监测周报">
+                <span>体重监测周报</span>
+            </label>
+            <label class="s-lable">
+                <input type="checkbox" name="tizhong" value="体重监测月报">
+                <span>体重监测月报</span>
+            </label>                                  
+        </div>              
+    </div>    
+    <div class="check clearfix">
+        <label class="lables">
+            <input type="checkbox" name="xuezhi" value="血脂" class="lei">
+            <span>血脂</span>
+        </label>
+        <p class="more">▼</p> 
+        <div class="hideCheck">
+            <label class="s-lable">
+                <input type="checkbox" name="xuezhi" value="血脂监测通知">
+                <span>血脂监测通知</span>
+            </label>                                 
+        </div>              
+    </div>
+    <div class="check clearfix">
+        <label class="lables">
+            <input type="checkbox" name="niaosuan" value="尿酸" class="lei">
+            <span>尿酸</span>
+        </label>
+        <p class="more">▼</p>
+        <div class="hideCheck">
+            <label class="s-lable">
+                <input type="checkbox" name="niaosuan" value="尿酸监测通知">
+                <span>尿酸监测通知</span>
+            </label>                        
+        </div>               
+    </div>     
+</div>
+
+<div class="xianshi">
+    <p>您选择了：<span class="show"></span></p>
+    <p>金额总计：<span class="price"></span></p>
+</div>
+
+
+<script>
+
+        
+
+    //1.点击下拉出现
+    $(".more").click( function() {
+        var checkParents = $(this).parents(".check");
+        checkParents.find('.hideCheck').toggle();
+        
+    })
+
+    var arr = [];
+    //2.点击全选,再次点击取消全选
+    $('#allcheck').click(function(){
+        if ($(this).is(':checked')) {
+
+            $('.check input').each(function(){
+                $(this).prop('checked',true);
+            })
+
+            $('.show').text($('#allcheck').val());
+
+            //0.2.1全选时候取消其中一个，全选状态消失
+            if ($('.lei').is(':checked')) {
+                $('.lei').click(function(){
+                    $('#allcheck').prop('checked',false);
+                    $('.show').text(arr);                
+                })                
+            }
+
+        }else{
+            $('.check input').each(function(){
+                $(this).prop('checked',false);
+            }) 
+            $('.show').text("")          
+        }
+    })
+
+
+
+    //3.点击类，子元素全选 
+    $('.lei').click(function(){   
+        var values = $(this).val();
+        if ($(this).is(':checked')) {
+            $(this).parents(".check").find('.hideCheck input').each(function(){
+                $(this).prop('checked',true);
+            })
+            //显示名字
+            arr.push(values);
+            console.log(arr)
+            $('.show').text(arr);
+
+        }else {
+            $(this).parents(".check").find('.hideCheck input').each(function(){
+                $(this).prop('checked',false);
+            })
+
+            console.log(values);
+            arr.splice($.inArray(values,arr), 1);
+            $('.show').text(arr);            
+        }
+        //0.3.1如果下面类别全部勾选，则变为全选状态,否则全选状态消失
+        if ($("input[class=lei]:checked").length==5) {
+            $('#allcheck').prop('checked',true);
+            $('.show').text($('#allcheck').val());
+        }else{
+            $('#allcheck').prop('checked',false);
+            $('.show').text(arr);
+            console.log(arr);            
+        } 
+
+        if ($("input[class=lei]:checked").length==0) {
+            arr=[];
+        }
+        
+
+        // IntCheck($(this).parents('.check').find('.s-lable input'));
+
+    })
+
+
+    //4.如果类下面的单项全部选中，则默认选中整个类
+    $(".check .hideCheck input").on("click", function() {
+        IntCheck(this);
+    })
+
+
+function IntCheck(t){
+        var checkbox_length = $(t).parent().parent().find("input").length;
+        var val =  $(t).parents(".check").find(".lables input").val();
+        if ( $(t).parent().parent().find("input:checked").length == checkbox_length){
+             $(t).parents(".check").find(".lables input").attr("checked",true);
+            arr.push(val);
+            $('.show').text(arr);            
+        } else {
+             $(t).parents(".check").find(".lables input").removeAttr("checked");
+            arr.splice($.inArray(val,arr), 1);
+            $('.show').text(arr);                        
+        }
+
+    }
+    
+
+
+</script>
