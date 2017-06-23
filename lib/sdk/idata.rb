@@ -97,14 +97,13 @@ module Sdk
     # collect_type: 来源采集方式CODE,1设备监测、2手工录入
     # testBody: 具体参考
     # http://test.idata-power.com:9000/api/index.php/home/item/show?item_id=7
-    # TODO testRecordID 可以改为内部记录的ID
-    def daily_detect(test_type, test_body, collect_type = 2, device_type = '')
+    def daily_detect(test_record_id, test_type, test_body, collect_type = 2, device_type = '')
       info = {
-        testRecordID: @wechat_user.open_id + test_type,
+        testRecordID: test_record_id,
         memberID: @wechat_user.open_id,
         testType: test_type,
         testTime: Time.current.strftime('%Y-%m-%d %H:%M:%S'),
-        collectType: collect_type,
+        collectType: collect_type ,
         deviceType: device_type,
         testBody: test_body
       }
@@ -142,14 +141,14 @@ module Sdk
       }
       exec(:post, 'act/qa.do', info)
     end
+    
 
     # 慢病随访接口。上传高血压随访、糖尿病随访
     # 参数详见
     # http://test.idata-power.com:9000/api/index.php/home/item/show?item_id=7
-    # TODO testRecordID 可以改为内部记录的ID
-    def chronic(test_body)
+    def chronic(test_record_id, test_type, test_body, collect_type, device_type)
       info = {
-        testRecordID: @wechat_user.open_id + test_type,
+        testRecordID: test_record_id,
         memberID: @wechat_user.open_id,
         testType: test_type,
         testTime: Time.current.strftime('%Y-%m-%d %H:%M:%S'),

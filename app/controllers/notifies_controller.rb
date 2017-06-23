@@ -51,6 +51,31 @@ class NotifiesController < ApplicationController
     end
   end
 
+  # 数动力订阅付款成功回调, 需要路由
+  def idata_subscribe
+    idata_subscribe = IdataSubscribe.find_by(number: params["merchOrderNo"])
+    if(idata_subscribe.present?)
+      idata_subscribe.fast_pay.logger.info params
+      remote_sign = params[:sign]
+
+      params.delete(:sign)
+      params.delete(:action)
+      params.delete(:controller)
+
+      local_sign = idata_subscribe.fast_pay.sign(params)
+      if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
+        idata_subscribe.trade_nos = params["tradeNo"]
+        idata_subscribe.pay
+        idata_subscribe.save!
+        render json: "success", layout: nil
+      else
+        render json: "fail", layout: nil
+      end
+    else
+      render json: "fail", layout: nil
+    end
+  end
+
   def refund
     # TODO: 退款流程
     render json: "success", layout: nil
@@ -60,8 +85,23 @@ class NotifiesController < ApplicationController
     username = Settings.idata.own_username
     password = Settings.idata.own_password
     if (params[:u] == username && params[:p] == password)
-      # 这里写接受到数据的逻辑
-      render json: {"code":"0000","msg":"操作成功"}, layout: nil
+      if(params[:url])
+        respond = RestClient.get(params[:url], {accept: :json})
+        body = JSON.parse(respond.body)
+        record = IdataRecord.find(body["testRecordID"])
+        if (record)
+          record.update_attributes(
+            message: URI.decode(body["message"]),
+            detail: body["detail"],
+            service_id: body['serviceID'],
+            row_data: body,
+            state: 'notified'
+          )
+          render json: { "code":"0000","msg":"操作成功" }, layout: nil
+        end
+      else
+        render json: {"code":"0000","msg":"数据错误"}, layout: nil
+      end
     else
       render json: {"code":"1001","msg":"登陆失败"}, layout: nil
     end
