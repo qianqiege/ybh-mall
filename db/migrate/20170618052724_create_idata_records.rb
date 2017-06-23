@@ -8,6 +8,7 @@ class CreateIdataRecords < ActiveRecord::Migration[5.0]
       t.text :row_data
       t.integer :wechat_user_id
       t.string :service_id
+      
 
       t.timestamps
     end

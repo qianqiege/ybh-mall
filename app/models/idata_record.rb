@@ -131,6 +131,8 @@ class IdataRecord < ApplicationRecord
 
   def post_data
     # 这里根据不同类型，添加更多情况
+
+    #血压
     if recordable.is_a? BloodPressure
       test_body = {
         "highValue": recordable.systolic_pressure,
@@ -139,11 +141,20 @@ class IdataRecord < ApplicationRecord
         "pulseValue": "70"
       }
       result = wechat_user.idata.daily_detect(id, 1,test_body)
+      puts "@"*20
+      puts "上传血压数据到数动力"
+      puts result
       if (result['code'] != '0000')
         raise Exception.new(result)
       end
     end
+
+    #体重
+    # if recordable.is_a? Weight
+    #   test_body = {}
+    # end
   end
+  
 
   def send_template_msg
     if (state == 'notified')

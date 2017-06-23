@@ -1,0 +1,293 @@
+<style type="text/css" media="screen">
+
+    .clearfix:after {
+      content: " ";
+      display: block;
+      clear: both;
+      height: 0;
+    }
+    .clearfix {
+      zoom: 1;
+    }
+
+    .check,.allcheck {
+        width: 100%;
+        padding:10px 0;
+    }
+
+    .check .lables,.allcheck .lables{
+        display: inline-block;
+        margin-left: 25px;
+        font-size: 18px;
+        width: 20%;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .xianshi {
+        margin-left: 25px;
+        font-size: 18px;   
+        /*display: none;     */
+    }
+
+    .check .lables input , .allcheck .lables input{
+        width: 20px;height: 20px;
+        background: #fff;
+        line-height: 20px;
+    }
+
+    .check p {
+        display: inline-block;
+        float: right;
+        width: 70%;
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    .hideCheck {
+        margin-left: 10%;
+    }
+
+    .hideCheck .s-lable{
+        display: block;
+    }
+
+/*
+    .hideCheck .s-lable input {
+        display: none;
+    }*/
+
+</style>
+
+<!-- (controller: "info", action:"create_deposit_exchange", method:"post") -->
+<%= form_tag(controller: "examine_data" , action: "create_idata_subscribe", method: :post) do %>
+
+    <div class="weui_cells weui_cells_checkbox allOfC">
+
+        <div class="allcheck clearfix">
+            <label class="lables">
+                <input type="checkbox" name="allcheck" value="全部项目" id="allcheck">
+                <span>全选</span>
+            </label>       
+        </div>    
+
+        <div class="check clearfix">
+            <label class="lables">
+                <input type="checkbox" name="xueya" value="血压" class="lei">
+                <span>血压</span>
+            </label>
+            <p class="more">▼</p>
+            <div class="hideCheck"> 
+                <label class="s-lable">
+                    <input type="checkbox" name="211" value="血压检测通知">
+                    <span>血压检测通知</span>
+                </label>
+                <label class="s-lable">
+                    <input type="checkbox" name="304" value="血压检测周报">
+                    <span>血压检测周报</span>
+                </label>
+                <label class="s-lable">
+                    <input type="checkbox" name="301" value="血压检测月报">
+                    <span>血压检测月报</span>
+                </label>                                         
+            </div>       
+        </div>
+
+        <div class="check clearfix">
+            <label class="lables">
+                <input type="checkbox" name="xuetang" value="血糖" class="lei">
+                <span>血糖</span>
+            </label>
+            <p class="more">▼</p> 
+            <div class="hideCheck">
+                <label class="s-lable">
+                    <input type="checkbox" name="212" value="血糖监测通知">
+                    <span>血糖监测通知</span>
+                </label>  
+                <label class="s-lable">
+                    <input type="checkbox" name="308" value="血糖监测周报">
+                    <span>血糖监测周报</span>
+                </label> 
+                <label class="s-lable">
+                    <input type="checkbox" name="302" value="血糖监测月报">
+                    <span>血糖监测月报</span>
+                </label>                                          
+            </div>              
+        </div>   
+
+        <div class="check clearfix">
+            <label class="lables">
+                <input type="checkbox" name="tizhong" value="体重" class="lei">
+                <span>体重</span>
+            </label>
+            <p class="more">▼</p> 
+            <div class="hideCheck">
+                <label class="s-lable">
+                    <input type="checkbox" name="213" value="体重监测通知">
+                    <span>体重监测通知</span>
+                </label>  
+                <label class="s-lable">
+                    <input type="checkbox" name="305" value="体重监测周报">
+                    <span>体重监测周报</span>
+                </label>
+                <label class="s-lable">
+                    <input type="checkbox" name="311" value="体重监测月报">
+                    <span>体重监测月报</span>
+                </label>                                  
+            </div>              
+        </div>    
+
+        <div class="check clearfix">
+            <label class="lables">
+                <input type="checkbox" name="xuezhi" value="血脂" class="lei">
+                <span>血脂</span>
+            </label>
+            <p class="more">▼</p> 
+            <div class="hideCheck">
+                <label class="s-lable">
+                    <input type="checkbox" name="215" value="血脂监测通知">
+                    <span>血脂监测通知</span>
+                </label>                                 
+            </div>              
+        </div>
+
+        <div class="check clearfix">
+            <label class="lables">
+                <input type="checkbox" name="niaosuan" value="尿酸" class="lei">
+                <span>尿酸</span>
+            </label>
+            <p class="more">▼</p>
+            <div class="hideCheck">
+                <label class="s-lable">
+                    <input type="checkbox" name="216" value="尿酸监测通知">
+                    <span>尿酸监测通知</span>
+                </label>                        
+            </div>               
+        </div>
+    </div>
+
+    <div class="xianshi">
+       <!--  <p>您选择了：<span class="show"></span></p>
+        <p>金额总计：<span class="price"></span></p> -->
+        <input id="number" name="number" type="text" style="display: none" />
+        <input id="money" name="money" type="text" style="display: none;" />
+    </div>
+
+    <!-- <div class="weui-cells">
+        <div class="weui-cell weui-cell_select weui-cell_select-after">
+            <div class="weui-cell__hd">
+                <label for="" class="weui-label">支付方式</label>
+            </div>
+            <div class="weui-cell__bd">
+                <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) ,  class: "weui-select" %>
+            </div>
+        </div>
+    </div> -->
+
+    <p class="flash" style="text-align: center; color: red">
+        <%= flash[:notice] %>
+    </p>
+
+
+
+
+    <div class="cart-fixed-ft">
+        <input type="submit", class="commit", value="订阅提交"></a>
+        <span class="mr15">共<span class="number">0</span>项，合计：¥<span class="total">0</span></span>
+    </div>
+
+<% end %>
+
+<script>
+    var check_input;
+
+
+
+  
+        setTimeout(function() {
+            $(".flash").hide();
+        },3000);
+
+
+
+    //点击下拉出现
+    $(".more").click( function() {
+        var checkParents = $(this).parents(".check");
+        checkParents.find('.hideCheck').toggle().parents(".check").siblings(".check").children(".hideCheck").hide();
+        
+    })
+
+
+
+
+    $('.hideCheck').hide(); //初始为隐藏
+
+
+    $(".check .lables input").on("click",function(){
+        $(this).parent().parent().find(".hideCheck input").prop("checked",$(this).prop("checked"))
+        calc_price()
+    })
+
+
+    $(".check .hideCheck input").on("click", function() {
+        var checkbox_length = $(this).parent().parent().find("input").length;
+        var val =  $(this).parents(".check").find(".lables input").val();
+    
+        if ( $(this).parent().parent().find("input:checked").length == checkbox_length){
+             $(this).parents(".check").find(".lables input").prop("checked",true);
+        } else {
+             $(this).parents(".check").find(".lables input").prop("checked",false);
+        }
+
+        calc_price()
+    })
+
+    
+    $("input").on("click",function(){
+        var all_input_count = $("input").length - 1
+        var all_check_input_without_allcheck = 0;
+
+        if ($("input[name=allcheck]").prop("checked")){
+            all_check_input_without_allcheck = $("input:checked").length - 1;
+        } else {
+            all_check_input_without_allcheck = $("input:checked").length
+        }
+
+        if (all_check_input_without_allcheck == all_input_count){
+            $("input[name=allcheck]").prop("checked",true);
+        } else {
+            $("input[name=allcheck]").prop("checked",false);
+        }
+
+        if ($(this).attr("name") == "allcheck"){
+            $("input").prop("checked",!$("input").prop("checked"))
+        }
+
+        if (all_input_count == $("input:checked").length - 1){
+            $(".show").text("全选");
+        } else {
+            $(".show").text(calc_price());
+            $(".number").text(calc_price().length);
+            $(".total").text(calc_price().length*0.01);
+            $("#number").val(calc_price());
+            $("#money").val(calc_price().length*0.01);
+        }
+    })
+
+    calc_price = function(){
+        var list = [];
+
+        $(".check").each(function(){
+            // if ($(this).find(".lables input").prop("checked")){
+            //     list.push($(this).find(".lables input").val());
+            //     return true;
+            // }
+            $(this).find(".hideCheck input:checked").each(function(){
+                // list.push($(this).val())
+                list.push($(this).prop("name"));
+            })
+        })
+        return list;
+    }
+
+</script>

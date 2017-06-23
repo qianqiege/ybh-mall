@@ -141,6 +141,7 @@ module Sdk
       }
       exec(:post, 'act/qa.do', info)
     end
+    
 
     # 慢病随访接口。上传高血压随访、糖尿病随访
     # 参数详见

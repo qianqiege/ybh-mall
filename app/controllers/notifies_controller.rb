@@ -51,6 +51,31 @@ class NotifiesController < ApplicationController
     end
   end
 
+  # 数动力订阅付款成功回调, 需要路由
+  def idata_subscribe
+    idata_subscribe = IdataSubscribe.find_by(number: params["merchOrderNo"])
+    if(idata_subscribe.present?)
+      idata_subscribe.fast_pay.logger.info params
+      remote_sign = params[:sign]
+
+      params.delete(:sign)
+      params.delete(:action)
+      params.delete(:controller)
+
+      local_sign = idata_subscribe.fast_pay.sign(params)
+      if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
+        idata_subscribe.trade_nos = params["tradeNo"]
+        idata_subscribe.pay
+        idata_subscribe.save!
+        render json: "success", layout: nil
+      else
+        render json: "fail", layout: nil
+      end
+    else
+      render json: "fail", layout: nil
+    end
+  end
+
   def refund
     # TODO: 退款流程
     render json: "success", layout: nil

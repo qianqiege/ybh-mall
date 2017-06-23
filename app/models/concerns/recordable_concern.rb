@@ -1,6 +1,7 @@
 module RecordableConcern
   extend ActiveSupport::Concern
 
+
   included do
     has_many :idata_records, as: :recordable
     after_create :create_recordable
