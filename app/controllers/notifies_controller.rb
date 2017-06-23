@@ -1,3 +1,4 @@
+require 'uri'
 class NotifiesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
@@ -87,7 +88,8 @@ class NotifiesController < ApplicationController
     password = Settings.idata.own_password
     if (params[:u] == username && params[:p] == password)
       if(params[:url])
-        respond = RestClient.get(params[:url], {accept: :json})
+        url = URI.decode(params[:url])
+        respond = RestClient.get(url, {accept: :json})
         body = JSON.parse(respond.body)
         record = IdataRecord.find(body["testRecordID"])
         if (record)
