@@ -168,9 +168,9 @@ class User::ExamineDataController < Wechat::BaseController
   #用户注册
   def idata_member_register
     result = WechatUser.find_by(user_id: current_user.user_id).idata.member_register
-    puts "@"*20
-    puts "用户在数动力端注册"
-    puts result
+    Rails.logger.info "@"*20
+    Rails.logger.info "用户在数动力端注册"
+    Rails.logger.info result
     if (result['code'] != '0000')
       raise Exception.new(result)
     end
@@ -179,9 +179,9 @@ class User::ExamineDataController < Wechat::BaseController
   #用户订阅
   def idata_active_service(service_id)
     result = WechatUser.find_by(user_id: current_user.user_id).idata.member_register(service_id)
-    puts "@"*20
-    puts "用户订阅"
-    puts result
+    Rails.logger.info "@"*20
+    Rails.logger.info "用户订阅"
+    Rails.logger.info result
     if (result['code'] != '0000')
       raise Exception.new(result)
     end

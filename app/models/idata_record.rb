@@ -141,9 +141,9 @@ class IdataRecord < ApplicationRecord
         "pulseValue": "70"
       }
       result = wechat_user.idata.daily_detect(id, 1,test_body)
-      puts "@"*20
-      puts "上传血压数据到数动力"
-      puts result
+      Rails.logger.info "@"*20
+      Rails.logger.info "上传血压数据到数动力"
+      Rails.logger.info result
       if (result['code'] != '0000')
         raise Exception.new(result)
       end

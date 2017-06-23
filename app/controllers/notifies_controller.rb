@@ -82,6 +82,7 @@ class NotifiesController < ApplicationController
   end
 
   def idata
+    Rails.logger.info("数动力回调成功")
     username = Settings.idata.own_username
     password = Settings.idata.own_password
     if (params[:u] == username && params[:p] == password)
