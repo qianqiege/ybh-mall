@@ -182,7 +182,7 @@ class User::ExamineDataController < Wechat::BaseController
     Rails.logger.info "@"*20
     Rails.logger.info "用户订阅"
     Rails.logger.info result
-    if (result['code'] != '0000')
+    if (result.first['code'] != '0000')
       raise Exception.new(result)
     end
   end
