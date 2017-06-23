@@ -88,7 +88,7 @@ class NotifiesController < ApplicationController
     password = Settings.idata.own_password
     if (params[:u] == username && params[:p] == password)
       if(params[:url])
-        url = URI.decode(params[:url])
+        url = URI.decode(params[:url])[2..-1]
         respond = RestClient.get(url, {accept: :json})
         body = JSON.parse(respond.body)
         record = IdataRecord.find(body["testRecordID"])
