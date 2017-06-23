@@ -138,6 +138,10 @@ Rails.application.routes.draw do
     get '/show_unine', to: 'examine_data#show_unine'
     get '/ecg', to: 'examine_data#show_ecg'
     get '/ecg_image', to: 'examine_data#ecg_image'
+    #idata
+    get '/show_idata', to: 'examine_data#show_idata_subscribe'
+    post '/create_idata_subscribe', to: 'examine_data#create_idata_subscribe'
+    get '/idata_subscribe_pay', to: 'examine_data#idata_subscribe_pay'
   end
 
   namespace :examine do
@@ -163,6 +167,7 @@ Rails.application.routes.draw do
     post :deposits, on: :collection
     post :refund, on: :collection
     post :idata, on: :collection
+    post :idata_subscribe, on: :collection
   end
 
   resources :h_programs do
