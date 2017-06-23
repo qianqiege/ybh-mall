@@ -178,7 +178,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   #用户订阅
   def idata_active_service(service_id)
-    result = WechatUser.find_by(user_id: current_user.user_id).idata.member_register(service_id)
+    result = WechatUser.find_by(user_id: current_user.user_id).idata.active_service(service_id)
     Rails.logger.info "@"*20
     Rails.logger.info "用户订阅"
     Rails.logger.info result
