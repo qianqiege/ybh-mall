@@ -91,7 +91,7 @@ class NotifiesController < ApplicationController
         url = URI.decode(params[:url])[2..-1]
         respond = RestClient.get(url, {accept: :json})
         body = JSON.parse(respond.body)
-        record = IdataRecord.find(body["testRecordID"])
+        record = IdataRecord.find(body["testRecordID"].to_i)
         if (record)
           record.update_attributes(
             message: URI.decode(body["message"]),
