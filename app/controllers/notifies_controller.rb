@@ -114,7 +114,7 @@ class NotifiesController < ApplicationController
             service_id: body['serviceID'],
             row_data: body,
             state: 'notified',
-            wechat_user_id: WechatUser.find_by(user_id: current_user.user_id).id
+            wechat_user_id: current_user.id
           )
           
           render json: { "code":"0000","msg":"操作成功" }, layout: nil
@@ -125,5 +125,12 @@ class NotifiesController < ApplicationController
     else
       render json: {"code":"1001","msg":"登陆失败"}, layout: nil
     end
+  end
+
+
+  def current_user
+      if session[:wechat_open_id].present?
+        @current_user ||= WechatUser.find_by(open_id: session[:wechat_open_id])
+      end
   end
 end
