@@ -6,7 +6,7 @@ class IdataRecord < ApplicationRecord
 
   validates :wechat_user, :recordable, presence: true
 
-  after_create :post_data
+  after_save :post_data
   after_update :send_template_msg
 
   # 这里需要补充词典内容
@@ -132,31 +132,35 @@ class IdataRecord < ApplicationRecord
   def post_data
     # 这里根据不同类型，添加更多情况
 
-    #血压
-    if recordable.is_a? BloodPressure
-      test_body = {
-        "highValue": recordable.systolic_pressure,
-        "lowValue": recordable.diastolic_pressure,
-        # 这里是需要更改
-        "pulseValue": "70"
-      }
-      result = wechat_user.idata.daily_detect(id, 1,test_body)
-      Rails.logger.info "@"*20
-      Rails.logger.info "上传血压数据到数动力"
-      Rails.logger.info result
-      if (result['code'] != '0000')
-        raise Exception.new(result)
-      end
-    end
 
-    #体重
-    # if recordable.is_a? Weight
-    #   test_body = {}
-    # end
+    if self.message.blank?
+      #血压
+      if recordable.is_a? BloodPressure
+        test_body = {
+          "highValue": recordable.systolic_pressure,
+          "lowValue": recordable.diastolic_pressure,
+          # 这里是需要更改
+          "pulseValue": "70"
+        }
+        result = wechat_user.idata.daily_detect(id, 1,test_body)
+        Rails.logger.info "@"*20
+        Rails.logger.info "上传血压数据到数动力"
+        Rails.logger.info result
+        if (result['code'] != '0000')
+          raise Exception.new(result)
+        end
+      end
+
+      #体重
+      # if recordable.is_a? Weight
+      #   test_body = {}
+      # end
+    end
   end
   
 
   def send_template_msg
+    Rails.logger "发送模板消息"
     if (state == 'notified')
       str_message = message.gsub(/(\{.+\}，)|(\{.+\})/, '')
       data = {
@@ -185,6 +189,7 @@ class IdataRecord < ApplicationRecord
       # 这里要换成正确的URL
       url = Settings.weixin.host + "/wechat/idata"
       open_id = wechat_user.open_id
+      Rails.logger("微信用户的open_id: #{open_id}")
 
       $wechat_client.send_template_msg(open_id, Settings.idata.template_id, url, "#FD878E", data)
     end
