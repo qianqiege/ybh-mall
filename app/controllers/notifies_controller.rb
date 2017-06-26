@@ -98,14 +98,11 @@ class NotifiesController < ApplicationController
         Rails.logger.info "所有的idatarecord id"
         Rails.logger.info IdataRecord.pluck(:id)
 
-        record2 = IdataRecord.find_by(id: body["testRecordID"].to_i)
-        Rails.logger.info record2.inspect
+        record = IdataRecord.find_by(id: body["testRecordID"].to_i)
+        Rails.logger.info record.inspect
 
         record1 = IdataRecord.where(id: body["testRecordID"].to_i)
         Rails.logger.info record1.inspect
-
-        record = IdataRecord.first
-        Rails.logger.info record.inspect
 
         if (record)
           record.update_attributes(
@@ -113,10 +110,8 @@ class NotifiesController < ApplicationController
             detail: body["detail"],
             service_id: body['serviceID'],
             row_data: body,
-            state: 'notified',
-            wechat_user_id: current_user.id
+            state: 'notified'
           )
-          
           render json: { "code":"0000","msg":"操作成功" }, layout: nil
         end
       else
@@ -125,12 +120,5 @@ class NotifiesController < ApplicationController
     else
       render json: {"code":"1001","msg":"登陆失败"}, layout: nil
     end
-  end
-
-
-  def current_user
-      if session[:wechat_open_id].present?
-        @current_user ||= WechatUser.find_by(open_id: session[:wechat_open_id])
-      end
   end
 end
