@@ -91,11 +91,14 @@ class NotifiesController < ApplicationController
         url = URI.decode(params[:url])[2..-1]
         respond = RestClient.get(url, {accept: :json})
         body = JSON.parse(respond.body)
-        Rails.logger body
-        record = IdataRecord.find_by(body["testRecordID"].to_i)
-        Rails.logger record
+        Rails.logger.info body
+        
+        record = IdataRecord.find_by(id: body["testRecordID"].to_i)
+        Rails.logger.info record
+
         record1 = IdataRecord.where(id: body["testRecordID"].to_i)
-        Rails.logger record1
+        Rails.logger.info record1
+
         if (record)
           record.update_attributes(
             message: URI.decode(body["message"]),

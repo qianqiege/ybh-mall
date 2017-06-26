@@ -160,7 +160,7 @@ class IdataRecord < ApplicationRecord
   
 
   def send_template_msg
-    Rails.logger "发送模板消息"
+    Rails.logger.info "发送模板消息"
     if (state == 'notified')
       str_message = message.gsub(/(\{.+\}，)|(\{.+\})/, '')
       data = {
@@ -189,7 +189,7 @@ class IdataRecord < ApplicationRecord
       # 这里要换成正确的URL
       url = Settings.weixin.host + "/wechat/idata"
       open_id = wechat_user.open_id
-      Rails.logger("微信用户的open_id: #{open_id}")
+      Rails.logger.info("微信用户的open_id: #{open_id}")
 
       $wechat_client.send_template_msg(open_id, Settings.idata.template_id, url, "#FD878E", data)
     end
