@@ -88,23 +88,14 @@ class NotifiesController < ApplicationController
     password = Settings.idata.own_password
     if (params[:u] == username && params[:p] == password)
       if(params[:url])
-        url1 = URI.decode(params[:url])[2..-1]
-        respond1 = RestClient.get(url1, {accept: :json})
-        body1 = JSON.parse(respond1.body)
-        Rails.logger "11111"
-        Rails.logger body1
-        record1 = IdataRecord.find_by(body1["testRecordID"].to_i)
-        Rails.logger record1
-
-        url = "http://www.mocky.io/v2/594645dd1000008d03f64eb5"
+        url = URI.decode(params[:url])[2..-1]
         respond = RestClient.get(url, {accept: :json})
         body = JSON.parse(respond.body)
-        Rails.logger "22222"
         Rails.logger body
-
-        body["testRecordID"] = "2"
         record = IdataRecord.find_by(body["testRecordID"].to_i)
         Rails.logger record
+        record1 = IdataRecord.where(id: body["testRecordID"].to_i)
+        Rails.logger record1
         if (record)
           record.update_attributes(
             message: URI.decode(body["message"]),
