@@ -92,7 +92,7 @@ class NotifiesController < ApplicationController
         respond = RestClient.get(url, {accept: :json})
         body = JSON.parse(respond.body)
 
-        Rails.logger "数动力返回的body"
+        Rails.logger.info "数动力返回的body"
         Rails.logger.info body
 
         Rails.logger.info "所有的idatarecord id"
