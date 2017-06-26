@@ -6,7 +6,7 @@ class IdataRecord < ApplicationRecord
 
   validates :wechat_user, :recordable, presence: true
 
-  after_save :post_data
+  after_create :post_data
   after_update :send_template_msg
 
   # 这里需要补充词典内容
@@ -132,8 +132,6 @@ class IdataRecord < ApplicationRecord
   def post_data
     # 这里根据不同类型，添加更多情况
 
-
-    if self.message.blank?
       #血压
       if recordable.is_a? BloodPressure
         test_body = {
@@ -142,6 +140,9 @@ class IdataRecord < ApplicationRecord
           # 这里是需要更改
           "pulseValue": "70"
         }
+        record = IdataRecord.find_by(id: self.id)
+        Rails.logger.info record.inspect
+        Rails.logger.info IdataRecord.pluck(:id)
         result = wechat_user.idata.daily_detect(id, 1,test_body)
         Rails.logger.info "@"*20
         Rails.logger.info "上传血压数据到数动力"
@@ -155,7 +156,7 @@ class IdataRecord < ApplicationRecord
       # if recordable.is_a? Weight
       #   test_body = {}
       # end
-    end
+    
   end
   
 
@@ -185,6 +186,7 @@ class IdataRecord < ApplicationRecord
           color: "#FD878E"
         }
       }
+      Rails.logger.info data.inspect
 
       # 这里要换成正确的URL
       url = Settings.weixin.host + "/wechat/idata"
