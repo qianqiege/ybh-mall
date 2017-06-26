@@ -117,7 +117,7 @@ class User::InfoController < Wechat::BaseController
       Integral.create(user_id: params["id"].to_i)
     end
 
-    if status == "staff" || status == "Staff" || number >= 400 && number%20 == 0
+    if type == "staff" || type == "Staff" || number >= 400 && number%20 == 0
       # 判断当前用户的可兑换积分数量是否大于赠送积分
       if integral.exchange > number
         order_integral = number
