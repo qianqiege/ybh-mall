@@ -6,7 +6,7 @@ class IdataRecord < ApplicationRecord
 
   validates :wechat_user, :recordable, presence: true
 
-  after_create :post_data
+  after_create_commit :post_data
   after_update :send_template_msg
 
   # 这里需要补充词典内容
