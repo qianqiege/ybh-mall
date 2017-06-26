@@ -91,13 +91,19 @@ class NotifiesController < ApplicationController
         url = URI.decode(params[:url])[2..-1]
         respond = RestClient.get(url, {accept: :json})
         body = JSON.parse(respond.body)
+
+        Rails.logger "数动力返回的body"
         Rails.logger.info body
-        
+
+        Rails.logger.info "所有的idatarecord id"
+        Rails.logger.info IdataRecord.pluck(:id)
+
         record = IdataRecord.find_by(id: body["testRecordID"].to_i)
         Rails.logger.info record
 
         record1 = IdataRecord.where(id: body["testRecordID"].to_i)
         Rails.logger.info record1
+
 
         if (record)
           record.update_attributes(
