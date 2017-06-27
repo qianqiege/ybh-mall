@@ -9,7 +9,9 @@ class Examine::PressureController < Examine::BaseController
   def create
     @id_number = User.where(id:current_user.user_id).take
     if !@id_number.nil?
-      @pressure = BloodPressure.new(user_id: @id_number.id,diastolic_pressure:pressure_params[:diastolic_pressure],systolic_pressure:pressure_params[:systolic_pressure])
+      @pressure = BloodPressure.new(user_id: @id_number.id,diastolic_pressure:pressure_params[:diastolic_pressure],
+                                    systolic_pressure:pressure_params[:systolic_pressure],
+                                    heart: pressure_params[:heart])
       respond_to do |format|
         if @pressure.save
           format.html { redirect_to examine_pressure_path, notice: '上传成功'}
