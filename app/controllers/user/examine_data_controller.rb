@@ -144,6 +144,9 @@ class User::ExamineDataController < Wechat::BaseController
 
     flash[:notice] = "订阅成功" 
 
+    #创建数动力用户订阅表
+    UserIdataSubscribe.create(list: params[:number].split(","), user_id: current_user.user_id)
+
     redirect_to user_show_idata_path
 
 
