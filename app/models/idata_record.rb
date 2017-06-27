@@ -153,6 +153,13 @@ class IdataRecord < ApplicationRecord
   def post_data
     # 这里根据不同类型，添加更多情况
 
+    user_subscribe_list = UserIdataSubscribe.where(user_id: wechat_user.user_id).last.list
+    Rails.logger.info "用户订阅列表"
+    Rails.logger.info user_subscribe_list
+
+    #blood_pressure_flag = user_subscribe_list.include?(211) || user_subscribe_list.include?(301) || user_subscribe_list.include?(304)
+    #blood_glucose_flag = user_subscribe_list.include
+
       #血压
       if recordable.is_a? BloodPressure
         test_body = {
@@ -177,8 +184,7 @@ class IdataRecord < ApplicationRecord
        if recordable.is_a? BloodGlucose
          test_body = {
            "sugarValue": recordable.value,
-           "typeCode": "1",
-           "typeDetailCode": "3" 
+           "typeDetailCode": recordable.mens_type 
          }
          result = wechat_user.idata.daily_detect(id, 2, test_body)
          if (result['code'] != '0000')
@@ -200,16 +206,16 @@ class IdataRecord < ApplicationRecord
       #   end
       # end
 
-      # #尿酸
-      # if recordable.is_a? Unine
-      #   test_body = {
-      #     "buaValue": recordable.value
-      #   }
-      #   result = wechat_user.idata.daily_detect(id, 8, test_body)
-      #   if (result['code'] != '0000')
-      #     raise Exception.new(result)
-      #   end
-      # end
+      # 尿酸
+       if recordable.is_a? Unine
+         test_body = {
+           "buaValue": recordable.value
+         }
+         result = wechat_user.idata.daily_detect(id, 8, test_body)
+         if (result['code'] != '0000')
+           raise Exception.new(result)
+         end
+       end
     
   end
   
