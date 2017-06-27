@@ -133,7 +133,7 @@ class NotifiesController < ApplicationController
 
               if record
                 record.update_attributes(
-                  message: URI.decode(body["message"]),
+                  message: body["message"],
                   detail: body["detail"],
                   service_id: body['serviceID'],
                   row_data: body,

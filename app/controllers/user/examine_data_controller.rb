@@ -191,8 +191,8 @@ class User::ExamineDataController < Wechat::BaseController
   #用于显示周报或月报详情
   def show_week_or_month_report
     @idata_record = IdataRecord.find_by(id: params[:id])
-    # @message = URI.decode(@idata_record.message)
-    @message = @idata_record.message.gsub(/[\+]+/, " ")
+    @message = URI.decode(@idata_record.message)
+    @message = @message.gsub(/[\+]+/, " ")
   end
 
 end
