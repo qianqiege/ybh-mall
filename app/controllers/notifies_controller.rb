@@ -95,6 +95,10 @@ class NotifiesController < ApplicationController
         Rails.logger.info "数动力返回的body"
         Rails.logger.info body
 
+
+        Rails.logger.info "数动力服务的记录号"
+        Rails.logger.info body["testRecordID"] 
+
         unless body["testRecordID"].blank?             
 
           record = IdataRecord.find_by(id: body["testRecordID"].to_i)
@@ -114,10 +118,18 @@ class NotifiesController < ApplicationController
 
         else
             #血压周或月服务ID
-            blood_service_ids = [304, 301]
+            blood_service_ids = ["304", "301"]
+
+            Rails.logger.info "数动力服务ID"
+            Rails.logger.info body["serviceID"]
+
             if blood_service_ids.include?(body["serviceID"])
               current_wechat_user = WechatUser.find_by(open_id: body["memberID"])
               record = IdataRecord.where(recordable_type: "BloodPressure", wechat_user_id: current_wechat_user.id).first
+
+              Rails.logger.info "查找一条存在的记录"
+              Rails.logger.info current_wechat_user.inspect
+              Rails.logger.info record.inspect
 
               if record
                 record.update_attributes(
