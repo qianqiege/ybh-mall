@@ -186,11 +186,16 @@ class IdataRecord < ApplicationRecord
           color: "#FD878E"
         }
       }
-      Rails.logger.info data.inspect
+      
 
       # 这里要换成正确的URL
       url = Settings.weixin.host + "/wechat/idata"
       open_id = wechat_user.open_id
+
+      #调试用代码，可删除
+      Rails.logger.info data.inspect
+      Rails.logger.info Settings.idata.template_id
+      Rails.logger.info $wechat_client.inspect
       Rails.logger.info("微信用户的open_id: #{open_id}")
 
       $wechat_client.send_template_msg(open_id, Settings.idata.template_id, url, "#FD878E", data)
