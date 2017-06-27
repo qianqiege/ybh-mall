@@ -159,7 +159,7 @@ class IdataRecord < ApplicationRecord
           "highValue": recordable.systolic_pressure,
           "lowValue": recordable.diastolic_pressure,
           # 这里是需要更改
-          "pulseValue": "70"
+          "pulseValue": recordable.heart
         }
         record = IdataRecord.find_by(id: self.id)
         Rails.logger.info record.inspect
@@ -173,18 +173,18 @@ class IdataRecord < ApplicationRecord
         end
       end
 
-      # #血糖
-      # if recordable.is_a? BloodGlucose
-      #   test_body = {
-      #     "sugarValue": ,
-      #     "typeCode": ,
-      #     "typeDetailCode": 
-      #   }
-      #   result = wechat_user.idata.daily_detect(id, 2, test_body)
-      #   if (result['code'] != '0000')
-      #     raise Exception.new(result)
-      #   end
-      # end
+       #血糖
+       if recordable.is_a? BloodGlucose
+         test_body = {
+           "sugarValue": recordable.value,
+           "typeCode": "1",
+           "typeDetailCode": "3" 
+         }
+         result = wechat_user.idata.daily_detect(id, 2, test_body)
+         if (result['code'] != '0000')
+           raise Exception.new(result)
+         end
+       end
 
       # #血脂
       # if recordable.is_a? BloodFat
