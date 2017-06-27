@@ -220,7 +220,7 @@ class IdataRecord < ApplicationRecord
       str_message = message.gsub(/(\{.+\}，)|(\{.+\})/, '')
 
       #所有月报周报的service_id
-      month_week_subscribe_id_list = [301, 302, 304, 305, 308, 311]
+      month_week_subscribe_id_list = ["301", "302", "304", "305", "308", "311"]
 
       if month_week_subscribe_id_list.include?(service_id)
 
