@@ -2,6 +2,7 @@ ActiveAdmin.register IdataRecord do
 
 
 	menu parent: I18n.t("active_admin.menu.examine_manage")
+	permit_params :message, :detail
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
