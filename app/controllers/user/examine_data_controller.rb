@@ -187,4 +187,9 @@ class User::ExamineDataController < Wechat::BaseController
     end
   end
 
+  #用于显示周报或月报详情
+  def show_week_or_month_report
+    @idata_record = IdataRecord.find_by(id: params[:id])
+  end
+
 end

@@ -142,6 +142,7 @@ Rails.application.routes.draw do
     get '/show_idata', to: 'examine_data#show_idata_subscribe'
     post '/create_idata_subscribe', to: 'examine_data#create_idata_subscribe'
     get '/idata_subscribe_pay', to: 'examine_data#idata_subscribe_pay'
+    get '/show_week_or_month_report', to: 'examine_data#show_week_or_month_report'
   end
 
   namespace :examine do

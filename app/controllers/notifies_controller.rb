@@ -95,25 +95,46 @@ class NotifiesController < ApplicationController
         Rails.logger.info "数动力返回的body"
         Rails.logger.info body
 
-        Rails.logger.info "所有的idatarecord id"
-        Rails.logger.info IdataRecord.pluck(:id)
+        unless body["testRecordID"].blank?             
 
-        record = IdataRecord.find_by(id: body["testRecordID"].to_i)
-        Rails.logger.info record.inspect
+          record = IdataRecord.find_by(id: body["testRecordID"].to_i)
 
-        record1 = IdataRecord.where(id: body["testRecordID"].to_i)
-        Rails.logger.info record1.inspect
+          if (record)
+            record.update_attributes(
+              message: URI.decode(body["message"]),
+              detail: body["detail"],
+              service_id: body['serviceID'],
+              row_data: body,
+              state: 'notified'
+            )
+              
+            render json: { "code":"0000","msg":"操作成功" }, layout: nil
 
-        if (record)
-          record.update_attributes(
-            message: URI.decode(body["message"]),
-            detail: body["detail"],
-            service_id: body['serviceID'],
-            row_data: body,
-            state: 'notified'
-          )
-          render json: { "code":"0000","msg":"操作成功" }, layout: nil
+          end
+
+        else
+            #血压周或月服务ID
+            blood_service_ids = [304, 301]
+            if blood_service_ids.include?(body["serviceID"])
+              current_wechat_user = WechatUser.find_by(open_id: body["memberID"])
+              record = IdataRecord.where(recordable_type: "BloodPressure", wechat_user_id: current_wechat_user.id).first
+
+              if record
+                record.update_attributes(
+                  message: URI.decode(body["message"]),
+                  detail: body["detail"],
+                  service_id: body['serviceID'],
+                  row_data: body,
+                  state: 'notified'
+                  )
+
+                render json: { "code":"0000","msg":"操作成功" }, layout: nil
+
+              end
+            end
+
         end
+
       else
         render json: {"code":"0000","msg":"数据错误"}, layout: nil
       end
