@@ -284,9 +284,10 @@ class IdataRecord < ApplicationRecord
       Rails.logger.info Settings.idata.template_id
       Rails.logger.info $wechat_client.inspect
       Rails.logger.info("微信用户的open_id: #{open_id}")
+      Rails.logger.info url
       
 
-      $wechat_client.send_template_msg(open_id, Settings.idata.template_id, url, "#FD878E", data)
+      Rails.logger.info $wechat_client.send_template_msg(open_id, Settings.idata.template_id, url, "#FD878E", data)
     end
     true
   end
