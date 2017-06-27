@@ -1,3 +1,4 @@
+require 'uri'
 class User::ExamineDataController < Wechat::BaseController
 
   def health_data_home
@@ -190,6 +191,8 @@ class User::ExamineDataController < Wechat::BaseController
   #用于显示周报或月报详情
   def show_week_or_month_report
     @idata_record = IdataRecord.find_by(id: params[:id])
+    # @message = URI.decode(@idata_record.message)
+    @message = @idata_record.message.gsub(/[\+]+/, " ")
   end
 
 end
