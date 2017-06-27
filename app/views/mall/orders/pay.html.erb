@@ -18,6 +18,7 @@
         <div class="fr">
           <span class="cashier-info-needpay">¥<%= money @order.price %></span>
         </div>
+        <p style="font-size:10px;"><span style="color:red; font-size:10px;">提示：</span>提交订单后，三天未付款，系统将取消该订单</p>
       </div>
       <% @trade_merge_pay_params.keys.each do |item| %>
         <%= hidden_field_tag item, @trade_merge_pay_params[item] %>

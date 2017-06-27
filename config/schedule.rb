@@ -16,3 +16,7 @@ end
 every 1.day, :at => '4:00 am' do
   rake 'presented_record:update_locking_available'
 end
+
+every 1.day, :at => '3:30 am' do
+  rake 'order:update_status'
+end
