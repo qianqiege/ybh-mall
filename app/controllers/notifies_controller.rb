@@ -99,7 +99,7 @@ class NotifiesController < ApplicationController
         Rails.logger.info "数动力服务的记录号"
         Rails.logger.info body["testRecordID"] 
 
-        #判断是否是即时通知服务
+        #判断是否是即时通知服务, 是否传过来idata_record的id
         unless body["testRecordID"].blank?             
 
           record = IdataRecord.find_by(id: body["testRecordID"].to_i)
@@ -118,57 +118,44 @@ class NotifiesController < ApplicationController
           end
 
         else
-            #血压周或月服务ID
+            #周或月报告服务ID
             blood_pressure_ids = ["304", "301"]
             blood_glucose_ids = ["302", "308"]
+            weight_ids = ["305", "311"]
 
             Rails.logger.info "数动力服务ID"
             Rails.logger.info body["serviceID"]
 
-
+            #通过传递过来的open_id   获取当前微信用户
             current_wechat_user = WechatUser.find_by(open_id: body["memberID"])
 
-            #血压周报月报
+
             if blood_pressure_ids.include?(body["serviceID"])
-              
+
               record = BloodPressure.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
-
-              if record
-                record.update_attributes(
-                  message: body["message"],
-                  detail: body["detail"],
-                  service_id: body['serviceID'],
-                  row_data: body,
-                  state: 'notified'
-                  )
-
-                render json: { "code":"0000","msg":"操作成功" }, layout: nil
-              end
-            end
-
-
-            #血糖周报月报
-            if blood_glucose_ids.include?(body["serviceID"])
-              
+            
+            elsif blood_glucose_ids.include?(body["serviceID"])
+            
               record = BloodGlucose.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
-
-              if record
-                record.update_attributes(
-                  message: body["message"],
-                  detail: body["detail"],
-                  service_id: body['serviceID'],
-                  row_data: body,
-                  state: 'notified'
-                  )
-
-                render json: { "code":"0000","msg":"操作成功" }, layout: nil
-              end
-
+            
+            elsif weight_ids.include?(body["serviceID"])
+            
+              record = Weight.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
+            
             end
 
 
+            if record
+              record.update_attributes(
+                message: body["message"],
+                detail: body["detail"],
+                service_id: body['serviceID'],
+                row_data: body,
+                state: 'notified'
+              )
 
-
+              render json: { "code":"0000","msg":"操作成功" }, layout: nil
+            end
 
         end
 

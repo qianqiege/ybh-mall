@@ -221,6 +221,18 @@ class IdataRecord < ApplicationRecord
          end
        end
 
+       #BMI
+       if recordable.is_a? BloodFat
+        test_body = {
+          "hightVlaue": recordable.height,
+          "weightValue": recordable.value
+        }
+        result = wechat_user.idata.daily_detect(id, 3, test_body)
+        if (result['code'] != '0000')
+          raise Exception.new(result)
+        end
+      end
+
 
     end
     
@@ -237,6 +249,15 @@ class IdataRecord < ApplicationRecord
 
       if month_week_subscribe_id_list.include?(service_id)
 
+
+        sugguestion = detail["overview"]? detail["overview"] : detail["bgControlAlert"]
+        if service_id == "305"
+          sugguestion = detail["evaluateDesc"]
+        elsif service_id == "311"
+          sugguestion = detail["suggestionWave"]
+        end
+
+
         data = {
           first: {
             value: "#{wechat_user.nickname} #{DICT[service_id.to_sym][:serviceInfo]}",
@@ -251,7 +272,7 @@ class IdataRecord < ApplicationRecord
             color: "#173177"
           },
           keyword3: {
-            value: detail["overview"]? detail["overview"] : detail["bgControlAlert"],
+            value: sugguestion,
             color: "#173177"
           },
           remark: {
