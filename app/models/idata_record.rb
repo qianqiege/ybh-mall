@@ -251,7 +251,7 @@ class IdataRecord < ApplicationRecord
             color: "#173177"
           },
           keyword3: {
-            value: detail["overview"],
+            value: detail["overview"]? detail["overview"] : detail["bgControlAlert"],
             color: "#173177"
           },
           remark: {
@@ -261,6 +261,7 @@ class IdataRecord < ApplicationRecord
         } 
 
         url = Settings.weixin.host + "/user/show_week_or_month_report?id=#{id}"
+
 
       else
         data = {

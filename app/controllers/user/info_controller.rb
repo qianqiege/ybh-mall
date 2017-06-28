@@ -346,6 +346,10 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  def moving_health_data
+    
+  end
+
   def create_programs
     if params["commit"] == "加入到购物车"
       @time = params[:format]
