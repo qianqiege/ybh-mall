@@ -99,6 +99,7 @@ class NotifiesController < ApplicationController
         Rails.logger.info "数动力服务的记录号"
         Rails.logger.info body["testRecordID"] 
 
+        #判断是否是即时通知服务
         unless body["testRecordID"].blank?             
 
           record = IdataRecord.find_by(id: body["testRecordID"].to_i)
@@ -118,18 +119,19 @@ class NotifiesController < ApplicationController
 
         else
             #血压周或月服务ID
-            blood_service_ids = ["304", "301"]
+            blood_pressure_ids = ["304", "301"]
+            blood_glucose_ids = ["302", "308"]
 
             Rails.logger.info "数动力服务ID"
             Rails.logger.info body["serviceID"]
 
-            if blood_service_ids.include?(body["serviceID"])
-              current_wechat_user = WechatUser.find_by(open_id: body["memberID"])
-              record = IdataRecord.where(recordable_type: "BloodPressure", wechat_user_id: current_wechat_user.id).first
 
-              Rails.logger.info "查找一条存在的记录"
-              Rails.logger.info current_wechat_user.inspect
-              Rails.logger.info record.inspect
+            current_wechat_user = WechatUser.find_by(open_id: body["memberID"])
+
+            #血压周报月报
+            if blood_pressure_ids.include?(body["serviceID"])
+              
+              record = BloodPressure.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
 
               if record
                 record.update_attributes(
@@ -141,9 +143,32 @@ class NotifiesController < ApplicationController
                   )
 
                 render json: { "code":"0000","msg":"操作成功" }, layout: nil
-
               end
             end
+
+
+            #血糖周报月报
+            if blood_glucose_ids.include?(body["serviceID"])
+              
+              record = BloodGlucose.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
+
+              if record
+                record.update_attributes(
+                  message: body["message"],
+                  detail: body["detail"],
+                  service_id: body['serviceID'],
+                  row_data: body,
+                  state: 'notified'
+                  )
+
+                render json: { "code":"0000","msg":"操作成功" }, layout: nil
+              end
+
+            end
+
+
+
+
 
         end
 
