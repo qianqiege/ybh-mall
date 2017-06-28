@@ -107,6 +107,7 @@ Rails.application.routes.draw do
     post '/do_query_wallet', to: 'info#do_query_wallet'
     get '/query_wallet', to: 'info#query_wallet'
     get '/record_home', to: 'info#record_home'
+    get '/moving_health_data', to: 'info#moving_health_data'
     get '/programs_home' ,to: 'info#programs_home'
     get '/scoin_info',to: 'info#scoin_info'
     get '/setting', to: 'info#setting'
