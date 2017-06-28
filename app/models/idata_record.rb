@@ -153,13 +153,20 @@ class IdataRecord < ApplicationRecord
   def post_data
     # 这里根据不同类型，添加更多情况
 
-    user_subscribe_list = UserIdataSubscribe.where(user_id: wechat_user.user_id).last.list
-    Rails.logger.info "用户订阅列表"
-    Rails.logger.info user_subscribe_list
+    if UserIdataSubscribe.where(user_id: wechat_user.user_id).last
+      user_subscribe_list = UserIdataSubscribe.where(user_id: wechat_user.user_id).last.list
+      Rails.logger.info "用户订阅服务列表"
+      Rails.logger.info user_subscribe_list
+    end
+    
 
     #blood_pressure_flag = user_subscribe_list.include?(211) || user_subscribe_list.include?(301) || user_subscribe_list.include?(304)
     #blood_glucose_flag = user_subscribe_list.include
 
+    #判断是否为周报，月报创建的数据
+    if message != "week_month"
+      
+    
       #血压
       if recordable.is_a? BloodPressure
         test_body = {
@@ -192,30 +199,30 @@ class IdataRecord < ApplicationRecord
          end
        end
 
-      # #血脂
-      # if recordable.is_a? BloodFat
-      #   test_body = {
-      #     "cholValue":"5.1",
-      #     "trigValue":"1.7",
-      #     "hdlValue":"1.0",
-      #     "ldlValue":"3.3"
-      #   }
-      #   result = wechat_user.idata.daily_detect(id, 7, test_body)
-      #   if (result['code'] != '0000')
-      #     raise Exception.new(result)
-      #   end
-      # end
+      #血脂
+      if recordable.is_a? BloodFat
+        test_body = {
+          "cholValue": recordable.value
+        }
+        result = wechat_user.idata.daily_detect(id, 7, test_body)
+        if (result['code'] != '0000')
+          raise Exception.new(result)
+        end
+      end
 
       # 尿酸
        if recordable.is_a? Unine
          test_body = {
-           "buaValue": recordable.value
+           "buaValue": (recordable.value*100).to_i
          }
          result = wechat_user.idata.daily_detect(id, 8, test_body)
          if (result['code'] != '0000')
            raise Exception.new(result)
          end
        end
+
+
+    end
     
   end
   
