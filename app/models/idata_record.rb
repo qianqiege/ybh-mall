@@ -248,7 +248,7 @@ class IdataRecord < ApplicationRecord
       str_message = message.gsub(/(\{.+\}，)|(\{.+\})/, '')
 
       #所有月报周报的service_id
-      month_week_subscribe_id_list = ["301", "302", "304", "305", "308", "311", "107", "401", "701", "702", "703"]
+      month_week_subscribe_id_list = ["301", "302", "304", "305", "308", "311", "107", "401"]
 
       #判断是否为定时报告
       if month_week_subscribe_id_list.include?(service_id)
@@ -261,10 +261,6 @@ class IdataRecord < ApplicationRecord
             sugguestion = detail["suggestionWave"]
           elsif ["107", "401"].include?(service_id)
             sugguestion = "请点击详情查看详细信息"
-          elsif service_id == "701"
-            sugguestion = detail["suggestion"]
-          elsif service_id == "702" || service_id == "703"
-            sugguestion = detail["introduction"]
           end
 
 
