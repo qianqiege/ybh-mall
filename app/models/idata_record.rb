@@ -222,7 +222,7 @@ class IdataRecord < ApplicationRecord
        end
 
        #BMI
-       if recordable.is_a? BloodFat
+       if recordable.is_a? Weight
         test_body = {
           "hightVlaue": recordable.height,
           "weightValue": recordable.value
