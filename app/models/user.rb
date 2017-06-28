@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :exchange_records
   has_many :addresses
   has_many :unines
+  has_many :regular_reports
   has_many :temperatures
   has_many :blood_glucoses
   has_many :blood_pressures

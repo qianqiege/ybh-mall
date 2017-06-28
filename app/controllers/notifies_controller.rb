@@ -130,20 +130,22 @@ class NotifiesController < ApplicationController
             current_wechat_user = WechatUser.find_by(open_id: body["memberID"])
 
 
-            if blood_pressure_ids.include?(body["serviceID"])
+            # if blood_pressure_ids.include?(body["serviceID"])
 
-              record = BloodPressure.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
+            #   record = BloodPressure.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
             
-            elsif blood_glucose_ids.include?(body["serviceID"])
+            # elsif blood_glucose_ids.include?(body["serviceID"])
             
-              record = BloodGlucose.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
+            #   record = BloodGlucose.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
             
-            elsif weight_ids.include?(body["serviceID"])
+            # elsif weight_ids.include?(body["serviceID"])
             
-              record = Weight.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
+            #   record = Weight.first.idata_records.create(wechat_user: current_wechat_user, message: "week_month")
             
-            end
+            # end
 
+            regular_report = RegularReport.create(user: current_wechat_user.user)
+            record = regular_report.idata_records.create(wechat_user: current_wechat_user)
 
             if record
               record.update_attributes(
