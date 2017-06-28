@@ -6,7 +6,7 @@ class IdataRecord < ApplicationRecord
 
   validates :wechat_user, :recordable, presence: true
 
-  after_create_commit :post_data
+  after_create_commit :whether_post_data
   after_update :send_template_msg
 
   # 这里需要补充词典内容
@@ -150,9 +150,18 @@ class IdataRecord < ApplicationRecord
 
   private
 
+  #判断是否向数动力传递数据
+  def whether_post_data
+    unless recordable_type == "RegularReport"
+      post_data
+    end
+  end
+
+
   def post_data
     # 这里根据不同类型，添加更多情况
 
+    #以最后一次订阅为准
     if UserIdataSubscribe.where(user_id: wechat_user.user_id).last
       user_subscribe_list = UserIdataSubscribe.where(user_id: wechat_user.user_id).last.list
       Rails.logger.info "用户订阅服务列表"
@@ -162,9 +171,6 @@ class IdataRecord < ApplicationRecord
 
     #blood_pressure_flag = user_subscribe_list.include?(211) || user_subscribe_list.include?(301) || user_subscribe_list.include?(304)
     #blood_glucose_flag = user_subscribe_list.include
-
-    #判断是否为周报，月报创建的数据
-    if message != "week_month"
       
     
       #血压
@@ -232,9 +238,6 @@ class IdataRecord < ApplicationRecord
           raise Exception.new(result)
         end
       end
-
-
-    end
     
   end
   
@@ -247,68 +250,69 @@ class IdataRecord < ApplicationRecord
       #所有月报周报的service_id
       month_week_subscribe_id_list = ["301", "302", "304", "305", "308", "311"]
 
+      #判断是否为定时报告
       if month_week_subscribe_id_list.include?(service_id)
 
 
-        sugguestion = detail["overview"]? detail["overview"] : detail["bgControlAlert"]
-        if service_id == "305"
-          sugguestion = detail["evaluateDesc"]
-        elsif service_id == "311"
-          sugguestion = detail["suggestionWave"]
-        end
+          sugguestion = detail["overview"]? detail["overview"] : detail["bgControlAlert"]
+          if service_id == "305"
+            sugguestion = detail["evaluateDesc"]
+          elsif service_id == "311"
+            sugguestion = detail["suggestionWave"]
+          end
 
 
-        data = {
-          first: {
-            value: "#{wechat_user.nickname} #{DICT[service_id.to_sym][:serviceInfo]}",
-            color: "#FD878E"
-          },
-          keyword1: {
-            value: DICT[service_id.to_sym][:serviceName],
-            color: "#173177"
-          },
-          keyword2: {
-            value: Time.current.strftime('%Y-%m-%d %H:%M:%S'),
-            color: "#173177"
-          },
-          keyword3: {
-            value: sugguestion,
-            color: "#173177"
-          },
-          remark: {
-            value: "",
-            color: "#FD878E"
-          }
-        } 
+          data = {
+            first: {
+              value: "#{wechat_user.nickname} #{DICT[service_id.to_sym][:serviceInfo]}",
+              color: "#FD878E"
+            },
+            keyword1: {
+              value: DICT[service_id.to_sym][:serviceName],
+              color: "#173177"
+            },
+            keyword2: {
+              value: Time.current.strftime('%Y-%m-%d %H:%M:%S'),
+              color: "#173177"
+            },
+            keyword3: {
+              value: sugguestion,
+              color: "#173177"
+            },
+            remark: {
+              value: "",
+              color: "#FD878E"
+            }
+          } 
 
-        url = Settings.weixin.host + "/user/show_week_or_month_report?id=#{id}"
+          url = Settings.weixin.host + "/user/show_week_or_month_report?id=#{id}"
 
 
       else
-        data = {
-          first: {
-            value: "#{wechat_user.nickname} #{DICT[service_id.to_sym][:serviceInfo]}",
-            color: "#FD878E"
-          },
-          keyword1: {
-            value: DICT[service_id.to_sym][:serviceName],
-            color: "#173177"
-          },
-          keyword2: {
-            value: Time.current.strftime('%Y-%m-%d %H:%M:%S'),
-            color: "#173177"
-          },
-          keyword3: {
-            value: str_message,
-            color: "#173177"
-          },
-          remark: {
-            value: "",
-            color: "#FD878E"
+          data = {
+            first: {
+              value: "#{wechat_user.nickname} #{DICT[service_id.to_sym][:serviceInfo]}",
+              color: "#FD878E"
+            },
+            keyword1: {
+              value: DICT[service_id.to_sym][:serviceName],
+              color: "#173177"
+            },
+            keyword2: {
+              value: Time.current.strftime('%Y-%m-%d %H:%M:%S'),
+              color: "#173177"
+            },
+            keyword3: {
+              value: str_message,
+              color: "#173177"
+            },
+            remark: {
+              value: "",
+              color: "#FD878E"
+            }
           }
-        }
 
-        url = "#"
+          url = "#"
       end
 
       
