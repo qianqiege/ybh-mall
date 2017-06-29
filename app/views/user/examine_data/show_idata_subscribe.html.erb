@@ -10,9 +10,41 @@
       zoom: 1;
     }
 
-    .check,.allcheck {
+/*_____________________________________________________*/
+
+    h2 {
+        text-align:center;
+        margin-top: 5%;
+        font-size: 1.2rem;
+    }
+
+    .allOfC {
+        margin-top: 5%;
+        margin-bottom: 51px;
+    }
+
+    .allcheck {
         width: 100%;
         padding:10px 0;
+        font-size: 24px;
+    }
+
+    .check {
+        width: 96%;
+        padding:10px 0 10px 20px;
+        float: right; 
+        background: #fff;
+        border-top: 1px solid #ccc;     
+    }
+
+    .check:last-child {
+        border-bottom: 1px solid #ccc;
+    }
+
+
+    .allcheck {
+        background: #fff;
+        border-top: 1px solid #ccc;        
     }
 
     .check .lables,.allcheck .lables{
@@ -20,7 +52,7 @@
         margin-left: 25px;
         font-size: 18px;
         width: 20%;
-        height: 20px;
+        height: 24px;
         line-height: 20px;
     }
 
@@ -36,12 +68,16 @@
         line-height: 20px;
     }
 
+    .check .lables input span {
+        line-height: 24px;
+    }
+
     .check p {
         display: inline-block;
         float: right;
-        width: 70%;
+        width: 66%;
         text-align: right;
-        padding-right: 15px;
+        padding-right: 25px;
     }
 
     .hideCheck {
@@ -50,19 +86,22 @@
 
     .hideCheck .s-lable{
         display: block;
+        margin-top: 10px;
+        width: 80%;
     }
 
-/*
-    .hideCheck .s-lable input {
-        display: none;
-    }*/
+    .hideCheck .s-lable span {
+        width: 60%;
+    }
+
 
 </style>
 
 <!-- (controller: "info", action:"create_deposit_exchange", method:"post") -->
+    <h2>健康报告订阅</h2>
 <%= form_tag(controller: "examine_data" , action: "create_idata_subscribe", method: :post) do %>
 
-    <div class="weui_cells weui_cells_checkbox allOfC">
+    <div class="weui_cells weui_cells_checkbox allOfC clearfix">
 
         <div class="allcheck clearfix">
             <label class="lables">
