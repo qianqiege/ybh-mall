@@ -127,8 +127,8 @@ class User::ExamineDataController < Wechat::BaseController
   end
 
   #显示数动力服务订阅页面
-  def show_idata_subscirbe
-    
+  def show_idata_subscribe
+    @slides = Slide.top(7)
   end
 
   #数动力服务现金付款(数动力注册)
@@ -142,7 +142,7 @@ class User::ExamineDataController < Wechat::BaseController
       idata_active_service(id)
     end
 
-    flash[:notice] = "订阅成功" 
+    flash[:notice] = "订阅成功"
 
     #创建数动力用户订阅表
     UserIdataSubscribe.create(list: params[:number].split(","), user_id: current_user.user_id)
