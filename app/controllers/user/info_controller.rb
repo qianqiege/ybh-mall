@@ -171,6 +171,7 @@ class User::InfoController < Wechat::BaseController
 
         if @exchange_record.save
           PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
+          integral.update(available: integral.available - number,exchange: integral.exchange - number,not_appreciation: integral.not_appreciation - number)
           flash[:notice] = '兑换成功'
           redirect_to user_gift_account_path
           return
@@ -347,7 +348,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def moving_health_data
-    
+
   end
 
   def create_programs
