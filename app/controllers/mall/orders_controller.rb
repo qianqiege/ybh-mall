@@ -96,6 +96,7 @@ class Mall::OrdersController < Mall::BaseController
     end
 
     @order.desc = params[:custom_desc]
+    @order.is_ybz = 1
 
     if @order.save
       # 4. 清空购物车已生成订单的商品
