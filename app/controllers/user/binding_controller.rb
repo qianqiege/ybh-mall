@@ -24,7 +24,7 @@ class User::BindingController < Wechat::BaseController
 
       @invitation_user = User.find_by(invitation_card: params[:invitation_id])
 
-      @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card)
+      @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card,status: "User",ybz_number: 0)
 
       # # 如果原来已经有推荐人了，注册直接绑定推荐人
       # if current_user.recommender.present?
