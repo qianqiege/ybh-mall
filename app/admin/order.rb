@@ -140,7 +140,9 @@ ActiveAdmin.register Order do
   filter :pay_tp, as: :select, collection: Order::PAY_TYPE_TEXT.invert
   filter :payment, as: :select, collection: Order::PAYMENT_TEXT.invert
   filter :wechat_user_mobile, as: :string
-  filter :user_name, as: :string
+  filter :wechat_user, as: :select
+  filter :user, as: :select
+  filter :activity, as: :select
 
   show do |order|
     attributes_table do

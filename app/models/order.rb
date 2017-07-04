@@ -70,6 +70,8 @@ class Order < ApplicationRecord
         remove_cash
         # # 模板消息
         send_template_msg
+        # # 更新YBZ会员邀请数
+        update_ybz_vip_number
 
       end
     end
@@ -314,6 +316,22 @@ class Order < ApplicationRecord
         CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
         # integral.update(not_cash: integral.not_cash - self.not_cash)
       end
+    end
+  end
+
+  def update_ybz_vip_number
+    if self.activity_id == 8 && self.is_ybz == 1
+      user = User.find_by(id: self.user.invitation_id)
+      if !user.nil?
+        user.ybz_number = user.ybz_number + 1
+        if user.save
+          self.is_ybz = 0
+          self.save
+        end
+      end
+    else
+      self.is_ybz = 0
+      self.save
     end
   end
 

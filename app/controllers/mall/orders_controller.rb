@@ -73,12 +73,22 @@ class Mall::OrdersController < Mall::BaseController
       end
     end
 
+    activity = 0
+
+    line_items.each do |item|
+      if item.product_id == 1
+        activity = 11
+      else
+        activity = params[:activity_id]
+      end
+    end
+
     # 3. 生成订单
     @order = current_user.orders.new(
       address_id: params[:address_id],
       price: price,
       quantity: quantity,
-      activity_id: params[:activity_id],
+      activity_id: activity,
       password: params[:password],
       payment: params[:payment]
     )
@@ -96,6 +106,7 @@ class Mall::OrdersController < Mall::BaseController
     end
 
     @order.desc = params[:custom_desc]
+    @order.is_ybz = 1
 
     if @order.save
       # 4. 清空购物车已生成订单的商品

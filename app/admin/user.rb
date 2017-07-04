@@ -22,7 +22,8 @@ ActiveAdmin.register User do
     column :invitation
     # column :organization
     column '身份',:type
-    column :status
+    column '用户/员工',:status
+    column 'YBZ会员邀请数量',:ybz_number
     column '注册时间',:created_at
     actions defaults: true
   end
