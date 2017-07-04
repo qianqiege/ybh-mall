@@ -21,5 +21,6 @@
  *= require_self
  *= require evaluate/mellitus
  *= require user/data_examine
+ *= require user/invitation
  *= require_directory ./mall
  */
