@@ -21,6 +21,7 @@
       </div>
       <div class="car-box">
         <ul class="pro-list-portrait">
+          <% product_id_ybz = 0 %>
           <% @line_items.each do |line_item| %>
             <li>
               <div class="img">
@@ -28,6 +29,7 @@
                   <%= image_tag line_item.product.image_url(:product_icon) if line_item.product.image_url.present? %>
                 </a>
               </div>
+              <% product_id_ybz = line_item.product.id %>
               <div class="pro-m">
                 <p class="name"><%= line_item.product.name %></p>
                 <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
@@ -102,7 +104,7 @@
         </div>
       <% end %>
 
-      <% if !@integral.nil? %>
+      <% if !@integral.nil? && product_id_ybz != 1 %>
         <div class="weui-cells">
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">易积分数量</label></div>
