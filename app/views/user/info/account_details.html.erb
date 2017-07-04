@@ -36,31 +36,31 @@
     padding-left: 2.5rem;
   }
 
-  .paginate {
+  .pagination {
     display: block !important;
     text-align: center;
-    width: 100%;
-  }
-
-  .pagination {
-    padding-top: 15px;
-    display: inline-block !important;
-    height: auto;
-    text-align: center;
-    /*width: 100px;
-    height: 30px;*/
     margin: 0 auto;
-    overflow: auto;
+    padding-top: 30px;
+    position: relative;
+  }
+  
+  .pagination span {
+    margin:0 10px;
+    padding-top: 10px;
   }
 
-  .pagination li {
-    text-align: center;
-    margin: 0 10px;
-    float: left;
+  .pagination .page {
+    opacity: 1;
+    width: 15px;
+    height: 15px;
+    position: static;
+    background: transparent;
   }
 
-  .pagination li a {
-    color: gray;
+
+
+ .pagination a span {
+     color: gray;
   }
 </style>
 
@@ -127,7 +127,7 @@
                 <td class="td">时间</td>
             </tr>
         </thead>
-        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Available").page(params[:page] || 1).per_page(10).order(created_at: :desc) %>
+        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Available").page(params[:page] || 1).per(10).order(created_at: :desc) %>
         <% if details.length >= 1 %>
           <tbody>
             <% details.each do |details| %>
@@ -146,7 +146,7 @@
           </tbody>
         <% end %>
     </table>
-    <div class="paginate"><%= will_paginate details %></div>
+    <%= paginate details %>
   </div>
   <div class="weui-cells__title" style="padding-bottom:3.5rem;padding-left: 0px;padding-right: 0px;">兑换记录明细：
     <table class="table">
@@ -270,8 +270,10 @@
   }
 
   $(function() {
-    $(".previous_page a").text("上一页");
-    $(".next_page a").text("下一页");
+    $(".next a span").text("下一页");
+    $(".last a span").text("尾页");
+    $(".prev a span").text("上一页");
+    $(".first a span").text("首页");
   })
 
 

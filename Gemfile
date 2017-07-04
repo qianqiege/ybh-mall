@@ -16,8 +16,11 @@ gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 
 
-gem 'will_paginate', '3.1.0'
-gem 'bootstrap-will_paginate', '0.0.10'
+# gem 'will_paginate', '3.1.0'
+# gem 'bootstrap-will_paginate', '0.0.10'
+
+#分页
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
