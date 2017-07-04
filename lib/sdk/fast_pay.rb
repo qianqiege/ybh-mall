@@ -124,6 +124,36 @@ module Sdk
       sign_params(options)
     end
 
+
+    # 生成普通交易(数动力订阅服务)支付参数
+    # PAYMENT_TYPE_WECHAT
+    # PAYMENT_TYPE_YJ
+    def trade_merge_pay_params_idata_subscribe(pay_type = "PAYMENT_TYPE_YJ")
+      salt = rand(999999999..9999999999)
+      order_no = "#{Time.current.to_s(:number)}#{salt}"
+
+      tradeInfo = [{
+        merchOrderNo: @order.number,
+        sellerUserId: @partner_id,
+        tradeAmount: @order.price.to_f,
+        currency: "CNY",
+        goodsName: "数动力服务订阅"
+      }]
+
+      options = {
+        orderNo: order_no,
+        merchOrderNo: @order.number,
+        service: "fastPayTradeMergePay",
+        tradeInfo: tradeInfo.to_json,
+        returnUrl: @host + 'user/show_user_idata_subscribe_list',
+        notifyUrl: @host + 'notifies/idata_subscribe',
+        paymentType: pay_type
+      }
+      options[:openid] =  User.find(@order.user_id).wechat_user.open_id
+
+      sign_params(options)
+    end
+
     # 普通交易支付
     # PAYMENT_TYPE_WECHAT
     # PAYMENT_TYPE_YJ

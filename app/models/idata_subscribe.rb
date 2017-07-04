@@ -14,11 +14,35 @@ class IdataSubscribe < ApplicationRecord
 
 		event :pay do
 			transitions from: :failing, to: :success
+
+			after do
+				#用户付款成功后，为用户订阅相应服务
+				list = UserIdataSubscribe.find_by(user_id: user_id).list
+				list.each do |service_id|
+					idata_active_service(service_id)
+				end
+			end
 		end
 	end
 
 	def fast_pay
 	   @fast_pay ||= Sdk::FastPay.new(self)
+	end
+
+
+	#数动力用户订阅
+	def idata_active_service(service_id)
+	    result = WechatUser.find_by(user_id: user_id).idata.active_service(service_id)
+
+
+	    Rails.logger.info "@"*20
+	    Rails.logger.info "用户订阅"
+	    Rails.logger.info result
+
+	    
+	    if (result.first['code'] != '0000')
+	      raise Exception.new(result)
+	    end
 	end
 
 

@@ -1,0 +1,6 @@
+<ul>
+	<h3>您订阅的服务有：</h3>
+	<% @list.each do |l| %>
+		<li style="color: gray"><%= IdataRecord.dict[l.to_sym][:serviceName] %></li>
+	<% end %>
+</ul>

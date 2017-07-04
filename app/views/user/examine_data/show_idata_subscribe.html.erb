@@ -20,7 +20,12 @@
 
     .allOfC {
         margin-top: 5%;
-        margin-bottom: 51px;
+        /*margin-bottom: 51px;*/
+    }
+
+    .weui-cells {
+        margin-bottom: 65px;
+        margin-top: 10px;
     }
 
     .allcheck {
@@ -75,7 +80,7 @@
     .check p {
         display: inline-block;
         float: right;
-        width: 66%;
+        width: 60%;
         text-align: right;
         padding-right: 25px;
     }
@@ -100,6 +105,8 @@
   <%= render 'shared/slide' %>
 </div>
 <!-- (controller: "info", action:"create_deposit_exchange", method:"post") -->
+
+
     <h2>健康报告订阅</h2>
 <%= form_tag(controller: "examine_data" , action: "create_idata_subscribe", method: :post) do %>
 
@@ -245,7 +252,7 @@
         <input id="money" name="money" type="text" style="display: none;" />
     </div>
 
-    <!-- <div class="weui-cells">
+    <div class="weui-cells">
         <div class="weui-cell weui-cell_select weui-cell_select-after">
             <div class="weui-cell__hd">
                 <label for="" class="weui-label">支付方式</label>
@@ -254,17 +261,14 @@
                 <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) ,  class: "weui-select" %>
             </div>
         </div>
-    </div> -->
+    </div>
 
-    <p class="flash" style="text-align: center; color: red">
-        <%= flash[:notice] %>
-    </p>
 
 
 
 
     <div class="cart-fixed-ft">
-        <input type="submit", class="commit", value="订阅提交"></a>
+        <input type="submit", class="commit", value="订阅提交" />
         <span class="mr15">共<span class="number">0</span>项，合计：¥<span class="total">0</span></span>
     </div>
 
@@ -272,14 +276,6 @@
 
 <script>
     var check_input;
-
-
-
-
-        setTimeout(function() {
-            $(".flash").hide();
-        },3000);
-
 
 
     //点击下拉出现
