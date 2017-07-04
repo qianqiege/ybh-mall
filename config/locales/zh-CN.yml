@@ -282,6 +282,8 @@ zh-CN:
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
+      idata_subscribe: '数动力付款记录'
+      user_idata_subscribe: '用户数动力订阅服务'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'

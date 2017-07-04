@@ -137,28 +137,24 @@ class User::ExamineDataController < Wechat::BaseController
     #用户在数动力端注册
     idata_member_register
 
-    #创建用户数动力的订阅详情
-    params[:number].split(",").each do |id|
-      idata_active_service(id)
-    end
-
-    flash[:notice] = "订阅成功"
 
     #创建数动力用户订阅表
-    UserIdataSubscribe.create(list: params[:number].split(","), user_id: current_user.user_id)
+    if UserIdataSubscribe.find_by(user_id: current_user.user_id).blank?
+      UserIdataSubscribe.create(list: params[:number].split(","), user_id: current_user.user_id)
+    else
+      UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","))
+    end
+    
 
-    redirect_to user_show_idata_path
-
-
-    # format_data = {
-    #   price: params[:price].to_f,
-    #   payment: params[:payment]
-    # }
-    # @idata_subscribe = User.find(current_user.user_id).idata_subscribes.new(format_data)
-    # if @idata_subscribe.save
-    #   #重定向到数动力服务支付确认界面
-    #   redirect_to user_deposit_pay_path(@idata_subscribe)
-    # end
+    format_data = {
+      price: params[:money].to_f,
+      payment: params[:payment]
+    }
+    @idata_subscribe = User.find(current_user.user_id).idata_subscribes.new(format_data)
+    if @idata_subscribe.save
+      #重定向到数动力服务支付确认界面
+      redirect_to user_idata_subscribe_pay_path(@idata_subscribe)
+    end
   end
 
   #数动力服务支付确认界面
@@ -168,8 +164,13 @@ class User::ExamineDataController < Wechat::BaseController
     @trade_merge_pay_params = @idata_subscribe.fast_pay.trade_merge_pay_params_idata_subscribe(@idata_subscribe.payment)
   end
 
+  #显示用户在数动力服务订阅的列表
+  def show_user_idata_subscribe_list
+    @list = UserIdataSubscribe.find_by(user_id: current_user.user_id).list
+  end
 
-  #用户注册
+
+  #数动力用户注册
   def idata_member_register
     result = WechatUser.find_by(user_id: current_user.user_id).idata.member_register
     Rails.logger.info "@"*20
@@ -180,18 +181,8 @@ class User::ExamineDataController < Wechat::BaseController
     end
   end
 
-  #用户订阅
-  def idata_active_service(service_id)
-    result = WechatUser.find_by(user_id: current_user.user_id).idata.active_service(service_id)
-    Rails.logger.info "@"*20
-    Rails.logger.info "用户订阅"
-    Rails.logger.info result
-    if (result.first['code'] != '0000')
-      raise Exception.new(result)
-    end
-  end
 
-  #用于显示周报或月报详情
+  #用于显示周报或月报，健康悦享版，健康西游等详情
   def show_week_or_month_report
     @idata_record = IdataRecord.find_by(id: params[:id])
     @message = URI.decode(@idata_record.message)
