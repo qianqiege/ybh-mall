@@ -36,6 +36,32 @@
     padding-left: 2.5rem;
   }
 
+  .pagination {
+    display: block !important;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 30px;
+    position: relative;
+  }
+  
+  .pagination span {
+    margin:0 10px;
+    padding-top: 10px;
+  }
+
+  .pagination .page {
+    opacity: 1;
+    width: 15px;
+    height: 15px;
+    position: static;
+    background: transparent;
+  }
+
+
+
+ .pagination a span {
+     color: gray;
+  }
 </style>
 
 <%= title '易积分收支明细' %>
@@ -101,7 +127,7 @@
                 <td class="td">时间</td>
             </tr>
         </thead>
-        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Available").order(created_at: :desc).limit(10) %>
+        <% details = PresentedRecord.where(user_id: current_user.user_id).where(type: "Available").page(params[:page] || 1).per(10).order(created_at: :desc) %>
         <% if details.length >= 1 %>
           <tbody>
             <% details.each do |details| %>
@@ -120,6 +146,7 @@
           </tbody>
         <% end %>
     </table>
+    <%= paginate details %>
   </div>
   <div class="weui-cells__title" style="padding-bottom:3.5rem;padding-left: 0px;padding-right: 0px;">兑换记录明细：
     <table class="table">
@@ -241,6 +268,13 @@
     }
 
   }
+
+  $(function() {
+    $(".next a span").text("下一页");
+    $(".last a span").text("尾页");
+    $(".prev a span").text("上一页");
+    $(".first a span").text("首页");
+  })
 
 
 </script>
