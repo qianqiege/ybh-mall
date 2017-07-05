@@ -1,5 +1,5 @@
 if @line_item.errors.any?
-  json.error_messages @line_item.errors.messages.values.join(', ')
+  json.error_messages @line_item.errors.full_messages.to_sentence
   # 处理当库存数量不足时的情况
   if @line_item.quantity > @line_item.product.shop_count
     if @action == "add"
