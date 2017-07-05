@@ -111,14 +111,11 @@ a{
 
 .qr-code-invitation {
   // text-align: center;
-  // float: right;
-  // margin-top: 45%;
-  // margin-right: 12%;
-  position: absolute;
-  bottom: 9rem;
-  right: 1rem;
+  float: right;
+  margin-top: 60%;
+  margin-right: 12%;
   table {
-    padding-top: 10px;
+    padding-top: 20px;
     display: inline-block;
     border-width: 0;
     border-style: none;
