@@ -97,7 +97,7 @@ ActiveAdmin.register Order do
     id_column
 
     column :wechat_user
-    column :user_id
+    column :user
     column :activity
     column :price
     column :integral
