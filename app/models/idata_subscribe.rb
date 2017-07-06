@@ -16,15 +16,29 @@ class IdataSubscribe < ApplicationRecord
 			transitions from: :failing, to: :success
 
 			after do
-				current_user_idata_subscribe_list = UserIdataSubscribe.get_list
+				current_user_idata_subscribe_list = UserIdataSubscribeList.last.list.split(",")
+
+				Rails.logger.info "@"*40
+				Rails.logger.info "after pay"
+				Rails.logger.info UserIdataSubscribeList.last.inspect
+				
 				current_list = []
-				current_user_idata_subscribe_list.each do |service_id|
-					hash = {
-						service_id: service_id,
-						end_time: Time.now+1.year
-					}
-					current_list.push(hash)
+
+				if current_user_idata_subscribe_list			
+				
+					current_user_idata_subscribe_list.each do |service_id|
+						hash = {
+							service_id: service_id,
+							end_time: Time.now+1.year
+						}
+						current_list.push(hash)
+					end
+
 				end
+
+				Rails.logger.info "#"*40
+				Rails.logger.info "after_pay"
+				Rails.logger.info current_list
 
 				#付款成功后，创建创建或更新用户订阅列表
 				if UserIdataSubscribe.find_by(user_id: user_id).blank?
@@ -32,20 +46,36 @@ class IdataSubscribe < ApplicationRecord
 			    else
 			      last_list = UserIdataSubscribe.find_by(user_id: user_id).list
 			      
+			      Rails.logger.info "@:"*20
+			      Rails.logger.info last_list
+
 			      #清除原来单个元素为字符串的数组
 			      last_list.each do |f|
-			      	if f.class == "String"
-			      		last_list.delete(f)
+			      	if f.class == String
+			      		last_list.clear
 			      	end
 			      end
 
+			      # for n in last_list do
+			      # 	puts n
+			      # 	if n.class == String
+			      # 		puts "jfiods: #{n}"
+			      # 		last_list.delete(n)
+			      # 	end
+			      # end
+
+			      Rails.logger.info "#"*20
+			      Rails.logger.info last_list
+
 			      #更新已经重复订阅的服务
-			      last_list.each do |f|
-			      	current_list.each do |e|
-			      		if f[:service_id] == e[:service_id]
-			      			f[:end_time] = e[:end_time]
-			      		end
-			      	end
+			      if !last_list.blank?
+				      last_list.each do |f|
+				      	current_list.each do |e|
+				      		if f[:service_id] == e[:service_id]
+				      			f[:end_time] = e[:end_time]
+				      		end
+				      	end
+				      end
 			      end
 
 			      #合并所有的服务
@@ -56,7 +86,7 @@ class IdataSubscribe < ApplicationRecord
 			    end
 
 				#用户付款成功后，为用户订阅相应服务
-				list = UserIdataSubscribe.find_by(user_id: user_id).list
+				list = UserIdataSubscribe.find_by(user_id: user_id).list.pluck(:service_id)
 				list.each do |service_id|
 					idata_active_service(service_id)
 				end

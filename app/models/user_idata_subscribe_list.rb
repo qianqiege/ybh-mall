@@ -1,0 +1,2 @@
+class UserIdataSubscribeList < ApplicationRecord
+end

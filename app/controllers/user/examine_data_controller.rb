@@ -145,7 +145,11 @@ class User::ExamineDataController < Wechat::BaseController
     #   UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","), status: "fail")
     # end
     
-    UserIdataSubscribe.set_list(params[:number].split(","))  
+    Rails.logger.info "@"*20
+    Rails.logger.info "create_idata_subscribe"
+    Rails.logger.info params[:number].split(",")
+
+    UserIdataSubscribeList.create(list: params[:number])  
 
     format_data = {
       price: params[:money].to_f,
