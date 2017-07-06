@@ -110,6 +110,25 @@ class User::InfoController < Wechat::BaseController
   end
 
   def gift_user
+
+    if params[:account_type] == "支付宝"
+      if params[:name] == "" || params[:account] == ""
+        flash[:notice] = '申请信息不能为空值'
+        redirect_to user_gift_account_path
+        return
+      end
+    elsif params[:account_type] == "银行卡"
+      if params[:bank_name] == "" || params[:bank] == "" || params[:where] == ""
+        flash[:notice] = '申请信息不能为空值'
+        redirect_to user_gift_account_path
+        return
+      end
+    else
+      flash[:notice] = '申请信息不能为空值'
+      redirect_to user_gift_account_path
+      return
+    end
+
     integral = Integral.find_by(user_id: current_user.user_id)
     type = User.find(current_user.user_id).status
     order_integral = params["quantity"].to_f
@@ -161,6 +180,8 @@ class User::InfoController < Wechat::BaseController
         return
       end
     end
+
+    @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: 0,status: "错误",account: "错误",name: "错误",state: "not")
 
     if params["type_coin"] == "0" && order_integral == 0
       if number >= 400 && number%20 == 0

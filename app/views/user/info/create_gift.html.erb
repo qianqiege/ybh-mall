@@ -73,7 +73,7 @@
   <% if !@w_user.nil? %>
     <%= image_tag(@w_user.headimgurl,size: "70x70" ) %>
   <% else %>
-    <%= image_tag("person.png" ,size: "70x70" ) %>
+    <%= image_tag("ybyt04.png" ,size: "70x70" ) %>
   <% end %>
   <div class="资料">
     <span class="电话"><%= @gift_user.telphone %></span>
@@ -84,7 +84,6 @@
 </div>
 
 <%= form_tag(controller: "info",action: "gift_user" ,method: "post", id: "formd") do %>
-<!-- <form id="formd" method="post" action="<%= user_gift_user_path %>" > -->
   <p>赠送数量:</p>
   <input type="number" name="quantity" class="quantity" placeholder="请输入大于400(含400)并为20倍数的数字">
   <div class="boders"></div>
@@ -99,13 +98,13 @@
   </div>
 
   <div class="bank">
-      <input type="text" name="bank_name" placeholder="姓名" value="<%= current_user.user.name %>" disabled="true">
+      <input type="text" name="bank_name" placeholder="姓名" value="<%= current_user.user.name %>">
       <input type="number" name="bank" placeholder="卡号">
       <input type="text" name="where" placeholder="开户行">
   </div>
 
   <div class="payBaby">
-    <input type="text" name="name" placeholder="姓名" value="<%= current_user.user.name %>" disabled="true">
+    <input type="text" name="name" placeholder="姓名" value="<%= current_user.user.name %>">
     <input type="text" name="account" placeholder="账号">
   </div>
 
@@ -113,7 +112,6 @@
 <input name="type_coin" style="display: none;" value= "0" >
 <button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认兑换</button>
 
-<!-- </form> -->
 <% end %>
 
 <script type="text/javascript">
@@ -132,48 +130,19 @@
         }
       }
 
+      var formd = document.getElementById("formd");
+      var quantity = document.getElementsByClassName('quantity')[0];
+      formd.addEventListener("submit",function(e){
+          console.log(quantity.value % 20 );
+          if(quantity.value >= 400 && quantity.value%20 == 0){
 
-      // 2.赠送数量验证
-
-
-
-      //     sub.onclick = function(e){
-      //       if (quantity.value < 400 && quantity.value%20 !== 0) {
-
-      //           alert('must > 400');
-      //           return false;
-      //       }
-      //     }
-
-    //    sub.onsubmit = function(){
-    //     if(quantity.value < 400 && quantity.value%20 != 0){
-    //         alert("请您认真填写注册用户名！");
-    //         // e.preventDefault();
-    //         return false;
-    //     }
-    // }
+          }else{
+            alert("请输入符合兑换标准的数值");
+            e.preventDefault();
+          }
 
 
-          // $('#sub').submit(function(){
-          //   if (quantity.value < 400 && quantity.value%20 !== 0) {
-          //     $('button[type=submit]', this).attr('disabled', 'disabled');
-          //   }
-
-          // });
-
-          var formd = document.getElementById("formd");
-          var quantity = document.getElementsByClassName('quantity')[0];
-          formd.addEventListener("submit",function(e){
-              console.log(quantity.value % 20 );
-              if(quantity.value >= 400 && quantity.value%20 == 0){
-
-              }else{
-                alert("请输入符合兑换标准的数值");
-                e.preventDefault();
-              }
-
-
-          },false);
+      },false);
 
 
   </script>
