@@ -142,7 +142,7 @@ class User::ExamineDataController < Wechat::BaseController
     if UserIdataSubscribe.find_by(user_id: current_user.user_id).blank?
       UserIdataSubscribe.create(list: params[:number].split(","), user_id: current_user.user_id)
     else
-      UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","))
+      UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","), status: "fail")
     end
     
 
