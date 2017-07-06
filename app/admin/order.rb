@@ -6,9 +6,9 @@ ActiveAdmin.register Order do
   actions :index, :show
 
   csv do
-    column :wechat_user do |order|
-      order.wechat_user.try(:name)
-    end
+    # column :wechat_user do |order|
+    #   order.wechat_user.try(:name)
+    # end
     column :user do |order|
       order.user.try(:name)
     end
@@ -96,7 +96,7 @@ ActiveAdmin.register Order do
     selectable_column
     id_column
 
-    column :wechat_user
+    # column :wechat_user
     column :user
     column :activity
     column :price
