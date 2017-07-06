@@ -16,7 +16,7 @@ class IdataSubscribe < ApplicationRecord
 			transitions from: :failing, to: :success
 
 			after do
-				current_user_idata_subscribe_list = flash[:user_idata_subscribe_list]
+				current_user_idata_subscribe_list = UserIdataSubscribe.get_list
 				current_list = []
 				current_user_idata_subscribe_list.each do |service_id|
 					hash = {

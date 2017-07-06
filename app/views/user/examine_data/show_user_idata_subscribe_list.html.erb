@@ -19,7 +19,7 @@
 
 
 <ul style="padding: 13px;">
-	<% if @user_idata_subscribe.blank? %>
+	<% if @user_idata_subscribe.blank? || @user_idata_subscribe == "fail" %>
 		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">正在为您订阅服务中</h3>
 	<% elsif @user_idata_subscribe == "success" %>
 		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">您已订阅成功，订阅的服务有：</h3>

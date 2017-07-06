@@ -145,7 +145,7 @@ class User::ExamineDataController < Wechat::BaseController
     #   UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","), status: "fail")
     # end
     
-    flash[:user_idata_subscribe_list] = params[:number].split(",")  
+    UserIdataSubscribe.set_list(params[:number].split(","))  
 
     format_data = {
       price: params[:money].to_f,
