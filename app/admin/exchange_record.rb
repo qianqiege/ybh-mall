@@ -28,7 +28,7 @@ index do
   end
   column :created_at
   # actions defaults: true
-  column '处理操作' do |record|
+  column '审核操作(客服)' do |record|
     if record.state == "pending"
       span do
         link_to '审核通过',dealing_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
@@ -37,9 +37,14 @@ index do
         link_to '不通过',not_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
       end
     end
+  end
+  column '处理操作(财务)' do |record|
     if record.state == "dealing"
       span do
         link_to '已处理',pending_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
+      end
+      span do
+        link_to '不通过',not_dealing_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
       end
     end
   end
@@ -69,6 +74,11 @@ end
 
   member_action :not, method: :put do
     resource.not
+    redirect_to admin_exchange_records_path
+  end
+
+  member_action :not_dealing, method: :put do
+    resource.not_dealing
     redirect_to admin_exchange_records_path
   end
 

@@ -30,6 +30,14 @@ class ExchangeRecord < ApplicationRecord
        end
      end
 
+     event :not_dealing do
+       transitions from: :dealing, to: :not
+       after do
+         self.save
+         not_ycoin
+       end
+     end
+
    end
 
    def not_ycoin
