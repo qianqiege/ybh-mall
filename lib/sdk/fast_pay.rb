@@ -137,7 +137,7 @@ module Sdk
         sellerUserId: @partner_id,
         tradeAmount: @order.price.to_f,
         currency: "CNY",
-        goodsName: "数动力服务订阅"
+        goodsName: "动态健康数据报告订阅"
       }]
 
       options = {

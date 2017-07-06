@@ -163,9 +163,14 @@ class IdataRecord < ApplicationRecord
 
 
     #拿到用户已经付款后的数动力订阅服务列表
-    user_idata_subscribe = UserIdataSubscribe.find_by(user_id: wechat_user.user_id, status: "success")
-    if user_idata_subscribe
-      user_subscribe_list = user_idata_subscribe.list
+    user_idata_subscribes = UserIdataSubscribe.find_by(user_id: wechat_user.user_id)
+    
+    Rails.logger.info "@"*20
+    Rails.logger.info user_idata_subscribes.inspect
+
+
+    if !user_idata_subscribes.blank?
+      user_subscribe_list = user_idata_subscribes.list.pluck(:service_id).uniq
       
       case recordable_type
       when "BloodPressure"
