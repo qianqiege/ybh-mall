@@ -145,7 +145,7 @@ module Sdk
         merchOrderNo: @order.number,
         service: "fastPayTradeMergePay",
         tradeInfo: tradeInfo.to_json,
-        returnUrl: @host + 'user/show_user_idata_subscribe_list',
+        returnUrl: @host + 'user/moving_health_data',
         notifyUrl: @host + 'notifies/idata_subscribe',
         paymentType: pay_type
       }

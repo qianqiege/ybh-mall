@@ -167,9 +167,6 @@ class User::ExamineDataController < Wechat::BaseController
   #显示用户在数动力服务订阅的列表
   def show_user_idata_subscribe_list
       @user_idata_subscribe = UserIdataSubscribe.find_by(user_id: current_user.user_id, status: "success")
-      unless @user_idata_subscribe
-        redirect_to user_show_user_idata_subscribe_list_path
-      end
   end
 
 
