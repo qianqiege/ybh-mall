@@ -352,7 +352,7 @@ class IdataRecord < ApplicationRecord
             }
           }
 
-          url = "#"
+          url = Settings.weixin.host + "/user/data_home"
       end
 
       
