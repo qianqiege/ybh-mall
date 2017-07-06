@@ -6,11 +6,11 @@ class UserIdataSubscribe < ApplicationRecord
 
 	@@list = nil
 
-	def get_list
+	def self.get_list
 		@@list
 	end
 
-	def set_list(list)
+	def self.set_list(list)
 		@@list = list
 	end
 end
