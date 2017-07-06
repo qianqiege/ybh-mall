@@ -19,12 +19,14 @@
 
 
 <ul style="padding: 13px;">
-	<% unless @user_idata_subscribe %>
-		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">订阅失败，请重新订阅!</h3>
-	<% else %>
-		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">您订阅的服务有：</h3>
+	<% if @user_idata_subscribe.blank? %>
+		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">正在为您订阅服务中</h3>
+	<% elsif @user_idata_subscribe == "success" %>
+		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">您已订阅成功，订阅的服务有：</h3>
 		<% @user_idata_subscribe.list.each do |l| %>
 			<li style=" marg" class="d_li"><%= IdataRecord.dict[l.to_sym][:serviceName] %></li>
 		<% end %>
+	<% else %>
+		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">您订阅失败，请重新订阅</h3>
 	<% end %>
 </ul>

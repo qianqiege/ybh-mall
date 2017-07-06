@@ -139,12 +139,13 @@ class User::ExamineDataController < Wechat::BaseController
 
 
     #创建数动力用户订阅表
-    if UserIdataSubscribe.find_by(user_id: current_user.user_id).blank?
-      UserIdataSubscribe.create(list: params[:number].split(","), user_id: current_user.user_id)
-    else
-      UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","), status: "fail")
-    end
+    # if UserIdataSubscribe.find_by(user_id: current_user.user_id).blank?
+    #   UserIdataSubscribe.create(list: params[:number].split(","), user_id: current_user.user_id)
+    # else
+    #   UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","), status: "fail")
+    # end
     
+    flash[:user_idata_subscribe_list] = params[:number].split(",")  
 
     format_data = {
       price: params[:money].to_f,
@@ -166,7 +167,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   #显示用户在数动力服务订阅的列表
   def show_user_idata_subscribe_list
-      @user_idata_subscribe = UserIdataSubscribe.find_by(user_id: current_user.user_id, status: "success")
+      @user_idata_subscribe = UserIdataSubscribe.find_by(user_id: current_user.user_id)
   end
 
 
