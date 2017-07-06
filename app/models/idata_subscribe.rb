@@ -16,9 +16,6 @@ class IdataSubscribe < ApplicationRecord
 			transitions from: :failing, to: :success
 
 			after do
-				#更新用户订阅列表状态
-				UserIdataSubscribe.find_by(user_id: user_id).update(status: "success")
-
 				#用户付款成功后，为用户订阅相应服务
 				list = UserIdataSubscribe.find_by(user_id: user_id).list
 				list.each do |service_id|

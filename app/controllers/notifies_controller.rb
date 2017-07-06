@@ -65,6 +65,10 @@ class NotifiesController < ApplicationController
 
       local_sign = idata_subscribe.fast_pay.sign(params)
       if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
+
+        #更新用户订阅列表状态
+        UserIdataSubscribe.find_by(user_id: user_id).update(status: "success")
+
         idata_subscribe.trade_nos = params["tradeNo"]
         idata_subscribe.pay
         idata_subscribe.save!
