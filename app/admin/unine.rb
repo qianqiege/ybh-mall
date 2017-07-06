@@ -11,6 +11,7 @@ ActiveAdmin.register Unine do
     column :value
     column :phone
     column :state
+    column :created_at
     actions
   end
 end

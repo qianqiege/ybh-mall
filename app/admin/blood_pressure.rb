@@ -11,6 +11,7 @@ ActiveAdmin.register BloodPressure do
     column :diastolic_pressure
     column :phone
     column :state
+    column :created_at
     actions
   end
 end
