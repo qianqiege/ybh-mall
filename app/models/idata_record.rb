@@ -152,26 +152,64 @@ class IdataRecord < ApplicationRecord
 
   #判断是否向数动力传递数据
   def whether_post_data
-    unless recordable_type == "RegularReport"
-      post_data
+
+    #各项分类的服务id
+    blood_pressure_service_ids = ["211", "301", "304"]
+    blood_glucose_service_ids = ["212", "302", "308"]
+    blood_fat_service_ids = ["215"]
+    weight_service_ids = ["213", "305", "311"]
+    unine_service_ids = ["216"]
+    other_service_ids = ["107", "401"]
+
+
+    #拿到用户已经付款后的数动力订阅服务列表
+    user_idata_subscribe = UserIdataSubscribe.find_by(user_id: wechat_user.user_id, status: "success")
+    if user_idata_subscribe
+      user_subscribe_list = user_idata_subscribe.list
+      
+      case recordable_type
+      when "BloodPressure"
+        if (user_subscribe_list&blood_pressure_service_ids).length != 0 || user_subscribe_list.include?("107")
+          if recordable_type != "RegularReport"
+            post_data
+          end
+        end
+      when "BloodGlucose"
+        if (user_subscribe_list&blood_glucose_service_ids).length != 0 || user_subscribe_list.include?("107")
+          if recordable_type != "RegularReport"
+            post_data
+          end
+        end
+      when "BloodFat"
+        if (user_subscribe_list&blood_fat_service_ids).length != 0 || user_subscribe_list.include?("107")
+          if recordable_type != "RegularReport"
+            post_data
+          end
+        end
+      when "Weight"
+        if (user_subscribe_list&weight_service_ids).length != 0 || user_subscribe_list.include?("107")
+          if recordable_type != "RegularReport"
+            post_data
+          end
+        end
+      when "Unine"
+        if (user_subscribe_list&unine_service_ids).length != 0 || user_subscribe_list.include?("107")
+          if recordable_type != "RegularReport"
+            post_data
+          end
+        end  
+      end
+
+    else
+      return
     end
+
   end
 
 
   def post_data
     # 这里根据不同类型，添加更多情况
 
-    #以最后一次订阅为准
-    if UserIdataSubscribe.where(user_id: wechat_user.user_id).last
-      user_subscribe_list = UserIdataSubscribe.where(user_id: wechat_user.user_id).last.list
-      Rails.logger.info "用户订阅服务列表"
-      Rails.logger.info user_subscribe_list
-    end
-    
-
-    #blood_pressure_flag = user_subscribe_list.include?(211) || user_subscribe_list.include?(301) || user_subscribe_list.include?(304)
-    #blood_glucose_flag = user_subscribe_list.include
-      
     
       #血压
       if recordable.is_a? BloodPressure
