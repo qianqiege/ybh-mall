@@ -1,6 +1,30 @@
-<ul>
-	<h3>您订阅的服务有：</h3>
-	<% @list.each do |l| %>
-		<li style="color: gray"><%= IdataRecord.dict[l.to_sym][:serviceName] %></li>
+<style type="text/css">
+	.d_title {
+		color: red;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.d_li {
+		width: 40%;
+		height: 25px;
+		background: #999;
+		border-radius: 20px;
+		
+		text-align: center;
+		color: #fff;
+		margin:0 auto;
+		margin-bottom: 10px;
+	}
+</style>
+
+
+<ul style="padding: 13px;">
+	<% unless @user_idata_subscribe %>
+		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">订阅失败，请重新订阅!</h3>
+	<% else %>
+		<h3 style="font-size: 16px; line-height: 28px;" class="d_title">您订阅的服务有：</h3>
+		<% @user_idata_subscribe.list.each do |l| %>
+			<li style=" marg" class="d_li"><%= IdataRecord.dict[l.to_sym][:serviceName] %></li>
+		<% end %>
 	<% end %>
 </ul>
