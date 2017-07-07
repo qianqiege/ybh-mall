@@ -3,7 +3,7 @@ menu parent: I18n.t("active_admin.menu.coin_record_manage")
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :user_id, :number, :status, :account,:opening,:name
+permit_params :user_id, :number, :status, :account,:opening,:name,:desc
 
 index do
   selectable_column
@@ -48,6 +48,13 @@ index do
       end
     end
   end
+  column '客户操作' do |record|
+    if !record.desc.present?
+      span do
+        link_to '填写原因', change_desc_admin_exchange_record_path(record, desc: :yes), method: :get
+      end
+    end
+  end
 end
 
 form(:html => { :multipart => true }) do |f|
@@ -80,6 +87,17 @@ end
   member_action :not_dealing, method: :put do
     resource.not_dealing
     redirect_to admin_exchange_records_path
+  end
+
+  member_action :change_desc, method: :get do
+    render 'edit.html.arb', :layout => false
+  end
+
+  form(:html => { :multipart => true }) do |f|
+      f.inputs "填写原因" do
+        f.input :desc
+      end
+    f.actions
   end
 
 end
