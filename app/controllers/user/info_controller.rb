@@ -110,7 +110,6 @@ class User::InfoController < Wechat::BaseController
   end
 
   def gift_user
-
     if params[:account_type] == "支付宝"
       if params[:name] == "" || params[:account] == ""
         flash[:notice] = '申请信息不能为空值'
@@ -195,6 +194,10 @@ class User::InfoController < Wechat::BaseController
           PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
           integral.update(available: integral.available - number,exchange: integral.exchange - number,not_appreciation: integral.not_appreciation - number)
           flash[:notice] = '兑换成功'
+          
+          #用户提现申请成功，发送模板通知消息
+          @exchange_record.send_exchange_record_apply_success
+
           redirect_to user_gift_account_path
           return
         else
