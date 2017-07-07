@@ -4,4 +4,9 @@ class Mall::HomeController < Mall::BaseController
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).where(is_show: true).order("priority DESC, id DESC")
   end
+  
+  def classify
+  	@q = Product.ransack(params[:q])
+  	@products = @q.result(distinct: true).where(is_show: true).order("priority DESC, id DESC")
+  end
 end
