@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get 'programs_product', to: 'programs#product'
     get 'exchange_pay', to: 'orders#exchange_pay'
     get 'intro',to: 'home#intro'
+    get 'classify',to:'home#classify'
 
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
