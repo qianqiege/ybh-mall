@@ -78,6 +78,8 @@ class Mall::OrdersController < Mall::BaseController
     line_items.each do |item|
       if item.product_id == 1
         activity = 11
+      elsif item.product_id == 38
+        activity = 8
       else
         activity = params[:activity_id]
       end
