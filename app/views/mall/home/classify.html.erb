@@ -107,10 +107,12 @@
 		<ul class="clearfix chanpin">
 			<% @products.each do |product| %>
 	          <li>
-	            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-	            <span><%= product.name %></span>
-	            <!-- <span><%= raw product.name %></span> -->
-	            <p><%= money product.now_product_price %></p>
+							<a href="<%= mall_product_path(product) %>">
+		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+		            <span><%= product.name %></span>
+		            <!-- <span><%= raw product.name %></span> -->
+		            <p><%= money product.now_product_price %></p>
+							</a>
 	          </li>
 	     <% end %>
     </ul>
@@ -119,10 +121,12 @@
 		<ul class="clearfix chanpin">
 			<% @product1.each do |product| %>
 						<li>
-							<div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-							<span><%= product.name %></span>
-							<!-- <span><%= raw product.name %></span> -->
-							<p><%= money product.now_product_price %></p>
+							<a href="<%= mall_product_path(product) %>">
+								<div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+								<span><%= product.name %></span>
+								<!-- <span><%= raw product.name %></span> -->
+								<p><%= money product.now_product_price %></p>
+							</a>
 						</li>
 			<% end %>
 		</ul>
@@ -131,10 +135,12 @@
 		<ul class="clearfix chanpin">
 			<% @product2.each do |product| %>
 	          <li>
-	            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-	            <span><%= product.name %></span>
-	            <!-- <span><%= raw product.name %></span> -->
-	            <p><%= money product.now_product_price %></p>
+							<a href="<%= mall_product_path(product) %>">
+		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+		            <span><%= product.name %></span>
+		            <!-- <span><%= raw product.name %></span> -->
+		            <p><%= money product.now_product_price %></p>
+							</a>
 	          </li>
 	     <% end %>
     </ul>
@@ -143,10 +149,12 @@
 		<ul class="clearfix chanpin">
 			<% @product3.each do |product| %>
 	          <li>
-	            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-	            <span><%= product.name %></span>
-	            <!-- <span><%= raw product.name %></span> -->
-	            <p><%= money product.now_product_price %></p>
+							<a href="<%= mall_product_path(product) %>">
+		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+		            <span><%= product.name %></span>
+		            <!-- <span><%= raw product.name %></span> -->
+		            <p><%= money product.now_product_price %></p>
+							</a>
 	          </li>
 	      <% end %>
   	</ul>
@@ -155,10 +163,12 @@
 		<ul class="clearfix chanpin">
 			<% @programs.each do |programs| %>
 	          <li>
-	            <div class="images"><%= image_tag programs.image_url(:product_icon) if programs.image_url.present? %></div>
-	            <span><%= programs.name %></span>
-	            <!-- <span><%= raw programs.name %></span> -->
-	            <p><%= raw programs.desc %></p>
+							<a href="<%= mall_programs_product_path(programs) %>">
+		            <div class="images"><%= image_tag programs.image_url(:product_icon) if programs.image_url.present? %></div>
+		            <span><%= programs.name %></span>
+		            <!-- <span><%= raw programs.name %></span> -->
+		            <p><%= raw programs.desc %></p>
+							</a>
 	          </li>
 	      <% end %>
     </ul>
