@@ -19,10 +19,7 @@
 		position: fixed;
 	}
 
-	.silder ul {
-		margin-top: 30px;
-		border-top: 1px solid #ccc;
-	}
+
 
 	.silder li {
 		padding: 10px 0;
@@ -32,6 +29,7 @@
 
 	.silder a {
 		color: #666;
+		font-size: 14px;
 	}
 
 	.pro {
@@ -73,6 +71,10 @@
 		height: 100%;
 	}
 
+	.pro-sm .chanpin li a {
+		color: #666;
+	}
+
 	.pro-sm .chanpin li span {
 		font-size: 14px;
 	}
@@ -87,6 +89,12 @@
 
 	.pro-sm .chanpin li p {
 		color: red;
+	}
+
+	.active {
+		background: #fff;
+		color: red;
+		z-index: 999;
 	}
 
 </style>
@@ -179,6 +187,7 @@
 	$(".silder ul li").each(function(index, el) {
 		$(this).click(function(){
 			console.log(index);
+			$(this).addClass('active').siblings().removeClass('active');
 			$(".pro .pro-sm").each(function(index_sm, el_sm) {
 				if(index === index_sm){
                     $(this).show();
