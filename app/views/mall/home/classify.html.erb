@@ -1,0 +1,137 @@
+<style type="text/css" media="screen">
+
+	.clearfix:after {
+	    content: " ";
+	    display: block;
+	    clear: both;
+	    height: 0;
+	}
+	.clearfix {
+	    zoom: 1;
+	}	
+
+	.silder {
+		width: 18%;
+		height: 92%;
+		background: #eaeaea;
+		padding-bottom: 58px;
+		border-right: 1px solid #ccc;
+		position: fixed;
+	}
+
+	.silder ul {
+		margin-top: 30px;
+		border-top: 1px solid #ccc;
+	}
+
+	.silder li {
+		padding: 10px 0;
+		border-bottom: 1px solid #ccc;
+		text-align: center;
+	}
+
+	.silder a {
+		color: #666;
+	}
+
+	.pro {
+		width: 82%;
+		height: 100%;
+		margin-left: 18%;
+	}
+
+	.pro .pro-sm {
+		width: 100%;
+		display:none;
+		padding-bottom: 58px;
+	}
+
+	#content {
+		display: block;
+	}
+
+	.pro-sm .chanpin {
+		width: 100%;
+	}
+
+	.pro-sm .chanpin li {
+		width: 49%;
+		float: left;
+		margin-bottom: 25px;
+		height: 250px;
+	}
+
+	.pro-sm .chanpin .images {
+		width: 90%;
+		margin: 0 auto;
+		margin-top: 10px;
+		height: 150px;
+	}
+
+	.pro-sm .chanpin .images img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.pro-sm .chanpin li span {
+		font-size: 14px;
+	}
+
+	.pro-sm .chanpin li span, .pro-sm .chanpin li p {
+		display: block;
+		width: 90%;
+		margin: 0 auto;
+		margin-top: 10px;
+		text-align: center;		
+	}
+
+	.pro-sm .chanpin li p {
+		color: red;
+	}
+
+</style>
+
+
+<div class="silder">
+	<ul>
+		<li><a>全部商品</a></li>
+		<li><a>销售商品</a></li>
+		<li><a>活动商品</a></li>
+		<li><a>虚拟商品</a></li>
+		<li><a>组合方案</a></li>
+	</ul>
+</div>
+
+<div class="pro">
+	<div class="pro-sm" id="content">
+		<ul class="clearfix chanpin">
+			<% @products.each do |product| %>
+	          <li>
+	            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+	            <span><%= product.name %></span>
+	            <!-- <span><%= raw product.name %></span> -->
+	            <p><%= money product.now_product_price %></p>
+	          </li>
+	         <% end %>         
+      	</ul>		
+	</div>
+	<div class="pro-sm">2</div>
+	<div class="pro-sm">3</div>
+	<div class="pro-sm">4</div>
+	<div class="pro-sm">5</div>
+</div>
+
+<script>
+	$(".silder ul li").each(function(index, el) {
+		$(this).click(function(){
+			console.log(index);
+			$(".pro .pro-sm").each(function(index_sm, el_sm) {
+				if(index === index_sm){
+                    $(this).show();
+                }else{
+                    $(this).hide();
+                }
+			});
+		})
+	});
+</script>
