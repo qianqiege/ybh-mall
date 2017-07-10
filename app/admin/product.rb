@@ -53,6 +53,7 @@ ActiveAdmin.register Product do
       f.input :image, as: :file
       f.input :priority
       f.input :desc,:as => :ckeditor
+      f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3' }
     end
     f.actions
   end
