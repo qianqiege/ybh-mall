@@ -30,6 +30,7 @@ ActiveAdmin.register Program do
     column "备注" do |program|
       truncate(raw program.desc)
     end
+    column "是否显示",:is_show
     actions
   end
 
