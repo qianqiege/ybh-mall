@@ -163,14 +163,24 @@ class IdataRecord < ApplicationRecord
 
 
     #拿到用户已经付款后的数动力订阅服务列表
-    user_idata_subscribes = UserIdataSubscribe.find_by(user_id: wechat_user.user_id)
+    user_idata_subscribe = UserIdataSubscribe.find_by(user_id: wechat_user.user_id)
     
     Rails.logger.info "@"*20
-    Rails.logger.info user_idata_subscribes.inspect
+    Rails.logger.info user_idata_subscribe.inspect
 
 
-    if !user_idata_subscribes.blank?
-      user_subscribe_list = user_idata_subscribes.list.pluck(:service_id).uniq
+    if !user_idata_subscribe.blank?
+      
+      #清除原来单个元素为字符串的数组(测试数据)
+      user_idata_subscribe.list.each do |f|
+        if f.class == String
+          user_idata_subscribe.list.clear
+          return
+        end
+      end
+
+
+      user_subscribe_list = user_idata_subscribe.list.pluck(:service_id).uniq
       
       case recordable_type
       when "BloodPressure"
