@@ -1,4 +1,22 @@
-<% if @product.is_show %>
+<style media="screen">
+  .guige-span{
+    display: inline-block;
+    padding: 0 15px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .action {
+    background-color: #ad0e11;
+    color: #fff;
+  }
+
+  .a{
+    color: #ad0e11;
+  }
+</style>
+
   <div class="pro-show">
     <div class="swiper-container swp_pro swiper-container-horizontal">
       <ul class="swiper-wrapper">
@@ -29,8 +47,18 @@
       </div>
       <span class="choosed">购买数量(<%= @product.shop_count > 0 ? '有货' : '无货' %>)</span>
     </li>
+
+    <li class="arrow-right guige">规格：
+      <% standard = Product.where(name: @product.name) %>
+      <% standard.each do |standard| %>
+        <a href="<%= mall_product_path(standard) %>" class="a">
+          <span class="choosed guige-span"><%= standard.spec %></span>
+        </a>
+      <% end %>
+    </li>
+
     <li class="arrow-right">
-      <span class="choosed">包装：<%= @product.packaging %></span>
+      <span class="choosed" >包装：<%= @product.packaging %></span>
     </li>
     <li class="arrow-right">
       <span class="choosed">生产厂家：<%= @product.production %></span>
@@ -58,21 +86,11 @@
         <i class="icon-wechat"></i>
         客服
       </a>
-      <a class="flex-item btn add-car" data-product_id="<%= @product.id %>" id="add_cart">加入购物车</a>
-      <a class="flex-item btn buy" data-product_id="<%= @product.id %>" id='fast-buy-btn'>立即购买</a>
+      <% if !@product.spec.nil? %>
+        <a class="flex-item btn add-car" data-product_id="<%= @product.id %>" id="add_cart" >加入购物车</a>
+        <a class="flex-item btn buy" data-product_id="<%= @product.id %>" id='fast-buy-btn' >立即购买</a>
+      <% else %>
+        <a class="flex-item btn gui" style="display:block;">请选择规格</a>
+      <% end %>
     </div>
   </div>
-<% else %>
-  <div class='mobile_box'>
-    <div class="page-title">
-      <h2 class="text-cen">
-        <span>商品展示</span>
-      </h2>
-    </div>
-    <div class="wraper pt50 graybg">
-      <div class="empty-content">
-        该商品已下架o(╯□╰)o
-      </div>
-    </div>
-  </div>
-<% end %>
