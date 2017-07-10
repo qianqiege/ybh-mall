@@ -5,6 +5,7 @@ class Mall::ProductsController < Mall::BaseController
 
   def show
     @no_fotter = true
+    @slides = ProductImage.where(product_id: params[:id])
   end
 
   private
