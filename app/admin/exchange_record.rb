@@ -34,7 +34,7 @@ index do
         link_to '审核通过',dealing_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
       end
       span do
-        link_to '不通过',not_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
+        link_to '不通过',change_desc_admin_exchange_record_path(record, desc: :yes), method: :get
       end
     end
   end
@@ -44,18 +44,25 @@ index do
         link_to '已处理',pending_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
       end
       span do
-        link_to '不通过',not_dealing_admin_exchange_record_path(record),method: :put, data: { confirm: 'Are you sure?' }
-      end
-    end
-  end
-  column '客户操作' do |record|
-    if !record.desc.present?
-      span do
-        link_to '填写原因', change_desc_admin_exchange_record_path(record, desc: :yes), method: :get
+        link_to '不通过',change_desc_admin_exchange_record_path(record, desc: :yes), method: :get
       end
     end
   end
 end
+
+  controller do 
+
+    def update
+      ExchangeRecord.find(params["id"]).update(desc: params["exchange_record"]["desc"])
+      
+      if ExchangeRecord.find(params["id"]).state == "pending"
+         redirect_to  not_admin_exchange_record_path(params["id"].to_i)
+      else
+        redirect_to not_dealing_admin_exchange_record_path(params["id"].to_i)
+      end
+    end
+
+  end
 
 form(:html => { :multipart => true }) do |f|
   f.inputs "档案" do
@@ -79,12 +86,12 @@ end
     redirect_to admin_exchange_records_path
   end
 
-  member_action :not, method: :put do
+  member_action :not, method: :get do
     resource.not
     redirect_to admin_exchange_records_path
   end
 
-  member_action :not_dealing, method: :put do
+  member_action :not_dealing, method: :get do
     resource.not_dealing
     redirect_to admin_exchange_records_path
   end
