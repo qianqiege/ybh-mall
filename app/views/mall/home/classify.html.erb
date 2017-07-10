@@ -8,7 +8,7 @@
 	}
 	.clearfix {
 	    zoom: 1;
-	}	
+	}
 
 	.silder {
 		width: 18%;
@@ -82,7 +82,7 @@
 		width: 90%;
 		margin: 0 auto;
 		margin-top: 10px;
-		text-align: center;		
+		text-align: center;
 	}
 
 	.pro-sm .chanpin li p {
@@ -112,13 +112,57 @@
 	            <!-- <span><%= raw product.name %></span> -->
 	            <p><%= money product.now_product_price %></p>
 	          </li>
-	         <% end %>         
-      	</ul>		
+	     <% end %>
+    </ul>
 	</div>
-	<div class="pro-sm">2</div>
-	<div class="pro-sm">3</div>
-	<div class="pro-sm">4</div>
-	<div class="pro-sm">5</div>
+	<div class="pro-sm">
+		<ul class="clearfix chanpin">
+			<% @product1.each do |product| %>
+						<li>
+							<div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+							<span><%= product.name %></span>
+							<!-- <span><%= raw product.name %></span> -->
+							<p><%= money product.now_product_price %></p>
+						</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="pro-sm">
+		<ul class="clearfix chanpin">
+			<% @product2.each do |product| %>
+	          <li>
+	            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+	            <span><%= product.name %></span>
+	            <!-- <span><%= raw product.name %></span> -->
+	            <p><%= money product.now_product_price %></p>
+	          </li>
+	     <% end %>
+    </ul>
+	</div>
+	<div class="pro-sm">
+		<ul class="clearfix chanpin">
+			<% @product3.each do |product| %>
+	          <li>
+	            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+	            <span><%= product.name %></span>
+	            <!-- <span><%= raw product.name %></span> -->
+	            <p><%= money product.now_product_price %></p>
+	          </li>
+	      <% end %>
+  	</ul>
+	</div>
+	<div class="pro-sm">
+		<ul class="clearfix chanpin">
+			<% @programs.each do |programs| %>
+	          <li>
+	            <div class="images"><%= image_tag programs.image_url(:product_icon) if programs.image_url.present? %></div>
+	            <span><%= programs.name %></span>
+	            <!-- <span><%= raw programs.name %></span> -->
+	            <p><%= raw programs.desc %></p>
+	          </li>
+	      <% end %>
+    </ul>
+	</div>
 </div>
 
 <script>
