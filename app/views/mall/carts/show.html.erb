@@ -1,5 +1,5 @@
 <style type="text/css">
-  
+
   .car-box {
     border-bottom: 0;
   }
@@ -42,7 +42,7 @@
                 </div>
                 <div class="pro-m">
                   <a href="<%= mall_product_path(line_item.product) %>">
-                    <p class="name"><%= line_item.product.name %></p>
+                    <p class="name"><%= line_item.product.name %>(<%= line_item.product.spec %>)</p>
                   </a>
                   <div class="gray84 option"><%= line_item.product.try(:product_sort) || '&nbsp;'.html_safe %></div>
                   <div class="info clearfix">

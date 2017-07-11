@@ -26,6 +26,10 @@ zh-CN:
         desc: '备注'
         image: '图片'
         is_show: '是否显示'
+      product_image:
+        product: '产品'
+        image: '图片'
+        is_show: '是否显示'
       product:
         name: "标题"
         original_product_price: "原价"
@@ -327,6 +331,7 @@ zh-CN:
       identity_card: '身份证'
       exchange_record: '提现申请记录'
       coin_channel: '货币投放渠道'
+      product_image: '产品图片'
       temporary_datum: '临时数据'
       lssue_currency: '货币发行'
       presented_record: '易积分收支明细'

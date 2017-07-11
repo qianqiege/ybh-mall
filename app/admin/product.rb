@@ -13,7 +13,9 @@ ActiveAdmin.register Product do
                 :only_number,
                 :priority,
                 :is_custom_price,
-                :is_consumption
+                :is_consumption,
+                :spec,
+                :display
 
   index do
     selectable_column
@@ -26,7 +28,9 @@ ActiveAdmin.register Product do
     column :only_number
     column :now_product_price
     column :original_product_price
-    column :is_show
+    column :spec
+    column'是否展示', :display
+    column'是否上架', :is_show
     column :shop_count
     column :priority
     column '产品描述' do |product|
@@ -43,7 +47,9 @@ ActiveAdmin.register Product do
       f.input :now_product_price
       f.input :original_product_price
       f.input :shop_count
-      f.input :is_show
+      f.input'是否展示', :display
+      f.input'是否下架', :is_show
+      f.input :spec
       f.input :is_custom_price
       f.input :is_consumption
       f.input :production
