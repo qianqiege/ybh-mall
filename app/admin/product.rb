@@ -47,8 +47,8 @@ ActiveAdmin.register Product do
       f.input :now_product_price
       f.input :original_product_price
       f.input :shop_count
-      f.input'是否展示', :display
-      f.input'是否下架', :is_show
+      f.input :display
+      f.input :is_show
       f.input :spec
       f.input :is_custom_price
       f.input :is_consumption
