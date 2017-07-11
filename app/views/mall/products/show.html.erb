@@ -86,7 +86,7 @@
         <i class="icon-wechat"></i>
         客服
       </a>
-      <% if !@product.spec.nil? %>
+      <% if !@product.spec.nil? && @product.spec != "" %>
         <a class="flex-item btn add-car" data-product_id="<%= @product.id %>" id="add_cart" >加入购物车</a>
         <a class="flex-item btn buy" data-product_id="<%= @product.id %>" id='fast-buy-btn' >立即购买</a>
       <% else %>
