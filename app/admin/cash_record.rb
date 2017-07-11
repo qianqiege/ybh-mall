@@ -14,6 +14,7 @@ ActiveAdmin.register CashRecord do
     column :is_effective
     column :status
     column :account
+    column :desc
     column :created_at
     actions
   end
@@ -26,6 +27,7 @@ ActiveAdmin.register CashRecord do
       f.input :is_effective
       f.input :reason, as: :select, collection: [ '消费','充值' ]
       f.input :type, as: :select, collection: { '可以提现' => 'CashYes', '不可提现' => 'CashNo' }
+      f.input :desc
     end
     f.actions
   end
