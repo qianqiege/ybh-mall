@@ -1,31 +1,69 @@
+
+<style type="text/css">
+  
+    .clearfix:after {
+      content: " ";
+      display: block;
+      clear: both;
+      height: 0;
+    }
+
+    .clearfix {
+      zoom: 1;
+    }
+
+
+    .mh-bg .white {
+      width: 60%;
+      margin: 0 auto;
+      padding-top: 70%;
+    }
+
+    .mh-bg .white a {
+        color: #fff;
+        border:1px solid #fff;      
+    }
+
+    .mh-bg .white a ,.mh-bg .green a{
+      display: inline-block;
+      border-radius: 15px;
+      padding: 0 10px;
+      font-size: 1rem;
+    }
+
+    .mh-bg .green {
+      width: 70%;
+      margin: 0 auto;
+      padding-top: 15%;
+    }
+
+    .mh-bg .green a {
+      text-align: center;
+      display: block;
+      color: #368076;
+      border:1px solid #368076;
+      margin-bottom: 13px;    
+    }
+
+    .mh-bg .white a:last-child {
+      float: right;
+    }
+
+</style>     
+
+
+
 <%= title '动态健康数据' %>
-<%= render 'head' %>
-<a class="weui-cell weui-cell_access" href="<%= user_data_home_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>动态健康数据展示</p>
+
+<div class="mh-bg">
+  <div class="white clearfix">
+    <a href="<%= user_idata_example_show_path %>">样例展示</a>
+    <a href="<%= user_idata_detail_explanation_path %>">详细说明</a>    
   </div>
-  <span class="weui-cell__ft"></span>
-</a>
-
-<a class="weui-cell weui-cell_access" href="<%= examine_home_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>动态健康数据录入</p>
+  <div class="green">
+    <a href="<%= user_data_home_path =%>">动态健康数据展示</a>
+    <a href="<%= examine_home_path =%>">动态健康数据录入</a>
+    <a href="<%= user_show_idata_path =%>">动态健康数据分析报告订阅</a>
+    <a href="<%= user_show_user_idata_subscribe_list_path =%>">您的订阅记录</a>       
   </div>
-  <span class="weui-cell__ft"></span>
-</a>
-
-
-<a class="weui-cell weui-cell_access" href="<%= user_show_idata_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>动态健康数据分析报告订阅</p>
-  </div>
-  <span class="weui-cell__ft"></span>
-</a>
-
-<a class="weui-cell weui-cell_access" href="<%= user_show_user_idata_subscribe_list_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>您的订阅记录</p>
-  </div>
-  <span class="weui-cell__ft"></span>
-</a>
-
+</div>

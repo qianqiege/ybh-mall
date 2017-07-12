@@ -109,6 +109,8 @@ Rails.application.routes.draw do
     get '/query_wallet', to: 'info#query_wallet'
     get '/record_home', to: 'info#record_home'
     get '/moving_health_data', to: 'info#moving_health_data'
+    get '/idata_example_show', to: 'info#idata_example_show' 
+    get '/idata_detail_explanation', to: 'info#idata_detail_explanation'
     get '/programs_home' ,to: 'info#programs_home'
     get '/scoin_info',to: 'info#scoin_info'
     get '/setting', to: 'info#setting'
@@ -145,7 +147,7 @@ Rails.application.routes.draw do
     post '/create_idata_subscribe', to: 'examine_data#create_idata_subscribe'
     get '/idata_subscribe_pay', to: 'examine_data#idata_subscribe_pay'
     get '/show_week_or_month_report', to: 'examine_data#show_week_or_month_report'
-    get '/show_user_idata_subscribe_list', to: 'examine_data#show_user_idata_subscribe_list' 
+    get '/show_user_idata_subscribe_list', to: 'examine_data#show_user_idata_subscribe_list'
   end
 
   namespace :examine do
