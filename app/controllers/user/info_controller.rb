@@ -376,6 +376,16 @@ class User::InfoController < Wechat::BaseController
 
   end
 
+  #数动力样例展示
+  def idata_example_show
+    
+  end
+
+  #数动力详细说明
+  def idata_detail_explanation
+    
+  end
+
   def create_programs
     if params["commit"] == "加入到购物车"
       @time = params[:format]
