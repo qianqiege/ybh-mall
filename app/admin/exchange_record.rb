@@ -27,6 +27,7 @@ index do
     end
   end
   column :created_at
+  column'最后处理日期', :updated_at
   # actions defaults: true
   column '审核操作(客服)' do |record|
     if record.state == "pending"
@@ -50,11 +51,11 @@ index do
   end
 end
 
-  controller do 
+  controller do
 
     def update
       ExchangeRecord.find(params["id"]).update(desc: params["exchange_record"]["desc"])
-      
+
       if ExchangeRecord.find(params["id"]).state == "pending"
          redirect_to  not_admin_exchange_record_path(params["id"].to_i)
       else
