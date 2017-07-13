@@ -3,6 +3,7 @@ menu parent: I18n.t("active_admin.menu.coin_record_manage")
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
+actions :index
 permit_params :user_id, :number, :status, :account,:opening,:name,:desc
 
 index do

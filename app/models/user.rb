@@ -155,4 +155,7 @@ class User < ApplicationRecord
     end
   end
 
+  def display_name
+    "#{self.name}-#{self.telphone}"
+  end
 end
