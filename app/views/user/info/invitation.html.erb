@@ -1,5 +1,5 @@
 <style type="text/css" media="screen">
-  
+
 .clearfix:after {
   content: " ";
   display: block;
@@ -11,7 +11,8 @@
 }
 
 .ways {
-  
+  float: right;
+  margin-top: 3%;
 }
 
 </style>
@@ -27,16 +28,16 @@
       2.截屏分享给好友识别注册  <br/>
       3.禁止点击右上角分享链接注册 <br/>
       4.点击二维码查看我的邀请记录
-  </div>  --> 
+  </div>  -->
   <div class="qr-code-invitation">
-        
+
     <a href="<%= user_invitation_friend_path %>"><%= raw @qrcode.as_html %></a></br>
     <div class="clearfix">
-      <img src="<%= @wechat_user.headimgurl %>" style="width:35px; float: left;margin-left: 15%;">
-      <span style="float: right;margin-top: 4%;margin-right: 25%;"><%= @wechat_user.user.name %></span>
+      <img src="<%= @wechat_user.headimgurl %>" style="width:35px; float: left;">
+      <span class="ways"><%= @wechat_user.user.telphone %></span><span class="ways" style="margin-right: 3%;"><%= @wechat_user.user.name %></span>
     </div>
   </div>
-<!-- 
+<!--
   <div class="weui-panel weui-panel_access" >
     <div class="weui-panel">
       <div class="weui-panel__hd">我邀请的用户</div>
