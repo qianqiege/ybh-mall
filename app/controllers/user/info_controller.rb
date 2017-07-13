@@ -110,22 +110,18 @@ class User::InfoController < Wechat::BaseController
   end
 
   def gift_user
-    if params[:account_type] == "支付宝"
+    if params[:account_type] == "支付宝" && params["type_coin"] != "1"
       if params[:name] == "" || params[:account] == ""
         flash[:notice] = '申请信息不能为空值'
         redirect_to user_gift_account_path
         return
       end
-    elsif params[:account_type] == "银行卡"
+    elsif params[:account_type] == "银行卡" && params["type_coin"] != "1"
       if params[:bank_name] == "" || params[:bank] == "" || params[:where] == ""
         flash[:notice] = '申请信息不能为空值'
         redirect_to user_gift_account_path
         return
       end
-    else
-      flash[:notice] = '申请信息不能为空值'
-      redirect_to user_gift_account_path
-      return
     end
 
     integral = Integral.find_by(user_id: current_user.user_id)
@@ -194,7 +190,7 @@ class User::InfoController < Wechat::BaseController
           PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
           integral.update(available: integral.available - number,exchange: integral.exchange - number,not_appreciation: integral.not_appreciation - number)
           flash[:notice] = '兑换成功'
-          
+
           #用户提现申请成功，发送模板通知消息
           @exchange_record.send_exchange_record_apply_success
 
@@ -378,12 +374,12 @@ class User::InfoController < Wechat::BaseController
 
   #数动力样例展示
   def idata_example_show
-    
+
   end
 
   #数动力详细说明
   def idata_detail_explanation
-    
+
   end
 
   def create_programs
