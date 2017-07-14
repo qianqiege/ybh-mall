@@ -88,6 +88,14 @@ ActiveAdmin.register Order do
     render 'edit.html.arb', :layout => false
   end
 
+  member_action :pay_cancel, method: :put do
+    if resource.pay_cancel!
+      redirect_to :back, notice: "已取消订单!"
+    else
+      redirect_to :back, notice: "操作失败!"
+    end
+  end
+
   action_item :edit_price, only: :show do
     link_to '更改价格', edit_price_admin_order_path(resource), method: :get if current_admin_user.change_order?
   end
@@ -120,6 +128,9 @@ ActiveAdmin.register Order do
     column '订单操作' do |order|
       span do
         link_to '取消订单', make_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+      end
+      span do
+        link_to '取消订单', pay_cancel_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_send? && order.price <= 0
       end
       span do
         link_to '填写货运单号', express_number_admin_order_path(order, express_number: :yes), method: :get if order.wait_send? || order.wait_confirm?
