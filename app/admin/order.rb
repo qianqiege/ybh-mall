@@ -187,6 +187,7 @@ ActiveAdmin.register Order do
         t.column('图片') { |line_item| image_tag(line_item.product.image_url, size: "72x45", :alt => "product image") }
         t.column('数量') { |line_item| line_item.quantity }
         t.column('单价') { |line_item| line_item.unit_price }
+        t.column('规格') { |line_item| line_item.product.spec }
       end
     end
 
