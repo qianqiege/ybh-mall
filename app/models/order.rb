@@ -85,6 +85,17 @@ class Order < ApplicationRecord
       end
     end
 
+    event :pay_cancel do
+      transitions from: :wait_send, to: :cancel
+      after do
+        if self.cash > 0 && self.price <= 0
+          CashRecord.create(user_id: self.user_id, number: self.cash, reason: "订单退换积分，订单ID#{self.id}", is_effective:1)
+        elsif self.integral > 0 && self.price <= 0
+          presented_records.create(user_id: self.user_id, number: self.integral, reason: "订单退换积分，订单ID#{self.id}",is_effective:1, type:"Available", wight: 10)
+        end
+      end
+    end
+
     event :send_product do
       transitions from: :wait_send, to: :wait_confirm
       after do
