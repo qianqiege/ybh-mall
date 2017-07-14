@@ -16,12 +16,12 @@
                 <%= image_tag("mall.png", class: "weui-tabbar__icon") %>
                 <p class="weui-tabbar__label">商城</p>
               </a>
-              <% if current_user.user.staff_type == "R&D" %>
+              <!-- <% if current_user.user.staff_type == "R&D" %> -->
                 <a href="<%= mall_classify_path %>" class="weui-tabbar__item">
                   <%= image_tag("fenlei.png", class: "weui-tabbar__icon") %>
                   <p class="weui-tabbar__label">分类</p>
                 </a>
-              <% end %>
+              <!-- <% end %> -->
               <a href="<%= mall_cart_path %>" class="weui-tabbar__item <%= controller_name == "carts" ? 'weui-bar__item_on' : nil %>">
                 <%= image_tag("cart.png", class: "weui-tabbar__icon") %>
                 <p class="weui-tabbar__label">购物车</p>
