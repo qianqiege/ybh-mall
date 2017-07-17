@@ -1,5 +1,6 @@
 class User::InfoController < Wechat::BaseController
   before_action :programs
+  skip_before_filter :verify_authenticity_token
 
   def health_data
     @user_email = User.find(current_user.user_id)
@@ -16,6 +17,18 @@ class User::InfoController < Wechat::BaseController
     else
       flash[:notice] = '上传失败，邮箱或身份证有误'
       redirect_to '/user/health_data'
+    end
+  end
+
+  def edit_info
+    @info = User.find(current_user.user_id)
+  end
+
+  def user_edit_info
+    user = User.find(current_user.user_id)
+    if user.update(telphone: params[:telphone],email: params[:email],id_number: params[:id_number])
+      flash[:notice] = '修改成功'
+      redirect_to '/user/setting'
     end
   end
 
