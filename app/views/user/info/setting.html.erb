@@ -1,4 +1,7 @@
 <%= title '我的信息' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
 <div class="weui-panel weui-panel_access">
   <div class="weui-panel__bd">
     <a href="<%= user_w_info_path %>" class="weui-media-box weui-media-box_appmsg">
@@ -36,7 +39,11 @@
               </div>
               <div class="weui-form-preview__item">
                 <label class="weui-form-preview__label">身份证号码</label>
-                <span class="weui-form-preview__value"><%= @wechat_user.user.try(:identity_card) %></span>
+                <span class="weui-form-preview__value"><%= @wechat_user.user.try(:id_number) %></span>
+              </div>
+              <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">邮箱</label>
+                <span class="weui-form-preview__value"><%= @wechat_user.user.try(:email) %></span>
               </div>
             </div>
             <% if false %>
@@ -68,13 +75,15 @@
               </div>
             </div>
           </div>
-            </div>
+          </div>
+          <div class="weui-btn-area">
+            <a href="<%= user_edit_info_path %>" class="weui-btn weui-btn_primary">编辑</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <%= content_for :weixin_api do %>
   <script type="text/javascript">

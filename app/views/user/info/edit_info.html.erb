@@ -1,0 +1,6 @@
+<form action="<%= user_user_edit_info_path %>" method="post">
+  <p>手机号码: <input type="text" name="telphone" value="<%= @info.telphone %>"/></p>
+  <p>身份证号码: <input type="text" name="id_number" value="<%= @info.id_number %>"/></p>
+  <p>邮箱: <input type="text" name="email" value="<%= @info.email %>"/></p>
+  <input type="submit" value="Submit" />
+</form>

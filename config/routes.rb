@@ -86,6 +86,8 @@ Rails.application.routes.draw do
 
   namespace :user do
     root "info#home"
+    get '/edit_info', to: 'info#edit_info'
+    post '/user_edit_info', to: 'info#user_edit_info'
     get '/health_data',to: 'info#health_data'
     post '/health_data', to: 'info#health_data_post'
     get '/binding',to: 'binding#new'
@@ -109,7 +111,7 @@ Rails.application.routes.draw do
     get '/query_wallet', to: 'info#query_wallet'
     get '/record_home', to: 'info#record_home'
     get '/moving_health_data', to: 'info#moving_health_data'
-    get '/idata_example_show', to: 'info#idata_example_show' 
+    get '/idata_example_show', to: 'info#idata_example_show'
     get '/idata_detail_explanation', to: 'info#idata_detail_explanation'
     get '/programs_home' ,to: 'info#programs_home'
     get '/scoin_info',to: 'info#scoin_info'
