@@ -53,10 +53,10 @@ $(function () {
       return;
     }
 
-    if(!validateIdentityCard(identity_card)) {
-      showFlash("#toast-custom", '无效的身份证号码');
-      return;
-    }
+    // if(!validateIdentityCard(identity_card)) {
+    //   showFlash("#toast-custom", '无效的身份证号码');
+    //   return;
+    // }
 
     if(password == "") {
       showFlash("#toast-custom", '请输入密码');
