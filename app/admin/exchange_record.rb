@@ -27,8 +27,9 @@ index do
       state = "待审核"
     end
   end
-  column :created_at
-  column'最后处理日期', :updated_at
+  column "申请日期" do |record|
+    date record.created_at
+  end
   # actions defaults: true
   column '审核操作(客服)' do |record|
     if record.state == "pending"
@@ -38,6 +39,8 @@ index do
       span do
         link_to '不通过',change_desc_admin_exchange_record_path(record, desc: :yes), method: :get
       end
+    else
+      date record.state_time
     end
   end
   column '处理操作(财务)' do |record|
@@ -48,6 +51,8 @@ index do
       span do
         link_to '不通过',change_desc_admin_exchange_record_path(record, desc: :yes), method: :get
       end
+    else
+      date record.updated_at
     end
   end
 end
@@ -65,18 +70,6 @@ end
     end
 
   end
-
-form(:html => { :multipart => true }) do |f|
-  f.inputs "档案" do
-    f.input :user
-    f.input :number
-    f.input :status
-    f.input :account
-    f.input :opening
-    f.input :name
-  end
-  f.actions
-end
 
   member_action :pending, method: :put do
     resource.deal
