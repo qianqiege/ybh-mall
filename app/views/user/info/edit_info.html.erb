@@ -1,6 +1,64 @@
-<form action="<%= user_user_edit_info_path %>" method="post">
-  <p>手机号码: <input type="text" name="telphone" value="<%= @info.telphone %>"/></p>
-  <p>身份证号码: <input type="text" name="id_number" value="<%= @info.id_number %>"/></p>
-  <p>邮箱: <input type="text" name="email" value="<%= @info.email %>"/></p>
-  <input type="submit" value="Submit" />
+<style type="text/css">
+	
+	.froms{
+		height: 80%;
+		width: 100%;
+		padding-top: 30%;
+	}
+
+	.froms h2 {
+		font-weight: normal;
+		color:#94c6ad;
+		text-align: center; 
+	}
+
+	.froms p {
+		width: 90%;
+		margin: 0 auto;
+		font-size: 1.2rem;
+		margin-top: 20px;
+		line-height: 2rem;
+
+	}
+
+	.froms p input {
+		height: 2rem;
+		width: 70%;
+		margin-left: 3%;
+		border-radius: 15px;
+		border:1px solid #94c6ad;
+	}
+
+	.submits {
+		width: 75%;
+		height: 35px;
+		display: block;
+		margin: 0 auto;
+		margin-top: 20px;
+		border:0;
+		background:#94c6ad; 
+	}
+
+	@media screen and (max-width: 375px) {
+		.froms p {
+			width: 80%;
+			font-size: 1rem;
+		}
+
+		.froms p input {
+			margin-left: 0;
+		}		
+
+	}
+
+</style>
+
+
+
+<form action="<%= user_user_edit_info_path %>" method="post" class="froms">
+	<h2>编辑我的信息</h2>
+	<p>手机号码: <input type="text" name="telphone" value=" <%= @info.telphone %>"/></p>
+	<p>身份证号: <input type="text" name="id_number" value=" <%= @info.id_number %>"/></p>
+	<p>邮　　箱: <input type="text" name="email" value=" <%= @info.email %>"/></p>
+  <input type="submit" value="提交" class="submits" />
 </form>
