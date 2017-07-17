@@ -11,6 +11,7 @@ class ExchangeRecord < ApplicationRecord
      event :pass do
        transitions from: :pending, to: :dealing
        after do
+         self.state_time = Time.current
          self.save
        end
      end
@@ -80,7 +81,7 @@ class ExchangeRecord < ApplicationRecord
     open_id = User.find_by(id: user_id).wechat_user.open_id
 
     $wechat_client.send_template_msg(open_id, template_id, url, "#FD878E", data)
-  
+
   end
 
   #提现申请处理结果
