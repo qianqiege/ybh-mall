@@ -16,6 +16,7 @@ ActiveAdmin.register User do
     id_column
 
     column :telphone
+    column :id_number
     column :identity_card
     column :name
     column :invitation_card

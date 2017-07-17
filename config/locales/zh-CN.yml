@@ -198,7 +198,8 @@ zh-CN:
         type: '类型'
       user:
         telphone: '手机号码（用于登陆）'
-        identity_card: '身份证'
+        identity_card: '系统身份码'
+        id_number: '身份证'
         name: '真实姓名'
         invitation_card: '邀请码'
         invitation: '邀请人'

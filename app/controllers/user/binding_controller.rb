@@ -22,9 +22,14 @@ class User::BindingController < Wechat::BaseController
       # 生成随机邀请码
       @invitation_card = rand(1000000000..9999999999)
 
+      # 生成系统身份码
+      size = 18
+      charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
+      identity_card = (0...size).map{ charset.to_a[rand(charset.size)] }.join
+
       @invitation_user = User.find_by(invitation_card: params[:invitation_id])
 
-      @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: params[:identity_card],invitation_card: @invitation_card,status: "User",ybz_number: 0)
+      @user = User.new(name: params[:name],telphone: params[:mobile],password: params[:password],identity_card: identity_card,invitation_card: @invitation_card,status: "User",ybz_number: 0)
 
       # # 如果原来已经有推荐人了，注册直接绑定推荐人
       # if current_user.recommender.present?
