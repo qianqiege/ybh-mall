@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  evaluation_id: 1
+  weight: 1
+  user_proportion: 1.5
+  doctor: 9.99
+
+two:
+  evaluation_id: 1
+  weight: 1
+  user_proportion: 1.5
+  doctor: 9.99
