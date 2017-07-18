@@ -95,6 +95,10 @@ class Mall::OrdersController < Mall::BaseController
       payment: params[:payment]
     )
 
+    if session[:programs_number].present?
+      @order.programs_number = session[:programs_number]
+    end
+
     if params[:account].present?
       @order.account = params[:account]
     end

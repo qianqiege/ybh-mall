@@ -352,13 +352,13 @@ class User::InfoController < Wechat::BaseController
     if !current_user.user_id.nil?
       @programs = HealthProgram.where(identity_card: User.find(current_user.user_id).identity_card)
       @time_programs = @programs.order(time: :desc).limit(10)
-      @time = params[:format]
+      @program_id = params[:format]
     end
   end
 
   def health_programs
-    if !@time.nil?
-      @search_programs = @programs.where(time: @time).take.product
+    if !@program_id.nil?
+      @search_programs = @programs.find(@program_id).product
       @only_number = JSON.parse(@search_programs)
       cart = current_user.cart || current_user.create_cart
       @only_number.each do |only_number|
@@ -397,10 +397,12 @@ class User::InfoController < Wechat::BaseController
 
   def create_programs
     if params["commit"] == "加入到购物车"
-      @time = params[:format]
-      if !@time.nil?
-        @search_programs = @programs.where(time: @time).take.product
-        @only_number = JSON.parse(@search_programs)
+      @program_id = params[:format]
+      if !@program_id.nil?
+        @search_programs = @programs.find(@program_id)
+        @only_number = JSON.parse(@search_programs.product)
+        item_id = Array.new
+        i = 0
         if !@only_number.nil?
           @only_number.each do |only_number|
             product = Product.find_by(only_number: only_number["产品编号"])
@@ -408,9 +410,13 @@ class User::InfoController < Wechat::BaseController
               quantity = only_number["数量"].to_i
               @line_item = current_user.cart.add_product(product, quantity)
               @line_item.save
+              item_id[i] = @line_item.id
+              i = i + 1
             end
           end
-          redirect_to mall_cart_path
+          session[:programs_number] = @search_programs.coding
+          session[:line_item_ids] = item_id
+          redirect_to confirm_mall_orders_path
           return
         end
       end
