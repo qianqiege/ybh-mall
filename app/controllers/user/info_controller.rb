@@ -396,7 +396,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def create_programs
-    if params["commit"] == "加入到购物车"
+    if params["commit"] == "立刻购买"
       @program_id = params[:format]
       if !@program_id.nil?
         @search_programs = @programs.find(@program_id)
