@@ -3,8 +3,8 @@
   <div class="weui-cells__title">我健康管理方案</div>
   <div class="weui-cells">
     <% @time_programs.each do |program| %>
-      <% @time = program_time program.time %>
-      <a class="weui-cell weui-cell_access" href="<%= user_programs_path(@time) %>">
+      <% @program_id = program.id %>
+      <a class="weui-cell weui-cell_access" href="<%= user_programs_path(@program_id) %>">
           <div class="weui-cell__bd">
               <p class="font"><%= reservationtime program.time %></p>
           </div>
