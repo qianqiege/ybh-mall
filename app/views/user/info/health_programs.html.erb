@@ -52,7 +52,7 @@
     <% if !@line_item.nil? %>
       <%= form_for @line_item, url: {action: "create_programs"}, html: {class: "nifty_form"} do |f| %>
       <input type=hidden name=format value='<%= @program_id %>'/>
-      <%= f.submit "加入到购物车" ,class:"weui-btn weui-btn_mini weui-btn_primary big-button" %>
+      <%= f.submit "立刻购买" ,class:"weui-btn weui-btn_mini weui-btn_primary big-button" %>
       <% end %>
     <% end %>
   </div>
