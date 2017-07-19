@@ -178,6 +178,7 @@ ActiveAdmin.register Order do
       row :address
       row :express_number
       row :remark
+      row :programs_number
       row :desc
     end
     panel "订单项详情" do
@@ -224,4 +225,5 @@ ActiveAdmin.register Order do
     end
     f.actions
   end
+
 end
