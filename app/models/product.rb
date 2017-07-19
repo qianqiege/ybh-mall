@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many :line_items
   has_many :member_equities
   has_many :product_images
+  has_many :evaluates
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
