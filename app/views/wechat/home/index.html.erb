@@ -70,7 +70,7 @@
       </td>
     </tr>
   </table>
-<% if current_user.user.staff_type != "R&D" %>
+
   <h1 style="text-align:center;margin-top: 10%;margin-bottom: 5%; font-size:20px;font-family: '楷体';">御易健会员</h1>
   <div class="huiyuan">
     <div>YBJ</div>
@@ -89,9 +89,7 @@
   <div>
     <%= image_tag "ybs.jpg" ,class: "img_width" %>
   </div>
-<% else %>
-  <%= video_tag "ybyt8MB.mp4", :controls => true ,class: "video"%>
-<% end %>
 
+  <%= video_tag "ybyt8MB.mp4", :controls => true ,class: "video"%>
 
 </div>
