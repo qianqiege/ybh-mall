@@ -24,3 +24,7 @@ end
 every '0 0 29-31 * *' do
   rake 'ybz_vip:reward'
 end
+
+every 1.day, :at => '3:00 am' do
+  rake 'data:date_ycoin'
+end

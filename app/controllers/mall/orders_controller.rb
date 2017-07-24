@@ -92,8 +92,17 @@ class Mall::OrdersController < Mall::BaseController
       quantity: quantity,
       activity_id: activity,
       password: params[:password],
-      payment: params[:payment]
+      payment: params[:payment],
+      is_handle: false
     )
+
+    if activity.to_i == 12
+      if price >= 5000
+        @order.evaluation_number = price / 5000
+      else
+        @order.evaluation_number = 1
+      end
+    end
 
     if session[:programs_number].present?
       @order.programs_number = session[:programs_number]

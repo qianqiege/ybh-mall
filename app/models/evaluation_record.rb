@@ -1,0 +1,2 @@
+class EvaluationRecord < ApplicationRecord
+end
