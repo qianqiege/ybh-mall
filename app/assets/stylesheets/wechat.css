@@ -19,8 +19,10 @@
  *= require user/info
  *= require home/home
  *= require_self
+ *= require animate
  *= require evaluate/mellitus
  *= require user/data_examine
  *= require user/invitation
+
  *= require_directory ./mall
  */

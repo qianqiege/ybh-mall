@@ -15,6 +15,7 @@
 		text-align: center;
 		line-height: 40px;
 		border-radius: 10px 35px;
+		box-shadow: 2px 6px 2px #eee;
 	}
 
 	.img_width{
@@ -31,6 +32,7 @@
 		color: #fff;
 	}
 
+
 </style>
 
 
@@ -39,9 +41,9 @@
 
 <h1 style="text-align:center;margin-top: 5%;margin-bottom: 5%; font-size:20px;font-family: '微软雅黑';">御易健会员</h1>
 <div class="huiyuan">
-	<div class="active">YBJ</div>
-	<div>YBZ</div>
-	<div>YBS</div>
+	<div class="active animated bounce">YBJ</div>
+	<div class="animated bounce">YBZ</div>
+	<div class="animated bounce">YBS</div>
 </div>
 
 
@@ -59,6 +61,7 @@
 	</div>
 </div>
 
+
 <script type="text/javascript">
 	
 	$(".huiyuan div").each(function(index, val) {
@@ -68,5 +71,7 @@
 			$(".huiyuan div").eq(index).addClass("active").siblings().removeClass("active");
 		})
 	});
+
+
 
 </script>
