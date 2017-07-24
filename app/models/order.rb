@@ -189,7 +189,7 @@ class Order < ApplicationRecord
     # 1. 添加每天自动赠送规则
     # 2. 赠送第一天数据和第一次记录
     # 3. 如果有邀请人，赠送邀请人易积分
-    if !self.activity_id.nil?
+    if !self.activity_id.nil? && self.activity_id != 12
       rules = activity.activity_rules.match_rules(price)
       rules.map do |rule|
         if rule.coin_type.type == 'YcoinType'
