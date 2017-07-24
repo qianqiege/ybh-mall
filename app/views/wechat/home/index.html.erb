@@ -46,8 +46,8 @@
         <p style="margin-bottom:15%;">健康数据</p>
       </td>
       <td style="width: 10%;">
-        <a href="<%=  %>"><%= image_tag "服务.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;">服务</p>
+        <a href="<%= wechat_activity_path %>"><%= image_tag "服务.png", size: "50x50" %></a>
+        <p style="margin-bottom:15%;"> </p>
       </td>
     </tr>
 
@@ -71,24 +71,7 @@
     </tr>
   </table>
 
-  <h1 style="text-align:center;margin-top: 10%;margin-bottom: 5%; font-size:20px;font-family: '楷体';">御易健会员</h1>
-  <div class="huiyuan">
-    <div>YBJ</div>
-    <div>YBZ</div>
-    <div>YBS</div>
-  </div>
-
-  <div style="margin-top: 5%;">
-    <%= image_tag "ybj.jpg" ,class: "img_width" %>
-  </div>
-
-  <div>
-    <%= image_tag "ybz.jpg" ,class: "img_width" %>
-  </div>
-
-  <div>
-    <%= image_tag "ybs.jpg" ,class: "img_width" %>
-  </div>
+ 
 
   <%= video_tag "ybyt8MB.mp4", :controls => true ,class: "video"%>
 
