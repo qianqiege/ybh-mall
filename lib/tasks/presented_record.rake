@@ -64,14 +64,44 @@ namespace :presented_record do
              PresentedRecord.create(user_id: record.user_id, number: record.balance, reason: "接受变更可兑积分",is_effective:1,type:"Exchange",wight: record.wight,record_id: record.id)
              puts "生成易积分收支记录，可兑积分中加#{record.balance}"
 
-             @integral.update(exchange: @integral.not_exchange + record.balance,not_exchange: @integral.not_exchange - record.balance)
+             @integral.update(exchange: @integral.exchange + record.balance,not_exchange: @integral.not_exchange - record.balance)
              record.balance = 0
              # 将修改保存到数据库
              record.save
           end
         end
-      end
 
+        new_time = "2017-07-21 00:00:00 +0800"
+        if record.created_at.to_s >= new_time && record.wight == 1
+          puts "三个月可以提现的积分记录#{record.id}"
+          if @time >= 90 && record.wight == 1
+            @integral = Integral.find_by(user_id: record.user_id)
+            # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
+            if !@integral.nil? && !record.balance.nil?
+              # 条件为true,执行计算，从可用积分中减掉，加到可兑换积分
+               available = @integral.available - record.balance
+               exchange = @integral.exchange + record.balance
+
+               # 更新成功后，将这条记录判定为无效记录，避免重复计算
+               record.is_effective = 0
+
+               # 将满足sex_months天的易积分从 锁定易积分中减掉
+               PresentedRecord.create(user_id: record.user_id,number: "-#{record.balance}", reason: "可用积分变更可兑积分", is_effective:0, type:"Available", wight: record.wight,record_id: record.id)
+               puts "生成易积分收支记录，锁定易积分中减#{record.balance}"
+
+               # 将刚刚从锁定易积分中减掉的积分 加到可兑易积分中
+               PresentedRecord.create(user_id: record.user_id, number: record.balance, reason: "接受变更可兑积分",is_effective:1,type:"Exchange",wight: record.wight,record_id: record.id)
+               puts "生成易积分收支记录，可兑积分中加#{record.balance}"
+
+               @integral.update(exchange: @integral.exchange + record.balance,not_exchange: @integral.not_exchange - record.balance)
+               record.balance = 0
+               # 将修改保存到数据库
+               record.save
+            end
+          end
+        end
+
+      end
     end
     puts "定时器结束，当前时间为#{Time.current}"
   end
