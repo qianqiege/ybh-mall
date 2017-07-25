@@ -1,11 +1,11 @@
 <style type="text/css" media="screen">
-    
+
     .thisTable {
         width: 100%;
     }
 
     .thisTable thead tr {
-        display: flex;      
+        display: flex;
     }
 
     .thisTable thead td {
@@ -35,13 +35,28 @@
         <tr>
             <td class="td">邀请用户</td>
             <td class="td">邀请时间</td>
+            <% if current_user.user.status == "staff" || current_user.user.status == "Staff" %>
+              <td class="td">消费金额</td>
+            <% end %>
+            <td class="td">订单数量</td>
         </tr>
     </thead>
     <tbody>
         <% @invitation_friend.each do |invitation_friend| %>
         <tr>
-          <td class="td"><%= invitation_friend.name %></td>
+          <% if current_user.user.status == "staff" || current_user.user.status == "Staff" %>
+            <td class="td">
+              <a href="<%= user_invitation_info_path(invitation_friend.id) %>"><%= invitation_friend.name %></a>
+            </td>
+          <% else %>
+            <td class="td"><%= invitation_friend.name %></td>
+          <% end %>
           <td class="td"><%= date invitation_friend.created_at %></td>
+          <% order_price = Order.where(user_id: invitation_friend.id) %>
+          <% if !order_price.nil? && current_user.user.status == "staff" || current_user.user.status == "Staff" %>
+            <td class="td"><%= order_price.pluck(:price).sum %></td>
+          <% end %>
+          <td class="td"><%= order_price.length %></td>
         </tr>
         <% end %>
     </tbody>
