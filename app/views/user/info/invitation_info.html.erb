@@ -1,13 +1,61 @@
-<%= title '用户消费信息' %>
-<div>
-  <% @invitation_order.each do |order| %>
-    <p>订单编号：<%= order.number %></p>
-    <p>金额：<%= order.price %>积分：<%= order.integral %>余额：<%= order.cash %></p>
+<style type="text/css">
+	
 
-    <% order.line_items.each do |line| %>
-      <p>产品：<%= line.product.name %></p>
-      <p>使用天数：<%= line.product.data_number %></p>
-      <%= image_tag(line.product.image_url, size: "75x75", :alt => "product image") %>
+	.buy .single{
+		padding: 15px 10px;
+		background: #fff;
+		border-bottom: 1px solid #e8e8e8;
+		margin-bottom: 6px;
+		font-size: 14px;
+		color: #343434;
+		line-height: 180%;
+	}
+
+	.buy .single .flexs {
+		display: flex;
+	}
+
+	.buy .single .flexs span {
+		display: inline-block;
+		flex: 1;
+	}
+
+	.products {
+		display: flex;
+		margin-top: 10px;
+	}
+
+	.products .lefts {
+		flex: 2;
+	}
+
+	.products .rights {
+		flex: 1;
+	}	
+
+</style>
+
+
+<%= title '用户消费信息' %>
+<div class="buy">
+  <% @invitation_order.each do |order| %>
+  <div class="single">
+    <p>订单编号：<%= order.number %></p>
+    <p class="flexs"><span>金额：<%= order.price %></span><span>积分：<%= order.integral %></span><span>余额：<%= order.cash %></span></p>
+
+	    <% order.line_items.each do |line| %>
+	 <div class="products">   
+
+	    <div class="lefts">
+	      <p>产品：<%= line.product.name %></p>
+	      <p style="margin-bottom: 5px;">使用天数：<%= line.product.data_number %></p>
+	    </div>
+	    <div class="rights">
+	      <%= image_tag(line.product.image_url, size: "75x75", :alt => "product image") %>
+	    </div>
+	 </div>
+
+   </div>
     <% end %>
   <% end %>
 </div>
