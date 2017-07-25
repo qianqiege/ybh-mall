@@ -87,6 +87,7 @@ Rails.application.routes.draw do
 
   namespace :user do
     root "info#home"
+    get '/invitation_info', to: 'info#invitation_info'
     get '/edit_info', to: 'info#edit_info'
     post '/user_edit_info', to: 'info#user_edit_info'
     get '/health_data',to: 'info#health_data'

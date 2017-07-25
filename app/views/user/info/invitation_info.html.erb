@@ -1,0 +1,11 @@
+<%= title '用户消费信息' %>
+<div>
+  <% @invitation_order.each do |order| %>
+    <p><%= order.number %></p>
+    <p>金额：<%= order.price %>积分：<%= order.integral %>余额：<%= order.cash %></p>
+    <% order.line_items.each do |line| %>
+      <p><%= line.product.name %></p>
+      <%= image_tag(line.product.image_url, size: "75x75", :alt => "product image") %>
+    <% end %>
+  <% end %>
+</div>

@@ -7,6 +7,10 @@ class User::InfoController < Wechat::BaseController
     @health_identity_card = params[:identity_card] || ""
   end
 
+  def invitation_info
+    @invitation_order = Order.where(user_id: params[:format])
+  end
+
   def health_data_post
     mall = Sdk::Mall.new
     email = params["email"]
