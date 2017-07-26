@@ -4,4 +4,8 @@ class Wechat::HomeController < Wechat::BaseController
     @setmeal = Setmeal.all
     @type = VipType.includes(:member_clubs)
   end
+
+  def merchants
+    @file_assets = FileAsset.all
+  end
 end

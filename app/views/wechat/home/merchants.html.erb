@@ -1,0 +1,5 @@
+<ul>
+  <% @file_assets.each do |file_asset| %>
+    <li><%= link_to file_asset.name, file_asset.location_url %></li>
+  <% end %>
+</ul>

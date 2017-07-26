@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :wechat do
     root "home#index"
+    get 'merchants', to: 'home#merchants'
     resources :setmeals
     get 'direct_seeding',to: 'direct_seeding#home'
     get '/activity', to: 'activity#index'
