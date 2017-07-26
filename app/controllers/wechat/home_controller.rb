@@ -8,4 +8,8 @@ class Wechat::HomeController < Wechat::BaseController
   def merchants
     @file_assets = FileAsset.all
   end
+
+  def send_download_file
+    send_file "#{Rails.root}/public/#{params[:file_url]}", :disposition => 'attachment'
+  end
 end

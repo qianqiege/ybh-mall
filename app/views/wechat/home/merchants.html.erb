@@ -1,5 +1,5 @@
 <ul>
   <% @file_assets.each do |file_asset| %>
-    <li><%= link_to file_asset.name, file_asset.location_url %></li>
+    <li><%= link_to file_asset.name, wechat_send_download_file_path(file_url: file_asset.location_url), remote: true %></li>
   <% end %>
 </ul>
