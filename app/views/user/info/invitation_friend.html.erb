@@ -2,14 +2,19 @@
 
     .thisTable {
         width: 100%;
+        border:0;
+        font-size: 16px;
     }
 
     .thisTable thead tr {
         display: flex;
+        background:#a2a0a0;
+        color: #fff;
     }
 
     .thisTable thead td {
-        flex: 1
+        flex: 1;
+        border:0;
     }
 
     .thisTable tbody tr {
@@ -23,7 +28,12 @@
     .thisTable tbody td{
         flex: 1;
         padding: 0;
+        border:0;
         /*display: inline-block;*/
+    }
+
+    .thisTable tbody td:nth-child(2n) {
+      background: #eee;
     }
 
 </style>
