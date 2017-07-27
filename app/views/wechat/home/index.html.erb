@@ -61,8 +61,13 @@
         <p>慢病中心</p>
       </td>
       <td>
-        <a href="<%= wechat_merchants_path  %>"><%= image_tag "联盟.png", size: "50x50" %></a>
-        <p>商盟</p>
+        <% if current_user.user.staff_type == "R&D" %>
+          <a href="<%= wechat_merchants_path  %>"><%= image_tag "联盟.png", size: "50x50" %></a>
+          <p>商盟</p>
+        <% else %>
+          <a href=""><%= image_tag "联盟.png", size: "50x50" %></a>
+          <p>商盟</p>
+        <% end %>
       </td>
       <td>
         <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
@@ -71,7 +76,7 @@
     </tr>
   </table>
 
- 
+
 
   <%= video_tag "ybyt8MB.mp4", :controls => true ,class: "video"%>
 
