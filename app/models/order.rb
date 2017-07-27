@@ -206,6 +206,10 @@ class Order < ApplicationRecord
             presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 5)
           end
 
+          if rule.donation.present?
+            DonationRecord.create(user_id: user_id,integral: rule.donation * self.price ,reason: "YBZ会员募捐（积分）",order_number: self.number)
+          end
+
           # 推荐好友消费赠送 直推奖励
           invitation = User.find(user_id).invitation_id
           # 判定条件，规则中赠送推荐人比例不为空，金额不为0，活动是 YBJ 执行创建方法
