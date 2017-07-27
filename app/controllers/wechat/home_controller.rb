@@ -17,6 +17,10 @@ class Wechat::HomeController < Wechat::BaseController
     @slides = Slide.top(8)
   end
 
+  def light
+
+  end
+
   def coalition_edit_info
   end
 end

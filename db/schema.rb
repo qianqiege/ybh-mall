@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726031649) do
+ActiveRecord::Schema.define(version: 20170727064714) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20170726031649) do
     t.datetime "stop_time"
     t.boolean  "is_default", default: false
     t.boolean  "is_show"
+    t.string   "image"
+    t.string   "url"
+    t.string   "desc"
   end
 
   create_table "activity_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170726031649) do
     t.decimal  "gold",                    precision: 10, scale: 2
     t.float    "percentage",   limit: 24
     t.decimal  "staff",                   precision: 10, scale: 2
+    t.decimal  "donation",                precision: 10, scale: 2
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -222,6 +226,18 @@ ActiveRecord::Schema.define(version: 20170726031649) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.decimal  "price",      precision: 10, scale: 2
+  end
+
+  create_table "donation_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.decimal  "price",        precision: 10, scale: 2
+    t.decimal  "integral",     precision: 10, scale: 2
+    t.decimal  "cash",         precision: 10, scale: 2
+    t.decimal  "count_price",  precision: 10, scale: 2
+    t.string   "order_number"
+    t.string   "reason"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "ecgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

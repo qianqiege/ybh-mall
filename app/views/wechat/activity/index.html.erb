@@ -1,6 +1,6 @@
 <style>
 
-	.huiyuan {
+/*	.huiyuan {
 		width: 92%;
 		margin: 0 auto;
 		display: flex;
@@ -16,8 +16,8 @@
 		line-height: 40px;
 		border-radius: 10px 35px;
 		box-shadow: 2px 6px 2px #eee;
-	}
-
+	}*/
+/*
 	.img_width{
 		width: 100%;
 	}
@@ -30,6 +30,25 @@
 	.active {
 		background: #b11313!important;
 		color: #fff;
+	}
+*/
+
+	.activityDiv {
+		width: 90%;
+		margin: 0 auto;
+		padding: 3% 0 5% 0;
+		display: block;
+		border-bottom: 1px dashed #ddd;
+	}
+
+	.activityName {
+		color: #666;
+		margin-bottom: 2%;
+	}
+
+	.activityImg img{
+		display: block;
+		width: 100%;
 	}
 
 
@@ -70,9 +89,9 @@
 </script> -->
 
 <% @activity.each do |activity| %>
-	<a href="<%= activity.url %>">
-		<p><%= image_tag activity.image %></p>
-		<p><%= activity.name %></p>
+	<a class="activityDiv" href="<%= activity.url %>">
+		<p class="activityName">✿ <%= activity.name %></p>
+		<p class="activityImg"><%= image_tag activity.image %></p>
 		<p><%= activity.desc %></p>
 	</a>
 <% end %>
