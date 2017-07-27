@@ -1,13 +1,15 @@
 ActiveAdmin.register Activity do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :name,:start_time,:stop_time,:is_show
+  permit_params :name,:start_time,:stop_time,:is_show,:url,:image
 
   form(:html => { :multipart => true }) do |f|
-    f.inputs "S货币记录" do
+    f.inputs "活动" do
       f.input :name
       f.input :start_time, as: :datepicker
       f.input :stop_time, as: :datepicker
       f.input :is_show
+      f.input :image ,as: :file
+      f.input :url
     end
     f.actions
   end
@@ -26,30 +28,20 @@ ActiveAdmin.register Activity do
     selectable_column
     id_column
 
+    column "活动图片" do |slide|
+      image_tag(slide.image_url, size: "72x45", :alt => "activity image")
+    end
     column :name
     column :start_time
     column :stop_time
-    column '是否显示',:is_show
+    column :is_show
     column :is_default
+    column :url
     actions do |activity|
       span do
         link_to '设为默认活动', set_default_admin_activity_path(activity), method: :put, data: { confirm: 'Are you sure?' } unless activity.is_default
       end
     end
-
   end
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-
 
 end
