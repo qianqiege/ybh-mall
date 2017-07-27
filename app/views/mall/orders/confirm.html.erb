@@ -99,7 +99,7 @@
         <input type=hidden name=account value='<%= @scoin_account.account %>'/>
       <% end %>
 
-      <% if current_cart.custom_price_products? %>
+      <% if current_cart.custom_price_products? && product_id_ybz != 38%>
         <div class="weui-cells">
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">自定义价格</label></div>
@@ -108,6 +108,8 @@
             </div>
           </div>
         </div>
+      <% elsif product_id_ybz == 38 %>
+        <input name="custom_price" value="25000" style="display:none;"/>
       <% end %>
 
       <% if !@integral.nil? && product_id_ybz != 1 && product_id_ybz != 43 && product_id_ybz != 38 %>

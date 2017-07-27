@@ -1,6 +1,6 @@
 ActiveAdmin.register ActivityRule do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :rule,:activity_id,:max,:min,:y_coin,:coin_type_id,:percent,:bronze,:silver,:gold,:percentage,:staff
+  permit_params :rule,:donation,:activity_id,:max,:min,:y_coin,:coin_type_id,:percent,:bronze,:silver,:gold,:percentage,:staff
   index do
     selectable_column
     id_column
@@ -13,7 +13,8 @@ ActiveAdmin.register ActivityRule do
     column :coin_type
     column :percent
     column :staff
-    column "返还用户比例（0.1 = 10%）",:percentage
+    column :percentage
+    column :donation
     # column :bronze
     # column :silver
     # column :gold
@@ -27,10 +28,11 @@ ActiveAdmin.register ActivityRule do
       f.input :max
       f.input :min
       f.input :coin_type
-      f.input :percent
       f.input :y_coin
+      f.input :percent
       f.input :percentage
       f.input :staff
+      f.input :donation
       # f.input :bronze
       # f.input :silver
       # f.input :gold

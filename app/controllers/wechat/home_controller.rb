@@ -12,4 +12,11 @@ class Wechat::HomeController < Wechat::BaseController
   def send_download_file
     send_file "#{Rails.root}/public/#{params[:file_url]}", :disposition => 'attachment'
   end
+
+  def coalition
+    @slides = Slide.top(8)
+  end
+
+  def coalition_edit_info
+  end
 end

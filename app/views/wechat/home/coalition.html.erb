@@ -1,0 +1,13 @@
+<%= title '商盟' %>
+<div class="home">
+  <%= render 'shared/slide' %>
+</div>
+
+<% if current_user.user.nil? %>
+  <a href="<%= user_binding_path(0) %>">注册</a>
+<% else %>
+  <a href="<%= wechat_coalition_edit_info_path %>">完善资料</a>
+<% end %>
+
+
+<a href="<%= wechat_merchants_path %>">文件下载</a>
