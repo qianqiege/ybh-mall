@@ -18,11 +18,8 @@ weixin:
           name: "御易健首页"
           url: "http://ybhm.ybyt.cc/wechat"
         - type: "view"
-          name: "我的信息档案"
-          url: "http://ybhm.ybyt.cc/user"
-        - type: "view"
-          name: "动态健康数据"
-          url: "http://ybhm.ybyt.cc/user/moving_health_data"
+          name: "健康娱乐"
+          url: "http://qolm.ybyt.cc/_game/llk/"
         - type: "view"
           name: "客服服务"
           url: "http://ybhm.ybyt.cc/feedback"
@@ -32,14 +29,18 @@ weixin:
         - type: "view"
           name: "商城"
           url: "http://ybhm.ybyt.cc/mall"
-    - name: "健康娱乐"
+    - name: "我的"
       sub_button:
+        - type: "view"
+          name: "我的御易健"
+          url: "http://ybhm.ybyt.cc/user"
+        - type: "view"
+          name: "动态健康数据"
+          url: "http://ybhm.ybyt.cc/user/moving_health_data"
         - type: "view"
           name: "疾病风险评估"
           url: "http://ybhm.ybyt.cc/evaluate/index"
-        - type: "view"
-          name: "玩玩小游戏"
-          url: "http://qolm.ybyt.cc/_game/llk/"
+
 
 external:
   api_url: http://qolm.ybyt.cc/open_api/v1/
@@ -64,5 +65,3 @@ idata:
   own_username: 4dc4792efc5ce38c96ca7c89c27047f8
   own_password: 3835ea275ead062cbd409aa360c79478
   template_id: OK1JktRtESneUJOeuTuvaehdSM9aZlq51jI9xdBq8Pg
-  
-  
