@@ -24,7 +24,7 @@
 
 	.images div {
 		display: none;
-		margin-top: 5%; 
+		margin-top: 5%;
 	}
 
 	.active {
@@ -35,11 +35,7 @@
 
 </style>
 
-
-
-
-
-<h1 style="text-align:center;margin-top: 5%;margin-bottom: 5%; font-size:20px;font-family: '微软雅黑';">御易健会员</h1>
+<!-- <h1 style="text-align:center;margin-top: 5%;margin-bottom: 5%; font-size:20px;font-family: '微软雅黑';">御易健会员</h1>
 <div class="huiyuan">
 	<div class="active animated bounce">YBJ</div>
 	<div class="animated bounce">YBZ</div>
@@ -63,7 +59,7 @@
 
 
 <script type="text/javascript">
-	
+
 	$(".huiyuan div").each(function(index, val) {
 		$(this).click(function(){
 			console.log(index);
@@ -71,7 +67,12 @@
 			$(".huiyuan div").eq(index).addClass("active").siblings().removeClass("active");
 		})
 	});
+</script> -->
 
-
-
-</script>
+<% @activity.each do |activity| %>
+	<a href="<%= activity.url %>">
+		<p><%= image_tag activity.image %></p>
+		<p><%= activity.name %></p>
+		<p><%= activity.desc %></p>
+	</a>
+<% end %>

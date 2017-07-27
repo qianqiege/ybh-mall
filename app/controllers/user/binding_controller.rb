@@ -5,6 +5,7 @@ class User::BindingController < Wechat::BaseController
       redirect_to root_path
     end
     @no_fotter = true
+    @tp = params[:format]
     # @recommender = User.find_by(invitation_card: params[:invitation_id])
 
     # 如果当前用户没有推荐人，自动添加推荐人
