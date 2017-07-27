@@ -268,7 +268,17 @@ zh-CN:
         coin_type: '货币包'
         activity: '活动'
         percent: '赠送推荐人比率(0.1即10%)'
-        staff: '赠送员工比例'
+        staff: '赠送员工比例(0.1即10%)'
+        donation: '募捐比例(0.1即10%)'
+        percentage: '返还用户比例(0.1即10%)'
+      donation_record:
+        user: '用户'
+        price: '人民币使用数量'
+        integral: '积分使用数量'
+        cash: '余额使用数量'
+        count_price: '募捐总金额'
+        order_number: '订单编号'
+        reason: '募捐渠道'
       coin_type:
         name: '包名称'
         once: '一次性数量（第一天给的S货币数量）'
@@ -342,3 +352,4 @@ zh-CN:
       presented_record: '易积分收支明细'
       ecg: '心电检测'
       file_asset: '文件资源'
+      donation_record: '募捐记录'
