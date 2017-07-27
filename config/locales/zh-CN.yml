@@ -285,6 +285,9 @@ zh-CN:
         opening: '开户行'
         state: '是否处理'
         created_at: '申请日期'
+      file_asset:
+        name: '名称'
+        location: '路径url'
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
@@ -338,3 +341,4 @@ zh-CN:
       lssue_currency: '货币发行'
       presented_record: '易积分收支明细'
       ecg: '心电检测'
+      file_asset: '文件资源'
