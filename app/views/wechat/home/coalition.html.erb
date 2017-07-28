@@ -1,13 +1,45 @@
+
+
+<style type="text/css">
+	
+	.coaIcon {
+		display: flex;
+		margin-top: 5%;
+	}
+
+	.coaIcon a {
+		display: inline-block;
+		flex: 1;
+		text-align: center;
+		color: #666;
+	}
+
+	.coaIcon a img {
+		display: block;
+		margin: 0 auto;
+	}
+
+</style>
+
+
+
+
+
+
 <%= title '商盟' %>
 <div class="home">
   <%= render 'shared/slide' %>
 </div>
 
-<% if current_user.user.nil? %>
-  <a href="<%= user_binding_path(0) %>">注册</a>
-<% else %>
-  <a href="<%= wechat_coalition_edit_info_path %>">完善资料</a>
-<% end %>
 
 
-<a href="<%= wechat_merchants_path %>">文件下载</a>
+<div class="coaIcon">
+	<% if current_user.user.nil? %>
+	  <a href="<%= user_binding_path(0) %>"><%= image_tag "注册.png", size: "30x30" %>注册</a>
+	<% else %>
+	  <a href="<%= wechat_coalition_edit_info_path %>"><%= image_tag "完善资料.png", size: "30x30" %>完善资料</a>
+	<% end %>
+
+
+	<a href="<%= wechat_merchants_path %>"><%= image_tag "多文件下载.png", size: "30x30" %>文件下载</a>
+</div>

@@ -21,6 +21,10 @@ class Wechat::HomeController < Wechat::BaseController
 
   end
 
+  def light_raise
+
+  end
+
   def coalition_edit_info
   end
 end
