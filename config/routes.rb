@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get 'direct_seeding',to: 'direct_seeding#home'
     get '/activity', to: 'activity#index'
     get '/light', to: 'home#light'
+    get '/lightRaise', to: 'home#light_raise'
   end
 
   namespace :wechat do
