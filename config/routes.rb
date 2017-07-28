@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get '/activity', to: 'activity#index'
     get '/light', to: 'home#light'
     get '/lightRaise', to: 'home#light_raise'
+    post '/create_light', to: 'home#create_light'
+    get '/light_order' ,to: 'home#light_order'
   end
 
   namespace :wechat do

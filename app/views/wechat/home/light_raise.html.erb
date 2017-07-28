@@ -1,0 +1,82 @@
+
+<style media="screen">
+
+    .allCoa {
+        display: block;
+        margin-top: 20%;
+    }
+
+    .levelTop,.levelBottom {
+        display: flex;
+    }
+
+    p {
+      color: #2c81c2;
+    }
+
+    .levelTop a,.levelBottom a {
+        display: inline-block;
+        flex:1;
+        border:1px solid #88cafc;
+        padding: 2% 4%;
+        margin: 3% 3% 0 3%;
+        text-align: center;
+        color: #88cafc;
+        border-radius: 15px;
+    }
+
+    .selfText {
+        margin: 3% 0 0 3%;
+    }
+
+    .selfNumber {
+        margin: 2% 0 5% 3%;
+        display: block;
+        border:1px solid #2c81c2;
+        border-radius: 5px;
+        outline: none;
+        text-indent: 12px;
+        height: 24px;
+        width: 93%;
+    }
+
+    .submitValue {
+        margin:0 auto;
+        display: block;
+        width: 30%;
+        height: 30px;
+        border: 0;
+        background: #2c81c2;
+        border: 1px solid #2c81c2;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+</style>
+
+<%= title '一盏明灯' %>
+
+<form action="<%= wechat_light_order_path %>" method="get" class="allCoa">
+  <p class="selfText">请选择您捐赠的金额：</p>
+  <div class="levelTop">
+      <a>500</a>
+      <a>1000</a>
+  </div>
+  <div class="levelBottom">
+      <a>1500</a>
+      <a>2000</a>
+  </div>
+  <p class="selfText">请输入金额：</p>
+  <input type="number" name="price" class="selfNumber">
+  <input type="submit" value="确认提交" class="submitValue" />
+</form>
+
+
+<script type="text/javascript">
+
+    $("a").click(function(){
+        console.log($(this).text());
+        $(".selfNumber").val($(this).text()) ;
+    })
+
+</script>
