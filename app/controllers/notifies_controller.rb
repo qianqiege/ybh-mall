@@ -85,7 +85,7 @@ class NotifiesController < ApplicationController
 
   # 一盏明灯捐款支付通知回掉
   def donation_record
-    donation_record = DonationRecord.find_by(number: params["merchOrderNo"])
+    donation_record = DonationRecord.find_by(order_number: params["merchOrderNo"])
     if(donation_record.present?)
       donation_record.fast_pay.logger.info params
       remote_sign = params[:sign]
