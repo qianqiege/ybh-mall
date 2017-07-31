@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get '/lightRaise', to: 'home#light_raise'
     post '/create_light', to: 'home#create_light'
     get '/light_order' ,to: 'home#light_order'
+    get '/light_order_pay', to: 'home#light_order_pay'
   end
 
   namespace :wechat do
@@ -186,6 +187,7 @@ Rails.application.routes.draw do
     post :refund, on: :collection
     post :idata, on: :collection
     post :idata_subscribe, on: :collection
+    post :donation_record, on: :collection
   end
 
   resources :h_programs do
