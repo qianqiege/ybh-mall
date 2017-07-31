@@ -94,7 +94,7 @@ module Sdk
       sign_params(options)
     end
 
-        # 生成普通交易支付参数
+    # 生成用户充值交易支付参数
     # PAYMENT_TYPE_WECHAT
     # PAYMENT_TYPE_YJ
     def trade_merge_pay_params_deposit(pay_type = "PAYMENT_TYPE_YJ")
@@ -149,6 +149,37 @@ module Sdk
         notifyUrl: @host + 'notifies/idata_subscribe',
         paymentType: pay_type
       }
+      options[:openid] =  User.find(@order.user_id).wechat_user.open_id
+
+      sign_params(options)
+    end
+
+
+    # 生成用户充值交易(一盏明灯)支付参数
+    # PAYMENT_TYPE_WECHAT
+    # PAYMENT_TYPE_YJ
+    def trade_merge_pay_params_donation_record(pay_type = "PAYMENT_TYPE_YJ")
+      salt = rand(999999999..9999999999)
+      order_no = "#{Time.current.to_s(:number)}#{salt}"
+
+      tradeInfo = [{
+        merchOrderNo: @order.order_number,
+        sellerUserId: @partner_id,
+        tradeAmount: @order.price.to_f,
+        currency: "CNY",
+        goodsName: "一盏明灯捐款"
+      }]
+
+      options = {
+        orderNo: order_no,
+        merchOrderNo: @order.order_number,
+        service: "fastPayTradeMergePay",
+        tradeInfo: tradeInfo.to_json,
+        returnUrl: @host + 'wechat/light',
+        notifyUrl: @host + 'notifies/donation_record',
+        paymentType: pay_type
+      }
+
       options[:openid] =  User.find(@order.user_id).wechat_user.open_id
 
       sign_params(options)
