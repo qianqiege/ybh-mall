@@ -26,6 +26,10 @@ skip_before_filter :verify_authenticity_token
 
   end
 
+  def light_intro
+
+  end
+
   def create_light
 
     # 人民币
