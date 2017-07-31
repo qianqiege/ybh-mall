@@ -34,6 +34,7 @@ class User < ApplicationRecord
   has_many :idata_subscribes
   has_many :user_idata_subscribes
   has_many :ycoin_records, dependent: :destroy, as: :account
+  has_many :donation_records
 
   # has_many :recommenders, :class_name => "WechatUser", :foreign_key => "recommender_id"
 
