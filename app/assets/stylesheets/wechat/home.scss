@@ -228,10 +228,23 @@ body {
   background-size: 100%;
 }
 
+/*----------------------一盏明灯---------------------------*/
 
 .lightBg {
   width: 100%;
   height: 100%;
   background-image: image-url("light.jpg");
   background-size: 100%;
+}
+
+.lightCont {
+  width: 100%;
+  height: 100%;
+  background-image: image-url("lightRaise.jpg");
+  background-size: 100%;  
+}
+
+.introduce {
+  background-image: image-url("lightIntro.jpg");
+  background-size: 100%;  
 }
