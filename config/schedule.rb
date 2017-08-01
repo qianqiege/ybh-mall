@@ -21,7 +21,7 @@ every 1.day, :at => '3:30 am' do
   rake 'order:update_status'
 end
 
-every '0 0 29-31 * *' do
+every '0 0 1 * *' do
   rake 'ybz_vip:reward'
 end
 
