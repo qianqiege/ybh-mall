@@ -1,5 +1,5 @@
 <style type="text/css">
-	
+
 	.lightButton {
 		position: absolute;
 		bottom: 15%;
@@ -23,7 +23,7 @@
 		border:1px dashed #d7d0b8;
 		font-size: 12px;
 		padding:0 1%;
-		text-align: center;		
+		text-align: center;
 	}
 
 	.oneS {
@@ -43,7 +43,7 @@
 		position: absolute;
 		right: 10%;
 		bottom: 23%;
-		text-align: center;	
+		text-align: center;
 	}
 
 	.ddUser span {
@@ -55,7 +55,11 @@
 
 <div class="lightBg">
 	<a class="lightPro" href="<%= wechat_lightIntro_path %>">明灯简介</a>
-	<a class="lightButton" href="<%= wechat_lightRaise_path %>">募集基金</a>
+	<% if !current_user.nil? && current_user.user.staff_type == "R&D" %>
+		<a class="lightButton" href="<%= wechat_lightRaise_path %>">公益捐赠</a>
+	<% else %>
+		<a class="lightButton" href="">公益捐赠</a>
+	<% end %>
 	<p class="oneS">你已成为点亮心灵一盏明灯，共筑民族时代精神的点灯人.</p>
-	<div class="ddUser">您已成为第<span> 1127 </span>位点灯人</div>
+	<!-- <div class="ddUser">您已成为第<span> 1127 </span>位点灯人</div> -->
 </div>
