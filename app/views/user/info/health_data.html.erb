@@ -64,6 +64,14 @@
           <input type="search" class="weui-search-bar__input" name="identity_card" value = "<%= @health_identity_card %>">
         </div>
       </div>
+
+      <div>
+        <div>请选随访包号码</div>
+        <div style="width:100%;">
+        <%= select_tag "phone",options_for_select(@phone) %>
+        </div>
+      </div>
+
       <div class="weui-btn-area">
         <button class="weui-btn weui-btn_primary">上传</button>
       </div>

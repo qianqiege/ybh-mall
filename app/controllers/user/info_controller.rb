@@ -5,6 +5,8 @@ class User::InfoController < Wechat::BaseController
   def health_data
     @user_email = User.find(current_user.user_id)
     @health_identity_card = params[:identity_card] || ""
+    mall = Sdk::Mall.new
+    @phone = mall.get_phone_email(@user_email.email)
   end
 
   def invitation_info
@@ -15,7 +17,9 @@ class User::InfoController < Wechat::BaseController
     mall = Sdk::Mall.new
     email = params["email"]
     id = params["identity_card"]
-    if mall.health_data(email,id)
+    phone = params["phone"]
+    @temporary_data = TemporaryDatum.new(identity_card: id,phone: phone)
+    if mall.health_data(email,id) && @temporary_data.save
       flash[:notice] = '上传成功'
       redirect_to '/user/health_data'
     else

@@ -23,6 +23,10 @@ module Sdk
       JSON.parse(signed_request.execute)
     end
 
+    def get_phone_email(email)
+      exec(:get, "examination_input/get_phones_of_hospital?email=#{email}")
+    end
+
     def health_data(email,id)
       exec(:post, "examination_input/create_auto_identity_card?email=#{email}&identity_card=#{id}")
     end
