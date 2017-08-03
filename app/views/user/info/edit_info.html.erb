@@ -1,5 +1,5 @@
 <style type="text/css">
-	
+
 	.froms{
 		height: 80%;
 		width: 100%;
@@ -9,7 +9,7 @@
 	.froms h2 {
 		font-weight: normal;
 		color:#94c6ad;
-		text-align: center; 
+		text-align: center;
 	}
 
 	.froms p {
@@ -36,7 +36,7 @@
 		margin: 0 auto;
 		margin-top: 20px;
 		border:0;
-		background:#94c6ad; 
+		background:#94c6ad;
 	}
 
 	@media screen and (max-width: 375px) {
@@ -47,7 +47,7 @@
 
 		.froms p input {
 			margin-left: 0;
-		}		
+		}
 
 	}
 
@@ -57,8 +57,9 @@
 
 <form action="<%= user_user_edit_info_path %>" method="post" class="froms">
 	<h2>编辑我的信息</h2>
-	<p>手机号码: <input type="text" name="telphone" value=" <%= @info.telphone %>"/></p>
-	<p>身份证号: <input type="text" name="id_number" value=" <%= @info.id_number %>"/></p>
-	<p>邮　　箱: <input type="text" name="email" value=" <%= @info.email %>"/></p>
+	<input name= "u_id" value="<%= @info.id %>" style="display:none;"/>
+	<p>手机号码: <input type="text" name="telphone" value="<%= @info.telphone %>"/></p>
+	<p>身份证号: <input type="text" name="id_number" value="<%= @info.id_number %>"/></p>
+	<p>邮　　箱: <input type="text" name="email" value="<%= @info.email %>"/></p>
   <input type="submit" value="提交" class="submits" />
 </form>
