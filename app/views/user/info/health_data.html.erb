@@ -23,7 +23,7 @@
     border-bottom: 1px solid #ccc;
   }
 
-  .login_label,.phone,.changearea {
+  .login_label,.phone,.changearea ,.selectNumber {
     color: #999;
   }
 
@@ -34,6 +34,28 @@
   .radius {
     line-height: 30px;
     border-bottom: 1px solid #ccc;
+  }
+
+  #phone {
+    -webkit-appearance:none;
+    width:100%;
+    font-size: 1rem;
+    display: block;
+    margin-top: 0.2rem;
+    padding:0.3rem 0;
+    border:0;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .chooseDown {
+    position: relative;
+  }
+
+  .dsj {
+    display: block;
+    position: absolute;
+    top: 4%;
+    right: 5%;
   }
 
 
@@ -65,10 +87,11 @@
         </div>
       </div>
 
-      <div>
-        <div>请选随访包号码</div>
-        <div style="width:100%;">
+      <div class="login_control">
+        <div class="selectNumber">请选随访包号码</div>
+        <div style="width:100%;" class="chooseDown">
         <%= select_tag "phone",options_for_select(@phone) %>
+        <span class="dsj">▼</span>
         </div>
       </div>
 
