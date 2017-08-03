@@ -33,8 +33,8 @@ class User::InfoController < Wechat::BaseController
   end
 
   def user_edit_info
-    user = User.find(current_user.user_id)
-    if user.update(telphone: params[:telphone],email: params[:email],id_number: params[:id_number])
+    @user = User.find_by(id: params[:u_id])
+    if @user.update(telphone: params[:telphone],email: params[:email],id_number: params[:id_number],identity_card: params[:id_number])
       flash[:notice] = '修改成功'
       redirect_to '/user/setting'
     end
