@@ -35,13 +35,17 @@ module Sdk
         @wechat_user.update_wechat_info
       end
 
+      #用于未抓取到用户的性别
+      genderCode = 1 if !@wechat_user.auth_hash["sex"]
+
       info = {
         "memberID": @wechat_user.open_id,
-        "genderCode": @wechat_user.auth_hash["sex"],
+        "genderCode": genderCode,
         "orgCode": @org_code,
         "recordDateTime": Time.current.strftime('%Y-%m-%d %H:%M:%S'),
         "remark": remark
       }
+      
       exec(:post, 'act/memberRegister.do', info)
     end
 
