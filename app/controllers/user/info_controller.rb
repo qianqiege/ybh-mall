@@ -156,7 +156,7 @@ class User::InfoController < Wechat::BaseController
 
     if type == "staff" || type == "Staff" || number >= 400 && number%20 == 0
       # 判断当前用户的可兑换积分数量是否大于赠送积分
-      if integral.exchange > order_integral
+      if integral.exchange >= order_integral
         record = PresentedRecord.where(user_id: integral.user_id).order(wight: :desc)
         record.each do |record|
           if !record.balance.nil? && record.balance > 0
