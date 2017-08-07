@@ -20,6 +20,10 @@
   width: 100%;
 }
 
+.fontSizes {
+  font-size: 0.8rem;
+}
+
 </style>
 
 <%= title '御易健' %>
@@ -35,43 +39,43 @@
     <tr style="text-align: center;">
       <td style="width: 10%;">
         <a href="<%=  %>"><%= image_tag "教育.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;">健康教育</p>
+        <p style="margin-bottom:15%;" class="fontSizes">健康教育</p>
       </td>
       <td style="width: 10%">
         <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;">商城</p>
+        <p style="margin-bottom:15%;" class="fontSizes">商城</p>
       </td>
       <td style="width: 10%;">
         <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;">健康数据</p>
+        <p style="margin-bottom:15%;" class="fontSizes">健康数据</p>
       </td>
       <td style="width: 10%;">
         <a href="<%= wechat_activity_path %>"><%= image_tag "活动.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;">活动</p>
+        <p style="margin-bottom:15%;" class="fontSizes">活动</p>
       </td>
     </tr>
 
     <tr style="text-align: center;">
       <td>
         <a href="<%= wechat_root_path %>"><%= image_tag "御易健.png", size: "50x50" %></a>
-        <p>健康天使</p>
+        <p class="fontSizes">健康天使</p>
       </td>
       <td>
         <a href="<%=  %>"><%= image_tag "中心.png", size: "50x50" %></a>
-        <p>慢病中心</p>
+        <p class="fontSizes">慢病中心</p>
       </td>
       <td>
         <% if !current_user.user.nil? && current_user.user.staff_type == "R&D" %>
           <a href="<%= wechat_coalition_path  %>"><%= image_tag "联盟.png", size: "50x50" %></a>
-          <p>商盟</p>
+          <p class="fontSizes">商盟</p>
         <% else %>
           <a href=""><%= image_tag "联盟.png", size: "50x50" %></a>
-          <p>商盟</p>
+          <p class="fontSizes">商盟</p>
         <% end %>
       </td>
       <td>
         <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
-        <p>个人中心</p>
+        <p class="fontSizes">个人中心</p>
       </td>
     </tr>
   </table>
