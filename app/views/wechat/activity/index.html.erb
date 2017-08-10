@@ -1,97 +1,75 @@
 <style>
 
-/*	.huiyuan {
-		width: 92%;
-		margin: 0 auto;
-		display: flex;
+
+	.ybAc {
+		display: block;
+		width: 30%;
+		position: absolute;
+		
 	}
 
-	.huiyuan div {
-		width: 26%;
-		height: 40px;
-		background: #DCDCDC;
-		flex: 1;
-		margin-right: 2%;
+	.ybj_ac {
+		left: 5%;top: 15%;
+	}
+
+	.ybs_ac {
+		right: 5%;top: 15%;
+	}
+
+	.ybz_ac {
+		right: 30%;top: 48%;
+	}	
+
+	.ybAc img {
+		width: 100%;
+	}
+
+	.ybAc p {
 		text-align: center;
-		line-height: 40px;
-		border-radius: 10px 35px;
-		box-shadow: 2px 6px 2px #eee;
-	}*/
-/*
-	.img_width{
-		width: 100%;
+		background: #fff;
+		width: 80%;
+		margin:0 auto;
+		border-radius: 10px;
+		font-weight: bolder;
+		padding:2px 0;
 	}
 
-	.images div {
-		display: none;
-		margin-top: 5%;
+	.ybj_ac p{
+		color: #fdbca4;
 	}
 
-	.active {
-		background: #b11313!important;
-		color: #fff;
-	}
-*/
+	.ybs_ac p{
+		color: #71c2dc;
+	}	
 
-	.activityDiv {
-		width: 90%;
-		margin: 0 auto;
-		padding: 3% 0 5% 0;
-		display: block;
-		border-bottom: 1px dashed #ddd;
-	}
-
-	.activityName {
-		color: #666;
-		margin-bottom: 2%;
-	}
-
-	.activityImg img{
-		display: block;
-		width: 100%;
-	}
+	.ybz_ac p{
+		color: #b89b28;
+	}	
 
 
 </style>
 
-<!-- <h1 style="text-align:center;margin-top: 5%;margin-bottom: 5%; font-size:20px;font-family: '微软雅黑';">御易健会员</h1>
-<div class="huiyuan">
-	<div class="active animated bounce">YBJ</div>
-	<div class="animated bounce">YBZ</div>
-	<div class="animated bounce">YBS</div>
-</div>
-
-
-<div class="images">
-	<div style="display: block;">
-		<%= image_tag "ybj.jpg" ,class: "img_width" %>
-	</div>
-
-	<div>
-		<%= image_tag "ybz.jpg" ,class: "img_width" %>
-	</div>
-
-	<div>
-		<%= image_tag "ybs.jpg" ,class: "img_width" %>
-	</div>
-</div>
-
-
-<script type="text/javascript">
-
-	$(".huiyuan div").each(function(index, val) {
-		$(this).click(function(){
-			console.log(index);
-			$(".images div").eq(index).show().siblings().hide();
-			$(".huiyuan div").eq(index).addClass("active").siblings().removeClass("active");
-		})
-	});
-</script> -->
-
+<!-- 
 <% @activity.each do |activity| %>
 	<a class="activityDiv" href="<%= activity.url %>">
 		<p class="activityName">✿ <%= activity.name %></p>
 		<p class="activityImg"><%= image_tag activity.image %></p>
 		<p><%= activity.desc %></p>
 	</a>
-<% end %>
+<% end %> -->
+
+
+<div class="activityContent">
+	<a class="ybj_ac ybAc">
+		<%= image_tag "ybj.png" %>
+		<p>活动简介</p>
+	</a>
+	<a class="ybs_ac ybAc">
+		<%= image_tag "ybs.png" %>
+		<p>活动简介</p>
+	</a>	
+	<a class="ybz_ac ybAc">
+		<%= image_tag "ybz.png" %>
+		<p>活动简介</p>
+	</a>	
+</div>
