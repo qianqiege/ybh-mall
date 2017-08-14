@@ -77,12 +77,19 @@ class Mall::OrdersController < Mall::BaseController
 
     line_items.each do |item|
       if item.product_id == 1
-        activity = 11
+        activity = 13
       elsif item.product_id == 38
-        activity = 8
+        activity = 13
+      elsif item.product_id == 50
+        activity = 13
       else
         activity = params[:activity_id]
       end
+    end
+
+    donation = false
+    if price == 35000 - 1200 || price == 25000 - 1000 || price == 12000 - 600
+      donation = true
     end
 
     # 3. 生成订单
@@ -93,7 +100,8 @@ class Mall::OrdersController < Mall::BaseController
       activity_id: activity,
       password: params[:password],
       payment: params[:payment],
-      is_handle: false
+      is_handle: false,
+      is_donation: donation
     )
 
     if activity.to_i == 12

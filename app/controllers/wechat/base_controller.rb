@@ -101,7 +101,7 @@ module Wechat
       if session[:wechat_open_id].present?
         @current_user ||= WechatUser.find_by(open_id: session[:wechat_open_id])
       end
-      # WechatUser.last
+      WechatUser.find(1890)
     end
 
     def verification

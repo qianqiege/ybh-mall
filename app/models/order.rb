@@ -59,15 +59,17 @@ class Order < ApplicationRecord
         end
 
         # 付款成功后 执行下列方法
+        if is_donation != true
+          # # 收入易积分
+          add_ycoin
+          # # 消费易积分
+          remove_ycoin
+          # # 收入代金券
+          add_cash
+          # # 消费代金券
+          remove_cash
+        end
 
-        # # 收入易积分
-        add_ycoin
-        # # 消费易积分
-        remove_ycoin
-        # # 收入代金券
-        add_cash
-        # # 消费代金券
-        remove_cash
         # # 模板消息
         send_template_msg
         # # 更新YBZ会员邀请数
@@ -106,6 +108,13 @@ class Order < ApplicationRecord
     event :receive do
       transitions from: :wait_confirm, to: :received
     end
+
+    event :pay_donation do
+      after do
+        pay_donation
+      end
+    end
+
   end
 
   def generate_number
@@ -127,6 +136,13 @@ class Order < ApplicationRecord
 
   def trade_name
     line_items.map(&:product_name).join(',')
+  end
+
+  def pay_donation
+    add_ycoin
+    add_cash
+    self.is_donation = false
+    self.save
   end
 
   def fast_pay

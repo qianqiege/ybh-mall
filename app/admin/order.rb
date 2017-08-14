@@ -88,6 +88,14 @@ ActiveAdmin.register Order do
     render 'edit.html.arb', :layout => false
   end
 
+  member_action :pay_donation, method: :put do
+    if resource.pay_donation
+      redirect_to :back, notice: "操作成功!"
+    else
+      redirect_to :back, notice: "操作失败!"
+    end
+  end
+
   member_action :pay_cancel, method: :put do
     if resource.pay_cancel!
       redirect_to :back, notice: "已取消订单!"
@@ -123,6 +131,9 @@ ActiveAdmin.register Order do
     end
     column "支付操作" do |order|
       link_to '确认付款', pay_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.pending?
+    end
+    column "确认操作" do |order|
+      link_to '确认已捐款', pay_donation_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.is_donation == true && order.wait_send?
     end
     column '创建时间',:created_at
     column '订单操作' do |order|
