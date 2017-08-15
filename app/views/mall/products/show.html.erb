@@ -48,6 +48,7 @@
       <span class="choosed">购买数量(<%= @product.shop_count > 0 ? '有货' : '无货' %>)</span>
     </li>
 
+ <% if !@product.name.match(/YBZ/) %>
     <li class="arrow-right guige">规格：
       <% standard = Product.where(name: @product.name) %>
       <% standard.each do |standard| %>
@@ -56,6 +57,14 @@
         </a>
       <% end %>
     </li>
+  <% else %>
+  <li class="arrow-right guige">套餐：
+      <span class="choosed guige-span">A</span>
+      <span class="choosed guige-span">B</span>
+      <span class="choosed guige-span">C</span>
+      <span class="choosed guige-span">D</span>
+  </li>
+  <% end %>
 
     <li class="arrow-right">
       <span class="choosed" >包装：<%= @product.packaging %></span>
