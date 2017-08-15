@@ -116,6 +116,7 @@ ActiveAdmin.register Order do
     column :user
     column :activity
     column :price
+    column "YBZ方案",:packang
     column :integral
     column "现金余额",:cash
     column :quantity
@@ -186,6 +187,12 @@ ActiveAdmin.register Order do
       end
       row :quantity
       row :activity
+      row '收货人' do
+        order.address.contact_name
+      end
+      row '收货人联系方式' do
+        order.address.mobile
+      end
       row :address
       row :express_number
       row :remark

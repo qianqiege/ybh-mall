@@ -1,3 +1,18 @@
+<style media="screen">
+
+  .hytc_ac {
+    display: inline-block;
+    background: #666!important;
+    color: #fff!important;
+  }
+
+  .hytc_s {
+    padding: 0 5px;
+    border-radius: 3px;
+  }
+
+</style>
+
 <%= form_tag(mall_orders_path, method: :post, id: 'confirm_order') do %>
   <div class='mobile_box bottom'>
     <div class="page-title">
@@ -48,7 +63,76 @@
                 </div>
               </div>
             </li>
+
+            <% if line_item.product.name.match(/YBZ/) %>
+            <% money = @integral.not_cash + @integral.cash + line_item.product.now_product_price %>
+              <li class="arrow-right guige hytc"><span style="color:#63B8FF;">选择方案：</span>
+              <% if line_item.product.now_product_price != 12000 %>
+
+                   <% if money >= 55260 %>
+                     <span class="choosed guige-span hytc_s" value="A">A ￥55260</span>
+                   <% else %>
+                     <span class="choosed guige-span hytc_s" style="color:#C2C2C2;" value="A">A ￥55260</span>
+                   <% end %>
+
+                   <span class="choosed guige-span hytc_s" value="B">B ￥16880</span>
+                   <span class="choosed guige-span hytc_s" value="C">C ￥18754</span>
+
+                   <% if money >= 26880 %>
+                     <span class="choosed guige-span hytc_s" value="D">D ￥26880</span>
+                   <% else %>
+                    <span class="choosed guige-span hytc_s" style="color:#C2C2C2;" value="D">D ￥26880</span>
+                   <% end %>
+
+              <% elsif line_item.product.now_product_price == 12000 %>
+                <span class="choosed guige-span hytc_s" value="E" style="display:none;"></span>
+                <span class="choosed guige-span hytc_s" value="E" style="display:none;"></span>
+                <span class="choosed guige-span hytc_s" value="E" style="display:none;"></span>
+                <span class="choosed guige-span hytc_s" value="E" style="display:none;"></span>
+                <span class="choosed guige-span hytc_s" value="E">A ￥11940</span>
+              <% end %>
+              </li>
+            <% end %>
+
+               <li class="arrow-right guige hytc hytc_hide" id="A" style="display:none;">产品：
+                 <% product1 = Product.find(2) %>
+                 <% product2 = Product.find(32) %>
+                 <span style="margin-right: 5%;"><span><%= product1.name %></span>11盒</span>
+                 <span><span><%= product2.name %></span>15桶</span>
+               </li>
+
+               <li class="arrow-right guige hytc hytc_hide" id="B" style="display:none;">产品：
+                 <% product1 = Product.find(2) %>
+                 <% product2 = Product.find(29) %>
+                 <span style="margin-right: 5%;"><span><%= product1.name %></span>11盒</span>
+                 <span><span><%= product2.name %></span>4盒</span>
+               </li>
+
+               <li class="arrow-right guige hytc hytc_hide" id="C" style="display:none;">产品：
+                 <% product1 = Product.find(2) %>
+                 <% product2 = Product.find(7) %>
+                 <span style="margin-right: 5%;"><span><%= product1.name %></span>10盒</span>
+                 <span><span><%= product2.name %></span>23瓶</span>
+               </li>
+
+               <li class="arrow-right guige hytc hytc_hide" id="D" style="display:none;">产品：
+                 <% product1 = Product.find(2) %>
+                 <% product2 = Product.find(6) %>
+                 <span style="margin-right: 5%;"><span><%= product1.name %></span>11盒</span>
+                 <span><span><%= product2.name %></span>17盒</span>
+               </li>
+
+               <li class="arrow-right guige hytc hytc_hide" id="E" style="display:none;">产品：
+                 <% product1 = Product.find(2) %>
+                 <% product2 = Product.find(46) %>
+                 <% product3 = Product.find(6) %>
+                 <span style="margin-right: 5%;"><span><%= product1.name %></span>5盒</span>
+                 <span style="margin-right: 5%;"><span><%= product2.name %></span>4盒</span>
+                 <span><span><%= product2.name %></span>5盒</span>
+               </li>
+
           <% end %>
+          <input id="value" name="packang" style="display:none;"/>
         </ul>
       </div>
 
@@ -78,7 +162,7 @@
           </div>
         </div>
         <div class="weui-cell">
-          <div class="weui-cell__hd"><label for="" class="weui-label">备注</label></div>
+          <div class="weui-cell__hd"><label for="" class="weui-label">用户备注</label></div>
           <div class="weui-cell__bd">
             <%= text_field_tag 'custom_desc', '', class: "weui-input", placeholder: "备注" %>
           </div>
@@ -140,3 +224,16 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+
+  $('.hytc .hytc_s').each(function(index){
+    $(this).click(function(){
+      console.log(index);
+      $(this).addClass('hytc_ac').siblings().removeClass('hytc_ac');
+      $('.hytc_hide').eq(index).toggle().siblings('.hytc_hide').hide();
+      $('#value').val(index);
+    })
+  })
+
+</script>
