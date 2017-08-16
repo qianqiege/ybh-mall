@@ -61,25 +61,29 @@ class Mall::OrdersController < Mall::BaseController
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
 
-    @integral = Integral.find_by(user_id: current_user.user_id)
-    integral_cash = @integral.not_cash + @integral.cash + price
-    if integral_cash <= 55260 && params[:packang].to_i == 0
-      flash[:notice] = "您的余额不足，不可以选择A方案"
-      redirect_to confirm_mall_orders_path
-      return
-    elsif integral_cash <= 16880 && params[:packang].to_i == 1
-      flash[:notice] = "您的余额不足，不可以选择B方案"
-      redirect_to confirm_mall_orders_path
-      return
-    elsif integral_cash <= 18754 && params[:packang].to_i == 2
-      flash[:notice] = "您的余额不足，不可以选择C方案"
-      redirect_to confirm_mall_orders_path
-      return
-    elsif integral_cash <= 26880 && params[:packang].to_i == 3
-      flash[:notice] = "您的余额不足，不可以选择D方案"
-      redirect_to confirm_mall_orders_path
-      return
-    end
+    line_items.each do |item|
+      if !item.product.name.match(/YBZ/).nil?
+          @integral = Integral.find_by(user_id: current_user.user_id)
+          integral_cash = @integral.not_cash + @integral.cash + price
+          if integral_cash <= 55260 && params[:packang].to_i == 0
+            flash[:notice] = "您的余额不足，不可以选择A方案"
+            redirect_to confirm_mall_orders_path
+            return
+          elsif integral_cash <= 16880 && params[:packang].to_i == 1
+            flash[:notice] = "您的余额不足，不可以选择B方案"
+            redirect_to confirm_mall_orders_path
+            return
+          elsif integral_cash <= 18754 && params[:packang].to_i == 2
+            flash[:notice] = "您的余额不足，不可以选择C方案"
+            redirect_to confirm_mall_orders_path
+            return
+          elsif integral_cash <= 26880 && params[:packang].to_i == 3
+            flash[:notice] = "您的余额不足，不可以选择D方案"
+            redirect_to confirm_mall_orders_path
+            return
+          end
+        end
+      end
 
 
     integral_available = params["integral_available"].to_f
