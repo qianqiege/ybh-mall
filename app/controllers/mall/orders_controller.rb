@@ -129,18 +129,22 @@ class Mall::OrdersController < Mall::BaseController
       is_donation: donation
     )
 
-    case params[:packang].to_i
-    when 0
-      @order.packang = "A方案"
-    when 1
-      @order.packang = "B方案"
-    when 2
-      @order.packang = "C方案"
-    when 3
-      @order.packang = "D方案"
-    when 4
-      if price == 12000
-        @order.packang = "A方案"
+    line_items.each do |item|
+      if !item.name.match(/YBZ/).nil?
+        case params[:packang].to_i
+        when 0
+          @order.packang = "A方案"
+        when 1
+          @order.packang = "B方案"
+        when 2
+          @order.packang = "C方案"
+        when 3
+          @order.packang = "D方案"
+        when 4
+          if price == 12000
+            @order.packang = "A方案"
+          end
+        end
       end
     end
 
