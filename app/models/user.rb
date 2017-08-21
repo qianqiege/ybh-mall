@@ -75,6 +75,13 @@ class User < ApplicationRecord
     end
   end
 
+  def generate_access_token
+    begin
+      self.access_token = Devise.friendly_token
+      self.expires_at = 2.days.from_now
+    end while self.class.exists?(access_token: access_token)
+  end
+
   def create_invitation
     # 在易积分记录表中插入一条积分收支记录，默认为有效记录，积分计入到锁定积分中
     Integral.create(user_id: self.id, locking: 0, available: 0, exchange: 0, cash: 0, not_exchange:0, not_cash: 0, appreciation: 0, not_appreciation: 0, count: 0)
