@@ -130,7 +130,7 @@ class Mall::OrdersController < Mall::BaseController
     )
 
     line_items.each do |item|
-      if !item.name.match(/YBZ/).nil?
+      if !item.product.name.match(/YBZ/).nil?
         case params[:packang].to_i
         when 0
           @order.packang = "A方案"
