@@ -51,10 +51,10 @@
 	}
 
 </style>
-
+<% file = FileAsset.find(5) %>
 
 <div class="lightBg">
-	<a class="lightPro" href="<%= wechat_lightIntro_path %>">明灯简介</a>
+	<a class="lightPro" href="<%= file.location %>">明灯简介</a>
 	<% if !current_user.nil? && current_user.user.staff_type == "R&D" %>
 		<a class="lightButton" href="<%= wechat_lightRaise_path %>">公益捐赠</a>
 	<% else %>
