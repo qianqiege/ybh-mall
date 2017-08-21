@@ -15,7 +15,9 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
-
+gem 'grape'
+gem 'grape-entity', '~> 0.5.1'
+gem 'grape-swagger-rails', '~> 0.2.1'
 # gem 'will_paginate', '3.1.0'
 # gem 'bootstrap-will_paginate', '0.0.10'
 
