@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount API => '/'
+
   namespace :evaluate do
     get '/index',to: 'mellitus#index'
     get '/home',to: 'home#index'
