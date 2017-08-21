@@ -24,5 +24,8 @@ module YBHMall
     config.time_zone = 'Beijing'
     config.i18n.default_locale = :'zh-CN'
     config.assets.paths << "#{Rails.root}/app/assets/videos"
+
+    config.paths.add File.join('app', 'services'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir["#{Rails.root}/app/services/*"]
   end
 end
