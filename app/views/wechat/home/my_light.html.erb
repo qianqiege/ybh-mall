@@ -1,0 +1,81 @@
+
+
+<style media="screen">
+
+  .lightName {
+    color: #fff;
+  }
+
+  .lightList .weui-panel {
+    background-color:transparent!important;
+  }
+
+  .lightCont .weui-panel:after, .weui-panel:before{
+    opacity: 0;
+  }
+
+  .lightCont .weui-media-box_appmsg .weui-media-box__thumb {
+    border-radius: 50%;
+  }
+
+  .lightInfo {
+    margin-top: 5%;
+  }
+
+  .lightInfo a:first-child {
+    border-top: 1px solid #999;
+  }
+
+  .lightInfo a {
+    color: #fff;
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #999;
+    padding: 2% 0 2% 3%;
+    margin: 0 1%;
+  }
+
+  .lightInfo a .lightLeft {
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    right: 5%;
+  }
+
+</style>
+
+
+<%= title '我的信息' %>
+<div class="lightCont">
+
+  <div class="weui-panel weui-panel_access" style="background-color:transparent;padding-top:5%;">
+    <div class="weui-panel__bd">
+      <a href="<%= user_w_info_path %>" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__hd">
+          <% if !@wechat_user.nil? %>
+            <img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb",>
+          <% else %>
+            <%= image_tag "ybyt04.png" ,class:"weui-media-box__thumb" ,size: "50x55" %>
+          <% end %>
+        </div>
+        <div class="weui-media-box__bd">
+          <h4 class="weui-media-box__title lightName">
+            <% if !@wechat_user.nil?%>
+              <%= @wechat_user.nickname %>
+            <% else %>
+              御邦医通
+            <% end %>
+          </h4>
+        </div>
+        </a>
+    </div>
+  </div>
+
+  <div class="lightInfo">
+      <a href="<%= user_record_home_path %>">我的公益募捐<span class="lightLeft">›</span></a>
+      <a href="<%= user_wallet_path %>">我的明灯展票<span class="lightLeft">›</span></a>
+  </div>
+  <div style="">您拥有<%= HightTicket.where(state: "start",user_id: current_user.user_id).length %>张展票兑换券</div>
+  <a href="<%= wechat_ticket_path %>">点击兑换</a>
+
+</div>

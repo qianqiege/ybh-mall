@@ -19,15 +19,34 @@ skip_before_filter :verify_authenticity_token
   end
 
   def light
-
   end
 
   def light_raise
-
   end
 
   def light_intro
+  end
 
+  def ticket
+    ticket = HightTicket.where(user_id: current_user.user_id, state: "start").last
+    url = wechat_not_ticket_url({ticket_number: ticket.ticket_number})
+    @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+  end
+
+  def not_ticket
+    @ticket = HightTicket.where(user_id: current_user.user_id,ticket_number: params[:ticket_number],state: "start").take
+    if @ticket.to_use
+      redirect_to "/wechat/use_ticket"
+    end
+  end
+
+  def my_light
+    @wechat_user = WechatUser.find(current_user)
+    if !current_user.user_id.nil?
+      @user_type = User.find(current_user.user_id)
+    else
+      redirect_to '/user/binding'
+    end
   end
 
   def create_light
@@ -51,7 +70,7 @@ skip_before_filter :verify_authenticity_token
 
 
     @donation_record = DonationRecord.create(user_id: current_user.user_id, price: @price, integral: @integral , cash: @cash, reason: "募集基金", payment: payment)
-    
+
 
     redirect_to wechat_light_order_pay_path(@donation_record)
 
