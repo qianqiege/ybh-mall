@@ -3,6 +3,9 @@ class Mall::HomeController < Mall::BaseController
     @slides = Slide.top(2)
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).where(display: true).order("priority DESC, id DESC")
+    if !params[:id].nil?
+      @products = @q.result(distinct: true).where(display: false,is_show: true,height: "一盏明灯")
+    end
   end
 
   def classify

@@ -36,7 +36,7 @@ zh-CN:
         original_product_price: "原价"
         now_product_price: "现价"
         only_number: "产品编号"
-        is_show: "是否显示"
+        is_show: "是否上架"
         is_consumption: "是否为消费产品"
         shop_count: '库存'
         packaging: '包装'
@@ -46,6 +46,7 @@ zh-CN:
         product_sort: '类别'
         priority: '权重(数字越大排在前)'
         is_custom_price: '自定义商品价格'
+        height: '其他区分'
       appraise:
         user_id: '用户'
         result: '评价'
