@@ -1,0 +1,2 @@
+class HightTicket < ApplicationRecord
+end
