@@ -9,6 +9,7 @@ class Order < ApplicationRecord
   belongs_to :activity
   has_many :line_items, -> { where in_cart: false }, dependent: :destroy
   has_many :return_requests
+  has_many :hight_ticket
 
   has_many :scoin_account_order_relations, dependent: :destroy
   has_many :scoin_accounts, through: :scoin_account_order_relations, dependent: :destroy
@@ -68,6 +69,8 @@ class Order < ApplicationRecord
           add_cash
           # # 消费代金券
           remove_cash
+          # # 一盏明灯
+          update_hight
         end
 
         # # 模板消息
@@ -379,6 +382,14 @@ class Order < ApplicationRecord
     else
       self.is_ybz = 0
       self.save
+    end
+  end
+
+  def update_hight
+    hight = HightTicket.where(order_id: self.id)
+    hight.each do |hight|
+      hight.to_start
+      hight.save
     end
   end
 

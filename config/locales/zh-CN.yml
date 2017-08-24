@@ -47,6 +47,9 @@ zh-CN:
         priority: '权重(数字越大排在前)'
         is_custom_price: '自定义商品价格'
         height: '其他区分'
+      hight_ticket:
+        user: '用户'
+        number: '数量'
       appraise:
         user_id: '用户'
         result: '评价'

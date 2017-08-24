@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_one :member_record
   has_one :wechat_user
   has_many :cash_record
+  has_many :hight_tickets
   has_many :orders
   has_one :cart
   has_one :integral
