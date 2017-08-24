@@ -50,11 +50,20 @@
 		color: #d7d0b8;
 	}
 
+	.deng {
+		width: 12%;
+		position: absolute;
+		top: 42%;
+		left: 42%;
+	}
+
 </style>
 <% file = FileAsset.find(5) %>
 
 <div class="lightBg">
-	<a class="lightPro" href="<%= file.location %>">明灯简介</a>
+	<a class="lightPro" href="<%= wechat_lightIntro_path %>">明灯简介</a>
+	<!-- 这里图片要做一个判断，如果没有捐款过就用现在这个，如果捐了的就换成 deng_l.png  -->
+	<%= image_tag "deng_d.png",class:"deng" %>
 	<% if !current_user.nil? && current_user.user.staff_type == "R&D" %>
 		<a class="lightButton" href="<%= wechat_lightRaise_path %>">公益捐赠</a>
 	<% else %>
