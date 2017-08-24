@@ -36,10 +36,21 @@
 		text-align: center;
 	}
 
+	.oneX {
+		color: #d7d0b8;
+		font-size: 14px;
+		width: 100%;
+		position: absolute;
+		right: 0;
+		bottom: 10%;
+		text-align: right;
+		margin-right: 2%;
+	}
+
 	.ddUser {
 		color: #fff;
 		width: 80%;
-		font-size: 18px;
+		font-size: 15px;
 		position: absolute;
 		right: 10%;
 		bottom: 23%;
@@ -62,11 +73,9 @@
 	<a class="lightPro" href="<%= wechat_lightIntro_path %>">明灯简介</a>
 	<!-- 这里图片要做一个判断，如果没有捐款过就用现在这个，如果捐了的就换成 deng_l.png  -->
 	<%= image_tag "deng_d.png",class:"deng" %>
-	<!-- <% if !current_user.nil? && current_user.user.staff_type == "R&D" %> -->
-		<a class="lightButton" href="<%= wechat_lightRaise_path %>">公益捐赠</a>
-	<!-- <% else %> -->
-		<!-- <a class="lightButton" href="">公益捐赠</a> -->
-	<!-- <% end %> -->
+	<a class="lightButton" href="<%= wechat_lightRaise_path %>">公益捐赠</a>
+	<% number = HightTicket.where(user_id: current_user.user_id, state: "start").length %>
+	<a href=""><p class="oneX">点击兑换张明灯展票</p></a>
 	<p class="oneS">你已成为点亮心灵一盏明灯，共筑民族时代精神的点灯人.</p>
 	<div class="ddUser">您已成为第<span><%= current_user.user.lamp_number || 0 %></span>位点灯人</div>
 </div>
