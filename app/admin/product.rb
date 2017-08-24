@@ -15,7 +15,8 @@ ActiveAdmin.register Product do
                 :is_custom_price,
                 :is_consumption,
                 :spec,
-                :display
+                :display,
+                :height
 
   index do
     selectable_column
@@ -58,6 +59,7 @@ ActiveAdmin.register Product do
       f.input :packaging
       f.input :image, as: :file
       f.input :priority
+      f.input :height
       f.input :desc,:as => :ckeditor
       f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3' }
     end
