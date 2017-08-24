@@ -3,13 +3,13 @@
 	.lightButton {
 		position: absolute;
 		bottom: 20%;
-		left: 20%;	
+		left: 20%;
 	}
 
 	.otherButton {
 		position: absolute;
 		bottom: 20%;
-		left: 55%;		
+		left: 55%;
 	}
 
 	.otherButton,.lightButton {
@@ -19,7 +19,7 @@
 		border:1px solid #d7d0b8;
 		border-radius: 15px;
 		padding: 1% 2%;
-		text-align: center;		
+		text-align: center;
 	}
 
 	.lightPro {
@@ -73,7 +73,7 @@
 	<!-- 这里图片要做一个判断，如果没有捐款过就用现在这个，如果捐了的就换成 deng_l.png  -->
 	<%= image_tag "deng_d.png",class:"deng" %>
 	<a class="lightButton" href="<%= wechat_lightRaise_path %>">公益捐赠</a>
-	<a class="otherButton" href="<%= wechat_lightRaise_path %>">我的公益</a>
+	<a class="otherButton" href="<%= wechat_mylight_path %>">我的公益</a>
 	<% number = HightTicket.where(user_id: current_user.user_id, state: "start").length %>
 	<p class="oneS">你已成为点亮心灵一盏明灯，共筑民族时代精神的点灯人.</p>
 	<div class="ddUser">您已成为第<span><%= current_user.user.lamp_number || 0 %></span>位点灯人</div>

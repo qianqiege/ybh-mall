@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     post '/create_light', to: 'home#create_light'
     get '/light_order' ,to: 'home#light_order'
     get '/light_order_pay', to: 'home#light_order_pay'
+    get '/mylight', to: 'home#my_light'
+    get '/ticket' , to: 'home#ticket'
+    get '/use_ticket' ,to: 'home#use_ticket'
+    get '/not_ticket' ,to: 'home#not_ticket'
   end
 
   namespace :wechat do
