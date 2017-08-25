@@ -107,6 +107,8 @@ class Mall::OrdersController < Mall::BaseController
         activity = 13
       elsif item.product_id == 50
         activity = 13
+      elsif !item.product.height.nil?
+        activity = 14
       else
         activity = params[:activity_id]
       end
@@ -179,11 +181,9 @@ class Mall::OrdersController < Mall::BaseController
       # 4. 清空购物车已生成订单的商品
       line_items.each do |line_item|
         line_item.move_to_order(@order.id) if line_item.cart_id == current_cart.id
-
         if !line_item.product.height.nil?
           HightTicket.create(user_id: current_user.user_id, number: 1,state: "panding",order_id: @order.id)
         end
-
       end
 
       # 5. 清空session

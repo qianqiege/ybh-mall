@@ -2,7 +2,7 @@ class HightTicket < ApplicationRecord
   belongs_to :user
   belongs_to :order
 
-  before_create :ticket_code
+  after_create :ticket_code
 
   include AASM
   aasm column: :state do
