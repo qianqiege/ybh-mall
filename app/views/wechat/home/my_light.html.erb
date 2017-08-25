@@ -19,27 +19,56 @@
   }
 
   .lightInfo {
+    width: 96%;
+    margin:0 auto;
     margin-top: 5%;
-  }
-
-  .lightInfo a:first-child {
-    border-top: 1px solid #999;
+    display: flex;
   }
 
   .lightInfo a {
     color: #fff;
-    display: block;
+    text-align: center;
+    display: inline-block;
     position: relative;
-    border-bottom: 1px solid #999;
-    padding: 2% 0 2% 3%;
-    margin: 0 1%;
+    padding: 2% 2%;
+    flex: 1;
   }
 
-  .lightInfo a .lightLeft {
+  .lightInfo a span {
+    color: #d7d0b8;
+  }
+
+  .lightTabBorder {
+    color: #d7d0b8;
+    border:0;
+    border:1px solid #d7d0b8;
+    border-bottom: 0;
+  }
+
+  .lightTabBottom {
+    border-bottom: 1px solid #d7d0b8;
+  }
+
+  .myJz {
+    display: block;
     color: #fff;
-    font-size: 20px;
-    position: absolute;
-    right: 5%;
+  }
+
+  .myTic {
+    display: none;
+  }
+
+  .myTic .ticNumber {
+    color: #d7d0b8;
+    margin: 8% 0 2% 5%;
+  }
+
+  .myTic a {
+    color: #eee;
+    display: inline-block;
+    
+    margin-left: 3%;
+    border-bottom: 1px dashed #eee;
   }
 
 </style>
@@ -72,10 +101,40 @@
   </div>
 
   <div class="lightInfo">
-      <a href="<%= user_record_home_path %>">我的公益募捐<span class="lightLeft">›</span></a>
-      <a href="<%= user_wallet_path %>">我的明灯展票<span class="lightLeft">›</span></a>
+      <a class="lightTabBorder"><span>✿</span> 我的公益募捐</a>
+      <a class="lightTabBottom"><span>✿</span> 我的明灯展票</a>
   </div>
-  <div style="">您拥有<%= HightTicket.where(state: "start",user_id: current_user.user_id).length %>张展票兑换券</div>
-  <a href="<%= wechat_ticket_path %>">点击兑换</a>
+  <div class="myJz myLightInfo">
+    我的公益募捐页面
+  </div>
+
+  <div class="myTic myLightInfo">
+    <div class="ticNumber">您拥有<%= HightTicket.where(state: "start",user_id: current_user.user_id).length %>张展票兑换券:<a href="<%= wechat_ticket_path %>">点击兑换</a></div>
+        
+  </div>
 
 </div>
+
+
+
+
+<script type="text/javascript">
+  
+    $(".lightInfo a").each(function(index){
+        $(this).click(function() {
+            console.log(index);
+            $(this).addClass('lightTabBorder').siblings().removeClass('lightTabBorder');
+            $(this).removeClass('lightTabBottom').siblings().addClass('lightTabBottom');
+            $(".myLightInfo").each(function(index_sm) {
+                if(index === index_sm){
+                    $(this).show();
+                }else{
+                    $(this).hide();
+                }
+            });            
+        });
+    })
+
+</script>
+
+
