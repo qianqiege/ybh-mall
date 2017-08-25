@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: MyString
+  desc: MyText
+  image: MyString
+  strat: 2017-08-25 15:18:41
+  over: 2017-08-25 15:18:41
+
+two:
+  city: MyString
+  desc: MyText
+  image: MyString
+  strat: 2017-08-25 15:18:41
+  over: 2017-08-25 15:18:41

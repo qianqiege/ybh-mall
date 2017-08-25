@@ -27,6 +27,10 @@ skip_before_filter :verify_authenticity_token
   def light_intro
   end
 
+  def use_ticket
+    @ticket_number = HightTicket.find(params[:id]).ticket_number
+  end
+
   def ticket
     ticket = HightTicket.where(user_id: current_user.user_id, state: "start").last
     url = wechat_not_ticket_url({ticket_number: ticket.ticket_number})
@@ -35,8 +39,13 @@ skip_before_filter :verify_authenticity_token
 
   def not_ticket
     @ticket = HightTicket.where(user_id: current_user.user_id,ticket_number: params[:ticket_number],state: "start").take
-    if @ticket.to_use
-      redirect_to "/wechat/use_ticket"
+    if !@ticket.nil?
+      if @ticket.to_use
+        redirect_to "/wechat/use_ticket/#{@ticket.id}"
+      end
+    else
+      flash[:notice] = '展票码已失效，请用户刷新页面'
+      redirect_to "/"
     end
   end
 
@@ -47,6 +56,8 @@ skip_before_filter :verify_authenticity_token
     else
       redirect_to '/user/binding'
     end
+    @donation = DonationRecord.where(user_id: current_user.user_id)
+    @light = Light.last
   end
 
   def create_light
