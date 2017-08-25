@@ -77,7 +77,7 @@ gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 
 # https://github.com/galetahub/ckeditor/
 # CKEditor is a WYSIWYG text editor designed to simplify web content creation. It brings common word processing features directly to your web pages. Enhance your website experience with our community maintained editor. ckeditor.com
-gem 'ckeditor', '~> 4.2'
+gem 'ckeditor', '~> 4.1.3'
 
 # Full HMAC auth implementation for use in your gems and Rails apps.
 # https://rubygems.org/gems/api-auth
