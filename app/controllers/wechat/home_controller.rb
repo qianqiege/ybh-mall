@@ -33,12 +33,14 @@ skip_before_filter :verify_authenticity_token
 
   def ticket
     ticket = HightTicket.where(user_id: current_user.user_id, state: "start").last
-    url = wechat_not_ticket_url({ticket_number: ticket.ticket_number})
-    @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+    if !ticket.nil?
+      url = wechat_not_ticket_url({ticket_number: ticket.ticket_number})
+      @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+    end
   end
 
   def not_ticket
-    @ticket = HightTicket.where(user_id: current_user.user_id,ticket_number: params[:ticket_number],state: "start").take
+    @ticket = HightTicket.where(ticket_number: params[:ticket_number],state: "start").take
     if !@ticket.nil?
       if @ticket.to_use
         redirect_to "/wechat/use_ticket/#{@ticket.id}"
