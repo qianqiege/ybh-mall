@@ -22,6 +22,8 @@ ActiveAdmin.register HightTicket do
         "已兑换"
       end
     end
+    column :ticket_number
+    column :city
     column :created_at
     column :updated_at
     actions defaults: true

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     get '/light_order_pay', to: 'home#light_order_pay'
     get '/mylight', to: 'home#my_light'
     get '/ticket' , to: 'home#ticket'
-    get '/use_ticket' ,to: 'home#use_ticket'
+    get '/use_ticket/:id' ,to: 'home#use_ticket'
     get '/not_ticket' ,to: 'home#not_ticket'
   end
 

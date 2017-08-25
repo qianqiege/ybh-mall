@@ -31,6 +31,7 @@ class HightTicket < ApplicationRecord
     event :to_use do
       transitions from: :start, to: :use
       after do
+        self.city = Light.last.city
         self.save
       end
     end

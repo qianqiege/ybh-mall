@@ -66,7 +66,7 @@
   .myTic a {
     color: #eee;
     display: inline-block;
-    
+
     margin-left: 3%;
     border-bottom: 1px dashed #eee;
   }
@@ -101,16 +101,46 @@
   </div>
 
   <div class="lightInfo">
-      <a class="lightTabBorder"><span>✿</span> 我的公益募捐</a>
-      <a class="lightTabBottom"><span>✿</span> 我的明灯展票</a>
+      <a class="lightTabBorder"><span></span> 我的公益募捐</a>
+      <a class="lightTabBottom"><span></span> 我的明灯展票</a>
   </div>
   <div class="myJz myLightInfo">
-    我的公益募捐页面
+    <p style="margin-left: 5%;margin-bottom: 5%;">我的募捐记录</p>
+    <table style="width: 90%;margin-left: 5%;text-align: center;">
+      <thead>
+        <th>募捐时间</th>
+        <th>募捐金额</th>
+        <th>募捐状态</th>
+      </thead>
+      <tbody>
+        <% if !@donation.nil? %>
+          <% @donation.each do |donation| %>
+            <td><%= donation.count_price %></td>
+            <td><%= date donation.created_at %></td>
+            <% if donation.status == "success" %>
+              <td>募捐成功</td>
+            <% else %>
+              <td>募捐中</td>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 
   <div class="myTic myLightInfo">
-    <div class="ticNumber">您拥有<%= HightTicket.where(state: "start",user_id: current_user.user_id).length %>张展票兑换券:<a href="<%= wechat_ticket_path %>">点击兑换</a></div>
-        
+    <div class="ticNumber">
+      <p>近期巡演城市：<%= @light.city %></p>
+      <p>从<%= date @light.strat %>开始，于<%= date @light.over %>结束</p>
+      <%= image_tag @light.image ,size: "288x180" %>
+    </div>
+    <div class="ticNumber">
+      <% number =  HightTicket.where(state: "start",user_id: current_user.user_id).length %>
+      您拥有<%= number %>张展票兑换券
+      <% if number > 0%>
+        <a href="<%= wechat_ticket_path %>">点击兑换</a>
+      <% end %>
+    </div>
   </div>
 
 </div>
@@ -119,7 +149,7 @@
 
 
 <script type="text/javascript">
-  
+
     $(".lightInfo a").each(function(index){
         $(this).click(function() {
             console.log(index);
@@ -131,10 +161,8 @@
                 }else{
                     $(this).hide();
                 }
-            });            
+            });
         });
     })
 
 </script>
-
-

@@ -1,1 +1,26 @@
-<a href="<%= wechat_light_path %>">已使用，点击返回首页</a>
+<style>
+
+  .text{
+    text-align: center;
+    color: wheat;
+    font-size: 16px;
+    padding-top: 15%;
+  }
+
+  .left{
+    text-align: left;
+    color: wheat;
+    font-size: 16px;
+    padding-top: 8%;
+    padding-left: 5%;
+  }
+
+</style>
+
+<div class="lightCont">
+    <p class="left">继续扫码请点击返回</p>
+    <p class="text">扫码成功</p>
+    <% if !@ticket_number.nil? %>
+      <p class="text">用户展票码：<%= @ticket_number %></p>
+    <% end %>
+</div>
