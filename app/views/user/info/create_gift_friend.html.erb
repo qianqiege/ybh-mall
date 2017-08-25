@@ -72,9 +72,11 @@
 <div style="text-align:center;margin-top: 20px;">
 
   <% if !@w_friend.nil? %>
-    <%= image_tag(@w_friend.headimgurl,size: "70x70" ) %>
-  <% else %>
-    <%= image_tag("person.png" ,size: "70x70" ) %>
+    <% if !@w_friend.headimgurl.nil? %>
+      <%= image_tag(@w_friend.headimgurl,size: "70x70" ) %>
+    <% else %>
+      <%= image_tag("person.png" ,size: "70x70" ) %>
+    <% end %>
   <% end %>
   <div class="资料">
     <span class="电话"><%= @gift_friend.telphone %></span>
