@@ -30,6 +30,15 @@ skip_before_filter :verify_authenticity_token
     @ticket = HightTicket.where(user_id: current_user.user_id,state: "start")
   end
 
+  def light
+    @wechat_user = WechatUser.find(current_user)
+    if !current_user.user_id.nil?
+      @user_type = User.find(current_user.user_id)
+    else
+      redirect_to '/user/binding'
+    end
+  end
+
   def use_ticket
     @ticket_number = HightTicket.find_by(id: params[:id])
   end
