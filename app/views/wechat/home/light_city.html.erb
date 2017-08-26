@@ -1,0 +1,35 @@
+<style>
+  .ticNumber {
+    color: #d7d0b8;
+    padding: 8% 3% 2% 3%;
+  }
+
+  .img{
+    width: 100%;
+  }
+
+  a {
+    color: #eee;
+    display: inline-block;
+
+    margin-left: 3%;
+    border-bottom: 1px dashed #eee;
+  }
+
+</style>
+
+
+<div class="lightCont">
+  <div class="ticNumber">
+    <p>近期巡演城市：<%= @light.city %></p>
+    <p>从<%= date @light.strat %>开始，于<%= date @light.over %>结束</p>
+    <div><%= image_tag @light.image ,class:"img"%></div>
+  </div>
+  <div class="ticNumber" style="text-align: center;">
+    <% number =  HightTicket.where(state: "start",user_id: current_user.user_id).length %>
+    您拥有<%= number %>张展票兑换券
+    <% if number > 0%>
+      <a href="<%= wechat_tickethome_path %>">点击兑换</a>
+    <% end %>
+  </div>
+</div>

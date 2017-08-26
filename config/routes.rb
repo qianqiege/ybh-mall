@@ -35,6 +35,9 @@ Rails.application.routes.draw do
     get '/ticket' , to: 'home#ticket'
     get '/use_ticket/:id' ,to: 'home#use_ticket'
     get '/not_ticket' ,to: 'home#not_ticket'
+    get '/donate_record', to: 'home#donate_record'
+    get '/light_city', to: 'home#light_city'
+    get '/tickethome', to: 'home#ticket_home'
   end
 
   namespace :wechat do

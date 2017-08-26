@@ -3,24 +3,33 @@
   .text{
     text-align: center;
     color: wheat;
-    font-size: 16px;
+    font-size: 25px;
     padding-top: 15%;
   }
 
   .left{
     text-align: left;
     color: wheat;
-    font-size: 16px;
+    font-size: 25px;
     padding-top: 8%;
     padding-left: 5%;
   }
 
 </style>
-
-<div class="lightCont">
-    <p class="left">继续扫码请点击返回</p>
-    <p class="text">扫码成功</p>
-    <% if !@ticket_number.nil? %>
-      <p class="text">用户展票码：<%= @ticket_number %></p>
-    <% end %>
-</div>
+<%= title '御易健' %>
+<% if !@ticket_number.nil? %>
+  <div class="lightCont">
+      <p class="left">继续扫码请点击返回</p>
+      <p class="text">扫码成功</p>
+      <% if !@ticket_number.nil? %>
+        <p class="text">用户展票码：<%= @ticket_number.ticket_number %></p>
+      <% end %>
+  </div>
+<% else %>
+  <div class="lightCont">
+      <p class="left">重新扫码请点击返回</p>
+      <p class="text" style="color:red;">扫码失败</p>
+      <p class="text" style="color:red;">票码已失效或已被扫描</p>
+      <p class="text" style="color:red;">请用户重新选票</p>
+  </div>
+<% end %>

@@ -1,0 +1,44 @@
+<style>
+
+  .text{
+    text-align: center;
+    color: wheat;
+    font-size: 16px;
+    padding-top: 15%;
+  }
+
+  .left{
+    text-align: left;
+    color: wheat;
+    font-size: 16px;
+    padding-top: 8%;
+    padding-left: 5%;
+  }
+
+</style>
+
+<div class="lightCont">
+  <div class="text">
+    <p style="margin-left: 5%;margin-bottom: 5%;">我的募捐记录</p>
+    <table style="width: 90%;margin-left: 5%;text-align: center;">
+      <thead>
+        <th>募捐时间</th>
+        <th>募捐金额</th>
+        <th>募捐状态</th>
+      </thead>
+      <tbody>
+        <% if !@donation.nil? %>
+          <% @donation.each do |donation| %>
+            <td><%= donation.count_price %></td>
+            <td><%= date donation.created_at %></td>
+            <% if donation.status == "success" %>
+              <td>募捐成功</td>
+            <% else %>
+              <td>募捐中</td>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

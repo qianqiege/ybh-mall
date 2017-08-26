@@ -7,30 +7,51 @@
 	}
 
 	.ticBorder .qr-code-invitation td.black {
-		/*border-color: #d7d0b8;*/
+		/*border-color: white;*/
+    border-color: transparent;
 	}
 
 	.ticBorder .qr-code-invitation td.white {
-		border-color: transparent;
+		/*border-color: transparent;*/
+    /*border-color: black;*/
+    border-color: wheat;
 	}
 
 	.ticBorder {
 		width: 80%;
 		margin: 0 auto;
 		text-align: center;
-		padding-top:35%;
+		padding-top:20%;
 		color: #fff;
 		font-weight: bolder;
 		font-size: 20px;
+	}
+
+  .tictext {
+		width: 100%;
+		/*text-align: center;*/
+		padding-top:30%;
+    padding-left: 5%;
+		color: wheat;
+		font-weight: bolder;
+    font-size: 15px;
 	}
 
 </style>
 
 <div class="lightCont">
 	<div class="ticBorder">
-		<p>扫描二维码参加一盏明灯</p>
+		<p style="color: wheat;">凭二维码入场</p>
 		<div class="qr-code-invitation">
 			<%= raw @qrcode.as_html %></br>
 		</div>
 	</div>
+
+  <div class="tictext">
+    <p>主办方：中华社会文化发展基金会</p>
+    <p style="padding-left: 26%;">一盏明灯公益文化推广中心</p>
+    <p>协办方：北京有庆御通商业体系</p>
+    <p style="padding-left: 26%;">深圳御邦医通数字化健康服务有限公司</p>
+  </div>
+
 </div>
