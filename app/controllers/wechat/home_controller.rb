@@ -18,21 +18,24 @@ skip_before_filter :verify_authenticity_token
     @slides = Slide.top(8)
   end
 
-  def light
+  def donate_record
+    @donation = DonationRecord.where(user_id: current_user.user_id)
   end
 
-  def light_raise
+  def light_city
+    @light = Light.last
   end
 
-  def light_intro
+  def ticket_home
+    @ticket = HightTicket.where(user_id: current_user.user_id,state: "start")
   end
 
   def use_ticket
-    @ticket_number = HightTicket.find(params[:id]).ticket_number
+    @ticket_number = HightTicket.find_by(id: params[:id])
   end
 
   def ticket
-    ticket = HightTicket.where(user_id: current_user.user_id, state: "start").last
+    ticket = HightTicket.find(params[:format])
     if !ticket.nil?
       url = wechat_not_ticket_url({ticket_number: ticket.ticket_number})
       @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
@@ -46,8 +49,8 @@ skip_before_filter :verify_authenticity_token
         redirect_to "/wechat/use_ticket/#{@ticket.id}"
       end
     else
-      flash[:notice] = '展票码已失效，请用户刷新页面'
-      redirect_to "/"
+      # flash[:notice] = '展票码已失效，请用户刷新页面'
+      redirect_to "/wechat/use_ticket/0"
     end
   end
 
@@ -58,8 +61,6 @@ skip_before_filter :verify_authenticity_token
     else
       redirect_to '/user/binding'
     end
-    @donation = DonationRecord.where(user_id: current_user.user_id)
-    @light = Light.last
   end
 
   def create_light

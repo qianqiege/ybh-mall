@@ -1,0 +1,39 @@
+<style>
+  .panel {
+    /* background-color: #fff; */
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .font-text{
+    color: wheat;
+  }
+
+  .img{
+    width: 100%;
+  }
+
+  .ticketLight {
+    position: absolute;
+    left:6%;
+    top:10%;
+  }
+</style>
+
+
+<div class="lightCont">
+
+  <div class="panel weui-panel_access">
+      <div class="weui-panel__hd font-text">一盏明灯巡演票</div>
+      <div class="weui-panel__bd">
+        <% @ticket.each do |ticket| %>
+          <a href="<%= wechat_ticket_path(ticket.id) %>" class="weui-media-box weui-media-box_appmsg">
+              <p style="color:wheat;" class="ticketLight">票码：<%= ticket.ticket_number %></p>
+              <%= image_tag "light-image.png" ,class: "img" %>
+          </a>
+        <% end %>
+      </div>
+  </div>
+
+</div>
