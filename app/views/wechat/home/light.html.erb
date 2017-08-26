@@ -67,13 +67,21 @@
 		left: 42%;
 	}
 
+	.lightHomeImg img {
+		border-radius: 50%;
+	}
+
+	.lightHomeA a.weui-media-box:active {
+		background: none;
+	}
+
 </style>
 <div class="lightBg">
 
-	<div class="weui-panel weui-panel_access" style="background-color:transparent;">
-		<div class="weui-panel__bd">
+	<div class="weui-panel weui-panel_access" style="background-color:transparent;position:inherit;">
+		<div class="weui-panel__bd lightHomeA">
 			<a href="<%= wechat_donate_record_path %>" class="weui-media-box weui-media-box_appmsg">
-				<div class="weui-media-box__hd">
+				<div class="weui-media-box__hd lightHomeImg">
 					<% if !@wechat_user.nil? %>
 						<img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb">
 					<% else %>
@@ -83,7 +91,7 @@
 				<div class="weui-media-box__bd">
 					<h4 class="weui-media-box__title lightName" style="color:white;">
 						<% if !@wechat_user.nil?%>
-							<%= @wechat_user.nickname %>
+							<!-- <%= @wechat_user.nickname %> -->
 							<% if @user_type.lnmp_integral.to_f <= 100000 %>
 								<span style="padding-left:6%;">LV1<span>
 							<% elsif @user_type.lnmp_integral.to_f <= 300000 %>
