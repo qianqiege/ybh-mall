@@ -20,8 +20,9 @@
 
 
 <div class="lightCont">
+  <%= title '御易健' %>
   <div class="ticNumber">
-    <p>近期巡演城市：<%= @light.city %></p>
+    <p style="font-size:20px;">近期巡演城市：<%= @light.city %></p>
     <p>从<%= date @light.strat %>开始，于<%= date @light.over %>结束</p>
     <div><%= image_tag @light.image ,class:"img"%></div>
   </div>
