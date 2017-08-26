@@ -75,9 +75,15 @@
 		background: none;
 	}
 
+	.weui-panel:after, .weui-panel:before {
+		color: transparent;
+		height:0;
+		position:inherit;
+	}
+
 </style>
 <div class="lightBg">
-
+<%= title '御易健' %>
 	<div class="weui-panel weui-panel_access" style="background-color:transparent;position:inherit;">
 		<div class="weui-panel__bd lightHomeA">
 			<a href="<%= wechat_donate_record_path %>" class="weui-media-box weui-media-box_appmsg">
