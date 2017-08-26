@@ -69,12 +69,60 @@
 
 </style>
 <div class="lightBg">
+
+	<div class="weui-panel weui-panel_access" style="background-color:transparent;">
+		<div class="weui-panel__bd">
+			<a href="<%= wechat_donate_record_path %>" class="weui-media-box weui-media-box_appmsg">
+				<div class="weui-media-box__hd">
+					<% if !@wechat_user.nil? %>
+						<img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb">
+					<% else %>
+						<%= image_tag "ybyt04.png" ,class:"weui-media-box__thumb" ,size: "50x55" %>
+					<% end %>
+				</div>
+				<div class="weui-media-box__bd">
+					<h4 class="weui-media-box__title lightName" style="color:white;">
+						<% if !@wechat_user.nil?%>
+							<%= @wechat_user.nickname %>
+							<% if @user_type.lnmp_integral.to_f <= 100000 %>
+								<span style="padding-left:6%;">LV1<span>
+							<% elsif @user_type.lnmp_integral.to_f <= 300000 %>
+								<span style="padding-left:6%;">LV2<span>
+							<% elsif @user_type.lnmp_integral.to_f <= 500000 %>
+								<span style="padding-left:6%;">LV3<span>
+							<% elsif @user_type.lnmp_integral.to_f <= 1000000 %>
+								<span style="padding-left:6%;">LV4<span>
+							<% elsif @user_type.lnmp_integral.to_f > 1000000 %>
+								<span style="padding-left:6%;">LV5<span>
+							<% elsif @user_type.lnmp_integral.to_f > 0 %>
+								<span style="padding-left:6%;">LV0
+							<% end %>
+						<% end %>
+					</h4>
+				</div>
+				</a>
+		</div>
+	</div>
+
 	<a class="lightPro" href="<%= wechat_lightIntro_path %>">明灯简介</a>
 	<!-- 这里图片要做一个判断，如果没有捐款过就用现在这个，如果捐了的就换成 deng_l.png  -->
-	<%= image_tag "deng_d.png",class:"deng" %>
+	<% if @user_type.lnmp_integral.to_f <= 100000 %>
+		<%= image_tag "deng1.png",class:"deng" %>
+	<% elsif @user_type.lnmp_integral.to_f <= 300000 %>
+		<%= image_tag "deng2.png",class:"deng" %>
+	<% elsif @user_type.lnmp_integral.to_f <= 500000 %>
+		<%= image_tag "deng3.png",class:"deng" %>
+	<% elsif @user_type.lnmp_integral.to_f <= 1000000 %>
+		<%= image_tag "deng4.png",class:"deng" %>
+	<% elsif @user_type.lnmp_integral.to_f > 1000000 %>
+		<%= image_tag "deng_l.png",class:"deng" %>
+	<% else %>
+		<%= image_tag "deng_d.png",class:"deng" %>
+	<% end %>
+
 	<a class="lightButton" href="<%= wechat_lightRaise_path %>">公益捐赠</a>
 	<% if !current_user.user.nil? && current_user.user.status != "user" %>
-		<a class="otherButton" href="<%= wechat_mylight_path %>">我的公益</a>
+		<a class="otherButton" href="<%= wechat_light_city_path %>">巡演兑票</a>
 	<% end %>
 	<% number = HightTicket.where(user_id: current_user.user_id, state: "start").length %>
 	<p class="oneS">你已成为点亮心灵一盏明灯，共筑民族时代精神的点灯人.</p>
