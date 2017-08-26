@@ -29,7 +29,7 @@
     <% number =  HightTicket.where(state: "start",user_id: current_user.user_id).length %>
     您拥有<%= number %>张展票兑换券
     <% if number > 0%>
-      <a href="<%= wechat_tickethome_path %>">点击兑换</a>
+      <a href="<%= wechat_tickethome_path %>">点击查看</a>
     <% end %>
   </div>
 </div>
