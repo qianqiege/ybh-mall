@@ -142,7 +142,7 @@
             <div class="weui-cell__hd">
               <label for="" class="weui-label" >参与活动</label>
             </div>
-            <% if product_id_ybz != 38 && Product.find(product_id_ybz).height.nil? %>
+            <% if product_id_ybz != 38 %>
               <div class="weui-cell__bd">
                 <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.find_by(is_default: true).id) ,  class: "weui-select", include_blank: "不参加活动" %>
               </div>
