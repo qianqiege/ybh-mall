@@ -181,8 +181,14 @@ class Mall::OrdersController < Mall::BaseController
       # 4. 清空购物车已生成订单的商品
       line_items.each do |line_item|
         line_item.move_to_order(@order.id) if line_item.cart_id == current_cart.id
-        if !line_item.product.height.nil?
+        if !line_item.product.height.nil? && line_item.product_id != 55 && line_item.product_id != 56
           HightTicket.create(user_id: current_user.user_id, number: 1,state: "panding",order_id: @order.id)
+        elsif !line_item.product.height.nil? && line_item.product_id == 55 || line_item.product_id == 56
+          i = 1
+          while i <= 2
+            HightTicket.create(user_id: current_user.user_id, number: 1,state: "panding",order_id: @order.id)
+            i = i + 1
+          end
         end
       end
 
