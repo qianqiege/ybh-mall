@@ -146,6 +146,10 @@
               <div class="weui-cell__bd">
                 <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.find_by(is_default: true).id) ,  class: "weui-select", include_blank: "不参加活动" %>
               </div>
+            <% elsif !Product.find(product_id_ybz).height.nil? %>
+              <div class="weui-cell__bd">
+                  <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "一盏明灯" ,disabled:"true"%>
+              </div>
             <% else %>
               <div class="weui-cell__bd">
                   <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "管理健康--YBZ会员(数字社区)" ,disabled:"true"%>
