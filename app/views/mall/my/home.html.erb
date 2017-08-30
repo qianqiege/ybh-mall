@@ -3,7 +3,7 @@
     <div class='my-info'>
       <div class="nickname">
         <div class="nick-item">
-          
+
           <% if false %>
             <h3>身份证: <%= current_user.user.identity_card %></h3>
             <h3><%= link_to '解绑', 'javascript:;', class: 'btn-normal remove_binding_wechat_user_btn', data: {id: current_user.id} %></h3>
@@ -93,5 +93,17 @@
         </a>
       </h3>
     </div>
+
+  <% if current_user.user.hight_tickets.count > 0 %>
+    <div class="module-title">
+      <h3>
+        <a class="link-area" href="<%= wechat_light_path %>">
+          <spna style="color:#8B0000 ;">一盏明灯巡演<span>
+          <span class="fr gray84" style="color:#8B0000 ;">巡演最新信息</span>
+          <i class="arrow-right"></i>
+        </a>
+      </h3>
+    </div>
+  <% end %>
   </div>
 </div>
