@@ -4,17 +4,14 @@ class Mall::HomeController < Mall::BaseController
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).where(display: true).order("priority DESC, id DESC")
     if !params[:id].nil?
-      @products = @q.result(distinct: true).where(display: false,is_show: true,height: "一盏明灯")
+      @products = @q.result(distinct: true).where(display: true,is_show: true,height: "一盏明灯")
+      @slides = Slide.top(9)
     end
   end
 
   def classify
   	@q = Product.ransack(params[:q])
   	@products = @q.result(distinct: true).where(display: true).order("priority DESC, id DESC")
-    @product1 = @products.where(sort: 1)
-    @product2 = @products.where(sort: 2)
-    @product3 = @products.where(sort: 3)
-
     @programs = Program.where(is_show: true)
   end
 end
