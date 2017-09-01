@@ -106,6 +106,7 @@
 		<li><a>销售商品</a></li>
 		<li><a>活动商品</a></li>
 		<li><a>虚拟商品</a></li>
+		<li><a>点亮心灯</a></li>
 		<li><a>组合方案</a></li>
 	</ul>
 </div>
@@ -127,7 +128,7 @@
 	</div>
 	<div class="pro-sm">
 		<ul class="clearfix chanpin">
-			<% @product1.each do |product| %>
+			<% @products.where(sort: 1).each do |product| %>
 						<li>
 							<a href="<%= mall_product_path(product) %>">
 								<div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
@@ -141,7 +142,7 @@
 	</div>
 	<div class="pro-sm">
 		<ul class="clearfix chanpin">
-			<% @product2.each do |product| %>
+			<% @products.where(sort: 2).each do |product| %>
 	          <li>
 							<a href="<%= mall_product_path(product) %>">
 		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
@@ -155,7 +156,21 @@
 	</div>
 	<div class="pro-sm">
 		<ul class="clearfix chanpin">
-			<% @product3.each do |product| %>
+			<% @products.where(sort: 3).each do |product| %>
+	          <li>
+							<a href="<%= mall_product_path(product) %>">
+		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
+		            <span><%= product.name %></span>
+		            <!-- <span><%= raw product.name %></span> -->
+		            <p><%= money product.now_product_price %></p>
+							</a>
+	          </li>
+	      <% end %>
+  	</ul>
+	</div>
+	<div class="pro-sm">
+		<ul class="clearfix chanpin">
+			<% @products.where(sort: 4).each do |product| %>
 	          <li>
 							<a href="<%= mall_product_path(product) %>">
 		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
