@@ -9,16 +9,20 @@
 	}
 
 	.ybs_ac {
-		left: 3%;top: 47%;
+		left: 3%;top: 40%;
 	}
 
 	.ybj_ac {
-		right: 35%;top: 15%;
+		right: 35%;top: 13%;
 	}
 
 	.ybz_ac {
-		right: 12%;top: 60%;
-	}	
+		right: 12%;top: 50%;
+	}
+
+	.yzmd_ac {
+		left: 20%;bottom: 7%;
+	}
 
 	.ybAc img {
 		width: 100%;
@@ -48,6 +52,18 @@
 		color: #ff8500;
 	}
 
+	.yzmd_ac p {
+		color: #789449;
+	}
+
+	.yzmd_ac span {
+		color: #000;
+		font-size: 26px;
+		display: block;
+		text-align: center;
+		margin-bottom: 0.6rem;
+	}
+
 
 </style>
 
@@ -73,5 +89,9 @@
 	<a class="ybz_ac ybAc" href="<%= Activity.find(13).url %>">
 		<%= image_tag "ybz.png" %>
 		<p>活动简介</p>
-	</a>	
+	</a>
+	<a class="yzmd_ac ybAc">
+		<span>一盏明灯</span>
+		<p>活动简介</p>
+	</a>		
 </div>

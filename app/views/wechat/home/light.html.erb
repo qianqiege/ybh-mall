@@ -140,5 +140,5 @@
 	<% end %>
 	<% number = HightTicket.where(user_id: current_user.user_id, state: "start").length %>
 	<p class="oneS">你已成为点亮心灵一盏明灯，共筑民族时代精神的点灯人.</p>
-	<div class="ddUser">您已成为第<span><%= current_user.user.lamp_number || 0 %></span>位点灯人</div>
+	<!-- <div class="ddUser">您已成为第<span><%= current_user.user.lamp_number || 0 %></span>位点灯人</div> -->
 </div>
