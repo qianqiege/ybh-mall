@@ -31,6 +31,8 @@
     您拥有<%= number %>张展票兑换券
     <% if number > 0%>
       <a href="<%= wechat_tickethome_path %>">点击查看</a>
+    <% else %>
+      <a href="/mall?id=2">点击获取</a>
     <% end %>
   </div>
 </div>
