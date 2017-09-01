@@ -61,6 +61,15 @@ class Mall::OrdersController < Mall::BaseController
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
 
+    if line_items.length >= 2
+      product_h = Product.find(line_items.pluck(:product_id)).pluck(:height)
+      if product_h.uniq.length != 1
+        flash[:error] = '不同活动的商品，不可一起下单。请去您的购物车里筛选'
+        redirect_to confirm_mall_orders_path
+        return
+      end
+    end
+
     line_items.each do |item|
       if !item.product.name.match(/YBZ/).nil?
           @integral = Integral.find_by(user_id: current_user.user_id)
