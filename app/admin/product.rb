@@ -61,7 +61,7 @@ ActiveAdmin.register Product do
       f.input :priority
       f.input :height
       f.input :desc,:as => :ckeditor
-      f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3' }
+      f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3','点亮心灯' => '4' }
     end
     f.actions
   end
