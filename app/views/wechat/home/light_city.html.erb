@@ -28,7 +28,7 @@
   </div>
   <div class="ticNumber" style="text-align: center;">
     <% number =  HightTicket.where(state: "start",user_id: current_user.user_id).length %>
-    您拥有<%= number %>张展票兑换券
+    您拥有<%= number %>巡演票兑换券
     <% if number > 0%>
       <a href="<%= wechat_tickethome_path %>">点击查看</a>
     <% else %>
