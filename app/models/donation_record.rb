@@ -67,7 +67,7 @@ class DonationRecord < ApplicationRecord
   def user_lamp_number
     user = User.find(self.user_id)
     if user.lamp_number.nil?
-      lnmp = User.pluck(:lamp_number).max()
+      lnmp = User.maximum(:lamp_number)
       # 更新点灯位数
       user.lamp_number = lnmp.to_i + 1
       user.save
