@@ -11,6 +11,13 @@
     border-radius: 3px;
   }
 
+
+  .imgs{
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
 </style>
 
 <%= form_tag(mall_orders_path, method: :post, id: 'confirm_order') do %>
@@ -62,6 +69,11 @@
                   <% end %>
                 </div>
               </div>
+            </li>
+            <li class="imgsF">
+              <% if Product.find(product_id_ybz).name.match(/点亮心灯/) %>
+                <%= image_tag "confirm_light.png" ,class: "imgs" %>
+              <% end %>
             </li>
 
             <% if line_item.product.name.match(/YBZ/) %>
@@ -142,14 +154,24 @@
             <div class="weui-cell__hd">
               <label for="" class="weui-label" >参与活动</label>
             </div>
-            <% if product_id_ybz != 38 %>
-              <div class="weui-cell__bd">
-                <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.find_by(is_default: true).id) ,  class: "weui-select", include_blank: "不参加活动" %>
-              </div>
-            <% else %>
-              <div class="weui-cell__bd">
-                  <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "管理健康--YBZ会员(数字社区)" ,disabled:"true"%>
-              </div>
+            <% @line_items.each do |line_item| %>
+            <% name = Product.find(line_item.product_id).name %>
+              <% if name.match(/YBZ/) %>
+                <div class="weui-cell__bd">
+                    <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "管理健康--YBZ会员(数字社区)" ,disabled:"true" %>
+                </div>
+                <% break %>
+              <% elsif name.match(/点亮心灯/) %>
+                <div class="weui-cell__bd">
+                    <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "护航健康.点亮心灯" ,disabled:"true" %>
+                </div>
+                <% break %>
+              <% else %>
+                <div class="weui-cell__bd">
+                  <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.find_by(is_default: true).id) ,  class: "weui-select", include_blank: "不参加活动" %>
+                </div>
+                <% break %>
+              <% end %>
             <% end %>
           </div>
 
