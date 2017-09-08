@@ -219,6 +219,16 @@ class Mall::OrdersController < Mall::BaseController
 
   def confirm
     @line_items = current_cart.line_items.where(id: session[:line_item_ids])
+
+    @line_items.each do |line_item|
+      if line_item.product.name.match(/点亮心灯/)
+        if !line_item.product.height.nil? && line_item.product_id != 55 && line_item.product_id != 56
+          @product_ticket_number = @product_ticket_number.to_i + line_item.quantity.to_i
+        elsif !line_item.product.height.nil? && line_item.product_id == 55 || line_item.product_id == 56
+          @programs_ticket_number = @programs_ticket_number.to_i + line_item.quantity.to_i * 2
+        end
+      end
+    end
     @all_line_item_count =  @line_items.sum { |line_item| line_item.quantity }
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
