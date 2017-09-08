@@ -79,9 +79,9 @@
             <li class="imgsF">
               <% if Product.find(product_id_ybz).name.match(/点亮心灯/) %>
                 <% if product_id_ybz != 55 && product_id_ybz != 56 %>
-                  <p style="color:wheat;" class="ticketLight">赠送：<%= @product_ticket_number %>巡演票</p>
+                  <p style="color:wheat;" class="ticketLight">赠送：巡演票×<%= @product_ticket_number %></p>
                 <% else %>
-                  <p style="color:wheat;" class="ticketLight">赠送：<%= @programs_ticket_number %>巡演票</p>
+                  <p style="color:wheat;" class="ticketLight">赠送：巡演票×<%= @programs_ticket_number %></p>
                 <% end %>
                 <%= image_tag "confirm_light.png" ,class: "imgs" %>
               <% end %>
