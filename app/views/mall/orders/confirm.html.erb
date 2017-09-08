@@ -18,6 +18,12 @@
     margin: 0 auto;
   }
 
+  .ticketLight {
+    position: absolute;
+    left:6%;
+    top:70%;
+  }
+
 </style>
 
 <%= form_tag(mall_orders_path, method: :post, id: 'confirm_order') do %>
@@ -72,6 +78,11 @@
             </li>
             <li class="imgsF">
               <% if Product.find(product_id_ybz).name.match(/点亮心灯/) %>
+                <% if product_id_ybz != 55 && product_id_ybz != 56 %>
+                  <p style="color:wheat;" class="ticketLight">赠送：<%= @product_ticket_number %>巡演票</p>
+                <% else %>
+                  <p style="color:wheat;" class="ticketLight">赠送：<%= @programs_ticket_number %>巡演票</p>
+                <% end %>
                 <%= image_tag "confirm_light.png" ,class: "imgs" %>
               <% end %>
             </li>
