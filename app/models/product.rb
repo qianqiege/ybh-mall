@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :line_items
   has_many :member_equities
   has_many :product_images
-
+  belongs_to :activity
   before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :name, :now_product_price, :image, :desc, presence: true
