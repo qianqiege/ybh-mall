@@ -282,7 +282,14 @@ class Order < ApplicationRecord
           end
           # 用户购买产品 返还用户易积分 购买产品返还的积分 为锁定积分 十五天后可用
           if rule.percentage.present? && self.price != 0
-            presented_records.create(user_id: self.user_id, number: self.price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Locking", wight: 1)
+            @integral_price = self.price
+            products = Product.find(self.line_items.pluck(:product_id))
+            products.each do |product|
+              if !product.activity_id.nil?
+                @integral_price = @integral_price - product.now_product_price
+              end
+            end
+            presented_records.create(user_id: self.user_id, number: @integral_price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Locking", wight: 1)
           end
 
         end
