@@ -167,12 +167,12 @@
             </div>
             <% @line_items.each do |line_item| %>
             <% name = Product.find(line_item.product_id).name %>
-              <% if name.match(/YBZ/) %>
+              <% if name.match(/YBZ/) && @activity.uniq().length == 1 %>
                 <div class="weui-cell__bd">
                     <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "管理健康--YBZ会员(数字社区)" ,disabled:"true" %>
                 </div>
                 <% break %>
-              <% elsif name.match(/点亮心灯/) %>
+              <% elsif name.match(/点亮心灯/) && @activity.uniq().length == 1 %>
                 <div class="weui-cell__bd">
                     <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }) ,  class: "weui-select", include_blank: "护航健康.点亮心灯" ,disabled:"true" %>
                 </div>
