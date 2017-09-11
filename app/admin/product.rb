@@ -16,7 +16,8 @@ ActiveAdmin.register Product do
                 :is_consumption,
                 :spec,
                 :display,
-                :height
+                :height,
+                :activity_id
 
   index do
     selectable_column
@@ -38,7 +39,8 @@ ActiveAdmin.register Product do
       truncate(raw product.desc)
     end
     column :production
-    column :product_sort
+    # column :product_sort
+    column :activity_id
     actions
   end
 
@@ -62,6 +64,7 @@ ActiveAdmin.register Product do
       f.input :height
       f.input :desc,:as => :ckeditor
       f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3','点亮心灯' => '4' }
+      f.input :activity
     end
     f.actions
   end
