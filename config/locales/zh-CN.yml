@@ -16,6 +16,7 @@ zh-CN:
       activity_manage: '活动管理'
       company_manage: '机构（公司）'
       wallet_manage: '钱包/账户'
+      yb_work_manage: '御邦工作站'
   activerecord:
     attributes:
       program:
@@ -303,6 +304,47 @@ zh-CN:
       file_asset:
         name: '名称'
         location: '路径url'
+      shop:
+        name: '商户名'
+        address: '地址'
+        category: '分类'
+        created_at: '创建日期'
+        updated_at: '更新日期'
+      doctor_info:
+        name: '姓名'
+        image: '头像'
+        skill: '技能'
+        shop_id: '工作站名称'
+        created_at: '创建日期'
+        updated_at: '更新日期'
+      shop_service:
+        name: '服务名称'
+        price: '价格'
+        shop_id: '工作站'
+        created_at: '创建日期'
+        updated_at: '更新日期'
+      shop_activity:
+        name: '活动名称'
+        price: '价格'
+        shop_id: '工作站'
+        created_at: '创建日期'
+        updated_at: '更新日期'
+      shop_propaganda_image:
+        image: '图片'
+        shop_id: '工作站'
+        created_at: '创建日期'
+        updated_at: '更新日期'
+      feature:
+        name: '名称'
+        image: '图片'
+        shop_id: '工作站'
+        created_at: '创建日期'
+        updated_at: '更新日期'
+      shop_feature:
+        feature_id: '功能'
+        shop_id: '工作站'
+        created_at: '创建日期'
+        updated_at: '更新日期'
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
@@ -358,3 +400,10 @@ zh-CN:
       ecg: '心电检测'
       file_asset: '文件资源'
       donation_record: '募捐记录'
+      shop: "健康慢病工作站"
+      doctor_info: '医生信息'
+      shop_service: '工作站服务详情'
+      shop_activity: '工作站活动详情'
+      shop_propaganda_image: '工作站宣传图片'
+      feature: '功能模块'
+      shop_feature: '工作站功能'
