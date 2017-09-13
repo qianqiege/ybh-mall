@@ -58,6 +58,8 @@ Rails.application.routes.draw do
     get 'exchange_pay', to: 'orders#exchange_pay'
     get 'intro',to: 'home#intro'
     get 'classify',to:'home#classify'
+    get 'luck', to: 'lottery#luck'
+    get 'create', to: 'lottery#create'
 
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
