@@ -345,6 +345,16 @@ zh-CN:
         shop_id: '工作站'
         created_at: '创建日期'
         updated_at: '更新日期'
+      lottery_prize:
+        name: '奖品名称'
+        image: '奖品图片'
+        is_show: '是否显示'
+      user_prize:
+        user: '用户'
+        lottery_prize_id: '奖品'
+        user_id: '用户'
+        lottery_prize: '奖品'
+        state: '状态'
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
@@ -407,3 +417,5 @@ zh-CN:
       shop_propaganda_image: '工作站宣传图片'
       feature: '功能模块'
       shop_feature: '工作站功能'
+      lottery_prize: '抽奖奖品'
+      user_prize: '用户奖品'

@@ -21,6 +21,10 @@ every 1.day, :at => '3:30 am' do
   rake 'order:update_status'
 end
 
+every 1.day, :at => '12:00 am' do
+  rake 'users:lottery'
+end
+
 every '0 0 1 * *' do
   rake 'ybz_vip:reward'
 end
