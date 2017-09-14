@@ -202,20 +202,6 @@
         </div>
       </div>
 
-      <% if @scoin_account.nil? %>
-        <div class="weui-cells"  id="scoin_account">
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label for="" class="weui-label">S币账号</label></div>
-            <div class="weui-cell__bd">
-              <%= text_field_tag 'account', '', class: "weui-input", placeholder: "请输入您的真实邮箱" %>
-            </div>
-          </div>
-          <!-- <div class="weui-panel__hd confirm_font_red">提示：本邮箱将用来为您开通S货币账户</div> -->
-        </div>
-      <% else %>
-        <input type=hidden name=account value='<%= @scoin_account.account %>'/>
-      <% end %>
-
       <% if current_cart.custom_price_products? && product_id_ybz != 38 && product_id_ybz != 50 && product_id_ybz != 1 %>
         <div class="weui-cells">
           <div class="weui-cell">

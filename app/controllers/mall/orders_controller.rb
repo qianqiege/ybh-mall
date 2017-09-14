@@ -44,14 +44,14 @@ class Mall::OrdersController < Mall::BaseController
       return
     end
 
-    if params[:activity_id].present? && params[:account].blank? && params[:activity_id] == 1
-      scoin_type_count = Activity.search(id_eq: params[:activity_id], activity_rules_coin_type_type_eq: "ScoinType").result.count
-      if scoin_type_count == 1
-        flash[:error] = '参加活动，必须填写S币账号'
-        redirect_to confirm_mall_orders_path
-        return
-      end
-    end
+    # if params[:activity_id].present? && params[:account].blank? && params[:activity_id] == 1
+    #   scoin_type_count = Activity.search(id_eq: params[:activity_id], activity_rules_coin_type_type_eq: "ScoinType").result.count
+    #   if scoin_type_count == 1
+    #     flash[:error] = '参加活动，必须填写S币账号'
+    #     redirect_to confirm_mall_orders_path
+    #     return
+    #   end
+    # end
     line_items = current_cart.line_items.where(id: session[:line_item_ids])
 
     # 去掉库存为0的商品
