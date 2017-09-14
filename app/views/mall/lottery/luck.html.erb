@@ -420,6 +420,12 @@ $(document).ready(function(){
 	};
 
 	$('.pointer').click(function (){
+    console.log("<%= @lottery_number %>");
+    if("<%= @lottery_number %>" < 0){
+      alert("您今天的次数已用完，邀请好友获得次数");
+      location.href="<%= user_invitation_path %>"
+      return false;
+    };
 		if(turnplate.bRotate)return;
 		turnplate.bRotate = !turnplate.bRotate;
 		//获取随机数(奖品个数范围内)
@@ -458,7 +464,6 @@ $(document).ready(function(){
 				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 		}
-		console.log(item);
 	});
 });
 

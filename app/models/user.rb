@@ -92,6 +92,9 @@ class User < ApplicationRecord
   def create_present
     if !self.invitation_id.nil?
       presented_records.create(user_id: self.invitation_id, number: 6, reason: "邀请好友赠送",is_effective:1,type:"Available",wight: 6)
+      lottery_user = User.find(self.invitation_id)
+      lottery_user.lottery_number = lottery_user.lottery_number.to_i + 1
+      lottery_user.save
     end
 
     if !self.invitation_id.nil?
