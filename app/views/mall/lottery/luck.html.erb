@@ -333,14 +333,11 @@ document.createStyleSheet().addRule(".rvml", "behavior:url(#default#VML)");
 
 </head>
 <body style="background:#e62d2d;overflow-x:hidden;">
-    <!-- <img src="images/1.png" id="shan-img" style="display:none;" /> -->
-    <!-- <img src="images/2.png" id="sorry-img" style="display:none;" /> -->
     <%= image_tag "luck1.png" ,id: "shan-img" ,style: "display:none" %>
     <%= image_tag "luck2.png" ,id: "sorry-img" ,style: "display:none" %>
 	<div class="banner">
 		<div class="turnplate luck">
 			<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
-			<!-- <img class="pointer" src="images/turnplate-pointer.png"/> -->
       <%= image_tag "turnplate-pointer.png" ,class:"pointer" %>
 		</div>
 	</div>
@@ -352,6 +349,15 @@ document.createStyleSheet().addRule(".rvml", "behavior:url(#default#VML)");
 	</script>
 	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5718743'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5718743%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
 	</div>
+
+  <% @array = Array.new %>
+  <% i = 0 %>
+  <% @lottery.each do |lottery| %>
+    <% @array[i] = lottery.name %>
+    <p class="choujiang" data-connt="<% @array[i] = lottery.name %>" style="display: none;"><%= lottery.name %></p>
+    <% i = i + 1%>
+  <% end %>
+
 </body>
 <script type="text/javascript">
 var turnplate={
@@ -367,8 +373,17 @@ var turnplate={
 
 $(document).ready(function(){
 	//动态添加大转盘的奖品与奖品区域背景颜色
-	turnplate.restaraunts = ["谢谢参与", "五折券", "谢谢参与", "六折券", "谢谢参与", "七折券", "谢谢参与 ", "八折券", "谢谢参与", "九折券"];
+	// turnplate.restaraunts = ["谢谢参与", "五折券", "谢谢参与", "六折券", "谢谢参与", "七折券", "谢谢参与 ", "八折券", "谢谢参与", "九折券"];
 	turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF"];
+  // var objC = $(".choujiang").each(function() {
+  //   return $(this).text();
+  // });
+  // objC = $(".choujiang").text();
+  // console.log(objC);
+  // turnplate.restaraunts.push(objC);
+  $(".choujiang").each(function() {
+    turnplate.restaraunts.push($(this).text());
+  })
 
 
 	var rotateTimeOut = function (){
@@ -397,7 +412,8 @@ $(document).ready(function(){
 			duration:3000,
 			callback:function (){
 				alert(txt);
-        $.ajax({url:"<%= mall_create_path %>",data:{info:txt}})
+
+        $.ajax({url:"<%= mall_create_path %>",data:{info:txt}, success: function() { location.href = "/mall" }})
 				turnplate.bRotate = !turnplate.bRotate;
 			}
 		});
@@ -415,31 +431,31 @@ $(document).ready(function(){
 				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 2:
-				rotateFn(2, turnplate.restaraunts[1]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 3:
-				rotateFn(3, turnplate.restaraunts[2]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 4:
-				rotateFn(4, turnplate.restaraunts[3]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 5:
-				rotateFn(5, turnplate.restaraunts[4]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 6:
-				rotateFn(6, turnplate.restaraunts[5]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 7:
-				rotateFn(7, turnplate.restaraunts[6]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 8:
-				rotateFn(8, turnplate.restaraunts[7]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 9:
-				rotateFn(9, turnplate.restaraunts[8]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 			case 10:
-				rotateFn(10, turnplate.restaraunts[9]);
+				rotateFn(1, turnplate.restaraunts[0]);
 				break;
 		}
 		console.log(item);
