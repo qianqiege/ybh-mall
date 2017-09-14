@@ -421,7 +421,7 @@ $(document).ready(function(){
 
 	$('.pointer').click(function (){
     console.log("<%= @lottery_number %>");
-    if("<%= @lottery_number %>" < 0){
+    if("<%= @lottery_number %>" <= 0){
       alert("您今天的次数已用完，邀请好友获得次数");
       location.href="<%= user_invitation_path %>"
       return false;

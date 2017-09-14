@@ -16,4 +16,15 @@ namespace :users do
 
     puts "定时器结束，当前时间为#{Time.current}"
   end
+
+  desc "用户抽奖机会"
+  task lottery: :environment do
+    puts "定时器启动，当前时间为#{Time.current}"
+    user = User.all
+    user.each do |user|
+      user.lottery_number = 1
+      user.save
+    end
+    puts "定时器结束，当前时间为#{Time.current}"
+  end
 end
