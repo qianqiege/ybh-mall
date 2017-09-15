@@ -1,5 +1,5 @@
 ActiveAdmin.register LotteryPrize do
-  permit_params :name, :image, :is_show
+  permit_params :name, :image, :is_show, :welfare
   menu parent: I18n.t("active_admin.menu.mall")
 
   form(:html => { :multipart => true }) do |f|
@@ -7,6 +7,7 @@ ActiveAdmin.register LotteryPrize do
       f.input :name
       f.input :image ,as: :file
       f.input :is_show
+      f.input :welfare
     end
     f.actions
   end
@@ -20,6 +21,7 @@ ActiveAdmin.register LotteryPrize do
     end
     column :name
     column :is_show
+    column "对应优惠/奖励",:welfare
     column "创建时间",:created_at
 
     actions

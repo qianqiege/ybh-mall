@@ -1,12 +1,11 @@
 class Mall::LotteryController < Mall::BaseController
   def create
     lottery_prize = LotteryPrize.find_by(name: params[:info])
-    UserPrize.create(lottery_prize_id: lottery_prize.id,user_id: current_user.user_id,state: "panding")
+    UserPrize.create(lottery_prize_id: lottery_prize.id,user_id: current_user.user_id)
 
     user = User.find(current_user.user_id)
     user.lottery_number = user.lottery_number.to_i - 1
     if user.save
-      ap user
     end
   end
 

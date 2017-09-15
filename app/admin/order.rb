@@ -19,6 +19,7 @@ ActiveAdmin.register Order do
     column :integral
     column :cash
     column :quantity
+    column :lottery_prize
     column :desc
     column :number do |order|
       "#{order.number}\t"
@@ -120,6 +121,7 @@ ActiveAdmin.register Order do
     column :integral
     column "现金余额",:cash
     column :quantity
+    column '优惠券',:lottery_prize
     column :number
     column '付款类型' do |order|
       status_tag order.pay_type_state, order_pay_type_state_color(order.pay_tp)
