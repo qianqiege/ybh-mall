@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   belongs_to :wechat_user
   belongs_to :user
   belongs_to :address
+  belongs_to :lottery_prize
   belongs_to :activity
   has_many :line_items, -> { where in_cart: false }, dependent: :destroy
   has_many :return_requests
@@ -71,6 +72,8 @@ class Order < ApplicationRecord
           remove_cash
           # # 一盏明灯
           update_hight
+          # # 优惠券
+          update_lottery
         end
 
         # # 模板消息
@@ -400,6 +403,12 @@ class Order < ApplicationRecord
     end
   end
 
+  def update_lottery
+    lottery = UserPrize.find(self.lottery_prize_id)
+    lottery.to_use
+    lottery.save
+  end
+
   def send_template_msg
     data = {
       first: {
@@ -476,7 +485,5 @@ class Order < ApplicationRecord
     end
     message
   end
-
-
 
 end

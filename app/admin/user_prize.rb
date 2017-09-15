@@ -8,7 +8,15 @@ ActiveAdmin.register UserPrize do
 
     column :user
     column :lottery_prize
-    column :state
+    column '状态' do |state|
+      if state.state == "pending"
+        "可使用"
+      elsif state.state == "not"
+        "已过期"
+      elsif state.state == "use"
+        "已使用"
+      end
+    end
     column "创建时间",:created_at
 
     actions
