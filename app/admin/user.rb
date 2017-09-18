@@ -9,7 +9,10 @@ ActiveAdmin.register User do
                 :invitation_user,
                 :organization_id,
                 :invitation_id,
-                :status
+                :status,
+                :health_manager,
+                :family_health_manager,
+                :family_doctor
 
   index do
     selectable_column
@@ -41,6 +44,9 @@ ActiveAdmin.register User do
       f.input :organization
       f.input :type, as: :select, collection: ["Doctor", "Patient"]
       f.input :status, as: :select, collection: ["User", "Staff"]
+      f.input :family_doctor
+      f.input :family_health_manager
+      f.input :health_manager
     end
     f.actions
   end

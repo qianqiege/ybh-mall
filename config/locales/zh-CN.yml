@@ -277,6 +277,9 @@ zh-CN:
         staff: '赠送员工比例(0.1即10%)'
         donation: '募捐比例(0.1即10%)'
         percentage: '返还用户比例(0.1即10%)'
+        health_manager: '健康管理师比例(0.1即10%)'
+        family_health_manager: '家庭健康管理师比例(0.1即10%)'
+        family_doctor: '家庭医生比例(0.1即10%)'
       donation_record:
         user: '用户'
         price: '人民币使用数量'
