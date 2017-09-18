@@ -9,7 +9,7 @@ namespace :presented_record do
       @time = (Date.current - Date.parse(record.created_at.to_s)).to_i
 
       # 每笔入账积分为锁定积分 15天后可用
-      fifteen_days = 15
+      fifteen_days = 3
       # 积分满六个月180天 可以兑换体现 升值5%
       sex_months = 180
 
