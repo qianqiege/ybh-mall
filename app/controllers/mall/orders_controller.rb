@@ -94,9 +94,14 @@ class Mall::OrdersController < Mall::BaseController
         end
       end
 
-
     integral_available = params["integral_available"].to_f
     integral_money = params["integral_money"].to_f
+
+    # 使用优惠券
+    if params[:lottery_prize_id].present?
+      lottery = LotteryPrize.find(UserPrize.find(params[:lottery_prize_id]).lottery_prize_id)
+      price = price * lottery.welfare.to_f
+    end
 
     # 自定义价格
     if params[:custom_price].present?
@@ -139,6 +144,10 @@ class Mall::OrdersController < Mall::BaseController
       is_handle: false,
       is_donation: donation
     )
+
+    if params[:lottery_prize_id].present?
+      @order.lottery_prize_id = LotteryPrize.find(UserPrize.find(params[:lottery_prize_id]).lottery_prize_id).id
+    end
 
     line_items.each do |item|
       if !item.product.name.match(/YBZ/).nil?
@@ -233,11 +242,11 @@ class Mall::OrdersController < Mall::BaseController
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
     @activities = Activity.where(is_show: true)
-    @scoin_account = ScoinAccount.find_by(user_id: current_user.user_id)
     if Integral.find_by(user_id: current_user.user_id)
       @integral = Integral.find_by(user_id: current_user.user_id)
     end
     @activity = Product.find(@line_items.pluck(:product_id)).pluck(:activity_id)
+    @lotterys = UserPrize.where(user_id: current_user.user_id,state: 'pending')
   end
 
   def pay

@@ -186,21 +186,33 @@
             <% end %>
           </div>
 
-        <div class="weui-cell weui-cell_select weui-cell_select-after">
-          <div class="weui-cell__hd">
-            <label for="" class="weui-label">支付方式</label>
+          <div class="weui-cell weui-cell_select weui-cell_select-after">
+            <div class="weui-cell__hd">
+              <label for="" class="weui-label">支付方式</label>
+            </div>
+            <div class="weui-cell__bd">
+              <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"],["线下支付", "PAYMENT_TYPE_NULL"]]) ,  class: "weui-select" %>
+            </div>
           </div>
-          <div class="weui-cell__bd">
-            <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"],["线下支付", "PAYMENT_TYPE_NULL"]]) ,  class: "weui-select" %>
+
+          <div class="weui-cell weui-cell_select weui-cell_select-after">
+            <div class="weui-cell__hd">
+              <label for="" class="weui-label" >使用优惠</label>
+            </div>
+            <% if !@lotterys.nil? %>
+              <div class="weui-cell__bd">
+                  <%= select_tag 'lottery_prize_id', options_for_select(@lotterys.collect{ |u| [u.lottery_prize.name, u.id] }) ,  class: "weui-select" %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="" class="weui-label">用户备注</label></div>
+            <div class="weui-cell__bd">
+              <%= text_field_tag 'custom_desc', '', class: "weui-input", placeholder: "备注" %>
+            </div>
           </div>
         </div>
-        <div class="weui-cell">
-          <div class="weui-cell__hd"><label for="" class="weui-label">用户备注</label></div>
-          <div class="weui-cell__bd">
-            <%= text_field_tag 'custom_desc', '', class: "weui-input", placeholder: "备注" %>
-          </div>
-        </div>
-      </div>
 
       <% if current_cart.custom_price_products? && product_id_ybz != 38 && product_id_ybz != 50 && product_id_ybz != 1 %>
         <div class="weui-cells">
