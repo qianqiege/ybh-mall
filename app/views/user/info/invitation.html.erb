@@ -32,29 +32,20 @@
   <div class="qr-code-invitation">
 
     <a href="<%= user_invitation_friend_path %>"><%= raw @qrcode.as_html %></a></br>
-    <div class="clearfix">
+    <div class="clearfix" id='info'>
       <img src="<%= @wechat_user.headimgurl %>" style="width:35px; float: left;">
       <span class="ways"><%= @wechat_user.user.telphone %></span><span class="ways" style="margin-right: 3%;"><%= @wechat_user.user.name %></span>
     </div>
-  </div>
-<!--
-  <div class="weui-panel weui-panel_access" >
-    <div class="weui-panel">
-      <div class="weui-panel__hd">我邀请的用户</div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box weui-media-box_small-appmsg">
-          <div class="weui-cells">
-
-            <a class="weui-cell weui-cell_access" href="<%= user_invitation_friend_path %>">
-              <div class="weui-cell__bd weui-cell_primary">
-                <div class="weui-panel__hd">我的邀请</div>
-              </div>
-              <span class="weui-cell__ft"></span>
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="clearfix" id='infom' onclick="create()">
+      <span class="ways" style="font-size:12px;">点击隐藏</span>
     </div>
-  </div> -->
-
+  </div>
 </div>
+
+<script>
+  function create()
+  {
+      document.getElementById("info").style.display="none";
+      document.getElementById("infom").style.display="none";
+  }
+</script>
