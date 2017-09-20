@@ -121,8 +121,6 @@ class Mall::OrdersController < Mall::BaseController
         activity = 13
       elsif item.product_id == 50
         activity = 13
-      elsif !item.product.height.nil?
-        activity = 14
       else
         activity = params[:activity_id]
       end
