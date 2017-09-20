@@ -404,9 +404,11 @@ class Order < ApplicationRecord
   end
 
   def update_lottery
-    lottery = UserPrize.find(self.lottery_prize_id)
-    lottery.to_use
-    lottery.save
+    if !self.lottery_prize_id.nil?
+      lottery = UserPrize.find(self.lottery_prize_id)
+      lottery.to_use
+      lottery.save
+    end
   end
 
   def send_template_msg

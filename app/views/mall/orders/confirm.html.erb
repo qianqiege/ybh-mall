@@ -201,7 +201,7 @@
             </div>
             <% if !@lotterys.nil? %>
               <div class="weui-cell__bd">
-                  <%= select_tag 'lottery_prize_id', options_for_select(@lotterys.collect{ |u| [u.lottery_prize.name, u.id] }) ,  class: "weui-select" %>
+                  <%= select_tag 'lottery_prize_id', options_for_select(@lotterys.collect{ |u| [u.lottery_prize.name, u.id] }) ,  class: "weui-select" ,include_blank: "不使用优惠" %>
               </div>
             <% end %>
           </div>
