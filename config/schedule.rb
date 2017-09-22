@@ -32,3 +32,7 @@ end
 every 1.day, :at => '3:00 am' do
   rake 'data:date_ycoin'
 end
+
+every 1.day, :at => '2:30 am' do
+  rake 'users:lottery_prize'
+end
