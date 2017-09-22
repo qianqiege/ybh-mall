@@ -27,4 +27,18 @@ namespace :users do
     end
     puts "定时器结束，当前时间为#{Time.current}"
   end
+
+  desc "用户折扣券过期"
+  task lottery_prize: :environment do
+    puts "定时器启动，当前时间为#{Time.current}"
+    UserPrize.where(state: 'pending').each do |prize|
+      @time = (Date.current - Date.parse(prize.created_at.to_s)).to_i
+      if @time >= 7
+        prize.state = 'not'
+        prize.save
+      end
+    end
+    puts "定时器结束，当前时间为#{Time.current}"
+  end
+
 end

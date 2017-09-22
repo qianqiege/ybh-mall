@@ -12,5 +12,6 @@ class Mall::LotteryController < Mall::BaseController
   def luck
     @lottery = LotteryPrize.where(is_show: true)
     @lottery_number = User.find(current_user.user_id).lottery_number
+    @user_prize = UserPrize.where(user_id: current_user.user_id).limit(8)
   end
 end
