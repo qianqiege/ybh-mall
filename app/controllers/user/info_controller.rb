@@ -279,18 +279,31 @@ class User::InfoController < Wechat::BaseController
   end
 
   def edit_user_info_review
-    @user_info_review = UserInfoReview.find(params[:id])
+    @user_info_review = UserInfoReview.find_by(id: params[:id])
+    if @user_info_review.blank?
+       @user_info_review = UserInfoReview.new
+    end
   end
 
   def update_user_info_review
-    @user_info_review = UserInfoReview.find(params[:id])
-    @user_info_review.update(identity: params[:identity], 
-                           work_province: params[:work_address][:province], 
-                           work_city: params[:work_address][:city],
-                           work_street: params[:work_address][:street],
-                           resident_province: params[:resident_address][:province],
-                           resident_city: params[:resident_address][:city],
-                           resident_street: params[:resident_address][:street])
+    @user_info_review = UserInfoReview.find_by(id: params[:id])
+    format_data = {
+      identity: params[:identity], 
+      work_province: params[:work_address][:province], 
+      work_city: params[:work_address][:city],
+      work_street: params[:work_address][:street],
+      resident_province: params[:resident_address][:province],
+      resident_city: params[:resident_address][:city],
+      resident_street: params[:resident_address][:street]
+    }
+    if @user_info_review.blank?
+      review = UserInfoReview.new(format_data)  
+      review.user_id = current_user.user.id
+      review.save!
+    else
+      @user_info_review.update(format_data)
+    end
+    
     redirect_to user_setting_path
   end
 
