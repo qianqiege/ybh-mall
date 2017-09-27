@@ -1,3 +1,24 @@
+
+<style type="text/css">
+  
+    .relaA {
+      position: relative;
+    }
+
+    .posiA {
+        position: absolute;
+        top: 0;right: 0;
+        border-radius: inherit;
+    }
+
+</style>
+
+
+
+
+
+
+
 <%= title '我的信息' %>
 <% if flash[:notice] %>
   <div class="notice"><%=flash[:notice]%></div>
@@ -27,7 +48,10 @@
 
 <div class="weui-panel weui-panel_access">
   <div class="weui-panel">
-    <div class="weui-panel__hd">我的信息</div>
+    <div class="weui-panel__hd relaA">
+      <span>我的信息</span>
+      <a href="<%= user_edit_info_path %>" class="weui-btn weui-btn_primary posiA">编辑</a>
+    </div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">
         <div class="weui-cells">
@@ -76,9 +100,9 @@
             </div>
           </div>
           </div>
-          <div class="weui-btn-area">
-            <a href="<%= user_edit_info_path %>" class="weui-btn weui-btn_primary">编辑</a>
-          </div>
+          
+            
+          
         </div>
       </div>
     </div>
@@ -86,7 +110,10 @@
 
   <div class="weui-panel weui-panel_access">
   <div class="weui-panel">
-    <div class="weui-panel__hd">审核信息</div>
+    <div class="weui-panel__hd relaA">
+      <span>审核信息</span>
+      <a href="<%= user_edit_user_info_review_path(id: @user_info_review) %>" class="weui-btn weui-btn_primary posiA">编辑</a>
+    </div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">
         <div class="weui-cells">
@@ -113,9 +140,9 @@
           </div>
 
           </div>
-          <div class="weui-btn-area">
-            <a href="<%= user_edit_user_info_review_path(id: @user_info_review) %>" class="weui-btn weui-btn_primary">编辑</a>
-          </div>
+          
+            
+          
         </div>
       </div>
     </div>
