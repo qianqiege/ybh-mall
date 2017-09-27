@@ -133,6 +133,8 @@ Rails.application.routes.draw do
     post '/do_query_wallet', to: 'info#do_query_wallet'
     get '/query_wallet', to: 'info#query_wallet'
     get '/record_home', to: 'info#record_home'
+    get '/edit_user_info_review', to: 'info#edit_user_info_review'
+    put '/update_user_info_review', to: 'info#update_user_info_review'
     get '/moving_health_data', to: 'info#moving_health_data'
     get '/idata_example_show', to: 'info#idata_example_show'
     get '/idata_detail_explanation', to: 'info#idata_detail_explanation'

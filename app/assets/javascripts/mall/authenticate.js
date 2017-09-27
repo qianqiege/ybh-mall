@@ -40,8 +40,22 @@ $(function () {
         identity_card = $.trim($("#identity_card").val()).replace(/\s/g, ""),
         password = $.trim($("#password").val()).replace(/\s/g, ""),
         name = $.trim($("#name").val()).replace(/\s/g, ""),
-        agreeCheck = $("#agreeCheck").is(':checked');
+        agreeCheck = $("#agreeCheck").is(':checked'),
+        identity = $(this).parent().parent().find("#identity").val();
 
+    var address_flag = 0;
+    $(this).parent().parent().find(".city-select").each(function(index){
+        if ($(this).val()=='') {
+         address_flag = 1;
+         return
+        }
+    })
+
+
+    if (address_flag && identity != '') {
+      showFlash("#toast-custom", '请将地址填写完整！');
+      return;
+    }
 
     if (!validateMobile(mobile)) {
       showFlash("#toast-custom", '无效的手机号码');
@@ -72,6 +86,10 @@ $(function () {
       return;
     }
     $("#bind_phone_form").submit();
+
+
+
+
   })
 
 

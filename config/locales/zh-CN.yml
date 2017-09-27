@@ -288,6 +288,13 @@ zh-CN:
         count_price: '募捐总金额'
         order_number: '订单编号'
         reason: '募捐渠道'
+      user_info_review:
+        user: '用户'
+        work_address: '工作地'
+        resident_address: '常住地'
+        identity: '身份'
+        state: '状态'
+        desc: '审核不通过原因'
       coin_type:
         name: '包名称'
         once: '一次性数量（第一天给的S货币数量）'
@@ -363,6 +370,7 @@ zh-CN:
       deposit: '现金充值记录'
       idata_subscribe: '数动力付款记录'
       user_idata_subscribe: '用户数动力订阅服务'
+      user_info_review: '用户信息审核'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'

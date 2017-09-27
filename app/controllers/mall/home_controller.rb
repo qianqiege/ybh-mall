@@ -7,6 +7,7 @@ class Mall::HomeController < Mall::BaseController
       @products = @q.result(distinct: true).where(display: true,is_show: true,height: "一盏明灯")
       @slides = Slide.top(9)
     end
+    @id = params[:id]
   end
 
   def classify

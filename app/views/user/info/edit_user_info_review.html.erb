@@ -1,0 +1,172 @@
+<style type="text/css">
+
+  #txtlogin {
+    background:#ccc;
+  }
+
+  #txtlogin.active {
+    background: #1aad19;z-index: 99;
+
+  }
+
+  .really,.login_content {
+    font-size: 1rem;
+  }
+
+  .weui-cell__bd {
+    border-bottom: 1px solid #bbb;
+  }
+
+  .login_label,.phone,.changearea, .weui-cells__title {
+    color: #000;
+  }
+
+  .weui-cell_warn .weui-cell__hd {
+    width: 19%;
+  }
+
+  .radius {
+    line-height: 30px;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .weui-cell:before, .weui-cells:before, .weui-cells:after {
+    border: 0;
+  }
+
+  .zhushi {
+    color: red;
+  }
+
+  input {
+    width: 100%; height: 30px;
+  }
+
+  .yzm {
+    position: relative;
+  }
+
+  #smsgetCode {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .weui-cells {
+    margin: 0;
+  }
+
+  .address-box {
+    margin-bottom: 0;
+  }
+
+  .weui-panel {
+    margin-top: 0;
+  }
+
+
+</style>
+
+
+<%= title '编辑审核内容' %>
+
+<%= form_tag(user_update_user_info_review_path(id: @user_info_review), method: :put, id: 'bind_phone_form') do %>
+    <div class="wraper pt50">
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+      <div class="weui-cell weui-cell_form">
+          <div class="weui-cell__hd really"><label for="" class="weui-label">角色选择</label></div>
+          <input type="text" value="<%= @user_info_review.identity %>" class="pass_value" style="display: none;">
+          <div class="weui-cell__bd" style="border-bottom: none;">
+            <select name="identity" id="identity">
+              <option value="">用户</option>
+              <option value="family_doctor">家庭医生</option>
+              <option value="family_health_manager">家庭健康管理师</option>
+              <option value="helath_manager">健康管理师</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">工作地信息</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <ul>
+                  <li class="clearfix">
+                    <span>省份</span>
+                    <select class="city-select" name="work_address[province]">
+                      <option value=""><%= ChinaCity.get(@user_info_review.work_province) %></option>
+                      <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>城市</span>
+                    <select class="city-select" name="work_address[city]">
+                      <option value=""><%= ChinaCity.get(@user_info_review.work_city) %></option>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>地区或街道</span>
+                    <select class="city-select" name="work_address[street]">
+                      <option value=""><%= ChinaCity.get(@user_info_review.work_street) %></option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">常住地信息</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <ul>
+                  <li class="clearfix">
+                    <span>省份</span>
+                    <select class="city-select" name="resident_address[province]">
+                      <option value=""><%= ChinaCity.get(@user_info_review.resident_province) %></option>
+                      <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>城市</span>
+                    <select class="city-select" name="resident_address[city]">
+                      <option value=""><%= ChinaCity.get(@user_info_review.resident_city) %></option>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>地区或街道</span>
+                    <select class="city-select" name="resident_address[street]">
+                      <option value=""><%= ChinaCity.get(@user_info_review.resident_street) %></option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="weui-btn-area">
+        <input type="submit" class="weui-btn weui-btn_primary" value="提交" style="line-height: 40px;">
+      </div>
+
+    </div>
+  </div>
+<% end %>
+
+
+<script>
+  $(function() {
+    var iden = $(".pass_value").val();
+    $("#identity option").each(function() {
+      if ($(this).val() == iden) {
+        $(this).attr("selected", "selected");
+      }
+    })
+  })
+</script>
+
