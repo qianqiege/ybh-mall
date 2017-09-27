@@ -108,45 +108,47 @@
     </div>
   </div>
 
-  <div class="weui-panel weui-panel_access">
-  <div class="weui-panel">
-    <div class="weui-panel__hd relaA">
-      <span>审核信息</span>
-      <a href="<%= user_edit_user_info_review_path(id: @user_info_review) %>" class="weui-btn weui-btn_primary posiA">编辑</a>
-    </div>
-    <div class="weui-panel__bd">
-      <div class="weui-media-box weui-media-box_small-appmsg">
-        <div class="weui-cells">
-          <div class="weui-form-preview">
-            <div class="weui-form-preview__bd">
-              <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">工作地</label>
-                <span class="weui-form-preview__value"><%= @user_info_review.display_work_detail %></span>
+  <% if !@user_info_review.blank? %>
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel">
+        <div class="weui-panel__hd relaA">
+          <span>审核信息</span>
+          <a href="<%= user_edit_user_info_review_path(id: @user_info_review) %>" class="weui-btn weui-btn_primary posiA">编辑</a>
+        </div>
+        <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_small-appmsg">
+            <div class="weui-cells">
+              <div class="weui-form-preview">
+                <div class="weui-form-preview__bd">
+                  <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">工作地</label>
+                    <span class="weui-form-preview__value"><%= @user_info_review.display_work_detail %></span>
+                  </div>
+                  <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">常住地</label>
+                    <span class="weui-form-preview__value"><%= @user_info_review.display_resident_detail %></span>
+                  </div>
+                  <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">身份</label>
+                    <span class="weui-form-preview__value"><%= @user_info_review.identity_name %></span>
+                  </div>
+                </div>
+                <% if false %>
+                  <div class="weui-form-preview__ft">
+                    <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
+                  </div>
+                <% end %>
               </div>
-              <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">常住地</label>
-                <span class="weui-form-preview__value"><%= @user_info_review.display_resident_detail %></span>
-              </div>
-              <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">身份</label>
-                <span class="weui-form-preview__value"><%= @user_info_review.identity_name %></span>
-              </div>
-            </div>
-            <% if false %>
-              <div class="weui-form-preview__ft">
-                <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
-              </div>
-            <% end %>
-          </div>
 
+              </div>
+              
+                
+              
+            </div>
           </div>
-          
-            
-          
         </div>
       </div>
-    </div>
-  </div>
+  <% end %>
 </div>
 
 <%= content_for :weixin_api do %>
