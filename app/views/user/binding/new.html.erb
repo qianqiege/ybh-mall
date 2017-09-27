@@ -56,6 +56,18 @@
     margin: 0;
   }
 
+  .address-box {
+    margin-bottom: 0;
+  }
+
+  .weui-panel {
+    margin-top: 0;
+  }
+
+  .weui-panel_access {
+    display: none;
+  }
+
 </style>
 
 
@@ -115,6 +127,82 @@
         </div>
       </div>
 
+      <div class="weui-cell weui-cell_form">
+          <div class="weui-cell__hd really"><label for="" class="weui-label">角色选择</label></div>
+          <div class="weui-cell__bd" style="border-bottom: none;">
+            <select name="identity" id="identity">
+              <option value="">用户</option>
+              <option value="family_doctor">家庭医生</option>
+              <option value="family_health_manager">家庭健康管理师</option>
+              <option value="helath_manager">健康管理师</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">工作地信息</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <ul>
+                  <li class="clearfix">
+                    <span>省份</span>
+                    <select class="city-select" name="work_address[province]">
+                      <option value="">--省份--</option>
+                      <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>城市</span>
+                    <select class="city-select" name="work_address[city]">
+                      <option value="">--城市--</option>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>地区或街道</span>
+                    <select class="city-select" name="work_address[street]">
+                      <option value="">--地区或街道--</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="weui-panel weui-panel_access">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">常住地信息</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <ul>
+                  <li class="clearfix">
+                    <span>省份</span>
+                    <select class="city-select" name="resident_address[province]">
+                      <option value="">--省份--</option>
+                      <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>城市</span>
+                    <select class="city-select" name="resident_address[city]">
+                      <option value="">--城市--</option>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>地区或街道</span>
+                    <select class="city-select" name="resident_address[street]">
+                      <option value="">--地区或街道--</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
       <% if @tp == 0 %>
       <!-- 商盟注册 附加信息 -->
         <div class="login_control">
@@ -167,6 +255,8 @@
           </span>
         </label>
       </div>
+      
+
       <div class="weui-btn-area">
         <a class="weui-btn weui-btn_primary" id="txtlogin">验证</a>
       </div>
@@ -181,11 +271,20 @@
           }else{
             // console.log(2);
              $('#txtlogin').removeClass("active");
-
-
           }
 
         })
+
+
+        $("#identity").change(function() {
+          if ($(this).val() == '') {
+            $(".weui-panel_access").hide();
+          }else{
+            $(".weui-panel_access").show();
+          }
+        })
+
+
 
       </script>
 

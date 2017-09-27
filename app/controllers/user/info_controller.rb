@@ -275,6 +275,23 @@ class User::InfoController < Wechat::BaseController
     @wechat_user = WechatUser.find(current_user)
     @identity_cards = current_user.user.identity_cards
     @show_upload_btn = @identity_cards.count < 4
+    @user_info_review = current_user.user.user_info_review
+  end
+
+  def edit_user_info_review
+    @user_info_review = UserInfoReview.find(params[:id])
+  end
+
+  def update_user_info_review
+    @user_info_review = UserInfoReview.find(params[:id])
+    @user_info_review.update(identity: params[:identity], 
+                           work_province: params[:work_address][:province], 
+                           work_city: params[:work_address][:city],
+                           work_street: params[:work_address][:street],
+                           resident_province: params[:resident_address][:province],
+                           resident_city: params[:resident_address][:city],
+                           resident_street: params[:resident_address][:street])
+    redirect_to user_setting_path
   end
 
   def upload_image
