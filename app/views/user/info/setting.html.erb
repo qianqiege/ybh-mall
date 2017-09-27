@@ -108,7 +108,7 @@
     </div>
   </div>
 
-  <% if !@user_info_review.blank? %>
+
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel">
         <div class="weui-panel__hd relaA">
@@ -122,15 +122,19 @@
                 <div class="weui-form-preview__bd">
                   <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">工作地</label>
-                    <span class="weui-form-preview__value"><%= @user_info_review.display_work_detail %></span>
+                    <span class="weui-form-preview__value"><%= @user_info_review.display_work_detail if @user_info_review %></span>
                   </div>
                   <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">常住地</label>
-                    <span class="weui-form-preview__value"><%= @user_info_review.display_resident_detail %></span>
+                    <span class="weui-form-preview__value"><%= @user_info_review.display_resident_detail if @user_info_review %></span>
                   </div>
                   <div class="weui-form-preview__item">
                     <label class="weui-form-preview__label">身份</label>
-                    <span class="weui-form-preview__value"><%= @user_info_review.identity_name %></span>
+                    <span class="weui-form-preview__value"><%= @user_info_review ?  @user_info_review.identity_name : "用户" %></span>
+                  </div>
+                  <div class="weui-form-preview__item">
+                    <label class="weui-form-preview__label">审核状态</label>
+                    <span class="weui-form-preview__value"><%= @user_info_review.get_state if @user_info_review %></span>
                   </div>
                 </div>
                 <% if false %>
@@ -139,16 +143,12 @@
                   </div>
                 <% end %>
               </div>
-
-              </div>
-              
-                
-              
+              </div>   
             </div>
           </div>
         </div>
       </div>
-  <% end %>
+ 
 </div>
 
 <%= content_for :weixin_api do %>

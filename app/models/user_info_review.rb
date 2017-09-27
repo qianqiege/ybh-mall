@@ -1,6 +1,6 @@
 class UserInfoReview < ApplicationRecord
 	belongs_to :user
-	validates :identity, inclusion: { in: %w(family_doctor family_health_manager helath_manager) }
+	validates :identity, inclusion: { in: %w(family_doctor family_health_manager helath_manager user) }
 
 
 	include AASM
@@ -57,6 +57,21 @@ class UserInfoReview < ApplicationRecord
 				"家庭健康管理师"
 			when "helath_manager"
 				"健康管理师"
+			when "user"
+				"用户"
+		end
+	end
+
+	def get_state
+		case state
+		when "pending"
+			"待审核"
+		when "dealed"
+			"已通过审核"
+		when "dealing"
+			"地址审核通过，等待身份审核"
+		when "not"
+			"审核未通过," + desc
 		end
 	end
 end
