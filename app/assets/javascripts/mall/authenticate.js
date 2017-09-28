@@ -52,7 +52,7 @@ $(function () {
     })
 
 
-    if (address_flag && identity != '') {
+    if (address_flag && identity != "user") {
       showFlash("#toast-custom", '请将地址填写完整！');
       return;
     }
