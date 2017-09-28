@@ -6,7 +6,6 @@ class Mall::LotteryController < Mall::BaseController
     user.lottery_number = user.lottery_number.to_i - 1
     if user.save
       UserPrize.create(lottery_prize_id: lottery_prize.id,user_id: current_user.user_id)
-      rails.logger.info user
     end
   end
 
