@@ -499,7 +499,7 @@ $(document).ready(function(){
 			callback:function (){
 				alert(txt);
 
-        $.ajax({url:"<%= mall_create_path %>",data:{info:txt}, success: function() { location.href = "/mall" }})
+        $.ajax({url:"<%= mall_create_path %>",data:{info:txt}, success: function() { location.href = "/mall/luck" }})
 				turnplate.bRotate = !turnplate.bRotate;
 			}
 		});
