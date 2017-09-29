@@ -67,7 +67,7 @@
   #identity {
     width: 80%;
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #94c6ad;
     border-radius: 5px;
     line-height: 20px;
     padding: 5px 10px;
@@ -75,6 +75,37 @@
 
   .weui-label {
     width: 90px;
+  }
+
+  .pt50 h2 {
+    font-weight: normal;
+    color:#94c6ad;
+    text-align: center;
+  } 
+
+  .pt50 .weui-panel {
+    background: none;
+  }
+
+  .pt50 .weui-panel:after, .pt50 .weui-panel:before {
+    content: none;
+  }
+
+  .pt50 .address-box {
+    background: none;
+  }
+
+  .pt50 .address-box li {
+    border:none;
+    background: none;
+  }
+
+  .pt50 .address-box li input, .pt50 .address-box li select, .pt50 .address-box li textarea {
+    border: 1px solid #94c6ad;
+  }
+
+  .pt50 .marginLeft {
+    margin-left: 5%;
   }
 
 
@@ -85,10 +116,11 @@
 
 <%= form_tag(user_update_user_info_review_path(id: @user_info_review), method: :put, id: 'bind_phone_form') do %>
     <div class="wraper pt50">
+      <h2>编辑审核信息</h2>
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
-      <div class="weui-cell weui-cell_form">
+      <div class="weui-cell weui-cell_form marginLeft">
           <div class="weui-cell__hd really"><label for="" class="weui-label">角色选择</label></div>
           <input type="text" value="<%= @user_info_review.identity %>" class="pass_value" style="display: none;">
           <div class="weui-cell__bd" style="border-bottom: none;">
@@ -101,7 +133,7 @@
           </div>
       </div>
 
-      <div class="weui-panel weui-panel_access">
+      <div class="weui-panel weui-panel_access marginLeft">
         <div class="weui-panel">
           <div class="weui-panel__hd">工作地信息</div>
             <div class="weui-panel__bd">
@@ -132,7 +164,7 @@
           </div>
         </div>
 
-      <div class="weui-panel weui-panel_access">
+      <div class="weui-panel weui-panel_access marginLeft">
         <div class="weui-panel">
           <div class="weui-panel__hd">常住地信息</div>
             <div class="weui-panel__bd">
