@@ -241,4 +241,8 @@ Rails.application.routes.draw do
     end
     resources :addresses, only: [:new, :create]
   end
+
+  namespace :doctor do
+    get 'doctor_info', to: 'info#doctor_info'
+  end
 end
