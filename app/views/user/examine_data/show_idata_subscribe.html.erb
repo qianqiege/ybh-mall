@@ -69,8 +69,20 @@
 
     .check .lables input , .allcheck .lables input{
         width: 20px;height: 20px;
-        background: #fff;
+        /*-webkit-appearance: none;*/
         line-height: 20px;
+/*        border: 1px solid #94c6ad;
+        border-radius: 50%;
+        background: transparent;*/
+    }
+
+    .hideCheck .s-lable input {
+        width: 15px;height: 15px;
+        /*-webkit-appearance: none;*/
+        line-height: 20px;
+  /*      border: 1px solid #94c6ad;
+        border-radius: 50%;  
+        background: transparent; */     
     }
 
     .check .lables input span {
@@ -99,6 +111,16 @@
         width: 60%;
     }
 
+ /*   .bac {
+        background: #94c6ad!important;
+    }*/
+
+    #checkIpt span,#checkIpt p{
+        color: #436152;
+    }
+
+
+
 
 </style>
 <div class="home">
@@ -107,10 +129,10 @@
 <!-- (controller: "info", action:"create_deposit_exchange", method:"post") -->
 
 
-    <h2>健康报告订阅</h2>
+    <h2 class="yyj_title">健康报告订阅</h2>
 <%= form_tag(controller: "examine_data" , action: "create_idata_subscribe", method: :post) do %>
 
-    <div class="weui_cells weui_cells_checkbox allOfC clearfix">
+    <div id="checkIpt" class="weui_cells weui_cells_checkbox allOfC clearfix">
 
         <div class="allcheck clearfix">
             <label class="lables">
@@ -268,7 +290,7 @@
 
 
     <div class="cart-fixed-ft">
-        <input type="submit", class="commit", value="订阅提交" />
+        <input type="submit", class="commit yyj_text yyj_commit", value="订阅提交" />
         <span class="mr15">共<span class="number">0</span>项，合计：¥<span class="total">0</span></span>
     </div>
 
@@ -359,3 +381,4 @@
     }
 
 </script>
+
