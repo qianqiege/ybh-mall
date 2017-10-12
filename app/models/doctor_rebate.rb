@@ -46,7 +46,7 @@ class DoctorRebate < ApplicationRecord
 
       Settings.weixin.template_id =  "G6tOYph8rynx_F-n9VwIqb7Bn_u8om4nJCyeObScORI"
       url = Settings.weixin.host
-      open_id = self.wechat_user.open_id
+      open_id = self.user.wechat_user.open_id
 
       $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
   end
