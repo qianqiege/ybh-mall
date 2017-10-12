@@ -35,6 +35,7 @@ permit_params :user_id, :money, :account
 		      date user_info.updated_at
 		    end
 		end
+		actions
 	end
 
 	form(:html => {}) do |f|

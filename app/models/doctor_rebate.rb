@@ -22,19 +22,19 @@ class DoctorRebate < ApplicationRecord
             value:"御易健已为您支付#{money}元用药能力建设服务费",
             color:"#173177"
           },
-          keyword1:{
+          transferMoney:{
             value: money.to_s + "元",
             color:"#173177"
           },
-          keyword2:{
+          transferTime:{
             value: DateTime.parse(updated_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
             color:"#173177"
           },
-          keyword3:{
+         acceptAccount:{
             value: account,
             color:"#173177"
           },
-          keyword4:{
+          sendAccount:{
             value: "基础账户",
             color:"#173177"
           },
