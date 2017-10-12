@@ -64,3 +64,78 @@ ul {
     text-align:left;
     font-size:14px
 }
+
+
+
+
+
+//御易健样式整理
+
+//input样式
+.yyj_input {
+    -webkit-appearance: none;
+    height: 30px;
+    width: 80%;
+    background-color: #fff;
+    border: 1px solid #94c6ad;
+    border-radius: 5px;
+    line-height: 20px;
+    padding: 5px 10px;
+}
+
+//长条形提交按钮
+.yyj_submit {
+    -webkit-appearance: none;
+    display: block;
+    margin-top: 20px;
+    border:0;
+    border-radius: 5px;
+    color: #fff;
+    width: 90%;
+    height: 40px;
+    background:#94c6ad;    
+}
+
+
+//统一实心填充按钮或块背景颜色
+.yyj_btn {
+    background: #94c6ad;
+}
+
+
+//统一带边框块基本样式
+.yyj_div {
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: #94c6ad;
+    border:1px solid #94c6ad;
+    margin-bottom: 10px;     
+}
+
+
+//统一字号
+.yyj_text {
+    font-size: 16px;
+}
+
+//统一标题样式
+.yyj_title {
+    font-weight: normal;
+    color:#94c6ad;
+    text-align: center; 
+    font-size: 20px!important;
+}
+
+//统一iOS自带样式提交小按钮
+.yyj_commit {
+    -webkit-appearance: none;
+    background: #94c6ad!important;
+    border:0;
+}
+
+
+//统一深绿色字颜色
+.yyj_color {
+    color: #436152;
+}

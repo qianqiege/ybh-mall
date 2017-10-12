@@ -64,24 +64,9 @@
     margin-top: 0;
   }
 
-  #identity {
-    width: 80%;
-    background-color: #fff;
-    border: 1px solid #94c6ad;
-    border-radius: 5px;
-    line-height: 20px;
-    padding: 5px 10px;
-  }
-
   .weui-label {
     width: 90px;
   }
-
-  .pt50 h2 {
-    font-weight: normal;
-    color:#94c6ad;
-    text-align: center;
-  } 
 
   .pt50 .weui-panel {
     background: none;
@@ -102,6 +87,7 @@
 
   .pt50 .address-box li input, .pt50 .address-box li select, .pt50 .address-box li textarea {
     border: 1px solid #94c6ad;
+    /*-webkit-appearance: none;*/
   }
 
   .pt50 .marginLeft {
@@ -116,15 +102,15 @@
 
 <%= form_tag(user_update_user_info_review_path(id: @user_info_review), method: :put, id: 'bind_phone_form') do %>
     <div class="wraper pt50">
-      <h2>编辑审核信息</h2>
+      <h2 class="yyj_title">编辑审核信息</h2>
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
       <div class="weui-cell weui-cell_form marginLeft">
           <div class="weui-cell__hd really"><label for="" class="weui-label">角色选择</label></div>
-          <input type="text" value="<%= @user_info_review.identity %>" class="pass_value" style="display: none;">
+          <input type="text" value="<%= @user_info_review.identity %>" class="pass_value yyj_input" style="display: none;">
           <div class="weui-cell__bd" style="border-bottom: none;">
-            <select name="identity" id="identity">
+            <select name="identity" id="identity" class="yyj_input">
               <option value="user">用户</option>
               <option value="family_doctor">家庭医生</option>
               <option value="family_health_manager">家庭健康管理师</option>
@@ -141,20 +127,20 @@
                 <ul>
                   <li class="clearfix">
                     <span>省份</span>
-                    <select class="city-select" name="work_address[province]">
+                    <select class="city-select yyj_input" name="work_address[province]">
                       <option value="<%= @user_info_review.work_province %>"><%= ChinaCity.get(@user_info_review.work_province) %></option>
                       <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
                     </select>
                   </li>
                   <li class="clearfix">
                     <span>城市</span>
-                    <select class="city-select" name="work_address[city]">
+                    <select class="city-select yyj_input" name="work_address[city]">
                       <option value="<%= @user_info_review.work_city %>"><%= ChinaCity.get(@user_info_review.work_city) %></option>
                     </select>
                   </li>
                   <li class="clearfix">
                     <span>地区或街道</span>
-                    <select class="city-select" name="work_address[street]">
+                    <select class="city-select yyj_input" name="work_address[street]">
                       <option value="<%= @user_info_review.work_street %>"><%= ChinaCity.get(@user_info_review.work_street) %></option>
                     </select>
                   </li>
@@ -172,20 +158,20 @@
                 <ul>
                   <li class="clearfix">
                     <span>省份</span>
-                    <select class="city-select" name="resident_address[province]">
+                    <select class="city-select yyj_input" name="resident_address[province]">
                       <option value="<%= @user_info_review.resident_province %>"><%= ChinaCity.get(@user_info_review.resident_province) %></option>
                       <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
                     </select>
                   </li>
                   <li class="clearfix">
                     <span>城市</span>
-                    <select class="city-select" name="resident_address[city]">
+                    <select class="city-select yyj_input" name="resident_address[city]">
                       <option value="<%= @user_info_review.resident_city %>"><%= ChinaCity.get(@user_info_review.resident_city) %></option>
                     </select>
                   </li>
                   <li class="clearfix">
                     <span>地区或街道</span>
-                    <select class="city-select" name="resident_address[street]">
+                    <select class="city-select yyj_input" name="resident_address[street]">
                       <option value="<%= @user_info_review.resident_street %>"><%= ChinaCity.get(@user_info_review.resident_street) %></option>
                     </select>
                   </li>
@@ -196,7 +182,7 @@
         </div>
 
       <div class="weui-btn-area">
-        <input type="submit" class="weui-btn weui-btn_primary create_or_update" value="提交" style="line-height: 40px;">
+        <input type="submit" class="weui-btn weui-btn_primary create_or_update yyj_submit" value="提交" style="line-height: 40px;">
       </div>
 
     </div>
