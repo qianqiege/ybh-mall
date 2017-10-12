@@ -53,7 +53,7 @@ menu parent: I18n.t("active_admin.menu.yb_work_manage")
 		column '身份审核' do |record|
 		    if record.state == "dealing"
 		      span do
-		        link_to '已处理',identity_pass_admin_user_info_review_path(record),method: :put, data: { confirm: 'Are you sure?' }
+		        link_to '通过',identity_pass_admin_user_info_review_path(record),method: :put, data: { confirm: 'Are you sure?' }
 		      end
 		      span do
 		        link_to '不通过',identity_not_pass_admin_user_info_review_path(record, desc: :yes), method: :get

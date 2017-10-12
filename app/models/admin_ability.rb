@@ -38,6 +38,7 @@ class AdminAbility
       can :manage, PresentedRecord
       can :manage, Integral
       can :manage, CashRecord
+      can :manage, DoctorRebate
     elsif user.role_name == 'customer_service'
       can :manage, Advice
       can :manage, AdviceType
