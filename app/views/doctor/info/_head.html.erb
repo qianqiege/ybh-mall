@@ -1,21 +1,22 @@
+<style>
+.profile {
+  position: relative;
+}
+ .name {
+  position: absolute;
+  bottom: 96px;
+  left: 70px;
+ }
+ .
+</style>
 <div class='wallet bg-size'>
-  <div class="weui-flex profile">
-    <div>
-      <div class="placeholder">
-        <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
-      </div>
+  <div class="profile">
+    <div class="placeholder">
+      <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
     </div>
-    <div class="weui-flex__item profile-text">
-      <div class="placeholder"><%= current_user.nickname %></div>
-    </div>
-    <div class="weui-flex__item profile-text">
-      <div class="placeholder">工作地：<%= @doctor_info_review.display_work_detail %></div>
-    </div>
-    <div class="weui-flex__item profile-text">
-      <div class="placeholder">常住地： <%= @doctor_info_review.display_resident_detail %></div>
-    </div>
-    <div class="weui-flex__item profile-text">
-      <div class="placeholder">角色：<%= @doctor_info_review.identity_name %></div>
-    </div>
+    <div class="placeholder name"><%= current_user.nickname %></div>
+    <div class="placeholder">角色：<%= @doctor_info_review.identity_name %></div>
+    <div class="placeholder">工作地：<%= @doctor_info_review.display_work_detail %></div>
+    <div class="placeholder">常住地： <%= @doctor_info_review.display_resident_detail %></div>
   </div>
 </div>
