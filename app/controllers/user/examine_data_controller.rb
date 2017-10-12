@@ -22,7 +22,7 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_temperature
     if !current_user.user_id.nil?
-      @show = Temperature.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
+      @show = Temperature.where(user_id: current_user.user_id).page(params[:page] || 1).per(10).order(created_at: :desc)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -38,7 +38,8 @@ class User::ExamineDataController < Wechat::BaseController
 
   def show_weight
     if !current_user.user_id.nil?
-      @show = Weight.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
+      @show = Weight.where(user_id: current_user.user_id).page(params[:page] || 1).per(10).order(created_at: :desc)
+      @show_last = @show.last
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {

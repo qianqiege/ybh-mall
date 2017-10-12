@@ -3,7 +3,7 @@
 <div class="weui-btn-area">
   <%= line_chart [
     {name: "体温", data: @show.pluck(:updated_at, :value)}
-  ], library: @options %>
+  ], library: @options, min: 30, max: 45 %>
   <table class="hovertable">
     <tr>
     	<th>体温值</th><th>状态</th><th>测量时间</th>
@@ -20,4 +20,30 @@
     </tr>
     <% end %>
   </table>
+  <%= paginate @show %>
 </div>
+
+<script>
+  $(function() {
+    $(".weui-btn-area .pagination").css("position", "relative");
+    $(".weui-btn-area .pagination").css("text_align", "center");
+    $(".weui-btn-area .pagination .page").removeClass("page");
+    $(".weui-btn-area .pagination a").css("color", "black");
+
+    if ($(".pagination .next")) {
+      $(".pagination .next span").text("下一页");
+    }
+
+    if ($(".pagination .last")) {
+      $(".pagination .last").hide();
+    }
+
+    if ($(".pagination .prev")) {
+      $(".pagination .prev span").text("上一页");
+    }
+
+    if ($(".pagination .first")) {
+      $(".pagination .first").hide();
+    }
+  })
+</script>
