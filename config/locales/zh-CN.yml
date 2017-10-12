@@ -295,6 +295,11 @@ zh-CN:
         identity: '身份'
         state: '状态'
         desc: '审核不通过原因'
+      doctor_rebate:
+        user: '用户'
+        money: '金额'
+        state: '打款状态'
+        account: '打款账户'
       coin_type:
         name: '包名称'
         once: '一次性数量（第一天给的S货币数量）'
@@ -371,6 +376,7 @@ zh-CN:
       idata_subscribe: '数动力付款记录'
       user_idata_subscribe: '用户数动力订阅服务'
       user_info_review: '用户信息审核'
+      doctor_rebate: '医生用药服务费记录'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'
