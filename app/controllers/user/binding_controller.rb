@@ -47,7 +47,7 @@ class User::BindingController < Wechat::BaseController
 
 
 
-      if params[:identity].present?
+      if params[:identity] != "user"
         @user_info_review = UserInfoReview.new(identity: params[:identity], 
                            work_province: params[:work_address][:province], 
                            work_city: params[:work_address][:city],
