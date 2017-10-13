@@ -93,15 +93,14 @@ ul {
     color: #fff;
     width: 90%;
     height: 40px;
-    background:#94c6ad;    
+    background:#94c6ad!important;    
 }
 
 
 //统一实心填充按钮或块背景颜色
 .yyj_btn {
-    background: #94c6ad;
+    background: #94c6ad!important;
 }
-
 
 //统一带边框块基本样式
 .yyj_div {
@@ -112,7 +111,6 @@ ul {
     border:1px solid #94c6ad;
     margin-bottom: 10px;     
 }
-
 
 //统一字号
 .yyj_text {
@@ -134,8 +132,27 @@ ul {
     border:0;
 }
 
-
 //统一深绿色字颜色
 .yyj_color {
     color: #436152;
+}
+
+//单选框样式填充（部分使用）
+.yyj_check {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #94c6ad!important;
+    border-radius: 50%;
+    background: #fff;
+}
+
+//所需边框下划线
+.yyj_botline {
+    border-bottom: 1px solid #94c6ad!important;
+}
+
+//input背景设置（部分使用）
+.yyj_inputbac {
+    background: transparent!important;
 }
