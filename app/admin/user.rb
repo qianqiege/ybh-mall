@@ -74,4 +74,6 @@ ActiveAdmin.register User do
   filter :invitation, as: :select
   filter :status, as: :select
   filter :created_at
+  filter :staff_invitation_type, as: :select
+
 end
