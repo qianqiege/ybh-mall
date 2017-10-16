@@ -172,4 +172,10 @@ class User < ApplicationRecord
   def display_name
     "#{self.name}-#{self.telphone}"
   end
+
+  def invitation_user_name
+    if !invitation.nil?
+      invitation.name
+    end
+  end
 end
