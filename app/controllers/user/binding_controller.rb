@@ -39,17 +39,17 @@ class User::BindingController < Wechat::BaseController
       # end
 
 
-  
-# <ActionController::Parameters {"utf8"=>"✓", "authenticity_token"=>"taVYJ/8M+MipUwooFvYSrfmrmnXepGkWXGxLFXjwB9GOOu12QAYXLD1iBSgvQzLQgBnny3lKrpRRcOk0+s774g==", 
-#   "invitation_id"=>"", "name"=>"zhoufabin", "password"=>"123456", "identity"=>"family_health_manager", "work_address"=>{"province"=>"340000", "city"=>"341600", 
-#     "street"=>"341622"}, "resident_address"=>{"province"=>"320000", "city"=>"321100", "street"=>"321182"}, "mobile"=>"18888653566", "code"=>"173401", 
+
+# <ActionController::Parameters {"utf8"=>"✓", "authenticity_token"=>"taVYJ/8M+MipUwooFvYSrfmrmnXepGkWXGxLFXjwB9GOOu12QAYXLD1iBSgvQzLQgBnny3lKrpRRcOk0+s774g==",
+#   "invitation_id"=>"", "name"=>"zhoufabin", "password"=>"123456", "identity"=>"family_health_manager", "work_address"=>{"province"=>"340000", "city"=>"341600",
+#     "street"=>"341622"}, "resident_address"=>{"province"=>"320000", "city"=>"321100", "street"=>"321182"}, "mobile"=>"18888653566", "code"=>"173401",
 #     "agreeCheck"=>"on", "controller"=>"user/binding", "action"=>"bind_phone"} permitted: false>
 
 
 
       if params[:identity] != "user"
-        @user_info_review = UserInfoReview.new(identity: params[:identity], 
-                           work_province: params[:work_address][:province], 
+        @user_info_review = UserInfoReview.new(identity: params[:identity],
+                           work_province: params[:work_address][:province],
                            work_city: params[:work_address][:city],
                            work_street: params[:work_address][:street],
                            resident_province: params[:resident_address][:province],
@@ -59,6 +59,7 @@ class User::BindingController < Wechat::BaseController
 
       if @invitation_user.present?
         @user.invitation_id = @invitation_user.id
+        @user.staff_invitation_type = @invitation_user.type
       end
 
       if(params[:is_doctor])
