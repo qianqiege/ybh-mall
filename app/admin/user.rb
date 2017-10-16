@@ -72,6 +72,7 @@ ActiveAdmin.register User do
     column :telphone
     column :name
     column :invitation_user_name
+    column :staff_invitation_type
     column :created_at
   end
 
