@@ -244,6 +244,23 @@ class User::InfoController < Wechat::BaseController
     else
       redirect_to '/user/binding'
     end
+
+    if current_user.id == 1890
+      number = User.all.length
+      i = 1
+      while i <= number
+        User.all.each do |user|
+          if !user.invitation_id.nil?
+            invitation = User.find_by(id: user.invitation_id)
+            if !invitation.nil?
+              user.staff_invitation_type = invitation.status
+              user.save
+              ap user
+            end
+          end
+        end
+      end
+    end
   end
 
   def gift_friend
