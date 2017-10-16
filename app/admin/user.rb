@@ -12,7 +12,8 @@ ActiveAdmin.register User do
                 :status,
                 :health_manager,
                 :family_health_manager,
-                :family_doctor
+                :family_doctor,
+                :staff_invitation_type
 
   index do
     selectable_column
@@ -65,6 +66,13 @@ ActiveAdmin.register User do
       row :type
       row :created_at
     end
+  end
+
+  csv do
+    column :telphone
+    column :name
+    column :invitation_user_name
+    column :created_at
   end
 
   filter :name, as: :select
