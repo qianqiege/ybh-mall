@@ -255,7 +255,6 @@ class User::InfoController < Wechat::BaseController
             if !invitation.nil?
               user.staff_invitation_type = invitation.status
               user.save
-              ap user
             end
           end
         end
