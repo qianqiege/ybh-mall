@@ -59,7 +59,7 @@ class User::BindingController < Wechat::BaseController
 
       if @invitation_user.present?
         @user.invitation_id = @invitation_user.id
-        @user.staff_invitation_type = @invitation_user.type
+        @user.staff_invitation_type = @invitation_user.status
       end
 
       if(params[:is_doctor])
