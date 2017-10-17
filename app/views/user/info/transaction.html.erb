@@ -1,14 +1,25 @@
 <%= render 'cash_hearder' %>
 
+<style type="text/css">
+	.texts {
+		line-height: 20px;
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+	}
+</style>
+
+
 <p class="flash" style="text-align: center; color: red">
 	<%= flash[:notice] %>
 </p>
 
-<div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 108px;height:7%;">
-  <a class="button-tx" href="<%= user_exchange_path("1") %>">充值</a>
+<div style="margin-left:2%;margin-top: 10px;display: flex;position: fixed;width: 90%;bottom: 110px;line-height: 10px;
+" class="yyj_input">
+  <a class="yyj_color texts" href="<%= user_exchange_path("1") %>">充值</a>
 </div>
-<div style="margin-top: 10px;display: flex;position: fixed;width: 100%;bottom: 58px;height:7%;">
-  <a class="button-tx" href="<%= user_exchange_path("2") %>">提现</a>
+<div style="margin-left:2%;margin-top: 10px;display: flex;position: fixed;width: 90%;bottom: 58px;line-height: 10px;" class="yyj_input">
+  <a class="yyj_color texts" href="<%= user_exchange_path("2") %>">提现</a>
 </div>
 
 

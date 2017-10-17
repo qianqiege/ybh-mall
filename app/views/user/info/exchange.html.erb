@@ -14,25 +14,13 @@
     padding-left: 1rem;
   }
   select{
-    height: 1.9rem; margin:0.1rem 0.5rem 0 0;
+    height: 1.9rem; margin:0 0.5rem 0 0;
     width: 5rem;
-  }
-
-  .account,.quantity,select{
-    border: 0;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
   }
 
   .quantity{
     width: 90%;
   }
-
-  /*.zhanghu {
-    width: 90%;
-    display: flex;
-    margin-bottom: 5px;
-  }*/
 
   .zhanghu {
     width: 94%;
@@ -53,6 +41,11 @@
     flex: 1;
   }
 
+  #payment {
+    height: 30px;
+    width: 40%;
+  }
+
 </style>
 
 
@@ -68,18 +61,18 @@
 
   <%= form_tag(controller: "info", action:"create_exchange", method:"post") do %>
     <p>提现金额:</p>
-    <input type="number" name="quantity" class="quantity" step="0.01">
+    <input type="number" name="quantity" class="quantity yyj_input" step="0.01">
     <div class="boders"></div>
     <p>提现账户:</p>
     <div class="zhanghu">
-      <select name="account_type">
+      <select name="account_type" class="yyj_border">
         <option value="支付宝">支付宝</option>
         <option value="银行卡">银行卡</option>
     </select>
-    <input type="number" name="account" placeholder="请输入您的账号信息" class="account">
+    <input type="number" name="account" placeholder="请输入您的账号信息" class="account yyj_border">
     </div>
     <div class="zhanghu">
-        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2; padding-bottom: 40px" value="确认提现">
+        <input type="submit" class="weui-btn weui-btn_primary showtoast yyj_submit" style="margin: 30px 5% 0 5%;background-color: #30A8E2; padding-bottom: 40px" value="确认提现">
     </div>
   <% end %>
 
@@ -87,14 +80,14 @@
 
   <%= form_tag(controller: "info", action:"create_deposit_exchange", method:"post") do %>
     <p>充值金额:</p>
-    <input type="number" name="price" class="quantity" step="0.01">
+    <input type="number" name="price" class="quantity yyj_input" step="0.01">
     <div class="boders"></div>
         <label for="" class="weui-label">支付方式</label>
-        <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]) %>
+        <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"]]), class:'yyj_input' %>
         <span> （支持银行卡和微信）</span>
     
     <div class="zhanghu">
-        <input type="submit" class="weui-btn weui-btn_primary showtoast" style="margin: 30px 5% 0 5%;background-color: #30A8E2; padding-bottom: 40px" value="确认充值">
+        <input type="submit" class="weui-btn weui-btn_primary showtoast yyj_submit" style="margin: 30px 5% 0 5%;background-color: #30A8E2; padding-bottom: 40px" value="确认充值">
     </div>
   <% end %>
 
