@@ -3,7 +3,7 @@ menu parent: I18n.t("active_admin.menu.yb_work_manage")
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
+permit_params :image
 #
 # or
 #
@@ -16,6 +16,9 @@ menu parent: I18n.t("active_admin.menu.yb_work_manage")
 		selectable_column
 		id_column
 
+		column "医生图片" do |user_info|
+			image_tag(user_info.image, size: "45x72", :alt => "user image")
+		end
 		column :user
 		column :work_address do |user_info|
 			user_info.display_work_detail
@@ -63,9 +66,10 @@ menu parent: I18n.t("active_admin.menu.yb_work_manage")
 		    end
 		end
 		column :desc
+		actions
 	end
 
-		
+
 	member_action :address_pass, method: :put do
 		resource.address_event
 		redirect_to admin_user_info_reviews_path

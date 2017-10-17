@@ -126,8 +126,10 @@ class Mall::OrdersController < Mall::BaseController
       end
     end
 
+    # 表达式未知问题
+
     donation = false
-    if price == 35000 - 1200 || price == 25000 - 1000 || price == 12000 - 600
+    if price == 55000 - 1200 || price == 40000 - 1000 || price == 15000 - 600
       donation = true
     end
 
