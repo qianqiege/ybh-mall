@@ -244,22 +244,6 @@ class User::InfoController < Wechat::BaseController
     else
       redirect_to '/user/binding'
     end
-
-    if current_user.id == 1890
-      number = User.all.length
-      i = 1
-      while i <= number
-        User.all.each do |user|
-          if !user.invitation_id.nil?
-            invitation = User.find_by(id: user.invitation_id)
-            if !invitation.nil?
-              user.staff_invitation_type = invitation.status
-              user.save
-            end
-          end
-        end
-      end
-    end
   end
 
   def gift_friend
@@ -326,6 +310,13 @@ class User::InfoController < Wechat::BaseController
   def upload_image
     url = $wechat_client.download_media_url(params["serverId"])
     current_user.user.identity_cards.create(remote_image_url: url)
+
+    render_success
+  end
+
+  def upload_user_image
+    url = $wechat_client.download_media_url(params["serverId"])
+    current_user.user.user_info_review.update(image: url)
 
     render_success
   end
