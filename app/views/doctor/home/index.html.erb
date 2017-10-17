@@ -1,0 +1,29 @@
+<%= title '御易健' %>
+<div class="home">
+  <%= render 'shared/slide' %>
+</div>
+<table style="margin-top: 4%;">
+  <tr style="text-align: center;">
+    <td style="width: 10%;">
+      <a href="<%=  %>"><%= image_tag "教育.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">健康教育</p>
+    </td>
+    <td style="width: 10%">
+      <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">商城</p>
+    </td>
+    <td style="width: 10%;">
+      <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">健康数据</p>
+    </td>
+    <td style="width: 10%;">
+      <a href="<%= wechat_activity_path %>"><%= image_tag "活动.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">活动</p>
+    </td>
+  </tr>
+</table>
+<div>
+    <% @user_info_review.each do |user| %>
+      <%= image_tag user.image , size: "160x200" %>
+    <% end %>
+</div>

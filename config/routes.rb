@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :doctor do
+    get'/home',to: 'home#index'
+  end
+
   mount API => '/'
 
   namespace :evaluate do

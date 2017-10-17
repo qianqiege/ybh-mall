@@ -17,7 +17,7 @@ permit_params :image
 		id_column
 
 		column "医生图片" do |user_info|
-			image_tag(user_info.image, size: "72x45", :alt => "user image")
+			image_tag(user_info.image, size: "45x72", :alt => "user image")
 		end
 		column :user
 		column :work_address do |user_info|
@@ -66,6 +66,7 @@ permit_params :image
 		    end
 		end
 		column :desc
+		actions
 	end
 
 

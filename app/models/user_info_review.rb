@@ -1,4 +1,5 @@
 class UserInfoReview < ApplicationRecord
+	include ImageConcern
 	belongs_to :user
 	validates :identity, inclusion: { in: %w(family_doctor family_health_manager helath_manager user) }
 
