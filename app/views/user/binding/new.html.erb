@@ -184,10 +184,16 @@
           </div>
         </div>
 
-      <div class="weui-panel weui-panel_access">
+      <div class="weui-panel weui-panel_access resident_address">
         <div class="weui-panel">
-          <div class="weui-panel__hd yyj_color">常住地信息</div>
-            <div class="weui-panel__bd">
+            <div class="weui-panel__hd" style="float:left">常住地信息</div>
+            <div class="same-address" style="float:right; margin-right:18%; color:#999; font-size:14px; padding-top:5px;">
+               <input type="checkbox" name="sameaddress" id="same-address" style="width:15px; height:15px; margin-top:10px;">
+               <div class="same-work-address" style="float:right; margin-top:8px; margin-left:5px;">
+                   常住地同工作地
+               </div>
+            </div>
+            <div class="weui-panel__bd same-as-work-address" style="clear:both">
               <div class="address-box city-group">
                 <ul>
                   <li class="clearfix">
@@ -269,7 +275,7 @@
           </span>
         </label>
       </div>
-      
+
 
       <div class="weui-btn-area">
         <a class="weui-btn weui-btn_primary" id="txtlogin">验证</a>
@@ -298,8 +304,18 @@
           }else{
             $(".weui-panel_access").show();
           }
-        })
+      });
 
+        $("#same-address").click(function() {
+            if ($("#same-address").is(':checked')) {
+            // console.log(1);
+            $('.same-as-work-address').hide();
+
+          }else{
+            // console.log(2);
+             $('.same-as-work-address').show();
+          }
+        })
 
 
       </script>
