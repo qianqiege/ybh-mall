@@ -48,13 +48,23 @@ class User::BindingController < Wechat::BaseController
 
 
       if params[:identity] != "user"
-        @user_info_review = UserInfoReview.new(identity: params[:identity],
-                           work_province: params[:work_address][:province],
-                           work_city: params[:work_address][:city],
-                           work_street: params[:work_address][:street],
-                           resident_province: params[:resident_address][:province],
-                           resident_city: params[:resident_address][:city],
-                           resident_street: params[:resident_address][:street]);
+          if params[:sameaddress] == "on"
+                @user_info_review = UserInfoReview.new(identity: params[:identity],
+                             work_province: params[:work_address][:province],
+                             work_city: params[:work_address][:city],
+                             work_street: params[:work_address][:street],
+                             resident_province: params[:work_address][:province],
+                             resident_city: params[:work_address][:city],
+                             resident_street: params[:work_address][:street]);
+            else
+                @user_info_review = UserInfoReview.new(identity: params[:identity],
+                                   work_province: params[:work_address][:province],
+                                   work_city: params[:work_address][:city],
+                                   work_street: params[:work_address][:street],
+                                   resident_province: params[:resident_address][:province],
+                                   resident_city: params[:resident_address][:city],
+                                   resident_street: params[:resident_address][:street]);
+            end
       end
 
       if @invitation_user.present?
