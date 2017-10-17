@@ -45,6 +45,11 @@ $(function () {
 
     var address_flag = 0;
     $(this).parent().parent().find(".city-select").each(function(index){
+        if (index > 2) {
+            if ($("#same-address").is(':checked')) {
+                return
+            }
+        }
         if ($(this).val()=='') {
          address_flag = 1;
          return
