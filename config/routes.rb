@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :doctor do
-    get'/home',to: 'home#index'
-  end
 
   mount API => '/'
 
@@ -248,5 +245,6 @@ Rails.application.routes.draw do
 
   namespace :doctor do
     get 'doctor_info', to: 'info#doctor_info'
+    get'/home',to: 'home#index'
   end
 end
