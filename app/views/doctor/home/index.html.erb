@@ -1,7 +1,7 @@
 
 
 <style type="text/css">
-  
+
   .out100 {
     width: 100%;
     overflow: hidden;
@@ -34,12 +34,25 @@
     overflow:auto;
   }
 
-  .scrollImg img {
-    width: 23%;
+  .scrollImg a {
+    display: inline-block;
+    width: 30%;
     margin-right: 2%;
   }
 
-  .scrollImg img:last-child {
+  .scrollImg a p {
+    text-align: center;
+    color: #999;
+    font-size: 0.8rem;
+  }
+
+  .scrollImg a img {
+    float:inherit;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .scrollImg a:last-child {
     margin-right: 0;
   }
 
@@ -79,23 +92,48 @@
     <a href="#">查看全部>></a>
   </div>
     <div class="scrollImg">
+
         <% @user_info_review.each do |user| %>
-          <%= image_tag user.image %>
+          <a>
+            <%= image_tag user.image, size: "100x140" %>
+            <p>
+              <% case user.identity %>
+            	<% when "family_doctor"%>
+            		<%="家庭医生"%>
+            	<% when "family_health_manager"%>
+            	   <%="家庭健康管理师"%>
+            	<% when "helath_manager"%>
+            	   <%="健康管理师"%>
+            	<% end %>
+            </p>
+          </a>
         <% end %>
+
     </div>
 </div>
 
 <div class="out100">
   <div class="outTitle">
-    <h5>还有一个</h5>
+    <h5>金牌医生榜</h5>
     <a href="#">查看全部>></a>
   </div>
     <div class="scrollImg">
+
         <% @user_info_review.each do |user| %>
-          <%= image_tag user.image %>
+          <a>
+            <%= image_tag user.image, size: "100x140" %>
+            <p>
+              <% case user.identity %>
+            	<% when "family_doctor"%>
+            		<%="家庭医生"%>
+            	<% when "family_health_manager"%>
+            	   <%="家庭健康管理师"%>
+            	<% when "helath_manager"%>
+            	   <%="健康管理师"%>
+            	<% end %>
+            </p>
+          </a>
         <% end %>
+
     </div>
 </div>
-
-
-
