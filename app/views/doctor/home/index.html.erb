@@ -1,3 +1,51 @@
+
+
+<style type="text/css">
+  
+  .out100 {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .outTitle {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2%;
+    padding: 1% 2%;
+    position: relative;
+  }
+
+  .outTitle h5 , .outTitle a {
+    display: inline-block;
+  }
+
+  .outTitle a {
+    color: #999;
+    font-size: 0.8rem;
+    position: absolute;
+    right: 2%;
+    bottom: 20%;
+  }
+
+  .scrollImg {
+    padding: 0 2% 5% 2%;
+    white-space:nowrap;
+    overflow:auto;
+  }
+
+  .scrollImg img {
+    width: 23%;
+    margin-right: 2%;
+  }
+
+  .scrollImg img:last-child {
+    margin-right: 0;
+  }
+
+</style>
+
+
 <%= title '御易健' %>
 <div class="home">
   <%= render 'shared/slide' %>
@@ -22,8 +70,32 @@
     </td>
   </tr>
 </table>
-<div>
-    <% @user_info_review.each do |user| %>
-      <%= image_tag user.image , size: "160x200" %>
-    <% end %>
+
+
+
+<div class="out100">
+  <div class="outTitle">
+    <h5>热门话题</h5>
+    <a href="#">查看全部>></a>
+  </div>
+    <div class="scrollImg">
+        <% @user_info_review.each do |user| %>
+          <%= image_tag user.image %>
+        <% end %>
+    </div>
 </div>
+
+<div class="out100">
+  <div class="outTitle">
+    <h5>还有一个</h5>
+    <a href="#">查看全部>></a>
+  </div>
+    <div class="scrollImg">
+        <% @user_info_review.each do |user| %>
+          <%= image_tag user.image %>
+        <% end %>
+    </div>
+</div>
+
+
+
