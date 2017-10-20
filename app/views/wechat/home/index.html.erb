@@ -24,6 +24,47 @@
   font-size: 0.8rem;
 }
 
+.healthDiv {
+  width: 100%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding-top: 8px;
+}
+
+.healthDiv h5 {
+  padding: 0 10px 8px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.healthKuai {
+    display: flex;
+    padding:8px 0;
+}
+
+.healthKuai a {
+  display: inline-block;
+  flex: 1;
+  display: flex;
+}
+
+.healthKuai a:first-child {
+  border-right: 1px solid #eee;
+}
+
+.healthKuai a img {
+  width: 45px;
+  margin-right: 10%;
+
+}
+
+.healthKuai a span {
+  display: inline-block;
+  flex: 1;
+  text-align: center;
+  line-height: 45px;
+  color: #666;
+}
+
 </style>
 
 <%= title '御易健' %>
@@ -57,10 +98,6 @@
 
     <tr style="text-align: center;">
       <td>
-        <a href="<%= doctor_doctor_info_path(id: current_user.user.id) %>"><%= image_tag "御易健.png", size: "50x50" %></a>
-        <p class="fontSizes">健康管理师</p>
-      </td>
-      <td>
         <a href="<%= wechat_light_path %>"><%= image_tag "明灯.png", size: "50x50" %></a>
         <p class="fontSizes">一盏明灯</p>
       </td>
@@ -80,7 +117,21 @@
     </tr>
   </table>
 
+  <div class="healthDiv">
 
+    <h5>健康管理中心</h5>
+    <div class="healthKuai">
+        <a href="/doctor/home">
+            <span class="yyj_text">健康管理师</span>
+            <%= image_tag "御易健.png", size: "45x45" %>
+        </a>
+        <a href="/work/home">
+          <span class="yyj_text">健康管理工作站</span>
+          <%= image_tag "工作站2.png", size: "45x45" %>
+        </a>
+    </div>
+
+  </div>
 
   <%= video_tag "ybyt8MB.mp4", :controls => true ,class: "video"%>
 

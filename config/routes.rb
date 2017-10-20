@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     get '/home',to: 'home#index'
   end
 
+  namespace :work do
+    get '/home', to: 'home#index'
+  end
+
   mount ChinaCity::Engine => '/china_city'
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config

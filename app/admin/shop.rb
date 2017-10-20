@@ -4,7 +4,7 @@ ActiveAdmin.register Shop do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
 menu parent: I18n.t("active_admin.menu.yb_work_manage")
-permit_params :name, :address, :category
+permit_params :name, :address, :category,:number
 #
 # or
 #

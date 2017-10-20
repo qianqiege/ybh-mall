@@ -66,20 +66,20 @@
 <table style="margin-top: 4%;">
   <tr style="text-align: center;">
     <td style="width: 10%;">
-      <a href="#"><%= image_tag "icon档案.png", size: "50x50" %></a>
-      <p style="margin-bottom:15%;" class="fontSizes">档案</p>
+      <a href="<%=  %>"><%= image_tag "教育.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">健康教育</p>
     </td>
     <td style="width: 10%">
-      <a href="#"><%= image_tag "icon方案.png", size: "50x50" %></a>
-      <p style="margin-bottom:15%;" class="fontSizes">方案</p>
+      <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">商城</p>
     </td>
     <td style="width: 10%;">
-      <a href="#"><%= image_tag "icon异常.png", size: "50x50" %></a>
-      <p style="margin-bottom:15%;" class="fontSizes">异常</p>
+      <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">健康数据</p>
     </td>
     <td style="width: 10%;">
-      <a href="<%= doctor_doctor_info_path(id: current_user.user.id) %>"><%= image_tag "icon角色.png", size: "50x50" %></a>
-      <p style="margin-bottom:15%;" class="fontSizes">我的</p>
+      <a href="<%= wechat_activity_path %>"><%= image_tag "活动.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">活动</p>
     </td>
   </tr>
 </table>
@@ -88,23 +88,16 @@
 
 <div class="out100">
   <div class="outTitle">
-    <h5>热门话题</h5>
+    <h5>热门工作站</h5>
     <a href="#">查看全部>></a>
   </div>
     <div class="scrollImg">
 
-        <% @user_info_review.each do |user| %>
+        <% @shop_image.each do |shop| %>
           <a>
-            <%= image_tag user.image, size: "100x140" %>
+            <%= image_tag shop.image_url, size: "100x140" %>
             <p>
-              <% case user.identity %>
-            	<% when "family_doctor"%>
-            		<%="家庭医生"%>
-            	<% when "family_health_manager"%>
-            	   <%="家庭健康管理师"%>
-            	<% when "helath_manager"%>
-            	   <%="健康管理师"%>
-            	<% end %>
+              <%= shop.shop.name %>
             </p>
           </a>
         <% end %>
@@ -114,23 +107,16 @@
 
 <div class="out100">
   <div class="outTitle">
-    <h5>金牌医生榜</h5>
+    <h5>优选工作站</h5>
     <a href="#">查看全部>></a>
   </div>
     <div class="scrollImg">
 
-        <% @user_info_review.each do |user| %>
+        <% @shop_image.each do |shop| %>
           <a>
-            <%= image_tag user.image, size: "100x140" %>
+            <%= image_tag shop.image_url, size: "100x140" %>
             <p>
-              <% case user.identity %>
-            	<% when "family_doctor"%>
-            		<%="家庭医生"%>
-            	<% when "family_health_manager"%>
-            	   <%="家庭健康管理师"%>
-            	<% when "helath_manager"%>
-            	   <%="健康管理师"%>
-            	<% end %>
+              <%= shop.shop.name %>
             </p>
           </a>
         <% end %>
