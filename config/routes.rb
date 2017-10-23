@@ -147,6 +147,7 @@ Rails.application.routes.draw do
     get '/scoin_info',to: 'info#scoin_info'
     get '/setting', to: 'info#setting'
     post '/upload_image', to: 'info#upload_image'
+    post '/upload_user_image', to: 'info#upload_user_image'
     get '/invitation', to: 'info#invitation'
     get '/invitation_friend', to:'info#invitation_friend'
     get '/details', to: 'info#account_details'

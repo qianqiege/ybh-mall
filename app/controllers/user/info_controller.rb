@@ -335,7 +335,12 @@ class User::InfoController < Wechat::BaseController
 
   def upload_user_image
     url = $wechat_client.download_media_url(params["serverId"])
-    current_user.user.user_info_review.update(image: url)
+    if current_user.user.user_info_review
+      current_user.user.user_info_review.update(remote_image_url: url)
+    else
+      UserInfoReview.create!(remote_image_url: url, user_id: current_user.user.id, identity: 'user')
+    end
+    
 
     render_success
   end
