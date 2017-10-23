@@ -11,6 +11,24 @@
         border-radius: inherit;
     }
 
+    .uploaderImageBoxStyle {
+      position: relative;
+      background-color: #D9D9D9;
+    }
+
+    .cover {
+      width: 50px;
+      height: 50px;
+      z-index: 999;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      background-color: #D9D9D9;
+      display: none;
+    }
+
 </style>
 
 
@@ -137,12 +155,41 @@
                     <span class="weui-form-preview__value"><%= @user_info_review.get_state if @user_info_review %></span>
                   </div>
                 </div>
-                <% if false %>
-                  <div class="weui-form-preview__ft">
-                    <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
-                  </div>
-                <% end %>
               </div>
+
+
+              <div class="weui-cell">
+                <div class="weui-uploader">
+                  <div class="weui-uploader__hd">
+                    <p class="weui-uploader__title">
+                      <% if @user_info_review && @user_info_review.image %>
+                        图片信息
+                      <% else %>
+                        上传图片
+                      <% end -%>
+                    </p>
+                  </div>
+                  <div class="weui-uploader__bd">
+                     <ul class="weui-uploader__files" id="uploaderUserImage">
+                        <% if @user_info_review %>
+                          <li class="weui-uploader__file">
+                             <%= image_tag(@user_info_review.image_url, :alt => "身份图片", :class => "identity-card-img user_image") if @user_info_review&&@user_info_review.image %>
+                         </li>
+                        <% end -%>
+                     </ul>
+
+
+                     <div class="weui-uploader__input-box uploaderImageBox">
+                       <input id="uploaderUserImageInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                        <div class="cover">
+                          编辑图片    
+                        </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            
+
               </div>   
             </div>
           </div>
@@ -150,6 +197,7 @@
       </div>
  
 </div>
+
 
 <%= content_for :weixin_api do %>
   <script type="text/javascript">
@@ -176,6 +224,52 @@
 
         return false;
       });
+
+
+      var image_url = $(".user_image").attr("src");
+      if (image_url) {
+        if (image_url[1] == "a") {
+          $("#uploaderUserImage").css("display", "none");
+        }else{
+           $(".uploaderImageBox").addClass("uploaderImageBoxStyle");
+           $(".cover").css("display", "block");
+        }
+      }
+
+      function uploader_user_image() {
+         wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+              var localIds = res.localIds.toString();
+              wx.uploadImage({
+                localId: localIds,
+                isShowProgressTips: 1,
+                success: function (res) {
+                  var serverId = res.serverId;
+                  $.post('/user/upload_user_image', {serverId: serverId}, function(res){
+                    location.reload();
+                  });
+                }
+              });
+          }
+        });
+      }
+
+      $('#uploaderUserImageInput').click(function() {
+         uploader_user_image();
+
+        return false;       
+
+      }) //uploaderUserImage end
+
+
+      $('.cover').click(function() {
+        uploader_user_image();
+
+        return false;
+      }) // cover end
     });
   </script>
 <% end %>
