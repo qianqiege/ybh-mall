@@ -1,5 +1,8 @@
 class UserInfoReview < ApplicationRecord
 	include ImageConcern
+	mount_uploader :doctor_image, ImageUploader
+	mount_uploader :education_image, ImageUploader
+	mount_uploader :other_image, ImageUploader
 	belongs_to :user
 	validates :identity, inclusion: { in: %w(family_doctor family_health_manager helath_manager user) }
 

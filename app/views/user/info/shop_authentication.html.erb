@@ -1,0 +1,374 @@
+<style type="text/css">
+
+  #txtlogin {
+    background:#ccc;
+  }
+
+  #txtlogin.active {
+    background: #1aad19;z-index: 99;
+
+  }
+
+  .really,.login_content {
+    font-size: 1rem;
+  }
+
+  .weui-cell__bd {
+    border-bottom: 1px solid #bbb;
+  }
+
+  .login_label,.phone,.changearea, .weui-cells__title {
+    color: #000;
+  }
+
+  .weui-cell_warn .weui-cell__hd {
+    width: 19%;
+  }
+
+  .radius {
+    line-height: 30px;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .weui-cell:before, .weui-cells:before, .weui-cells:after {
+    border: 0;
+  }
+
+  .zhushi {
+    color: red;
+  }
+
+  input {
+    width: 100%; height: 40px;
+  }
+
+  .yzm {
+    position: relative;
+  }
+
+  #smsgetCode {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .weui-cells {
+    margin: 0;
+  }
+
+  .address-box {
+    margin-bottom: 0;
+  }
+
+  .weui-panel {
+    margin-top: 0;
+  }
+
+  .weui-label {
+    width: 90px;
+  }
+
+  .pt50 .weui-panel {
+    background: none;
+  }
+
+  .pt50 .weui-panel:after, .pt50 .weui-panel:before {
+    content: none;
+  }
+
+  .pt50 .address-box {
+    background: none;
+  }
+
+  .pt50 .address-box li {
+    border:none;
+    background: none;
+  }
+
+  .pt50 .address-box li input, .pt50 .address-box li select, .pt50 .address-box li textarea {
+    border: 1px solid #ad0e11;
+    /*-webkit-appearance: none;*/
+  }
+
+  .pt50 .marginLeft {
+    margin-left: 5%;
+  }
+
+  .yyj_input {
+    height: 30px;
+  }
+
+  .uploaderImageBoxStyle {
+      position: relative;
+      background-color: #D9D9D9;
+    }
+
+  .cover {
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    background-color: #D9D9D9;
+    display: none;
+  }
+
+  .left {
+    width: 38%;
+  }
+
+</style>
+
+
+<%= title '请填写认证内容' %>
+<%= form_tag(create_or_update_shop_info_wechat_shops_path(id: @shop), method: :put, id: 'bind_phone_form') do %>
+    <div class="wraper pt50">
+      <h2 class="yyj_title">请填写医馆认证内容</h2>
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+
+      <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">医馆名称</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <input type="text" name="name" class="yyj_input" value="<%= @shop.name if @shop %>">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">上午营业时间</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <%= time_field_tag(:shop, :address, class: "yyj_input left", name: "morning_start", value: @shop.morning_start ) %> - <%= time_field(:shop, :address, class: "yyj_input left", name: "morning_end", value: @shop.morning_end ) %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">下午营业时间</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <%= time_field_tag(:shop, :address, class: "yyj_input left", name: "afternoon_start", value: @shop.afternoon_start ) %> - <%= time_field(:shop, :address, class: "yyj_input left", name: "afternoon_end", value: @shop.afternoon_end ) %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">营业执照注册号<small>(15位)</small></div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <input type="text" class="yyj_input" value="<%= @shop.license_number if @shop %>" name="license_number">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">运营者身份证号</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <input type="text" class="yyj_input" value="<%= @shop.user_id_card if @shop %>" name="user_id_card">
+              </div>
+            </div>
+          </div>
+        </div>
+    
+
+      <div class="weui-btn-area">
+        <input type="submit" class="weui-btn weui-btn_primary create_or_update yyj_submit" value="提交" style="line-height: 40px;">
+      </div>
+
+      <div class="weui-cell">
+        <div class="weui-uploader">
+          <div class="weui-uploader__hd">
+            <p class="weui-uploader__title">
+              <% if @shop && @shop.license_image %>
+                营业执照照片
+              <% else %>
+                上传营业执照照片
+              <% end -%>
+            </p>
+          </div>
+          <div class="weui-uploader__bd">
+             <ul class="weui-uploader__files uploaderUserImage">
+                <% if @shop %>
+                  <li class="weui-uploader__file">
+                     <%= image_tag(@shop.license_image_url, :alt => "营业执照照片", :class => "identity-card-img images") if @shop&&@shop.license_image %>
+                 </li>
+                <% end -%>
+             </ul>
+
+
+             <div class="weui-uploader__input-box uploaderImageBox">
+               <input id="uploadLicenseImage" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                <div class="cover">
+                  编辑图片    
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cell">
+        <div class="weui-uploader">
+          <div class="weui-uploader__hd">
+            <p class="weui-uploader__title">
+              <% if @shop && @shop.user_image %>
+                运营者证件照片
+              <% else %>
+                上传运营者证件照片
+              <% end -%>
+            </p>
+          </div>
+          <div class="weui-uploader__bd">
+             <ul class="weui-uploader__files uploaderUserImage">
+                <% if @shop %>
+                  <li class="weui-uploader__file">
+                     <%= image_tag(@shop.user_image.url, :alt => "运营者证件照片", :class => "identity-card-img images") if @shop&&@shop.user_image %>
+                 </li>
+                <% end -%>
+             </ul>
+
+
+             <div class="weui-uploader__input-box uploaderImageBox">
+               <input id="uploadUserImage" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                <div class="cover">
+                  编辑图片    
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+<% end %>
+
+
+<script>
+  $(function() {
+    var iden = $(".pass_value").val();
+    $("#identity option").each(function() {
+      if ($(this).val() == iden) {
+        $(this).attr("selected", "selected");
+      }
+    })
+  })
+
+  $(".create_or_update").on("click", function(event) {
+    event.preventDefault();
+
+    var address_flag = 0;
+    $(this).parent().parent().find(".city-select").each(function(index){
+        if (index > 2) {
+            if ($("#same-address").is(':checked')) {
+                return
+            }
+        }
+        if ($(this).val()=='') {
+         address_flag = 1;
+         return
+        }
+    })
+
+
+    if (address_flag && identity != 'user') {
+      showFlash("#toast-custom", '请将地址填写完整！');
+      return;
+    }
+
+    $("#bind_phone_form").submit();
+
+});
+  $("#same-address").click(function() {
+    if ($("#same-address").is(':checked')) {
+    // console.log(1);
+    $('.same-as-work-address').hide();
+
+  }else{
+    // console.log(2);
+     $('.same-as-work-address').show();
+  }
+})
+
+  $(".images").each(function(){
+    var image_url = $(this).attr("src");
+    if (image_url) {
+      if (image_url[1] == "a") {
+        $(this).parent().css("display", "none");
+      }else{
+         // $(".uploaderImageBox").addClass("uploaderImageBoxStyle");
+         // $(".cover").css("display", "block");
+      }
+    }  
+  })
+  
+</script>
+
+
+<%= content_for :weixin_api do %>
+  <script type="text/javascript">
+    wx.ready(function () {
+      $('#uploadLicenseImage').click(function(){
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+              var localIds = res.localIds.toString();
+              wx.uploadImage({
+                localId: localIds,
+                isShowProgressTips: 1,
+                success: function (res) {
+                  var serverId = res.serverId;
+                  $.post(' /wechat/shops/upload_license_image', {serverId: serverId}, function(res){
+                    location.reload();
+                  });
+                }
+              });
+          }
+        });
+
+        return false;
+      });
+
+
+      $('#uploadUserImage').click(function(){
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+              var localIds = res.localIds.toString();
+              wx.uploadImage({
+                localId: localIds,
+                isShowProgressTips: 1,
+                success: function (res) {
+                  var serverId = res.serverId;
+                  $.post('/wechat/shops/upload_user_image', {serverId: serverId}, function(res){
+                    location.reload();
+                  });
+                }
+              });
+          }
+        });
+
+        return false;
+      });
+
+
+    })
+  </script>
+<% end -%>

@@ -1,0 +1,460 @@
+<style type="text/css">
+
+  #txtlogin {
+    background:#ccc;
+  }
+
+  #txtlogin.active {
+    background: #1aad19;z-index: 99;
+
+  }
+
+  .really,.login_content {
+    font-size: 1rem;
+  }
+
+  .weui-cell__bd {
+    border-bottom: 1px solid #bbb;
+  }
+
+  .login_label,.phone,.changearea, .weui-cells__title {
+    color: #000;
+  }
+
+  .weui-cell_warn .weui-cell__hd {
+    width: 19%;
+  }
+
+  .radius {
+    line-height: 30px;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .weui-cell:before, .weui-cells:before, .weui-cells:after {
+    border: 0;
+  }
+
+  .zhushi {
+    color: red;
+  }
+
+  input {
+    width: 100%; height: 40px;
+  }
+
+  .yzm {
+    position: relative;
+  }
+
+  #smsgetCode {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .weui-cells {
+    margin: 0;
+  }
+
+  .address-box {
+    margin-bottom: 0;
+  }
+
+  .weui-panel {
+    margin-top: 0;
+  }
+
+  .weui-label {
+    width: 90px;
+  }
+
+  .pt50 .weui-panel {
+    background: none;
+  }
+
+  .pt50 .weui-panel:after, .pt50 .weui-panel:before {
+    content: none;
+  }
+
+  .pt50 .address-box {
+    background: none;
+  }
+
+  .pt50 .address-box li {
+    border:none;
+    background: none;
+  }
+
+  .pt50 .address-box li input, .pt50 .address-box li select, .pt50 .address-box li textarea {
+    border: 1px solid #ad0e11;
+    /*-webkit-appearance: none;*/
+  }
+
+  .pt50 .marginLeft {
+    margin-left: 5%;
+  }
+
+  .yyj_input {
+    height: 30px;
+  }
+
+  .uploaderImageBoxStyle {
+      position: relative;
+      background-color: #D9D9D9;
+    }
+
+  .cover {
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    background-color: #D9D9D9;
+    display: none;
+  }
+
+</style>
+
+
+<%= title '编辑审核内容' %>
+
+<%= form_tag(user_update_user_info_review_path(id: @user_info_review), method: :put, id: 'bind_phone_form') do %>
+    <div class="wraper pt50">
+      <h2 class="yyj_title">编辑审核信息</h2>
+      <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+      <div class="weui-cell weui-cell_form marginLeft">
+          <div class="weui-cell__hd really"><label for="" class="weui-label">角色选择</label></div>
+          <input type="text" value="<%= @user_info_review.identity %>" class="pass_value yyj_input" style="display: none;">
+          <div class="weui-cell__bd" style="border-bottom: none;">
+            <select name="identity" id="identity" class="yyj_input">
+              <option value="user">用户</option>
+              <option value="family_doctor">家庭医生</option>
+              <option value="family_health_manager">家庭健康管理师</option>
+              <option value="helath_manager">健康管理师</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">工作地信息</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <ul>
+                  <li class="clearfix">
+                    <span>省份</span>
+                    <select class="city-select yyj_input" name="work_address[province]">
+                      <option value="<%= @user_info_review.work_province %>"><%= ChinaCity.get(@user_info_review.work_province) %></option>
+                      <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>城市</span>
+                    <select class="city-select yyj_input" name="work_address[city]">
+                      <option value="<%= @user_info_review.work_city %>"><%= ChinaCity.get(@user_info_review.work_city) %></option>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>地区或街道</span>
+                    <select class="city-select yyj_input" name="work_address[street]">
+                      <option value="<%= @user_info_review.work_street %>"><%= ChinaCity.get(@user_info_review.work_street) %></option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+            <div class="weui-panel__hd" style="float:left">常住地信息</div>
+            <div class="same-address" style="float:right; margin-right:18%; color:#999; font-size:14px; padding-top:5px;">
+               <input type="checkbox" name="sameaddress" id="same-address" style="width:15px; height:15px; margin-top:10px;">
+               <div class="same-work-address" style="float:right; margin-top:6px; margin-left:5px;">
+                   常住地同工作地
+               </div>
+            </div>
+            <div class="weui-panel__bd same-as-work-address" style="clear:both">
+              <div class="address-box city-group">
+                <ul>
+                  <li class="clearfix">
+                    <span>省份</span>
+                    <select class="city-select yyj_input" name="resident_address[province]">
+                      <option value="<%= @user_info_review.resident_province %>"><%= ChinaCity.get(@user_info_review.resident_province) %></option>
+                      <%= options_for_select(ChinaCity.list, @address.try(:province)) %>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>城市</span>
+                    <select class="city-select yyj_input" name="resident_address[city]">
+                      <option value="<%= @user_info_review.resident_city %>"><%= ChinaCity.get(@user_info_review.resident_city) %></option>
+                    </select>
+                  </li>
+                  <li class="clearfix">
+                    <span>地区或街道</span>
+                    <select class="city-select yyj_input" name="resident_address[street]">
+                      <option value="<%= @user_info_review.resident_street %>"><%= ChinaCity.get(@user_info_review.resident_street) %></option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="weui-panel weui-panel_access marginLeft">
+        <div class="weui-panel">
+          <div class="weui-panel__hd">执业医师证号</div>
+            <div class="weui-panel__bd">
+              <div class="address-box city-group">
+                <input type="text" name="doctor_number" class="yyj_input" value="<%= @user_info_review.doctor_number %>">
+              </div>
+            </div>
+          </div>
+        </div>
+    
+
+      <div class="weui-btn-area">
+        <input type="submit" class="weui-btn weui-btn_primary create_or_update yyj_submit" value="提交" style="line-height: 40px;">
+      </div>
+
+      <div class="weui-cell">
+        <div class="weui-uploader">
+          <div class="weui-uploader__hd">
+            <p class="weui-uploader__title">
+              <% if @user_info_review && @user_info_review.doctor_image %>
+                执业医师证
+              <% else %>
+                上传执业医师证
+              <% end -%>
+            </p>
+          </div>
+          <div class="weui-uploader__bd">
+             <ul class="weui-uploader__files uploaderUserImage">
+                <% if @user_info_review %>
+                  <li class="weui-uploader__file">
+                     <%= image_tag(@user_info_review.doctor_image_url, :alt => "执业医师资格证图片", :class => "identity-card-img images") if @user_info_review&&@user_info_review.image %>
+                 </li>
+                <% end -%>
+             </ul>
+
+
+             <div class="weui-uploader__input-box uploaderImageBox">
+               <input id="uploaderDoctorImageInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                <div class="cover">
+                  编辑图片    
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cell">
+        <div class="weui-uploader">
+          <div class="weui-uploader__hd">
+            <p class="weui-uploader__title">
+              <% if @user_info_review && @user_info_review.education_image %>
+                教育经历资格证
+              <% else %>
+                上传教育经历资格证
+              <% end -%>
+            </p>
+          </div>
+          <div class="weui-uploader__bd">
+             <ul class="weui-uploader__files uploaderUserImage">
+                <% if @user_info_review %>
+                  <li class="weui-uploader__file">
+                     <%= image_tag(@user_info_review.education_image.url, :alt => "教育经历资格证图片", :class => "identity-card-img images") if @user_info_review&&@user_info_review.image %>
+                 </li>
+                <% end -%>
+             </ul>
+
+
+             <div class="weui-uploader__input-box uploaderImageBox">
+               <input id="uploaderEducationImageInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                <div class="cover">
+                  编辑图片    
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cell">
+        <div class="weui-uploader">
+          <div class="weui-uploader__hd">
+            <p class="weui-uploader__title">
+              <% if @user_info_review && @user_info_review.other_image %>
+                其他资格证
+              <% else %>
+                上传其他资格证
+              <% end -%>
+            </p>
+          </div>
+          <div class="weui-uploader__bd">
+             <ul class="weui-uploader__files uploaderUserImage">
+                <% if @user_info_review %>
+                  <li class="weui-uploader__file">
+                     <%= image_tag(@user_info_review.other_image.url, :alt => "其他资格证图片", :class => "identity-card-img images") if @user_info_review&&@user_info_review.image %>
+                 </li>
+                <% end -%>
+             </ul>
+
+
+             <div class="weui-uploader__input-box uploaderImageBox">
+               <input id="uploaderOtherImageInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                <div class="cover">
+                  编辑图片    
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+<% end %>
+
+
+<script>
+  $(function() {
+    var iden = $(".pass_value").val();
+    $("#identity option").each(function() {
+      if ($(this).val() == iden) {
+        $(this).attr("selected", "selected");
+      }
+    })
+  })
+
+  $(".create_or_update").on("click", function(event) {
+    event.preventDefault();
+
+    var address_flag = 0;
+    $(this).parent().parent().find(".city-select").each(function(index){
+        if (index > 2) {
+            if ($("#same-address").is(':checked')) {
+                return
+            }
+        }
+        if ($(this).val()=='') {
+         address_flag = 1;
+         return
+        }
+    })
+
+
+    if (address_flag && identity != 'user') {
+      showFlash("#toast-custom", '请将地址填写完整！');
+      return;
+    }
+
+    $("#bind_phone_form").submit();
+
+});
+  $("#same-address").click(function() {
+    if ($("#same-address").is(':checked')) {
+    // console.log(1);
+    $('.same-as-work-address').hide();
+
+  }else{
+    // console.log(2);
+     $('.same-as-work-address').show();
+  }
+})
+
+  $(".images").each(function(){
+    var image_url = $(this).attr("src");
+    if (image_url) {
+      if (image_url[1] == "a") {
+        $(this).parent().css("display", "none");
+      }else{
+         // $(".uploaderImageBox").addClass("uploaderImageBoxStyle");
+         // $(".cover").css("display", "block");
+      }
+    }  
+  })
+  
+</script>
+
+
+<%= content_for :weixin_api do %>
+  <script type="text/javascript">
+    wx.ready(function () {
+      $('#uploaderDoctorImageInput').click(function(){
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+              var localIds = res.localIds.toString();
+              wx.uploadImage({
+                localId: localIds,
+                isShowProgressTips: 1,
+                success: function (res) {
+                  var serverId = res.serverId;
+                  $.post('/user/upload_doctor_image', {serverId: serverId}, function(res){
+                    location.reload();
+                  });
+                }
+              });
+          }
+        });
+
+        return false;
+      });
+
+
+      $('#uploaderEducationImageInput').click(function(){
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+              var localIds = res.localIds.toString();
+              wx.uploadImage({
+                localId: localIds,
+                isShowProgressTips: 1,
+                success: function (res) {
+                  var serverId = res.serverId;
+                  $.post('/user/upload_education_image', {serverId: serverId}, function(res){
+                    location.reload();
+                  });
+                }
+              });
+          }
+        });
+
+        return false;
+      });
+
+
+      $('#uploaderOtherImageInput').click(function(){
+        wx.chooseImage({
+          count: 1,
+          sizeType: ['original', 'compressed'],
+          sourceType: ['album', 'camera'],
+          success: function (res) {
+              var localIds = res.localIds.toString();
+              wx.uploadImage({
+                localId: localIds,
+                isShowProgressTips: 1,
+                success: function (res) {
+                  var serverId = res.serverId;
+                  $.post('/user/upload_other_image', {serverId: serverId}, function(res){
+                    location.reload();
+                  });
+                }
+              });
+          }
+        });
+
+        return false;
+      });
+    })
+  </script>
+<% end -%>
