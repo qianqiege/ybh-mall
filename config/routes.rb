@@ -49,6 +49,14 @@ Rails.application.routes.draw do
     get 'member/card'
     get 'member/equity'
     get 'member/setmeal'
+    resources :shops do
+      get :shop_doctors, on: :member
+      get :shop_services, on: :member
+      get :shop_activities, on: :member
+      put :create_or_update_shop_info, on: :collection
+      post :upload_license_image, on: :collection
+      post :upload_user_image, on: :collection
+    end
   end
 
   namespace :mall do
@@ -148,6 +156,9 @@ Rails.application.routes.draw do
     get '/setting', to: 'info#setting'
     post '/upload_image', to: 'info#upload_image'
     post '/upload_user_image', to: 'info#upload_user_image'
+    post '/upload_doctor_image', to: 'info#upload_doctor_image'
+    post '/upload_education_image', to: 'info#upload_education_image'
+    post '/upload_other_image', to: 'info#upload_other_image'
     get '/invitation', to: 'info#invitation'
     get '/invitation_friend', to:'info#invitation_friend'
     get '/details', to: 'info#account_details'
@@ -158,6 +169,8 @@ Rails.application.routes.draw do
     get 'create_gift_friend', to: 'info#create_gift_friend'
     post 'create_gift_friend', to: 'info#create_gift_friend'
     get '/exchange', to: 'info#exchange'
+    get '/authentication', to: 'info#authentication'
+    get '/shop_authentication', to: 'info#shop_authentication'
     post '/create_gift', to: 'info#create_gift'
     get '/create_gift', to: 'info#create_gift'
     post '/gift_user', to: 'info#gift_user'

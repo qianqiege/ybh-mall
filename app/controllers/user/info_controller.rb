@@ -246,6 +246,16 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  # 医师认证
+  def authentication
+    @user_info_review = current_user.user.user_info_review
+  end
+
+  # 医馆认证
+  def shop_authentication
+    @shop = current_user.user.shop
+  end
+
   def gift_friend
     available = Integral.find_by(user_id: current_user.user_id)
     @user_available_y = available.exchange
@@ -295,13 +305,15 @@ class User::InfoController < Wechat::BaseController
           work_street: params[:work_address][:street],
           resident_province: params[:work_address][:province],
           resident_city: params[:work_address][:city],
-          resident_street: params[:work_address][:street]
+          resident_street: params[:work_address][:street],
+          doctor_number: params[:doctor_number]
         }
         if @user_info_review.blank?
           review = UserInfoReview.new(format_data)
           review.user_id = current_user.user.id
           review.save!
         else
+          format_data[:state] = "pending"
           @user_info_review.update(format_data)
         end
     else
@@ -312,13 +324,15 @@ class User::InfoController < Wechat::BaseController
           work_street: params[:work_address][:street],
           resident_province: params[:resident_address][:province],
           resident_city: params[:resident_address][:city],
-          resident_street: params[:resident_address][:street]
+          resident_street: params[:resident_address][:street],
+          doctor_number: params[:doctor_number]
         }
         if @user_info_review.blank?
           review = UserInfoReview.new(format_data)
           review.user_id = current_user.user.id
           review.save!
         else
+          format_data[:state] = "pending"
           @user_info_review.update(format_data)
         end
     end
@@ -341,6 +355,38 @@ class User::InfoController < Wechat::BaseController
       UserInfoReview.create!(remote_image_url: url, user_id: current_user.user.id, identity: 'user')
     end
     
+    render_success
+  end
+
+  def upload_doctor_image
+    url = $wechat_client.download_media_url(params["serverId"])
+    if current_user.user.user_info_review
+      current_user.user.user_info_review.update(remote_doctor_image_url: url)
+    else
+      UserInfoReview.create!(remote_doctor_image_url: url, user_id: current_user.user.id, identity: 'user')
+    end
+
+    render_success
+  end
+
+  def upload_education_image
+    url = $wechat_client.download_media_url(params["serverId"])
+    if current_user.user.user_info_review
+      current_user.user.user_info_review.update(remote_education_image_url: url)
+    else
+      UserInfoReview.create!(remote_education_image_url: url, user_id: current_user.user.id, identity: 'user')
+    end
+
+    render_success
+  end
+
+  def upload_other_image
+    url = $wechat_client.download_media_url(params["serverId"])
+    if current_user.user.user_info_review
+      current_user.user.user_info_review.update(remote_other_image_url: url)
+    else
+      UserInfoReview.create!(remote_other_image_url: url, user_id: current_user.user.id, identity: 'user')
+    end
 
     render_success
   end
