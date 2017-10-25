@@ -105,6 +105,14 @@ ActiveAdmin.register Order do
     end
   end
 
+  member_action :return_order, method: :put do
+    if resource.return_change!
+      redirect_to :back, notice: "已取消订单!"
+    else
+      redirect_to :back, notice: "操作失败!"
+    end
+  end
+
   action_item :edit_price, only: :show do
     link_to '更改价格', edit_price_admin_order_path(resource), method: :get if current_admin_user.change_order?
   end
@@ -151,6 +159,9 @@ ActiveAdmin.register Order do
       end
       span do
         link_to '设为已收货', receive_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_confirm?
+      end
+      span do
+        link_to '退货/退款', return_order_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if !order.return_change?
       end
     end
     actions defaults: true

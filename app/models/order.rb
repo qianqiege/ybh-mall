@@ -28,7 +28,7 @@ class Order < ApplicationRecord
   before_create :generate_number, :copy_price_to_initial_price
   after_create :set_used_address, :create_scoin_account
 
-  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' }.freeze
+  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' ,return_change: '退货/款'}.freeze
   PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
   PAYMENT_TEXT = { PAYMENT_TYPE_WECHAT: '微信支付', PAYMENT_TYPE_YJ: '银行卡支付' }.freeze
 
@@ -90,6 +90,13 @@ class Order < ApplicationRecord
         line_items.each do |line_item|
           line_item.product.back_shop_count(line_item.quantity)
         end
+      end
+    end
+
+    event :return_change do
+      transitions from: [:pending,:wait_send,:received,:wait_confirm], to: :return_change
+      after do
+        update_return
       end
     end
 
@@ -169,6 +176,33 @@ class Order < ApplicationRecord
 
   def name
     number
+  end
+
+  def update_return
+    # 退货 退款 计算 重置积分
+    @record = PresentedRecord.where(presentable_id: self.id)
+
+    i = 1
+    while i <= @record.length
+      @record.each do |record|
+        @wallte = Integral.find_by(user_id: record.user_id)
+        if record.type != "Available"
+          @wallte.locking = @wallte.locking - record.balance
+        elsif
+          @wallte.available = @wallte.available - record.balance
+        end
+        if @wallte.save
+          record.balance = 0
+          record.is_effective = 0
+          record.reason = "退款/退货被重置"
+          if record.save
+            i = i + 1
+          end
+        end
+
+      end
+    end
+
   end
 
   def remote_express_info
