@@ -98,8 +98,27 @@
 		z-index: 999;
 	}
 
-</style>
+	/*.float{
+		width: 100%;
+		text-align: right;
+		padding: 2%;
+	}*/
 
+	.float{
+	  float: right;
+	  display: inline-block;
+	  color: black;
+	  margin-right: 20px;
+	  border: 1px dashed black;
+	  padding:2px 5px;
+	  border-radius: 3px;
+	  margin-top: 10px;
+	}
+
+</style>
+<div>
+	<a href="/doctor/home" class="float">健康管理师版</a>
+</div>
 
 <div class="silder">
 	<ul>
@@ -113,7 +132,7 @@
 			<% @doctor.each do |doctor| %>
 	          <li>
 							<a href="<%= doctor_doctor_info_path(doctor.id) %>">
-		            <div class="images"><%= image_tag doctor.image if doctor.image.present? %></div>
+		            <div style="text-align: center;"><%= image_tag doctor.image,size: "100x160" if doctor.image.present?  %></div>
 		            <span><%= doctor.user.name %></span>
 							</a>
 	          </li>
