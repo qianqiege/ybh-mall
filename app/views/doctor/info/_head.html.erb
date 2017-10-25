@@ -4,19 +4,30 @@
 }
  .name {
   position: absolute;
-  bottom: 96px;
+  bottom: 18px;
   left: 70px;
  }
- .
+
+.float{
+  float: right;
+  display: inline-block;
+  color: #fff;
+  margin-right: 20px;
+  border: 1px dashed #eee;
+  padding:2px 5px;
+  border-radius: 3px;
+  margin-top: 10px;
+}
 </style>
 <div class='wallet bg-size'>
   <div class="profile">
     <div class="placeholder">
-      <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
+      <%= image_tag @doctor_info_review.user.wechat_user.headimgurl if @doctor_info_review && @doctor_info_review.user.wechat_user.headimgurl %>
+      <a href="<%= user_doctor_user_path(@doctor_info_review.user.id) %>" class="float">申请</a>
     </div>
-    <div class="placeholder name"><%= current_user.nickname %></div>
-    <div class="placeholder">角色：<%= @doctor_info_review.identity_name %></div>
-    <div class="placeholder">工作地：<%= @doctor_info_review.display_work_detail %></div>
-    <div class="placeholder">常住地： <%= @doctor_info_review.display_resident_detail %></div>
+    <div class="placeholder name"><%= @doctor_info_review.user.name %></div>
+    <!-- <div class="placeholder">角色：<%= @doctor_info_review.identity_name %></div>
+    <div class="placeholder">工作地：<%= @doctor_info_review.display_work_detail %></div> -->
+    <!-- <div class="placeholder">常住地： <%= @doctor_info_review.display_resident_detail %></div> -->
   </div>
 </div>

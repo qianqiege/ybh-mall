@@ -1,0 +1,32 @@
+
+<style media="screen">
+    .doctors {
+      padding:10px;
+      display: flex;
+      border-bottom:1px solid #eeeeee;
+    }
+
+    .doctors .docInfo {
+      flex: 1;
+      margin:5% 0 0 5%;
+    }
+
+    .doctors .docInfo span {
+      display: block;
+    }
+
+    .doctors .docInfo span:last-child {
+      font-size: 14px;
+    }
+</style>
+
+
+<% @doctor_info.each do |doctor| %>
+<div class="doctors">
+  <%= image_tag doctor.image ,size: "70x120" %>
+  <div class="docInfo">
+    <span><%= doctor.user.name %></span>
+    <span class="docIntro"><%= doctor.user.name %></soan>
+  </div>
+</div>
+<% end %>

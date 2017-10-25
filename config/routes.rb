@@ -121,6 +121,8 @@ Rails.application.routes.draw do
 
   namespace :user do
     root "info#home"
+    get '/health_doctor', to: 'examine_data#health_doctor'
+    get '/doctor_user' , to: 'info#doctor_user'
     get '/invitation_info', to: 'info#invitation_info'
     get '/edit_info', to: 'info#edit_info'
     post '/user_edit_info', to: 'info#user_edit_info'
