@@ -27,16 +27,8 @@ namespace :presented_record do
              # 更新用户的锁定积分和可用积分
              if @integral.update(locking: locking,available: available)
                puts "更新锁定积分总数为#{locking}"
-               # 更新成功后，将这条记录判定为无效记录，避免重复计算
-               record.is_effective = 0
-               # 将满足fifteen_days天的易积分从 锁定易积分中减掉
-               PresentedRecord.create(user_id: record.user_id,number: "-#{record.balance}",reason: "锁定变更可用积分",is_effective:0,type:"Locking",wight: record.wight,record_id: record.id)
-               puts "生成易积分收支记录，锁定易积分中减#{record.balance}"
-
                # 将刚刚从锁定易积分中减掉的积分 加到可兑易积分中
-               PresentedRecord.create(user_id: record.user_id, number: record.balance, reason: "接受变更可用积分", is_effective:1, type:"Available",wight: record.wight,record_id: record.id)
-               puts "生成易积分收支记录，可用积分中加#{record.balance}"
-               record.balance = 0
+               record.update(type:"Available")
                # 将修改保存到数据库
                record.save
              end
@@ -52,21 +44,8 @@ namespace :presented_record do
             # 条件为true,执行计算，从可用积分中减掉，加到可兑换积分
              available = @integral.available - record.balance
              exchange = @integral.exchange + record.balance
-
-             # 更新成功后，将这条记录判定为无效记录，避免重复计算
-             record.is_effective = 0
-
-             # 将满足sex_months天的易积分从 锁定易积分中减掉
-             PresentedRecord.create(user_id: record.user_id,number: "-#{record.balance}", reason: "可用积分变更可兑积分", is_effective:0, type:"Available", wight: record.wight,record_id: record.id)
-             puts "生成易积分收支记录，锁定易积分中减#{record.balance}"
-
-             # 将刚刚从锁定易积分中减掉的积分 加到可兑易积分中
-             PresentedRecord.create(user_id: record.user_id, number: record.balance, reason: "接受变更可兑积分",is_effective:1,type:"Exchange",wight: record.wight,record_id: record.id)
-             puts "生成易积分收支记录，可兑积分中加#{record.balance}"
-
+             record.update(type:"Exchange")
              @integral.update(exchange: @integral.exchange + record.balance,not_exchange: @integral.not_exchange - record.balance)
-             record.balance = 0
-             # 将修改保存到数据库
              record.save
           end
         end
@@ -81,21 +60,8 @@ namespace :presented_record do
               # 条件为true,执行计算，从可用积分中减掉，加到可兑换积分
                available = @integral.available - record.balance
                exchange = @integral.exchange + record.balance
-
-               # 更新成功后，将这条记录判定为无效记录，避免重复计算
-               record.is_effective = 0
-
-               # 将满足sex_months天的易积分从 锁定易积分中减掉
-               PresentedRecord.create(user_id: record.user_id,number: "-#{record.balance}", reason: "可用积分变更可兑积分", is_effective:0, type:"Available", wight: record.wight,record_id: record.id)
-               puts "生成易积分收支记录，锁定易积分中减#{record.balance}"
-
-               # 将刚刚从锁定易积分中减掉的积分 加到可兑易积分中
-               PresentedRecord.create(user_id: record.user_id, number: record.balance, reason: "接受变更可兑积分",is_effective:1,type:"Exchange",wight: record.wight,record_id: record.id)
-               puts "生成易积分收支记录，可兑积分中加#{record.balance}"
-
+               record.update(type:"Exchange")
                @integral.update(exchange: @integral.exchange + record.balance,not_exchange: @integral.not_exchange - record.balance)
-               record.balance = 0
-               # 将修改保存到数据库
                record.save
             end
           end
