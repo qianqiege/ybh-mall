@@ -161,7 +161,7 @@ ActiveAdmin.register Order do
         link_to '设为已收货', receive_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if order.wait_confirm?
       end
       span do
-        link_to '退货/退款', return_order_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if !order.return_change?
+        link_to '退货/退款', return_order_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if !order.return_change? && !order.cancel? && !order.pending?
       end
     end
     actions defaults: true
