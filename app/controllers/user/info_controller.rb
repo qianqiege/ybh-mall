@@ -2,6 +2,14 @@ class User::InfoController < Wechat::BaseController
   before_action :programs
   skip_before_filter :verify_authenticity_token
 
+  def doctor_user
+    if params[:format].present?
+      DoctorOrUser.create(user_id: current_user.user_id,doctor_id: params[:format])
+    end
+    @doctor_user = DoctorOrUser.where(user_id: current_user.user_id)
+    @doctor_info = UserInfoReview.where(user_id: @doctor_user.pluck(:doctor_id))
+  end
+
   def health_data
     @user_email = User.find(current_user.user_id)
     @health_identity_card = params[:identity_card] || ""
@@ -354,7 +362,7 @@ class User::InfoController < Wechat::BaseController
     else
       UserInfoReview.create!(remote_image_url: url, user_id: current_user.user.id, identity: 'user')
     end
-    
+
     render_success
   end
 

@@ -4,6 +4,10 @@ class User::ExamineDataController < Wechat::BaseController
   def health_data_home
   end
 
+  def health_doctor
+    @doctor = UserInfoReview.where("state = ? and identity != ?","dealed","User")
+  end
+
   def show_blood_fat
     if !current_user.user_id.nil?
       @show = BloodFat.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
@@ -145,12 +149,12 @@ class User::ExamineDataController < Wechat::BaseController
     # else
     #   UserIdataSubscribe.find_by(user_id: current_user.user_id).update(list: params[:number].split(","), status: "fail")
     # end
-    
+
     Rails.logger.info "@"*20
     Rails.logger.info "create_idata_subscribe"
     Rails.logger.info params[:number].split(",")
 
-    UserIdataSubscribeList.create(list: params[:number])  
+    UserIdataSubscribeList.create(list: params[:number])
 
     format_data = {
       price: params[:money].to_f,

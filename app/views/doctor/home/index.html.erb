@@ -66,6 +66,10 @@
 <table style="margin-top: 4%;">
   <tr style="text-align: center;">
     <td style="width: 10%;">
+      <a href="<%= doctor_doctor_info_path(id: current_user.user.id) %>"><%= image_tag "icon角色.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">客户列表</p>
+    </td>
+    <td style="width: 10%;">
       <a href="#"><%= image_tag "icon档案.png", size: "50x50" %></a>
       <p style="margin-bottom:15%;" class="fontSizes">档案</p>
     </td>
@@ -76,10 +80,6 @@
     <td style="width: 10%;">
       <a href="#"><%= image_tag "icon异常.png", size: "50x50" %></a>
       <p style="margin-bottom:15%;" class="fontSizes">异常</p>
-    </td>
-    <td style="width: 10%;">
-      <a href="<%= doctor_doctor_info_path(id: current_user.user.id) %>"><%= image_tag "icon角色.png", size: "50x50" %></a>
-      <p style="margin-bottom:15%;" class="fontSizes">我的</p>
     </td>
   </tr>
 </table>
