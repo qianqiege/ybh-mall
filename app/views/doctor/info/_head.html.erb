@@ -23,7 +23,9 @@
   <div class="profile">
     <div class="placeholder">
       <%= image_tag @doctor_info_review.user.wechat_user.headimgurl if @doctor_info_review && @doctor_info_review.user.wechat_user.headimgurl %>
-      <a href="<%= user_doctor_user_path(@doctor_info_review.user.id) %>" class="float">申请</a>
+      <% if !@wether_show_request %>
+        <a href="<%= user_doctor_user_path(@doctor_info_review.user.id) %>" class="float">申请</a>
+      <% end -%>
     </div>
     <div class="placeholder name"><%= @doctor_info_review.user.name %></div>
     <!-- <div class="placeholder">角色：<%= @doctor_info_review.identity_name %></div>

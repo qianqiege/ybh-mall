@@ -117,7 +117,7 @@
 
 </style>
 <div>
-	<a href="/doctor/home" class="float">健康管理师版</a>
+	<a href="<%= doctor_home_path %>" class="float">健康管理师版</a>
 </div>
 
 <div class="silder">
@@ -131,10 +131,10 @@
 		<ul class="clearfix chanpin">
 			<% @doctor.each do |doctor| %>
 	          <li>
-							<a href="<%= doctor_doctor_info_path(doctor.id) %>">
-		            <div style="text-align: center;"><%= image_tag doctor.image,size: "100x160" if doctor.image.present?  %></div>
-		            <span><%= doctor.user.name %></span>
-							</a>
+					<a href="<%= doctor_doctor_info_path(doctor.id) %>">
+			            <div style="text-align: center;"><%= image_tag doctor.image,size: "100x160" if doctor.image.present?  %></div>
+			            <span><%= doctor.user.name %></span>
+					</a>
 	          </li>
 	     <% end %>
     </ul>
