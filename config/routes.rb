@@ -264,7 +264,8 @@ Rails.application.routes.draw do
   end
 
   namespace :doctor do
-    get 'doctor_info', to: 'info#doctor_info'
-    get'/home',to: 'home#index'
+    get '/doctor_info', to: 'info#doctor_info'
+    get '/user_request_deal', to: 'info#user_request_deal'
+    get '/home',to: 'home#index'
   end
 end

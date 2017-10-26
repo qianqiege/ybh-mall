@@ -1,3 +1,48 @@
+<style>
+  .tab {
+    overflow: auto;
+  }
+
+  .tab li {
+    float: left;
+    background-color: gray;
+    width: 30%;
+    margin-right: 1%;
+    padding: 1%;
+    text-align: center;
+    overflow: auto;
+    margin-top: 20px;
+  }
+
+  .tab-content div {
+    display: none;
+  }
+
+  .tab-content div:first-child {
+    display: block;
+  }
+
+  .tab-content ul li {
+    overflow: auto;
+  }
+
+  .deal {
+    float: right;
+    overflow: auto;
+    height: 50px;
+  }
+
+  .deal a {
+    border: 1px solid red;
+    border-radius: 6px;
+    text-align: center;
+    color: red;
+    padding: 7px;
+  }
+
+
+</style>
+
 <%= title '我的健康信息' %>
 <%= render 'head' %>
 
@@ -22,5 +67,113 @@
         <p style="margin-bottom:15%;" class="fontSizes">我的</p>
       </td>
     </tr>
-
+  </table>
 </div>
+
+<% if @wether_show_request %>
+  <ul class="tab">
+    <li>全部</li>
+    <li>已处理</li>
+    <li>待处理</li>
+  </ul>
+
+  <div class="tab-content">
+    <div>
+      <ul>
+        <% @request_all.each do |request| %>
+          <li>
+
+            <div class="address-confirm order-address">
+              <i class="icon-address"></i>
+              <p>
+                <span class="fr gray84"><%= User.find(request.user_id).telphone %></span>
+                申请人：<%= User.find(request.user_id).name %>
+              </p>
+              <p>
+                <p class="mt10">审核状态：<%= request.get_state %></p>
+              </p>
+
+              <% if request.state == "pending" %>
+                <p class="deal">
+                  <a href="<%= doctor_user_request_deal_path(id: request, type: 1) %>">通过</a>
+                  <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
+                </p>
+              <% end -%>
+            </div>
+
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <% @request_dealed.each do |request| %>
+          <li>
+
+            <div class="address-confirm order-address">
+              <i class="icon-address"></i>
+              <p>
+                <span class="fr gray84"><%= User.find(request.user_id).telphone %></span>
+                申请人：<%= User.find(request.user_id).name %>
+              </p>
+              <p>
+                <p class="mt10">审核状态：<%= request.get_state %></p>
+              </p>
+
+              <% if request.state == "pending" %>
+                <p class="deal">
+                  <a href="<%= doctor_user_request_deal_path(id: request, type: 1) %>">通过</a>
+                  <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
+                </p>
+              <% end -%>
+            </div>
+
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <% @request_pending.each do |request| %>
+          <li>
+      
+            <div class="address-confirm order-address">
+              <i class="icon-address"></i>
+              <p>
+                <span class="fr gray84"><%= User.find(request.user_id).telphone %></span>
+                申请人：<%= User.find(request.user_id).name %>
+              </p>
+              <p>
+                <p class="mt10">审核状态：<%= request.get_state %></p>
+              </p>
+
+              <% if request.state == "pending" %>
+                <p class="deal">
+                  <a href="<%= doctor_user_request_deal_path(id: request, type: 1) %>">通过</a>
+                  <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
+                </p>
+              <% end -%>
+            </div>
+
+          </li>
+        <% end -%>
+      </ul>
+    </div>
+  </div>
+<% end -%>
+
+
+<script>
+  $(function() {
+    $(".tab li").each(function() {
+      $(this).on('click', function() {
+        $(".tab-content>div").css("display", "none");
+        $(".tab-content>div").eq($(this).index()).css("display", "block");
+      })
+    })
+  })
+</script>
+
+
+
+

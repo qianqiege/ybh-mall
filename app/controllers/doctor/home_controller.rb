@@ -1,6 +1,6 @@
 class Doctor::HomeController < Wechat::BaseController
   def index
-  	  if current_user.user.status != "Staff"
+  	  if current_user.user.user_info_review.identity == "user"
   	  	redirect_to :back, notice: "只有健康管理师才能访问该模板的权限!"
   	  end
       @slides = Slide.top(1)
