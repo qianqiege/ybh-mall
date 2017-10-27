@@ -257,11 +257,17 @@ class User::InfoController < Wechat::BaseController
   # 医师认证
   def authentication
     @user_info_review = current_user.user.user_info_review
+    if !@user_info_review
+      @user_info_review = UserInfoReview.create!(user_id: current_user.user.id, identity: 'user')
+    end
   end
 
   # 医馆认证
   def shop_authentication
     @shop = current_user.user.shop
+    if !@shop
+      @shop = Shop.create!(user_id: current_user.user.id)
+    end
   end
 
   def gift_friend
