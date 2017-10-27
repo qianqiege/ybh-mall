@@ -5,6 +5,17 @@ class User::ExamineDataController < Wechat::BaseController
   end
 
   def health_doctor
+    @doctor_info_review = current_user.user.user_info_review
+    if @doctor_info_review
+      if @doctor_info_review.identity == "user"
+        flash[:notice] = "请先选择角色，完善注册信息，登录健康天使。"
+        redirect_to user_edit_user_info_review_path
+      end
+    else
+      flash[:notice] = "请先选择角色，完善注册信息，登录健康天使。"
+      redirect_to user_edit_user_info_review_path
+    end
+
     @doctor = UserInfoReview.where("state = ? and identity != ?","dealed","User")
   end
 
