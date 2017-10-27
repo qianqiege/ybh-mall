@@ -9,19 +9,19 @@ class Doctor::InfoController < Wechat::BaseController
 			@doctor_info_review = UserInfoReview.find(params[:format])
 		end
 
-		p "@"*40
-		p @doctor_info_review.inspect
-		if @doctor_info_review
-			if @doctor_info_review.identity == "user"
-				flash[:notice] = "请先选择角色，完善注册信息，登录健康天使。"
-				redirect_to user_edit_user_info_review_path
-			end
-		else
-			flash[:notice] = "请先选择角色，完善注册信息，登录健康天使。"
-			redirect_to user_edit_user_info_review_path
-		end
+		# p "@"*40
+		# p @doctor_info_review.inspect
+		# if @doctor_info_review
+		# 	if @doctor_info_review.identity == "user"
+		# 		flash[:notice] = "请先选择角色，完善注册信息，登录健康天使。"
+		# 		redirect_to user_edit_user_info_review_path
+		# 	end
+		# else
+		# 	flash[:notice] = "请先选择角色，完善注册信息，登录健康天使。"
+		# 	redirect_to user_edit_user_info_review_path
+		# end
 
-		@wether_show_request = current_user.user.user_info_review.identity != "user"
+		@wether_show_request = !current_user.user.user_info_review.nil? && current_user.user.user_info_review.identity != "user"
 		@request_all = DoctorOrUser.where(doctor_id: current_user.user_id)
 		@request_pending = DoctorOrUser.where(state: "pending",doctor_id: current_user.user_id)
 		@request_dealed = DoctorOrUser.where("state != ? and doctor_id = ?", "pending", current_user.user_id)
