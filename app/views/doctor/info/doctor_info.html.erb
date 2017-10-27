@@ -22,13 +22,8 @@
     display: block;
   }
 
-  .tab-content ul li {
-    overflow: auto;
-  }
-
   .deal {
     float: right;
-    overflow: auto;
     height: 50px;
   }
 
@@ -37,7 +32,33 @@
     border-radius: 6px;
     text-align: center;
     color: red;
-    padding: 7px;
+    padding: 3px;
+  }
+
+  .userDoc {
+    width: 50%;
+    position: relative;
+    height: 115px;
+  }
+
+  .userDoc span{
+      display: block;
+      text-align: center;
+  }
+
+  .userDoc img {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+  }
+
+  .willWidth,.deal {
+   display: inline-block;
+  }
+
+  .userOk {
+    margin-top:10px;
   }
 
 
@@ -46,31 +67,31 @@
 <%= title '我的健康信息' %>
 <%= render 'head' %>
 
-
-<div>
-  <table style="margin-top: 4%;">
-    <tr style="text-align: center;">
-      <td style="width: 10%;">
-        <a href="#"><%= image_tag "icon档案.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">档案</p>
-      </td>
-      <td style="width: 10%">
-        <a href="#"><%= image_tag "icon方案.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">方案</p>
-      </td>
-      <td style="width: 10%;">
-        <a href="#"><%= image_tag "icon异常.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">异常</p>
-      </td>
-      <td style="width: 10%;">
-        <a href=""><%= image_tag "icon角色.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">我的</p>
-      </td>
-    </tr>
-  </table>
-</div>
-
 <% if @wether_show_request %>
+  <div>
+    <table style="margin-top: 4%;">
+      <tr style="text-align: center;">
+        <td style="width: 10%;">
+          <a href="#"><%= image_tag "icon档案.png", size: "50x50" %></a>
+          <p style="margin-bottom:15%;" class="fontSizes">档案</p>
+        </td>
+        <td style="width: 10%">
+          <a href="#"><%= image_tag "icon方案.png", size: "50x50" %></a>
+          <p style="margin-bottom:15%;" class="fontSizes">方案</p>
+        </td>
+        <td style="width: 10%;">
+          <a href="#"><%= image_tag "icon异常.png", size: "50x50" %></a>
+          <p style="margin-bottom:15%;" class="fontSizes">异常</p>
+        </td>
+        <td style="width: 10%;">
+          <a href=""><%= image_tag "icon角色.png", size: "50x50" %></a>
+          <p style="margin-bottom:15%;" class="fontSizes">我的</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
   <ul class="tab">
     <li>全部</li>
     <li>已处理</li>
@@ -90,15 +111,16 @@
                 申请人：<%= User.find(request.user_id).name %>
               </p>
               <p>
-                <p class="mt10">审核状态：<%= request.get_state %></p>
-              </p>
-
-              <% if request.state == "pending" %>
-                <p class="deal">
+                <p class="mt10 willWidth">审核状态：<%= request.get_state %></p>
+                 <% if request.state == "pending" %>
+                <p class="deal userOk">
                   <a href="<%= doctor_user_request_deal_path(id: request, type: 1) %>">通过</a>
                   <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
                 </p>
               <% end -%>
+              </p>
+
+             
             </div>
 
           </li>
@@ -117,15 +139,16 @@
                 申请人：<%= User.find(request.user_id).name %>
               </p>
               <p>
-                <p class="mt10">审核状态：<%= request.get_state %></p>
-              </p>
-
-              <% if request.state == "pending" %>
-                <p class="deal">
+                <p class="mt10 willWidth">审核状态：<%= request.get_state %></p>
+                <% if request.state == "pending" %>
+                <p class="deal userOk">
                   <a href="<%= doctor_user_request_deal_path(id: request, type: 1) %>">通过</a>
                   <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
                 </p>
               <% end -%>
+              </p>
+
+              
             </div>
 
           </li>
@@ -144,15 +167,18 @@
                 申请人：<%= User.find(request.user_id).name %>
               </p>
               <p>
-                <p class="mt10">审核状态：<%= request.get_state %></p>
+                <p class="mt10 willWidth">审核状态：<%= request.get_state %></p>
+                <% if request.state == "pending" %>
+                  <p class="deal userOk">
+                    <a href="<%= doctor_user_request_deal_path(id: request, type: 1) %>">通过</a>
+                    <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
+                  </p>
+                <% end -%>
               </p>
 
-              <% if request.state == "pending" %>
-                <p class="deal">
-                  <a href="<%= doctor_user_request_deal_path(id: request, type: 1) %>">通过</a>
-                  <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
-                </p>
-              <% end -%>
+              
+                
+              
             </div>
 
           </li>
@@ -160,6 +186,14 @@
       </ul>
     </div>
   </div>
+
+<% else %>
+
+  <div class="userDoc">
+    <span>医生照片</span>
+    <%= image_tag @doctor_info_review.doctor_image_url, size: "70x90" %>
+  </div>
+
 <% end -%>
 
 

@@ -3,7 +3,7 @@ menu parent: I18n.t("active_admin.menu.yb_work_manage")
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :image
+permit_params :image, :doctor_image, :education_image, :other_image
 #
 # or
 #
