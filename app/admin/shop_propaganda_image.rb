@@ -9,7 +9,7 @@ index do
     selectable_column
     id_column
 
-    column "工作站宣传图片" do |slide|
+    column "服务中心宣传图片" do |slide|
       image_tag(slide.image_url, size: "72x45", :alt => "product image")
     end
     column :shop_id
