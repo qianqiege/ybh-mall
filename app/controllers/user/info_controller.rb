@@ -3,11 +3,15 @@ class User::InfoController < Wechat::BaseController
   skip_before_filter :verify_authenticity_token
 
   def doctor_user
-    if params[:format].present?
-      DoctorOrUser.create(user_id: current_user.user_id,doctor_id: params[:format])
-    end
-    @doctor_user = DoctorOrUser.where(user_id: current_user.user_id)
-    @doctor_info = UserInfoReview.where(user_id: @doctor_user.pluck(:doctor_id))
+      if current_user.user.id_number
+         if params[:format].present?
+            DoctorOrUser.create(user_id: current_user.user_id,doctor_id: params[:format])
+         end
+         @doctor_user = DoctorOrUser.where(user_id: current_user.user_id)
+         @doctor_info = UserInfoReview.where(user_id: @doctor_user.pluck(:doctor_id))
+      else
+         redirect_to user_edit_info_path, notice: "请完善身份证信息，再申请!"
+      end
   end
 
   def health_data
@@ -448,11 +452,13 @@ class User::InfoController < Wechat::BaseController
   end
 
   def health_record
-    if !current_user.user_id.nil?
+    if params[:id]
+      @idcard = User.find(params[:id])
+    elsif !current_user.user_id.nil?
       @idcard = User.find(current_user.user_id)
-      mall = Sdk::Mall.new
-      @record = mall.record(@idcard.identity_card)
     end
+    mall = Sdk::Mall.new
+    @record = mall.record(@idcard.identity_card)
   end
 
   def wechat_info
