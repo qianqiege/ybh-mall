@@ -32,6 +32,10 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+      if !@show.nil?
+        mall = Sdk::Mall.new
+        @show = mall.get_health_data(current_user.user.identity_card,6)
+      end
     end
   end
 
@@ -48,6 +52,10 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+      if !@show.nil?
+        mall = Sdk::Mall.new
+        @show = mall.get_health_data(current_user.user.identity_card,4)
+      end
     end
   end
 
@@ -65,6 +73,10 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+      if !@show.nil?
+        mall = Sdk::Mall.new
+        @show = mall.get_health_data(current_user.user.identity_card,7)
+      end
     end
   end
 
@@ -81,6 +93,10 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+      if !@show.nil?
+        mall = Sdk::Mall.new
+        @show = mall.get_health_data(current_user.user.identity_card,2)
+      end
     end
   end
 
@@ -97,6 +113,10 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+      if !@show.nil?
+        mall = Sdk::Mall.new
+        @show = mall.get_health_data(current_user.user.identity_card,1)
+      end
     end
   end
 
@@ -113,6 +133,10 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+      if !@show.nil?
+        mall = Sdk::Mall.new
+        @show = mall.get_health_data(current_user.user.identity_card,3)
+      end
     end
   end
 
@@ -129,6 +153,10 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+      if !@show.nil?
+        mall = Sdk::Mall.new
+        @show = mall.get_health_data(current_user.user.identity_card,5)
+      end
     end
   end
 
