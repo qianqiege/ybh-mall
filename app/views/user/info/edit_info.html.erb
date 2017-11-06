@@ -48,7 +48,9 @@
 </style>
 
 
-
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
 <form action="<%= user_user_edit_info_path %>" method="post" class="froms">
 	<h2 class="yyj_title">编辑我的信息</h2>
 	<input name= "u_id" value="<%= @info.id %>" style="display:none;"/>
