@@ -38,11 +38,15 @@
 
       <span class="healthName"><%= @doctor_info_review.user.name %></span>
       <% if !@wether_show_request %>
-        <a href="<%= user_doctor_user_path(@doctor_info_review.user.id) %>" class="float">申请</a>
+        <% if current_user.user.id_number.present? %>
+          <a href="<%= user_doctor_user_path(@doctor_info_review.user.id) %>" class="float">申请</a>
+        <% else %>
+          <a href="<%= user_edit_info_path(1) %>" class="float">申请</a>
+        <% end %>
       <% end -%>
     </div>
      <div class="placeholder docText">角色：<%= @doctor_info_review.identity_name %></div>
-    <div class="placeholder docText">工作地：<%= @doctor_info_review.display_work_detail %></div> 
-     <div class="placeholder docText">常住地： <%= @doctor_info_review.display_resident_detail %></div> 
+    <div class="placeholder docText">工作地：<%= @doctor_info_review.display_work_detail %></div>
+     <div class="placeholder docText">常住地： <%= @doctor_info_review.display_resident_detail %></div>
   </div>
 </div>

@@ -22,9 +22,12 @@ class Doctor::InfoController < Wechat::BaseController
 		# end
 
 		@wether_show_request = !current_user.user.user_info_review.nil? && current_user.user.user_info_review.identity != "user"
-		@request_all = DoctorOrUser.where(doctor_id: current_user.user_id)
-		@request_pending = DoctorOrUser.where(state: "pending",doctor_id: current_user.user_id)
-		@request_dealed = DoctorOrUser.where("state != ? and doctor_id = ?", "pending", current_user.user_id)
+		@request_all, @request_pending, @request_dealed = [], [], []
+		if params[:id].present?
+			@request_all = DoctorOrUser.where(doctor_id: current_user.user_id)
+			@request_pending = DoctorOrUser.where(state: "pending",doctor_id: current_user.user_id)
+			@request_dealed = DoctorOrUser.where("state != ? and doctor_id = ?", "pending", current_user.user_id)
+		end
 	end
 
 	def user_request_deal
