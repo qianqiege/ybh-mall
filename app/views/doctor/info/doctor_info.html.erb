@@ -95,12 +95,13 @@
     </table>
   </div>
 
-
-  <ul class="tab">
-    <li>全部</li>
-    <li>已通过</li>
-    <li>待通过</li>
-  </ul>
+  <% if params[:id].present? %>
+    <ul class="tab">
+      <li>全部</li>
+      <li>已通过</li>
+      <li>待通过</li>
+    </ul>
+  <% end -%>
 
   <div class="tab-content">
     <div>
