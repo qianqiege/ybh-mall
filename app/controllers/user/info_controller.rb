@@ -42,7 +42,6 @@ class User::InfoController < Wechat::BaseController
 
   def edit_info
     @info = User.find(current_user.user_id)
-    byebug
     if params[:format] == "1"
       flash[:notice] = '请您填写您的身份证号码，才可以使用此功能'
     end
