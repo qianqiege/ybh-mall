@@ -10,10 +10,10 @@
 
 	  def advice_content
 
-	  	@advices = Advice.where(advice_type_id: params[:id], user_id: current_user.user_id).order("created_at DESC")
+	  	@advices = Advice.where(advice_type_id: params[:id], wechat_user_id: current_user.id).order("created_at DESC")
 
 	  	@@current_advice_type_id =  params[:id]
-	  	
+
 	  end
 
 	  def advice_response
@@ -25,7 +25,7 @@
 	  def create
 	  	@advice = Advice.new(advice_params)
 	  	@advice.advice_type_id = @@current_advice_type_id
-	  	@advice.user_id = current_user.user_id
+	  	@advice.wechat_user_id = current_user.id
 	  	if @advice.save
 	  		redirect_to feedback_advice_content_path(@advice.advice_type_id)
 	  	end
@@ -36,4 +36,3 @@
 	  	params.require(:advice).permit(:content, :advice_type_id)
 	  end
 	end
-

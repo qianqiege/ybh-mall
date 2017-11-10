@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727064714) do
+ActiveRecord::Schema.define(version: 20171110084223) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -41,20 +41,23 @@ ActiveRecord::Schema.define(version: 20170727064714) do
 
   create_table "activity_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rule"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
     t.integer  "activity_id"
-    t.decimal  "max",                     precision: 10, scale: 3
-    t.decimal  "min",                     precision: 10, scale: 3
-    t.decimal  "y_coin",                  precision: 10
+    t.decimal  "max",                              precision: 10, scale: 3
+    t.decimal  "min",                              precision: 10, scale: 3
+    t.decimal  "y_coin",                           precision: 10
     t.integer  "coin_type_id"
-    t.decimal  "percent",                 precision: 10, scale: 2
-    t.decimal  "bronze",                  precision: 10, scale: 2
-    t.decimal  "silver",                  precision: 10, scale: 2
-    t.decimal  "gold",                    precision: 10, scale: 2
-    t.float    "percentage",   limit: 24
-    t.decimal  "staff",                   precision: 10, scale: 2
-    t.decimal  "donation",                precision: 10, scale: 2
+    t.decimal  "percent",                          precision: 10, scale: 2
+    t.decimal  "bronze",                           precision: 10, scale: 2
+    t.decimal  "silver",                           precision: 10, scale: 2
+    t.decimal  "gold",                             precision: 10, scale: 2
+    t.float    "percentage",            limit: 24
+    t.decimal  "staff",                            precision: 10, scale: 2
+    t.decimal  "donation",                         precision: 10, scale: 2
+    t.decimal  "health_manager",                   precision: 10, scale: 2
+    t.decimal  "family_health_manager",            precision: 10, scale: 2
+    t.decimal  "family_doctor",                    precision: 10, scale: 2
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -104,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
+    t.integer  "wechat_user_id"
   end
 
   create_table "appraises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -228,6 +232,32 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.decimal  "price",      precision: 10, scale: 2
   end
 
+  create_table "doctor_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.string   "skill"
+    t.integer  "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doctor_or_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "doctor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "state"
+  end
+
+  create_table "doctor_rebates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "state"
+    t.float    "money",      limit: 24
+    t.string   "account"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "donation_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.decimal  "price",        precision: 10, scale: 2
@@ -238,6 +268,9 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.string   "reason"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "payment"
+    t.string   "status"
+    t.string   "trade_nos"
   end
 
   create_table "ecgs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -298,6 +331,13 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.datetime "state_time"
   end
 
+  create_table "features", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "file_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "location"
@@ -339,6 +379,17 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.string   "phone"
     t.string   "state"
     t.integer  "user_id"
+  end
+
+  create_table "hight_tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "number"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "state"
+    t.integer  "order_id"
+    t.string   "ticket_number"
+    t.string   "city"
   end
 
   create_table "house_poperties", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -399,6 +450,16 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.decimal  "count",            precision: 10, scale: 2
   end
 
+  create_table "lights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "city"
+    t.text     "desc",       limit: 65535
+    t.string   "image"
+    t.datetime "strat"
+    t.datetime "over"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "product_id"
     t.integer "cart_id"
@@ -424,6 +485,15 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.string   "identity_card"
     t.string   "level"
     t.datetime "time"
+  end
+
+  create_table "lottery_prizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.boolean  "is_show"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "welfare"
   end
 
   create_table "lssue_currencies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -517,6 +587,9 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.string   "programs_number"
     t.boolean  "is_handle"
     t.integer  "evaluation_number"
+    t.boolean  "is_donation"
+    t.string   "packang"
+    t.integer  "lottery_prize_id"
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
@@ -596,6 +669,17 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.string   "spec"
     t.boolean  "display"
     t.float    "data_number",            limit: 24
+    t.string   "height"
+    t.integer  "activity_id"
+  end
+
+  create_table "program_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "product_id"
+    t.integer  "program_id"
+    t.decimal  "price",      precision: 10, scale: 2
+    t.integer  "number"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -656,26 +740,6 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.index ["order_id"], name: "index_return_requests_on_order_id", using: :btree
   end
 
-  create_table "scoin_account_order_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "order_id"
-    t.integer  "scoin_account_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "status"
-  end
-
-  create_table "scoin_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "account"
-    t.string   "password"
-    t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.decimal  "number",     precision: 10, scale: 1
-    t.string   "state"
-    t.decimal  "amount",     precision: 10, scale: 1
-    t.string   "email"
-  end
-
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "sender"
     t.string   "sender_address"
@@ -715,6 +779,55 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.float    "const",      limit: 24
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "shop_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.decimal  "price",      precision: 10, scale: 2
+    t.integer  "shop_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "shop_features", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "feature_id"
+    t.integer  "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shop_propaganda_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "image"
+    t.integer  "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shop_services", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.decimal  "price",      precision: 10, scale: 2
+    t.integer  "shop_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "category"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "number"
+    t.integer  "user_id"
+    t.string   "morning_start"
+    t.string   "morning_end"
+    t.string   "afternoon_start"
+    t.string   "afternoon_end"
+    t.string   "user_id_card"
+    t.string   "user_image"
+    t.string   "license_image"
+    t.string   "license_number"
+    t.string   "state"
   end
 
   create_table "slides", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -786,19 +899,51 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.string   "status",                   default: "fail"
   end
 
+  create_table "user_info_reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "work_province"
+    t.string   "work_city"
+    t.string   "work_street"
+    t.string   "resident_province"
+    t.string   "resident_city"
+    t.string   "resident_street"
+    t.string   "identity"
+    t.string   "state"
+    t.string   "desc"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "image"
+    t.string   "score"
+    t.string   "ranking"
+    t.string   "doctor_number"
+    t.string   "doctor_image"
+    t.string   "education_image"
+    t.string   "other_image"
+    t.string   "magor"
+    t.string   "info"
+  end
+
+  create_table "user_prizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "lottery_prize_id"
+    t.string   "state"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
     t.string   "telphone"
     t.string   "identity_card"
     t.integer  "integral"
     t.integer  "scoin_account_id"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                                           default: "", null: false
+    t.string   "encrypted_password",                              default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                                   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -815,6 +960,13 @@ ActiveRecord::Schema.define(version: 20170727064714) do
     t.integer  "ybz_number"
     t.string   "staff_type"
     t.string   "id_number"
+    t.integer  "lamp_number"
+    t.decimal  "lnmp_integral",          precision: 10, scale: 2
+    t.integer  "lottery_number"
+    t.boolean  "health_manager"
+    t.boolean  "family_health_manager"
+    t.boolean  "family_doctor"
+    t.string   "staff_invitation_type"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

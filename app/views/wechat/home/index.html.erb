@@ -65,6 +65,32 @@
   color: #666;
 }
 
+.tongzhi {
+  width: 90%;
+  margin:0 auto;
+  overflow: hidden;
+  height: 4%;
+  background:#eee;
+  border-radius: 15px;
+  margin-top: 2%;
+  text-align: center;
+  position: relative;
+}
+
+.tongzhi a {
+  display: inline-block;
+  height: 100%;
+  color: #ad0e11;
+  font-size: 1rem;
+}
+
+.tongzhi img {
+  display: inline-block;
+  position: absolute;
+  top: 6px;
+  left: 15px;
+}
+
 </style>
 
 <%= title '御易健' %>
@@ -74,7 +100,10 @@
 <div class="home">
   <%= render 'shared/slide' %>
 </div>
-
+  <div class="tongzhi">
+    <%= image_tag "喇叭.png", size: "15x15" %>
+    <a href="<%= feedback_advice_content_path(5) %>">全国万民肿瘤患者救助计划咨询</a>
+  </div>
 <div>
   <table style="margin-top: 4%;">
     <tr style="text-align: center;">
