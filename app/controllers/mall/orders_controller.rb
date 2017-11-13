@@ -70,29 +70,29 @@ class Mall::OrdersController < Mall::BaseController
     #   end
     # end
 
-    line_items.each do |item|
-      if !item.product.name.match(/YBZ/).nil?
-          @integral = Integral.find_by(user_id: current_user.user_id)
-          integral_cash = @integral.not_cash + @integral.cash + price
-          if integral_cash <= 55260 && params[:packang].to_i == 0
-            flash[:notice] = "您的余额不足，不可以选择A方案"
-            redirect_to confirm_mall_orders_path
-            return
-          elsif integral_cash <= 16880 && params[:packang].to_i == 1
-            flash[:notice] = "您的余额不足，不可以选择B方案"
-            redirect_to confirm_mall_orders_path
-            return
-          elsif integral_cash <= 18754 && params[:packang].to_i == 2
-            flash[:notice] = "您的余额不足，不可以选择C方案"
-            redirect_to confirm_mall_orders_path
-            return
-          elsif integral_cash <= 26880 && params[:packang].to_i == 3
-            flash[:notice] = "您的余额不足，不可以选择D方案"
-            redirect_to confirm_mall_orders_path
-            return
-          end
-        end
-      end
+    # line_items.each do |item|
+    #   if !item.product.name.match(/YBZ/).nil?
+    #       @integral = Integral.find_by(user_id: current_user.user_id)
+    #       integral_cash = @integral.not_cash + @integral.cash + price
+    #       if integral_cash <= 55260 && params[:packang].to_i == 0
+    #         flash[:notice] = "您的余额不足，不可以选择A方案"
+    #         redirect_to confirm_mall_orders_path
+    #         return
+    #       elsif integral_cash <= 16880 && params[:packang].to_i == 1
+    #         flash[:notice] = "您的余额不足，不可以选择B方案"
+    #         redirect_to confirm_mall_orders_path
+    #         return
+    #       elsif integral_cash <= 18754 && params[:packang].to_i == 2
+    #         flash[:notice] = "您的余额不足，不可以选择C方案"
+    #         redirect_to confirm_mall_orders_path
+    #         return
+    #       elsif integral_cash <= 26880 && params[:packang].to_i == 3
+    #         flash[:notice] = "您的余额不足，不可以选择D方案"
+    #         redirect_to confirm_mall_orders_path
+    #         return
+    #       end
+    #     end
+    #   end
 
     integral_available = params["integral_available"].to_f
     integral_money = params["integral_money"].to_f
@@ -128,10 +128,10 @@ class Mall::OrdersController < Mall::BaseController
 
     # 表达式未知问题
 
-    donation = false
-    if price == 55000 - 1200 || price == 40000 - 1000 || price == 15000 - 600
-      donation = true
-    end
+    # donation = false
+    # if price == 55000 - 1200 || price == 40000 - 1000 || price == 15000 - 600
+    #   donation = true
+    # end
 
     # 3. 生成订单
     @order = current_user.orders.new(
@@ -149,24 +149,24 @@ class Mall::OrdersController < Mall::BaseController
       @order.lottery_prize_id = LotteryPrize.find(UserPrize.find(params[:lottery_prize_id]).lottery_prize_id).id
     end
 
-    line_items.each do |item|
-      if !item.product.name.match(/YBZ/).nil?
-        case params[:packang].to_i
-        when 0
-          @order.packang = "A方案"
-        when 1
-          @order.packang = "B方案"
-        when 2
-          @order.packang = "C方案"
-        when 3
-          @order.packang = "D方案"
-        when 4
-          if price == 12000
-            @order.packang = "A方案"
-          end
-        end
-      end
-    end
+    # line_items.each do |item|
+    #   if !item.product.name.match(/YBZ/).nil?
+    #     case params[:packang].to_i
+    #     when 0
+    #       @order.packang = "A方案"
+    #     when 1
+    #       @order.packang = "B方案"
+    #     when 2
+    #       @order.packang = "C方案"
+    #     when 3
+    #       @order.packang = "D方案"
+    #     when 4
+    #       if price == 12000
+    #         @order.packang = "A方案"
+    #       end
+    #     end
+    #   end
+    # end
 
     if activity.to_i == 12
       if price >= 5000
