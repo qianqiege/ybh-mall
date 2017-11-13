@@ -205,7 +205,7 @@ class User::InfoController < Wechat::BaseController
     if params["type_coin"] == "1" && order_integral == 0
       invitation_record = PresentedRecord.new(user_id: params["id"], number: number, reason: "好友赠送", is_effective:1, type: "Available",wight: 11,is_effective: 1)
       if invitation_record.save
-        integral.update(available: integral.available - number,exchange: integral.exchange - number,not_appreciation: integral.not_appreciation - number)
+        integral.update(available: integral.available - number)
         flash[:notice] = '赠送成功'
         redirect_to user_details_path
         return
