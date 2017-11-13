@@ -142,7 +142,7 @@ class Mall::OrdersController < Mall::BaseController
       password: params[:password],
       payment: params[:payment],
       is_handle: false,
-      is_donation: donation
+      # is_donation: donation
     )
 
     if params[:lottery_prize_id].present?
