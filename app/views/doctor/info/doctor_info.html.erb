@@ -123,7 +123,7 @@
                         <a href="<%= doctor_user_request_deal_path(id: 2) %>">不通过</a>
                       </p>
                     <% end -%>
-                </p>    
+                </p>
               </div>
             <!-- </a> -->
           </li>
@@ -151,7 +151,7 @@
               <% end -%>
               </p>
 
-              
+
             </div>
 
           </li>
@@ -162,7 +162,7 @@
       <ul>
         <% @request_pending.each do |request| %>
           <li>
-      
+
             <div class="address-confirm order-address" title="<%= request.user_id %>">
               <i class="icon-address"></i>
               <p>
@@ -179,9 +179,9 @@
                 <% end -%>
               </p>
 
-              
-                
-              
+
+
+
             </div>
 
           </li>
@@ -212,13 +212,9 @@
 
     $(".order-address").each(function() {
       $(this).on('click', function() {
-        location.href = "/user/record?id=" + $(this).attr("title");
+        location.href = "/doctor/patient_info?id=" + $(this).attr("title");
       })
     })
   })
-  
+
 </script>
-
-
-
-
