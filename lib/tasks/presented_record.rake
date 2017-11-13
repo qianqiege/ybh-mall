@@ -10,8 +10,8 @@ namespace :presented_record do
 
       # 每笔入账积分为锁定积分 15天后可用 （2017/09/16号变更为3天）
       fifteen_days = 3
-      # 积分满六个月180天 可以兑换体现 升值5%
-      sex_months = 180
+      # 积分满六个月180天 可以兑换体现 升值5% (2017/11/11号变更为3天)
+      # sex_months = 3
 
       case record.type
       when "Locking"
@@ -32,38 +32,6 @@ namespace :presented_record do
                # 将修改保存到数据库
                record.save
              end
-          end
-        end
-      when "Available"
-
-        # 判断天数是否大于sex_months天
-        if @time >= sex_months && record.wight == 1
-          @integral = Integral.find_by(user_id: record.user_id)
-          # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
-          if !@integral.nil? && !record.balance.nil?
-            # 条件为true,执行计算，从可用积分中减掉，加到可兑换积分
-             available = @integral.available - record.balance
-             exchange = @integral.exchange + record.balance
-             record.update(type:"Exchange")
-             @integral.update(exchange: @integral.exchange + record.balance,not_exchange: @integral.not_exchange - record.balance)
-             record.save
-          end
-        end
-
-        new_time = "2017-07-21 00:00:00 +0800"
-        if record.created_at.to_s >= new_time && record.wight == 1
-          puts "三个月可以提现的积分记录#{record.id}"
-          if @time >= 90 && record.wight == 1
-            @integral = Integral.find_by(user_id: record.user_id)
-            # 判断 是否找到用户 并且 经计算记录的易积分数量是否是正值
-            if !@integral.nil? && !record.balance.nil?
-              # 条件为true,执行计算，从可用积分中减掉，加到可兑换积分
-               available = @integral.available - record.balance
-               exchange = @integral.exchange + record.balance
-               record.update(type:"Exchange")
-               @integral.update(exchange: @integral.exchange + record.balance,not_exchange: @integral.not_exchange - record.balance)
-               record.save
-            end
           end
         end
 
