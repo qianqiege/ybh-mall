@@ -1,9 +1,11 @@
 class Doctor::PatientController < Wechat::BaseController
   def info
-    if !params[:id].present?
-      @doctor_info_review = current_user
+    if !params[:format].nil?
+      @idcard = User.find(params[:format])
     else
-      @doctor_info_review = UserInfoReview.find(params[:format])
+      @idcard = User.find(current_user.user_id)
     end
+    mall = Sdk::Mall.new
+    @record = mall.record(@idcard.identity_card)
   end
 end
