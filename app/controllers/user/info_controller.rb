@@ -169,7 +169,7 @@ class User::InfoController < Wechat::BaseController
       Integral.create(user_id: params["id"].to_i)
     end
 
-    if type == "staff" || type == "Staff" || number >= 400 && number%20 == 0
+    if number >= 10 && number%10 == 0
       # 判断当前用户的可兑换积分数量是否大于赠送积分
       if integral.exchange >= order_integral
         record = PresentedRecord.where(user_id: integral.user_id).order(wight: :desc)
@@ -215,7 +215,7 @@ class User::InfoController < Wechat::BaseController
     @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: "错误",account: "错误",name: "错误",state: "not")
 
     if params["type_coin"] == "0" && order_integral == 0
-      if number >= 400 && number%20 == 0
+      if number >= 10 && number%10 == 0
         if params["account_type"] == "支付宝"
           @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: current_user.user.name,state: "pending")
         elsif params["account_type"] == "银行卡"
@@ -238,7 +238,7 @@ class User::InfoController < Wechat::BaseController
           return
         end
       else
-        flash[:notice] = '兑换失败，兑换数量不能小于400并且是20的倍数'
+        flash[:notice] = '兑换失败，兑换数量不能小于10并且是10的倍数'
         redirect_to user_gift_account_path
         return
       end
