@@ -267,5 +267,6 @@ Rails.application.routes.draw do
     get '/doctor_info', to: 'info#doctor_info'
     get '/user_request_deal', to: 'info#user_request_deal'
     get '/home',to: 'home#index'
+    get '/patient_info', to: 'patient#info'
   end
 end

@@ -1,0 +1,189 @@
+<style type="text/css">
+
+    .weui-tab__panel{
+        background: #FDFFFC
+    }
+
+    .info{
+        /*background: #C92B2F;*/
+        background: url(/assets/wallet_bg-348bc514c64b982352e77affd7cb6620f7147ea39e8dcc8791baefee874a1b8c.png) no-repeat;
+    }
+
+    .zdiv{
+        display: flex;
+    }
+
+    .img{
+        flex: 1;
+        height: 60%;
+        margin-top: 5%;
+    }
+
+    .rname{
+        color: #FDFFFC;
+        flex: 4;
+    }
+
+
+    .rname .small .bg-w{
+        background-color: : #FDFFFC!important;
+    }
+
+    .flex-a .weui-flex__item:nth-child(3){
+        flex:2;
+    }
+
+    .fa {
+        color: #F1D302;
+    }
+
+    .weui-panel_access{
+        border-bottom: 0.2rem solid #235789;
+
+    }
+
+    .weui-panel_access:first-child{
+        border: 0;
+    }
+
+
+</style>
+<%= title '我的健康信息' %>
+<div class="weui-panel weui-panel_access info" style="margin-top:0px;">
+    <div class="weui-panel__bd">
+        <div class="row head">
+            <div class="col-lg-offset-1 col-xs-12 col-lg-11 zdiv" >
+              <div class="img">
+                  <%= image_tag "person.png",size: "60x60",class:"vam" %>
+              </div>
+                <div class ="rname">
+                  <h3><%= @record["name"] %><small> <span class="label label-primary bg-w">ID :<%= @record["id_number"] %></span></small></h3>
+                  <div class="weui-flex flex-a">
+                      <div class="weui-flex__item">汉族</div>
+                      <div class="weui-flex__item">
+                        <%= @record["sex"] %>
+                      </div>
+                      <div class="weui-flex__item">
+                        <%= @record["phone"] %>
+                      </div>
+                  </div>
+
+                  <div class="weui-flex">
+
+                    <div class="weui-flex__item">
+                      <%= icon('calendar') %> <%= @record["birthday"] %>
+                    </div>
+                    <div class="weui-flex__item">
+                      <%= icon('user-circle-o') %> <%= @record["occupation"] %>
+                    </div>
+                  </div>
+
+                  <div class="weui-flex">
+                    <div class="weui-flex__item">
+                      <%= icon('venus-mars') %> <%= @record["marriage"] %>
+                    </div>
+                    <div class="weui-flex__item">
+                      <%= icon('home') %> <%= @record["address"] %>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="font">
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">目前健康状况</h4>
+              <p class="weui-media-box__desc">目前患有疾病：<%= @record["health_status"]["item_a"] %></p>
+              <p class="weui-media-box__desc">过去的一段时间疲劳程度：<%= @record["health_status"]["item_b1"] %></p>
+              <p class="weui-media-box__desc">同一年前相比体重浮动是：<%= @record["health_status"]["item_b2"] %></p>
+              <p class="weui-media-box__desc">是否试图减过体重：<%= @record["health_status"]["item_b3"] %></p>
+              <p class="weui-media-box__desc">您不歇气一次可以爬几层楼梯：<%= @record["health_status"]["item_b8"] %></p>
+              <p class="weui-media-box__desc">半年内是否测过血压：<%= @record["health_status"]["item_b4"] %></p>
+              <p class="weui-media-box__desc">半年是否内测过血脂：<%= @record["health_status"]["item_b5"] %></p>
+              <p class="weui-media-box__desc">是否经常有颈部、骨关节疼痛：<%= @record["health_status"]["item_b6"] %></p>
+              <p class="weui-media-box__desc">近一年是否主过医院：<%= @record["health_status"]["item_b7"] %></p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="font">
+  <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+          <div class="weui-media-box weui-media-box_text">
+              <h4 class="weui-media-box__title">目前健康状况</h4>
+
+              <table style="text-align:center; margin-top: 20px;" width="100%">
+
+              	<tr>
+              		<td>
+              			<a href="<%= user_show_pressure_path %>">
+              				<%= image_tag "pressure.png", size: "80x80" ,class: "aimg" %>
+              			</a>
+              			<p>血压</p>
+              		</td>
+              		<td>
+              			<a href="<%= user_show_glucose_path %>">
+              				<%= image_tag "glucose.png", size: "80x80" ,class: "aimg"%>
+              			</a>
+              			<p>血糖</p>
+              		</td>
+              		<td>
+              			<a href="<%= user_show_heart_path %>">
+              				<%= image_tag "heart.png", size: "80x80" ,class: "aimg"%>
+              			</a>
+              			<p>心率</p>
+              		</td>
+              	</tr>
+
+              	<tr>
+              		<td>
+              			<a href="<%= user_show_unine_path %>">
+              				<%= image_tag "unine.png", size: "80x80" ,class: "aimg"%>
+              			</a>
+              			<p>尿酸</p>
+              		</td>
+              		<td>
+              			<a href="<%= user_show_weight_path %>">
+              				<%= image_tag "weight.png", size: "80x80" ,class: "aimg"%>
+              			</a>
+              			<p>体重</p>
+              		</td>
+              		<td>
+              			<a href="<%= user_show_temperature_path %>">
+              				<%= image_tag "temperature.png", size: "80x80" ,class: "aimg"%>
+              		  </a>
+              			<p>体温</p>
+              		</td>
+              	</tr>
+
+              	<tr>
+              		<td>
+              			<a href="<%= user_show_blood_fat_path %>">
+              				<%= image_tag "blood_fat.png", size: "80x80" ,class: "aimg"%>
+              		  </a>
+              			<p>血脂</p>
+              		</td>
+              		<td>
+              			<a href="<%= user_tds_path %>">
+              				<%= image_tag "tds.png", size: "80x80" ,class: "aimg"%>
+              		  </a>
+              			<p>TDS</p>
+              		</td>
+              		<td>
+              			<a href="<%= user_ecg_path %>">
+              				<%= image_tag "ecg.png", size: "80x80" ,class: "aimg"%>
+              		  </a>
+              			<p>心电</p>
+              		</td>
+              	</tr>
+
+            </table>
+        </div>
+    </div>
+  </div>
+</div>
