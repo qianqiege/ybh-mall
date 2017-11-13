@@ -370,25 +370,24 @@ class Order < ApplicationRecord
     is_custom = Product.find(self.line_items[0].product_id)
 
     # 如果 是自定义价格产品 非消费产品 便认定为充值 购买代金券
-    if is_custom.is_custom_price == true && is_custom.is_consumption == false
-
-      case packang
-      when "A方案"
-        self.price = self.price - 55260
-      when "B方案"
-        self.price = self.price - 16880
-      when "C方案"
-        self.price = self.price - 18754
-      when "D方案"
-        self.price = self.price - 26880
-      when "A方案"
-        if self.price == 12000
-          self.price = self.price - 11940
-        end
-      end
-      CashRecord.create(user_id: self.user_id, number: self.price, reason: "充值", is_effective:1)
-      byebug
-    end
+    # if is_custom.is_custom_price == true && is_custom.is_consumption == false
+    #
+    #   case packang
+    #   when "A方案"
+    #     self.price = self.price - 55260
+    #   when "B方案"
+    #     self.price = self.price - 16880
+    #   when "C方案"
+    #     self.price = self.price - 18754
+    #   when "D方案"
+    #     self.price = self.price - 26880
+    #   when "A方案"
+    #     if self.price == 12000
+    #       self.price = self.price - 11940
+    #     end
+    #   end
+    #   CashRecord.create(user_id: self.user_id, number: self.price, reason: "充值", is_effective:1)
+    # end
   end
 
   # 支出代金券
