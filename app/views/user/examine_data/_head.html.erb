@@ -1,14 +1,32 @@
-<div class='wallet bg-size'>
-  <div class="weui-flex profile">
-    <div>
-      <div class="placeholder">
-        <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
+<% if !params[:format].present? %>
+  <div class='wallet bg-size'>
+    <div class="weui-flex profile">
+      <div>
+        <div class="placeholder">
+          <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
+        </div>
       </div>
-    </div>
-    <div class="weui-flex__item profile-text">
-      <div class="placeholder">
-        <p><%= current_user.user.name %></p>
+      <div class="weui-flex__item profile-text">
+        <div class="placeholder">
+          <p><%= current_user.user.name %></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <% wechat = User.find(params[:format]).wechat_user %>
+  <div class='wallet bg-size'>
+    <div class="weui-flex profile">
+      <div>
+        <div class="placeholder">
+          <%= image_tag wechat.headimgurl if wechat && wechat.headimgurl %>
+        </div>
+      </div>
+      <div class="weui-flex__item profile-text">
+        <div class="placeholder">
+          <p><%= wechat.user.name %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end -%>

@@ -1,25 +1,51 @@
 <%= title '我的尿酸监测数据' %>
 <%= render 'head' %>
-<div class="weui-btn-area">
-  <%= line_chart [
-    {name: "尿酸", data: @show.pluck(:updated_at, :value)}
-  ], library: @options %>
-  <table class="hovertable">
-    <tr>
-    	<th>尿酸值/umol/L</th><th>状态</th><th>测量时间</th>
-    </tr>
-    <% if !@show.nil? %>
-    <% @show.each do |search|%>
+<% if @show.class != Array %>
+  <div class="weui-btn-area">
+    <%= line_chart [
+      {name: "尿酸", data: @show.pluck(:updated_at, :value)}
+    ], library: @options %>
+    <table class="hovertable">
       <tr>
-      	<th><%= search.value %></th>
-        <% if search.value > 0.42 && search.value < 0.20 %>
-          <th class="green">正常</th>
-        <% else %>
-          <th class="red">异常</th>
-        <% end %>
-        <th><%= datetime search.created_at %></th>
+      	<th>尿酸值/umol/L</th><th>状态</th><th>测量时间</th>
       </tr>
+      <% if !@show.nil? %>
+      <% @show.each do |search|%>
+        <tr>
+        	<th><%= search.value %></th>
+          <% if search.value > 0.42 && search.value < 0.20 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+          <th><%= datetime search.created_at %></th>
+        </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </table>
-</div>
+    </table>
+  </div>
+<% else %>
+  <div class="weui-btn-area">
+    <%= line_chart [
+      {name: "尿酸", data: @aa}
+    ], library: @options %>
+    <table class="hovertable">
+      <tr>
+        <th>尿酸值/umol/L</th><th>状态</th><th>测量时间</th>
+      </tr>
+      <% if !@show.nil? %>
+      <% @show.each do |search|%>
+        <tr>
+          <th><%= search["value"] %></th>
+          <% if search["value"] > 0.42 && search["value"] < 0.20 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+          <th><%= datetime search["created_at"] %></th>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% end -%>
