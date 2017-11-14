@@ -9,7 +9,14 @@ class User::ExamineDataController < Wechat::BaseController
   end
 
   def show_blood_fat
+    # 医生查看病人动态健康数据情况
+    user = nil
+    if params[:format].present?
+      user = User.find(params[:format])
+    end
+
     if !current_user.user_id.nil?
+      user = current_user.user if !user.present?
       @show = BloodFat.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
@@ -23,13 +30,27 @@ class User::ExamineDataController < Wechat::BaseController
       }
       if !@show.nil?
         mall = Sdk::Mall.new
-        @show = mall.get_health_data(current_user.user.identity_card,6)
+        @show = mall.get_health_data(current_user.user.identity_card,6)[0...10]
+        @aa = []
+        @show.each do |f|
+            bb = [] 
+            bb.push(f["updated_at"]) 
+            bb.push(f["value"].to_f) 
+            @aa.push(bb) 
+        end
       end
     end
   end
 
   def show_temperature
+    # 医生查看病人动态健康数据情况
+    user = nil
+    if params[:format].present?
+      user = User.find(params[:format])
+    end
+
     if !current_user.user_id.nil?
+      user = current_user.user if !user.present?
       @show = Temperature.where(user_id: current_user.user_id).page(params[:page] || 1).per(10).order(created_at: :desc)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
@@ -41,16 +62,31 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
-      if !@show.nil?
+      if @show.nil?
         mall = Sdk::Mall.new
-        @show = mall.get_health_data(current_user.user.identity_card,4)
+        @show = mall.get_health_data(current_user.user.identity_card,4)[0...10]
+        @aa = []
+        @show.each do |f|
+            bb = [] 
+            bb.push(f["updated_at"]) 
+            bb.push(f["value"].to_f) 
+            @aa.push(bb) 
+        end
       end
     end
   end
 
   def show_weight
+
+    # 医生查看病人动态健康数据情况
+    user = nil
+    if params[:format].present?
+      user = User.find(params[:format])
+    end
+
     if !current_user.user_id.nil?
-      @show = Weight.where(user_id: current_user.user_id).page(params[:page] || 1).per(10).order(created_at: :desc)
+      user = current_user.user if !user.present?
+      @show = Weight.where(user_id: user.id).page(params[:page] || 1).per(10).order(created_at: :desc)
       @show_last = @show.last
       @options = {
         colors: ["#00CD00", "#1E90FF"],
@@ -62,16 +98,32 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
-      if !@show.nil?
+      if @show.nil?
         mall = Sdk::Mall.new
-        @show = mall.get_health_data(current_user.user.identity_card,7)
+        @show = mall.get_health_data(user.identity_card,7)[0...10]
+        @aa = []
+        @show.each do |f|
+            bb = [] 
+            bb.push(f["updated_at"]) 
+            bb.push(f["value"]) 
+            @aa.push(bb) 
+        end
       end
+
+
     end
   end
 
   def show_glucose
+    # 医生查看病人动态健康数据情况
+    user = nil
+    if params[:format].present?
+      user = User.find(params[:format])
+    end
+
     if !current_user.user_id.nil?
-      @show = BloodGlucose.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
+      user = current_user.user if !user.present?
+      @show = BloodGlucose.where(user_id: user.id).order(created_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -82,36 +134,67 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
-      if !@show.nil?
+      if @show.nil?
         mall = Sdk::Mall.new
-        @show = mall.get_health_data(current_user.user.identity_card,2)
+        @show = mall.get_health_data(user.identity_card,2)[0...10]
+        @aa = []
+        @show.each do |f|
+            bb = [] 
+            bb.push(f["updated_at"]) 
+            bb.push(f["value"].to_f) 
+            @aa.push(bb) 
+        end
       end
     end
   end
 
   def show_heart
-    if !current_user.user_id.nil?
-      @show = HeartRate.where(user_id: current_user.user_id).order(created_at: :desc).limit(10)
-      @options = {
-        colors: ["#00CD00", "#1E90FF"],
-        xAxis: {
-          type: 'datetime',
-          labels: {
-            format: '{value:%m-%d}',
-            align: 'left'
+      
+
+      # 医生查看病人动态健康数据情况
+      user = nil
+      if params[:format].present?
+        user = User.find(params[:format])
+      end
+
+      if !current_user.user_id.nil?
+        user = current_user.user if !user.present?
+        @show = HeartRate.where(user_id: user.id).order(created_at: :desc).limit(10)
+        @options = {
+          colors: ["#00CD00", "#1E90FF"],
+          xAxis: {
+            type: 'datetime',
+            labels: {
+              format: '{value:%m-%d}',
+              align: 'left'
+            }
           }
         }
-      }
-      if !@show.nil?
-        mall = Sdk::Mall.new
-        @show = mall.get_health_data(current_user.user.identity_card,1)
+        if @show.nil?
+          mall = Sdk::Mall.new
+          @show = mall.get_health_data(user.identity_card,1)[0...10]
+          @aa = []
+          @show.each do |f|
+              bb = [] 
+              bb.push(f["updated_at"]) 
+              bb.push(f["value"].to_f) 
+              @aa.push(bb) 
+          end
+        end
       end
-    end
+      
   end
 
   def show_pressure
+    # 医生查看病人动态健康数据情况
+    user = nil
+    if params[:format].present?
+      user = User.find(params[:format])
+    end
+
     if !current_user.user_id.nil?
-      @show = BloodPressure.where(user_id: current_user.user_id).order(updated_at: :desc).limit(10)
+      user = current_user.user if !user.present?
+      @show = BloodPressure.where(user_id: user.id).order(updated_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -122,16 +205,35 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
-      if !@show.nil?
+      if @show.nil?
         mall = Sdk::Mall.new
-        @show = mall.get_health_data(current_user.user.identity_card,3)
+        @show = mall.get_health_data(user.identity_card,3)[0...10]
+        @aa = []
+        @cc = []
+        @show.each do |f|
+            bb = [] 
+            dd = []
+            bb.push(f["updated_at"]) 
+            dd.push(f["updated_at"])
+            bb.push(f["max_blood_pressure"]) 
+            dd.push(f["min_blood_pressure"])
+            @aa.push(bb)  
+            @cc.push(dd)
+        end
       end
     end
   end
 
   def show_unine
+    # 医生查看病人动态健康数据情况
+    user = nil
+    if params[:format].present?
+      user = User.find(params[:format])
+    end
+
     if !current_user.user_id.nil?
-      @show = Unine.where(user_id: current_user.user_id).order(updated_at: :desc).limit(10)
+      user = current_user.user if !user.present?
+      @show = Unine.where(user_id: user.id).order(updated_at: :desc).limit(10)
       @options = {
         colors: ["#00CD00", "#1E90FF"],
         xAxis: {
@@ -142,9 +244,17 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
-      if !@show.nil?
+      if @show.nil?
         mall = Sdk::Mall.new
-        @show = mall.get_health_data(current_user.user.identity_card,5)
+        @show = mall.get_health_data(user.identity_card, 5)[0...10]
+        byebug
+        @aa = []
+          @show.each do |f|
+              bb = [] 
+              bb.push(f["updated_at"]) 
+              bb.push(f["value"].to_f) 
+              @aa.push(bb) 
+          end
       end
     end
   end

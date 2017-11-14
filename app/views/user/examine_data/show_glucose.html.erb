@@ -5,43 +5,84 @@
     <tr>
     	<th>血糖值/毫摩尔</th><th>时间点</th><th>测量时间</th>
     </tr>
-    <%= line_chart [
-      {name: "血糖", data: @show.pluck(:updated_at, :value)}
-    ], library: @options %>
-    <% @show.each do |search| %>
-        <tr>
-          <% case search.mens_type %>
-          <% when 1 %>
-            <th>餐前</th>
-            <% if search.value > 4.4 && search.value < 6.1 %>
-              <th class="green"><%= search.value %></th>
-            <% else %>
-              <th class="red"><%= search.value %></th>
+    <% if @show.class != Array %>
+      <%= line_chart [
+        {name: "血糖", data: @show.pluck(:updated_at, :value)}
+      ], library: @options %>
+      <% @show.each do |search| %>
+          <tr>
+            <% case search.mens_type %>
+            <% when 1 %>
+              <th>餐前</th>
+              <% if search.value > 4.4 && search.value < 6.1 %>
+                <th class="green"><%= search.value %></th>
+              <% else %>
+                <th class="red"><%= search.value %></th>
+              <% end %>
+            <% when 2 %>
+              <th>餐后</th>
+              <% if search.value > 4.4 && search.value < 8 %>
+                <th class="green"><%= search.value %></th>
+              <% else %>
+                <th class="red"><%= search.value %></th>
+              <% end %>
+            <% when 3 %>
+              <th>睡前</th>
+              <% if search.value > 3.9 && search.value < 6.1 %>
+                <th class="green"><%= search.value %></th>
+              <% else %>
+                <th class="red"><%= search.value %></th>
+              <% end %>
+            <% else 4 %>
+              <th>凌晨</th>
+              <% if search.value > 4.4 && search.value < 8 %>
+                <th class="green"><%= search.value %></th>
+              <% else %>
+                <th class="red"><%= search.value %></th>
+              <% end %>
             <% end %>
-          <% when 2 %>
-            <th>餐后</th>
-            <% if search.value > 4.4 && search.value < 8 %>
-              <th class="green"><%= search.value %></th>
-            <% else %>
-              <th class="red"><%= search.value %></th>
+            <th><%= datetime search.updated_at %></th>
+          </tr>
+      <% end %>
+    <% else %>
+      <%= line_chart [
+        {name: "血糖", data: @aa}
+      ], library: @options %>
+      <% @show.each do |search| %>
+          <tr>
+            <% case search["item_type"] %>
+            <% when 1 %>
+              <th>餐前</th>
+              <% if search["value"].to_f > 4.4 && search["value"].to_f < 6.1 %>
+                <th class="green"><%= search["value"].to_f %></th>
+              <% else %>
+                <th class="red"><%= search["value"].to_f %></th>
+              <% end %>
+            <% when 2 %>
+              <th>餐后</th>
+              <% if search["value"].to_f > 4.4 && search["value"].to_f < 8 %>
+                <th class="green"><%= search["value"].to_f %></th>
+              <% else %>
+                <th class="red"><%= search["value"].to_f %></th>
+              <% end %>
+            <% when 3 %>
+              <th>睡前</th>
+              <% if search["value"].to_f > 3.9 && search["value"].to_f < 6.1 %>
+                <th class="green"><%= search["value"].to_f %></th>
+              <% else %>
+                <th class="red"><%= search["value"].to_f %></th>
+              <% end %>
+            <% else 4 %>
+              <th>凌晨</th>
+              <% if search["value"].to_f > 4.4 && search["value"].to_f < 8 %>
+                <th class="green"><%= search["value"].to_f %></th>
+              <% else %>
+                <th class="red"><%= search["value"].to_f %></th>
+              <% end %>
             <% end %>
-          <% when 3 %>
-            <th>睡前</th>
-            <% if search.value > 3.9 && search.value < 6.1 %>
-              <th class="green"><%= search.value %></th>
-            <% else %>
-              <th class="red"><%= search.value %></th>
-            <% end %>
-          <% else 4 %>
-            <th>凌晨</th>
-            <% if search.value > 4.4 && search.value < 8 %>
-              <th class="green"><%= search.value %></th>
-            <% else %>
-              <th class="red"><%= search.value %></th>
-            <% end %>
-          <% end %>
-          <th><%= datetime search.updated_at %></th>
-        </tr>
-    <% end %>
+            <th><%= datetime search["updated_at"] %></th>
+          </tr>
+      <% end %>
+    <% end -%>
   </table>
 </div>

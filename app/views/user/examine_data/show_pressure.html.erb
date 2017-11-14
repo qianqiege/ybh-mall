@@ -2,31 +2,57 @@
 <%= render 'head' %>
 <% if !@show.nil? %>
   <div class="weui-btn-area">
-    <%= line_chart [
-      {name: "收缩压(90~139)", data: @show.pluck(:updated_at, :systolic_pressure)},
-      {name: "舒张压(60~89)", data: @show.pluck(:updated_at, :diastolic_pressure)}
-    ], library: @options %>
+    <% if @show.class != Array %>
+      <%= line_chart [
+        {name: "收缩压(90~139)", data: @show.pluck(:updated_at, :systolic_pressure)},
+        {name: "舒张压(60~89)", data: @show.pluck(:updated_at, :diastolic_pressure)}
+      ], library: @options %>
+    <% else %>
+      <%= line_chart [
+        {name: "收缩压(90~139)", data: @aa},
+        {name: "舒张压(60~89)", data: @cc}
+      ], library: @options %>
+    <% end -%>
 
     <table class="hovertable table">
       <tr>
       	<th>收缩压</th><th>舒张压</th><th>测量时间</th>
       </tr>
-      <% @show.each do |search|%>
-      <tr>
-        <% if search.systolic_pressure > 89 && search.systolic_pressure < 141 %>
-          <td class="green td"><%= search.systolic_pressure %></td>
-        <% else %>
-          <td class="red td"><%= search.systolic_pressure %></td>
-        <% end %>
+      <% if @show.class != Array %>
+        <% @show.each do |search|%>
+          <tr>
+            <% if search.systolic_pressure > 89 && search.systolic_pressure < 141 %>
+              <td class="green td"><%= search.systolic_pressure %></td>
+            <% else %>
+              <td class="red td"><%= search.systolic_pressure %></td>
+            <% end %>
 
-        <% if search.diastolic_pressure > 59 && search.diastolic_pressure < 91 %>
-          <td class="green td"><%= search.diastolic_pressure %></td>
-        <% else %>
-          <td class="red td"><%= search.diastolic_pressure %></td>
+            <% if search.diastolic_pressure > 59 && search.diastolic_pressure < 91 %>
+              <td class="green td"><%= search.diastolic_pressure %></td>
+            <% else %>
+              <td class="red td"><%= search.diastolic_pressure %></td>
+            <% end %>
+            <td class="td"><%= datetime search.updated_at %></td>
+          </tr>
         <% end %>
-        <td class="td"><%= datetime search.updated_at %></td>
-      </tr>
-      <% end %>
+      <% else %>
+        <% @show.each do |search|%>
+          <tr>
+            <% if search["max_blood_pressure"] > 89 && search["max_blood_pressure"] < 141 %>
+              <td class="green td"><%= search["max_blood_pressure"] %></td>
+            <% else %>
+              <td class="red td"><%= search["max_blood_pressure"] %></td>
+            <% end %>
+
+            <% if search["min_blood_pressure"] > 59 && search["min_blood_pressure"] < 91 %>
+              <td class="green td"><%= search["min_blood_pressure"] %></td>
+            <% else %>
+              <td class="red td"><%= search["min_blood_pressure"] %></td>
+            <% end %>
+            <td class="td"><%= datetime search["updated_at"] %></td>
+          </tr>
+        <% end %>
+      <% end -%>
     </table>
 
     <% if current_user.auth_hash["sex"] == 1 %>

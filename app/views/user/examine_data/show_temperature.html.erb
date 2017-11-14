@@ -1,28 +1,51 @@
 <%= title '我的体温监测数据' %>
 <%= render 'head' %>
-<div class="weui-btn-area">
-  <%= line_chart [
-    {name: "体温", data: @show.pluck(:updated_at, :value)}
-  ], library: @options, min: 30, max: 45 %>
-  <table class="hovertable">
-    <tr>
-    	<th>体温值</th><th>状态</th><th>测量时间</th>
-    </tr>
-    <% @show.each do |search|%>
-    <tr>
-    	<th><%= search.value %>℃</th>
-      <% if search.value > 35 && search.value < 37.6 %>
-        <th class="green">正常</th>
-      <% else %>
-        <th class="red">异常</th>
+<% if @show.class != Array %>
+  <div class="weui-btn-area">
+    <%= line_chart [
+      {name: "体温", data: @show.pluck(:updated_at, :value)}
+    ], library: @options, min: 30, max: 45 %>
+    <table class="hovertable">
+      <tr>
+      	<th>体温值</th><th>状态</th><th>测量时间</th>
+      </tr>
+      <% @show.each do |search|%>
+      <tr>
+      	<th><%= search.value %>℃</th>
+        <% if search.value > 35 && search.value < 37.6 %>
+          <th class="green">正常</th>
+        <% else %>
+          <th class="red">异常</th>
+        <% end %>
+        <th><%= datetime search.updated_at %></th>
+      </tr>
       <% end %>
-      <th><%= datetime search.updated_at %></th>
-    </tr>
-    <% end %>
-  </table>
-  <%= paginate @show %>
-</div>
-
+    </table>
+    <%= paginate @show %>
+  </div>
+<% else %>
+  <div class="weui-btn-area">
+    <%= line_chart [
+      {name: "体温", data: @aa}
+    ], library: @options, min: 30, max: 45 %>
+    <table class="hovertable">
+      <tr>
+        <th>体温值</th><th>状态</th><th>测量时间</th>
+      </tr>
+      <% @show.each do |search|%>
+      <tr>
+        <th><%= search["value"] %>℃</th>
+        <% if search["value"] > 35 && search["value"] < 37.6 %>
+          <th class="green">正常</th>
+        <% else %>
+          <th class="red">异常</th>
+        <% end %>
+        <th><%= datetime search["updated_at"] %></th>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+<% end -%>
 <script>
   $(function() {
     $(".weui-btn-area .pagination").css("position", "relative");
