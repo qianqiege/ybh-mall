@@ -103,9 +103,9 @@
               <p class="weui-media-box__desc">是否试图减过体重：<%= @record["health_status"]["item_b3"] %></p>
               <p class="weui-media-box__desc">您不歇气一次可以爬几层楼梯：<%= @record["health_status"]["item_b8"] %></p>
               <p class="weui-media-box__desc">半年内是否测过血压：<%= @record["health_status"]["item_b4"] %></p>
-              <p class="weui-media-box__desc">半年是否内测过血脂：<%= @record["health_status"]["item_b5"] %></p>
+              <p class="weui-media-box__desc">半年内是否测过血脂：<%= @record["health_status"]["item_b5"] %></p>
               <p class="weui-media-box__desc">是否经常有颈部、骨关节疼痛：<%= @record["health_status"]["item_b6"] %></p>
-              <p class="weui-media-box__desc">近一年是否主过医院：<%= @record["health_status"]["item_b7"] %></p>
+              <p class="weui-media-box__desc">近一年是否住过院：<%= @record["health_status"]["item_b7"] %></p>
           </div>
       </div>
   </div>
@@ -181,6 +181,11 @@
               			<p>心电</p>
               		</td>
               	</tr>
+                <tr>
+                    <td>
+                        <a href="<%= doctor_perscribe_new_path(@record["id_number"]) %>"><button type="button" name="button" style="width:80px; height:30px;">开方</button></a>
+                    </td>
+                </tr>
 
             </table>
         </div>
