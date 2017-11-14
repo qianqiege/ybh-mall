@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>开方</title>
+        <style media="screen">
+            .inputs {
+                border:0;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                height: 30px;
+                -webkit-appearance: none;
+                text-indent: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <form class="" action="<%= doctor_perscribe_create_path %>" method="post">
+            <input name ="id_number" value="<%= @id_number %>" style="display:none;"/>
+            <input name ="current_user_id" value="<%= current_user.id %>" style="display:none;"/>
+            <table class="table" style="width:96%; font-size:20px; margin:0 auto; border:0;">
+                <tr>
+                    <th style="width:55%; text-align:center;font-weight:normal;">
+                        产品
+                    </th>
+                    <th style="width:25%; text-align:center;font-weight:normal;">
+                        数量
+                    </th>
+                    <th>
+                        <input id="add0" type="button" value="添加" style="font-size:20px; border-width:0px;background:#fff;"/>
+                    </th>
+                </tr>
+                <tr>
+                    <td style='text-align:center;'>
+                        <select class="product inputs" name="product0" style=" width:100%;">
+                            <% @product.each do |t| %>
+                                <option value="<%= t.id %>"><%= t.name %></option>
+                            <% end %>
+                        </select>
+                    </td>
+                    <td style="text-align:center;">
+                        <input type="text" name="amount0" style="text-align:center; width:100%;" class="inputs"/>
+                    </td>
+                    <td>
+                        <input id='destory' type='button' value='删除' style="border-width:0px;background:#fff; color:blue; font-size:14px;" onclick="removeElement(this)"/>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="提交" class="yyj_submit" style="margin:0 auto;margin-top:5%;"/>
+        </form>
+    <script type="text/javascript">
+        function removeElement(_element){
+             var _parentElement = $(_element).parents("tr");
+             if(_parentElement){
+                    _parentElement.remove();
+             }
+        };
+        $(document).ready(function(){
+            $.ajax({
+                url      : "<%= doctor_perscribe_get_product_path %>",
+                dataType : "json",
+                type     : "get",
+                success: function(data){
+                    var t= 0;
+                    $("#add0").click(function(){
+                        t++;
+                        var product_name = "product" + t;
+                        var amount = "amount" + t;
+                        $(".table").append("<tr><td style='text-align:center;'><select id="+product_name+" class='product inputs' name="+product_name+" style='width:100%;'></select></td><td style='text-align:center;'><input type='text' name="+amount+" style='text-align:center; width:100%;' class='inputs'/></td><td><input id='destory' type='button' value='删除' style='border-width:0px;background:#fff; color:blue; font-size:14px;' onclick='removeElement(this)'/></td></tr>");
+                        var select = $("#"+product_name);
+                        for (var i = 0; i < data.length; i++) {
+                            select.append("<option value="+ data[i].id +">"+data[i].name+"</option>")
+                        }
+                    })
+                          }
+            })
+        })
+    </script>
+    </body>
+</html>
