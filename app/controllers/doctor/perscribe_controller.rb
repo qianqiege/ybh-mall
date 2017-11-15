@@ -27,12 +27,13 @@ class Doctor::PerscribeController < Wechat::BaseController
             end
         end
         @health_program = HealthProgram.new(identity_card: params[:id_number],
-                                        time: params[:time],
-                                        coding: params[:coding],
+                                        time: Time.now,
+                                        coding: HealthProgram.generate_number,
                                         product: arr,
                                         user_id: params[:current_user_id])
         if @health_program.save
-          render json: @health_program
+          # 
+          redirect_to doctor_doctor_info_path(id: current_user.user_id), notice: "开方成功"
         else
           status 404
           {error: "没找到对应的医生"}
