@@ -1,26 +1,54 @@
 <%= title '我的血脂监测数据' %>
 <%= render 'head' %>
-<div class="weui-btn-area">
-  <%= line_chart [
-    {name: "血脂", data: @show.pluck(:updated_at, :value)}
-  ], library: @options %>
-  <table class="hovertable">
-    <tr>
-    	<th>血脂值/mmol/L</th><th>状态</th><th>测量时间</th>
-    </tr>
-
-    <% if !@show.nil? %>
-      <% @show.each do |search|%>
+<% if @show.class != Array %>
+  <div class="weui-btn-area">
+    <%= line_chart [
+      {name: "血脂", data: @show.pluck(:updated_at, :value)}
+    ], library: @options %>
+    <table class="hovertable">
       <tr>
-      	<th><%= search.value %></th>
-        <% if search.value > 3 && search.value < 5.2 %>
-          <th class="green">正常</th>
-        <% else %>
-          <th class="red">异常</th>
-        <% end %>
-        <th><%= datetime search.created_at %></th>
+      	<th>血脂值/mmol/L</th><th>状态</th><th>测量时间</th>
       </tr>
+
+      <% if !@show.nil? %>
+        <% @show.each do |search|%>
+        <tr>
+        	<th><%= search.value %></th>
+          <% if search.value > 3 && search.value < 5.2 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+          <th><%= datetime search.created_at %></th>
+        </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </table>
-</div>
+    </table>
+  </div>
+<% else %>
+  <div class="weui-btn-area">
+    <%= line_chart [
+      {name: "血脂", data: @aa}
+    ], library: @options %>
+    <table class="hovertable">
+      <tr>
+        <th>血脂值/mmol/L</th><th>状态</th><th>测量时间</th>
+      </tr>
+
+      <% if !@show.nil? %>
+        <% @show.each do |search|%>
+        <tr>
+          <th><%= search["value"] %></th>
+          <% if search["value"] > 3 && search["value"] < 5.2 %>
+            <th class="green">正常</th>
+          <% else %>
+            <th class="red">异常</th>
+          <% end %>
+          <th><%= datetime search["created_at"] %></th>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% end -%>
+

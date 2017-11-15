@@ -268,5 +268,8 @@ Rails.application.routes.draw do
     get '/user_request_deal', to: 'info#user_request_deal'
     get '/home',to: 'home#index'
     get '/patient_info', to: 'patient#info'
+    get '/perscribe/new'
+    get '/perscribe/get_product'
+    post '/perscribe/create'
   end
 end

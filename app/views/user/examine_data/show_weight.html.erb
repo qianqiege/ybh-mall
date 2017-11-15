@@ -1,9 +1,15 @@
 <%= title '我的体重监测数据' %>
 <%= render 'head' %>
 <div class="weui-btn-area" style="display: block;  padding-bottom:3.5rem;">
-  <%= line_chart [
+  <% if @show.class != Array %>
+    <%= line_chart [
     {name: "体重", data: @show.pluck(:updated_at, :value)}
   ], library: @options, min: @show_last.value-5, max: @show_last.value+5 %>
+  <% else %>
+    <%= line_chart [
+    {name: "体重", data: @aa}
+  ], library: @options, min: 0, max: 100 %>
+  <% end -%>
   <table class="hovertable">
     <tr>
     	<th>体重值 kg</th><th>测量时间</th>
@@ -11,13 +17,13 @@
     <% if !@show.nil? %>
     <% @show.each do |search|%>
       <tr>
-      	<th><%= search.value %></th>
-        <th><%= datetime search.updated_at %></th>
+      	<th><%= search["value"] %></th>
+        <th><%= datetime search["updated_at"] %></th>
       </tr>
       <% end %>
     <% end %>
   </table>
-  <%= paginate @show %>
+  <%= paginate @show if @show.class != Array %>
 </div>
 
 <script>
