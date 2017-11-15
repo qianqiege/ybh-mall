@@ -69,6 +69,9 @@
 </style>
 
 <%= title '我的健康信息' %>
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
 <%= render 'head' %>
 
 <% if @wether_show_request %>
