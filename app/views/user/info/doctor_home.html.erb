@@ -1,0 +1,137 @@
+
+
+<style type="text/css">
+
+  .out100 {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .outTitle {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 2%;
+    padding: 1% 2%;
+    position: relative;
+  }
+
+  .outTitle h5 , .outTitle a {
+    display: inline-block;
+  }
+
+  .outTitle a {
+    color: #999;
+    font-size: 0.8rem;
+    position: absolute;
+    right: 2%;
+    bottom: 20%;
+  }
+
+  .scrollImg {
+    padding: 0 2% 5% 2%;
+    white-space:nowrap;
+    overflow:auto;
+  }
+
+  .scrollImg a {
+    display: inline-block;
+    width: 30%;
+    margin-right: 2%;
+  }
+
+  .scrollImg a p {
+    text-align: center;
+    color: #999;
+    font-size: 0.8rem;
+  }
+
+  .scrollImg a img {
+    float:inherit;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .scrollImg a:last-child {
+    margin-right: 0;
+  }
+
+</style>
+
+
+<%= title '御易健' %>
+<div class="home">
+  <%= render 'shared/slide' %>
+</div>
+<table style="margin-top: 4%;">
+  <tr style="text-align: center;">
+    <td style="width: 10%;">
+      <a href="<%= user_health_doctor_path %>"><%= image_tag "icon搜索.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">搜索医生</p>
+    </td>
+    <td style="width: 10%;">
+      <a href="<%= user_record_path %>"><%= image_tag "icon档案.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">健康档案</p>
+    </td>
+    <td style="width: 10%">
+      <a href="<%= user_home_programs_path %>"><%= image_tag "icon方案.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">我的方案</p>
+    </td>
+    <td style="width: 10%;">
+      <a href="<%= user_doctor_user_path %>"><%= image_tag "icon健康管理师.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">我的医生</p>
+    </td>
+  </tr>
+</table>
+
+
+
+<div class="out100">
+  <div class="outTitle">
+    <h5>热门话题</h5>
+    <a href="#">查看全部>></a>
+  </div>
+    <div class="scrollImg">
+
+        <% @user_info_review.each do |user| %>
+          <a>
+            <%= image_tag user.image, size: "100x140" %>
+            <p>
+              <% if user.identity == "family_doctor" %>
+                <%="家庭医生"%>
+              <% elsif user.identity == "family_health_manager" %>
+                <%="家庭健康管理师"%>
+              <% elsif user.identity == "helath_manager" %>
+                <%="健康管理师"%>
+              <% end %>
+            </p>
+          </a>
+        <% end %>
+
+    </div>
+</div>
+
+<div class="out100">
+  <div class="outTitle">
+    <h5>金牌医生榜</h5>
+    <a href="#">查看全部>></a>
+  </div>
+    <div class="scrollImg">
+
+        <% @user_info_review.each do |user| %>
+          <a>
+            <%= image_tag user.image, size: "100x140" %>
+            <p>
+              <% if user.identity == "family_doctor" %>
+                <%="家庭医生"%>
+              <% elsif user.identity == "family_health_manager" %>
+                <%="家庭健康管理师"%>
+              <% elsif user.identity == "helath_manager" %>
+                <%="健康管理师"%>
+              <% end %>
+            </p>
+          </a>
+        <% end %>
+
+    </div>
+</div>
