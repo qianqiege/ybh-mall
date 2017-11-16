@@ -5,7 +5,7 @@
 <% end %>
 
 <% user = User.find(current_user.user_id).status %>
-<% if @user_available_y >= 400 || user == "staff" || user == "Staff" %>
+<% if @user_available_y >= 10 %>
 <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
   <span style="color:red;font-size:15px;">提示：</span>
   易积分将实时转入对方账户，请确认后操作
@@ -13,7 +13,7 @@
 <% else %>
   <p style="font-size: 10px; margin-left: 15px; padding-top: 10px;padding-bottom:9px;">
     <span style="color:red;font-size:15px;">提示：</span>
-    对不起，您的可兑换易积分数量低于400，根据我公司规定，您暂时不可以使用赠送功能。
+    对不起，您的可兑换易积分数量低于10，根据我公司规定，您暂时不可以使用赠送功能。
   </p>
 <% end %>
 
@@ -40,7 +40,7 @@
       </div>
       <a href="javascript:" class="weui-search-bar__cancel-btn" id="search_cancel">取消</a>
     </div>
-    <% if @user_available_y >= 400 || user == "staff" || user == "Staff" %>
+    <% if @user_available_y >= 10 %>
       <%= submit_tag "赠送" ,class:"wei_but_new weui-btn_primary button-dh button-margin"%>
     <% end %>
   <% end %>

@@ -64,7 +64,7 @@
     padding-top: 30px;
     position: relative;
   }
-  
+
   .pagination span {
     margin:0 10px;
     padding-top: 10px;
@@ -106,25 +106,27 @@
   <div class="weui-flex bottom-text">
 
     <% integral = Integral.find_by(user_id: current_user.user_id) %>
+    <% record = PresentedRecord.where(user_id: current_user.user_id) %>
 
     <div class="weui-flex__item">
       <div class="placeholder text-center box-btn">
         <a class="weui-cell_access">
-          <p class="btnTab">可使用</p>
-          <p><%= integral.available || 0 %></p>
+          <p class="btnTab">可用</p>
+          <p><%= record.sum(:balance) || 0 %></p>
         </a>
       </div>
     </div>
 
     <div class="weui-flex__item">
       <div class="placeholder text-center box-btn">
-        <a  class="weui-cell_access">
-          <p class="btnTab">可兑换</p>
-          <p><%= integral.exchange || 0 %></p>
+        <a class="weui-cell_access">
+          <p class="btnTab">锁定</p>
+          <p><%= integral.locking || 0 %></p>
         </a>
       </div>
     </div>
 
+  <% if integral.appreciation >= 1 %>
     <div class="weui-flex__item">
       <div class="placeholder text-center box-btn">
         <a class="weui-cell_access">
@@ -133,6 +135,7 @@
         </a>
       </div>
     </div>
+  <% end %>
 
   </div>
 </div>
