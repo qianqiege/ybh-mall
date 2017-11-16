@@ -27,6 +27,10 @@ module Sdk
       exec(:get,"examination_input/get_examine_data?id_number=#{identity_card}&type=#{number}")
     end
 
+    def update_id_number(old_number,new_number)
+      exec(:get,"examination_input/update_user_id_number?old_number=#{old_number}&new_number=#{new_number}")
+    end
+
     def get_phone_email(email)
       exec(:get, "examination_input/get_phones_of_hospital?email=#{email}")
     end
