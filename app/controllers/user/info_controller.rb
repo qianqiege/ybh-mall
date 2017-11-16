@@ -121,8 +121,8 @@ class User::InfoController < Wechat::BaseController
   end
 
   def gift_account
-    available = Integral.find_by(user_id: current_user.user_id)
-    @user_available_y = available.available
+    @available = Integral.find_by(user_id: current_user.user_id)
+    @user_available_y = @available.available
   end
 
   def create_gift_friend
