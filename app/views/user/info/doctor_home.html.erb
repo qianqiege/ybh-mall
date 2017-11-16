@@ -55,11 +55,45 @@
   .scrollImg a:last-child {
     margin-right: 0;
   }
+  .clearfix:after {
+      content: " ";
+      display: block;
+      clear: both;
+      height: 0;
+  }
+  .clearfix {
+      zoom: 1;
+  }
+
+
+  .float {
+    font-size: 12px;
+    color:#000;
+    line-height: 28px;
+  }
 
 </style>
 
 
 <%= title '御易健' %>
+
+<div class="weui-search-bar" id="searchBar">
+  <form class="weui-search-bar__form" id="product_search" action="/mall" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+    <div class="weui-search-bar__box">
+      <i class="weui-icon-search"></i>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" name="q[name_cont]" id="q_name_cont">
+      <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+    </div>
+    <label class="weui-search-bar__label weixin-search-animal" id="searchText">
+      <i class="weui-icon-search"></i>
+      <span>搜索</span>
+    </label>
+</form>
+  <div class="clearfix">
+    <a href="<%= doctor_home_path %>" class="float">管理师版</a>
+  </div>
+</div>
+
 <div class="home">
   <%= render 'shared/slide' %>
 </div>
@@ -83,33 +117,6 @@
     </td>
   </tr>
 </table>
-
-
-
-<div class="out100">
-  <div class="outTitle">
-    <h5>热门话题</h5>
-    <a href="#">查看全部>></a>
-  </div>
-    <div class="scrollImg">
-
-        <% @user_info_review.each do |user| %>
-          <a>
-            <%= image_tag user.image, size: "100x140" %>
-            <p>
-              <% if user.identity == "family_doctor" %>
-                <%="家庭医生"%>
-              <% elsif user.identity == "family_health_manager" %>
-                <%="家庭健康管理师"%>
-              <% elsif user.identity == "helath_manager" %>
-                <%="健康管理师"%>
-              <% end %>
-            </p>
-          </a>
-        <% end %>
-
-    </div>
-</div>
 
 <div class="out100">
   <div class="outTitle">
