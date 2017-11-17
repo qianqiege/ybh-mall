@@ -15,7 +15,7 @@ ActiveAdmin.register ActivityRule do
                 :staff,
                 :family_doctor,
                 :family_health_manager,
-                :health_manager
+                :health_manager,:cash
   index do
     selectable_column
     id_column
@@ -24,6 +24,7 @@ ActiveAdmin.register ActivityRule do
     column :max
     column :min
     column :y_coin
+    column :cash
     # column :coin_type
     column :percent
     column :staff
@@ -43,6 +44,7 @@ ActiveAdmin.register ActivityRule do
       f.input :min
       f.input :coin_type
       f.input :y_coin
+      f.input :cash
       f.input :percent
       f.input :percentage
       f.input :staff
