@@ -126,7 +126,7 @@
           <li>
             <!-- <a href="#" style="border: 1px solid red; width: 100%; overflow: auto;display: block;"> -->
               <div class="address-confirm order-address"  title="<%= request.user_id %>">
-                <i class="icon-address"></i>
+                <i class="fa fa-user-o" aria-hidden="true"></i>
                 <p>
                   <span class="fr gray84"><%= User.find(request.user_id).telphone %></span>
                   申请人：<%= User.find(request.user_id).name %>

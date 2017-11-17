@@ -12,6 +12,7 @@ permit_params :exchange, :user_id, :locking, :available,:cash,:not_exchange
     column :available
     column :cash
     column :not_exchange
+    column :not_cash
     column :updated_at
     actions defaults: true
   end

@@ -314,7 +314,7 @@ class Order < ApplicationRecord
             end
           end
 
-          if User.find(self.user_id).status == "staff" || User.find(self.user_id).status == "Staff"
+          if User.find(self.user_id).status == "staff" || User.find(self.user_id).status == "Staff" && !rule.staff.nil?
             presented_records.create(user_id: self.user_id, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
           end
           # 用户购买产品 返还用户易积分 购买产品返还的积分 为锁定积分 十五天后可用
@@ -366,8 +366,19 @@ class Order < ApplicationRecord
   def add_cash
     # 查询当前用户的钱包账户
     integral = Integral.find_by(user_id: self.user_id)
+    if !self.activity_id.nil?
+      activity = Activity.find(self.activity_id)
+      if !activity.name.match(/合伙人/).nil?
+        rules = activity.activity_rules.match_rules(self.price)
+        rules.each do |rule|
+          if !rule.cash.nil?
+            CashRecord.create(user_id: self.user_id, number: rule.cash, reason: "合伙人计划", is_effective:1)
+          end
+        end
+      end
+    end
     # 查询当前订单中的产品是否为可编辑产品
-    is_custom = Product.find(self.line_items[0].product_id)
+    # is_custom = Product.find(self.line_items[0].product_id)
 
     # 如果 是自定义价格产品 非消费产品 便认定为充值 购买代金券
     # if is_custom.is_custom_price == true && is_custom.is_consumption == false
