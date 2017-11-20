@@ -121,6 +121,9 @@ Rails.application.routes.draw do
 
   namespace :user do
     root "info#home"
+    get '/gave_money',to: 'info#gave_money'
+    get '/prompt', to: 'info#prompt'
+    get '/activity_code', to: 'info#activity_code'
     get '/health_doctor', to: 'examine_data#health_doctor'
     get '/doctor_user' , to: 'info#doctor_user'
     get '/doctor_home', to: 'info#doctor_home'
