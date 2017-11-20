@@ -76,7 +76,9 @@
 
 
 <%= title '御易健' %>
-
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
 <div class="weui-search-bar" id="searchBar">
   <form class="weui-search-bar__form" id="product_search" action="/mall" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
     <div class="weui-search-bar__box">

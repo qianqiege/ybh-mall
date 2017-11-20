@@ -121,6 +121,9 @@
 <div class="silder">
 	<ul>
 		<li><a>全部</a></li>
+		<li><a>健康管理师</a></li>
+		<li><a>家庭健康管理师</a></li>
+		<li><a>家庭医生</a></li>
 	</ul>
 </div>
 
@@ -134,9 +137,49 @@
 			            <span><%= doctor.user.name %></span>
 					</a>
 	          </li>
-	     <% end %>
-    </ul>
+	     	<% end %>
+    	</ul>
 	</div>
+
+	<div class="pro-sm" id="content">
+		<ul class="clearfix chanpin">
+			<% @family_doctor.each do |doctor| %>
+	          <li>
+					<a href="<%= doctor_doctor_info_path(doctor.id) %>">
+			            <div style="text-align: center;"><%= image_tag doctor.image,size: "100x160" if doctor.image.present?  %></div>
+			            <span><%= doctor.user.name %></span>
+					</a>
+	          </li>
+	     	<% end %>
+    	</ul>
+	</div>
+
+	<div class="pro-sm" id="content">
+		<ul class="clearfix chanpin">
+			<% @family_health_manager.each do |doctor| %>
+	          <li>
+					<a href="<%= doctor_doctor_info_path(doctor.id) %>">
+			            <div style="text-align: center;"><%= image_tag doctor.image,size: "100x160" if doctor.image.present?  %></div>
+			            <span><%= doctor.user.name %></span>
+					</a>
+	          </li>
+	     	<% end %>
+    	</ul>
+	</div>
+
+	<div class="pro-sm" id="content">
+		<ul class="clearfix chanpin">
+			<% @helath_manager.each do |doctor| %>
+	          <li>
+					<a href="<%= doctor_doctor_info_path(doctor.id) %>">
+			            <div style="text-align: center;"><%= image_tag doctor.image,size: "100x160" if doctor.image.present?  %></div>
+			            <span><%= doctor.user.name %></span>
+					</a>
+	          </li>
+	     	<% end %>
+    	</ul>
+	</div>
+	
 </div>
 
 <script>

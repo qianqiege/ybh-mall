@@ -13,7 +13,7 @@ class Doctor::PerscribeController < Wechat::BaseController
     def create
         arr = []
         for i in 0..20
-            brr = []
+            brr = {}
             a = i.to_s
             t = "product" + a
             f = "amount" + a
@@ -21,15 +21,19 @@ class Doctor::PerscribeController < Wechat::BaseController
 
             else
                 product_title = Product.find_by(id: params[t]).name
-                brr.push(product_title)
-                brr.push(params[f])
+                product_number = Product.find_by(id: params[t]).only_number
+                brr = {
+                    "产品名": product_title,
+                    "产品编号":  product_number,
+                    "数量":  params[f]
+                }
                 arr.push(brr)
             end
         end
         @health_program = HealthProgram.new(identity_card: params[:id_number],
                                         time: Time.now,
                                         coding: HealthProgram.generate_number,
-                                        product: arr,
+                                        product: arr.to_json,
                                         user_id: params[:current_user_id])
         if @health_program.save
           #
