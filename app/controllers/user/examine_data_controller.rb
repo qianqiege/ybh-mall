@@ -6,6 +6,9 @@ class User::ExamineDataController < Wechat::BaseController
 
   def health_doctor
     @doctor = UserInfoReview.where("state = ? and identity != ?","dealed","User")
+    @family_doctor = UserInfoReview.where("state = ? and identity = ?", "dealed", "family_doctor")
+    @family_health_manager = UserInfoReview.where("state = ? and identity = ?", "dealed", "family_health_manager")
+    @helath_manager = UserInfoReview.where("state = ? and identity = ?", "dealed", "helath_manager")
   end
 
   def show_blood_fat
