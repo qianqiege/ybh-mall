@@ -2,6 +2,25 @@ class User::InfoController < Wechat::BaseController
   before_action :programs
   skip_before_filter :verify_authenticity_token
 
+  def activity_code
+    @wechat_user = WechatUser.find(current_user)
+    if current_user.user
+      url = user_gave_money_url(number: 100)
+      @qrcode_money = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+    else
+      redirect_to '/user/binding'
+    end
+  end
+
+  def gave_money
+    if !current_user.user.nil?
+      PresentedRecord.create(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange")
+      redirect_to '/user/prompt'
+    else
+      redirect_to '/user/binding'
+    end
+  end
+
   def doctor_home
       @slides = Slide.top(1)
       @user_info_review = UserInfoReview.where(identity: 'family_doctor',

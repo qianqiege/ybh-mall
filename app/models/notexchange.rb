@@ -1,0 +1,2 @@
+class Notexchange < PresentedRecord
+end

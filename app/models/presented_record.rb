@@ -62,6 +62,10 @@ class PresentedRecord < ApplicationRecord
          wallet.update(available: wallet.available + self.number, exchange: wallet.exchange + self.number, not_appreciation: wallet.not_appreciation + self.number)
        end
      end
+
+     if self.type == "Notexchange"
+       wallet.update(not_exchange: wallet.not_exchange + self.number)
+     end
   end
 
   def update_record
