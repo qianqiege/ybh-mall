@@ -46,6 +46,21 @@
         border: 0;
     }
 
+    .userTitle {
+        color: #fff;
+        display: inline-block;
+        padding:3px 3%;
+    }
+
+    .userInfos p {
+        margin-bottom: 2%;
+    }
+
+    .yyj_submit {
+        margin:0 auto;
+        margin-top: 20px;
+    }
+
 
 </style>
 <%= title '我的健康信息' %>
@@ -95,8 +110,8 @@
 <div class="font">
   <div class="weui-panel weui-panel_access">
       <div class="weui-panel__bd">
-          <div class="weui-media-box weui-media-box_text">
-              <h4 class="weui-media-box__title">目前健康状况</h4>
+          <div class="weui-media-box weui-media-box_text userInfos">
+              <h4 class="weui-media-box__title userTitle yyj_btn">目前健康状况</h4>
               <p class="weui-media-box__desc">目前患有疾病：<%= @record["health_status"]["item_a"] %></p>
               <p class="weui-media-box__desc">过去的一段时间疲劳程度：<%= @record["health_status"]["item_b1"] %></p>
               <p class="weui-media-box__desc">同一年前相比体重浮动是：<%= @record["health_status"]["item_b2"] %></p>
@@ -115,7 +130,7 @@
   <div class="weui-panel weui-panel_access">
       <div class="weui-panel__bd">
           <div class="weui-media-box weui-media-box_text">
-              <h4 class="weui-media-box__title">目前健康状况</h4>
+              <h4 class="weui-media-box__title userTitle yyj_btn">目前健康状况</h4>
 
               <table style="text-align:center; margin-top: 20px;" width="100%">
 
@@ -181,13 +196,9 @@
               			<p>心电</p>
               		</td>
               	</tr>
-                <tr>
-                    <td>
-                        <a href="<%= doctor_perscribe_new_path(@record["id_number"]) %>"><button type="button" name="button" style="width:80px; height:30px;">开方</button></a>
-                    </td>
-                </tr>
-
             </table>
+
+            <a href="<%= doctor_perscribe_new_path(@record["id_number"]) %>"><button type="button" name="button" class="yyj_submit">开方</button></a>
         </div>
     </div>
   </div>
