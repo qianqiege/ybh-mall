@@ -13,7 +13,8 @@
             <span style="color: red; font-size: 15px;">活动推广码：</span>
           </div>
           <% @apply_code.each do |apply| %>
-            <a href="/user/activity_code?id=#{apply.id}">
+            <% @id = apply.id %>
+            <a href="<%= user_activity_code_path(@id) %>">
               <div class="weui-panel__hd"><%= apply.desc %></div>
             </a>
           <% end %>
