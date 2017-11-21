@@ -4,7 +4,7 @@
 <% if !current_user.user.nil? && current_user.user.status == "Staff" %>
   <a class="weui-cell weui-cell_access" href="<%= user_apply_code_path %>">
     <div class="weui-cell__bd weui-cell_primary">
-      <p>申请二维码</p>
+      <p>申请活动推广码</p>
     </div>
     <span class="weui-cell__ft"></span>
   </a>
@@ -13,7 +13,7 @@
 <% if !current_user.user.nil? && current_user.user.status == "Staff" %>
   <a class="weui-cell weui-cell_access" href="<%= user_activity_code_path %>">
     <div class="weui-cell__bd weui-cell_primary">
-      <p>活动推广码</p>
+      <p>100积分活动推广码</p>
     </div>
     <span class="weui-cell__ft"></span>
   </a>
