@@ -1,0 +1,2 @@
+class ApplyCode < ApplicationRecord
+end

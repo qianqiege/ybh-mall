@@ -2,19 +2,36 @@ class User::InfoController < Wechat::BaseController
   before_action :programs
   skip_before_filter :verify_authenticity_token
 
+  def create_activity_code
+    apply_code = ApplyCode.new(user_id:current_user.user_id,desc: params[:activity_desc])
+    if apply_code.save
+      redirect_to "/user/apply_code?id=#{apply_code.id}"
+    end
+  end
+
+  def apply_code
+    @apply_code = ApplyCode.where(user_id: current_user.user_id)
+  end
+
   def activity_code
-    @wechat_user = WechatUser.find(current_user)
-    if current_user.user
-      url = user_gave_money_url(number: 100)
-      @qrcode_money = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+    if !params[:id].nil?
+      apply_code = ApplyCode.find(params[:id])
+      url = user_gave_money_url(number: 100,code_id: apply_code.id)
+      @activity_code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
     else
-      redirect_to '/user/binding'
+      url = user_gave_money_url(number: 100)
+      @activity_code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
     end
   end
 
   def gave_money
     if !current_user.user.nil?
-      PresentedRecord.create(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange")
+      record = PresentedRecord.new(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange")
+      if !params[:code_id].nil?
+        apply_code = ApplyCode.find(params[:code_id])
+        record.desc = apply_code.desc
+        record.save
+      end
       redirect_to '/user/prompt'
     else
       redirect_to '/user/binding'

@@ -1,0 +1,27 @@
+<%= title '我的二维码' %>
+<%= render 'head' %>
+
+<% if !current_user.user.nil? && current_user.user.status == "Staff" %>
+  <a class="weui-cell weui-cell_access" href="<%= user_apply_code_path %>">
+    <div class="weui-cell__bd weui-cell_primary">
+      <p>申请二维码</p>
+    </div>
+    <span class="weui-cell__ft"></span>
+  </a>
+<% end %>
+
+<% if !current_user.user.nil? && current_user.user.status == "Staff" %>
+  <a class="weui-cell weui-cell_access" href="<%= user_activity_code_path %>">
+    <div class="weui-cell__bd weui-cell_primary">
+      <p>活动推广码</p>
+    </div>
+    <span class="weui-cell__ft"></span>
+  </a>
+<% end %>
+
+<a class="weui-cell weui-cell_access" href="<%= user_invitation_path %>">
+  <div class="weui-cell__bd weui-cell_primary">
+    <p>注册邀请码</p>
+  </div>
+  <span class="weui-cell__ft"></span>
+</a>
