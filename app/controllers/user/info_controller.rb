@@ -34,11 +34,11 @@ class User::InfoController < Wechat::BaseController
       if !params[:code_id].nil?
         apply_code = ApplyCode.find(params[:code_id])
         record.desc = apply_code.desc
-        if record.save
+        if current_user.user.status != "Staff" && record.save
           redirect_to '/user/prompt'
         end
       end
-      if record.save
+      if current_user.user.status != "Staff" && record.save
         redirect_to '/user/prompt'
       end
     else
