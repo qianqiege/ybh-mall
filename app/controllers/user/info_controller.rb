@@ -29,14 +29,18 @@ class User::InfoController < Wechat::BaseController
   end
 
   def gave_money
-    if !current_user.user.nil? && current_user.user.status != "Staff"
+    if !current_user.user.nil?
       record = PresentedRecord.new(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange")
       if !params[:code_id].nil?
         apply_code = ApplyCode.find(params[:code_id])
         record.desc = apply_code.desc
-        record.save
+        if record.save
+          redirect_to '/user/prompt'
+        end
       end
-      redirect_to '/user/prompt'
+      if record.save
+        redirect_to '/user/prompt'
+      end
     else
       redirect_to '/user/binding'
     end
