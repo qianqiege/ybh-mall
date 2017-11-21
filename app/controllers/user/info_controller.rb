@@ -36,7 +36,6 @@ class User::InfoController < Wechat::BaseController
         @user = PresentedRecord.where("user_id = ? && code_id = ?",current_user.user_id,code.id)
         record.code_id = code.id
         record.desc = code.desc
-        byebug
         if current_user.user.status != "Staff" && @user[0].nil? && record.save
           redirect_to '/user/prompt'
           return
@@ -46,7 +45,7 @@ class User::InfoController < Wechat::BaseController
           return
         end
       end
-      if current_user.user.status != "Staff" && @user[0].nil? && record.save
+      if current_user.user.status != "Staff" && record.save
         redirect_to '/user/prompt'
         return
       else
