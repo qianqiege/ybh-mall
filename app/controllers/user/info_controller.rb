@@ -32,17 +32,31 @@ class User::InfoController < Wechat::BaseController
     if !current_user.user.nil?
       record = PresentedRecord.new(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange")
       if !params[:code_id].nil?
-        apply_code = ApplyCode.find(params[:code_id])
-        record.desc = apply_code.desc
-        if current_user.user.status != "Staff" && record.save
+        code = ApplyCode.find(params[:code_id])
+        @user = PresentedRecord.where("user_id = ? && code_id = ?",current_user.user_id,code.id)
+        record.code_id = code.id
+        record.desc = code.desc
+        byebug
+        if current_user.user.status != "Staff" && @user[0].nil? && record.save
           redirect_to '/user/prompt'
+          return
+        else
+          flash[:notice] = '您已经参加过该活动'
+          redirect_to '/wechat'
+          return
         end
       end
-      if current_user.user.status != "Staff" && record.save
+      if current_user.user.status != "Staff" && @user[0].nil? && record.save
         redirect_to '/user/prompt'
+        return
+      else
+        flash[:notice] = '您已经参加过该活动'
+        redirect_to '/wechat'
+        return
       end
     else
       redirect_to '/user/binding'
+      return
     end
   end
 
