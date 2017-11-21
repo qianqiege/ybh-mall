@@ -3,9 +3,13 @@ class User::InfoController < Wechat::BaseController
   skip_before_filter :verify_authenticity_token
 
   def create_activity_code
-    apply_code = ApplyCode.new(user_id:current_user.user_id,desc: params[:activity_desc])
-    if apply_code.save
-      redirect_to "/user/apply_code?id=#{apply_code.id}"
+    if params[:activity_desc].length >= 2
+      apply_code = ApplyCode.new(user_id:current_user.user_id,desc: params[:activity_desc])
+      if apply_code.save
+        redirect_to "/user/apply_code?format=#{apply_code.id}"
+      end
+    else
+      redirect_to "/user/apply_code"
     end
   end
 
@@ -14,8 +18,8 @@ class User::InfoController < Wechat::BaseController
   end
 
   def activity_code
-    if !params[:id].nil?
-      apply_code = ApplyCode.find(params[:id])
+    if !params[:format].nil?
+      apply_code = ApplyCode.find(params[:format])
       url = user_gave_money_url(number: 100,code_id: apply_code.id)
       @activity_code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
     else
