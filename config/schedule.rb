@@ -36,3 +36,6 @@ end
 every 1.day, :at => '2:30 am' do
   rake 'users:lottery_prize'
 end
+every 1.day, :at => '12:30 am' do
+  rake 'code:update_code_state'
+end

@@ -31,8 +31,8 @@ class User::InfoController < Wechat::BaseController
   def gave_money
     if !current_user.user.nil?
       record = PresentedRecord.new(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange")
-      if !params[:code_id].nil?
-        code = ApplyCode.find(params[:code_id])
+      code = ApplyCode.find_bye(id: params[:code_id])
+      if !code.nil? && code.state != "void"
         @user = PresentedRecord.where("user_id = ? && code_id = ?",current_user.user_id,code.id)
         record.code_id = code.id
         record.desc = code.desc
@@ -44,12 +44,8 @@ class User::InfoController < Wechat::BaseController
           redirect_to '/wechat'
           return
         end
-      end
-      if current_user.user.status != "Staff" && record.save
-        redirect_to '/user/prompt'
-        return
       else
-        flash[:notice] = '您已经参加过该活动'
+        flash[:notice] = '对不起，您扫的二维码不存在或已失效'
         redirect_to '/wechat'
         return
       end
