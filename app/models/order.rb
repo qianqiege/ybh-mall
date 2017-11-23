@@ -62,6 +62,7 @@ class Order < ApplicationRecord
 
         # 付款成功后 执行下列方法
         if is_donation != true
+          update_is_parther
           # # 收入易积分
           add_ycoin
           # # 消费易积分
@@ -239,6 +240,15 @@ class Order < ApplicationRecord
     end
   end
 
+  def update_is_parther
+    activity = Activity.find(self.activity_id)
+    if activity.name.match(/合伙人/).length >= 1
+      user = User.find(self.user_id)
+      user.is_partner = true
+      user.save
+    end
+  end
+
   # 收入易积分
   def add_ycoin
 
@@ -267,56 +277,59 @@ class Order < ApplicationRecord
           end
 
           # 推荐好友消费赠送 直推奖励
-          invitation = User.find(user_id).invitation_id
-          # 判定条件，规则中赠送推荐人比例不为空，金额不为0，活动是 YBJ 执行创建方法
-          if(rule.percent.present? && invitation.present? && self.price != 0 )
-            # 赠送比例 乘 金额
-            present_count = rule.percent * price
-            presented_records.create(user_id: invitation, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available", wight: 3)
+          user = User.find(user_id)
+          if !user.invitation_id.nil?
+            invitation = User.find(user.invitation_id)
+            if rule.percent.nil?  && self.price != 0 && invitation.is_partner != false || !invitation.nil? && invitation.status == "Staff"
+              # 赠送比例 乘 金额
+              byebug
+              present_count = rule.percent * price
+              presented_records.create(user_id: invitation.id, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available", wight: 3)
+            end
           end
 
-          # 推荐好友 员工推荐奖励
-          # 判定 当前订单用户是否有邀请人 订单金额是否大于0 订单活动是否是 YBJ
-          if invitation.present? && self.price != 0
-            user_invitation = User.find(invitation).invitation_id
-            # 如果 邀请人ID不为空继续循环
-            while !user_invitation.nil?
-              user = User.find(user_invitation)
-              if user.invitation_id.present?
-                user_invitation = user.invitation_id
-                # 如果邀请人ID为空 或者 邀请人的身份是 staff 停止循环
-                if user_invitation.present? || User.find(user_invitation).status == "Staff" || User.find(user_invitation).status == "staff"
-                  break
-                end
-              elsif !user.invitation_id.present? && User.find(user_invitation).status == "Staff" || User.find(user_invitation).status == "staff"
-                user_invitation = user.id
-                break
-              elsif user_invitation.nil? || user.invitation_id.nil?
-                break
-              end
-            end
-
-            if User.find(invitation).status == "Staff" || User.find(invitation).status == "staff"
-              user_invitation = invitation
-            end
+          # # 推荐好友 员工推荐奖励
+          # # 判定 当前订单用户是否有邀请人 订单金额是否大于0 订单活动是否是 YBJ
+          # if invitation.present? && self.price != 0
+          #   user_invitation = User.find(invitation).invitation_id
+          #   # 如果 邀请人ID不为空继续循环
+          #   while !user_invitation.nil?
+          #     user = User.find(user_invitation)
+          #     if user.invitation_id.present?
+          #       user_invitation = user.invitation_id
+          #       # 如果邀请人ID为空 或者 邀请人的身份是 staff 停止循环
+          #       if user_invitation.present? || User.find(user_invitation).status == "Staff" || User.find(user_invitation).status == "staff"
+          #         break
+          #       end
+          #     elsif !user.invitation_id.present? && User.find(user_invitation).status == "Staff" || User.find(user_invitation).status == "staff"
+          #       user_invitation = user.id
+          #       break
+          #     elsif user_invitation.nil? || user.invitation_id.nil?
+          #       break
+          #     end
+          #   end
+          #
+          #   if User.find(invitation).status == "Staff" || User.find(invitation).status == "staff"
+          #     user_invitation = invitation
+          #   end
             # 判定是否有钱包账户 如果没有创建新的钱包账户
-            if Integral.find_by(user_id: user_invitation).nil?
-              Integral.create(user_id: user_invitation)
-            end
+            # if Integral.find_by(user_id: user_invitation).nil?
+            #   Integral.create(user_id: user_invitation)
+            # end
             # 判定邀请人是否是员工 是员工的情况下 执行员工邀请奖励
-            if user_invitation.present?
-              invitation_status = User.find(user_invitation).status
-              if invitation_status == "Staff" || invitation_status == "staff"
-                presented_records.create(user_id: user_invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
-              end
-            elsif invitation.present? && invitation_status == "Staff" || invitation_status == "staff"
-              presented_records.create(user_id: invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
-            end
-          end
-
-          if User.find(self.user_id).status == "staff" || User.find(self.user_id).status == "Staff" && !rule.staff.nil?
-            presented_records.create(user_id: self.user_id, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
-          end
+          #   if user_invitation.present?
+          #     invitation_status = User.find(user_invitation).status
+          #     if invitation_status == "Staff" || invitation_status == "staff"
+          #       presented_records.create(user_id: user_invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
+          #     end
+          #   elsif invitation.present? && invitation_status == "Staff" || invitation_status == "staff"
+          #     presented_records.create(user_id: invitation, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
+          #   end
+          # end
+          #
+          # if User.find(self.user_id).status == "staff" || User.find(self.user_id).status == "Staff" && !rule.staff.nil?
+          #   presented_records.create(user_id: self.user_id, number: self.price * rule.staff, reason: "员工政策奖励" , is_effective: 1 , type: "Available", wight: 2)
+          # end
           # 用户购买产品 返还用户易积分 购买产品返还的积分 为锁定积分 十五天后可用
           if rule.percentage.present? && self.price != 0
             @integral_price = self.price
