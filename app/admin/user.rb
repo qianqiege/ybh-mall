@@ -29,6 +29,7 @@ ActiveAdmin.register User do
     column '身份',:type
     column '用户/员工',:status
     column 'YBZ会员邀请数量',:ybz_number
+    column '是否为合伙人', :is_partner
     column '注册时间',:created_at
     actions defaults: true
   end
