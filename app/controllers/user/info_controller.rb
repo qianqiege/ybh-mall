@@ -13,6 +13,43 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  def auch_code
+    @activity_code = ApplyCode.all
+  end
+
+  def update_code_ava
+    if !params[:format].nil?
+      code = ApplyCode.find(params[:format])
+      if code.update_available!
+        flash[:notice] = '操作成功，二维码已生效'
+        redirect_to '/user/auch_code'
+        return
+      end
+    end
+  end
+
+  def update_code_p_to_void
+    if !params[:format].nil?
+      code = ApplyCode.find(params[:format])
+      if code.update_pending_to_void!
+        flash[:notice] = '操作成功，二维码已生效'
+        redirect_to '/user/auch_code'
+        return
+      end
+    end
+  end
+
+  def update_code_void
+    if !params[:format].nil?
+      code = ApplyCode.find(params[:format])
+      if code.update_available_to_void!
+        flash[:notice] = '操作成功，二维码已失效'
+        redirect_to '/user/auch_code'
+        return
+      end
+    end
+  end
+
   def apply_code
     @apply_code = ApplyCode.where(user_id: current_user.user_id)
   end

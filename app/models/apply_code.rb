@@ -23,8 +23,15 @@ class ApplyCode < ApplicationRecord
       end
     end
 
-    event :update_void do
+    event :update_pending_to_void do
       transitions from: :pending, to: :void
+      after do
+        self.save
+      end
+    end
+
+    event :update_available_to_void do
+      transitions from: :available, to: :void
       after do
         self.save
       end

@@ -13,7 +13,8 @@ ActiveAdmin.register User do
                 :health_manager,
                 :family_health_manager,
                 :family_doctor,
-                :staff_invitation_type
+                :staff_invitation_type,
+                :is_admin
 
   index do
     selectable_column
@@ -30,6 +31,7 @@ ActiveAdmin.register User do
     column '用户/员工',:status
     column 'YBZ会员邀请数量',:ybz_number
     column '是否为合伙人', :is_partner
+    column '是否为管理员', :is_admin
     column '注册时间',:created_at
     actions defaults: true
   end
@@ -49,6 +51,7 @@ ActiveAdmin.register User do
       f.input :family_doctor
       f.input :family_health_manager
       f.input :health_manager
+      f.input :is_admin
     end
     f.actions
   end
@@ -65,6 +68,7 @@ ActiveAdmin.register User do
       row :organization
       row :status
       row :type
+      row :is_admin
       row :created_at
     end
   end
