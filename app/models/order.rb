@@ -242,7 +242,7 @@ class Order < ApplicationRecord
 
   def update_is_parther
     activity = Activity.find(self.activity_id)
-    if activity.name.match(/合伙人/).length >= 1
+    if !activity.name.match(/合伙人/).nil? && activity.name.match(/合伙人/).length >= 1
       user = User.find(self.user_id)
       user.is_partner = true
       user.save
