@@ -1,5 +1,5 @@
 class ApplyCode < ApplicationRecord
-  before_create :update_state
+  after_create :update_state
   belongs_to :user
 
   def update_state
