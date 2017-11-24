@@ -61,11 +61,11 @@ class ExchangeRecord < ApplicationRecord
         color: "#173177"
       },
       keyword1: {
-        value: PresentedRecord.where(user_id: user_id).sum(:balance).to_f.to_s + "个",
+        value: Integral.find_by(user_id: user_id).available.to_f.to_s + "个",
         color: "#173177"
       },
       keyword2: {
-        value: Integral.find_by(user_id: user_id).exchange.to_f.to_s + "个",
+        value: Integral.find_by(user_id: user_id).available.to_f.to_s + "个",
         color:"#173177"
       },
       remark: {
