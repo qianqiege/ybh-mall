@@ -121,6 +121,10 @@ Rails.application.routes.draw do
 
   namespace :user do
     root "info#home"
+    get '/auch_code',to: 'info#auch_code'
+    get '/update_code_ava', to: 'info#update_code_ava'
+    get '/update_code_void', to: 'info#update_code_void'
+    get '/update_code_p_to_void', to: 'info#update_code_p_to_void'
     post "/create_activity_code",to: 'info#create_activity_code'
     get '/code_home', to: 'info#code_home'
     get '/gave_money',to: 'info#gave_money'

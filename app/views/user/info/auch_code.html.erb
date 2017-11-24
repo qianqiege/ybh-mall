@@ -1,0 +1,53 @@
+<style>
+
+    .tongguo a:first-child{
+        margin-right: 30px;
+        color: #999;
+    }
+
+    .tongguo a {
+      border:1px solid #ddd;
+      padding:2px 10px;
+      display: inline-block;
+      border-radius:8px;
+      color: #999;
+    }
+
+</style>
+
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+
+<div class="weui-panel weui-panel_access marginLeft">
+  <div class="weui-panel">
+    <div class="weui-panel__hd">待审核二维码</div>
+      <div class="weui-panel__bd">
+        <div class="city-group">
+          <% @activity_code.where(state: "pending").each do |apply| %>
+            <div class="weui-panel__hd"><%= apply.desc %><span style="padding-left: 5%;"><%= apply.user.name %></span></div>
+            <div class="weui-panel__hd tongguo">
+              <a href="<%= user_update_code_ava_path(apply.id) %>">通过</a>
+              <a href="<%= user_update_code_p_to_void_path(apply.id) %>">不通过</a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-panel weui-panel_access marginLeft">
+    <div class="weui-panel">
+      <div class="weui-panel__hd">生效中二维码</div>
+        <div class="weui-panel__bd">
+          <div class="address-box city-group">
+            <% @activity_code.where(state: "available").each do |apply| %>
+              <div class="weui-panel__hd"><%= apply.desc %><span style="padding-left: 5%;"><%= apply.user.name %></span></div>
+              <div class="weui-panel__hd tongguo">
+                <a href="<%= user_update_code_void_path(apply.id) %>">设为无效</a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

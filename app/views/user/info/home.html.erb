@@ -61,6 +61,15 @@
           </a>
         <% end %>
 
+        <% if !current_user.user.nil? && current_user.user.is_admin == true %>
+          <a class="weui-cell weui-cell_access" href="<%= user_auch_code_path %>">
+            <div class="weui-cell__bd weui-cell_primary">
+              <p>二维码审核</p>
+            </div>
+            <span class="weui-cell__ft"></span>
+          </a>
+        <% end %>
+
           <a class="weui-cell weui-cell_access" href="<%= user_invitation_path %>">
             <div class="weui-cell__bd weui-cell_primary">
               <p>注册邀请码</p>
