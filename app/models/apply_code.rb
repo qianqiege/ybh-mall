@@ -3,7 +3,7 @@ class ApplyCode < ApplicationRecord
   belongs_to :user
 
   def update_state
-    self.state = "panding"
+    self.state = "pending"
     self.save
   end
 

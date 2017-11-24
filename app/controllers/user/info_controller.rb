@@ -51,7 +51,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def apply_code
-    @apply_code = ApplyCode.where(user_id: current_user.user_id)
+    @apply_code = ApplyCode.where("user_id = ? && state != ?",current_user.user_id,"void")
   end
 
   def activity_code

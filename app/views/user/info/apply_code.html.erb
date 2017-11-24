@@ -14,9 +14,17 @@
           </div>
           <% @apply_code.each do |apply| %>
             <% @id = apply.id %>
-            <a href="<%= user_activity_code_path(@id) %>">
-              <div class="weui-panel__hd"><%= apply.desc %></div>
-            </a>
+            <% if apply.state != "pending" %>
+              <a href="<%= user_activity_code_path(@id) %>">
+                <div class="weui-panel__hd"><%= apply.desc %>
+                  <sapn style="padding-left:5%;">已生效</span>
+                </div>
+              </a>
+            <% elsif apply.state != "available" %>
+              <a>
+                <div class="weui-panel__hd"><%= apply.desc %></div>
+              </a>
+            <% end %>
           <% end %>
         </div>
       </div>
