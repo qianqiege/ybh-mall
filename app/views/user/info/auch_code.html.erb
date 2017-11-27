@@ -21,7 +21,7 @@
 
 <div class="weui-panel weui-panel_access marginLeft">
   <div class="weui-panel">
-    <div class="weui-panel__hd">待审核二维码</div>
+    <div class="weui-panel__hd">待审核活动二维码</div>
       <div class="weui-panel__bd">
         <div class="city-group">
           <% @activity_code.where(state: "pending").each do |apply| %>
@@ -38,7 +38,7 @@
 
   <div class="weui-panel weui-panel_access marginLeft">
     <div class="weui-panel">
-      <div class="weui-panel__hd">生效中二维码</div>
+      <div class="weui-panel__hd">已审核活动二维码</div>
         <div class="weui-panel__bd">
           <div class="address-box city-group">
             <% @activity_code.where(state: "available").each do |apply| %>
