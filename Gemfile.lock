@@ -9,7 +9,7 @@ GIT
       responders
 
 GEM
-  remote: http://ruby.taobao.org/
+  remote: https://gems.ruby-china.org/
   specs:
     aasm (4.5.1)
     actioncable (5.0.0.1)
