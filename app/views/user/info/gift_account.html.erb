@@ -46,3 +46,44 @@
       <%= submit_tag "兑换" ,class:"wei_but_new weui-btn_primary button-dh button-margin"%>
     <% end %>
   <% end %>
+  <div class="weui-cells__title" style="padding-bottom:3.5rem;padding-left: 0px;padding-right: 0px;">兑换记录明细：
+    <table class="table">
+        <thead>
+            <tr>
+                <td class="td">数量</td>
+                <td class="td">类型</td>
+                <td class="td">状态</td>
+                <td class="td">时间</td>
+            </tr>
+        </thead>
+        <% details = ExchangeRecord.where(user_id: current_user.user_id).order(created_at: :desc).limit(10) %>
+        <% if details.length >= 1 %>
+          <tbody>
+            <% details.each do |details| %>
+              <% if !details.nil? %>
+                <tr class="center">
+                    <td class="td" style="width: 10%"><%= details.number %></td>
+                    <td class="td" style="width: 15%"><%= details.status %></td>
+                    <% if details.state == "pending" %>
+                    <td class="td" style="width: 15%"><%= value = "待审核" %></td>
+                    <% elsif details.state == "dealing" %>
+                    <td class="td" style="width: 15%"><%= value = "待处理" %></td>
+                    <% elsif details.state == "dealed" %>
+                    <td class="td" style="width: 15%"><%= value = "已处理" %></td>
+                    <% elsif details.state == "not" %>
+                    <td class="td" style="width: 15%"><%= value = "审核失败" %></td>
+                    <% end %>
+                    <td class="td" style="width: 25%"><%= date details.created_at %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
+    </table>
+  </div>
+
+  <style>
+  .weui-tab__panel {
+    background-color: #EAE8E8;
+  }
+  </style>
