@@ -85,7 +85,7 @@
 
 <%= form_tag(controller: "info",action: "gift_user" ,method: "post", id: "formd") do %>
   <p>赠送数量:</p>
-  <input type="number" name="quantity" class="quantity" placeholder="请输入大于400(含400)并为20倍数的数字">
+  <input type="number" name="quantity" class="quantity" placeholder="请输入大于10(含10)并为10倍数的数字">
   <div class="boders"></div>
   <p>赠送方式:</p>
   <div class="zhanghu">
@@ -104,8 +104,9 @@
   </div>
 
   <div class="payBaby">
-    <input type="text" name="name" placeholder="姓名" value="<%= current_user.user.name %>">
-    <input type="text" name="account" placeholder="账号">
+    <input type="text" name="name" placeholder="昵称">
+    <input type="text" name="account" placeholder="支付宝账号" id="account">
+    <input type="text" name="tel" placeholder="手机号" id="tel">
   </div>
 
 <input name = "id" style="display: none;" value="<%= @gift_user.id %>">
@@ -132,17 +133,33 @@
 
       var formd = document.getElementById("formd");
       var quantity = document.getElementsByClassName('quantity')[0];
-      formd.addEventListener("submit",function(e){
-          console.log(quantity.value % 20 );
-          if(quantity.value >= 400 && quantity.value%20 == 0){
+      // formd.addEventListener("submit",function(e){
+      //     console.log(quantity.value % 20 );
+      //     if(quantity.value >= 400 && quantity.value%20 == 0){
+      //
+      //     }else{
+      //       alert("请输入符合兑换标准的数值");
+      //       e.preventDefault();
+      //     }
+      //
+      //
+      // },false);
 
-          }else{
-            alert("请输入符合兑换标准的数值");
-            e.preventDefault();
-          }
-
-
-      },false);
-
+      document.getElementById("account").onblur = function () {
+        var value1 = document.getElementById("account").value;
+        var value2 = document.getElementById("tel").value;
+        if (value2 == "") {
+          return false;
+        }else if(value1 != value2) {
+          alert("手机号和账号不一致 是否提交？")
+        }
+      }
+      document.getElementById("tel").onblur = function () {
+        var value1 = document.getElementById("account").value;
+        var value2 = document.getElementById("tel").value;
+        if (value1 != value2) {
+          alert("手机号和账号不一致 是否提交？")
+        }
+      }
 
   </script>

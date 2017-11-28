@@ -246,7 +246,7 @@ class User::InfoController < Wechat::BaseController
 
   def gift_user
     if params[:account_type] == "支付宝" && params["type_coin"] != "1"
-      if params[:name] == "" || params[:account] == ""
+      if params[:tel] == "" || params[:account] == ""
         flash[:notice] = '申请信息不能为空值'
         redirect_to user_gift_account_path
         return
@@ -316,7 +316,7 @@ class User::InfoController < Wechat::BaseController
     if params["type_coin"] == "0" && order_integral == 0
       if number >= 10 && number%10 == 0
         if params["account_type"] == "支付宝"
-          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: current_user.user.name,state: "pending")
+          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,tel: params[:tel],number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: current_user.user.name,state: "pending")
         elsif params["account_type"] == "银行卡"
           @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: current_user.user.name,state: "pending")
         end
