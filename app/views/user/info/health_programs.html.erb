@@ -22,12 +22,12 @@
               <ul class="pro-list-portrait">
                   <li>
                     <div class="img">
-                      <a href="/mall/products/1">
+                      <a href="<%= mall_product_path(product) %>">
                         <%= image_tag(product.image) %>
                       </a>
                     </div>
                     <div class="pro-m">
-                      <a href="/mall/products/1">
+                      <a href="<%= mall_product_path(product) %>">
                         <p class="name"><%= product.name %></p>
                       </a>
                       <div class="info clearfix">

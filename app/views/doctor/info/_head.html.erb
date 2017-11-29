@@ -37,7 +37,7 @@
       <% end -%>
 
       <span class="healthName"><%= @doctor_info_review.user.name %></span>
-      <% if !@wether_show_request %>
+      <% if !@is_a_doctor && @wether_show_request %>
         <% if current_user.user.id_number.present? %>
           <a href="<%= user_doctor_user_path(@doctor_info_review.user.id) %>" class="float">申请</a>
         <% else %>
