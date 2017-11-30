@@ -10,11 +10,13 @@ class API::V1::User < API
     get 'user_info' do
       # user信息 用户信息
       user_info = User.find(params[:user_id])
+      present user_info,with: ::Entities::User
     end
 
     get 'wechat_user_info' do
       # 微信用户信息
       wechat_user = WechatUser.find_by(user_id: params[:user_id])
+      present wechat_user,with: ::Entities::WechatUser
     end
 
     get 'user_info_review' do
@@ -36,6 +38,8 @@ class API::V1::User < API
 
     get 'scheme' do
       # 方案
+      scheme = HealthProgram.where(user_id: params[:user_id])
+      present scheme,with: ::Entities::HealthProgram
     end
 
     get 'code' do
