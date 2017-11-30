@@ -101,9 +101,9 @@ class User < ApplicationRecord
     end
 
     if !self.invitation_id.nil?
-      presented_records.create(user_id: self.id, number: 30, reason: "（活动）被邀请奖励",is_effective:1,type:"NotExchange",wight: 6)
+      presented_records.create(user_id: self.id, number: 30, reason: "（活动）被邀请奖励",is_effective:1,type:"Notexchange",wight: 6)
     else
-      presented_records.create(user_id: self.id, number: 10, reason: "（活动）注册奖励",is_effective:1,type:"NotExchange",wight: 6)
+      presented_records.create(user_id: self.id, number: 10, reason: "（活动）注册奖励",is_effective:1,type:"Notexchange",wight: 6)
     end
   end
 
