@@ -1,7 +1,7 @@
 class Doctor::PerscribeController < Wechat::BaseController
     skip_before_filter :verify_authenticity_token
     def new
-        @product = Product.where("is_show = ? && sort != ? && sort != ? && is_consumption = ?",true ,"3","4",true)
+        @product = Product.where("is_show = ? && sort != ? && sort != ? && is_consumption = ? && display = ?",true ,"3","4",true, true)
         @id_number = params[:format]
     end
 

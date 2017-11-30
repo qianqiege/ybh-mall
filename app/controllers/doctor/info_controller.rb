@@ -6,6 +6,8 @@ class Doctor::InfoController < Wechat::BaseController
 			@doctor = User.find(params[:id])
 			@doctor_info_review = @doctor.user_info_review
 		else
+			# 判断是否绑定过该医生， 是否显示申请按钮
+			@wether_show_request = !!DoctorOrUser.find_by(user_id: current_user.user.id, doctor_id: UserInfoReview.find(params[:format]).user_id).nil?
 			@doctor_info_review = UserInfoReview.find(params[:format])
 		end
 
@@ -21,7 +23,8 @@ class Doctor::InfoController < Wechat::BaseController
 		# 	redirect_to user_edit_user_info_review_path
 		# end
 
-		@wether_show_request = !current_user.user.user_info_review.nil? && current_user.user.user_info_review.identity != "user"
+		# 是否为医生身份
+		@is_a_doctor = !current_user.user.user_info_review.nil? && current_user.user.user_info_review.identity != "user"
 		@request_all, @request_pending, @request_dealed = [], [], []
 		if params[:id].present?
 			@request_all = DoctorOrUser.where(doctor_id: current_user.user_id)
