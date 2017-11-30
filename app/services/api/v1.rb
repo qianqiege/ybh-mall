@@ -1,3 +1,8 @@
 class API::V1 < Grape::API
-  mount UserApi
+
+  mount ScrollThePicture
+  mount User
+  mount Wallet
+  mount Work
+
 end
