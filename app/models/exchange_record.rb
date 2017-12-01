@@ -65,7 +65,7 @@ class ExchangeRecord < ApplicationRecord
         color: "#173177"
       },
       keyword2: {
-        value: Integral.find_by(user_id: user_id).available.to_f.to_s + "个",
+        value: (Integral.find_by(user_id: user_id).available.to_f - number).to_s + "个",
         color:"#173177"
       },
       remark: {
