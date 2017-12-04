@@ -5,6 +5,8 @@ class API::V1::User < API
     desc '用户'
     params do
       requires :user_id, type: Integer
+      requires :code_id, type: Integer
+      requires :data_number, type: Integer
     end
 
     get 'user_info' do
@@ -42,16 +44,36 @@ class API::V1::User < API
       present scheme,with: ::Entities::HealthProgram
     end
 
-    get 'code' do
-      # 二维码
-    end
-
     get 'health_record' do
       # 健康档案
+      user = User.find(params[:user_id])
+      mall = Sdk::Mall.new
+      health_record = mall.record(user.id_number)
+    end
+
+    get 'tds' do
+      # tds数字中医
     end
 
     get 'health_data' do
       # 动态数据
+      # 1 血压
+      # 2 血糖
+      # 3 血脂
+      # 4 体重
+      # 5 体温
+      case params[:data_number]
+      when 1
+        @show = BloodPressure.where(user_id: params[:user_id])
+      when 2
+        @show = BloodGlucose.where(user_id: params[:user_id])
+      when 3
+        @show = BloodFat.where(user_id: params[:user_id])
+      when 4
+        @show = Weight.where(user_id: params[:user_id])
+      when 5
+        @show = Temperature.where(user_id: params[:user_id])
+      end
     end
 
   end
