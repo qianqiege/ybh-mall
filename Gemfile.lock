@@ -157,6 +157,8 @@ GEM
       virtus (>= 1.0.0)
     grape-entity (0.5.2)
       multi_json (>= 1.3.2)
+    grape-swagger (0.27.3)
+      grape (>= 0.16.2)
     grape-swagger-rails (0.2.2)
       railties (>= 3.2.12)
     groupdate (3.2.0)
@@ -380,7 +382,8 @@ DEPENDENCIES
   font-awesome-sass (~> 4.7.0)
   grape
   grape-entity (~> 0.5.1)
-  grape-swagger-rails (~> 0.2.1)
+  grape-swagger
+  grape-swagger-rails
   groupdate (~> 3.2)
   highcharts-rails (~> 5.0, >= 5.0.7)
   inherited_resources!

@@ -1,4 +1,4 @@
-# require 'grape-swagger'
+require 'grape-swagger'
 
 class API < Grape::API
   default_format :json

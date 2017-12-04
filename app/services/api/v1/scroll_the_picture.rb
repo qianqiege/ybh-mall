@@ -1,8 +1,6 @@
 class API::V1::ScrollThePicture < API
-
-  namespace :scroll_the_picture, desc: '滚动图片' do
-
-    desc '滚动图片'
+  namespace :scroll_the_picture, desc: '轮播图片' do
+    desc '轮播图片'
     params do
       requires :number, type: Integer
     end
@@ -12,7 +10,6 @@ class API::V1::ScrollThePicture < API
       # '2' => '商品首页轮播图'
       slide = Slide.where(tp: params[:number]).to_json
     end
-
   end
 
 end
