@@ -55,6 +55,13 @@ class ExchangeRecord < ApplicationRecord
   #提现申请通知
   def send_exchange_record_apply_success
 
+
+    remark_str = "您本次提现的数量是: "+ number.to_s + "个" 
+
+    if status == "支付宝" && account != User.find(user_id).telphone
+      remark_str = "您本次提现的数量是: "+ number.to_s + "个, 提现账户非本人注册账户" 
+    end
+
     data = {
       first: {
         value: "尊敬的客户，我们已经收到您的提现申请",
@@ -69,7 +76,7 @@ class ExchangeRecord < ApplicationRecord
         color:"#173177"
       },
       remark: {
-        value: "您本次提现的数量是: "+ number.to_s + "个",
+        value: remark_str ,
         color:"#173177"
       }
     }
