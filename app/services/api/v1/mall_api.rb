@@ -1,7 +1,17 @@
 class API::V1::MallApi < API
     format :json
     namespace :mall, desc: "商城相关" do
-        desc '分类'
+        desc "获取分类",
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          {
+            "sort_id": 1,
+            "sort": "销售产品",
+          }
+          ```
+        NOTES
         get 'sort' do
             [
                 {sort_id:"1", sort:"销售产品"},
@@ -11,46 +21,168 @@ class API::V1::MallApi < API
             ]
         end
 
-        desc '分类产品'
+        desc "获取分类产品",
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          [
+              1（产品id）,
+              "甘净"（产品名称）,
+              "960"（产品价格）,
+              "1.jpg"（产品图片）
+          ]
+          ```
+          > 请求失败返回信息
+
+          ```json
+            "该分类暂无产品！"
+          ```
+        NOTES
         params do
             requires :sort, type:Integer
         end
         get 'sort_product' do
-            Product.where(sort:params[:sort]).pluck(:id, :name, :now_product_price, :image)
+            t = Product.where(sort:params[:sort]).pluck(:id, :name, :now_product_price, :image)
+            if t.blank?
+                return "该分类暂无产品！"
+            else
+                return t
+            end
         end
 
-        desc "全部产品"
+        desc "获取全部产品",
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          [
+              1（产品id）,
+              "甘净"（产品名称）,
+              "960"（产品价格）,
+              "1.jpg"（产品图片）
+          ]
+          ```
+        NOTES
         get 'all_product' do
             Product.where(display:true).pluck(:id, :image, :name, :now_product_price)
         end
 
 
-        desc '产品详情'
+        desc "获取产品详情",
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            [
+                1（产品id）,
+                "1-4.jpg"（产品图片）,
+                "YBZ会员"（产品名称）,
+                "12000.0"（产品价格）,
+                "12000"（产品规格）,
+                "xxx"（包装）,
+                "某某厂家"（生产厂家）,
+                "<p style=\"text-align: justify;\">......（产品描述）"
+            ]
+          ```
+          > 请求失败返回信息
+
+          ```json
+            "该产品ID有误！"
+          ```
+        NOTES
         params do
             requires :product_id, type:Integer
         end
         get 'product' do
-            Product.where(id:params[:product_id]).pluck(:id, :image, :name, :now_product_price, :spec, :packaging, :production, :desc)
+            t = Product.where(id:params[:product_id]).pluck(:id, :image, :name, :now_product_price, :spec, :packaging, :production, :desc)
+            if t.blank?
+                return "该产品ID有误！"
+            else
+                return t
+            end
         end
 
-        desc '购物车产品'
+        desc "获取购物车产品",
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          {
+              "id": 233,
+              "product_id": 4,
+              "cart_id": 51,
+              "quantity": 1,
+              "order_id": null,
+              "in_cart": true,
+              "unit_price": null
+          }
+          ```
+          > 请求失败返回信息
+
+          ```json
+            "该用户购物车为空！"
+          ```
+        NOTES
         params do
             requires :user_id, type:Integer
         end
         get 'cart_product' do
-            User.find_by(id:params[:user_id]).cart.line_items.where(in_cart:true)
+            t = User.find_by(id:params[:user_id]).cart.line_items.where(in_cart:true)
+            if t.blank?
+                return "该用户购物车为空！"
+            else
+                return t
+            end
         end
 
-        desc '删除购物车产品'
+        desc '删除购物车产品',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            "删除成功！"
+          ```
+          > 请求失败返回信息
+
+          ```json
+           "删除失败！"
+          ```
+        NOTES
         params do
             requires :user_id,      type:Integer
             requires :product_id,   type:Integer
         end
         delete 'delete_cart_product' do
-            User.find_by(id:params[:user_id]).cart.line_items.where(product_id:params[:product_id]).destroy
+            t = User.find_by(id:params[:user_id]).cart.line_items.where(product_id:params[:product_id])
+            if t.destroy
+                return "删除成功！"
+            else
+                return "删除失败！"
+            end
         end
 
-        desc '编辑产品'
+        desc '编辑产品',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          {
+              "id": 233,
+              "product_id": 4,
+              "cart_id": 51,
+              "quantity": 1,
+              "order_id": null,
+              "in_cart": true,
+              "unit_price": null
+          }
+          ```
+          > 请求失败返回信息
+
+          ```json
+            "保存失败！"
+          ```
+        NOTES
         params do
             requires :user_id,      type:Integer
             requires :product_id,   type:Integer
@@ -59,32 +191,77 @@ class API::V1::MallApi < API
         put 'edit_cart_product' do
             t = User.find_by(id:params[:user_id]).cart.line_items.find_by(product_id:params[:product_id])
             t.quantity = params[:quantity]
-            t.save
+            if t.save
+                return t
+            else
+                return "保存失败！"
+            end
         end
 
-        desc '加入购物车'
+        desc '加入购物车',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            已加入购物车！
+          ```
+          > 请求失败返回信息
+
+          ```json
+            "加入购物车失败"
+          ```
+        NOTES
         params do
             requires :user_id,      type:Integer
             requires :product_id,   type:Integer
         end
         post 'add_cart' do
             if User.find_by(id:params[:user_id]).cart.line_items.find_by(product_id:params[:product_id]) == nil
-                LineItem.create(cart_id:    User.find_by(id:params[:user_id]).cart.id,
+                t = LineItem.new(   cart_id:    User.find_by(id:params[:user_id]).cart.id,
                                 product_id: params[:product_id],
                                 quantity:   1)
+                if t.save
+                    "已加入购物车！"
+                else
+                    "加入购物车失败！"
+                end
             else
                 t = User.find_by(id:params[:user_id]).cart.line_items.find_by(product_id:params[:product_id])
                 t.quantity += 1
-                t.save
+                if t.save
+                    "已加入购物车！"
+                else
+                    "加入购物车失败！"
+                end
             end
         end
 
-        desc '活动'
+        desc '活动',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            [
+                1,
+                "管理健康创造财富-YBS"
+            ]
+          ```
+        NOTES
         get 'activity' do
             Activity.where(is_show:true).pluck(:id, :name)
         end
 
-        desc '支付方式'
+        desc '支付方式',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          {
+              "id": 1,
+              "value": "微信支付"
+          }
+          ```
+        NOTES
         get 'pay_type' do
             [   {id:1, value:"微信支付"},
                 {id:2, value:"银行卡支付"},
@@ -93,7 +270,55 @@ class API::V1::MallApi < API
         end
 
         # all:"全部订单", pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' ,return_change: '退货/款'
-        desc '获取订单'
+        desc '获取订单',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          {
+            "status": "cancel",
+            "id": 908,
+            "number": "20170718151710950912",
+            "integral": "0.0",
+            "price": "3360.0",
+            "total_quantity": 3,
+            "address": {
+                "contact_name": "张三",
+                "mobile": "18025340000",
+                "province": "440000",
+                "city": "440300",
+                "street": "440305",
+                "detail": "国际国际"
+            },
+            "item": [
+                {
+                    "image": {
+                        "image": {
+                            "url": "/uploads/product/image/4/__C_.png",
+                            "thumb": {
+                                "url": "/uploads/product/image/4/thumb___C_.png"
+                            },
+                            "icon": {
+                                "url": "/uploads/product/image/4/icon___C_.png"
+                            },
+                            "product_icon": {
+                                "url": "/uploads/product/image/4/product_icon___C_.png"
+                            }
+                        }
+                    },
+                    "name": "御邦C筑",
+                    "now_product_price": "1120.0",
+                    "quantity": 3
+                }
+            ]
+        }
+          ```
+          > 请求失败返回信息
+
+          ```json
+          "该用户还未创建订单！"
+          ```
+        NOTES
         params do
             requires :user_id,  type:Integer
             requires :type,     type:String
@@ -173,10 +398,39 @@ class API::V1::MallApi < API
                     arr.push(object)
                 end
             end
-            return arr
+            if arr.blank?
+                return "该用户还未创建订单！"
+            else
+                return arr
+            end
         end
 
-        desc '新增收货地址'
+        desc '新增收货地址',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          {
+                "id": 17,
+                "contact_name": "张三",
+                "mobile": "18025340000",
+                "is_default": false,
+                "detail": "TCL",
+                "province": "440000",
+                "city": "440300",
+                "street": "440305",
+                "wechat_user_id": null,
+                "created_at": "2017-01-22T15:09:15.000+08:00",
+                "updated_at": "2017-11-30T10:37:58.000+08:00",
+                "user_id": 1
+          }
+          ```
+          > 请求失败返回信息
+
+          ```json
+          "地址保存失败！"
+          ```
+        NOTES
         params do
             requires :contact_name, type:String
             requires :user_id,      type:Integer
@@ -187,7 +441,7 @@ class API::V1::MallApi < API
             requires :detail,       type:String
         end
         post 'create_address' do
-            Address.create( user_id:        params[:user_id],
+            t = Address.new( user_id:        params[:user_id],
                             contact_name:   params[:contact_name],
                             mobile:         params[:mobile],
                             province:       params[:province],
@@ -195,17 +449,60 @@ class API::V1::MallApi < API
                             street:         params[:city],
                             detail:         params[:detail]
                             )
+            if t.save
+                return t
+            else
+                return "地址保存失败！"
+            end
         end
 
-        desc '获取全部地址'
+        desc '获取全部地址',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            [
+                "张三"（联系人）,
+                "18025340000"（电话）,
+                false（是否为默认地址）,
+                "440000"（省）,
+                "440300"（城市）,
+                "440305"（街道）,
+                "TCL"（详细信息）,
+                17（地址id）
+            ]
+          ```
+          > 请求失败返回信息
+
+          ```json
+            "该用户还未创建地址！"
+          ```
+        NOTES
         params do
             requires :user_id, type:Integer
         end
         get 'get_address' do
-            Address.where(user_id:params[:user_id]).pluck(:contact_name, :mobile, :is_default, :province, :city, :street, :detail, :id)
+            t = Address.where(user_id:params[:user_id]).pluck(:contact_name, :mobile, :is_default, :province, :city, :street, :detail, :id)
+            if t.blank?
+                return "该用户还未创建地址！"
+            else
+                return t
+            end
         end
 
-        desc '设为默认地址'
+        desc '设为默认地址',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            "设置成功！"
+          ```
+          > 请求失败返回信息
+
+          ```json
+            "设置失败！"
+          ```
+        NOTES
         params do
             requires :address_id, type:Integer
         end
@@ -217,18 +514,64 @@ class API::V1::MallApi < API
                 f.save
             end
             t.is_default = true
-            t.save
+            if t.save
+                return "设置成功！"
+            else
+                return "设置失败！"
+            end
         end
 
-        desc '获取默认地址'
+        desc '获取默认地址',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+          {
+                "id": 17,
+                "contact_name": "张三",
+                "mobile": "18025340000",
+                "is_default": true,
+                "detail": "TCL",
+                "province": "440000",
+                "city": "440300",
+                "street": "440305",
+                "wechat_user_id": null,
+                "created_at": "2017-01-22T15:09:15.000+08:00",
+                "updated_at": "2017-11-30T10:37:58.000+08:00",
+                "user_id": 1
+          }
+          ```
+          > 请求失败返回结果
+
+          ```json
+            "该用户无默认地址！"
+          ```
+        NOTES
         params do
             requires :user_id, type:Integer
         end
         get "get_default_address" do
-            Address.find_by(user_id:params[:user_id], is_default:true)
+            t = Address.find_by(user_id:params[:user_id], is_default:true)
+            if t.blank?
+                return "该用户无默认地址！"
+            else
+                return t
+            end
         end
 
-        desc '获取热卖产品'
+        desc '获取热卖产品',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            [
+                42（产品id）,
+                "自定义产品消费"（产品名称）,
+                "__icon.png"（产品图片）,
+                "1.0"（产品价格）
+            ]
+          ```
+        NOTES
         get 'hot_product' do
             arr = []
             Product.where(display:true).each do |t|
@@ -253,22 +596,72 @@ class API::V1::MallApi < API
             data = []
             crr.each do |d|
                 t = Product.where(id:d[:product_id]).pluck(:id, :name, :image, :now_product_price)
-                data.push(t)
+                data.push(t[0])
             end
             return data
         end
 
-        desc '获取活动及对应产品'
+        desc '获取活动及对应产品',
+        detail: <<-NOTES.strip_heredoc
+          > 请求成功返回信息
+
+          ```json
+            {
+                "activety_image": {
+                    "image": {
+                        "url": "/uploads/activity/image/1/5358ca76a5050.jpg",
+                        "thumb": {
+                            "url": "/uploads/activity/image/1/thumb_5358ca76a5050.jpg"
+                        },
+                        "icon": {
+                            "url": "/uploads/activity/image/1/icon_5358ca76a5050.jpg"
+                        },
+                        "product_icon": {
+                            "url": "/uploads/activity/image/1/product_icon_5358ca76a5050.jpg"
+                        }
+                    }
+                },
+                "product": [
+                    [
+                        49（产品id）,
+                        "御邦C筑"（产品名称）,
+                        "5358ca76a5050.jpg"（产品图片）,
+                        "560.0"（产品价格）
+                    ],
+                    [
+                        56,
+                        "点亮心灯-功能强化调理方案",
+                        "1.jpg",
+                        "1870.0"
+                    ]
+                ]
+            }
+            > 请求失败返回信息
+
+            ```json
+              "找不到该活动！"
+              "该活动暂无产品！"
+            ```
+          ```
+        NOTES
         params do
             requires :activity_id, type:Integer
         end
         get 'activity_product' do
             object = {}
-            t = Activity.find_by(id:params[:activity_id], is_show:true).image
+            t = Activity.find_by(id:params[:activity_id], is_show:true)
             f = Product.where(activity_id: params[:activity_id], display:true).pluck(:id, :name, :image, :now_product_price)
-            object[:activety_image] = t
+            object[:activety_image] = t.image
             object[:product] = f
-            return object
+            if t.blank?
+                return "找不到该活动！"
+            else
+                if f.blank?
+                    return "该活动暂无产品！"
+                else
+                    return object
+                end
+            end
         end
     end
 end
