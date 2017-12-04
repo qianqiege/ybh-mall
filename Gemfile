@@ -17,7 +17,9 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'grape'
 gem 'grape-entity', '~> 0.5.1'
-gem 'grape-swagger-rails', '~> 0.2.1'
+gem 'grape-swagger'
+gem 'grape-swagger-rails'
+
 # gem 'will_paginate', '3.1.0'
 # gem 'bootstrap-will_paginate', '0.0.10'
 
