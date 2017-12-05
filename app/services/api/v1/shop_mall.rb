@@ -1,4 +1,4 @@
-class API::V1::MallApi < API
+class API::V1::ShopMall < API
     format :json
     namespace :shop_mall, desc: "商城相关" do
         desc "获取分类",
