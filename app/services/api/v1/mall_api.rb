@@ -1,6 +1,6 @@
 class API::V1::MallApi < API
     format :json
-    namespace :mall, desc: "商城相关" do
+    namespace :shop_mall, desc: "商城相关" do
         desc "获取分类",
         detail: <<-NOTES.strip_heredoc
           > 请求成功返回信息
