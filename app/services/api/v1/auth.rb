@@ -12,7 +12,7 @@ class API::V1::Auth < API
         "telphone": "13823767270",
         "identity_card": "210************111",
         "id_number": "210************111",
-        "name": "肖辉周",
+        "name": "萧炎",
         "invitation_card": "98******98",
         "invitation_id": 1,
         "email": "email@ybyt.ccc",
