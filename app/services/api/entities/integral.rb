@@ -1,6 +1,7 @@
 module Entities
   class Integral < Grape::Entity
-    expose :locking,
+    expose :user_id,
+           :locking,
            :available,
            :not_exchange,
            :cash,

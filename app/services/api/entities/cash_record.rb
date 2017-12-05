@@ -1,5 +1,5 @@
 module Entities
-  class Integral < Grape::Entity
+  class CashRecord < Grape::Entity
     expose :number,
            :reason,
            :is_effective,
