@@ -69,7 +69,25 @@ class API::V1::User < API
       present wechat_user,with: ::Entities::WechatUser
     end
 
-    desc '用户身份信息'
+    desc '用户身份信息',detail: <<-NOTES.strip_heredoc
+      > 请求成功返回信息
+
+      ```json
+      {
+        "id": 2,
+        "nickname": "久伴",
+        "headimgurl": "http://wx.qlogo.cn/mmhead/FB4omYLIWgia4SpzpD5ib4ydazhpqSD7GBzuBKwOmdkcc/0"
+      }
+      ```
+      > 登陆失败返回信息
+
+      ```json
+      {
+        "error_message": "未找到该微信用户",
+        "error_code": 401
+      }
+      ```
+    NOTES
     params do
       requires :user_id, type: Integer
     end
@@ -88,13 +106,6 @@ class API::V1::User < API
     params do
     end
     post 'create_user' do
-    end
-
-    desc '登录'
-    params do
-
-    end
-    post 'login' do
     end
 
     desc '方案'

@@ -5,7 +5,7 @@ class API::V1 < Grape::API
   mount Wallet
   mount Work
   mount Auth
-  # mount MallApi
+  mount ShopMall
 
   add_swagger_documentation
 
