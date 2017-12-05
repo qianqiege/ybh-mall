@@ -7,6 +7,23 @@ class API::V1::Auth < API
       ```json
       {
         "id": 2,
+        "access_token": "GsneygSQSzn_eSm5H5Qy",
+        "expires_at": "2017-12-07 11:49:19 +0800",
+        "telphone": "13823767270",
+        "identity_card": "210************111",
+        "id_number": "210************111",
+        "name": "肖辉周",
+        "invitation_card": "98******98",
+        "invitation_id": 1,
+        "email": "email@ybyt.ccc",
+        "type": "Patient",
+        "status": "Staff",
+        "lamp_number": 1,
+        "is_partner": true,
+        "family_health_manager": false,
+        "family_doctor": false,
+        "health_manager": false,
+        "staff_type": "R&D"
       }
       ```
       > 登陆失败返回信息
