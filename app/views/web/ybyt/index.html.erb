@@ -1,2 +1,201 @@
+<style type="text/css" media="screen">
+
+	.yyj_banner img {
+		width: 100%;
+		margin-bottom: 2%;
+	}
+
+	.types {
+		display: flex;
+		margin-bottom: 2px;
+	}
+
+	.outDiv {
+		margin-top:2%;
+		margin-bottom:2%;
+	}
+
+	.consumption {
+		width: 15%;
+		background: #ad0e11;
+		cursor: pointer;
+		position: relative;
+	}
+
+	.consumption p {
+		font-size:20px;
+		height:20px;
+		width: 100px;
+		color:#fff;
+		position: absolute;
+		top:50%;
+		left: 50%;
+		margin-top: -10px;
+		margin-left: -50px;
+	}
+
+	.introduction {
+		flex:1;
+		border:1px solid #ddd;
+		border-left: 0;
+	}
+
+	.ruleTable {
+		margin-left: 3%;
+	}
+
+	.ruleTable tr{
+		display: flex;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.ruleTable tr:last-child {
+		border:0;
+	}
+
+	.ruleTable tr th ,.ruleTable tr td {
+		flex: 1;
+	}
+
+	.ruleTable tr th {
+		padding:5px 0;
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: bolder;
+		color: #32373c;
+	}
+
+	.ruleTable tr td {
+		padding:0 2%;
+		margin: 10px 0;
+	}
+
+	.smallTitle {
+		color: #ad0e11;
+		font-weight: bolder;
+		font-size: 1rem;
+	}
+
+	.sumOfMoney {
+		font-size: 10px;
+		color: #bbb;
+	}
+</style>
+
+
 <%= render 'head'%>
+
+<div class="container outDiv">
+	<div class="yyj_banner"><%= image_tag "yyj_banner.jpg" %></div>
+	<div class="types"> <!-- #d68b37 -->
+		<div class="consumption">
+			<p>健康消费类</p>
+		</div>
+		<div class="introduction">
+			<table class="ruleTable">
+				<thead>
+					<tr style="border-bottom: 1px solid #ddd;">
+						<th>合伙人分类</th>
+						<th>规则</th>
+						<th>保障</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<p class="smallTitle">御邦医通社区数字健康管理平台服务公司合伙人</p>
+							<p class="sumOfMoney">消费10000元+（截止2017年12月31日前），可消费多份;</p>
+						</td>
+						<td>（1）1份对应编码的社区数字健康管理平台服务公司0.1%的股权资格，价值5000元（截止2017年12月31日前）<br/>（2）价值5000元的健康管理产品或服务<br/>（3）价值5000元+的保值产品（如：有庆御通定制版玉质赋能刮痧板）<br/>（4）连续10年易积分返利，每月返还60易积分</td>
+						<td>在合伙人自愿的前提下：<br/>（1）一年期满，深圳御邦资本管理有限公司以1万元/份+（保值产品差额）绑定回收对应的股权（或股权资格）和保值产品；<br/>（2）两年期满，深圳御邦资本管理有限公司以1万元/份回收对应的股权（或股权资格）；<br/>（3）三年期满，深圳御邦资本管理有限公司以1万元/份+（保值产品差额）回收对应的保值产品。</td>
+					</tr>
+					<tr>
+						<td>
+							<p class="smallTitle">御邦医通省级公司合伙人</p>
+							<p class="sumOfMoney">消费50000元+（截止2017年12月31日前），可消费多份;</p>
+						</td>
+						<td>（1）1份御邦医通省级公司0.1%股权资格（或股权），价值30000元（截止2017年12月31日前）<br/>（2）价值25000元的健康管理产品或服务 <br/>（3）价值25000元+的保值产品（如：紫砂壶、国家级名人字画等）<br/>（4）连续10年，注册前，御易健每月返还300易积分，注册运营后（以5人正式员工团队为标准），每月返500易积分
+						</td>
+						<td>（1）一年期满，深圳御邦资本管理有限公司以5万元/份+（保值产品差额）绑定回收对应的股权（或股权资格）和保值产品；<br/>
+						（2）两年期满，深圳御邦资本管理有限公司以5万元/份回收对应的股权（或股权资格）；<br/>
+						（3）三年期满，深圳御邦资本管理有限公司以5万元/份+（保值产品差额）回收对应的保值产品。
+						</td>
+					</tr>					
+					<tr>
+						<td>
+							<p class="smallTitle">专项类--LWKS项目合伙人</p>
+							<p class="sumOfMoney">消费100000元+（截止2017年12月31日前），可消费多份;</p>
+						</td>
+						<td>（1）1份御邦医通省级公司0.1%股权资格（未注册省区）或0.1%股权（已注册省区），价值30000元（2017年12月31日前）；<br/>
+						（2）价值6.7万元的有庆体系LWKS“培训•干预师”培训课程和有庆体系慢病健康管理教育培训课程。<br/>
+						（3）价值30000元的健康管理的产品或服务<br/>
+						（4）价值30000元+的保值产品（如：紫砂壶、国家级名人字画等）。
+						</td>
+						<td>三年期满合伙人必须在下述四项交割办法中选择一项：<br/>
+							（1）深圳御邦资本管理有限公司以50万/份回收股权，合伙人保留保值产品；<br/>
+							（2）深圳御邦资本管理有限公司以1+X元回收保值产品，合伙人保留股权；<br/>
+							（3）合伙人保留股权及保值产品，则需向深圳御邦资本管理有限公司追加支付15万元/份的股权溢价差额；<br/>
+							（4）合伙人保留0.07%的股权和保值产品，0.03%股权以1元价格转让于深圳御邦资本管理有限公司。
+						</td>
+					</tr>					
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="types">
+		<div class="consumption" style="border:0;">
+			<p>投资消费类</p>
+		</div>
+		<div class="introduction">
+			<table class="ruleTable">
+				<thead>
+					<tr style="border-bottom: 1px solid #ddd;">
+						<th>合伙人分类</th>
+						<th>规则</th>
+						<th>保障</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<p class="smallTitle">御邦医通运管总公司合伙人</p>
+							<p class="sumOfMoney">50万元/份，“投资+消费”50万-X万（X代表可消费多份）</p>
+						</td>
+						<td>
+							（1）1份有庆体系运营总公司0.1%的股权，价值50万（2017年12月31日前）；<br/>
+							（2）价值50万元+X元的保值产品（如：沉香、红木家具等）；<br/>
+							（3）价值5万元的健康管理的产品或服务
+						</td>
+						<td>三年期满合伙人必须在下述四项交割办法中选择一项：<br/>（1）深圳御邦资本管理有限公司以50万/份回收股权，合伙人保留保值产品；
+							<br/>
+						（2）深圳御邦资本管理有限公司以1+X元回收保值产品，合伙人保留股权；
+						<br/>
+						（3）合伙人保留股权及保值产品，则需向深圳御邦资本管理有限公司追加支付15万元/份的股权溢价差额；<br/>
+						（4）合伙人保留0.07%的股权和保值产品，0.03%股权以1元价格转让于深圳御邦资本管理有限公司。
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p class="smallTitle">有庆体系总部公司合伙人</p>
+							<p class="sumOfMoney">150万元/份，“投资+消费”150万-X万（X代表可消费多份）</p>
+						</td>
+						<td>（1）1份有庆体系总部公司0.1%的股权，价值150万（2017年12月31日前）；
+							<br/>
+						（2）价值150万元+X元的保值产品（如：沉香、红木家具等）；<br/>
+						（3）价值15万元的健康管理的产品或服务
+						</td>
+						<td>
+							三年期满合伙人必须在下述四项交割办法中选择一项：<br/>
+							（1）深圳御邦资本管理有限公司以150万/份回收股权，合伙人保留保值产品；<br/>
+							（2）深圳御邦资本管理有限公司以1+X元回收保值产品，合伙人保留股权；<br/>
+							（3）合伙人保留股权及保值产品，则需向深圳御邦资本管理有限公司追加支付45万元/份的股权溢价差额；<br/>
+							（4）合伙人保留0.07%的股权和保值产品，0.03%股权以1元价格转让于深圳御邦资本管理有限公司。
+						</td>
+					</tr>					
+				</tbody>
+			</table>			
+		</div>
+	</div>
+</div>
+
 <%= render 'bottom'%>
