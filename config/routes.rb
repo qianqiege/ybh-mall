@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   mount API => '/'
+  mount GrapeSwaggerRails::Engine => '/swagger'
 
   namespace :evaluate do
     get '/index',to: 'mellitus#index'

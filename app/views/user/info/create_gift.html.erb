@@ -83,7 +83,7 @@
 
 </div>
 
-<%= form_tag(controller: "info",action: "gift_user" ,method: "post", id: "formd") do %>
+<form action="gift_user"  method= "post"  id= "formd" >
   <p>赠送数量:</p>
   <input type="number" name="quantity" class="quantity" placeholder="请输入大于10(含10)并为10倍数的数字">
   <div class="boders"></div>
@@ -107,15 +107,37 @@
     <input type="text" name="name" placeholder="昵称">
     <input type="text" name="account" placeholder="支付宝账号" id="account">
     <input type="text" name="tel" placeholder="手机号" id="tel">
+    <input type="text" name="phone" value="<%= @phone %>" style="display:none;" id="phone"/>
   </div>
 
 <input name = "id" style="display: none;" value="<%= @gift_user.id %>">
 <input name="type_coin" style="display: none;" value= "0" >
-<button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" >确认兑换</button>
+<button type= "submit" class="weui-btn" style="background-color: #30A8E2; margin-left: 0" id="button">确认兑换</button>
 
-<% end %>
+</form>
 
 <script type="text/javascript">
+  var button = document.querySelector("#button");
+  button.onclick = function(e) {
+
+
+      if (document.querySelector("#a").value == "支付宝" ){
+        var tel = document.getElementById('tel').value;
+        var phone = document.getElementById('account').value;
+
+        if (tel != phone){
+          // e.preventDefault();
+          var result = confirm("手机号和注册的手机号不一致，是否提交？");
+
+          if (result) {
+
+          }else {
+            e.preventDefault();
+          }
+        }
+      }
+
+  }
 
     // 1.选择不同付款方式的显示
       document.getElementById("a").onchange = function() {
@@ -131,35 +153,21 @@
         }
       }
 
+      function auth(e) {
+        if (document.querySelector("#a").value == "支付宝" ){
+          var tel = document.getElementById('tel').value;
+          var phone = document.getElementById('account').value;
+
+          if (tel != phone){
+
+            return false;
+          } else {
+            console.log("对对对对对");
+          }
+        }
+      }
+
       var formd = document.getElementById("formd");
       var quantity = document.getElementsByClassName('quantity')[0];
-      // formd.addEventListener("submit",function(e){
-      //     console.log(quantity.value % 20 );
-      //     if(quantity.value >= 400 && quantity.value%20 == 0){
-      //
-      //     }else{
-      //       alert("请输入符合兑换标准的数值");
-      //       e.preventDefault();
-      //     }
-      //
-      //
-      // },false);
-
-      // document.getElementById("account").onblur = function () {
-      //   var value1 = document.getElementById("account").value;
-      //   var value2 = document.getElementById("tel").value;
-      //   if (value2 == "") {
-      //     return false;
-      //   }else if(value1 != value2) {
-      //     alert("手机号和账号不一致 是否提交？")
-      //   }
-      // }
-      // document.getElementById("tel").onblur = function () {
-      //   var value1 = document.getElementById("account").value;
-      //   var value2 = document.getElementById("tel").value;
-      //   if (value1 != value2) {
-      //     alert("手机号和账号不一致 是否提交？")
-      //   }
-      // }
 
   </script>

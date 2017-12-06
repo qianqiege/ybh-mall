@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110084223) do
+ActiveRecord::Schema.define(version: 20171205034720) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20171110084223) do
     t.decimal  "health_manager",                   precision: 10, scale: 2
     t.decimal  "family_health_manager",            precision: 10, scale: 2
     t.decimal  "family_doctor",                    precision: 10, scale: 2
+    t.decimal  "cash",                             precision: 10, scale: 3
   end
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -108,6 +109,14 @@ ActiveRecord::Schema.define(version: 20171110084223) do
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
     t.integer  "wechat_user_id"
+  end
+
+  create_table "apply_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "desc",       limit: 65535
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "state"
   end
 
   create_table "appraises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -329,6 +338,7 @@ ActiveRecord::Schema.define(version: 20171110084223) do
     t.string   "state"
     t.string   "desc"
     t.datetime "state_time"
+    t.string   "tel"
   end
 
   create_table "features", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -629,6 +639,7 @@ ActiveRecord::Schema.define(version: 20171110084223) do
     t.integer  "wight"
     t.string   "status"
     t.string   "desc"
+    t.integer  "code_id"
     t.index ["presentable_type", "presentable_id"], name: "index_presented_records_on_presentable_type_and_presentable_id", using: :btree
   end
 
@@ -738,6 +749,26 @@ ActiveRecord::Schema.define(version: 20171110084223) do
     t.datetime "updated_at",                             null: false
     t.index ["line_item_id"], name: "index_return_requests_on_line_item_id", using: :btree
     t.index ["order_id"], name: "index_return_requests_on_order_id", using: :btree
+  end
+
+  create_table "scoin_account_order_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "order_id"
+    t.integer  "scoin_account_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "status"
+  end
+
+  create_table "scoin_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "account"
+    t.string   "password"
+    t.integer  "user_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.decimal  "number",     precision: 10, scale: 1
+    t.string   "state"
+    t.decimal  "amount",     precision: 10, scale: 1
+    t.string   "email"
   end
 
   create_table "sender_infos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -932,18 +963,18 @@ ActiveRecord::Schema.define(version: 20171110084223) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                                                 null: false
+    t.datetime "updated_at",                                                                 null: false
     t.string   "telphone"
     t.string   "identity_card"
     t.integer  "integral"
     t.integer  "scoin_account_id"
-    t.string   "email",                                           default: "", null: false
-    t.string   "encrypted_password",                              default: "", null: false
+    t.string   "email",                                                         default: "", null: false
+    t.string   "encrypted_password",                                            default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                   default: 0,  null: false
+    t.integer  "sign_in_count",                                                 default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -961,12 +992,16 @@ ActiveRecord::Schema.define(version: 20171110084223) do
     t.string   "staff_type"
     t.string   "id_number"
     t.integer  "lamp_number"
-    t.decimal  "lnmp_integral",          precision: 10, scale: 2
+    t.decimal  "lnmp_integral",                        precision: 10, scale: 2
     t.integer  "lottery_number"
     t.boolean  "health_manager"
     t.boolean  "family_health_manager"
     t.boolean  "family_doctor"
     t.string   "staff_invitation_type"
+    t.boolean  "is_partner"
+    t.boolean  "is_admin"
+    t.text     "access_token",           limit: 65535
+    t.text     "expires_at",             limit: 65535
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

@@ -1,6 +1,9 @@
 module Entities
   class User < Grape::Entity
-    expose :telphone,
+    expose :id,
+           :access_token,
+           :expires_at,
+           :telphone,
            :identity_card,
            :id_number,
            :name,

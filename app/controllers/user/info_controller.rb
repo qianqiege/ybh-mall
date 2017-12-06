@@ -219,29 +219,46 @@ class User::InfoController < Wechat::BaseController
   end
 
   def create_gift_friend
-    search_user = params["mobile"]
-    case search_user.length
-    when 11
-      @gift_friend = User.find_by(telphone: search_user)
-      @w_friend = WechatUser.find_by(user_id: @gift_friend.id)
-    when 18
-      @gift_friend = User.find_by(identity_card: search_user)
-      @w_friend = WechatUser.find_by(user_id: @gift_friend.id)
+    @current = User.find(current_user.user_id)
+
+    if !@current.nil? || !@current.id_number.nil?
+      search_user = params["mobile"]
+      case search_user.length
+      when 11
+        @gift_friend = User.find_by(telphone: search_user)
+        @w_friend = WechatUser.find_by(user_id: @gift_friend.id)
+      when 18
+        @gift_friend = User.find_by(identity_card: search_user)
+        @w_friend = WechatUser.find_by(user_id: @gift_friend.id)
+      else
+      end
     else
+      flash[:notice] = '兑换积分需要实名注册'
+      redirect_to user_edit_info_path
+      return
     end
   end
 
   def create_gift
-    search_user = params["mobile"]
-    case search_user.length
-    when 11
-      @gift_user = User.find_by(telphone: search_user)
-      @w_user = WechatUser.find_by(user_id: @gift_user.id)
-    when 18
-      @gift_user = User.find_by(identity_card: search_user)
-      @w_user = WechatUser.find_by(user_id: @gift_user.id)
+    @current = User.find(current_user.user_id)
+
+    if !@current.nil? || !@current.id_number.nil?
+      search_user = params["mobile"]
+      case search_user.length
+      when 11
+        @gift_user = User.find_by(telphone: search_user)
+        @w_user = WechatUser.find_by(user_id: @gift_user.id)
+      when 18
+        @gift_user = User.find_by(identity_card: search_user)
+        @w_user = WechatUser.find_by(user_id: @gift_user.id)
+      else
+      end
     else
+      flash[:notice] = '兑换积分需要实名注册'
+      redirect_to user_edit_info_path
+      return
     end
+
   end
 
   def gift_user
