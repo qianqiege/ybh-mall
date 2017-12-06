@@ -1,6 +1,6 @@
 class API::V1::Auth < API
 
-  namespace :auth, desc: '用户相关' do
+  namespace :auth, desc: '授权相关' do
     desc '登录',detail: <<-NOTES.strip_heredoc
       > 请求成功返回信息
 
