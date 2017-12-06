@@ -6,12 +6,13 @@ class User::BindingController < Wechat::BaseController
     end
     @no_fotter = true
     @tp = params[:format]
-    # @recommender = User.find_by(invitation_card: params[:invitation_id])
+    @recommender = User.find_by(invitation_card: params[:invitation_id])
 
     # 如果当前用户没有推荐人，自动添加推荐人
-    # if current_user.recommender.nil? && @recommender.present?
-    #   current_user.update_attributes(recommender: @recommender)
-    # end
+    if current_user.recommender.nil? && @recommender.present?
+      current_user.recommender = @recommender.id
+      current_user.save
+    end
     @invitation_user = params[:invitation_id] || ""
   end
 
