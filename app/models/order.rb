@@ -282,7 +282,6 @@ class Order < ApplicationRecord
             invitation = User.find(user.invitation_id)
             if rule.percent.nil?  && self.price != 0 && invitation.is_partner != false || !invitation.nil? && invitation.status == "Staff"
               # 赠送比例 乘 金额
-              byebug
               present_count = rule.percent * price
               presented_records.create(user_id: invitation.id, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available", wight: 3)
             end
