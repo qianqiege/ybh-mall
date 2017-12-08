@@ -43,8 +43,8 @@ $(function () {
       if (e) {
         $.ajax({
           type: 'PUT',
-          url: '/mall/orders/' + id + '/receive',
-          data: {},
+          url: '/mall/orders/receive/',
+          data: {id: id},
           dataType: 'json',
           success: function(data) {
             window.location.reload();

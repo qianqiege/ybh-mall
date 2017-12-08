@@ -86,6 +86,7 @@ Rails.application.routes.draw do
       get :pay, on: :member
       post :make_cancel, on: :member
       get :express, on: :member
+      put :receive, on: :collection
     end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do
