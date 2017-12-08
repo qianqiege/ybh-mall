@@ -219,7 +219,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def create_gift_friend
-    if !current_user.nil? && !current_user.user_id.nil? && current_user.user.id_number.nil?
+    if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.id_number.nil?
       search_user = params["mobile"]
       case search_user.length
       when 11
@@ -239,7 +239,7 @@ class User::InfoController < Wechat::BaseController
 
   def create_gift
 
-    if !current_user.nil? && !current_user.user_id.nil? && current_user.user.id_number.nil?
+    if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.id_number.nil?
       search_user = params["mobile"]
       case search_user.length
       when 11
