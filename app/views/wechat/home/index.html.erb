@@ -145,6 +145,7 @@
     </tr>
   </table>
 
+<% if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.status.nil? && current_user.user.status != "User" %>
   <div class="healthDiv">
 
     <h5>健康管理中心</h5>
@@ -161,6 +162,7 @@
     </div>
 
   </div>
+<% end %>
 
   <%= video_tag "ybyt8MB.mp4", :controls => true ,class: "video"%>
 
