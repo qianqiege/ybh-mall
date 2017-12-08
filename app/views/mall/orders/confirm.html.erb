@@ -179,7 +179,7 @@
                 <% break %>
               <% else %>
                 <div class="weui-cell__bd">
-                  <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.find_by(is_default: true).id) ,  class: "weui-select", include_blank: "不参加活动" %>
+                  <%= select_tag 'activity_id', options_for_select(@activities.collect{ |u| [u.name, u.id] }, @activities.find_by(is_default: true).id) ,  class: "weui-select" %>
                 </div>
                 <% break %>
               <% end %>
