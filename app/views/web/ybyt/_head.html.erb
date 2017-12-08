@@ -48,7 +48,7 @@
                 <a href="index.html" class="mobileNav-liBg" >首页</a>
             </li>
             <li>
-                <a href="release.html"  >数字时代</a>
+                <a href="<%= web_digital_path %>"  >数字时代</a>
             </li>
             <li>
                 <a href="release.html"  >御易健</a>
@@ -85,12 +85,12 @@
 	<div class="main-1">
         <div class="main-dh" >
             <ul>
-                <li><a href="index.html" >首页</a></li>
-				<li><a href="release.html" >数字时代</a></li>
-				<li><a href="release.html" >御易健</a></li>
-				<li><a href="release.html" >健康计划</a></li>
+                <li><a href="<%= web_home_path %>" >首页</a></li>
+				<li><a href="<%= web_digital_path %>" >数字时代</a></li>
+				<li><a href="<%= web_home_path %>" >御易健</a></li>
+				<li><a href="http://ybyt.cc/release.html" >健康计划</a></li>
 				<li>
-                    <a href="release.html" >关于我们</a>
+                    <a href="http://ybyt.cc/release.html" >关于我们</a>
     				<div>
     					<a href="release.html" >公司简介</a>
     					<a href="culture.html" >企业文化</a>
@@ -100,16 +100,16 @@
     				</div>
                 </li>
 				<li>
-                    <a href="news.html" >企业新闻</a>
+                    <a href="http://ybyt.cc/news.html" >企业新闻</a>
                     <div>
     					<a href="news_list_1.html">企业新闻 </a>
     					<a href="news_list_2.html">行业动态 </a>
     				</div>
 				</li>
                 <li>
-                    <a href="contactus.html" >联系我们</a>
+                    <a href="http://ybyt.cc/contactus.html" >联系我们</a>
 				    <div>
-						<a href="contactus.html" >加入我们</a>
+						<a href="http://ybyt.cc/contactus.html" >加入我们</a>
 					</div>
                 </li>
 			</ul>
@@ -313,71 +313,71 @@
 	})
 	
 	
-	$(function(){
-	var aDiv=document.getElementById("box");
-	var aUl=aDiv.getElementsByTagName('ul');
-	var aLi=aUl[0].getElementsByTagName('li');
-	var bLi=aUl[1].getElementsByTagName('li');
-	var timer=play=null;
-	var index=0;
-	for(var i=0;i<bLi.length;i++)
-	{
-		bLi[i].index=i
-		bLi[i].onmouseover=function()
-		{
-		  qh(this.index);
-	    }
-		//图片的变换alpha变换
-		function qh(a)
-		{
-			var alpha=0;
-		  for(var i=0;i<aLi.length;i++)
-		  {
-		    bLi[i].className=''
-			aLi[i].style.display='none'
-		  }
-		  bLi[a].className='active'
-		  aLi[a].style.display='block'
-		  clearInterval(timer)
-		  for(var i=0;i<aLi.length;i++)
-		  {
-			aLi[i].style.opacity=0;
-			aLi[i].style.filter="alpha(opacity:0)";
-		  }
-		  index=a
-		  timer=setInterval(function()
-		  {
-			alpha+=2;
-			aLi[index].style.opacity=alpha/100 
-			aLi[index].style.filter='alpha(opacity:'+alpha+')';
-			if(alpha>=100)
-		    {
-				alpha=100;
-				clearInterval(timer)
-			}
-		  },35)
-		}		
-	 }
-	//图片的自动播放
-	function autoPlay()
-		{
-		  play=setInterval(function()
-		  {
-			index++
-			index%=bLi.length
-			qh(index)	
-		  },5000)	
-		}
-		autoPlay();
-		aDiv.onmouseover=function()
-		{
-		   clearInterval(play)
-		}
-		aDiv.onmouseout=function()
-		{
-		   autoPlay();
-		}
-})
+// 	$(function(){
+// 	var aDiv=document.getElementById("box");
+// 	var aUl=aDiv.getElementsByTagName('ul');
+// 	var aLi=aUl[0].getElementsByTagName('li');
+// 	var bLi=aUl[1].getElementsByTagName('li');
+// 	var timer=play=null;
+// 	var index=0;
+// 	for(var i=0;i<bLi.length;i++)
+// 	{
+// 		bLi[i].index=i
+// 		bLi[i].onmouseover=function()
+// 		{
+// 		  qh(this.index);
+// 	    }
+// 		//图片的变换alpha变换
+// 		function qh(a)
+// 		{
+// 			var alpha=0;
+// 		  for(var i=0;i<aLi.length;i++)
+// 		  {
+// 		    bLi[i].className=''
+// 			aLi[i].style.display='none'
+// 		  }
+// 		  bLi[a].className='active'
+// 		  aLi[a].style.display='block'
+// 		  clearInterval(timer)
+// 		  for(var i=0;i<aLi.length;i++)
+// 		  {
+// 			aLi[i].style.opacity=0;
+// 			aLi[i].style.filter="alpha(opacity:0)";
+// 		  }
+// 		  index=a
+// 		  timer=setInterval(function()
+// 		  {
+// 			alpha+=2;
+// 			aLi[index].style.opacity=alpha/100 
+// 			aLi[index].style.filter='alpha(opacity:'+alpha+')';
+// 			if(alpha>=100)
+// 		    {
+// 				alpha=100;
+// 				clearInterval(timer)
+// 			}
+// 		  },35)
+// 		}		
+// 	 }
+// 	//图片的自动播放
+// 	function autoPlay()
+// 		{
+// 		  play=setInterval(function()
+// 		  {
+// 			index++
+// 			index%=bLi.length
+// 			qh(index)	
+// 		  },5000)	
+// 		}
+// 		autoPlay();
+// 		aDiv.onmouseover=function()
+// 		{
+// 		   clearInterval(play)
+// 		}
+// 		aDiv.onmouseout=function()
+// 		{
+// 		   autoPlay();
+// 		}
+// })
 	
 		
 	
