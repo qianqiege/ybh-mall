@@ -148,7 +148,7 @@ class User::InfoController < Wechat::BaseController
     @old = @user.identity_card
     if @user.update(telphone: params[:telphone],email: params[:email],id_number: params[:id_number],identity_card: params[:id_number])
       flash[:notice] = '修改成功'
-      mall = Mall.new
+      mall = Sdk::Mall.new
       mall.update_id_number(@old,params[:id_number])
       redirect_to '/user/setting'
     end
