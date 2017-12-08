@@ -44,14 +44,6 @@ class Mall::OrdersController < Mall::BaseController
       return
     end
 
-    # if params[:activity_id].present? && params[:account].blank? && params[:activity_id] == 1
-    #   scoin_type_count = Activity.search(id_eq: params[:activity_id], activity_rules_coin_type_type_eq: "ScoinType").result.count
-    #   if scoin_type_count == 1
-    #     flash[:error] = '参加活动，必须填写S币账号'
-    #     redirect_to confirm_mall_orders_path
-    #     return
-    #   end
-    # end
     line_items = current_cart.line_items.where(id: session[:line_item_ids])
 
     # 去掉库存为0的商品
@@ -61,38 +53,6 @@ class Mall::OrdersController < Mall::BaseController
     # 2. 计算商品数量(不包含下架的商品)
     quantity = line_items.to_a.sum { |item| item.quantity }
 
-    # if line_items.length >= 2
-    #   product_h = Product.find(line_items.pluck(:product_id)).pluck(:height)
-    #   if product_h.uniq.length != 1
-    #     flash[:error] = '不同活动的商品，不可一起下单。请去您的购物车里筛选'
-    #     redirect_to confirm_mall_orders_path
-    #     return
-    #   end
-    # end
-
-    # line_items.each do |item|
-    #   if !item.product.name.match(/YBZ/).nil?
-    #       @integral = Integral.find_by(user_id: current_user.user_id)
-    #       integral_cash = @integral.not_cash + @integral.cash + price
-    #       if integral_cash <= 55260 && params[:packang].to_i == 0
-    #         flash[:notice] = "您的余额不足，不可以选择A方案"
-    #         redirect_to confirm_mall_orders_path
-    #         return
-    #       elsif integral_cash <= 16880 && params[:packang].to_i == 1
-    #         flash[:notice] = "您的余额不足，不可以选择B方案"
-    #         redirect_to confirm_mall_orders_path
-    #         return
-    #       elsif integral_cash <= 18754 && params[:packang].to_i == 2
-    #         flash[:notice] = "您的余额不足，不可以选择C方案"
-    #         redirect_to confirm_mall_orders_path
-    #         return
-    #       elsif integral_cash <= 26880 && params[:packang].to_i == 3
-    #         flash[:notice] = "您的余额不足，不可以选择D方案"
-    #         redirect_to confirm_mall_orders_path
-    #         return
-    #       end
-    #     end
-    #   end
 
     integral_available = params["integral_available"].to_f
     integral_money = params["integral_money"].to_f
@@ -126,13 +86,6 @@ class Mall::OrdersController < Mall::BaseController
       end
     end
 
-    # 表达式未知问题
-
-    # donation = false
-    # if price == 55000 - 1200 || price == 40000 - 1000 || price == 15000 - 600
-    #   donation = true
-    # end
-
     # 3. 生成订单
     @order = current_user.orders.new(
       address_id: params[:address_id],
@@ -148,25 +101,6 @@ class Mall::OrdersController < Mall::BaseController
     if params[:lottery_prize_id].present?
       @order.lottery_prize_id = LotteryPrize.find(UserPrize.find(params[:lottery_prize_id]).lottery_prize_id).id
     end
-
-    # line_items.each do |item|
-    #   if !item.product.name.match(/YBZ/).nil?
-    #     case params[:packang].to_i
-    #     when 0
-    #       @order.packang = "A方案"
-    #     when 1
-    #       @order.packang = "B方案"
-    #     when 2
-    #       @order.packang = "C方案"
-    #     when 3
-    #       @order.packang = "D方案"
-    #     when 4
-    #       if price == 12000
-    #         @order.packang = "A方案"
-    #       end
-    #     end
-    #   end
-    # end
 
     if activity.to_i == 12
       if price >= 5000

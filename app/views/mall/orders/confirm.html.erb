@@ -236,13 +236,13 @@
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">易积分数量</label></div>
             <div class="weui-cell__bd">
-              <%= number_field_tag 'integral_available', '', class: "weui-input", placeholder: "可用#{money @integral.available}易积分", data: { size: money(@integral.available) } %>
+              <%= number_field_tag 'integral_available', '', class: "weui-input", placeholder: "可用#{money @integral.available + @integral.exchange + @integral.not_exchange}易积分", data: { size: money(@integral.available) } %>
             </div>
           </div>
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">现金余额</label></div>
             <div class="weui-cell__bd">
-              <%= number_field_tag 'integral_money', '', class: "weui-input", placeholder: "可用#{money @integral.not_cash}现金",  data: { size: money(@integral.not_cash) } %>
+              <%= number_field_tag 'integral_money', '', class: "weui-input", placeholder: "可用#{money @integral.not_cash + @integral.cash}现金",  data: { size: money(@integral.not_cash) } %>
             </div>
           </div>
         </div>
