@@ -219,9 +219,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def create_gift_friend
-    @current = User.find(current_user.user_id)
-
-    if !@current.nil? || !@current.id_number.nil?
+    if !current_user.nil? && !current_user.user_id.nil? && current_user.user.id_number.nil?
       search_user = params["mobile"]
       case search_user.length
       when 11
@@ -240,9 +238,8 @@ class User::InfoController < Wechat::BaseController
   end
 
   def create_gift
-    @current = User.find(current_user.user_id)
 
-    if !@current.nil? || !@current.id_number.nil?
+    if !current_user.nil? && !current_user.user_id.nil? && current_user.user.id_number.nil?
       search_user = params["mobile"]
       case search_user.length
       when 11
@@ -262,102 +259,110 @@ class User::InfoController < Wechat::BaseController
   end
 
   def gift_user
-    if params[:account_type] == "支付宝" && params["type_coin"] != "1"
-      if params[:tel] == "" || params[:account] == ""
-        flash[:notice] = '申请信息不能为空值'
-        redirect_to user_gift_account_path
-        return
-      end
-    elsif params[:account_type] == "银行卡" && params["type_coin"] != "1"
-      if params[:bank_name] == "" || params[:bank] == "" || params[:where] == ""
-        flash[:notice] = '申请信息不能为空值'
-        redirect_to user_gift_account_path
-        return
-      end
-    end
 
-    integral = Integral.find_by(user_id: current_user.user_id)
-    type = User.find(current_user.user_id).status
-    order_integral = params["quantity"].to_f
-    number = params["quantity"].to_f
-    # 查找当前用户记录
-    if Integral.find_by(user_id: params["id"].to_i).nil?
-      Integral.create(user_id: params["id"].to_i)
-    end
+    if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.id_number.nil?
 
-    if number >= 10 && number%10 == 0
-      # 判断当前用户的可兑换积分数量是否大于赠送积分
-      if integral.exchange >= order_integral
-        record = PresentedRecord.where(user_id: integral.user_id).order(wight: :desc)
-        record.each do |record|
-          if !record.balance.nil? && record.balance > 0
-            while order_integral > 0
-              if record.balance >= order_integral
-                PresentedRecord.create(user_id: integral.user_id, number: "-#{order_integral}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
-                record.update(balance: record.balance - order_integral)
-                order_integral = 0
-                break
-              elsif record.balance <= order_integral
-                order_integral = order_integral - record.balance
-                PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
-                record.balance = 0
-                if record.save
+      if params[:account_type] == "支付宝" && params["type_coin"] != "1"
+        if params[:tel] == "" || params[:account] == ""
+          flash[:notice] = '申请信息不能为空值'
+          redirect_to user_gift_account_path
+          return
+        end
+      elsif params[:account_type] == "银行卡" && params["type_coin"] != "1"
+        if params[:bank_name] == "" || params[:bank] == "" || params[:where] == ""
+          flash[:notice] = '申请信息不能为空值'
+          redirect_to user_gift_account_path
+          return
+        end
+      end
+
+      integral = Integral.find_by(user_id: current_user.user_id)
+      type = User.find(current_user.user_id).status
+      order_integral = params["quantity"].to_f
+      number = params["quantity"].to_f
+      # 查找当前用户记录
+      if Integral.find_by(user_id: params["id"].to_i).nil?
+        Integral.create(user_id: params["id"].to_i)
+      end
+
+      if number >= 10 && number%10 == 0
+        # 判断当前用户的可兑换积分数量是否大于赠送积分
+        if integral.exchange >= order_integral
+          record = PresentedRecord.where(user_id: integral.user_id).order(wight: :desc)
+          record.each do |record|
+            if !record.balance.nil? && record.balance > 0
+              while order_integral > 0
+                if record.balance >= order_integral
+                  PresentedRecord.create(user_id: integral.user_id, number: "-#{order_integral}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                  record.update(balance: record.balance - order_integral)
+                  order_integral = 0
                   break
+                elsif record.balance <= order_integral
+                  order_integral = order_integral - record.balance
+                  PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                  record.balance = 0
+                  if record.save
+                    break
+                  end
                 end
               end
             end
           end
+          # flash[:notice] = '赠送成功'
+          # redirect_to user_gift_path
+          # return
         end
-        # flash[:notice] = '赠送成功'
-        # redirect_to user_gift_path
-        # return
-      end
-    else
-      flash[:notice] = '失败，数量不能小于400并且是20的倍数'
-      redirect_to user_details_path
-      return
-    end
-
-    if params["type_coin"] == "1" && order_integral == 0
-      invitation_record = PresentedRecord.new(user_id: params["id"], number: number, reason: "好友赠送", is_effective:1, type: "Available",wight: 11,is_effective: 1)
-      if invitation_record.save
-        integral.update(available: integral.available - number)
-        flash[:notice] = '赠送成功'
+      else
+        flash[:notice] = '失败，数量不能小于10并且是10的倍数'
         redirect_to user_details_path
         return
       end
-    end
 
-    @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: "错误",account: "错误",name: "错误",state: "not")
-
-    if params["type_coin"] == "0" && order_integral == 0
-      if number >= 10 && number%10 == 0
-        if params["account_type"] == "支付宝"
-          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,tel: params[:tel],number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: current_user.user.name,state: "pending")
-        elsif params["account_type"] == "银行卡"
-          @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: current_user.user.name,state: "pending")
-        end
-
-        if @exchange_record.save
-          PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
-          integral.update(available: integral.available - number,exchange: integral.exchange - number,not_appreciation: integral.not_appreciation - number)
-          flash[:notice] = '兑换成功'
-
-          #用户提现申请成功，发送模板通知消息
-          @exchange_record.send_exchange_record_apply_success
-
-          redirect_to user_gift_account_path
-          return
-        else
-          flash[:notice] = '兑换失败'
-          redirect_to user_gift_account_path
+      if params["type_coin"] == "1" && order_integral == 0
+        invitation_record = PresentedRecord.new(user_id: params["id"], number: number, reason: "好友赠送", is_effective:1, type: "Available",wight: 11,is_effective: 1)
+        if invitation_record.save
+          integral.update(available: integral.available - number)
+          flash[:notice] = '赠送成功'
+          redirect_to user_details_path
           return
         end
-      else
-        flash[:notice] = '兑换失败，兑换数量不能小于10并且是10的倍数'
-        redirect_to user_gift_account_path
-        return
       end
+
+      @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: "错误",account: "错误",name: "错误",state: "not")
+
+      if params["type_coin"] == "0" && order_integral == 0
+        if number >= 10 && number%10 == 0
+          if params["account_type"] == "支付宝"
+            @exchange_record = ExchangeRecord.new(user_id: integral.user_id,tel: params[:tel],number: params["quantity"].to_f,status: params["account_type"],account: params["account"],name: current_user.user.name,state: "pending")
+          elsif params["account_type"] == "银行卡"
+            @exchange_record = ExchangeRecord.new(user_id: integral.user_id,number: params["quantity"].to_f,status: params["account_type"],account: params["bank"],opening: params["where"],name: current_user.user.name,state: "pending")
+          end
+
+          if @exchange_record.save
+            PresentedRecord.create(user_id: params["id"].to_i, number: params["quantity"].to_f, reason: "接受提现申请",is_effective:1,type:"Available",wight: 0)
+            integral.update(available: integral.available - number,exchange: integral.exchange - number,not_appreciation: integral.not_appreciation - number)
+            flash[:notice] = '兑换成功'
+
+            #用户提现申请成功，发送模板通知消息
+            @exchange_record.send_exchange_record_apply_success
+
+            redirect_to user_gift_account_path
+            return
+          else
+            flash[:notice] = '兑换失败'
+            redirect_to user_gift_account_path
+            return
+          end
+        else
+          flash[:notice] = '兑换失败，兑换数量不能小于10并且是10的倍数'
+          redirect_to user_gift_account_path
+          return
+        end
+      end
+    else
+      flash[:notice] = '兑换积分需要实名注册'
+      redirect_to user_edit_info_path
+      return
     end
   end
 
