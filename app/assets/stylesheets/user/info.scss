@@ -151,6 +151,11 @@ a{
     padding-left: 20px;
     padding-top: 10px;
     img {
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+    }
+    .headImage img {
       height: 45px;
       width: 45px;
       border-radius: 50%;
@@ -287,13 +292,10 @@ a{
 
 .froms {
   background-image: image-url("white.png");
-  background-size: 100% 110%;  
+  background-size: 100% 110%;
 }
 
 .pt50 {
   background-image: image-url("white.png");
-  background-size: 100% 110%;  
+  background-size: 100% 110%;
 }
-
-
-

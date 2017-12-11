@@ -1,0 +1,46 @@
+<style>
+	.shop_content a {
+		display: block;
+		margin-bottom: 3px;
+	}
+
+	.shop_content img {
+		display: block;
+		float: left;
+	}
+
+	.right {
+		float: left;
+		padding: 10px 0 0 20px;
+	}
+	
+	.clear {
+		padding: 0;
+		margin: 0;
+		border: 0;
+		clear: both;
+	}
+
+	.shop_content p {
+		margin-bottom: 10px;
+		color: #000;
+	}
+</style>
+
+<ul class="shop_content">
+	<% @shops.each do |shop| %>
+	   <li>
+	   	<a href="<%= wechat_shop_path(shop) %>">
+			<%= image_tag shop.shop_propaganda_images.first.image.shop_image.url   %>
+
+
+			<div class="right">
+				<p><%= shop.name %></p>
+				<p><%= shop.address %></p>
+				<p><%= shop.category %></p>
+			</div>
+			<div class="clear"></div>
+	   	</a>
+	   </li>
+	<% end %>
+</ul>

@@ -78,12 +78,17 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       if @keyword.present?
         # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
         return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
+
       end
       open_id = @weixin_message.FromUserName
       user_basic_info = $wechat_client.user(open_id).result
 
       # user_basic_info example:
       # {"subscribe"=>1, "openid"=>"oNlo_txgWmyaOkP3zHfOQ1CKkuX1", "nickname"=>"Justin_lu", "sex"=>1, "language"=>"zh_CN", "city"=>"广州", "province"=>"广东", "country"=>"中国", "headimgurl"=>"http://wx.qlogo.cn/mmopen/tc3nPPzyVdmATkEMaOe8DRoEhRHkXapSU8nia1KrIgA9nugDoQGeMiaPHVLH5A0kN69gbFoj73AuBDyzRGSq1GX6bADcCyUibwS/0", "subscribe_time"=>1463207136, "remark"=>"", "groupid"=>0, "tagid_list"=>[]}
+
+      Rails.logger.info("@"*50)
+      messageweixin = $wechat_client.get_oauth_userinfo(open_id, Setting.weixin.token)
+      Rails.logger.info(messageweixin.inspect)
       @new_user = WechatUser.find_or_initialize_by open_id: open_id
       @new_user.set_userinfo(user_basic_info)
       @new_user.save

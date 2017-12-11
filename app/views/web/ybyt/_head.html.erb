@@ -21,16 +21,16 @@
 	    	window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;
 	    </script>
     <![endif]-->
-    
-   
-    
- 
+
+
+
+
 </head>
 <body>
-	
+
     <div class="header">
         <div class="header-left-1">
-            <a href="index.html"><%= image_tag "logo1.png",width:144,height:46 %></a>    
+            <a href="index.html"><%= image_tag "logo1.png",width:144,height:46 %></a>
         </div>
         <div class="header-right-1">
             <input id="txt" type="text"value="SEARACH" style="color:#c7d1cc" onFocus="txtfocus()"onBlur="txtonblur()"/>
@@ -48,7 +48,7 @@
                 <a href="index.html" class="mobileNav-liBg" >首页</a>
             </li>
             <li>
-                <a href="release.html"  >数字时代</a>
+                <a href="<%= web_digital_path %>"  >数字时代</a>
             </li>
             <li>
                 <a href="release.html"  >御易健</a>
@@ -85,12 +85,12 @@
 	<div class="main-1">
         <div class="main-dh" >
             <ul>
-                <li><a href="index.html" >首页</a></li>
-				<li><a href="release.html" >数字时代</a></li>
-				<li><a href="release.html" >御易健</a></li>
-				<li><a href="release.html" >健康计划</a></li>
+                <li><a href="http://www.ybyt.cc" >首页</a></li>
+				<li><a href="<%= web_digital_path %>" >数字时代</a></li>
+				<li><a href="<%= web_home_path %>" >御易健</a></li>
+				<li><a href="http://www.ybyt.cc" >健康计划</a></li>
 				<li>
-                    <a href="release.html" >关于我们</a>
+                    <a href="http://ybyt.cc/release.html" >关于我们</a>
     				<div>
     					<a href="release.html" >公司简介</a>
     					<a href="culture.html" >企业文化</a>
@@ -100,50 +100,50 @@
     				</div>
                 </li>
 				<li>
-                    <a href="news.html" >企业新闻</a>
+                    <a href="http://ybyt.cc/news.html" >企业新闻</a>
                     <div>
     					<a href="news_list_1.html">企业新闻 </a>
     					<a href="news_list_2.html">行业动态 </a>
     				</div>
 				</li>
                 <li>
-                    <a href="contactus.html" >联系我们</a>
+                    <a href="http://ybyt.cc/contactus.html" >联系我们</a>
 				    <div>
-						<a href="contactus.html" >加入我们</a>
+						<a href="http://ybyt.cc/contactus.html" >加入我们</a>
 					</div>
                 </li>
 			</ul>
-		</div>    
+		</div>
     </div>
 
 
 
    <style>
-        .main-min-twjh ul { 
+        .main-min-twjh ul {
             overflow: hidden;
         }
-        .main-min-twjh ul li{ 
-            float:left; 
-            width:550px; 
-            height:380px; 
+        .main-min-twjh ul li{
+            float:left;
+            width:550px;
+            height:380px;
             display:block
         }
         .main-min-twjh ul li span{
-            font-size:29.6px; 
-            margin:auto; 
-            width:334px; 
-            display:block; 
-            margin-top:100px; 
-            margin-bottom:40px; 
-            line-height:15px; 
+            font-size:29.6px;
+            margin:auto;
+            width:334px;
+            display:block;
+            margin-top:100px;
+            margin-bottom:40px;
+            line-height:15px;
             line-height: 22px;
         }
-        
-          
+
+
     </style>
 
     <script type="text/javascript">
-        
+
     </script>
 </body>
 </html>
@@ -155,48 +155,48 @@
 
 
 	function txtfocus(){
-	
+
 		var mytxt=document.getElementById("txt");
-		
+
 		if(mytxt.value=="SEARACH"){
-		
+
 			mytxt.value="";
-			
+
 			mytxt.style.color="#121212";
-		
+
 		}
-	
+
 	}
-	
+
 	function txtonblur(){
-	
+
 		var mytxt=document.getElementById("txt");
-		
+
 			if(mytxt.value==""){
-			
+
 				mytxt.value=mytxt.defaultValue;
-				
+
 				mytxt.style.color="#c7d1cc";
-		
+
 		}
-	
+
 	}
-	
+
 	$(function(){
 		$('.main-dh ul li').hover(function(){
 			$(this).children('div').stop().slideToggle(200);
 		})
-		
+
 		$('.main-dh ul li:first-child a').css('background','#fff');
 		$('.main-dh ul li:gt(4) a').css('background','#fff')
-		
+
 		$('.main-dh li:eq(1) div').css('width','445px');
 		$('.main-dh li:eq(2) div').css('width','284px');
 		$('.main-dh li:eq(3) div').css('width','454px');
 		$('.main-dh li:eq(4) div').css('width','258px');
-		
+
 		//手机导航
-		
+
 		$('.menu').click(function(){
 			$('.mobile-wrap').show();
 			$('.mobile-nav').animate({'right':'0'},200);
@@ -207,14 +207,14 @@
 			$('.mobile-nav').animate({'right':'-230px'},200);
 			$('html,body').css({'overflow':'auto'});
 		})
-		
+
 		$('.mobile-nav li').click(function(){
 			$(this).find('div').slideToggle();
 			$(this).siblings().find('div').slideUp();
 		})
 		//手机导航 end
-		
-		
+
+
 		$('.index-btn').click(function(){
 			$('body,html').animate({'scrollTop':'0'},200);
 		})
@@ -226,10 +226,10 @@
 				$('.index-btn').animate({'right':'-40px'},50);
 			}
 		})
-		
+
 		//首页
 		$('.index li:eq(1)').addClass('index_li02');
-		
+
 		var webWidth = $(window).width();
 		if( webWidth > 1100 ){
 			$('.index li').hover(function(){
@@ -240,10 +240,10 @@
 		        $(this).find('a').removeClass('aClass').find('a').children('span').removeClass('spanClass');
 		    })
 		}
-		
+
 		$('.con-cont3 li:eq(1)').addClass('cont3_li02');
-		
-		
+
+
 		$('.con-cont4 li img').load(function(){
 			function change(){
 				var imgHeight = $('.con-cont4 li img').height();
@@ -259,8 +259,8 @@
 		$(window).resize(function(){
 			change();
 		})
-		
-		
+
+
 		//新闻
 		$('.main-hynew li img').load(function(){
 			function newsChange(){
@@ -278,10 +278,10 @@
 			newsChange();
 		})
 		// 新闻end
-		
-	
+
+
 	})
-	
+
 	$(function(){
 		var liElement01 =  $('.main-min-twjh li:eq(1)').html();
 		var liElement05 =  $('.main-min-twjh li:eq(5)').html();
@@ -295,7 +295,7 @@
 			$('.main-min-twjh li:eq(8)').before('<li>' + liElement09 + '</li>');
 			$('.main-min-twjh li:eq(10)').remove();
 		}
-		
+
 		//发展历程
 		if( webWidth < 1100 ){
 			var rightLi01 = $('.develop-right li:eq(0)').html();
@@ -303,84 +303,84 @@
 			$('.develop-left02 li:eq(0)').after('<li>' + rightLi01 +'</li>');
 			$('.develop-left02 li:eq(2)').after('<li>' + rightLi02 +'</li>');
 			$('.develop-right').remove();
-			
+
 		}
-		
+
 		//发展历程
-		
-		
-		
+
+
+
 	})
-	
-	
-	$(function(){
-	var aDiv=document.getElementById("box");
-	var aUl=aDiv.getElementsByTagName('ul');
-	var aLi=aUl[0].getElementsByTagName('li');
-	var bLi=aUl[1].getElementsByTagName('li');
-	var timer=play=null;
-	var index=0;
-	for(var i=0;i<bLi.length;i++)
-	{
-		bLi[i].index=i
-		bLi[i].onmouseover=function()
-		{
-		  qh(this.index);
-	    }
-		//图片的变换alpha变换
-		function qh(a)
-		{
-			var alpha=0;
-		  for(var i=0;i<aLi.length;i++)
-		  {
-		    bLi[i].className=''
-			aLi[i].style.display='none'
-		  }
-		  bLi[a].className='active'
-		  aLi[a].style.display='block'
-		  clearInterval(timer)
-		  for(var i=0;i<aLi.length;i++)
-		  {
-			aLi[i].style.opacity=0;
-			aLi[i].style.filter="alpha(opacity:0)";
-		  }
-		  index=a
-		  timer=setInterval(function()
-		  {
-			alpha+=2;
-			aLi[index].style.opacity=alpha/100 
-			aLi[index].style.filter='alpha(opacity:'+alpha+')';
-			if(alpha>=100)
-		    {
-				alpha=100;
-				clearInterval(timer)
-			}
-		  },35)
-		}		
-	 }
-	//图片的自动播放
-	function autoPlay()
-		{
-		  play=setInterval(function()
-		  {
-			index++
-			index%=bLi.length
-			qh(index)	
-		  },5000)	
-		}
-		autoPlay();
-		aDiv.onmouseover=function()
-		{
-		   clearInterval(play)
-		}
-		aDiv.onmouseout=function()
-		{
-		   autoPlay();
-		}
-})
-	
-		
-	
+
+
+// 	$(function(){
+// 	var aDiv=document.getElementById("box");
+// 	var aUl=aDiv.getElementsByTagName('ul');
+// 	var aLi=aUl[0].getElementsByTagName('li');
+// 	var bLi=aUl[1].getElementsByTagName('li');
+// 	var timer=play=null;
+// 	var index=0;
+// 	for(var i=0;i<bLi.length;i++)
+// 	{
+// 		bLi[i].index=i
+// 		bLi[i].onmouseover=function()
+// 		{
+// 		  qh(this.index);
+// 	    }
+// 		//图片的变换alpha变换
+// 		function qh(a)
+// 		{
+// 			var alpha=0;
+// 		  for(var i=0;i<aLi.length;i++)
+// 		  {
+// 		    bLi[i].className=''
+// 			aLi[i].style.display='none'
+// 		  }
+// 		  bLi[a].className='active'
+// 		  aLi[a].style.display='block'
+// 		  clearInterval(timer)
+// 		  for(var i=0;i<aLi.length;i++)
+// 		  {
+// 			aLi[i].style.opacity=0;
+// 			aLi[i].style.filter="alpha(opacity:0)";
+// 		  }
+// 		  index=a
+// 		  timer=setInterval(function()
+// 		  {
+// 			alpha+=2;
+// 			aLi[index].style.opacity=alpha/100
+// 			aLi[index].style.filter='alpha(opacity:'+alpha+')';
+// 			if(alpha>=100)
+// 		    {
+// 				alpha=100;
+// 				clearInterval(timer)
+// 			}
+// 		  },35)
+// 		}
+// 	 }
+// 	//图片的自动播放
+// 	function autoPlay()
+// 		{
+// 		  play=setInterval(function()
+// 		  {
+// 			index++
+// 			index%=bLi.length
+// 			qh(index)
+// 		  },5000)
+// 		}
+// 		autoPlay();
+// 		aDiv.onmouseover=function()
+// 		{
+// 		   clearInterval(play)
+// 		}
+// 		aDiv.onmouseout=function()
+// 		{
+// 		   autoPlay();
+// 		}
+// })
+
+
+
 
 
 

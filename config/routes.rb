@@ -86,6 +86,7 @@ Rails.application.routes.draw do
       get :pay, on: :member
       post :make_cancel, on: :member
       get :express, on: :member
+      put :receive, on: :collection
     end
     resource :sms_code, only: [:show]
     resources :addresses, except: [:show] do
@@ -268,6 +269,7 @@ Rails.application.routes.draw do
     get '/home', to:'ybyt#index'
     get 'mall', to: 'mall#index'
     get 'scoin', to: 'scoin#home'
+    get '/digital', to: 'ybyt#digital'
     resources :line_items, only: [:create, :destroy]
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index] do
