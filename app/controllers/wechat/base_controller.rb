@@ -14,7 +14,7 @@ module Wechat
       Rails.logger.info("@"*40)
       Rails.logger.info(session[:wechat_open_id])
       Rails.logger.info(params[:code])
-      messageweixin = $wechat_client.get_oauth_userinfo(session[:wechat_open_id], Setting.weixin.token)
+      messageweixin = $wechat_client.get_oauth_userinfo(session[:wechat_open_id], "9ea435f4ac0c6161f25d2253")
       Rails.logger.info(messageweixin.inspect)
       Rails.logger.info("&"*40)
 
