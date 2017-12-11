@@ -11,6 +11,10 @@ module Wechat
     def get_wechat_sns_info
       # enable to skip wechat auth for fast local development
       # by starting rails server using `SKIP_WECHAT_AUTH=1 rails s`
+      Rails.logger.info("@"*40)
+      Rails.logger.info(session[:wechat_open_id])
+      Rails.logger.info(params[:code])
+      Rails.logger.info("&"*40)
       if ENV['SKIP_WECHAT_AUTH'] && Rails.env.development?
         session[:wechat_open_id] ||= (params[:wechat_open_id] || Time.current.to_i)
         return
