@@ -32,12 +32,16 @@
   <div class="qr-code-invitation">
 
     <a href="<%= user_invitation_friend_path %>"><%= raw @qrcode.as_html %></a></br>
+    <span style="margin-right:2px;">邀请码：<%= @wechat_user.user.invitation_card %></span>
     <div class="clearfix" id='info'>
       <img src="<%= @wechat_user.headimgurl %>" style="width:35px; float: left;">
-      <span class="ways"><%= @wechat_user.user.telphone %></span><span class="ways" style="margin-right: 3%;"><%= @wechat_user.user.name %></span>
+      <span class="ways" style="margin-right: 3%;">zhangzhangz<%= @wechat_user.user.name %></span>
+      <div class="">
+          <span class="ways"><%= @wechat_user.user.telphone %></span>
+      </div>
     </div>
     <div class="clearfix" id='infom' onclick="create()">
-      <span class="ways" style="font-size:12px;">点击隐藏</span>
+      <span class="ways" style="font-size:12px;">点击隐藏个人信息</span>
     </div>
   </div>
 </div>
