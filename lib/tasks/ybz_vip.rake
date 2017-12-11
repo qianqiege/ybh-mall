@@ -10,10 +10,10 @@ namespace :ybz_vip do
 
       if number > 0 && number <= 5
         @coin = number * 25000 * 0.1
-        @record = PresentedRecord.new(user_id: user.id,number: @coin,reason: "邀请YBZ会员#{number}位",is_effective:1,type:"Available",wight: 15,balance: @coin)
+        @record = PresentedRecord.new(user_id: user.id,number: @coin,reason: "邀请YBZ会员#{number}位",is_effective:1,type:"Available",wight: 1,balance: @coin)
       elsif number >= 6
         @coin = number * 25000 * 0.2
-        @record = PresentedRecord.new(user_id: user.id,number: @coin,reason: "邀请YBZ会员#{number}位",is_effective:1,type:"Available",wight: 15,balance: @coin)
+        @record = PresentedRecord.new(user_id: user.id,number: @coin,reason: "邀请YBZ会员#{number}位",is_effective:1,type:"Available",wight: 1,balance: @coin)
       end
       user.ybz_number = 0
       user.save
