@@ -3,12 +3,13 @@ class PresentedRecord < ApplicationRecord
   # 0、提现产生
   # 1、可提现
   # 2、不可提现
+  # 3、锁定
+  # 4、消费积分
   has_paper_trail
   belongs_to :user
   belongs_to :presentable, polymorphic: true
 
   before_create :update_status,:remove_update
-  after_create :update_record
   after_create :company_ycoin
   after_create :update_ycoin
 
@@ -43,62 +44,30 @@ class PresentedRecord < ApplicationRecord
   end
 
   def update_ycoin
-    wallet = Integral.find_by(user_id: user.id)
-    if wallet.nil?
-      Integral.create(user_id: user.id)
-    elsif self.is_effective == true && self.type == "Locking" && self.wight == 1
-      wallet.update(locking: wallet.locking.to_f + number.to_f)
-    elsif self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true && self.type != "Notexchange"
-      wallet.update(available: wallet.available.to_f + number.to_f, exchange: wallet.exchange.to_f + number.to_f)
-    elsif self.number < 0 && self.is_effective == false && self.reason == "消费积分"
-      case self.wight
-      when 1
-      else
-      end
-     elsif self.reason ==  "赠送/兑换"
-       case self.wight
-       when 1
-         wallet.update(available: wallet.available + self.number, not_exchange: wallet.not_exchange + self.number, appreciation: wallet.appreciation + self.number)
-       else
-         wallet.update(available: wallet.available + self.number, exchange: wallet.exchange + self.number, not_appreciation: wallet.not_appreciation + self.number)
-       end
-     end
-
-     if self.type == "Notexchange"
-       wallet.update(not_exchange: wallet.not_exchange + self.number)
-     end
-  end
-
-  def update_record
-
-  if self.status == "人工创建"
-
-      if self.wight == 1
-        self.type = "Locking"
-      else
-        self.type = "Available"
-      end
-
-      if self.wight == 1
-        self.reason = '购买产品返还积分'
-      elsif self.wight == 2
-        self.reason = '会员链接奖励'
-      elsif self.wight == 3
-        self.reason = '邀请好友消费赠送'
-      elsif self.wight == 6
-        self.reason = '邀请好友赠送'
-      elsif self.wight == 7
-        self.reason = '注册赠送'
-      elsif self.wight == 13
-        self.reason = '客服调配'
-      elsif self.wight == 14
-        self.reason = '消费'
-      end
-
-      self.save
+    @wallet = Integral.find_by(user_id: self.user_id)
+    if @wallet.nil?
+      Integral.create(user_id: self.user_id)
+      @wallet = Integral.find_by(user_id: self.user_id)
     end
-  end
 
+    case self.wight
+    when 1
+      # 可提现积分
+      @wallet.exchange = @wallet.exchange.to_f + self.balance
+      #
+    when 2
+      # 不可提现积分
+      @wallet.not_exchange = @wallet.not_exchange.to_f + self.balance
+      #
+    when 3
+      # 锁定积分
+      @wallet.locking = @wallet.locking.to_f + self.balance
+      #
+    end
+    # 保存
+    @wallet.save
+    #
+  end
 
   def remove_update
     if self.number < 0 && self.status == "人工创建"
@@ -110,13 +79,13 @@ class PresentedRecord < ApplicationRecord
           if !record.balance.nil? && record.balance > 0
             while order_integral > 0
               if record.balance >= order_integral
-                PresentedRecord.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                PresentedRecord.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: 4)
                 record.update(balance: record.balance - order_integral)
                 order_integral = 0
                 break
               elsif record.balance <= order_integral
                 order_integral = order_integral - record.balance
-                PresentedRecord.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                PresentedRecord.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: 4)
                 record.balance = 0
                 if record.save
                   break
