@@ -24,6 +24,11 @@ module Wechat
         Rails.logger.info(params[:code])
         Rails.logger.info(sns_info.result)
 
+        Rails.logger.info("^"*30)
+        Rails.logger.info(app_id)
+        Rails.logger.info(api_id)
+        Rails.logger.info(app_secrect)
+
         # sns_info.result
         # 正确时返回的JSON数据包如下：
         # ```
