@@ -11,12 +11,7 @@ module Wechat
     def get_wechat_sns_info
       # enable to skip wechat auth for fast local development
       # by starting rails server using `SKIP_WECHAT_AUTH=1 rails s`
-      Rails.logger.info("@"*40)
-      Rails.logger.info(session[:wechat_open_id])
-      Rails.logger.info(params[:code])
-      messageweixin = $wechat_client.get_oauth_userinfo(session[:wechat_open_id], "9ea435f4ac0c6161f25d2253")
-      Rails.logger.info(messageweixin.inspect)
-      Rails.logger.info("&"*40)
+
 
       if ENV['SKIP_WECHAT_AUTH'] && Rails.env.development?
         session[:wechat_open_id] ||= (params[:wechat_open_id] || Time.current.to_i)
@@ -72,7 +67,9 @@ module Wechat
           # {"errcode":40003,"errmsg":" invalid openid "}
           # reference: http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
           user_info = $wechat_client.get_oauth_userinfo(result['openid'], result['access_token'])
-
+          Rails.logger.info("@"*40)
+          Rails.logger.info(user_info.inspect)
+          Rails.logger.info("&"*40)
           user = WechatUser.find_or_initialize_by open_id: result['openid']
           user.access_token_info = result
           user.set_userinfo(user_info.result) if user_info.result['errcode'].blank?
