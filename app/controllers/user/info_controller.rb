@@ -555,6 +555,26 @@ class User::InfoController < Wechat::BaseController
   def wallet
     @exchange_r = ExchangeRecord.where(user_id: current_user.user_id)
     @cash = CashRecord.where(user_id: current_user.user_id).where(reason: "提现")
+    @wallet = Integral.find_by(user_id: current_user.user_id)
+
+    @record = PresentedRecord.where("user_id = ?",current_user.user_id)
+    @record.each do |record|
+      case record.wight
+      when 1
+        # 可提现积分
+        @wallet.exchange = @record.where(wight: 1).sum(:balance)
+        #
+      when 2
+        # 不可提现积分
+        @wallet.not_exchange =  @record.where(wight: 2).sum(:balance)
+        #
+      when 3
+        # 锁定积分
+        @wallet.locking =  @record.where(wight: 3).sum(:balance)
+        #
+      end
+    end
+    @wallet.save
   end
 
   def do_query_wallet
