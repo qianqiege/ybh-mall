@@ -107,7 +107,7 @@ class Order < ApplicationRecord
         if self.cash > 0 && self.price <= 0
           CashRecord.create(user_id: self.user_id, number: self.cash, reason: "订单退换积分，订单ID#{self.id}", is_effective:1)
         elsif self.integral > 0 && self.price <= 0
-          presented_records.create(user_id: self.user_id, number: self.integral, reason: "订单退换积分，订单ID#{self.id}",is_effective:1, type:"Available", wight: 10)
+          presented_records.create(user_id: self.user_id, number: self.integral, reason: "订单退换积分，订单ID#{self.id}",is_effective:1, type:"Available", wight: 2)
         end
       end
     end
@@ -268,13 +268,13 @@ class Order < ApplicationRecord
 
         # 判定条件，首次赠送 和 第一天赠送数量 大于0 执行创建方法
           if rule.coin_type.once > 0 && rule.coin_type.everyday > 0
-            presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 4)
-            presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 5)
+            presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 1)
+            presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 1)
           end
 
-          if rule.donation.present?
-            DonationRecord.create(user_id: user_id,integral: rule.donation * self.price ,reason: "YBZ会员募捐（积分）",order_number: self.number)
-          end
+          # if rule.donation.present?
+          #   DonationRecord.create(user_id: user_id,integral: rule.donation * self.price ,reason: "YBZ会员募捐（积分）",order_number: self.number)
+          # end
 
           # 推荐好友消费赠送 直推奖励
           user = User.find(user_id)
@@ -283,7 +283,7 @@ class Order < ApplicationRecord
             if rule.percent.nil?  && self.price != 0 && invitation.is_partner != false || !invitation.nil? && invitation.status == "Staff"
               # 赠送比例 乘 金额
               present_count = rule.percent * price
-              presented_records.create(user_id: invitation.id, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available", wight: 3)
+              presented_records.create(user_id: invitation.id, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available", wight: 1)
             end
           end
 

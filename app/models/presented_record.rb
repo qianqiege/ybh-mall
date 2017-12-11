@@ -1,4 +1,8 @@
 class PresentedRecord < ApplicationRecord
+  # 积分权重编码解释
+  # 0、提现产生
+  # 1、可提现
+  # 2、不可提现
   has_paper_trail
   belongs_to :user
   belongs_to :presentable, polymorphic: true
@@ -7,7 +11,6 @@ class PresentedRecord < ApplicationRecord
   after_create :update_record
   after_create :company_ycoin
   after_create :update_ycoin
-
 
   validates :user, presence: true
   validates :number, presence: true
