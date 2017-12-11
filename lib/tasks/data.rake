@@ -26,7 +26,7 @@ namespace :data do
       @rules.map do |rule|
 
         if @state == "yes" && rule.rule == "有数据报告" && (Date.current - Date.parse(order.updated_at.to_s)).to_i == 15
-          PresentedRecord.create(user_id: order.user_id,number: order.price * rule.percentage ,reason: "购买产品返还积分",is_effective:1,type:"Locking",wight: 1)
+          PresentedRecord.create(user_id: order.user_id,number: order.price * rule.percentage ,reason: "购买产品返还积分",is_effective:1,type:"Locking",wight: 3)
           puts "当前时间：#{Time.current},订单ID：#{order.id},用户ID：#{order.user_id},购买金额：#{order.price},是否有数据报告：有数据报告"
           if !@evaluation.nil?
             EvaluationRecord.create(order_id: order.id,order_number: order.number,evalation_number: @evaluation.evalation_number + 1 ,is_state: true)
@@ -42,7 +42,7 @@ namespace :data do
           order.save
 
         elsif @state == "no" && rule.rule == "无数据报告" && (Date.current - Date.parse(order.updated_at.to_s)).to_i == 15
-          PresentedRecord.create(user_id: order.user_id,number: order.price * rule.percentage ,reason: "购买产品返还积分",is_effective:1,type:"Locking",wight: 1)
+          PresentedRecord.create(user_id: order.user_id,number: order.price * rule.percentage ,reason: "购买产品返还积分",is_effective:1,type:"Locking",wight: 3)
           puts "当前时间：#{Time.current},订单ID：#{order.id},用户ID：#{order.user_id},购买金额：#{order.price},是否有数据报告：无数据报告"
 
           if !@evaluation.nil?

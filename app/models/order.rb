@@ -338,7 +338,7 @@ class Order < ApplicationRecord
                 @integral_price = @integral_price - product.now_product_price
               end
             end
-            presented_records.create(user_id: self.user_id, number: @integral_price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Locking", wight: 1)
+            presented_records.create(user_id: self.user_id, number: @integral_price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Locking", wight: 3)
           end
 
         end
@@ -356,13 +356,13 @@ class Order < ApplicationRecord
         if !record.balance.nil? && record.balance > 0
           while order_integral > 0
             if record.balance >= order_integral
-              presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+              presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: 4)
               record.update(balance: record.balance - order_integral)
               order_integral = 0
               break
             elsif record.balance <= order_integral
               order_integral = order_integral - record.balance
-              presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+              presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: 4)
               record.balance = 0
               if record.save
                 break
