@@ -9,7 +9,6 @@ permit_params :exchange, :user_id, :locking, :available,:cash,:not_exchange
 
     column :user_id
     column :locking
-    column :available
     column :exchange
     column :not_exchange
     column :cash
@@ -22,11 +21,12 @@ permit_params :exchange, :user_id, :locking, :available,:cash,:not_exchange
     f.inputs "钱包" do
       f.input :user
       f.input :locking
-      f.input :available
       f.input :cash
       f.input :not_exchange
     end
     f.actions
   end
+
+  filter :user
 
 end
