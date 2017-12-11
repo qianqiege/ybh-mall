@@ -122,7 +122,7 @@ module Wechat
 
     # TODO: 这里需要改成绑定页面，绑定页面会获取比较多的信息
     def should_get_userinfo?
-      params[:controller] == "wechat/home" && params[:action] == "index"
+      params[:controller] == "user/binding" && params[:action] == "index"
     end
   end
 end
