@@ -77,8 +77,10 @@ module Wechat
         else
           @error_message = sns_info.result["errmsg"]
         end
-      elsif WechatUser.find_by(open_id: session[:wechat_open_id]).auth_hash.keys.length == 0
-        Rails.logger.info("elsif elsif")
+      else
+        Rails.logger.info("else else")
+        Rails.logger.info(session[:wechat_open_id])
+        Rails.logger.info(params[:code])
         sns_info = $wechat_client.get_oauth_access_token(params[:code])
         Rails.logger.debug("Weixin oauth2 response: #{sns_info.result}")
 
