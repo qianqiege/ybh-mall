@@ -20,6 +20,9 @@ module Wechat
 
       if session[:wechat_open_id].blank? && params[:code]
         sns_info = $wechat_client.get_oauth_access_token(params[:code])
+        Rails.logger.info("sns_info"*20)
+        Rails.logger.info(params[:code])
+        Rails.logger.info(sns_info.result)
 
         # sns_info.result
         # 正确时返回的JSON数据包如下：
@@ -77,48 +80,6 @@ module Wechat
         else
           @error_message = sns_info.result["errmsg"]
         end
-      else
-        Rails.logger.info("else else")
-        Rails.logger.info(session[:wechat_open_id])
-        Rails.logger.info(params[:code])
-        sns_info = $wechat_client.get_oauth_access_token(params[:code])
-        Rails.logger.debug("Weixin oauth2 response: #{sns_info.result}")
-
-        # 重复使用相同一个code调用时：
-        if sns_info.result["errcode"] != "40029"
-          result = sns_info.result
-          session[:wechat_open_id] = result["openid"]
-
-          # user_info.result
-          #
-          # 正确时返回的JSON数据包如下：
-          # {
-          #    "openid":" OPENID",
-          #    "nickname": NICKNAME,
-          #    "sex":"1",
-          #    "province":"PROVINCE"
-          #    "city":"CITY",
-          #    "country":"COUNTRY",
-          #    "headimgurl":"http://wx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/46",
-          #    "privilege":[
-          #       "PRIVILEGE1"
-          #       "PRIVILEGE2"
-          #     ],
-          #     "unionid": "o6_bmasdasdsad6_2sgVt7hMZOPfL"
-          # }
-          #
-          # 错误时微信会返回JSON数据包如下（示例为openid无效）:
-          # {"errcode":40003,"errmsg":" invalid openid "}
-          # reference: http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
-          user_info = $wechat_client.get_oauth_userinfo(result['openid'], result['access_token'])
-          Rails.logger.info("!"*40)
-          Rails.logger.info(user_info.inspect)
-          Rails.logger.info("*"*40)
-          user = WechatUser.find_or_initialize_by open_id: result['openid']
-          user.access_token_info = result
-          user.set_userinfo(user_info.result) if user_info.result['errcode'].blank?
-          user.save
-          end
       end
 
       # http://mp.weixin.qq.com/wiki/17/c0f37d5704f0b64713d5d2c37b468d75.html
