@@ -1,26 +1,5 @@
 <%= title '我的信息' %>
-<div class="weui-panel weui-panel_access">
-  <div class="weui-panel__bd">
-    <a href="<%= user_w_info_path %>" class="weui-media-box weui-media-box_appmsg">
-      <div class="weui-media-box__hd">
-        <% if !@wechat_user.nil? %>
-          <img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb",>
-        <% else %>
-          <%= image_tag "ybyt04.png" ,class:"weui-media-box__thumb" ,size: "50x55" %>
-        <% end %>
-      </div>
-      <div class="weui-media-box__bd">
-        <h4 class="weui-media-box__title">
-          <% if !@wechat_user.nil?%>
-            <%= @wechat_user.nickname %>
-          <% else %>
-            御邦医通
-          <% end %>
-        </h4>
-      </div>
-      </a>
-  </div>
-</div>
+<%= render 'head' %>
 
 <div class="weui-panel weui-panel_access">
   <div class="weui-panel">
