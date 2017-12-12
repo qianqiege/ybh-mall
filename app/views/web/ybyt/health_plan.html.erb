@@ -1,0 +1,124 @@
+<style type="text/css" media="screen">
+
+	.health_banner img {
+		width: 100%;
+		margin-bottom: 2%;
+	}
+
+	.tab_menu {
+		display: flex;
+		margin-bottom: 2px;
+	}
+	.outDiv {
+		margin-top: 2%;
+		margin-bottom: 2%;
+	}
+	.tab_box{
+		flex:1;
+		margin-left: 30px;
+	}
+	.contentOne {
+		color:#000;	
+		display: block;
+		margin-bottom: 5px;
+		position: relative;
+	}
+	.contentOne:hover{
+		color: #000;
+	}
+	.contentOne img{
+		display: inline-block;
+		width:40%;
+		margin-right: 30px;
+	}
+	.contentOne .artical{
+		display: inline-block;	
+		width: 45%;
+		line-height:25px;
+		position: absolute;
+		top:20px;
+	}
+	.artical b{
+		color: #d68b37;
+		font-weight: bold;
+		font-size: 15px;
+	}
+	.contentOne a{
+		color: #000;
+		font-weight: bold;
+		line-height: 30px;
+	}
+	.contentOne a img{
+		display: inline-block;
+		width:40%;
+	}
+	.titlep{
+		text-align: center;
+		color: #d68b37;
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 25px;
+		padding-bottom: 5px;
+	}
+
+</style>
+<%= render 'head'%>
+<div class="container outDiv">
+	<div class="health_banner"><%= image_tag "raw_1512353927.jpg" %></div>
+	<div class="titlep">健康计划</div>
+	<div class="tab_menu"> <!-- #d68b37 -->
+		<div class="tab_box">
+
+				<div class="contentOne">
+					<%= image_tag "raw_1512973241.jpg" %>
+					<div class="artical"><b>全国万人肿瘤患者救助计划</b><br/>
+						由御邦医通2017年11月06日正式发起，中华慈善总会、中医药管理局指导支持下开展的全国性活动。<br/>
+						<a>活动链接</a>
+					</div>
+				</div>
+				<div class="contentOne">
+					<%= image_tag "raw_1512973257.jpg" %>
+					<div class="artical"><b>慢病快治</b><br/>
+					“慢病快治”运用不手术、不吃药、无痛苦、无创安全的合晶能靶向能量介入疗法，将能量用最短的时间直接介入体内，调动身体自愈修复系统，重塑机体新生。20秒，激活细胞能量，打通人体健康通道。<br/>
+					<a>活动链接</a>
+				</div>
+
+				</div>
+				<div class="contentOne">
+					<%= image_tag "raw_1512973279.jpg" %>
+					<div class="artical"><b>LWKS培训•干预师培训</b><br/>
+					为助力“健康中国”建设、有效落实“健康中国2030”规划纲要中优生优育的相关政策，有庆体系以消费经济学为支撑，启动有庆体系LWKS项目创业创富计划，打造有庆体系LWKS培训•干预师体系。
+					</div>
+				</div>		
+		</div>
+	</div>
+</div>
+
+<%= render "bottom" %>
+
+
+
+<script type="text/javascript">
+    	var oTab=document.getElementById('tab');
+    	var aLi=oTab.getElementsByTagName('li');
+    	var oTabBox=oTab.getElementsByTagName('div')[1];
+    	var aBox=oTabBox.getElementsByTagName('div');
+
+   		for(var i=0;i<aLi.length;i++){
+	    	aLi[i].index=i;
+	     	aLi[i].onclick=function(){
+	     		document.getElementById('newtime').style.display="none";
+		      	for(var j=0;j<aLi.length;j++){
+		       		aBox[j].className='hide';//隐藏所有的tabDiv
+		      		aLi[j].className='';//取消菜单样式
+		      	}
+	      		aLi[this.index].className='selected';
+
+	      		for(var i=0;i<aBox.length;i++){
+	      			aBox.className="hide";
+	      		}
+	      		aBox[this.index].className='';
+	     	}
+    	}
+  
+</script>	
