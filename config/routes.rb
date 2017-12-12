@@ -270,6 +270,7 @@ Rails.application.routes.draw do
     get 'mall', to: 'mall#index'
     get 'scoin', to: 'scoin#home'
     get '/digital', to: 'ybyt#digital'
+    get '/health_plan', to: 'ybyt#health_plan'
     resources :line_items, only: [:create, :destroy]
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index] do

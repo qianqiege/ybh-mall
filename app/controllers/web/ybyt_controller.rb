@@ -4,4 +4,8 @@ class Web::YbytController < Web::BaseController
 
   def digital
   end
+
+  def health_plan
+  	
+  end
 end
