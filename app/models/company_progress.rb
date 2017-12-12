@@ -1,0 +1,2 @@
+class CompanyProgress < ApplicationRecord
+end
