@@ -5,7 +5,7 @@ ActiveAdmin.register CompanyProgress do
     index do
       selectable_column
       id_column
-      column "商品图片" do |image|
+      column "缩略图" do |image|
         image_tag(image.image, size: "72x45", :alt => "product image")
       end
       column :date

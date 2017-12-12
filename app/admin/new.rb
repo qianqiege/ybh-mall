@@ -8,7 +8,7 @@ ActiveAdmin.register New do
       column :title
       column :sort
       column :simple_desc
-      column "商品图片" do |image|
+      column "缩略图" do |image|
         image_tag(image.image, size: "72x45", :alt => "product image")
       end
       column :desc
