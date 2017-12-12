@@ -2,6 +2,19 @@ ActiveAdmin.register New do
     menu parent: I18n.t("active_admin.menu.official_website")
     permit_params :title, :simple_desc, :sort, :image, :desc
 
+    index do
+      selectable_column
+      id_column
+      column :title
+      column :sort
+      column :simple_desc
+      column "商品图片" do |image|
+        image_tag(image.image, size: "72x45", :alt => "product image")
+      end
+      column :desc
+      actions
+    end
+
     form(:html => { :multipart => true }) do |f|
       f.inputs "新闻" do
         f.input :title
