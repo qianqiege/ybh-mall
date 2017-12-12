@@ -17,6 +17,7 @@ zh-CN:
       company_manage: '机构（公司）'
       wallet_manage: '钱包/账户'
       yb_work_manage: '御邦服务中心'
+      official_website: '官网管理'
   activerecord:
     attributes:
       program:
@@ -368,6 +369,16 @@ zh-CN:
         user_id: '用户'
         lottery_prize: '奖品'
         state: '状态'
+      new:
+        title: '标题'
+        simple_desc: '简单描述'
+        sort: '新闻分类'
+        image: '缩略图'
+        desc: '详细信息'
+      company_progress:
+        date: '日期'
+        image: '缩略图'
+        desc: '描述'
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
@@ -434,3 +445,5 @@ zh-CN:
       shop_feature: '服务中心功能'
       lottery_prize: '抽奖奖品'
       user_prize: '用户奖品'
+      new: '新闻'
+      company_progress: '企业大事件'
