@@ -1,0 +1,54 @@
+<style type="text/css" media="screen">
+
+	.digital_banner img {
+		width: 100%;
+		margin-bottom: 2%;
+	}
+
+	.tab_menu {
+		display: flex;
+		margin-bottom: 2px;
+	}
+	.outDiv {
+		margin-top: 2%;
+		margin-bottom: 2%;
+		overflow: hidden;
+	}
+	.senior img{
+		width: 50%;
+		float: left;
+		margin-right: 10px;
+	}
+	.titlep{
+		text-align: center;
+		color: #ad0e11;
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 25px;
+		padding-bottom: 10px;
+	}
+	.graph{
+		text-indent: 2em;
+		line-height: 25px;
+		padding-top: 10%;
+		display: inline-block;
+		width: 45%;
+		font-size: 14px;
+	}
+
+
+</style>			
+
+<%= render 'head'%>
+<div class="container outDiv">
+	<div class="digital_banner"><%= image_tag "1-1601221010440-L.jpg" %></div>
+
+	<div id="tab">
+		<div class="titlep">产品合伙人</div>
+		<div class="senior">
+			<%= image_tag "raw_1512716379.jpg" %>
+			<div class="graph">针对有庆体系供应端的公司（产品符合要求），与有庆体系签订战略合作协议，并以产品投资入股成为有庆体系任何公司的合伙人。</div>
+		</div>
+	</div>
+</div>
+<%= render "bottom" %>

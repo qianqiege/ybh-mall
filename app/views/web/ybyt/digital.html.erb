@@ -42,6 +42,7 @@
 		text-indent:2em;
 		font-size: 14px;
 		margin-top: 10px;
+		line-height: 25px;
 	}
 	.graph img{
 		width:32px;
@@ -76,17 +77,45 @@
 		position: absolute;
 		top:20px;
 	}
+	.artical1{
+		color: #000;
+		width: 100%;
+		display: inline-block;
+		text-align: center;
+		line-height: 25px;font-size: 14px;
+	}
+	.artical1:hover{
+		color: #000;
+	}
+	.artical1 b{
+		color: #ad0e11;
+		font-weight: bold;
+		font-size: 18px;
+	}
 	.artical{
+		color: #000;
+		width: 100%;
+		display: inline-block;
+		/*text-align: center;*/
+		line-height: 25px;
 		font-size: 14px;
 	}
 	.artical b{
 		color: #ad0e11;
 		font-weight: bold;
 		font-size: 18px;
-		margin-left: 40%;
+		/*margin-left: 40%;*/
 	}
 	.contentOne a{
 		color: #000;
+	}
+	.layone{
+		width: 45%;
+		display: inline-block;
+		margin-right: 30px;
+	}
+	.layone img{
+		width: 100%;
 	}
 	
 	.contentOne a img{
@@ -98,17 +127,7 @@
 		width: 100%;
 		margin-bottom: 20px;
 	}
-	.layout .layone{
-		width: 45%;
-		display: inline-block;
-		margin-right: 30px;
-	}
-	.layout img{
-		width: 100%;
-	}
-	.layone .artical{
-		width:100%;
-	}
+	.
 	.onecol{
 		width: 100%;
 		margin-bottom: 20px;
@@ -153,6 +172,19 @@
 	.hide {
 		display: none;
 	}
+	.firstRow{
+		text-align: center;
+		color: #ad0e11;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.section {
+		line-height: 25px;
+		font-size: 14px;
+	}
+	b{
+		font-weight: bold;
+	}
 
 </style>
 
@@ -184,6 +216,10 @@
 				<li> 
 					<a href="javascript:void(0);">有庆御通（中国）商业体系<br/>合伙人风控保障</a>
 				</li>
+				<li> 
+					<a href="javascript:void(0);">御邦医通社区数字健康管理平台</a>
+				</li>
+				
 			</ul>
 			
 			<div class="tab_box">
@@ -224,29 +260,29 @@
 
 				<div class="hide">
 					<a class="onecol">
-						<a class="partner">
+						<a class="partner" href="<%= web_healMana_path %>" >
 							<%= image_tag "raw_1512715585.jpg" %>
 							<b>健康管理消费类</b>
 						</a>
-						<a class="partner">
+						<a class="partner" href="<%= web_manaServ_path %>" >
 							<%= image_tag "raw_1512715688.jpg" %>
 							<b>管理服务合伙人</b>
 						</a>
-						<a class="partner">
+						<a class="partner" href="<%= web_product_path %>" >
 							<%= image_tag "raw_1512716379.jpg" %>
 							<b>产品合伙人</b>
 						</a>
 					</a>
 					<a class="onecol">
-						<a class="partner">
+						<a class="partner" href="<%= web_capital_path %>" >
 							<%= image_tag "raw_1512716462.jpg" %>
 							<b>资本合伙人</b>
 						</a>
-						<a class="partner">
+						<a class="partner" href="<%= web_strategic_path %>" >
 							<%= image_tag "raw_1512716573.jpg" %>
 							<b>战略合伙人</b>
 						</a>
-						<a class="partner">
+						<a class="partner" href="<%= web_senior_path %>" >
 							<%= image_tag "raw_1512716971.jpg" %>
 							<b>高级合伙人</b>
 						</a>
@@ -283,38 +319,59 @@
 				</div>
 
 				<div class="hide">
-					<div  class="layout">
-						<div class="layone">	
+					<section>
+						<section class="layone">	
 							<%= image_tag "bji03130039.jpg" %>
-							<div class="artical"><b>零风险</b><br/>	
+							<a class="artical1"><b>零风险</b><br/>	
 								初始即完成了合理价值的消费，并对应形成消费投资股权收益，做到零风险。<br/>
-							</div>
-						</div>
+							</a>
+						</section>
 
-						<div class="layone">
+						<section class="layone">
 							<%= image_tag "ph1852-p02312.jpg" %>
-							<div class="artical"><b>股权分红</b><br/>	
+							<a class="artical1"><b>股权分红</b><br/>	
 								对应股权每月分红收益权利， 收益率约为7-8%/年（只针对消费类合伙人）。<br/>
-							</div>
-						</div>
-					</div>		
-							
-					<div class="layout" style="position: relative;">
-						<div class="layone" style="position: absolute;left: 48%">
+							</a>
+						</section>
+					</section>
+					<section style="position:relative;">
+						<section class="layone" style="position: absolute;left:48%" >
 							<%= image_tag "is098r54b.jpg" %>
-							<div class="artical"><b>自由交易</b><br/>		
+							<a class="artical1"><b>自由交易</b><br/>		
 								有庆体系御易健合伙人股权交易平台，自由交易。<br/>
-							</div>
-						</div>
+							</a>
+						</section>
 
-						<div class="layone">
+						<section class="layone">
 							<%= image_tag "640 (5).jpg" %>
-							<div class="artical"><b>回收保障</b><br/>		
+							<a class="artical1"><b>回收保障</b><br/>		
 								有庆体系合伙人对应股权按照1-3年的时间期效回收保障机制，保障合伙人基本收益。<br/>
-							</div>
-						</div>
-					</div>
+							</a>
+						</section>
+					</section>	
+				</div>	
+				
+				<div class="hide">
+					<p class="firstRow">御邦医通社区数字健康管理平台简介</p>
+					<p class="graph" >御邦医通社区数字健康管理平台是以每1万人为一个区块建设一个平台服务公司，在全国规划建构17万个，核心提供三大类服务：慢病健康管理教育培训服务、慢病健康管理干预服务、社区医养结合的居家养老服务。社区数字健康管理平台按公司化运营，依照公司法对应成立御邦医通社区数字化健康管理平台服务公司。</p>
+					<section class="section" style="line-height:25px;font-size: 14px"><b>（1）社区数字健康管理平台内容：</b><br/>
+					A、软件内容：<br/>
+					基于“中国特色健康管理新专业模式”和《御邦医通商业模式（V3.0）》设计的社区数字健康管理平台服务结构体运营系统。<br/>
+					B、硬件内容：<br/>
+					社区数字健康管理平台的选址、工程建设；<br/>
+					慢病健康管理专业价值服务配套植入；<br/>
+					健康专业关联价值配套植入；<br/>
+					实现平台功能的配套价值植入及保障设施。<br/>
+					<b>（2）注册资金</b><br/>
+					每个平台服务公司注册资金500万元。<br/>
+					<b>（3）股权结构</b><br/>
+					51%由甲方控股的对应御邦医通省级公司控股；<br/>
+					49%由深圳御邦资本管理有限公司（健康管理“消费+投资”类合伙人）持有。<br/>
+					<b>（4）御邦医通平台服务公司定值</b><br/>
+					2017年12月31日前，每个御邦医通平台服务公司定值500万元。<br/>
+					</section>
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -326,7 +383,7 @@
 
 
 <script type="text/javascript">
-	window.onload=function(){
+
     	var oTab=document.getElementById('tab');
     	var aboLi=oTab.getElementsByTagName('li');
     	var oTabBox=oTab.getElementsByTagName('div')[1];
@@ -347,5 +404,5 @@
 	      		aBox[this.index].className='';
 	     	}
     	}
-   }
+
 </script>	

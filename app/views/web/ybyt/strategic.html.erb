@@ -1,0 +1,56 @@
+<style type="text/css" media="screen">
+
+	.digital_banner img {
+		width: 100%;
+		margin-bottom: 2%;
+	}
+
+	.tab_menu {
+		display: flex;
+		margin-bottom: 2px;
+	}
+	.outDiv {
+		margin-top: 2%;
+		margin-bottom: 2%;
+		overflow: hidden;
+	}
+	.senior img{
+		width: 50%;
+		float: left;
+		margin-right: 10px;
+	}
+	.titlep{
+		text-align: center;
+		color: #ad0e11;
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 25px;
+		padding-bottom: 10px;
+	}
+	.graph{
+		text-indent: 2em;
+		line-height: 25px;
+		padding-top: 10%;
+		display: inline-block;
+		width: 45%;
+		font-size: 14px;
+	}
+
+
+</style>			
+
+<%= render 'head'%>
+<div class="container outDiv">
+	<div class="digital_banner"><%= image_tag "1-1601221010440-L.jpg" %></div>
+
+	<div id="tab">
+		<div class="titlep">战略合伙人</div>
+		<div  class="senior">
+			<%= image_tag "raw_1512716573.jpg" %>
+			<p  class="graph">在有庆体系通过“消费+投资”成为有庆体系总部公司或运营总公司或战略模块公司持股1- 3%的合伙人；或直接投资持上述公司1-3%股权的合伙人。
+			</p>
+		</div>
+	</div>
+
+</div>
+<%= render "bottom" %>
