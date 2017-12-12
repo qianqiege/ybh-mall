@@ -271,6 +271,16 @@ Rails.application.routes.draw do
     get 'scoin', to: 'scoin#home'
     get '/digital', to: 'ybyt#digital'
     get '/health_plan', to: 'ybyt#health_plan'
+
+
+    get '/capital', to: 'ybyt#capital'
+    get '/healMana', to: 'ybyt#healMana'
+    get '/manaServ', to: 'ybyt#manaServ'
+    get '/product', to: 'ybyt#product'
+    get '/senior', to: 'ybyt#senior'
+    get '/strategic', to: 'ybyt#strategic'
+
+    
     resources :line_items, only: [:create, :destroy]
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index] do

@@ -1,0 +1,60 @@
+<style type="text/css" media="screen">
+	a{
+		color: #000;
+	}
+	a:hover{
+		color: #000;
+	}
+	.digital_banner img {
+		width: 100%;
+		margin-bottom: 2%;
+	}
+
+	.tab_menu {
+		display: flex;
+		margin-bottom: 2px;
+	}
+	.outDiv {
+		margin-top: 2%;
+		margin-bottom: 2%;
+		overflow: hidden;
+	}
+	.senior img{
+		width: 50%;
+		float: left;
+		margin-right: 10px;
+	}
+	.titlep{
+		text-align: center;
+		color: #ad0e11;
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 25px;
+		padding-bottom: 10px;
+	}
+	.graph{
+		text-indent: 2em;
+		line-height: 25px;
+		padding-top: 10%;
+		display: inline-block;
+		width: 45%;
+		font-size: 14px;
+	}
+
+
+</style>			
+
+<%= render 'head'%>
+<div class="container outDiv">
+	<div class="digital_banner"><%= image_tag "1-1601221010440-L.jpg" %></div>
+
+	<div id="tab">
+		<div class="titlep">高级合伙人</div>
+		<div class="senior">
+			<%= image_tag "raw_1512716971.jpg" %>
+			<p class="graph">在有庆体系“消费+投资”获得总部公司3%股权的合伙人或通过对赌协议为有庆体系做出巨大贡献而获得总部公司3%股权的合伙人，同时与首席创始人自愿签约成为一致行动人的合伙人； 有庆体系总部公司共设10名高级合伙人。</p>
+		</div>
+	</div>
+
+</div>
+<%= render "bottom" %>

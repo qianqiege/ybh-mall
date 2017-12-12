@@ -1,0 +1,98 @@
+<style type="text/css" media="screen">
+	a{
+		color: #000;
+	}
+	a:hover{
+		color: #000;
+	}
+	.digital_banner img {
+		width: 100%;
+		margin-bottom: 2%;
+	}
+
+	.tab_menu {
+		display: flex;
+		margin-bottom: 2px;
+	}
+	.outDiv {
+		margin-top: 2%;
+		margin-bottom: 2%;
+		overflow: hidden;
+	}
+	.inline{
+		width:45%;
+		display: inline-block;
+		float: left;
+	}
+	.inline img{
+		width:75%;
+	}
+	.inline .title{
+		color: #ad0e11;
+		text-align: center;
+		font-size: 15px;
+		font-weight: bold;
+		line-height: 30px;
+	}
+	.titlep{
+		text-align: center;
+		color: #ad0e11;
+		font-size: 18px;
+		font-weight: bold;
+		line-height: 25px;
+		padding-bottom: 10px;
+	}
+	.remarks{
+		color: #ad0e11;
+	}
+	.content{
+		width: 95%;
+	}
+	.clear{
+		clear:left;
+		font-size: 14px;
+		padding-top: 10px;
+	}
+	.clear p{
+		font-size: 14px;
+	}
+
+
+</style>			
+
+<%= render 'head'%>
+<div class="container outDiv">
+	<div class="digital_banner"><%= image_tag "1-1601221010440-L.jpg" %></div>
+
+	<div id="tab">
+		<div  class="titlep">资本合伙人</div>
+		<div class="inline">
+			<%= image_tag "capital-1.jpg" %>
+			<div class="content">
+				<a  class="title">御邦医通运营总公司合伙人（50万元/份计）</a></br/>	
+				<a><b>每份权益如下：</b></br/>	
+					（1）1份有庆体系运营总公司0.1%的股权，价值50万（2017年12月31日前）；</br/>
+					（2）价值50万元+X元的保值产品（如：沉香、红木家具等）；</br/>	
+					（3）价值5万元的健康管理的产品或服务</br/>	
+				</a>
+			</div>
+		</div>
+		<div class="inline">
+			<%= image_tag "raw_1512721018.jpg" %>
+			<div  class="content">
+				<a  class="title">有庆体系总部公司合伙人（150万元/份计）</a></br/>	
+				<a><b>每份权益如下：</b></br/>	
+					（1）1份有庆体系总部公司0.1%的股权，价值150万（2017年12月31日前）；</br/>
+					（2）价值150万元+X元的保值产品（如：沉香、红木家具等）；</br/>	
+					（3）价值15万元的健康管理的产品或服务</br/>	
+				</a>
+			</div>
+		</div>
+		<div class="clear">
+		<p class="remarks">备注：</p>
+		<p>以上三类价格截止至2017年12月31底，每个类别均可消费多份。</p>
+	</div>
+	</div>
+
+</div>
+<%= render "bottom" %>
