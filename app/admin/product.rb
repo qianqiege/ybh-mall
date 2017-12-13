@@ -17,7 +17,8 @@ ActiveAdmin.register Product do
                 :spec,
                 :display,
                 :height,
-                :activity_id
+                :activity_id,
+                :is_test
 
   index do
     selectable_column
@@ -41,6 +42,7 @@ ActiveAdmin.register Product do
     column :production
     # column :product_sort
     column :activity_id
+    column :is_test
     actions
   end
 
@@ -65,6 +67,7 @@ ActiveAdmin.register Product do
       f.input :desc,:as => :ckeditor
       f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3','点亮心灯' => '4' }
       f.input :activity
+      f.input :is_test
     end
     f.actions
   end
@@ -85,6 +88,7 @@ ActiveAdmin.register Product do
       row '产品描述' do |product|
         truncate(raw product.desc)
       end
+      row :is_test
     end
   end
 
@@ -96,4 +100,5 @@ ActiveAdmin.register Product do
   filter :shop_count, as: :select
   filter :production, as: :select
   filter :product_sort, as: :select
+  filter :is_test, as: :select
 end

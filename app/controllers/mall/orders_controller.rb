@@ -181,6 +181,12 @@ class Mall::OrdersController < Mall::BaseController
     end
     @activity = Product.find(@line_items.pluck(:product_id)).pluck(:activity_id)
     @lotterys = UserPrize.where(user_id: current_user.user_id,state: 'pending')
+
+    # 判断 非测试人员 不展示测试活动
+    if current_user.user.is_test == false
+        @activities = @activities.where(is_test: false)
+    end
+
   end
 
   def pay

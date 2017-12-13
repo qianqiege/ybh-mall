@@ -1,7 +1,7 @@
 ActiveAdmin.register PresentedRecord do
   menu parent: I18n.t("active_admin.menu.coin_record_manage")
   actions :index, :show ,:new ,:create
-  permit_params :user_id,:number,:status,:is_effective,:wight,:desc
+  permit_params :user_id,:number,:status,:is_effective,:wight,:desc, :is_test
 
   index do
      selectable_column
@@ -19,6 +19,7 @@ ActiveAdmin.register PresentedRecord do
      column :balance
      column :desc
      column "权重",:wight
+     column :is_test
      actions
    end
 
@@ -29,6 +30,7 @@ ActiveAdmin.register PresentedRecord do
        f.input :status, as: :select, collection: ["人工创建"]
        f.input :is_effective
        f.input :wight, as: :select, collection: { '购买产品返还积分' => '1', '会员链接奖励' => '2', '注册赠送' => '7', '邀请好友赠送' => '6' , '邀请好友消费赠送' => '3', '客服调配' => '13' , '消费' => '14'}
+       f.input :is_test
        f.input :desc
      end
      f.actions
@@ -43,6 +45,7 @@ ActiveAdmin.register PresentedRecord do
        row :wight
        row :desc
        row :created_at
+       row :is_test
      end
    end
 
@@ -53,5 +56,6 @@ ActiveAdmin.register PresentedRecord do
    filter :number, as: :select
    filter :type, as: :select
    filter :is_effective, as: :select
+   filter :is_test, as: :select
 
 end
