@@ -14,7 +14,8 @@ ActiveAdmin.register User do
                 :family_health_manager,
                 :family_doctor,
                 :staff_invitation_type,
-                :is_admin
+                :is_admin,
+                :is_test
 
   index do
     selectable_column
@@ -33,6 +34,7 @@ ActiveAdmin.register User do
     column '是否为合伙人', :is_partner
     column '是否为管理员', :is_admin
     column '注册时间',:created_at
+    column :is_test
     actions defaults: true
   end
 
@@ -52,6 +54,7 @@ ActiveAdmin.register User do
       f.input :family_health_manager
       f.input :health_manager
       f.input :is_admin
+      f.input :is_test
     end
     f.actions
   end
@@ -70,6 +73,7 @@ ActiveAdmin.register User do
       row :type
       row :is_admin
       row :created_at
+      row :is_test
     end
   end
 
@@ -89,5 +93,6 @@ ActiveAdmin.register User do
   filter :status, as: :select
   filter :created_at
   filter :staff_invitation_type, as: :select
+  filter :is_test, as: :select
 
 end

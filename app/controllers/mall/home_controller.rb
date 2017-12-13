@@ -8,6 +8,11 @@ class Mall::HomeController < Mall::BaseController
       @slides = Slide.top(9)
     end
     @id = params[:id]
+
+    # 判断用户不是测试人员时， 筛选非测试产品
+    if current_user.user.is_test == false
+      @products = @products.where(is_test: false)
+    end
   end
 
   def classify

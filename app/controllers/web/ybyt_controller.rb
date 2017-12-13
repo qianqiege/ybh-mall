@@ -6,6 +6,27 @@ class Web::YbytController < Web::BaseController
   end
 
   def health_plan
-  	
+  end
+
+
+
+
+#以下为数字时代中页面
+  def capital
+  end
+
+  def healMana
+  end
+
+  def manaServ
+  end
+
+  def product
+  end
+
+  def senior
+  end
+
+  def strategic
   end
 end

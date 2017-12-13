@@ -1,6 +1,6 @@
 ActiveAdmin.register Activity do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :name,:start_time,:stop_time,:is_show,:url,:image
+  permit_params :name,:start_time,:stop_time,:is_show,:url,:image, :is_test
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "活动" do
@@ -10,6 +10,7 @@ ActiveAdmin.register Activity do
       f.input :is_show
       f.input :image ,as: :file
       f.input :url
+      f.input :is_test
     end
     f.actions
   end
@@ -37,6 +38,7 @@ ActiveAdmin.register Activity do
     column :is_show
     column :is_default
     column :url
+    column :is_test
     actions do |activity|
       span do
         link_to '设为默认活动', set_default_admin_activity_path(activity), method: :put, data: { confirm: 'Are you sure?' } unless activity.is_default

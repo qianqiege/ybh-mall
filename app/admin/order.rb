@@ -1,7 +1,7 @@
 ActiveAdmin.register Order do
   menu parent: I18n.t("active_admin.menu.mall")
 
-  permit_params :status, :express_number, :activity_id, :user_id, :price, :remark
+  permit_params :status, :express_number, :activity_id, :user_id, :price, :remark, :is_test
 
   actions :index, :show
 
@@ -164,6 +164,7 @@ ActiveAdmin.register Order do
         link_to '退货/退款', return_order_admin_order_path(order), method: :put, data: { confirm: 'Are you sure?' } if !order.return_change? && !order.cancel? && !order.pending?
       end
     end
+    column :is_test
     actions defaults: true
   end
 
@@ -179,6 +180,7 @@ ActiveAdmin.register Order do
   filter :wechat_user, as: :select
   filter :user, as: :select
   filter :activity, as: :select
+  filter :is_test, as: :select
 
   show do |order|
     attributes_table do
@@ -210,6 +212,7 @@ ActiveAdmin.register Order do
       row :express_number
       row :remark
       row :desc
+      row :is_test
     end
     panel "订单项详情" do
       table_for order.line_items do |t|
