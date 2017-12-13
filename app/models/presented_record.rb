@@ -3,6 +3,7 @@ class PresentedRecord < ApplicationRecord
   # 0、提现产生
   # 1、可提现
   # 2、不可提现
+  # 3、锁定
   has_paper_trail
   belongs_to :user
   belongs_to :presentable, polymorphic: true
@@ -43,30 +44,16 @@ class PresentedRecord < ApplicationRecord
   end
 
   def update_ycoin
-    wallet = Integral.find_by(user_id: user.id)
-    if wallet.nil?
-      Integral.create(user_id: user.id)
-    elsif self.is_effective == true && self.type == "Locking" && self.wight == 1
-      wallet.update(locking: wallet.locking.to_f + number.to_f)
-    elsif self.number > 0 && self.wight != 1 && self.type != "Locking" && self.is_effective == true && self.type != "Notexchange"
-      wallet.update(available: wallet.available.to_f + number.to_f, exchange: wallet.exchange.to_f + number.to_f)
-    elsif self.number < 0 && self.is_effective == false && self.reason == "消费积分"
-      case self.wight
-      when 1
-      else
-      end
-     elsif self.reason ==  "赠送/兑换"
-       case self.wight
-       when 1
-         wallet.update(available: wallet.available + self.number, not_exchange: wallet.not_exchange + self.number, appreciation: wallet.appreciation + self.number)
-       else
-         wallet.update(available: wallet.available + self.number, exchange: wallet.exchange + self.number, not_appreciation: wallet.not_appreciation + self.number)
-       end
-     end
-
-     if self.type == "Notexchange"
-       wallet.update(not_exchange: wallet.not_exchange + self.number)
-     end
+    @wallet = Integral.find_by(user_id: self.user_id)
+    case self.wight
+    when 1
+      @wallet.exchange = @wallet.exchange + self.balance
+    when 2
+      @wallet.not_exchange = @wallet.not_exchange + self.balance
+    when 3
+      @wallet.locking = @wallet.locking + self.balance
+    end
+    @wallet.save
   end
 
   def update_record

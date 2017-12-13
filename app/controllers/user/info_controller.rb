@@ -557,6 +557,39 @@ class User::InfoController < Wechat::BaseController
     @cash = CashRecord.where(user_id: current_user.user_id).where(reason: "提现")
   end
 
+  def sun
+    @user_1 = User.all
+    @user_1.each do |user_1|
+      @wallet_1 = Integral.find_by(user_id: user_1.id)
+      @record_1 = PresentedRecord.where(user_id: user_1.id)
+      @record_1.each do |r|
+        case r.wight
+        when 1
+          if !@wallet_1.nil?
+            @wallet_1.exchange = @record_1.where(type: "Available").sum(:balance)
+          else
+            @wallet_1 = Integral.create(user_id: user_1.id,exchange: @record_1.where(type: "Available").sum(:balance))
+          end
+        when 2
+          if !@wallet_1.nil?
+            @wallet_1.not_exchange = @record_1.where(type: "Notexchange").sum(:balance)
+          else
+            @wallet_1 = Integral.create(user_id: user_1.id,not_exchange: @record_1.where(type: "Notexchange").sum(:balance))
+          end
+        when 3
+          if !@wallet_1.nil?
+            @wallet_1.locking = @record_1.where(type: "Locking").sum(:balance)
+          else
+            @wallet_1 = Integral.create(user_id: user_1.id,locking: @record_1.where(type: "Locking").sum(:balance))
+          end
+        end
+        if !@wallet_1.nil?
+          @wallet_1.save
+        end
+      end
+    end
+  end
+
   def do_query_wallet
     if !params[:username].present? || !params[:password].present?
       render json: { status: 'error', message: '请填写用户名和密码' }
