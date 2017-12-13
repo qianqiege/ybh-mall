@@ -555,10 +555,6 @@ class User::InfoController < Wechat::BaseController
   def wallet
     @exchange_r = ExchangeRecord.where(user_id: current_user.user_id)
     @cash = CashRecord.where(user_id: current_user.user_id).where(reason: "提现")
-
-    if current_user.user_id == 2
-      sun
-    end
   end
 
   def sun
@@ -569,25 +565,27 @@ class User::InfoController < Wechat::BaseController
       @record_1.each do |r|
         case r.wight
         when 1
-          if !@wallet.nil?
+          if !@wallet_1.nil?
             @wallet_1.exchange = @record_1.where(type: "Available").sum(:balance)
           else
             @wallet_1 = Integral.create(user_id: user_1.id,exchange: @record_1.where(type: "Available").sum(:balance))
           end
         when 2
-          if !@wallet.nil?
+          if !@wallet_1.nil?
             @wallet_1.not_exchange = @record_1.where(type: "Notexchange").sum(:balance)
           else
             @wallet_1 = Integral.create(user_id: user_1.id,not_exchange: @record_1.where(type: "Notexchange").sum(:balance))
           end
         when 3
-          if !@wallet.nil?
+          if !@wallet_1.nil?
             @wallet_1.locking = @record_1.where(type: "Locking").sum(:balance)
           else
             @wallet_1 = Integral.create(user_id: user_1.id,locking: @record_1.where(type: "Locking").sum(:balance))
           end
         end
-        @wallet_1.save
+        if !@wallet_1.nil?
+          @wallet_1.save
+        end
       end
     end
   end
