@@ -27,6 +27,7 @@ class Order < ApplicationRecord
   before_validation :set_user
   before_create :generate_number, :copy_price_to_initial_price
   after_create :set_used_address, :create_scoin_account
+  before_save :update_is_test
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' ,return_change: '退货/款'}.freeze
   PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
@@ -542,6 +543,14 @@ class Order < ApplicationRecord
       message.push  product_name
     end
     message
+  end
+
+
+  # 判断用户是否为测试用户  是测试用户 该条记录为测试记录
+  def update_is_test
+    if self.user.is_test == true
+      self.is_test = true
+    end
   end
 
 end

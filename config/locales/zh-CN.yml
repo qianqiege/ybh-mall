@@ -49,6 +49,7 @@ zh-CN:
         priority: '权重(数字越大排在前)'
         is_custom_price: '自定义商品价格'
         height: '其他区分'
+        is_test: '是否为测试产品'
       hight_ticket:
         user: '用户'
         number: '数量'
@@ -69,6 +70,7 @@ zh-CN:
         status: '创建方式'
         wight: '赠送渠道（例如：邀请赠送）'
         desc: '备注'
+        is_test: '是否为测试类型'
       cash_record:
         number: '数量'
         reason: '收入支出渠道'
@@ -128,6 +130,7 @@ zh-CN:
         initial_price: '原始价格'
         remark: '备注'
         payment: '支付类型'
+        is_test: '是否为测试类型'
       wechat_user:
         open_id: '微信open_id'
         user: '用户姓名'
@@ -209,6 +212,7 @@ zh-CN:
         invitation: '邀请人'
         organization: '机构（公司）'
         coin: '易积分'
+        is_test: '是否为测试用户'
       spine_build:
         name: '筑脊师名字'
         workstation: '服务中心ID（筑脊师归属管理的服务中心）'
@@ -265,6 +269,7 @@ zh-CN:
         start_time: '开始时间'
         is_default: '是否默认'
         is_show: '是否显示'
+        is_test: '是否为测试活动'
       activity_rule:
         rule: '规则介绍'
         max: '最大值'

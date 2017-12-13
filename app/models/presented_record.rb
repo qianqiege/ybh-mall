@@ -12,6 +12,7 @@ class PresentedRecord < ApplicationRecord
   after_create :update_record
   after_create :company_ycoin
   after_create :update_ycoin
+  before_save :update_is_test
 
   validates :user, presence: true
   validates :number, presence: true
@@ -126,6 +127,14 @@ class PresentedRecord < ApplicationRecord
           end
         end
       end
+    end
+  end
+
+
+  # 判断用户是否为测试用户  是测试用户 该条记录为测试记录
+  def update_is_test
+    if self.user.is_test == true
+      self.is_test = true
     end
   end
 

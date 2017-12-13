@@ -50,6 +50,18 @@ class AdminAbility
       can :manage, PresentedRecord
       can :manage, Integral
       can :manage, ExchangeRecord
+    elsif user.role_name == 'tester'
+      can :manage, Order
+      can :manage, Product
+      can :manage, Activity
+      can :manage, ActivityRule
+      can :manage, PresentedRecord
+      can :manage, Integral
+      can :manage, WechatUser
+      can :manage, User
+      can :manage, Program
+      can :manage, HealthProgram
+      can :manage, ExchangeRecord
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end

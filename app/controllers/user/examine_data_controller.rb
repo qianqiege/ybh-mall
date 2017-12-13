@@ -250,7 +250,6 @@ class User::ExamineDataController < Wechat::BaseController
       if @show.nil?
         mall = Sdk::Mall.new
         @show = mall.get_health_data(user.identity_card, 5)[0...10]
-        byebug
         @aa = []
           @show.each do |f|
               bb = [] 
