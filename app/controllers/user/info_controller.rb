@@ -67,7 +67,7 @@ class User::InfoController < Wechat::BaseController
 
   def gave_money
     if !current_user.user.nil?
-      record = PresentedRecord.new(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange")
+      record = PresentedRecord.new(user_id: current_user.user_id,number: params[:number],is_effective: 1,reason: "活动推广赠送",type: "Notexchange",wight: 2)
       code = ApplyCode.find_bye(id: params[:code_id])
       if !code.nil? && code.state != "void"
         @user = PresentedRecord.where("user_id = ? && code_id = ?",current_user.user_id,code.id)
@@ -215,7 +215,7 @@ class User::InfoController < Wechat::BaseController
 
   def gift_account
     @available = Integral.find_by(user_id: current_user.user_id)
-    @user_available_y = @available.available
+    @user_available_y = @available.exchange
   end
 
   def create_gift_friend
@@ -293,13 +293,13 @@ class User::InfoController < Wechat::BaseController
             if !record.balance.nil? && record.balance > 0
               while order_integral > 0
                 if record.balance >= order_integral
-                  PresentedRecord.create(user_id: integral.user_id, number: "-#{order_integral}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                  PresentedRecord.create(user_id: integral.user_id, number: "-#{order_integral}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: 0)
                   record.update(balance: record.balance - order_integral)
                   order_integral = 0
                   break
                 elsif record.balance <= order_integral
                   order_integral = order_integral - record.balance
-                  PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: record.wight)
+                  PresentedRecord.create(user_id: integral.user_id, number: "-#{record.balance}", reason: "兑换/赠送", is_effective:0, type: record.type ,record_id: record.id,wight: 0)
                   record.balance = 0
                   if record.save
                     break
@@ -319,7 +319,7 @@ class User::InfoController < Wechat::BaseController
       end
 
       if params["type_coin"] == "1" && order_integral == 0
-        invitation_record = PresentedRecord.new(user_id: params["id"], number: number, reason: "好友赠送", is_effective:1, type: "Available",wight: 11,is_effective: 1)
+        invitation_record = PresentedRecord.new(user_id: params["id"], number: number, reason: "好友赠送", is_effective:1, type: "Available",wight: 1,is_effective: 1)
         if invitation_record.save
           integral.update(available: integral.available - number)
           flash[:notice] = '赠送成功'
