@@ -55,11 +55,15 @@ class PresentedRecord < ApplicationRecord
     when 3
       @wallet.locking = @wallet.locking + self.balance
     when 4
-      if self.number <= @wallet.not_exchange
-        @wallte.not_exchange = @wallte.not_exchange + self.number
-      elsif self.number * -1 >= @wallet.not_exchange
-        @number = self.number * -1 - @wallet.not_exchange
-        @wallet.exchange = @wallet.exchange - @number
+      if !@wallet.not_exchange.nil? && @wallet.not_exchange > 0
+        if self.number <= @wallet.not_exchange
+          @wallet.not_exchange = @wallet.not_exchange + self.number
+        elsif self.number * -1 >= @wallet.not_exchange
+          @number = self.number * -1 - @wallet.not_exchange
+          @wallet.exchange = @wallet.exchange - @number
+        end
+      else
+        @wallet.exchange + self.number
       end
     end
     @wallet.save
