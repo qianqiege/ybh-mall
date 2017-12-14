@@ -28,7 +28,7 @@ module Sdk
     end
 
     def update_id_number(old_number,new_number)
-      exec(:get,"examination_input/update_user_id_number?old_number=#{old_number}&new_number=#{new_number}")
+      exec(:post, "examination_input/update_user_id_number?old_number=#{old_number}&new_number=#{new_number}")
     end
 
     def get_phone_email(email)
