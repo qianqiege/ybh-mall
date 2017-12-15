@@ -302,7 +302,7 @@ class API::V1::User < API
     params do
       requires :id_number, type: Integer
     end
-    get 'tds' do
+    get 'tds_record' do
       mall = Sdk::Mall.new
       tds_record = mall.tds_report(params[:id_number])
     end

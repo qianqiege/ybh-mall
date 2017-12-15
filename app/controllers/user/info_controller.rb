@@ -614,6 +614,12 @@ class User::InfoController < Wechat::BaseController
     elsif !current_user.user_id.nil?
       @idcard = User.find(current_user.user_id)
     end
+
+    if @idcard.identity_card.nil?
+      flash[:notice] = '请完善您的身份信息!'
+      redirect_to 'user/edit_info'
+    end
+
     mall = Sdk::Mall.new
     @record = mall.record(@idcard.identity_card)
   end
@@ -633,10 +639,14 @@ class User::InfoController < Wechat::BaseController
   end
 
   def tds_record
-    if !current_user.user_id.nil?
+    # 判断是否 有身份证信息  不存在就跳转到个人信息编辑页面
+    if !current_user.user_id.nil? && current_user.user.identity_card
       @idcard = User.find(current_user.user_id)
       mall = Sdk::Mall.new
       @tds_record = mall.tds_report(@idcard.identity_card)
+    else
+      flash[:notice] = '请完善您的身份信息!'
+      redirect_to 'user/edit_info'
     end
   end
 

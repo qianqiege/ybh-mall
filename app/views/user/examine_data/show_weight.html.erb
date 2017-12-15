@@ -2,9 +2,16 @@
 <%= render 'head' %>
 <div class="weui-btn-area" style="display: block;  padding-bottom:3.5rem;">
   <% if @show.class != Array %>
-    <%= line_chart [
-    {name: "体重", data: @show.pluck(:updated_at, :value)}
-  ], library: @options, min: @show_last.value-5, max: @show_last.value+5 %>
+    <!-- 判断是否有体重数据  无数据时强制指定 图表最大最小值 -->
+    <% if @show_last %>
+      <%= line_chart [
+      {name: "体重", data: @show.pluck(:updated_at, :value)}
+    ], library: @options, min: @show_last.value-5, max: @show_last.value+5 %>
+    <% else %>
+      <%= line_chart [
+      {name: "体重", data: @show.pluck(:updated_at, :value)}
+    ], library: @options, min: 0, max: 5 %>
+    <% end %>
   <% else %>
     <%= line_chart [
     {name: "体重", data: @aa}
