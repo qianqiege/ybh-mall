@@ -65,6 +65,12 @@ class User::ExamineDataController < Wechat::BaseController
           }
         }
       }
+
+      if current_user.user.identity_card.blank?
+        flash[:notice] = '请完善您的身份信息!'
+        redirect_to 'user/edit_info'
+      end
+
       if @show.nil?
         mall = Sdk::Mall.new
         @show = mall.get_health_data(current_user.user.identity_card,4)[0...10]
