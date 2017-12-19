@@ -3,6 +3,12 @@ ActiveAdmin.register PresentedRecord do
   actions :index, :show ,:new ,:create
   permit_params :user_id,:number,:status,:is_effective,:wight,:desc, :is_test
 
+  # 积分权重编码解释
+  # 0、消费
+  # 1、可提现
+  # 2、不可提现
+  # 3、锁定
+
   index do
      selectable_column
      id_column
@@ -29,7 +35,7 @@ ActiveAdmin.register PresentedRecord do
        f.input :number
        f.input :status, as: :select, collection: ["人工创建"]
        f.input :is_effective
-       f.input :wight, as: :select, collection: { '购买产品返还积分' => '1', '会员链接奖励' => '2', '注册赠送' => '7', '邀请好友赠送' => '6' , '邀请好友消费赠送' => '3', '客服调配' => '13' , '消费' => '14'}
+       f.input :wight, as: :select, collection: {'可提现积分' => '1', '不可提现积分' => '2', '锁定积分' => '3','扣除积分' => '0' }
        f.input :is_test
        f.input :desc
      end

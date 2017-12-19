@@ -75,25 +75,16 @@ class PresentedRecord < ApplicationRecord
   if self.status == "人工创建"
 
       if self.wight == 1
-        self.type = "Locking"
-      else
-        self.type = "Available"
-      end
-
-      if self.wight == 1
-        self.reason = '购买产品返还积分'
+        self.reason = '可提现积分'
+        self.type = "Exchange"
       elsif self.wight == 2
-        self.reason = '会员链接奖励'
+        self.reason = '不可提现积分'
+        self.type = "Notexchange"
       elsif self.wight == 3
-        self.reason = '邀请好友消费赠送'
-      elsif self.wight == 6
-        self.reason = '邀请好友赠送'
-      elsif self.wight == 7
-        self.reason = '注册赠送'
-      elsif self.wight == 13
-        self.reason = '客服调配'
-      elsif self.wight == 14
-        self.reason = '消费'
+        self.reason = '锁定积分'
+        self.type = "Locking"
+      elsif self.wight == 0
+        self.reason = '扣除积分'
       end
 
       self.save
