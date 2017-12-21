@@ -90,6 +90,73 @@
   left: 15px;
 }
 
+.shopList {
+   margin-top: 5%; 
+}
+
+.shopList ul {
+    border-top: 1px solid #ccc;  
+}
+
+.shopList ul li {
+    display: flex;
+    border-bottom:1px solid #ccc;
+}
+
+.shopList ul li .slLeft,.shopList ul li .slRight {
+    display: inline-block;
+}
+
+.shopList ul li .slLeft {
+    width: 20%;
+    padding:2%;
+}
+
+.shopList ul li .slRight {
+    flex:1;
+}
+
+.shopList ul li .slLeft img {
+    width: 100%;
+}
+
+.shopList ul li .slRight p {
+    font-size: 1.1rem;
+    margin: 6% 0 0 4%;
+}
+
+.shopList ul li .slRight span {
+    font-size: 0.8rem;
+    margin: 4% 0 0 4%;
+    color: #666;
+}
+
+a { 
+  text-decoration:none;
+  out-line: none;
+  color: #000;
+}
+
+.shopTag {
+    display: flex;
+    padding:0 5%;
+    margin:1% 0;
+}
+
+.shopTag span {
+    display: inline-block;
+    width:20%;
+    background: #ad0e11;
+    text-align: center;
+    color: #fff;
+    padding: 0 2%;
+}
+
+.shopTag a {
+    flex:1;
+    text-align: right;
+}
+
 </style>
 
 <%= title '御易健' %>
@@ -139,7 +206,7 @@
           <p class="fontSizes">商盟</p>
         <% end %>
       </td> -->
-
+      <% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
         <td>
             <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
             <p class="fontSizes">199计划</p>
@@ -148,7 +215,8 @@
         <td>
             <a href=""><%= image_tag "创客.png", size: "50x50" %></a>
             <p class="fontSizes">创客计划</p>
-        </td>      
+        </td> 
+      <% end %>     
     </tr>
   </table>
 
@@ -171,6 +239,50 @@
   </div>
 <% end %>
 
-  
+<div class="shopList">
+    <div class="shopTag">
+        <span>平行店</span>
+        <a href="">更多 》</a>
+    </div>
+    <ul>
+
+      <a href="<%= wechat_parallel_shops_shopdata_path %>">
+        <li>
+          <div class="slLeft">
+            <%= image_tag "商城.png", class:'shopImage' %>
+          </div>
+          <div class="slRight">
+            <p>店铺名字</p>
+            <span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
+          </div>
+        </li>
+      </a>
+
+      <a href="">
+        <li>
+          <div class="slLeft">
+            <%= image_tag "商城.png", class:'shopImage' %>
+          </div>
+          <div class="slRight">
+            <p>店铺名字</p>
+            <span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
+          </div>
+        </li>
+      </a>
+
+      <a href="">
+        <li>
+          <div class="slLeft">
+            <%= image_tag "商城.png", class:'shopImage' %>
+          </div>
+          <div class="slRight">
+            <p>店铺名字</p>
+            <span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
+          </div>
+        </li>
+      </a>            
+
+    </ul>
+  </div>  
 
 </div>

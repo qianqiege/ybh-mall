@@ -102,8 +102,6 @@
 
 	.shopDatas {
 		display: flex;
-		border-bottom:1px solid #ccc;
-		border-top:1px solid #ccc;
 		margin: 15px 0;
 	}
 
@@ -112,7 +110,7 @@
 	}
 
 	.shopDatas .slLeft {
-		width: 20%;
+		width: 30%;
 		padding:2%;
 	}
 
@@ -126,7 +124,7 @@
 
 	.shopDatas .slRight p {
 		font-size: 1.1rem;
-		margin: 6% 0 0 4%;
+		margin: 4% 0 0 4%;
 	}
 
 	.shopDatas .slRight span {
@@ -150,15 +148,17 @@
 <div class="outD">
 
 	<div class="contain">
+
 		<div class="shopDatas">
 			<div class="slLeft">
-				<%= image_tag "商城.png", class:'shopImage' %>
+				<%= image_tag "ybyt.png", class:'shopImage' %>
 			</div>
 			<div class="slRight">
 				<p>店铺名字</p>
 				<span>店铺地址店铺地址店铺地址</span>
 			</div>
 		</div>
+
 		<!-- 带有a标签的循环，其他删掉 -->
 		<div style="margin-bottom: 110px;">
 			<a class="proDataLink" href="<%= wechat_parallel_shops_commoditydetails_path %>">
