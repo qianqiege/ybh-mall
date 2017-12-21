@@ -1,4 +1,4 @@
-class Wechat::MakersController < ApplicationController
+class Wechat::MakersController < Wechat::BaseController
   def plan
   end
 
