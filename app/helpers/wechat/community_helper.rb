@@ -1,2 +1,0 @@
-module Wechat::CommunityHelper
-end
