@@ -1,0 +1,307 @@
+<style>
+	.outD{
+		position: relative;
+		height: 100%;
+	}
+	.contain{
+		width: 100%;
+		margin-bottom: 80px;
+	}
+	.imgcon {
+		display: inline-block;
+		width: 47%;
+		padding: 0 3px 5px;
+		position: relative;
+	}
+	.imgcon img{
+		width:100%;
+		margin: 0 auto;
+		background-color: #eee;
+	}
+	.imgcon .name{
+		text-align: center;
+		font-size: 14px;
+		margin: 3px 0 3px;
+		margin: 0 auto;
+	}
+	.imgcon .price{
+		text-align: center;
+		color: #ad0e11;
+		font-size: 14px;
+		margin: 3px 0 3px;
+	}
+	.gw_num{
+		border: 1px solid #dbdbdb;
+		width: 110px;
+		line-height: 26px;
+		overflow: hidden;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.gw_num em{
+		display: block;
+		height: 26px;
+		width: 26px;
+		float: left;
+		color: #7A7979;
+		border-right: 1px solid #dbdbdb;
+		text-align: center;
+		cursor: pointer;
+	}
+	.gw_num .num{
+		display: block;
+		float: left;
+		text-align: center;
+		width: 56px;
+		font-style: normal;
+		font-size: 14px;
+		line-height: 24px;
+		border: 0;
+	}
+	.gw_num em.add{
+		float: right;
+		border-right: 0;
+		border-left: 1px solid #dbdbdb;
+	}
+	.total{
+		width: 100%;
+		position: fixed;
+		bottom: 58px;
+		left: 0;
+		font-size: 14px;
+		background-color: #fff;
+	}
+	.money{
+		display: inline-block;
+		text-align: center;
+		width: 37%;
+		line-height: 30px;
+	}
+	.settle{
+		display: inline-block;
+		width: 30%;
+		text-align: center;
+		background-color: #ad0e11;
+		color: #fff;
+		padding:3% 0;
+		/*line-height: 25px;*/
+	}
+	.checkbox{
+		display: inline-block;
+		margin-top: 10px;
+		position: absolute;
+		left: 5px;
+		bottom: 38px;
+	}
+	.layCheck{
+		display: inline-block;
+	}
+	em{
+		font-style: normal;
+	}
+
+	.shopDatas {
+		display: flex;
+		margin: 15px 0;
+	}
+
+	.shopDatas .slLeft,.shopDatas .slRight {
+		display: inline-block;
+	}
+
+	.shopDatas .slLeft {
+		width: 30%;
+		padding:2%;
+	}
+
+	.shopDatas .slRight {
+		flex:1;
+	}
+
+	.shopDatas .slLeft img {
+		width: 100%;
+	}
+
+	.shopDatas .slRight p {
+		font-size: 1.1rem;
+		margin: 4% 0 0 4%;
+	}
+
+	.shopDatas .slRight span {
+		font-size: 0.8rem;
+		margin: 4% 0 0 4%;
+		color: #666;
+	}
+
+	.checkbox {
+		width:20px;
+		height:20px;
+	}
+
+	.proDataLink {
+		text-decoration:none;
+		out-line: none;
+		color: #000;		
+	}
+
+</style>
+<div class="outD">
+
+	<div class="contain">
+
+		<div class="shopDatas">
+			<div class="slLeft">
+				<%= image_tag "ybyt.png", class:'shopImage' %>
+			</div>
+			<div class="slRight">
+				<p>店铺名字</p>
+				<span>店铺地址店铺地址店铺地址</span>
+			</div>
+		</div>
+
+		<!-- 带有a标签的循环，其他删掉 -->
+		<div style="margin-bottom: 110px;">
+			<a class="proDataLink" href="<%= wechat_parallel_shops_commoditydetails_path %>">
+				<div class="imgcon">
+					<%= image_tag "L-alabo.png" %>	
+				
+					<input type="checkbox" class="checkbox" value="L-阿拉伯糖">
+					
+					<div class="name">L-阿拉伯糖</div>
+					<div class="price">960.00</div>
+					<div class="gw_num">
+						<em class="jian">-</em>
+						<input type="text" value="1" disabled class="num"/>
+						<em class="add">+</em>
+					</div>
+				</div>
+			</a>
+
+			<div class="imgcon">
+				<%= image_tag "L-alabo.png" %>	
+				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
+				<div class="name">L-阿拉伯糖</div>
+				<div class="price">960.00</div>	
+				<div class="gw_num">
+					<em class="jian">-</em>
+					<input type="text" value="1" disabled class="num"/>
+					<em class="add">+</em>
+				</div>
+			</div>
+
+			<div class="imgcon">
+				<%= image_tag "L-alabo.png" %>	
+				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
+				<div class="name">L-阿拉伯糖</div>
+				<div class="price">960.00</div>	
+				<div class="gw_num">
+					<em class="jian">-</em>
+					<input type="text" value="1" disabled class="num"/>
+					<em class="add">+</em>
+				</div>
+			</div>	
+
+			<div class="imgcon">
+				<%= image_tag "L-alabo.png" %>	
+				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
+				<div class="name">L-阿拉伯糖</div>
+				<div class="price">960.00</div>	
+				<div class="gw_num">
+					<em class="jian">-</em>
+					<input type="text" value="1" disabled class="num"/>
+					<em class="add">+</em>
+				</div>
+			</div>
+
+			<div class="imgcon">
+				<%= image_tag "L-alabo.png" %>	
+				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
+				<div class="name">L-阿拉伯糖</div>
+				<div class="price">960.00</div>	
+				<div class="gw_num">
+					<em class="jian">-</em>
+					<input type="text" value="1" disabled class="num"/>
+					<em class="add">+</em>
+				</div>
+			</div>	
+
+			<div class="imgcon">
+				<%= image_tag "L-alabo.png" %>	
+				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
+				<div class="name">L-阿拉伯糖</div>
+				<div class="price">960.00</div>	
+				<div class="gw_num">
+					<em class="jian">-</em>
+					<input type="text" value="1" disabled class="num"/>
+					<em class="add">+</em>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="total">
+		<p class="money">
+			总计：<span id="priceTotal">0.00</span>
+		</p>
+		<a class="settle">去结算</a>
+		<a class="settle" href="<%= wechat_parallel_shops_shopreceive_path %>">平行领配</a>	
+	</div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+		var allPrice = 0;
+
+		//加的效果
+		$(".add").click(function(){
+			var n=$(this).prev().val();
+			var num=parseInt(n)+1;
+			if(num==0){ 
+				return;
+			}
+			$(this).prev().val(num);
+			var price = parseFloat($(this).parent().siblings('.price').text());
+			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
+			if (statusC) {
+				allPrice += price;
+				$("#priceTotal").text(allPrice);
+			}else {
+				return false;
+			}
+		});
+			//减的效果
+		$(".jian").click(function(){
+			var n=$(this).next().val();
+			var num=parseInt(n)-1;
+			if(num==0){ 
+				return
+			}
+			$(this).next().val(num);
+			var price = parseFloat($(this).parent().siblings('.price').text());
+			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
+			if (statusC) {
+				allPrice -= price;
+				$("#priceTotal").text(allPrice);
+			}else {
+				return false;
+			}
+		});
+
+		
+		$('.checkbox').click(function(){
+			
+			var num = parseInt($(this).siblings('.gw_num').find("input").val());
+			if ($(this).is(':checked')) {
+				allPrice += $(this).siblings('.price').text() * num;
+			}else {
+				allPrice -= $(this).siblings('.price').text() * num;
+			}
+
+			$("#priceTotal").text(allPrice);
+		})
+
+</script>

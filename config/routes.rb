@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   namespace :wechat do
     root "home#index"
     get 'parallel_shops/index'
+    get 'parallel_shops/shopdata'
+    get 'parallel_shops/commoditydetails'
+    get 'parallel_shops/shopreceive'
     get '/merchants', to: 'home#merchants'
     get '/coalition', to: 'home#coalition'
     get '/coalition_edit_info', to: 'home#coalition_edit_info'

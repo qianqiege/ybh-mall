@@ -39,22 +39,58 @@
     color: #666;
 }
 
+a { 
+	text-decoration:none;
+	out-line: none;
+	color: #000;
+}
+
 </style>
 
-<div class="shopList">
-    <ul>
-        
-            <a href="">
-                <li>
-                    <div class="slLeft">
-                    	<%= image_tag "商城.png", class:'shopImage' %>
-                    </div>
-                    <div class="slRight">
-                        <p>店铺名字</p>
-                        <span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
-                    </div>
-                </li>
-            </a>
-        
-    </ul>
+
+<div>
+	<div class="home">
+		<%= render 'shared/slide' %>
+	</div>
+	<div class="shopList">
+		<ul>
+
+			<a href="<%= wechat_parallel_shops_shopdata_path %>">
+				<li>
+					<div class="slLeft">
+						<%= image_tag "商城.png", class:'shopImage' %>
+					</div>
+					<div class="slRight">
+						<p>店铺名字</p>
+						<span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
+					</div>
+				</li>
+			</a>
+
+			<a href="">
+				<li>
+					<div class="slLeft">
+						<%= image_tag "商城.png", class:'shopImage' %>
+					</div>
+					<div class="slRight">
+						<p>店铺名字</p>
+						<span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
+					</div>
+				</li>
+			</a>
+
+			<a href="">
+				<li>
+					<div class="slLeft">
+						<%= image_tag "商城.png", class:'shopImage' %>
+					</div>
+					<div class="slRight">
+						<p>店铺名字</p>
+						<span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
+					</div>
+				</li>
+			</a>						
+
+		</ul>
+	</div>
 </div>

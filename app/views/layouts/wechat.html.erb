@@ -15,10 +15,12 @@
               <%= image_tag("home.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">首页</p>
             </a>
+            <% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
             <a href="<%= wechat_parallel_shops_index_path %>" class="weui-tabbar__item">
               <%= image_tag("pingxingdian.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">平行店</p>
             </a>
+            <% end %>
             <a href="<%= mall_root_path %>" class="weui-tabbar__item <%= controller_name == "carts" ? 'weui-bar__item_on' : nil %>">
               <%= image_tag("mall.png", class: "weui-tabbar__icon") %>
               <p class="weui-tabbar__label">商城</p>
