@@ -19,14 +19,6 @@
 		height: 114px;
 		padding: 5px 0;
 	}
-	.authd{
-		margin-top: 15px;
-		margin-left: 10px;
-	}
-	.auth{
-		font-size: 16px;
-		font-weight: bold;	
-	}
 	.shopList ul {
 	    border-top: 1px solid #ccc;
 	    margin-top: 2%;
@@ -121,6 +113,14 @@
 	.authd .btn2{
 		background-color: #68a870;
 	}
+	.authd{
+		margin-top: 15px;
+		margin-left: 10px;
+	}
+	.auth{
+		font-size: 16px;
+		font-weight: bold;	
+	}
 
 
 </style>
@@ -128,8 +128,8 @@
 <div class="containe">
 	<div class="authd">
 		<span class="auth">平行店授权</span>
-		<button class="btn1">授权</button>
-		<button class="btn2">授权</button>
+		<button class="btn1" disabled>授权</button>
+		<button class="btn2" disabled>授权</button>
 	</div>
 
 	<div>
@@ -137,7 +137,6 @@
 	    <tr style="text-align: center;">
 	        <td class="tdwith">
 	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-	            <!-- <div class="fontSizes">11</div> -->
 	            <div style="margin-bottom:15%;font-weight: bold;line-height: 33px;">周毅</div>
 	        </td>      
 	        <td class="tdwith">

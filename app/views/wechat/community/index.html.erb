@@ -51,20 +51,19 @@ div {
 .shopList ul li .slRight span {
     font-size: 0.8rem;
 /*    margin: 4% 0 0 4%;*/
-    color: #666;
+    color: #444;
 }
 
+.slRight-title {
+	overflow: auto;
+	margin-bottom: 8px;
+}
 .goPlan {
 	background: #ad0e11;
 	color: #fff;
 	display: inline-block;
 	padding: 5px 10px;
 	font-size: 14px;
-}
-
-.slRight-title {
-	overflow: auto;
-	margin-bottom: 8px;
 }
 
 .slRight-title>span:last-child {
@@ -95,8 +94,7 @@ div {
 	background: #ad0e11;
 	padding: 8px 0;
 	color: #fff;
-	font-size: 14px;
-	
+	font-size: 14px;	
 }
 
 
@@ -104,7 +102,9 @@ div {
 
 <div class="shopList">
 	<div class="plan-image">
-		<a href="<%= wechat_community_instruct_path %>"><%= image_tag "共同体图片.jpg" %></a>
+		<a href="<%= wechat_community_instruct_path %>">
+			<%= image_tag "199.jpg" %>
+		</a>
 	</div>
 	<div>
 		<span class="goPlan">发起计划</span>
