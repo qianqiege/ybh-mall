@@ -61,7 +61,10 @@ Rails.application.routes.draw do
       post :upload_license_image, on: :collection
       post :upload_user_image, on: :collection
     end
-    
+    get 'makers/plan'
+    get 'makers/plan_details'
+    get 'makers/protocol'
+    get 'makers/instructions'
   end
 
   namespace :mall do
