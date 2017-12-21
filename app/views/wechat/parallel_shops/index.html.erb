@@ -1,10 +1,6 @@
 
 <style>
 
-.home img {
-	width:100%;
-}
-
 .shopList ul {
     border-top: 1px solid #ccc;
     margin-top: 5%;
@@ -51,10 +47,10 @@ a {
 
 </style>
 
-<%= title '平行店' %>
+
 <div>
 	<div class="home">
-		<a href="<%= wechat_parallel_shops_instructions_path %>"><%= image_tag "shopTopImage.jpg" %></a>
+		<%= render 'shared/slide' %>
 	</div>
 	<div class="shopList">
 		<ul>

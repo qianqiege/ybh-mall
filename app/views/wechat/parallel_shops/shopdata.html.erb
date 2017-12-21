@@ -5,7 +5,7 @@
 	}
 	.contain{
 		width: 100%;
-		padding-bottom: 20px;
+		margin-bottom: 80px;
 	}
 	.imgcon {
 		display: inline-block;
@@ -86,14 +86,6 @@
 		padding:3% 0;
 		/*line-height: 25px;*/
 	}
-	.goPay {
-		display: inline-block;
-		width: 30%;
-		text-align: center;
-		background-color: #5495d1;
-		color: #fff;
-		padding:3% 0;	
-	}
 	.checkbox{
 		display: inline-block;
 		margin-top: 10px;
@@ -111,7 +103,6 @@
 	.shopDatas {
 		display: flex;
 		margin: 15px 0;
-		margin-left: 3%;
 	}
 
 	.shopDatas .slLeft,.shopDatas .slRight {
@@ -154,7 +145,6 @@
 	}
 
 </style>
-<%= title '店内详情' %>
 <div class="outD">
 
 	<div class="contain">
@@ -187,7 +177,6 @@
 					</div>
 				</div>
 			
-
 			<div class="imgcon">
 				<%= image_tag "L-alabo.png" %>	
 				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
@@ -254,8 +243,8 @@
 		<p class="money">
 			总计：<span id="priceTotal">0.00</span>
 		</p>
-		<a class="goPay">去结算</a>
-		<a class="settle" href="<%= wechat_parallel_shops_shopreceive_path %>">平行配领</a>	
+		<a class="settle">去结算</a>
+		<a class="settle" href="<%= wechat_parallel_shops_shopreceive_path %>">平行领配</a>	
 	</div>
 </div>
 
@@ -279,7 +268,7 @@
 			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
 			if (statusC) {
 				allPrice += price;
-				$("#priceTotal").text(allPrice);
+				$("#priceTotal").text(allPrice.toFixed(2));
 			}else {
 				return false;
 			}
@@ -296,7 +285,7 @@
 			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
 			if (statusC) {
 				allPrice -= price;
-				$("#priceTotal").text(allPrice);
+				$("#priceTotal").text(allPrice.toFixed(2));
 			}else {
 				return false;
 			}
@@ -312,7 +301,7 @@
 				allPrice -= $(this).siblings('.price').text() * num;
 			}
 
-			$("#priceTotal").text(allPrice);
+			$("#priceTotal").text(allPrice.toFixed(2));
 		})
 
 </script>
