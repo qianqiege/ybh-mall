@@ -208,7 +208,7 @@ a {
       </td> -->
       <% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
         <td>
-            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
+            <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
             <p class="fontSizes">199计划</p>
         </td>
            
