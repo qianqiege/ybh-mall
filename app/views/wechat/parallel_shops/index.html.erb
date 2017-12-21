@@ -1,0 +1,60 @@
+
+<style>
+
+.shopList ul {
+    border-top: 1px solid #ccc;
+    margin-top: 5%;
+}
+
+.shopList ul li {
+    display: flex;
+    border-bottom:1px solid #ccc;
+}
+
+.shopList ul li .slLeft,.shopList ul li .slRight {
+    display: inline-block;
+}
+
+.shopList ul li .slLeft {
+    width: 20%;
+    padding:2%;
+}
+
+.shopList ul li .slRight {
+    flex:1;
+}
+
+.shopList ul li .slLeft img {
+    width: 100%;
+}
+
+.shopList ul li .slRight p {
+    font-size: 1.1rem;
+    margin: 6% 0 0 4%;
+}
+
+.shopList ul li .slRight span {
+    font-size: 0.8rem;
+    margin: 4% 0 0 4%;
+    color: #666;
+}
+
+</style>
+
+<div class="shopList">
+    <ul>
+        
+            <a href="">
+                <li>
+                    <div class="slLeft">
+                    	<%= image_tag "商城.png", class:'shopImage' %>
+                    </div>
+                    <div class="slRight">
+                        <p>店铺名字</p>
+                        <span>店铺简介店铺简介店铺简介店铺简介店铺简介</span>
+                    </div>
+                </li>
+            </a>
+        
+    </ul>
+</div>

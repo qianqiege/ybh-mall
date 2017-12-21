@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+
   mount API => '/'
   mount GrapeSwaggerRails::Engine => '/swagger'
 
@@ -24,6 +26,7 @@ Rails.application.routes.draw do
 
   namespace :wechat do
     root "home#index"
+    get 'parallel_shops/index'
     get '/merchants', to: 'home#merchants'
     get '/coalition', to: 'home#coalition'
     get '/coalition_edit_info', to: 'home#coalition_edit_info'
