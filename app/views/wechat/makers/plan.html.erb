@@ -76,7 +76,7 @@ div {
 }
 
 .plan-image {
-	margin-bottom: 25px;
+	margin-bottom: 10px;
 }
 
 .plan-image img {
@@ -88,7 +88,7 @@ div {
 	width: 100%;
 	background: rgba(201, 43, 47, 1);
 	border: none;
-	padding: 8px 0;
+	padding: 10px 0;
 	color: #fff;
 	position: fixed;
 	bottom: 58px;
@@ -100,7 +100,9 @@ div {
 
 <div class="shopList">
 	<div class="plan-image">
-		<%= image_tag "capital-1.jpg" %>
+		<a href="<%=  wechat_makers_instructions_path %>">
+			<%= image_tag "makers.jpg" %>
+		</a>
 	</div>
 	<div>
 		<span class="goPlan">发起计划</span>
@@ -109,22 +111,26 @@ div {
 		<a href="">
 		 <li>
 		     <div class="slLeft">
-		     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+		     	<a href="">
+		     		<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+		     	</a>
 		     </div>
 		     <div class="slRight">
+		     	<a href="<%=  wechat_makers_plan_details_path %>">
 		     		<div class="slRight-title">
-		            <span>创客计划</span>
-		            <span>队长</span>
+			            <span>创客计划</span>
+			            <span>队长</span>
 		     		</div>
 		     		<div>
 		     			<span>发起时间：2017-12-18</span>
 		     		</div>
+		     	</a>
 		     </div>
 		 </li>
 		</a>
 	</ul>
     <div class="plan-button">
-    	<a href="<%=  wechat_makers_plan_details_path %>">
+    	<a href="<%=  wechat_makers_protocol_path %>">
     		<button> 同意发起计划 </button>
     	</a>
     </div>

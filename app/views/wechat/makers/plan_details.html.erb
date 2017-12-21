@@ -98,18 +98,56 @@ b {
 }
 
 .footer-makers-span {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	text-align: right;
 	padding-right: 10px;
 }
 
+.xuyue-btn {
+	background-color: #ad0e11;
+	color: #fff;
+	padding: 5px 14px;
+    border-radius: 3px;
+    margin-left: 20px;
+} 
+
+.authd button{
+		color: #fff;
+		border-radius: 20px;
+		border: none;
+		width: 30px;
+    	height: 30px;
+    	font-size: 12px;
+}
+.authd .btn1{
+	background-color: #ad0e11;	
+	margin: 0 7px;	
+}
+
+.authd .btn2{
+	background-color: #68a870;
+}
+
+.authd{
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.auth{
+	font-size: 16px;
+	font-weight: bold;	
+}
 </style>
 
 
 <div class="makers-container">
 	<div>
-		<h3>平行店授权</h3>
-		<div>
+		<div class="authd">
+			<span class="auth">平行店授权</span>
+			<button class="btn1" disabled>授权</button>
+			<button class="btn2" disabled>授权</button>
+		</div>
 	    <div style="text-align: center;">
 	        <div>
 	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
@@ -143,9 +181,9 @@ b {
 		</div>
 	</div>
 	<div class="shopList">
-		<h3>我的平行店</h3>
+		<span class="auth" style="margin-left: 10px;">我的平行店</span>
 		<ul style="padding-left: 0px;">
-		<a href="">
+		<a href="" style="display: block;">
 		 <li>
 		     <div class="slLeft">
 		     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
@@ -162,7 +200,7 @@ b {
 	<div class="footer-makers">
 		<div class="footer-makers-span">
 			<span>总额：2500</span>
-			<span>续约</span>
+			<span class="xuyue-btn">续约</span>
 		</div>
 		<div class="footer-makers-button">
 			<button>邀请伙伴</button>
