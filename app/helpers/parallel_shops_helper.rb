@@ -1,0 +1,2 @@
+module ParallelShopsHelper
+end
