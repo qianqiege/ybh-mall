@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     get 'parallel_shops/shopdata'
     get 'parallel_shops/commoditydetails'
     get 'parallel_shops/shopreceive'
+    get 'parallel_shops/instructions'
     get '/merchants', to: 'home#merchants'
     get '/coalition', to: 'home#coalition'
     get '/coalition_edit_info', to: 'home#coalition_edit_info'

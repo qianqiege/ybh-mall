@@ -8,7 +8,9 @@
 		height: 220px;
 		margin: 0 auto;
 		border:1px solid #ccc;
-		margin-top: 10%;
+		margin-top: 5%;
+		margin-bottom: 5%;
+		text-align: center;
 	}
 
 	.allPay {
@@ -61,12 +63,12 @@
 	}
 </style>
 
-
+<%= title '平行配领' %>
 <div class="container">
+	<p class="allPay">总计：2312元</p>
 	<div class="price">
 		这是二维码
-	</div>
-	<p class="allPay">总计：2312元</p>
+	</div>	
 	<ul class="listShow">
 		<li>
 			<div class="proLeft"><%= image_tag "L-alabo.png",class:'proImg' %></div>
@@ -74,7 +76,27 @@
 				<p class="proName">产品名</p>
 				<p class="proInfo">
 					<span>￥100</span>
-					<span>X 2</span>
+					<span style="float: right;margin-right: 5%;">X 2</span>
+				</p>
+			</div>
+		</li>
+		<li>
+			<div class="proLeft"><%= image_tag "L-alabo.png",class:'proImg' %></div>
+			<div class="proRight">
+				<p class="proName">产品名</p>
+				<p class="proInfo">
+					<span>￥100</span>
+					<span style="float: right;margin-right: 5%;">X 2</span>
+				</p>
+			</div>
+		</li>				
+		<li>
+			<div class="proLeft"><%= image_tag "L-alabo.png",class:'proImg' %></div>
+			<div class="proRight">
+				<p class="proName">产品名</p>
+				<p class="proInfo">
+					<span>￥100</span>
+					<span style="float: right;margin-right: 5%;">X 2</span>
 				</p>
 			</div>
 		</li>		
