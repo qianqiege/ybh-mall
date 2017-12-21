@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       post :upload_license_image, on: :collection
       post :upload_user_image, on: :collection
     end
+    
   end
 
   namespace :mall do
