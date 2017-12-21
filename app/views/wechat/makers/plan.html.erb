@@ -1,0 +1,131 @@
+
+<style>
+
+body {
+	margin: 0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+div {
+	padding: 0;
+	margin: 0;
+}
+
+.shopList ul {
+    border-top: 1px solid #ccc;
+    margin-top: 2%;
+}
+
+.shopList ul li {
+    display: flex;
+    border-bottom:1px solid #ccc;
+}
+
+.shopList ul li .slLeft,.shopList ul li .slRight {
+    display: inline-block;
+}
+
+.shopList ul li .slLeft {
+    width: 30%;
+    padding:2%;
+}
+
+.shopList ul li .slRight {
+    flex:1;
+}
+
+.shopList ul li .slLeft img {
+    width: 100%;
+    border-radius: 13px;
+}
+
+.slRight {
+	margin-top: 11px;
+	padding-left: .5rem;
+	padding-right: 8px;
+}
+
+.shopList ul li .slRight span {
+    font-size: 0.8rem;
+/*    margin: 4% 0 0 4%;*/
+    color: #666;
+}
+
+.goPlan {
+	background-color: rgba(201, 43, 47, 1);
+	color: #fff;
+	display: inline-block;
+	padding: 5px 10px;
+}
+
+.slRight-title {
+	overflow: auto;
+	margin-bottom: 8px;
+}
+
+.slRight-title>span:last-child {
+	float: right;
+	background: rgba(201, 43, 47, 1);
+	color: #fff !important;
+	padding: 3px 8px;
+	position: relative;
+	top: -3px;
+}
+
+.plan-image {
+	margin-bottom: 25px;
+}
+
+.plan-image img {
+	width: 100%;
+
+}
+
+.plan-button button{
+	width: 100%;
+	background: rgba(201, 43, 47, 1);
+	border: none;
+	padding: 8px 0;
+	color: #fff;
+	position: fixed;
+	bottom: 58px;
+
+}
+
+
+</style>
+
+<div class="shopList">
+	<div class="plan-image">
+		<%= image_tag "capital-1.jpg" %>
+	</div>
+	<div>
+		<span class="goPlan">发起计划</span>
+	</div>
+	<ul style="padding-left: 0px;">
+		<a href="">
+		 <li>
+		     <div class="slLeft">
+		     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+		     </div>
+		     <div class="slRight">
+		     		<div class="slRight-title">
+		            <span>创客计划</span>
+		            <span>队长</span>
+		     		</div>
+		     		<div>
+		     			<span>发起时间：2017-12-18</span>
+		     		</div>
+		     </div>
+		 </li>
+		</a>
+	</ul>
+    <div class="plan-button">
+    	<a href="<%=  wechat_makers_plan_details_path %>">
+    		<button> 同意发起计划 </button>
+    	</a>
+    </div>
+</div>
