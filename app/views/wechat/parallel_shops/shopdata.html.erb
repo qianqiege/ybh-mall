@@ -161,10 +161,11 @@
 
 		<!-- 带有a标签的循环，其他删掉 -->
 		<div style="margin-bottom: 110px;">
-			<a class="proDataLink" href="<%= wechat_parallel_shops_commoditydetails_path %>">
+			
 				<div class="imgcon">
-					<%= image_tag "L-alabo.png" %>	
-				
+					<a class="proDataLink" href="<%= wechat_parallel_shops_commoditydetails_path %>">
+						<%= image_tag "L-alabo.png" %>	
+					</a>
 					<input type="checkbox" class="checkbox" value="L-阿拉伯糖">
 					
 					<div class="name">L-阿拉伯糖</div>
@@ -175,8 +176,7 @@
 						<em class="add">+</em>
 					</div>
 				</div>
-			</a>
-
+			
 			<div class="imgcon">
 				<%= image_tag "L-alabo.png" %>	
 				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
@@ -268,7 +268,7 @@
 			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
 			if (statusC) {
 				allPrice += price;
-				$("#priceTotal").text(allPrice);
+				$("#priceTotal").text(allPrice.toFixed(2));
 			}else {
 				return false;
 			}
@@ -285,7 +285,7 @@
 			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
 			if (statusC) {
 				allPrice -= price;
-				$("#priceTotal").text(allPrice);
+				$("#priceTotal").text(allPrice.toFixed(2));
 			}else {
 				return false;
 			}
@@ -301,7 +301,7 @@
 				allPrice -= $(this).siblings('.price').text() * num;
 			}
 
-			$("#priceTotal").text(allPrice);
+			$("#priceTotal").text(allPrice.toFixed(2));
 		})
 
 </script>
