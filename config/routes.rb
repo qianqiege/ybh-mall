@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     get 'community/instruct'
     get 'community/commitment'
     get 'community/invite'
+    get 'community/renew'
     get '/merchants', to: 'home#merchants'
     get '/coalition', to: 'home#coalition'
     get '/coalition_edit_info', to: 'home#coalition_edit_info'

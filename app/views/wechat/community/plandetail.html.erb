@@ -11,9 +11,11 @@
 		font-size: 0.8rem;
 	}
 	a:link{
-		color: #000;
+		color: #fff;
 	}
-	a:active {color: #000;}
+	a:active {
+		color: #fff;
+	}
 	.tdwith{
 		width: 10%;
 		height: 114px;
@@ -92,9 +94,9 @@
 	.renew{
 		color: #fff;
 		background-color: #ad0e11;
-		padding: 7px 15px;
+		padding: 10px 20px;
 		border-radius: 3px;
-		margin-left: 10px;
+		margin-left: 20px;
 	}
 	.containe{
 		margin-bottom: 95px;
@@ -121,6 +123,27 @@
 		font-size: 16px;
 		font-weight: bold;	
 	}
+	.worry{
+		font-size: 14px;
+		line-height: 38px;
+		float: right;
+		margin-right: 10px;
+		font-weight: bold;
+	}
+	.add{
+		background-color: #ad0e11;
+		border: none;
+		padding: 10px; 
+		color: #fff;
+		border-radius: 3px;
+		float: right;
+		margin-right: 10px;
+	}
+	.mystore{
+		margin-left: 10px;
+		font-size: 16px;
+		font-weight: bold;
+	}
 
 
 </style>
@@ -130,6 +153,7 @@
 		<span class="auth">平行店授权</span>
 		<button class="btn1" disabled>授权</button>
 		<button class="btn2" disabled>授权</button>
+		<span class="worry">队长操心费：250</span>
 	</div>
 
 	<div>
@@ -195,7 +219,10 @@
 	</div>
 
 	<div  class="shopList">
-		<p>我的平行店</p>
+		<div style="line-height: 30px;">
+			<span class="mystore">我的平行店</span>
+			<button class="add">添加平行店</button>
+		</div>
 		<ul>
 			<a href="<%= wechat_community_plandetail_path %>">
 				<li>
@@ -246,8 +273,8 @@
 
 <div class="footer-makers">
 		<div class="footer-makers-span">
-			<span>总额：2500</span>
-			<a class="renew">续约</a>
+			<span style="font-weight: bold;margin-top: 5px;">总额：2500</span>
+			<a class="renew" href="<%= wechat_community_renew_path %>">续约</a>
 		</div>
 		<div class="footer-makers-button">
 			<a href="<%= wechat_community_invite_path %>">邀请伙伴</a>
