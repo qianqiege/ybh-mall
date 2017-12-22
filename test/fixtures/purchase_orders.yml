@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  parallel_shop_id: 1
+  state: MyString
+  total: 1.5
+  address: MyString
+  contact: MyString
+  phone: MyString
+
+two:
+  number: MyString
+  parallel_shop_id: 1
+  state: MyString
+  total: 1.5
+  address: MyString
+  contact: MyString
+  phone: MyString

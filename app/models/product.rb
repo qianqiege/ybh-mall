@@ -3,6 +3,12 @@ class Product < ApplicationRecord
   has_many :line_items
   has_many :member_equities
   has_many :product_images
+  has_many :purchase_order_items
+  has_many :shop_order_items
+  has_many :stock_out_items
+  has_many :day_deal_items
+  has_many :month_deal_items
+  has_many :stocks
   belongs_to :activity
   before_destroy :ensure_not_referenced_by_any_line_item
 

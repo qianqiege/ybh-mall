@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  purchase_order_id: 1
+  status: MyString
+  total: 1.5
+  contact: MyString
+  phone: MyString
+  address: MyString
+
+two:
+  number: MyString
+  purchase_order_id: 1
+  status: MyString
+  total: 1.5
+  contact: MyString
+  phone: MyString
+  address: MyString
