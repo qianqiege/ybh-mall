@@ -1,14 +1,18 @@
 <%= title '二维码申请' %>
 <div class="weui-panel weui-panel_access marginLeft">
   <div class="weui-panel">
-    <div class="weui-panel__hd">请输入活动的：名称、时间、地点</div>
+    <% if @id != "1" %>
+      <div class="weui-panel__hd">请输入活动的：名称、时间、地点</div>
+    <% end %>
       <div class="weui-panel__bd">
         <div class="address-box city-group">
-          <form action="<%= user_create_activity_code_path %>" method="post" class="froms">
-            <input type="text" name="activity_desc" class="yyj_input" style="margin-left: 4%;"
-            placeholder="格式：合伙人计划；17/01/01-18/01/01；北京小院">
-            <input type="submit" value="提交" class="submits yyj_submit yyj_text" style="margin-left: 4%;"/>
-          </form>
+          <% if @id != "1" %>
+            <form action="<%= user_create_activity_code_path %>" method="post" class="froms">
+              <input type="text" name="activity_desc" class="yyj_input" style="margin-left: 4%;"
+              placeholder="格式：合伙人计划；17/01/01-18/01/01；北京小院">
+              <input type="submit" value="提交" class="submits yyj_submit yyj_text" style="margin-left: 4%;"/>
+            </form>
+          <% end %>
           <div style="margin-left: 1rem; font-size: 15px; color: #555; border-bottom: 1px solid #eee; padding:1rem 0;">
             <span style="color: red; font-size: 15px;">活动推广码：</span>
           </div>

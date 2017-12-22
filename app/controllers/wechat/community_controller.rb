@@ -12,7 +12,7 @@ class Wechat::CommunityController < Wechat::BaseController
   end
 
   def commitment
-
+    @user_id = params[:user_id]
   end
 
   def invite
@@ -21,5 +21,16 @@ class Wechat::CommunityController < Wechat::BaseController
 
   def renew
 
+  end
+
+  def create
+    user = current_user.user
+    if !user.nil?
+      user.community_id = params[:format].to_i
+      if user.save
+        redirect_to '/user/community_code'
+        return
+      end
+    end
   end
 end
