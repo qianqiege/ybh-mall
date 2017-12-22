@@ -5,7 +5,7 @@
 	}
 	.contain{
 		width: 100%;
-		margin-bottom: 80px;
+		padding-bottom: 10px;
 	}
 	.imgcon {
 		display: inline-block;
@@ -55,7 +55,7 @@
 		width: 56px;
 		font-style: normal;
 		font-size: 14px;
-		line-height: 24px;
+		line-height: 26px;
 		border: 0;
 	}
 	.gw_num em.add{
@@ -74,7 +74,7 @@
 	.money{
 		display: inline-block;
 		text-align: center;
-		width: 37%;
+		width: 35%;
 		line-height: 30px;
 	}
 	.settle{
@@ -86,6 +86,15 @@
 		padding:3% 0;
 		/*line-height: 25px;*/
 	}
+	.goPay{
+		display: inline-block;
+		width: 30%;
+		text-align: center;
+		background-color: #5aa0d6;
+		color: #fff;
+		padding:3% 0;
+		/*line-height: 25px;*/
+	}	
 	.checkbox{
 		display: inline-block;
 		margin-top: 10px;
@@ -144,18 +153,25 @@
 		color: #000;		
 	}
 
+	a:active {
+		color: #fff;
+	}
+
 </style>
+
+
+<%= title '店内详情' %>
 <div class="outD">
 
 	<div class="contain">
 
 		<div class="shopDatas">
 			<div class="slLeft">
-				<%= image_tag "ybyt.png", class:'shopImage' %>
+				<%= image_tag "bji04680164.jpg", class:'shopImage' %>
 			</div>
 			<div class="slRight">
-				<p>店铺名字</p>
-				<span>店铺地址店铺地址店铺地址</span>
+				<p>汉庭酒店</p>
+				<span>北京市朝阳区王府井大街</span>
 			</div>
 		</div>
 
@@ -243,7 +259,7 @@
 		<p class="money">
 			总计：<span id="priceTotal">0.00</span>
 		</p>
-		<a class="settle">去结算</a>
+		<a class="goPay">去结算</a>
 		<a class="settle" href="<%= wechat_parallel_shops_shopreceive_path %>">平行领配</a>	
 	</div>
 </div>
