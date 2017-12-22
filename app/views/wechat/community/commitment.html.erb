@@ -72,10 +72,10 @@
 		<br>
 		<b>本承诺书的承诺内容最终解释权归甲方，合作过程中如有异议，双方应本着积极态度协商解决。</b><br>
 		<span style="text-align: left;">甲方（签字）：</span>
-		<span style="text-align: right;">乙方（签字）：</span> 
+		<span style="text-align: right;">乙方（签字）：</span>
 		<span style="text-align: left;">年 &nbsp;&nbsp;&nbsp;月 &nbsp;&nbsp;&nbsp;日</span>
 		<span style="text-align: right;">年&nbsp;&nbsp;&nbsp; 月 &nbsp;&nbsp;&nbsp;日</span>
-		
+
 		<div style="margin-top: 20px;margin-bottom: 65px;">
 			<input type="checkbox" name="commitment" id="commit">
 			<label for="commit">我同意签订承诺消费书</label>
@@ -84,14 +84,14 @@
 			<a class="link">同意</a>
 		</div>
 	</div>
-	
+
 </div>
 
 <script>
 	$( function () {
 		$(".link").click( function () {
 			if ($('#commit').is(":checked")) {
-				location.href ="<%= wechat_community_plandetail_path %>";
+				location.href ="<%= wechat_create_community_path(@@user_id) %>";
 			}else {
 				alert("请在承诺书前打钩")
 			}

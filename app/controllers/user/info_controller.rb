@@ -52,6 +52,24 @@ class User::InfoController < Wechat::BaseController
 
   def apply_code
     @apply_code = ApplyCode.where("user_id = ? && state != ?",current_user.user_id,"void")
+    @id = params[:id]
+  end
+
+  def community_code
+    url = wechat_community_commitment_url(user_id: current_user.user_id)
+    @community_code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+    if !current_user.user.nil? && !current_user.user.maker_id.nil?
+      @community_user = User.find(current_user.user.community_id)
+    end
+  end
+
+  def maker_code
+    url = wechat_makers_protocol_url(user_id: current_user.user_id)
+    @maker_code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+
+    if !current_user.user.nil? && !current_user.user.maker_id.nil?
+      @maker_user = User.find(current_user.user.maker_id)
+    end
   end
 
   def activity_code

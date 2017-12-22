@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   namespace :wechat do
     root "home#index"
+    get '/create_makers', to: 'makers#create'
+    get '/create_community', to: 'community#create'
     get 'parallel_shops/index'
     get 'parallel_shops/shopdata'
     get 'parallel_shops/commoditydetails'
