@@ -10,4 +10,7 @@ class Wechat::MakersController < Wechat::BaseController
 
   def instructions
   end
+
+  def invite_code
+  end
 end
