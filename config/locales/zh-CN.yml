@@ -18,6 +18,7 @@ zh-CN:
       wallet_manage: '钱包/账户'
       yb_work_manage: '御邦服务中心'
       official_website: '官网管理'
+      parallel_shop_manage: "平行店管理"
   activerecord:
     attributes:
       program:
