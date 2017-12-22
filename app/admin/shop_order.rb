@@ -15,7 +15,7 @@ ActiveAdmin.register ShopOrder do
                                                     :price,
                                                     :sub_total
                                                     ]
-
+    actions :show, :index, :update
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店订单" do
         f.input :number

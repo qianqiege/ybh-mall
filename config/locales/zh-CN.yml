@@ -208,6 +208,7 @@ zh-CN:
         telphone: '手机号码（用于登陆）'
         identity_card: '系统身份码'
         id_number: '身份证'
+        parallel_shop: "平行店"
         name: '真实姓名'
         invitation_card: '邀请码'
         invitation: '邀请人'
@@ -385,6 +386,52 @@ zh-CN:
         date: '日期'
         image: '缩略图'
         desc: '描述'
+      parallel_shop:
+        title: '名称'
+        address: '地址'
+        main_business: "主营业务"
+        image: "图片"
+        desc: "描述"
+      stock_out:
+        number: "编号"
+        parallel_shop: "平行店"
+        contact: "联系人"
+        address: "地址"
+        phone: "电话"
+        status: "状态"
+        total: "总金额"
+        purchase_order: "采购单"
+      shop_order:
+        number: "编号"
+        customer: "客户"
+        user: "营业员"
+        express_number: '运单号'
+        difference: "差价"
+        shop_pay: "消费额"
+        status: "状态"
+        total: "订单总金额"
+      stock:
+        parallel_shop: "平行店"
+        product: '产品'
+        amount: "数量"
+      day_deal:
+        parallel_shop: "平行店"
+        should_pay: '应付'
+        already_pay: "实付"
+        status: "状态"
+      month_deal:
+        parallel_shop: "平行店"
+        should_pay: '应付'
+        already_pay: "实付"
+        status: "状态"
+      purchase_order:
+        number: "编号"
+        parallel_shop: "平行店"
+        contact: "联系人"
+        address: "地址"
+        phone: "电话"
+        state: "状态"
+        total: "总金额"
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
@@ -453,3 +500,10 @@ zh-CN:
       user_prize: '用户奖品'
       new: '新闻'
       company_progress: '企业大事件'
+      purchase_order: "采购单"
+      stock_out: "出库单"
+      day_deal: "日清"
+      month_deal: '月结'
+      shop_order: "平行店订单"
+      stock: "库存管理"
+      parallel_shop: "平行店"
