@@ -1,9 +1,12 @@
 
 <style>
 
+.shopList {
+	background: #fff;
+}
+
 .shopList ul {
     border-top: 1px solid #ccc;
-    margin-top: 5%;
 }
 
 .shopList ul li {
@@ -43,10 +46,15 @@ a {
 	text-decoration:none;
 	out-line: none;
 	color: #000;
+	font-family: '微软雅黑';
 }
 
 .topImage {
 	width:100%;
+}
+
+.module-title {
+	margin:0;
 }
 
 </style>
@@ -56,6 +64,68 @@ a {
 	<div class="home">
 		<a href="<%= wechat_parallel_shops_instructions_path %>"><%= image_tag "pingxingdian.jpg", class:'topImage' %></a>
 	</div>
+	<!-- 轮播↑ -->
+
+	<div class="wraper graybg">
+  <div class='user-center'>
+    <div class='my-info'>
+      <div class="nickname">
+        <div class="nick-item">
+        </div>
+      </div>
+
+      <div class="module-title">
+        <h3>
+          <a href="javascript:;"> 我的订单</a>
+        </h3>
+      </div>
+    </div>
+
+    <div class="order-item">
+      <ul class='flex'>
+        <li class="flex-item5">
+          <a href="<%= mall_orders_path %>">
+            <i class="ico-status waitPay">
+            </i>
+            待付款
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="<%= mall_orders_path %>">
+            <i class="ico-status waitSend">
+            </i>
+            待发货
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="<%= mall_orders_path %>">
+            <i class="ico-status waitComfirm">
+            </i>
+            待收货
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="<%= mall_orders_path %>">
+            <i class="ico-status allOrders">
+            </i>
+            全部订单
+          </a>
+        </li>
+        <li class="flex-item5">
+          <a href="<%= mall_orders_path %>">
+            <i class="ico-status returns">
+            </i>
+            退换货
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+	<!-- 列表↓ -->
 	<div class="shopList">
 		<ul>
 

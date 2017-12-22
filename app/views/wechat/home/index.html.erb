@@ -137,9 +137,13 @@ a {
   color: #000;
 }
 
+a:active {
+  color: #000;
+}
+
 .shopTag {
     display: flex;
-    padding:0 5%;
+    padding:0 5% 0 2%;
     margin:1% 0;
 }
 
@@ -173,26 +177,38 @@ a {
 <div>
   <table style="margin-top: 4%;">
     <tr style="text-align: center;">
-        <td style="width: 10%">
-            <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
-            <p style="margin-bottom:15%;" class="fontSizes">商城</p>
-        </td>      
+      <td style="width: 10%;">
+        <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
+        <p style="margin-bottom:15%;" class="fontSizes">易健康</p>
+      </td>      
+              
         <td style="width: 10%;">
             <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
             <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
         </td>
+
+<% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
+        <td style="width: 10%;">
+            <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
+            <p style="margin-bottom:15%;" class="fontSizes">199计划</p>
+        </td>
+           
+        <td style="width: 10%;">
+            <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
+            <p style="margin-bottom:15%;" class="fontSizes">创客计划</p>
+        </td> 
+      <% end %>        
       
-      <td style="width: 10%;">
-        <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">御合伙</p>
-      </td>
-      <td style="width: 10%;">
-        <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">我的</p>
-      </td>
+      
+      
     </tr>
 
     <tr style="text-align: center;">
+      <td>
+        <a href="<%= wechat_parallel_shops_partners_path %>"><%= image_tag "御合伙.png", size: "50x50" %></a>
+        <p class="fontSizes">御合伙</p>
+      </td>      
+
       <td>
         <a href="<%= wechat_light_path %>"><%= image_tag "明灯.png", size: "50x50" %></a>
         <p class="fontSizes">一盏明灯</p>
@@ -206,17 +222,15 @@ a {
           <p class="fontSizes">商盟</p>
         <% end %>
       </td> -->
-      <% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
         <td>
-            <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
-            <p class="fontSizes">199计划</p>
-        </td>
-           
-        <td>
-            <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
-            <p class="fontSizes">创客计划</p>
-        </td> 
-      <% end %>     
+            <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
+            <p class="fontSizes">商城</p>
+        </td>       
+      <td>
+        <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
+        <p class="fontSizes">我的</p>
+      </td>       
+                 
     </tr>
   </table>
 

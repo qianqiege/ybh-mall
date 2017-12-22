@@ -1,20 +1,35 @@
 <style type="text/css" media="screen">
 	.container {
 		overflow-y: auto;
+		background: #fff;
 	}
 
-	.price {
-		width:220px;
-		height: 220px;
-		margin: 0 auto;
-		border:1px solid #ccc;
-		margin-top: 10%;
+	.inputPrice {
+		height:30px;
+		width:90%;
+		margin:0 auto;
+		margin-top: 30px;
+	}
+
+	.inputPrice span {
+		display: inline-block;
+		margin-right: 2%;
+		font-size: 14px;
+	}
+
+	.inputPrice input {
+		height:100%;
+		border:0;
+		border:1px solid #eee;
+		padding-left: 2%;
+		width:52%;
 	}
 
 	.allPay {
 		text-align: center;
 		color:#ad0e11;
 		line-height: 50px;
+		flex: 1;
 	}
 
 	.jiesuan {
@@ -25,10 +40,18 @@
 		bottom: 58px;
 		left:0;
 		border-top: 1px solid #ccc;
+		display: flex;
+	}
+
+	.jiesuan a {
+		width:40%;
+		background: #ad0e11;
+		text-align: center;
+		line-height: 50px;
 	}
 
 	.listShow {
-		width:85%;
+		width:90%;
 		margin: 0 auto;
 		border-top: 1px solid #ccc;
 		padding:0;
@@ -70,12 +93,25 @@
 		font-size: 14px;
 		color:#888;				
 	}
+
+	a { 
+		text-decoration:none;
+		out-line: none;
+		color: #fff;
+	}
+
+	a:active {
+		color: #fff;
+	}
+
 </style>
 
-<%= title '平行配领' %>
+<%= title '确认订单' %>
 <div class="container">
-	<div class="price">
-		<a href="<%= wechat_parallel_shops_salesclerk_path %>">点击二维码占位查看营业员扫码确认页面</a>
+	<div class="inputPrice">
+		<span>用户消费金额</span>
+		<input type="number" name="" value="" placeholder="请输入用户实际消费金额">
+		<span>元</span>
 	</div>
 	<ul class="listShow">
 		<li>
@@ -122,5 +158,6 @@
 	
 </div>
 <div class="jiesuan">
-		<p class="allPay">总计：2312元</p>
-	</div>
+	<p class="allPay">总计：2312元</p>
+	<a>确认</a>
+</div>

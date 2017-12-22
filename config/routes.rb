@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     get 'parallel_shops/commoditydetails'
     get 'parallel_shops/shopreceive'
     get 'parallel_shops/instructions'
+    get 'parallel_shops/salesclerk'
+    get 'parallel_shops/partners'
     get 'community/index'
     get 'community/plandetail'
     get 'community/instruct'
