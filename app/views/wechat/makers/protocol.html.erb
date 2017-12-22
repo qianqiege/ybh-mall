@@ -37,11 +37,78 @@
 		background-color: #fff;
 	}
 
+	.agree-block {
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		position: absolute;
+		top: 0;
+	}
+
+	.block-order {
+		width: 100%;
+		background-color: #fff;
+		position: absolute;
+		bottom: 72px;
+		left: 0;
+	}
+
+	.block-order>h3 {
+		text-align: center;
+		padding: 15px 0;
+		border-bottom: 1px solid #bbb;
+	} 
+
+	.info-block {
+		padding: 20px 0;
+	}
+
+	.info-block>p {
+		margin: 5px auto 10px;
+	}
+
+	.info-block li {
+		border-bottom: 1px solid #bbb;
+		overflow: auto;
+		padding: 5px 8px;
+	}
+
+	.info-block li span:first-child {
+		float: left;
+	}
+
+	.info-block li span:last-child {
+		float: right;
+	}
+	.button-applay button {
+		width: 100%;
+		background: rgba(201, 43, 47, 1);
+		border: none;
+		padding: 10px 0;
+		color: #fff;
+		margin-top: 60px;
+	}
+	.clear-block {
+
+	}
+	.clear-block h3 {
+		text-align: center;
+		position: relative;
+		padding: 10px 0;
+		border-bottom: 1px solid #bbb;
+	}
+	.clear-block img{
+		width: 28px;
+		height: 28px;
+		position: absolute;
+		left: 6px;
+		top: 10px;
+	}
 </style>
 
 <div class="block">
 	<h3 style="text-align: center; line-height: 5">御邦医通创客创业合同</h3>
-	
+
 	甲 方：深圳御邦医通数字化健康服务有限公司（以下简称“甲方”）<br>
 	地 址：深圳市南山区中山园路 1001号国际 E城 F1栋 6楼<br>
 	凡是加入御邦医通创客的，必须签订本创客创业合同，并遵守执行本合同的各项约定。<br>
@@ -88,14 +155,62 @@
 	本合同自双方签字并加盖单位公章或合同专用章之日起生效。<br>
 	本合同正本一式贰份，双方各执壹份，具有同等法律效力。<br>
 
+	<div>
+		<select style="width: 50%; margin-top: 20px; background-color: #fff;">
+		  <option value ="1000">1000</option>
+		</select>
+	</div>
 
 	<div style="margin: 25px 0">
-		<input type="checkbox" checked>
+		<input type="checkbox" name="commitment" id="commit" />
 		<label>我同意签订承诺消费书</label>
 	</div>
 	<div class="plan-button">
-		<a href="<%=  wechat_makers_protocol_path %>">
-			<button> 同意发起计划 </button>
-		</a>
+			<button id="planBtn"> 同意发起计划 </button>
 	</div>
 </div>
+
+<!-- 弹框  -->
+<div class="agree-block" id="agree" style="display: none;">
+	<div class="block-order" id="blockD">
+		<div class="clear-block">
+			<h3>确认付款</h3>
+			<%= image_tag "u12.png", id:'fImg' %>
+		</div>
+		<div class="info-block">
+			<p style="font-size: 18px; font-weight: 800;">￥：10000</p>
+			<ul>
+				<li>
+					<span>订单信息</span>
+					<span>创客计划承诺金</span>
+				</li>
+				<li>
+					<span>支付方式</span>
+					<span>微信</span>
+				</li>
+			</ul>
+		</div>
+		<div class="button-applay">
+			<a href="">
+				<button> 立即付款 </button>
+			</a>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$( function () {
+		$("#planBtn").click( function () {
+			if ($('#commit').is(":checked")) {
+				$("#agree").show();
+			}else {
+				alert("请在承诺书前打钩")
+			}
+		})
+		
+		$("#fImg").click( function () {
+			$("#agree").hide();
+		})
+	})
+</script>

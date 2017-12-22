@@ -18,4 +18,8 @@ class Wechat::CommunityController < Wechat::BaseController
   def invite
 
   end
+
+  def renew
+
+  end
 end

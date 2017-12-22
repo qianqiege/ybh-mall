@@ -35,6 +35,7 @@ div {
 
 .shopList ul li .slRight {
     flex:1;
+    color: #333;
 }
 
 .shopList ul li .slLeft img {
@@ -131,13 +132,45 @@ b {
 .authd{
 	margin-top: 15px;
 	margin-left: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	overflow: auto;
+}
+
+.authd span:last-child {
+	float: right;
+	margin-right: 5px;
+	font-size: 13px;
+	font-weight: 800;
 }
 
 .auth{
 	font-size: 16px;
 	font-weight: bold;	
 }
+
+.per-block {
+	overflow: auto;
+	padding: 0 30px;
+}
+
+.per-block>div:first-child {
+	float: left;
+	text-align: center;
+}
+
+.per-block>div:last-child {
+	float: right;
+	margin-top: 10px;
+}
+
+.add-P {
+	display: inline-block;
+	background-color: #ad0e11;
+	color: #fff;
+	float: right;
+	padding: 2px 8px;
+}
+
 </style>
 
 
@@ -147,12 +180,19 @@ b {
 			<span class="auth">平行店授权</span>
 			<button class="btn1" disabled>授权</button>
 			<button class="btn2" disabled>授权</button>
+			<span>队长操心费：250</span>
 		</div>
-	    <div style="text-align: center;">
-	        <div>
-	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-	            <p style="font-weight: bold;">周毅</p>
-	        </div>      
+	    <div>
+	    	<div class="per-block">
+		        <div>
+		            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
+		            <p style="font-weight: bold;">周毅</p>
+		        </div>      
+	    		<div>
+	    			<p style="margin-bottom: 5px;">创客计划积分余额：30000</p>
+	    			<p>合伙人收益：30000</p>
+	    		</div>
+	    	</div>
 			<table style="margin-top: 4%;" align="center">
 				<tr style="text-align: center;">
 				    <td class="tdwith">
@@ -181,7 +221,10 @@ b {
 		</div>
 	</div>
 	<div class="shopList">
-		<span class="auth" style="margin-left: 10px;">我的平行店</span>
+		<div>
+			<span class="auth" style="margin-left: 10px;">我的平行店</span>
+			<a href="#" class="add-P">添加平行店</a>
+		</div>
 		<ul style="padding-left: 0px;">
 		<a href="" style="display: block;">
 		 <li>
@@ -200,10 +243,12 @@ b {
 	<div class="footer-makers">
 		<div class="footer-makers-span">
 			<span>总额：2500</span>
-			<span class="xuyue-btn">续约</span>
+			<a href="<%=  wechat_makers_protocol_path %>"><span class="xuyue-btn">续约</span></a>
 		</div>
 		<div class="footer-makers-button">
-			<button>邀请伙伴</button>
+			<a href="<%= wechat_makers_invite_code_path %>" style="display: inline-block; width: 100%;">
+				<button>邀请伙伴</button>
+			</a>
 		</div>
 	</div>
 </div>

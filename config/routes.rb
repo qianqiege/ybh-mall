@@ -30,11 +30,14 @@ Rails.application.routes.draw do
     get 'parallel_shops/commoditydetails'
     get 'parallel_shops/shopreceive'
     get 'parallel_shops/instructions'
+    get 'parallel_shops/salesclerk'
+    get 'parallel_shops/partners'
     get 'community/index'
     get 'community/plandetail'
     get 'community/instruct'
     get 'community/commitment'
     get 'community/invite'
+    get 'community/renew'
     get '/merchants', to: 'home#merchants'
     get '/coalition', to: 'home#coalition'
     get '/coalition_edit_info', to: 'home#coalition_edit_info'
@@ -73,6 +76,7 @@ Rails.application.routes.draw do
     get 'makers/plan_details'
     get 'makers/protocol'
     get 'makers/instructions'
+    get 'makers/invite_code'
   end
 
   namespace :mall do
