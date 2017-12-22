@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parallel_shop_id: 1
+  should_pay: 1.5
+  already_pay: 1.5
+  status: MyString
+
+two:
+  parallel_shop_id: 1
+  should_pay: 1.5
+  already_pay: 1.5
+  status: MyString
