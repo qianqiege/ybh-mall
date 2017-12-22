@@ -1,0 +1,75 @@
+<style type="text/css" media="screen">
+	
+	.applyShop h4{
+		text-align: center;
+		margin-top: 25px;
+	}
+
+	.inputPrice {
+		height:30px;
+		width:90%;
+		margin:0 auto;
+		margin-top: 30px;
+	}
+
+	.inputPrice span {
+		display: inline-block;
+		margin-right: 2%;
+		font-size: 14px;
+	}
+
+	.inputPrice input {
+		height:100%;
+		border:0;
+		border:1px solid #eee;
+		padding-left: 2%;
+		width:74%;
+	}
+
+	.selectApply {
+		height:100%;
+		width:76%;
+		background: #fff;
+		border:0;
+		border:1px solid #eee;		
+	}
+
+	.localBtn {
+		width:30%;
+		border:0;
+		background: #5aa0d6;
+		color: #fff;
+		padding:2% 3%;
+		-webkit-appearance: none;
+		margin: 15px 0 0 5%;
+	}
+
+	.subBtn {
+		margin: 40% 0 0 5%;
+	}
+
+</style>
+
+
+
+<%= title '店铺申请' %>
+<div class="applyShop">
+	<h4>平行店店铺申请</h4>
+	<div class="inputPrice">
+		<span>店铺名称</span>
+		<input type="text" name="" value="" placeholder="请输入店铺名称">
+	</div>
+	<div class="inputPrice">
+		<span>店铺地址</span>
+		<input type="text" name="" value="" placeholder="请输入店铺地址">
+	</div>
+	<div class="inputPrice">
+		<span>计划类型</span>
+		<select name="" class="selectApply">
+			<option value="0">御易健共同体计划</option>
+			<option value="1">创客计划</option>
+		</select>
+	</div>
+	<button type="" class="localBtn">获取定位</button>
+	<button type="submit" class="yyj_submit subBtn">提交</button>	
+</div>

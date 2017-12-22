@@ -27,4 +27,8 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     
   end
 
+  def applyshop
+    
+  end
+
 end
