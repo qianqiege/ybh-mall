@@ -40,6 +40,9 @@
 	input {
 		background-color: transparent;
 	}
+	a:active{
+		color: #fff;
+	}
 </style>
 
 <div>
@@ -74,8 +77,8 @@
 		<span style="text-align: right;">年&nbsp;&nbsp;&nbsp; 月 &nbsp;&nbsp;&nbsp;日</span>
 		
 		<div style="margin-top: 20px;margin-bottom: 65px;">
-			<input type="checkbox" checked>
-			<label>我同意签订承诺消费书</label>
+			<input type="checkbox" name="commitment" id="commit">
+			<label for="commit">我同意签订承诺消费书</label>
 		</div>
 		<div class="argee">
 			<a class="link">同意</a>
@@ -83,3 +86,15 @@
 	</div>
 	
 </div>
+
+<script>
+	$( function () {
+		$(".link").click( function () {
+			if ($('#commit').is(":checked")) {
+				location.href ="<%= wechat_community_plandetail_path %>";
+			}else {
+				alert("请在承诺书前打钩")
+			}
+		})
+	})
+</script>
