@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  customer: MyString
+  user_id: 1
+  total: 1.5
+  status: MyString
+  express_number: MyString
+  difference: 1.5
+  shop_pay: 1.5
+
+two:
+  number: MyString
+  customer: MyString
+  user_id: 1
+  total: 1.5
+  status: MyString
+  express_number: MyString
+  difference: 1.5
+  shop_pay: 1.5

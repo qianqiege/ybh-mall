@@ -14,4 +14,21 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   def shopreceive
   	
   end
+
+  def instructions
+    
+  end
+
+  def salesclerk
+    
+  end
+
+  def partners
+    
+  end
+
+  def applyshop
+    
+  end
+
 end

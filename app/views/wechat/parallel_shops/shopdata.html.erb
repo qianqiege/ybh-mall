@@ -5,7 +5,7 @@
 	}
 	.contain{
 		width: 100%;
-		margin-bottom: 80px;
+		padding-bottom: 10px;
 	}
 	.imgcon {
 		display: inline-block;
@@ -55,7 +55,7 @@
 		width: 56px;
 		font-style: normal;
 		font-size: 14px;
-		line-height: 24px;
+		line-height: 26px;
 		border: 0;
 	}
 	.gw_num em.add{
@@ -74,7 +74,7 @@
 	.money{
 		display: inline-block;
 		text-align: center;
-		width: 37%;
+		width: 35%;
 		line-height: 30px;
 	}
 	.settle{
@@ -86,6 +86,15 @@
 		padding:3% 0;
 		/*line-height: 25px;*/
 	}
+	.goPay{
+		display: inline-block;
+		width: 30%;
+		text-align: center;
+		background-color: #5aa0d6;
+		color: #fff;
+		padding:3% 0;
+		/*line-height: 25px;*/
+	}	
 	.checkbox{
 		display: inline-block;
 		margin-top: 10px;
@@ -144,27 +153,48 @@
 		color: #000;		
 	}
 
+	a:active {
+		color: #fff;
+	}
+
+	.smallTilte {
+		margin: 0 0 2% 2%;
+	}
+
+	.smallTilte span{
+		display: inline-block;
+		padding:1% 3%;
+		color: #fff;
+		background: #ad0e11;
+	}
+
 </style>
+
+
+<%= title '店内详情' %>
 <div class="outD">
 
 	<div class="contain">
 
 		<div class="shopDatas">
 			<div class="slLeft">
-				<%= image_tag "ybyt.png", class:'shopImage' %>
+				<%= image_tag "bji04680164.jpg", class:'shopImage' %>
 			</div>
 			<div class="slRight">
-				<p>店铺名字</p>
-				<span>店铺地址店铺地址店铺地址</span>
+				<p>汉庭酒店</p>
+				<span>北京市朝阳区王府井大街</span>
 			</div>
 		</div>
-
+		<div class="smallTilte">
+			<span>健康产品</span>
+		</div>
 		<!-- 带有a标签的循环，其他删掉 -->
 		<div style="margin-bottom: 110px;">
-			<a class="proDataLink" href="<%= wechat_parallel_shops_commoditydetails_path %>">
+			
 				<div class="imgcon">
-					<%= image_tag "L-alabo.png" %>	
-				
+					<a class="proDataLink" href="<%= wechat_parallel_shops_commoditydetails_path %>">
+						<%= image_tag "L-alabo.png" %>	
+					</a>
 					<input type="checkbox" class="checkbox" value="L-阿拉伯糖">
 					
 					<div class="name">L-阿拉伯糖</div>
@@ -175,8 +205,7 @@
 						<em class="add">+</em>
 					</div>
 				</div>
-			</a>
-
+			
 			<div class="imgcon">
 				<%= image_tag "L-alabo.png" %>	
 				<input type="checkbox" class="checkbox" value="L-阿拉伯糖">	
@@ -243,8 +272,8 @@
 		<p class="money">
 			总计：<span id="priceTotal">0.00</span>
 		</p>
-		<a class="settle">去结算</a>
-		<a class="settle" href="<%= wechat_parallel_shops_shopreceive_path %>">平行领配</a>	
+		<a class="goPay">去结算</a>
+		<a class="settle" href="<%= wechat_parallel_shops_shopreceive_path %>">平行配领</a>	
 	</div>
 </div>
 
@@ -268,7 +297,7 @@
 			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
 			if (statusC) {
 				allPrice += price;
-				$("#priceTotal").text(allPrice);
+				$("#priceTotal").text(allPrice.toFixed(2));
 			}else {
 				return false;
 			}
@@ -285,7 +314,7 @@
 			var statusC = $(this).parent().siblings('.checkbox').is(':checked');
 			if (statusC) {
 				allPrice -= price;
-				$("#priceTotal").text(allPrice);
+				$("#priceTotal").text(allPrice.toFixed(2));
 			}else {
 				return false;
 			}
@@ -301,7 +330,7 @@
 				allPrice -= $(this).siblings('.price').text() * num;
 			}
 
-			$("#priceTotal").text(allPrice);
+			$("#priceTotal").text(allPrice.toFixed(2));
 		})
 
 </script>
