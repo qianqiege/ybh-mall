@@ -15,7 +15,7 @@ ActiveAdmin.register User do
                 :family_doctor,
                 :staff_invitation_type,
                 :is_admin,
-                :is_test
+                :is_test,:maker_id
 
   index do
     selectable_column
@@ -23,18 +23,28 @@ ActiveAdmin.register User do
 
     column :telphone
     column :id_number
-    column :identity_card
+    # column :identity_card
     column :name
     column :invitation_card
     column :invitation
     # column :organization
     column '身份',:type
     column '用户/员工',:status
-    column 'YBZ会员邀请数量',:ybz_number
+    # column 'YBZ会员邀请数量',:ybz_number
     column '是否为合伙人', :is_partner
     column '是否为管理员', :is_admin
     column '注册时间',:created_at
     column :is_test
+    column '199计划' do |user|
+      if !user.maker_id.nil?
+        User.find_by(id: user.maker_id).name
+      end
+    end
+    column '创客计划' do |user|
+      if !user.community_id.nil?
+        User.find_by(id: user.community_id).name
+      end
+    end
     actions defaults: true
   end
 
@@ -74,6 +84,7 @@ ActiveAdmin.register User do
       row :is_admin
       row :created_at
       row :is_test
+      row :maker_id
     end
   end
 
@@ -86,6 +97,7 @@ ActiveAdmin.register User do
   end
 
   filter :name, as: :select
+  filter :maker_id,as: :select
   filter :id, as: :select
   filter :identity_card, as: :select
   filter :telphone, as: :select
