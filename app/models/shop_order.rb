@@ -9,6 +9,30 @@ class ShopOrder < ApplicationRecord
             a = Stock.find_by(product_id:t.product_id, parallel_shop_id:self.user.parallel_shop_id)
             a.amount -= t.amount
             a.save
+
+            # 创建日清记录
+            day_deal = DayDeal.where(parallel_shop_id:self.user.parallel_shop_id).last
+            day_deal_item = day_deal.day_deal_items.where(product_id:t.product_id)
+            if day_deal
+                day_deal.amount += t.amount
+                day_deal.save
+            else
+                DayDealItem.create( day_deal_id:b.id,
+                                    product_id:t.product_id,
+                                    amount:t.amount)
+            end
+            
+            # 创建月结记录
+            month_deal = MonthDeal.where(parallel_shop_id:self.user.parallel_shop_id).last
+            month_deal_item = b.month_deal_items.where(product_id:t.product_id)
+            if month_deal_item
+                month_deal_item.amount += t.amount
+                month_deal_item.save
+            else
+                MonthDealItem.create( day_deal_id:b.id,
+                                    product_id:t.product_id,
+                                    amount:t.amount)
+            end
         end
     end
 

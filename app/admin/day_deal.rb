@@ -1,4 +1,5 @@
 ActiveAdmin.register DayDeal do
+    menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
     permit_params   :parallel_shop_id, :status, :should_pay, :already_pay,
                     day_deal_items_attributes: [    :product_id,
                                                     :id,
@@ -22,6 +23,11 @@ ActiveAdmin.register DayDeal do
       f.actions
     end
 
+    member_action :deal, method: :put do
+      resource.deal
+      redirect_to :back, notice: "已结算!"
+    end
+
     index do
         selectable_column
         id_column
@@ -31,6 +37,11 @@ ActiveAdmin.register DayDeal do
         column :status
         column :created_at
         column :updated_at
+        column '订单操作' do |day_deal|
+          span do
+            link_to '结算', deal_admin_day_deal_path(day_deal), method: :put, data: { confirm: 'Are you sure?' } if day_deal.pending?
+          end
+        end
         actions
     end
 

@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :donation_records
   has_one :user_info_review
   has_one :shop
+  has_many :shop_orders
 
   # has_many :recommenders, :class_name => "WechatUser", :foreign_key => "recommender_id"
 
