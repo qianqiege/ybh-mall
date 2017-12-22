@@ -133,11 +133,14 @@
 	.add{
 		background-color: #ad0e11;
 		border: none;
-		padding: 10px; 
+		padding:2px 10px; 
 		color: #fff;
 		border-radius: 3px;
 		float: right;
 		margin-right: 10px;
+	}
+	.add:active{
+		color: #fff;
 	}
 	.mystore{
 		margin-left: 10px;
@@ -221,7 +224,7 @@
 	<div  class="shopList">
 		<div style="line-height: 30px;">
 			<span class="mystore">我的平行店</span>
-			<button class="add">添加平行店</button>
+			<a href="<%= wechat_parallel_shops_applyshop_path %>" class="add">添加平行店</a>
 		</div>
 		<ul>
 			<a href="<%= wechat_community_plandetail_path %>">
