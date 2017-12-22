@@ -6,7 +6,7 @@ ActiveAdmin.register PurchaseOrder do
                                                         :_destroy,
                                                         :amount,
                                                         ]
-    actions :index, :show, :update, :destroy, :new, :create
+    actions :index, :show, :new, :create
     form(:html => { :multipart => true }) do |f|
       f.inputs "采购订单" do
         f.input :number

@@ -8,7 +8,7 @@ ActiveAdmin.register MonthDeal do
                                                     :price,
                                                     :sub_total
                                                     ]
-
+    actions :show, :index
     member_action :deal, method: :put do
       resource.deal
       redirect_to :back, notice: "已结算!"

@@ -15,7 +15,7 @@ ActiveAdmin.register StockOut do
                                                     :price,
                                                     :sub_total
                                                     ]
-
+    actions :show, :index
     form(:html => { :multipart => true }) do |f|
       f.inputs "出库订单" do
         f.input :number

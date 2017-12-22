@@ -1,171 +1,21 @@
 <style type="text/css">
 	.content{
 		width: 100%;
-		height: 100%;
-		background-color: #999;
-		position: relative;
+		/*height: 100%;*/
+		background-color: #fff;
+		/*position: relative;*/
 	}
 	.alertDiv{
 		width: 270px;
 		height: 160px;
-		background-color: #fff;
-		/*margin: 30% auto;*/
+		background-color: #999;
+		margin: 30% auto;
 		border-radius: 5px;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		margin-left: -135px;
-		margin-top: -160px;
-	}
-	.intro{
-		line-height: 25px;
-		margin: 30px 24px;
-	}
-	a{
-		color: #000;
-	}
-	a:active{
-		color: #000;
-	}
-	.select{
-		display: block;
-		text-align: center;
-	}
-	.select a{
-		display: inline-block;
-		width: 45%;
-	}
-	.confirm{
-		color: #5aa0d6;
-	}
-
-	.block {
-		padding: 10px 15px;
-		padding-bottom: 58px;
-		background-color: #fff;
-	}
-
-	.agree-block {
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.6);
-		position: absolute;
-		top: 0px;
-	}
-
-	.block-order {
-		width: 100%;
-		background-color: #fff;
-		position: absolute;
-		bottom: 58px;
-		left: 0;
-	}
-
-	.block-order>h3 {
-		text-align: center;
-		padding: 15px 0;
-		border-bottom: 1px solid #bbb;
-	} 
-
-	.info-block {
-		padding: 20px 0;
-	}
-
-	.info-block>p {
-		margin: 5px auto 10px;
-	}
-
-	.info-block li {
-		border-bottom: 1px solid #bbb;
-		overflow: auto;
-		padding: 5px 8px;
-	}
-
-	.info-block li span:first-child {
-		float: left;
-	}
-
-	.info-block li span:last-child {
-		float: right;
-	}
-	.button-applay button {
-		width: 100%;
-		background: rgba(201, 43, 47, 1);
-		border: none;
-		padding: 10px 0;
-		color: #fff;
-		margin-top: 60px;
-	}
-	.clear-block h3 {
-		text-align: center;
-		position: relative;
-		padding: 10px 0;
-		border-bottom: 1px solid #bbb;
-	}
-	.clear-block img{
-		width: 28px;
-		height: 28px;
-		position: absolute;
-		left: 6px;
-		top: 10px;
-	}
-	.infor{
-		font-size: 14px;
-		color: #999;
-	}
-	.infor1{
-		font-size: 14px;
 	}
 </style>
 
 <div class="content">
 	<div class="alertDiv">
-		<p class="intro">亲，您已赚到3000收益。需要支付承诺金后才可以续约</p>
-		<div class="select">
-			<a href="<%= wechat_community_plandetail_path %>" class="cancel">取消</a>
-			<a class="confirm">确定</a>
-		</div>
+		亲，您已赚到3000收益。需要支付承诺金后才可以续约
 	</div>
 </div>
-
-
-<!-- 弹框  -->
-<div class="agree-block" id="agree" style="display: none;">
-	<div class="block-order" id="blockD">
-		<div class="clear-block">
-			<h3>确认付款</h3>
-			<%= image_tag "u12.png", id:'fImg' %>
-		</div>
-		<div class="info-block">
-			<p style="font-size: 18px; font-weight: bold;text-align: center;">￥：1000</p >
-			<ul>
-				<li>
-					<span class="infor">订单信息</span>
-					<span class="infor1">消费共同体计划承诺金</span>
-				</li>
-				<li>
-					<span class="infor">支付方式</span>
-					<span class="infor1">微信</span>
-				</li>
-			</ul>
-		</div>
-		<div class="button-applay">
-			<a href="">
-				<button> 立即付款 </button>
-			</a>
-		</div>
-	</div>
-</div>
-
-
-<script type="text/javascript">
-	$( function () {
-		$(".confirm").click( function () {
-			$("#agree").show();
-		})
-		
-		$("#fImg").click( function () {
-			$("#agree").hide();
-		})
-	})
-</script>

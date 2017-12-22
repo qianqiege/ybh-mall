@@ -16,11 +16,12 @@ ActiveAdmin.register User do
                 :staff_invitation_type,
                 :is_admin,
                 :is_test,:maker_id
+                :parallel_shop_id
 
   index do
     selectable_column
     id_column
-
+    column :parallel_shop
     column :telphone
     column :id_number
     # column :identity_card
@@ -52,6 +53,7 @@ ActiveAdmin.register User do
     f.inputs "档案" do
       f.input :name
       f.input :telphone
+      f.input :parallel_shop
       f.input :email
       f.input :password
       f.input :identity_card
@@ -73,6 +75,7 @@ ActiveAdmin.register User do
     attributes_table do
       row :id
       row :telphone
+      row :parallel_shop
       row :email
       row :identity_card
       row :name
