@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   mount API => '/'
   mount GrapeSwaggerRails::Engine => '/swagger'
 
@@ -138,6 +138,8 @@ Rails.application.routes.draw do
 
   namespace :user do
     root "info#home"
+    get '/maker_code',to: 'info#maker_code'
+    get '/community_code',to: 'info#community_code'
     get '/auch_code',to: 'info#auch_code'
     get '/update_code_ava', to: 'info#update_code_ava'
     get '/update_code_void', to: 'info#update_code_void'
@@ -295,7 +297,7 @@ Rails.application.routes.draw do
     get '/senior', to: 'ybyt#senior'
     get '/strategic', to: 'ybyt#strategic'
 
-    
+
     resources :line_items, only: [:create, :destroy]
     resource :cart, only: [:show]
     resources :orders, only: [:create, :index] do
