@@ -25,15 +25,12 @@ class Wechat::CommunityController < Wechat::BaseController
 
   def create
     user = current_user.user
-    if !user.nil? && user.community_id.nil?
+    if !user.nil?
       user.community_id = params[:format].to_i
-      user.save
-      redirect_to '/user/community_code'
-      return
-    else
-      # flash[:notice] = '操作成功，二维码已失效'
-      redirect_to '/wechat/community/commitment'
-      return
+      if user.save
+        redirect_to '/user/community_code'
+        return
+      end
     end
   end
 end

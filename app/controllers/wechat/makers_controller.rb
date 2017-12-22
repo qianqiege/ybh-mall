@@ -17,15 +17,12 @@ class Wechat::MakersController < Wechat::BaseController
 
   def create
     user = current_user.user
-    if !user.nil? && user.maker_id.nil?
+    if !user.nil?
       user.maker_id = params[:format].to_i
-      user.save
-      redirect_to '/user/maker_code'
-      return
-    else
-      # flash[:notice] = '操作成功，二维码已失效'
-      redirect_to '/wechat/makers/protocol'
-      return
+      if user.save
+        redirect_to '/user/maker_code'
+        return
+      end
     end
   end
 end

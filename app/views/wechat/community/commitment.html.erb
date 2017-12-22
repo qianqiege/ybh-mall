@@ -91,7 +91,7 @@
 	$( function () {
 		$(".link").click( function () {
 			if ($('#commit').is(":checked")) {
-				location.href ="<%= wechat_create_community_path(@@user_id) %>";
+				location.href ="<%= wechat_create_community_path(@user_id) %>";
 			}else {
 				alert("请在承诺书前打钩")
 			}
