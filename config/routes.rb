@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   mount API => '/'
   mount GrapeSwaggerRails::Engine => '/swagger'
 
@@ -72,6 +72,7 @@ Rails.application.routes.draw do
     get 'makers/plan_details'
     get 'makers/protocol'
     get 'makers/instructions'
+    get 'makers/invite_code'
   end
 
   namespace :mall do

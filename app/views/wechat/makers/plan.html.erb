@@ -48,53 +48,64 @@ div {
 	padding-right: 8px;
 }
 
-.shopList ul li .slRight span {
-    font-size: 0.8rem;
-/*    margin: 4% 0 0 4%;*/
-    color: #666;
-}
-
-.goPlan {
-	background-color: rgba(201, 43, 47, 1);
-	color: #fff;
-	display: inline-block;
-	padding: 5px 10px;
-}
-
 .slRight-title {
 	overflow: auto;
 	margin-bottom: 8px;
 }
-
-.slRight-title>span:last-child {
-	float: right;
-	background: rgba(201, 43, 47, 1);
-	color: #fff !important;
+.goPlan {
+	background: #ad0e11;
+	color: #fff;
+	display: inline-block;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+.shopList ul li .slRight span {
+    font-size: 0.8rem;
+    color: #444;
+}
+.shopList ul li .slRight b {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #fff !important;
 	padding: 3px 8px;
 	position: relative;
-	top: -3px;
+	top: 0;
+	margin: 10px;
 }
 
+.slRight-title .leader {
+	background: #ad0e11;
+}
+.slRight-title .success {
+	background: #68a870;
+}
+.slRight-title .partner {
+	background: #5aa0d6;
+}
+.slRight-title .fail {
+	background: red;
+}
 .plan-image {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .plan-image img {
 	width: 100%;
 
 }
-
-.plan-button button{
-	width: 100%;
-	background: rgba(201, 43, 47, 1);
-	border: none;
-	padding: 10px 0;
-	color: #fff;
+.plan-button{
 	position: fixed;
 	bottom: 58px;
-
+	width: 100%;
 }
-
+.plan-button a{
+	display: block;
+	text-align: center;
+	background: #ad0e11;
+	padding: 8px 0;
+	color: #fff;
+	font-size: 14px;	
+}
 
 </style>
 
@@ -105,33 +116,46 @@ div {
 		</a>
 	</div>
 	<div>
-		<span class="goPlan">发起计划</span>
+		<span class="goPlan">发起的计划</span>
 	</div>
-	<ul style="padding-left: 0px;">
-		<a href="">
-		 <li>
-		     <div class="slLeft">
-		     	<a href="">
-		     		<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-		     	</a>
-		     </div>
-		     <div class="slRight">
-		     	<a href="<%=  wechat_makers_plan_details_path %>">
-		     		<div class="slRight-title">
-			            <span>创客计划</span>
-			            <span>队长</span>
-		     		</div>
-		     		<div>
-		     			<span>发起时间：2017-12-18</span>
-		     		</div>
-		     	</a>
-		     </div>
-		 </li>
-		</a>
-	</ul>
+		<ul style="padding-left: 0px;">
+			<a href="<%= wechat_makers_plan_details_path %>">
+			 <li>
+			     <div class="slLeft">
+			     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+			     </div>
+			     <div class="slRight">
+			     		<div class="slRight-title">
+				            <span>创客计划</span>
+				            <b class="leader">队长</b>
+				            <b class="success">成功</b>			            
+			     		</div>
+			     		<div>
+			     			<span>发起时间：2017-12-18</span>
+			     		</div>
+			     </div>
+			 </li>
+			</a>
+
+			<a href="<%= wechat_makers_plan_details_path %>">
+			 <li>
+			     <div class="slLeft">
+			     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+			     </div>
+			     <div class="slRight">
+			     		<div class="slRight-title">
+				            <span>创客计划</span>
+				            <b class="partner">伙伴</b>
+				            <b class="fail">失败</b>			            
+			     		</div>
+			     		<div>
+			     			<span>发起时间：2017-12-18</span>
+			     		</div>
+			     </div>
+			 </li>
+			</a>
+		</ul>
     <div class="plan-button">
-    	<a href="<%=  wechat_makers_protocol_path %>">
-    		<button> 同意发起计划 </button>
-    	</a>
+    	<a href="<%=  wechat_makers_protocol_path %>">发起创客计划</a>
     </div>
 </div>
