@@ -1,4 +1,5 @@
 ActiveAdmin.register PurchaseOrder do
+    menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
     permit_params   :number, :state, :total, :address, :contact, :phone, :parallel_shop_id,
                     purchase_order_items_attributes: [  :product_id,
                                                         :id,
