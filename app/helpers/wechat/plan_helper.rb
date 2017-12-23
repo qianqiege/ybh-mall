@@ -1,0 +1,2 @@
+module Wechat::PlanHelper
+end

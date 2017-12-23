@@ -109,8 +109,8 @@
 		height: 40px;
 	}
 	.authd .btn1{
-		background-color: #ad0e11;	
-		margin: 0 7px;	
+		background-color: #ad0e11;
+		margin: 0 7px;
 	}
 	.authd .btn2{
 		background-color: #68a870;
@@ -121,7 +121,7 @@
 	}
 	.auth{
 		font-size: 16px;
-		font-weight: bold;	
+		font-weight: bold;
 	}
 	.worry{
 		font-size: 14px;
@@ -133,7 +133,7 @@
 	.add{
 		background-color: #ad0e11;
 		border: none;
-		padding:2px 10px; 
+		padding:2px 10px;
 		color: #fff;
 		border-radius: 3px;
 		float: right;
@@ -154,9 +154,12 @@
 <div class="containe">
 	<div class="authd">
 		<span class="auth">平行店授权</span>
-		<button class="btn1" disabled>授权</button>
-		<button class="btn2" disabled>授权</button>
-		<span class="worry">队长操心费：250</span>
+        <% if @plan.active == true %>
+            <button class="btn2" disabled>已授权</button>
+        <% else %>
+            <button class="btn1" disabled>待授权</button>
+        <% end %>
+		<span class="worry">队长操心费：<%= @plan.money %></span>
 	</div>
 
 	<div>
@@ -164,29 +167,16 @@
 	    <tr style="text-align: center;">
 	        <td class="tdwith">
 	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-	            <div style="margin-bottom:15%;font-weight: bold;line-height: 33px;">周毅</div>
-	        </td>      
-	        <td class="tdwith">
-	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-	            <div class="fontSizes">袁延强</div>
-	            <b style="margin-bottom:15%;" class="fontSizes">0元</b>
+	            <div style="margin-bottom:15%;font-weight: bold;line-height: 33px;"><%= @plan.user.name %></div>
 	        </td>
-	      
-		    <td class="tdwith">
-		        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-		        <div class="fontSizes">袁延强</div>
-		        <b style="margin-bottom:15%;" class="fontSizes">200元</b>
-		    </td>
-		    <td class="tdwith">
-		        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-		        <div class="fontSizes">袁延强</div>
-		        <b style="margin-bottom:15%;" class="fontSizes">200元</b>
-		    </td>
-		    <td class="tdwith">
-		        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-		        <div class="fontSizes">袁延强</div>
-		        <b style="margin-bottom:15%;" class="fontSizes">0元</b>
-		    </td>
+	        <% Plan.where(capital_id:current_user.user.id).each do |t| %>
+                <% u = User.find_by(id:t.user_id) %>
+                <td class="tdwith">
+    	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
+    	            <div class="fontSizes"><%= u.name %></div>
+    	            <b style="margin-bottom:15%;" class="fontSizes">0元</b>
+    	        </td>
+            <% end %>
 	    </tr>
 
 		<tr style="text-align: center;">
@@ -194,13 +184,13 @@
 	            <a ><%= image_tag "共同体.png", size: "50x50" %></a>
 	            <div class="fontSizes">袁延强</div>
 	            <b style="margin-bottom:15%;" class="fontSizes">0元</b>
-	        </td>     
+	        </td>
 	        <td class="tdwith">
 	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
 	            <div class="fontSizes">袁延强</div>
 	            <b style="margin-bottom:15%;" class="fontSizes">0元</b>
 	        </td>
-	      
+
 		    <td class="tdwith">
 		        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
 		        <div class="fontSizes">袁延强</div>
@@ -271,7 +261,7 @@
 			</a>
 		</ul>
 	</div>
-	
+
 </div>
 
 <div class="footer-makers">
