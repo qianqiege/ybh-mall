@@ -5,4 +5,5 @@ class ParallelShop < ApplicationRecord
     has_many :month_deal
     has_many :stock
     has_many :users
+    belongs_to :user
 end
