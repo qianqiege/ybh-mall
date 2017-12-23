@@ -13,4 +13,15 @@ class Wechat::MakersController < Wechat::BaseController
 
   def invite_code
   end
+
+  def create
+    user = current_user.user
+    if !user.nil?
+      user.maker_id = params[:format].to_i
+      if user.save
+        redirect_to '/user/maker_code'
+        return
+      end
+    end
+  end
 end
