@@ -16,7 +16,13 @@ class Wechat::CommunityController < Wechat::BaseController
   end
 
   def invite
-
+    @user_id = WechatUser.find(current_user).user.id
+    if Plan.find_by(user_id:@user_id, is_capital:true)
+      url = wechat_community_commitment_path({user_id: @user_id})
+      @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+    else
+      redirect_to '/wechat/community/index'
+    end
   end
 
   def renew
