@@ -4,7 +4,7 @@ class Wechat::CommunityController < Wechat::BaseController
   end
 
   def plandetail
-      @friend = User.where(community_id: current_user.user_id)
+      @plan = Plan.find_by(id:params[:format])
   end
 
   def instruct
