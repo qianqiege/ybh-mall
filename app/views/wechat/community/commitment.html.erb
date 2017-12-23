@@ -87,6 +87,9 @@
     			<label>我同意签订承诺消费书</label>
     		</div>
     		<div class="argee">
+                <% if @user_id %>
+                    <input name="capital_id" value="<%= @user_id %>" style="display:none;">
+                <% end %>
                 <input name="current_user" value="<%= current_user.id %>" style="display:none;">
     			<input type="submit" name="action" value="提交" />
     		</div>
