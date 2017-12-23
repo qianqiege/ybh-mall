@@ -8,18 +8,169 @@
 		background: rgba(0, 0, 0, 0.4);
 	}
 	.alertDiv{
-		width: 270px;
+		width: 80%;
 		height: 160px;
 		background-color: #fff;
 		margin: 30% auto;
 		border-radius: 5px;
+		position: relative;
+	}
+	.alertDiv span {
 		padding: 10px;
+		display: block;
+	}
+	.btn-xy {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.btn-xy button {
+		border: none;
+		width: 49%;
+		height: 35px;
+		line-height: 35px;
+		background-color: #ad0e11;
+		color: #fff;
+	}
+	.btn-xy button:first-child {
+		border-bottom-left-radius: 5px;
+	}
+	.btn-xy button:last-child {
+		border-bottom-right-radius: 5px;
+	}
+		.agree-block {
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		position: absolute;
+		top: 0;
+	}
+
+	.block-order {
+		width: 100%;
+		background-color: #fff;
+		position: absolute;
+		bottom: 58px;
+		left: 0;
+	}
+
+	.block-order>h3 {
+		text-align: center;
+		padding: 15px 0;
+		border-bottom: 1px solid #bbb;
+	}
+
+	.info-block {
+		padding: 20px 0;
+	}
+
+	.info-block>p {
+		margin: 5px auto 10px;
+	}
+
+	.info-block li {
+		border-bottom: 1px solid #bbb;
+		overflow: auto;
+		padding: 5px 8px;
+	}
+
+	.info-block li span:first-child {
+		float: left;
+	}
+
+	.info-block li span:last-child, .info-block li select {
+		float: right;
+	}
+
+	.info-block li select option{
+		text-align:center;
+	}
+
+	.info-block li select {
+		min-width: 30%;
+		min-height: 30px;
+	}
+
+	.button-applay button {
+		width: 100%;
+		background: rgba(201, 43, 47, 1);
+		border: none;
+		padding: 10px 0;
+		color: #fff;
+		margin-top: 60px;
+	}
+	.clear-block {
+
+	}
+	.clear-block h3 {
+		text-align: center;
+		position: relative;
+		padding: 10px 0;
+		border-bottom: 1px solid #bbb;
+	}
+	.clear-block img{
+		width: 28px;
+		height: 28px;
+		position: absolute;
+		left: 6px;
+		top: 10px;
 	}
 </style>
 
 <%= title "199计划" %>
 <div class="content">
 	<div class="alertDiv">
-		亲，您已赚到3000收益。需要支付承诺金后才可以续约
+		<span>亲，您已赚到3000收益。需要支付承诺金后才可以续约</span>
+		<div class="btn-xy">
+			<button id="cancle">取消</button>
+			<button id="ensure">确定</button>
+		</div>
 	</div>
 </div>
+
+<!-- 弹框  -->
+<div class="agree-block" id="agree" style="display: none;">
+	<div class="block-order" id="blockD">
+		<div class="clear-block">
+			<h3>确认付款</h3>
+			<%= image_tag "u12.png", id:'fImg' %>
+		</div>
+		<div class="info-block">
+			<p style="font-size: 18px; font-weight: 800; text-align: center;">￥：1000</p>
+			<ul>
+				<li>
+					<span>订单信息</span>
+					<span>创客计划承诺金</span>
+				</li>
+				<li>
+					<span style="margin-top: 5px;">支付方式</span>
+					<select>
+						<option>微信</option>
+						<option>线下支付</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+		<div class="button-applay">
+			<a href="<%= wechat_create_makers_path(@user_id) %>">
+				<button> 立即付款 </button>
+			</a>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$( function () {
+		$("#cancle").click( function () {
+			location.href="<%= wechat_community_index_path %>"
+		})
+
+		$("#ensure").click( function () {
+				$("#agree").show();
+		})
+
+		$("#fImg").click( function () {
+			$("#agree").hide();
+		})
+	})
+</script>
