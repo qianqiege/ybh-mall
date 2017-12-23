@@ -148,6 +148,35 @@
 		font-weight: bold;
 	}
 
+	ul.block-li {
+		display: block;
+		/*text-align: center;*/
+		margin: 20px 0;
+	}
+
+	ul.block-li li{
+		width: 18%;
+		height: 101px;
+		text-align: center;
+		display: inline-block;
+		overflow: hidden;
+	}
+
+	ul.block-li li:first-child {
+		margin-left: 2.3%;
+	}
+
+	ul.block-li li:nth-child(6) {
+		margin-left: 2.3%;
+	}
+
+	.over-text {
+		overflow: hidden;
+    	white-space: nowrap;
+    	text-overflow: ellipsis;
+    	display: inline-block;
+    	width: 100%;
+	}
 
 </style>
 
@@ -163,52 +192,20 @@
 	</div>
 
 	<div>
-	  <table style="margin-top: 4%;">
-	    <tr style="text-align: center;">
-	        <td class="tdwith">
-	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-	            <div style="margin-bottom:15%;font-weight: bold;line-height: 33px;"><%= @plan.user.name %></div>
-	        </td>
-	        <% Plan.where(capital_id:current_user.user.id).each do |t| %>
+        <ul class="block-li">
+  			<li>
+  				<%= image_tag "共同体.png", size: "50x50" %>
+  				<div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;"><%= @plan.user.name %></div>
+  			</li>
+  			<% Plan.where(capital_id:current_user.user.id).each do |t| %>
                 <% u = User.find_by(id:t.user_id) %>
-                <td class="tdwith">
-    	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-    	            <div class="fontSizes"><%= u.name %></div>
-    	            <b style="margin-bottom:15%;" class="fontSizes">0元</b>
-    	        </td>
+                <li>
+      				<%= image_tag "共同体.png", size: "50x50" %>
+      				<div class="fontSizes"><%= u.name %></div>
+      	            <span style="margin-bottom:15%;" class="fontSizes over-text"><%= t.money*0.1 %></span>
+      			</li>
             <% end %>
-	    </tr>
-
-		<tr style="text-align: center;">
-	        <td class="tdwith">
-	            <a ><%= image_tag "共同体.png", size: "50x50" %></a>
-	            <div class="fontSizes">袁延强</div>
-	            <b style="margin-bottom:15%;" class="fontSizes">0元</b>
-	        </td>
-	        <td class="tdwith">
-	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-	            <div class="fontSizes">袁延强</div>
-	            <b style="margin-bottom:15%;" class="fontSizes">0元</b>
-	        </td>
-
-		    <td class="tdwith">
-		        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-		        <div class="fontSizes">袁延强</div>
-		        <b style="margin-bottom:15%;" class="fontSizes">200元</b>
-		    </td>
-		    <td class="tdwith">
-		        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-		        <div class="fontSizes">袁延强</div>
-		        <b style="margin-bottom:15%;" class="fontSizes">200元</b>
-		    </td>
-		    <td class="tdwith">
-		        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-		        <div class="fontSizes">袁延强</div>
-		        <b style="margin-bottom:15%;" class="fontSizes">0元</b>
-		    </td>
-	    </tr>
-
-	  </table>
+  		</ul>
 	</div>
 
 	<div  class="shopList">
