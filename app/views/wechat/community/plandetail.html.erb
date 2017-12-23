@@ -148,6 +148,35 @@
 		font-weight: bold;
 	}
 
+	ul.block-li {
+		display: block;
+		/*text-align: center;*/
+		margin: 20px 0;
+	}
+
+	ul.block-li li{
+		width: 18%; 
+		height: 101px;
+		text-align: center; 
+		display: inline-block;
+		overflow: hidden;
+	}
+
+	ul.block-li li:first-child {
+		margin-left: 2.3%;
+	}
+
+	ul.block-li li:nth-child(6) {
+		margin-left: 2.3%;
+	}
+
+	.over-text {
+		overflow: hidden;
+    	white-space: nowrap;
+    	text-overflow: ellipsis;
+    	display: inline-block;
+    	width: 100%;
+	}
 
 </style>
 
@@ -160,7 +189,41 @@
 	</div>
 
 	<div>
-	  <table style="margin-top: 4%;">
+		<ul class="block-li">
+			<li>
+				<%= image_tag "共同体.png", size: "50x50" %>
+				<div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;">周毅</div>
+			</li>
+			<li>
+				<%= image_tag "共同体.png", size: "50x50" %>
+				<div class="fontSizes">袁延强</div>
+	            <span style="margin-bottom:15%;" class="fontSizes over-text">0元</span>
+			</li>
+			<li>
+				<%= image_tag "共同体.png", size: "50x50" %>
+				<div class="fontSizes">袁延强</div>
+	            <span style="margin-bottom:15%;" class="fontSizes over-text">0元</span>
+			</li>
+			<li>
+				<%= image_tag "共同体.png", size: "50x50" %>
+				<div class="fontSizes">袁延强</div>
+	            <span style="margin-bottom:15%;" class="fontSizes over-text">0元</span>
+			</li>
+			<li>
+				<%= image_tag "共同体.png", size: "50x50" %>
+				<div class="fontSizes">袁延强</div>
+	            <span style="margin-bottom:15%;" class="fontSizes over-text">0元</span>
+			</li>
+			<li>
+				<%= image_tag "共同体.png", size: "50x50" %>
+				<div class="fontSizes">袁延强</div>
+	            <span style="margin-bottom:15%;" class="fontSizes over-text">0元</span>
+			</li>
+
+		</ul>
+
+
+	 <!--  <table style="margin-top: 4%;">
 	    <tr style="text-align: center;">
 	        <td class="tdwith">
 	            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
@@ -218,7 +281,7 @@
 		    </td>
 	    </tr>
 
-	  </table>
+	  </table> -->
 	</div>
 
 	<div  class="shopList">
