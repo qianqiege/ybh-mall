@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     get 'parallel_shops/salesclerk'
     get 'parallel_shops/partners'
     get 'parallel_shops/applyshop'
+    post 'parallel_shops', to: 'parallel_shops#create', as: :parallel_shops
     get 'community/index'
     get 'community/plandetail'
     get 'community/instruct'
