@@ -48,12 +48,29 @@
 		margin: 40% 0 0 5%;
 	}
 
+	.address-btn input{
+	    background-color: #ad0e11;
+    	line-height: 40px;
+    	width: 100%;
+    	border: none;
+    	color: #fff;
+	}
+	
+	.p-title {
+		text-align: center;
+		line-height: 35px;
+		margin: 30px;
+	}
+	.clearfix {
+		background-color: #f7f7f7 !important;
+		border: none !important;
+	}
 </style>
 
 
 
 <%= title '添加平行店' %>
-<h4>平行店店铺申请</h4>
+<h4 class="p-title">平行店店铺申请</h4>
 
 <%= form_for [:wechat, @shop] do |f| %>
   <input type="input" name="plan_id" value="<%= params[:format] %>" style="display: none;">
@@ -109,7 +126,7 @@
       <%= hidden_field_tag 'from_order_confirm', params[:from_order_confirm] %>
     </ul>
   </div>
-  <div class="address-btn add-address">
+  <div class="address-btn">
     <input type="submit" name="" value="保存">
   </div>
 <% end %>
