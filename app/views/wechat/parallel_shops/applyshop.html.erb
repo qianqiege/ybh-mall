@@ -53,23 +53,64 @@
 
 
 <%= title '添加平行店' %>
-<div class="applyShop">
-	<h4>平行店店铺申请</h4>
-	<div class="inputPrice">
-		<span>店铺名称</span>
-		<input type="text" name="" value="" placeholder="请输入店铺名称">
-	</div>
-	<div class="inputPrice">
-		<span>店铺地址</span>
-		<input type="text" name="" value="" placeholder="请输入店铺地址">
-	</div>
-	<div class="inputPrice">
-		<span>计划类型</span>
-		<select name="" class="selectApply">
-			<option value="0">御易健共同体计划</option>
-			<option value="1">创客计划</option>
-		</select>
-	</div>
-	<button type="" class="localBtn">获取定位</button>
-	<button type="submit" class="yyj_submit subBtn">提交</button>
-</div>
+<h4>平行店店铺申请</h4>
+
+<%= form_for [:wechat, @shop] do |f| %>
+  <input type="input" name="plan_id" value="<%= params[:format] %>" style="display: none;">
+  <% if @shop.errors.any? %>
+    <div class="notice">
+      <h3><%= "#{@shop.errors.count}个错误:" %></h3>
+      <ul>
+        <% @shop.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="address-box city-group">
+    <ul>
+      <li class='clearfix'>
+        <span>名称：</span>
+        <%= f.text_field :title, class: 'gray84' %>
+      </li>
+      <li class='clearfix'>
+        <span>主要经营：</span>
+        <%= f.text_field :main_business, class: 'gray84' %>
+      </li>
+      <li class="clearfix">
+        <span>省份</span>
+        <select class="city-select" name="parallel_shop[province]">
+          <option value="">--省份--</option>
+          <%= options_for_select(ChinaCity.list, @shop.try(:province)) %>
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>城市</span>
+        <select class="city-select" name="parallel_shop[city]">
+          <option value="">--城市--</option>
+          <% if @shop.province.present? && !(@shop.city == "--城市--") %>
+            <%= options_for_select(ChinaCity.list(@shop.province), @shop.city) %>
+          <% end %>
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>地区或街道</span>
+        <select class="city-select" name="parallel_shop[street]">
+          <option value="">--地区或街道--</option>
+          <% if @shop.province.present? && @shop.city.present? && !(@shop.street == "--地区或街道--") %>
+            <%= options_for_select(ChinaCity.list(@shop.city), @shop.street) %>
+          <% end %>
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>详细地址：</span>
+        <%= f.text_field :detail, class: 'gray84' %>
+      </li>
+      <%= hidden_field_tag 'from_order_confirm', params[:from_order_confirm] %>
+    </ul>
+  </div>
+  <div class="address-btn add-address">
+    <input type="submit" name="" value="保存">
+  </div>
+<% end %>
+
