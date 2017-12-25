@@ -19,6 +19,7 @@ class Plan < ApplicationRecord
 			transitions from: :failing, to: :success
 
 			after do
+				self.active = true
 				self.save
 			end
 		end
