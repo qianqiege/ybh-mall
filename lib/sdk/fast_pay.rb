@@ -144,7 +144,7 @@ module Sdk
         merchOrderNo: @order.number,
         service: "fastPayTradeMergePay",
         tradeInfo: tradeInfo.to_json,
-        returnUrl: @host + 'wecaht/makers/plan',
+        returnUrl: @host + 'wechat/makers/plan',
         notifyUrl: @host + 'notifies/plans',
         paymentType: pay_type
       }
