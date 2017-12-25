@@ -4,8 +4,8 @@ class ParallelShop < ApplicationRecord
     has_many :day_deals
     has_many :month_deal
     has_many :stock
-    # has_many :users
-    belongs_to :user
+    has_many :users
+    belongs_to :plan
 
 
     include AASM
