@@ -228,15 +228,30 @@
         <ul class="block-li">
   			<li>
   				<%= image_tag "共同体.png", size: "50x50" %>
-  				<div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;"><%= @plan.user.name %></div>
+  				<% if @plan.is_capital == true %>
+                    <div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;"><%= @plan.user.name %></div>
+                <% else %>
+                    <div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;"><%= Plan.find_by(user_id:@plan.capital_id, is_maker:false).user.name %></div>
+                <% end %>
   			</li>
-  			<% Plan.where(capital_id:current_user.user.id).each do |t| %>
-                <% u = User.find_by(id:t.user_id) %>
-                <li>
-      				<%= image_tag "共同体.png", size: "50x50" %>
-      				<div class="fontSizes"><%= u.name %></div>
-      	            <span style="margin-bottom:15%;" class="fontSizes over-text"><%= t.money*0.1 %></span>
-      			</li>
+            <% if @plan.is_capital == true %>
+                <% Plan.where(capital_id:@plan.user_id, is_maker:false).each do |t| %>
+                    <% u = User.find_by(id:t.user_id) %>
+                    <li>
+                        <%= image_tag "共同体.png", size: "50x50" %>
+                        <div class="fontSizes"><%= u.name %></div>
+                        <span style="margin-bottom:15%;" class="fontSizes over-text"><%= t.money*0.1 %></span>
+                    </li>
+                <% end %>
+            <% else %>
+                <% Plan.where(capital_id:@plan.capital_id, is_maker:false).each do |t| %>
+                    <% u = User.find_by(id:t.user_id) %>
+                    <li>
+                        <%= image_tag "共同体.png", size: "50x50" %>
+                        <div class="fontSizes"><%= u.name %></div>
+                        <span style="margin-bottom:15%;" class="fontSizes over-text"><%= t.money*0.1 %></span>
+                    </li>
+                <% end %>
             <% end %>
   		</ul>
 	</div>
@@ -297,7 +312,7 @@
         <% elsif @plan.is_capital == true && Plan.where(capital_id:@plan.user_id).length < 9 %>
         	<div class="footer-makers-button">
                 <a href="<%= user_community_code_path %>">邀请伙伴</a>
-            </div> 
+            </div>
         <% end %>
 
 	</div>
