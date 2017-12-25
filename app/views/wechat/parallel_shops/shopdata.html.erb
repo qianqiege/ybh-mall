@@ -281,7 +281,7 @@
         console.log(arr);
         $.post("/wechat/parallel_shops/pay", { "total": priceTotal, "items": arr},
             function(data){
-                location.href = "/parallel_shop/code";
+                location.href = "/wechat/parallel_shops/code";
             }, "json");
         })
 </script>

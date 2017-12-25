@@ -62,6 +62,8 @@ Rails.application.routes.draw do
     get '/light_city', to: 'home#light_city'
     get '/tickethome', to: 'home#ticket_home'
     post 'parallel_shops/pay'
+    get 'parallel_shops/code'
+    get 'parallel_shops/waiter'
   end
 
   namespace :wechat do
