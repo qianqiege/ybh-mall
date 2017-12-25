@@ -5,6 +5,7 @@ class Wechat::MakersController < Wechat::BaseController
 
   def plan_details
       @plan = Plan.find_by(id:params[:format])
+      @parallel_shops = @plan.parallel_shops
   end
 
   def protocol

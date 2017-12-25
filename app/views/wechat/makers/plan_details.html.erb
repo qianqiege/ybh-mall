@@ -216,6 +216,25 @@
 		margin-left: 20px;
 		font-size: 13px;
 	}
+	.d-shen {
+		font-size: .8rem;
+		font-weight: normal;
+	    color: #fff;
+	    display: inline-block;
+	    float: right;
+	    margin-right: 2px;
+	    padding: 1px 10px;
+	    border-radius: 2px;
+	}
+	.d-active-d {
+	    background-color: red;
+	}
+	.d-active-y {
+	    background-color: #25ff2c;
+	}
+	.d-active-w {
+	    background-color: #1891fb;
+	}
 
 </style>
 
@@ -268,25 +287,38 @@
 	<div class="shopList">
 		<div  style="line-height: 30px;">
 			<span  class="mystore">我的平行店</span>
-			<a href="<%= wechat_parallel_shops_applyshop_path %>" class="add">添加平行店</a>
+			<a href="<%= wechat_parallel_shops_applyshop_path(params[:format]) %>" class="add">添加平行店</a>
 		</div>
 
 
 		<ul>
-            <% @plan.parallel_shops.each do |f| %>
-                <a href="" style="display: block;">
-                 <li>
-                     <div class="slLeft">
-                        <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-                     </div>
-                     <div class="slRight">
-                            <p><%= f.title %></p>
-                            <p><%= f.address %></p>
-                            <p class="money">分润额：1000</p>
-                     </div>
-                 </li>
-                </a>
-            <% end %>
+			<% @parallel_shops.each do |shop| %>
+				<a href="" style="display: block;">
+				 <li>
+				     <div class="slLeft">
+				     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+				     </div>
+				     <div class="slRight">
+				     		<div class="slRight-title">
+					            <p><%= shop.title %></p>
+					           	<p><%= shop.display_detail %></p>
+					           	<p class="money">
+					           		<span>分润额：1000</span>
+					           		<% if shop.status == "waiting" %>
+					           			<span class="d-shen d-active-w">待处理</span>
+					           		<% elsif shop.status == "dealed" %>
+					           			<span class="d-shen d-active-y">审核通过</span>
+									<% else %>
+										<span class="d-shen d-active-d">未通过审核</span>
+					           		<% end %>
+					           	</p>
+				     		</div>
+				     </div>
+				 </li>
+				</a>
+			<% end %>
+
+
 		</ul>
 	</div>
 
