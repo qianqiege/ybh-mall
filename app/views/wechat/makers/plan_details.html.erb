@@ -244,12 +244,22 @@
 	    	</div>
 			<table style="margin-top: 4%;" align="center">
 				<tr style="text-align: center;">
-				    <% Plan.where(capital_id:@plan.user_id, is_maker:true).each do |t| %>
-                        <td class="tdwith">
-                            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
-                            <div class="fontSizes"><%= t.user.name %></div>
-                            <b style="margin-bottom:15%;" class="fontSizes"><%= t.money*0.1 %></b>
-                        </td>
+				    <% if @plan.is_capital == true %>
+                        <% Plan.where(capital_id:@plan.user_id, is_maker:true).each do |t| %>
+                            <td class="tdwith">
+                                <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
+                                <div class="fontSizes"><%= t.user.name %></div>
+                                <b style="margin-bottom:15%;" class="fontSizes"><%= t.money*0.1 %></b>
+                            </td>
+                        <% end %>
+                    <% else %>
+                        <% Plan.where(capital_id:@plan.capital_id, is_maker:true).each do |t| %>
+                            <td class="tdwith">
+                                <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
+                                <div class="fontSizes"><%= t.user.name %></div>
+                                <b style="margin-bottom:15%;" class="fontSizes"><%= t.money*0.1 %></b>
+                            </td>
+                        <% end %>
                     <% end %>
 				</tr>
 			</table>
@@ -302,7 +312,7 @@
             <a class="renew" href="<%= wechat_makers_protocol_path %>">续约</a>
         <% end %>
 	</div>
-	<% if @plan.is_capital == true && Plan.where(capital_id:@plan.user_id) < 5 %>
+	<% if @plan.is_capital == true && Plan.where(capital_id:@plan.user_id).length < 5 %>
         <div class="footer-makers-button">
             <a href="<%= wechat_makers_invite_code_path %>">邀请伙伴</a>
         </div>
