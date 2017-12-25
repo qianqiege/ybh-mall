@@ -217,7 +217,11 @@
         <% else %>
             <button class="btn1" disabled>待授权</button>
         <% end %>
-		<span class="worry">队长操心费：<%= @plan.money %></span>
+        <% if @plan.is_capital == true %>
+            <span class="worry">队长操心费：0.000 %></span>
+        <% else %>
+            <span class="worry">队长操心费：<%= @plan.money %></span>
+        <% end %>
 	</div>
 
 	<div>
@@ -240,7 +244,11 @@
 	<div  class="shopList">
 		<div style="line-height: 30px;">
 			<span class="mystore">我的平行店</span>
-			<a href="<%= wechat_parallel_shops_applyshop_path(params[:format]) %>" class="add">添加平行店</a>
+            <% if @plan.active == true %>
+                <a href="<%= wechat_parallel_shops_applyshop_path(params[:format]) %>" class="add">添加平行店</a>
+            <% else %>
+
+            <% end %>
 		</div>
 		<ul>
 
@@ -273,11 +281,21 @@
 </div>
 
 <div class="footer-makers">
-	<div class="footer-makers-span">
-		<span style="font-weight: bold;margin-top: 5px;">总额：2500</span>
-		<a class="renew" href="<%= wechat_community_renew_path %>">续约</a>
+		<div class="footer-makers-span">
+			<span style="font-weight: bold;margin-top: 5px;">总额：<%= @plan.money %></span>
+
+			<% if @plan.money >= 3000 %>
+                <a class="renew" href="<%= wechat_community_renew_path %>">续约</a>
+            <% else %>
+
+            <% end %>
+		</div>
+        <% if @plan.is_capital == true  && Plan.where(capital_id:@plan.user_id).length >= 9 %>
+
+        <% else %>
+            <div class="footer-makers-button">
+                <a href="<%= wechat_community_invite_path %>">邀请伙伴</a>
+            </div>
+        <% end %>
+
 	</div>
-	<div class="footer-makers-button">
-		<a href="<%= wechat_community_invite_path %>">邀请伙伴</a>
-	</div>
-</div>
