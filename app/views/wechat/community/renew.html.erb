@@ -21,22 +21,24 @@
 	}
 	.btn-xy {
 		position: absolute;
-		bottom: 0;
+		bottom: 10px;
 		width: 100%;
 	}
 	.btn-xy button {
 		border: none;
-		width: 49%;
+		width: 50%;
 		height: 35px;
 		line-height: 35px;
-		background-color: #ad0e11;
-		color: #fff;
+		background-color: #fff;
+		/*border-right: 1px solid #bbb;*/
+		/*color: #fff;*/
 	}
 	.btn-xy button:first-child {
 		border-bottom-left-radius: 5px;
 	}
 	.btn-xy button:last-child {
 		border-bottom-right-radius: 5px;
+		color: #5aa0d6;
 	}
 		.agree-block {
 		width: 100%;
@@ -122,8 +124,7 @@
 	<div class="alertDiv">
 		<span>亲，您已赚到3000收益。需要支付承诺金后才可以续约</span>
 		<div class="btn-xy">
-			<button id="cancle">取消</button>
-			<button id="ensure">确定</button>
+			<button id="cancle">取消</button><button id="ensure">确定</button>
 		</div>
 	</div>
 </div>
