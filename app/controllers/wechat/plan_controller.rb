@@ -4,6 +4,18 @@ class Wechat::PlanController < ApplicationController
         if params[:capital_id]
             plan = Plan.new(user_id:user_id, is_capital:false, active:false,is_maker:false, capital_id:params[:capital_id].to_i)
             if plan.save
+                if plan.capital_id
+                    arr = Plan.where(capital_id:plan.capital_id)
+                    if arr.length == 9
+                        t = Plan.find_by(user_id:plan.capital_id)
+                        t.active = true
+                        t.save
+                        arr.each do |f|
+                            f.active = true
+                            f.save
+                        end
+                    end
+                end
                 redirect_to '/wechat/community/index'
             else
                 redirect_to :back
