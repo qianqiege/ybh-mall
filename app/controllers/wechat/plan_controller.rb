@@ -16,11 +16,11 @@ class Wechat::PlanController < ApplicationController
                         end
                     end
                 end
-                
+
                 # 更新队长的伙伴id数组
-                capital = Plan.find_by(user_id: params[:capital_id])
-                capital.partner_ids.push(plan.id)
-                capital.save
+                # capital = Plan.find_by(user_id: params[:capital_id])
+                # capital.partner_ids.push(plan.id)
+                # capital.save
 
                 redirect_to '/wechat/community/index'
             else
