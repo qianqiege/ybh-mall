@@ -149,7 +149,7 @@ div {
             </a>
 		<% end %>
 	</ul>
-    <% if !Plan.find_by(user_id:current_user.user.id, is_capital:true) %>
+    <% if !Plan.find_by(user_id:current_user.user.id, is_capital:true, is_maker:false) %>
         <div class="plan-button">
         	<a href="<%= wechat_community_commitment_path %>"> 同意发起计划 </a>
         </div>

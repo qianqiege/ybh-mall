@@ -1,0 +1,98 @@
+<style type="text/css" media="screen">
+	.container {
+		overflow-y: auto;
+	}
+
+	.price {
+		width:220px;
+		height: 220px;
+		margin: 0 auto;
+		border:1px solid #ccc;
+		margin-top: 10%;
+	}
+
+	.allPay {
+		text-align: center;
+		font-size: 1.5rem;
+		color:#ad0e11;
+	}
+
+	.listShow {
+		width:85%;
+		margin: 0 auto;
+		border-top: 1px solid #ccc;
+		padding:0;
+	}
+
+	.listShow li {
+		display: flex;
+		height:90px;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.listShow li .proLeft {
+		width:90px;
+	}
+
+	.listShow li .proLeft img {
+		width:80px;
+		height:80px;
+		margin: 5px 0 0 5px;
+	}
+
+	.listShow li .proRight {
+		flex:1;
+		padding-left: 5%;
+	}
+
+	.listShow li .proRight .proName {
+		font-size: 18px;
+		color:#474747;
+		margin: 0;
+		margin-top:18px;
+	}
+
+	.listShow li .proRight .proInfo {
+		margin: 0;
+		margin-top:10px;
+		font-size: 14px;
+		color:#888;
+	}
+
+    .qr-code-invitation {
+        position: static;
+        height:206px;
+        margin-top: 5%;
+    }
+
+    .qr-code-invitation table{
+        position:absolute;
+        top:0;
+        left:50%;
+        margin-left: -98px;
+    }
+</style>
+
+
+<div class="container">
+	<div class="qr-code-invitation">
+        <!-- <div class="qr-code-invitation"> -->
+            <%= raw @code.as_html %>
+        <!-- <div> -->
+	</div>
+	<p class="allPay"><%= @shop_order.total %></p>
+	<ul class="listShow">
+		<% @shop_order.shop_order_items.each do |t| %>
+            <li>
+                <div class="proLeft"><%= image_tag t.product.image.url,class:'proImg' %></div>
+                <div class="proRight">
+                    <p class="proName"><%= t.product.name %></p>
+                    <p class="proInfo">
+                        <span>￥<%=t.product.now_product_price %></span>
+                        <span>X <%= t.amount %></span>
+                    </p>
+                </div>
+            </li>
+        <% end %>
+	</ul>
+</div>
