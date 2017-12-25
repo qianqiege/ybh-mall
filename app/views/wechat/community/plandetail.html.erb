@@ -296,12 +296,8 @@
             </div>
         <% elsif @plan.is_capital == true && Plan.where(capital_id:@plan.user_id).length < 9 %>
         	<div class="footer-makers-button">
-                <a href="<%= wechat_community_invite_path %>">邀请伙伴</a>
+                <a href="<%= user_community_code_path %>">邀请伙伴</a>
             </div> 
-        <% elsif @plan.is_capital == false %>
-        	<div class="footer-makers-button" style="background-color: #bbb;">
-                <a style="background-color: #bbb;">邀请伙伴</a>
-            </div>
         <% end %>
 
 	</div>
