@@ -64,7 +64,8 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def create
-    @shop = current_user.user.parallel_shops.new(shop_params)
+    @plan = Plan.find(params[:plan_id])
+    @shop = @plan.parallel_shops.new(shop_params)
     if @shop.save
       flash[:success] = '平行店创建成功'
       redirect_to wechat_community_plandetail_path(params[:plan_id])

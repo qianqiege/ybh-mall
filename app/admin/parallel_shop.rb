@@ -1,9 +1,9 @@
 ActiveAdmin.register ParallelShop do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
-    permit_params :title, :address, :main_business, :image, :desc, :user_id, :status
+    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店" do
-        f.input :user
+        f.input :plan
         f.input :title
         f.input :address
         f.input :main_business
@@ -16,7 +16,7 @@ ActiveAdmin.register ParallelShop do
     index do
         selectable_column
         id_column
-        column :user
+        column :plan
         column :title
         column :address
         column :main_business
