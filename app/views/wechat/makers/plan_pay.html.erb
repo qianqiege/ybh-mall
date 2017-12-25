@@ -1,0 +1,24 @@
+<form action="<%= Settings.fast_pay.url %>" method="post" name="formName">
+  <div class='mobile_box'>
+    <div class="page-title">
+      <h2 class="text-cen">
+        <span>百万创客计划</span>
+        <%= link_to '', mall_cart_path, class: 'arrow-left' %>
+      </h2>
+    </div>
+    <div class="wraper pt50 graybg">
+      <% if flash[:success] %>
+        <div class="notice"><%= flash[:success] %></div>
+      <% end %>
+      <div class="cashier-total">
+       需要支付:  <span id="cashierTotal">¥<%= money @plan.price %></span>
+      </div>
+      <% @trade_merge_pay_params.keys.each do |item| %>
+        <%= hidden_field_tag item, @trade_merge_pay_params[item] %>
+      <% end %>
+      <% if @plan.price.to_f > 0 %>
+        <button id="cachier-fix-foot" class="cachier-fix-foot active" style="z-index: 999; margin-bottom: 60px;">确认支付</button>
+      <% end %>
+    </div>
+  </div>
+</form>

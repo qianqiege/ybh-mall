@@ -52,6 +52,31 @@ class NotifiesController < ApplicationController
     end
   end
 
+  # 百万创客计划支付通知回掉
+  def plans
+    plan = Plan.find_by(number: params["merchOrderNo"])
+    if(plan.present?)
+      plan.fast_pay.logger.info params
+      remote_sign = params[:sign]
+
+      params.delete(:sign)
+      params.delete(:action)
+      params.delete(:controller)
+
+      local_sign = plan.fast_pay.sign(params)
+      if (remote_sign == local_sign && params[:fastPayStatus] == "FINISHED")
+        plan.trade_nos = params["tradeNo"]
+        plan.pay
+        plan.save!
+        render json: "success", layout: nil
+      else
+        render json: "fail", layout: nil
+      end
+    else
+      render json: "fail", layout: nil
+    end
+  end
+
   # 数动力订阅付款成功回调, 需要路由
   def idata_subscribe
     idata_subscribe = IdataSubscribe.find_by(number: params["merchOrderNo"])
