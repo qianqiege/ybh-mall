@@ -34,7 +34,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def waiter
-    @shop_user =  ShopUser.find_by(phone: current_user.user.telphone)
+    @shop_user =  User.find_by(id: current_user.user.id)
     if !@shop_user
       @message = "您没有此权限"
     else
