@@ -53,12 +53,13 @@
 	}
 	.slRight-title p{
 		line-height: 25px;
+		font-size: 14px;
 	}
 	.slRight-title .money{
 		font-size: 16px;
 		font-weight: bold;
 		overflow: auto;
-		margin-top: 10px;
+		margin-top: 6px;
 	}
 	.footLay{
 		text-align: right;
@@ -111,12 +112,14 @@
 		color: #fff;
 		border-radius: 20px;
 		border: none;
-		width:40px;
-		height: 40px;
+		width:36px;
+		height: 36px;
+		font-size: 11px;
 	}
 	.authd .btn1{
 		background-color: #ad0e11;
 		margin: 0 7px;
+
 	}
 	.authd .btn2{
 		background-color: #68a870;
@@ -185,11 +188,13 @@
 	}
 	.d-shen {
 		font-size: .8rem;
+		font-weight: normal;
 	    color: #fff;
 	    display: inline-block;
 	    float: right;
-	    margin-right: .5rem;
+	    margin-right: 2px;
 	    padding: 1px 10px;
+	    border-radius: 2px;
 	}
 	.d-active-d {
 	    background-color: red;
@@ -268,11 +273,11 @@
 </div>
 
 <div class="footer-makers">
-		<div class="footer-makers-span">
-			<span style="font-weight: bold;margin-top: 5px;">总额：2500</span>
-			<a class="renew" href="<%= wechat_community_renew_path %>">续约</a>
-		</div>
-		<div class="footer-makers-button">
-			<a href="<%= wechat_community_invite_path %>">邀请伙伴</a>
-		</div>
+	<div class="footer-makers-span">
+		<span style="font-weight: bold;margin-top: 5px;">总额：2500</span>
+		<a class="renew" href="<%= wechat_community_renew_path %>">续约</a>
 	</div>
+	<div class="footer-makers-button">
+		<a href="<%= wechat_community_invite_path %>">邀请伙伴</a>
+	</div>
+</div>
