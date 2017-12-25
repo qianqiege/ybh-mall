@@ -58,9 +58,10 @@ class User::InfoController < Wechat::BaseController
   def community_code
     url = wechat_community_commitment_url(user_id: current_user.user_id)
     @community_code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
-    if !current_user.user.nil? && !current_user.user.maker_id.nil?
-      @community_user = User.find(current_user.user.community_id)
-    end
+    # if !current_user.user.nil? && !current_user.user.maker_id.nil?
+    #   @community_user = User.find(current_user.user.community_id)
+    # end
+    @capital = current_user.user
   end
 
   def maker_code
