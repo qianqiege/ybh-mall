@@ -1,179 +1,221 @@
 
 <style>
 
-body {
-	margin: 0px;
-}
+	body {
+		margin: 0px;
+	}
 
-a {
-	text-decoration: none;
-}
+	a {
+		text-decoration: none;
+	}
 
-div {
-	padding: 0;
-	margin: 0;
-}
+	div {
+		padding: 0;
+		margin: 0;
+	}
+	.makers-container{
+		margin-bottom: 125px;
+	}
+	.shopList ul {
+	    border-top: 1px solid #ccc;
+	    margin-top: 2%;
+	}
 
-.shopList ul {
-    border-top: 1px solid #ccc;
-    margin-top: 2%;
-}
+	.shopList ul li {
+	    display: flex;
+	    border-bottom:1px solid #ccc;
+	}
 
-.shopList ul li {
-    display: flex;
-    border-bottom:1px solid #ccc;
-}
+	.shopList ul li .slLeft,.shopList ul li .slRight {
+	    display: inline-block;
+	}
 
-.shopList ul li .slLeft,.shopList ul li .slRight {
-    display: inline-block;
-}
+	.shopList ul li .slLeft {
+	    width: 30%;
+	    padding:2%;
+	}
 
-.shopList ul li .slLeft {
-    width: 30%;
-    padding:2%;
-}
+	.shopList ul li .slRight {
+	    flex:1;
+	    color: #333;
+	}
 
-.shopList ul li .slRight {
-    flex:1;
-    color: #333;
-}
+	.shopList ul li .slLeft img {
+	    width: 100%;
+	    border-radius: 13px;
+	}
 
-.shopList ul li .slLeft img {
-    width: 100%;
-    border-radius: 13px;
-}
+	.slRight {
+		margin-top: 11px;
+		padding-left: .5rem;
+		padding-right: 8px;
+		overflow: auto;
+		position: relative;
+	}
 
-.slRight {
-	margin-top: 11px;
-	padding-left: .5rem;
-	padding-right: 8px;
-	overflow: auto;
-	position: relative;
-}
+	.slRight p {
+		font-size: 14px;
+		display: block;
+		line-height: 25px;
+	}
+	.slRight .money{
+		font-size: 16px;
+		font-weight: bold;
+		overflow: auto;
+		margin-top: 6px;
+	}
 
-.slRight span {
-	font-size: 14px;
-	display: block;
-}
+	.slRight p:last-child {
+		font-size: 16px;
+		font-weight: bold;
+	}
 
-.slRight span:last-child {
-	color: #ad0e11;
-	font-size: 1rem;
-	position: absolute;
-	bottom: 10px;
-    right: 1.5rem;
-}
+	.fontSizes {
+		font-size: 0.8rem;
+		line-height: 20px;
+	}
+	b {
+		font-weight: normal;
+	}
+	.tdwith{
+		width: 10%;
+		height: 114px;
+		padding: 5px 0;
+	}
+	.auth{
+		font-size: 16px;
+		font-weight: bold;
+	}
 
-.fontSizes {
-	font-size: 0.8rem;
-	line-height: 20px;
-}
-b {
-	font-weight: normal;
-}
-.tdwith{
-	width: 10%;
-	height: 114px;
-	padding: 5px 0;
-}
-.auth{
-	font-size: 16px;
-	font-weight: bold;
-}
+	.footer-makers {
+		position: fixed;
+		bottom: 58px;
+		left: 0;
+		width: 100%;
+		padding-top: 20px;
+		background-color: #f1f1f1;
+	}
 
-.footer-makers {
-	position: fixed;
-	bottom: 58px;
-	left: 0;
-	width: 100%;
-	padding-top: 20px;
-	background-color: #f1f1f1;
-}
+	.footer-makers-button a {
+		background-color: #ad0e11;
+		border: none;
+		color: #fff;
+		width: 100%;
+		padding: 10px;
+		display: block;
+		text-align: center;
+		font-size: 13px;
+	}
 
-.footer-makers-button button {
-	background-color: #ad0e11;
-	border: none;
-	color: #fff;
-	width: 100%;
-	padding: 10px;
-}
+	.footer-makers-span {
+		margin: 10px 0;
+		text-align: right;
+		padding-right: 10px;
+	}
 
-.footer-makers-span {
-	margin-bottom: 20px;
-	text-align: right;
-	padding-right: 10px;
-}
+	.xuyue-btn {
+		background-color: #ad0e11;
+		color: #fff;
+		padding: 5px 14px;
+	    border-radius: 3px;
+	    margin-left: 20px;
+	    font-size: 13px;
+	}
 
-.xuyue-btn {
-	background-color: #ad0e11;
-	color: #fff;
-	padding: 5px 14px;
-    border-radius: 3px;
-    margin-left: 20px;
-    font-size: 13px;
-} 
-
-.authd button{
+	.authd button{
 		color: #fff;
 		border-radius: 20px;
 		border: none;
-		width: 30px;
-    	height: 30px;
-    	font-size: 12px;
-}
-.authd .btn1{
-	background-color: #ad0e11;	
-	margin: 0 7px;	
-}
+		width: 36px;
+    	height: 36px;
+    	font-size: 11px;
+	}
+	.authd .btn1{
+		background-color: #ad0e11;
+		margin: 0 7px;
+	}
 
-.authd .btn2{
-	background-color: #68a870;
-}
+	.authd .btn2{
+		background-color: #68a870;
+	}
 
-.authd{
-	margin-top: 15px;
-	margin-left: 10px;
-	margin-bottom: 20px;
-	overflow: auto;
-}
+	.authd{
+		margin-top: 15px;
+		margin-left: 10px;
+		margin-bottom: 20px;
+		overflow: auto;
+	}
 
-.authd span:last-child {
-	float: right;
-	margin-right: 5px;
-	font-size: 13px;
-	font-weight: 800;
-}
+/*	.authd span:last-child {
+		float: right;
+		margin-right: 5px;
+		font-size: 13px;
+		font-weight: 800;
+	}*/
 
-.auth{
-	font-size: 16px;
-	font-weight: bold;	
-}
+	.auth{
+		font-size: 16px;
+		font-weight: bold;
+	}
 
-.per-block {
-	overflow: auto;
-	padding: 0 30px;
-}
+	.per-block {
+		overflow: auto;
+		padding: 0 30px;
+	}
 
-.per-block>div:first-child {
-	float: left;
-	text-align: center;
-}
+	.per-block>div:first-child {
+		float: left;
+		text-align: center;
+	}
 
-.per-block>div:last-child {
-	float: right;
-	margin-top: 10px;
-}
+	.per-block>div:last-child {
+		float: right;
+		margin-top: 10px;
+	}
 
-.add-P {
-	display: inline-block;
-	background-color: #ad0e11;
-	color: #fff;
-	float: right;
-	padding: 2px 6px;
-	font-size: 13px;
-	border-radius: 3px;
-	margin-right: 8px;
-}
+	.add-P {
+		display: inline-block;
+		background-color: #ad0e11;
+		color: #fff;
+		float: right;
+		padding: 2px 6px;
+		font-size: 13px;
+		border-radius: 3px;
+		margin-right: 8px;
+	}
+	.worry{
+		font-size: 14px;
+		line-height: 38px;
+		float: right;
+		margin-right: 10px;
+		font-weight: bold;
+	}
+	.mystore{
+		margin-left: 10px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.add{
+		background-color: #ad0e11;
+		border: none;
+		padding:2px 10px;
+		color: #fff;
+		border-radius: 3px;
+		float: right;
+		margin-right: 10px;
+		font-size: 13px;
+	}
+	.add:active{
+		color: #fff;
+	}
+	.renew{
+		color: #fff;
+		background-color: #ad0e11;
+		padding: 10px 20px;
+		border-radius: 3px;
+		margin-left: 20px;
+		font-size: 13px;
+	}
 
 </style>
 
@@ -184,14 +226,14 @@ b {
 			<span class="auth">平行店授权</span>
 			<button class="btn1" disabled>授权</button>
 			<button class="btn2" disabled>授权</button>
-			<span>队长操心费：250</span>
+			<span class="worry">队长操心费：250</span>
 		</div>
 	    <div>
 	    	<div class="per-block">
 		        <div>
 		            <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
 		            <p style="font-weight: bold;">周毅</p>
-		        </div>      
+		        </div>
 	    		<div>
 	    			<p style="margin-bottom: 5px;">创客计划积分余额：30000</p>
 	    			<p>合伙人收益：30000</p>
@@ -203,13 +245,13 @@ b {
 				        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
 				        <div class="fontSizes">袁延强</div>
 				        <b style="margin-bottom:15%;" class="fontSizes">0元</b>
-				    </td>     
+				    </td>
 				    <td class="tdwith">
 				        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
 				        <div class="fontSizes">袁延强</div>
 				        <b style="margin-bottom:15%;" class="fontSizes">0元</b>
 				    </td>
-				  
+
 				    <td class="tdwith">
 				        <a href=""><%= image_tag "共同体.png", size: "50x50" %></a>
 				        <div class="fontSizes">袁延强</div>
@@ -225,26 +267,31 @@ b {
 		</div>
 	</div>
 	<div class="shopList">
-		<div>
-			<span class="auth" style="margin-left: 10px;">我的平行店</span>
-			<a href="<%= wechat_parallel_shops_applyshop_path %>" class="add-P">添加平行店</a>
+		<div  style="line-height: 30px;">
+			<span  class="mystore">我的平行店</span>
+			<a href="<%= wechat_parallel_shops_applyshop_path %>" class="add">添加平行店</a>
 		</div>
-		<ul style="padding-left: 0px;">
-		<a href="" style="display: block;">
-		 <li>
-		     <div class="slLeft">
-		     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-		     </div>
-		     <div class="slRight">
-		     		<span>北京华侨大厦酒店</span>
-		     		<span>北京市朝阳区王府井大街</span>
-		     		<span>分润额：1000</span>
-		     </div>
-		 </li>
-		</a>
-	</ul>
+
+
+		<ul>
+			<a href="" style="display: block;">
+			 <li>
+			     <div class="slLeft">
+			     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+			     </div>
+			     <div class="slRight">
+			     		<p>北京华侨大厦酒店</p>
+			     		<p>北京市朝阳区王府井大街</p>
+			     		<p class="money">分润额：1000</p>
+			     </div>
+			 </li>
+			</a>
+
+		</ul>
 	</div>
-	<div class="footer-makers">
+
+
+	<!-- <div class="footer-makers">
 		<div class="footer-makers-span">
 			<span>总额：2500</span>
 			<a href="<%=  wechat_makers_protocol_path %>"><span class="xuyue-btn">续约</span></a>
@@ -254,5 +301,16 @@ b {
 				<button>邀请伙伴</button>
 			</a>
 		</div>
+	</div> -->
+</div>
+
+
+<div class="footer-makers">
+	<div class="footer-makers-span">
+		<span style="font-weight: bold;margin-top: 5px;">总额：2500</span>
+		<a class="renew" href="<%= wechat_makers_protocol_path %>">续约</a>
+	</div>
+	<div class="footer-makers-button">
+		<a href="<%= wechat_makers_invite_code_path %>">邀请伙伴</a>
 	</div>
 </div>
