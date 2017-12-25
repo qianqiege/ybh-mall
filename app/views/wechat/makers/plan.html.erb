@@ -104,7 +104,7 @@ div {
 	background: #ad0e11;
 	padding: 8px 0;
 	color: #fff;
-	font-size: 14px;	
+	font-size: 14px;
 }
 
 </style>
@@ -119,41 +119,33 @@ div {
 		<span class="goPlan">发起的计划</span>
 	</div>
 		<ul style="padding-left: 0px;">
-			<a href="<%= wechat_makers_plan_details_path %>">
-			 <li>
-			     <div class="slLeft">
-			     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-			     </div>
-			     <div class="slRight">
-			     		<div class="slRight-title">
-				            <span>创客计划</span>
-				            <b class="leader">队长</b>
-				            <b class="success">成功</b>			            
-			     		</div>
-			     		<div>
-			     			<span>发起时间：2017-12-18</span>
-			     		</div>
-			     </div>
-			 </li>
-			</a>
-
-			<a href="<%= wechat_makers_plan_details_path %>">
-			 <li>
-			     <div class="slLeft">
-			     	<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-			     </div>
-			     <div class="slRight">
-			     		<div class="slRight-title">
-				            <span>创客计划</span>
-				            <b class="partner">伙伴</b>
-				            <b class="fail">失败</b>			            
-			     		</div>
-			     		<div>
-			     			<span>发起时间：2017-12-18</span>
-			     		</div>
-			     </div>
-			 </li>
-			</a>
+            <% @plans.each do |t| %>
+                <a href="<%= wechat_makers_plan_details_path(t) %>">
+                 <li>
+                     <div class="slLeft">
+                        <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+                     </div>
+                     <div class="slRight">
+                         <div class="slRight-title">
+                             <span>创客计划</span>
+                             <% if t.is_capital == true %>
+                                 <b class="leader">队长</b>
+                             <% else %>
+                                 <b class="partner">伙伴</b>
+                             <% end %>
+                             <% if t.active == true %>
+                                 <b class="success">已激活</b>
+                             <% else %>
+                                 <b class="fail">待激活</b>
+                             <% end %>
+                         </div>
+                            <div>
+                                <span>发起时间：2017-12-18</span>
+                            </div>
+                     </div>
+                 </li>
+                </a>
+            <% end %>
 		</ul>
     <div class="plan-button">
     	<a href="<%=  wechat_makers_protocol_path %>">发起创客计划</a>

@@ -121,7 +121,7 @@ div {
 		<span class="goPlan">发起的计划</span>
 	</div>
 	<ul style="padding-left: 0px;">
-		<% current_user.user.plans.each do |t| %>
+		<% Plan.where(user_id:current_user.user.id, is_maker:false).each do |t| %>
             <a href="<%= wechat_community_plandetail_path(t) %>">
              <li>
                  <div class="slLeft">
