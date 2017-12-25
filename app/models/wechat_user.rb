@@ -2,6 +2,7 @@ class WechatUser < ApplicationRecord
   has_one :cart
   has_many :addresses
   has_many :orders
+  has_many :shop_orders
   belongs_to :user
   # 推荐人
   # belongs_to :recommender, :class_name => "User", :foreign_key => "recommender_id"

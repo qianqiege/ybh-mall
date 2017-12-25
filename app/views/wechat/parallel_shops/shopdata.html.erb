@@ -279,7 +279,7 @@
             arr.push({product_id: obj.value, count: count});
         }
         console.log(arr);
-        $.post("/parallel_shop/pay", { "total": priceTotal, "items": arr},
+        $.post("/wechat/parallel_shops/pay", { "total": priceTotal, "items": arr},
             function(data){
                 location.href = "/parallel_shop/code";
             }, "json");

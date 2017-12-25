@@ -1,5 +1,6 @@
 class ShopOrder < ApplicationRecord
     belongs_to :user
+    belongs_to :wechat_user
     has_many :shop_order_items
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
     after_update :update_amount
@@ -21,7 +22,7 @@ class ShopOrder < ApplicationRecord
                                     product_id:t.product_id,
                                     amount:t.amount)
             end
-            
+
             # 创建月结记录
             month_deal = MonthDeal.where(parallel_shop_id:self.user.parallel_shop_id).last
             month_deal_item = b.month_deal_items.where(product_id:t.product_id)
