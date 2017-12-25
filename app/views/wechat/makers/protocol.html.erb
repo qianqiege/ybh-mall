@@ -184,35 +184,38 @@
 </div>
 
 <!-- 弹框  -->
-<div class="agree-block" id="agree" style="display: none;">
-	<div class="block-order" id="blockD">
-		<div class="clear-block">
-			<h3>确认付款</h3>
-			<%= image_tag "u12.png", id:'fImg' %>
-		</div>
-		<div class="info-block">
-			<p style="font-size: 18px; font-weight: 800;">￥：10000</p>
-			<ul>
-				<li>
-					<span>订单信息</span>
-					<span>创客计划承诺金</span>
-				</li>
-				<li>
-					<span style="margin-top: 5px;">支付方式</span>
-					<select>
-						<option>微信</option>
-						<option>线下支付</option>
-					</select>
-				</li>
-			</ul>
-		</div>
-		<div class="button-applay">
-			<a href="<%= wechat_create_makers_path(@user_id) %>">
-				<button> 立即付款 </button>
-			</a>
+<%= form_tag(controller: "makers", action: "create_plan_exchange", method: "post") do  %>
+	<div class="agree-block" id="agree" style="display: none;">
+		<div class="block-order" id="blockD">
+			<div class="clear-block">
+				<h3>确认付款</h3>
+				<%= image_tag "u12.png", id:'fImg' %>
+			</div>
+			<div class="info-block">
+				<input type="text" name="price" value="0.01" style="display: none;">
+				<p style="font-size: 18px; font-weight: 800;">￥：10000</p>
+				<ul>
+					<li>
+						<span>订单信息</span>
+						<span>创客计划承诺金</span>
+					</li>
+					<li>
+						<span style="margin-top: 5px;">支付方式</span>
+						<select name="payment">
+							<option value="PAYMENT_TYPE_WECHAT">微信</option>
+							<option>线下支付</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div class="button-applay">
+				<a href="<%= wechat_create_makers_path(@user_id) %>">
+					<button> <input type="submit" name="" class="t-submit" value="立即付款"> </button>
+				</a>
+			</div>
 		</div>
 	</div>
-</div>
+<% end %>
 
 
 <script type="text/javascript">

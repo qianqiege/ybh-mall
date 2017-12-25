@@ -82,6 +82,8 @@ Rails.application.routes.draw do
     get 'makers/protocol'
     get 'makers/instructions'
     get 'makers/invite_code'
+    post 'makers/create_plan_exchange'
+    get 'makers/plan_pay'
   end
 
   namespace :mall do
