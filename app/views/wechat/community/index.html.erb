@@ -120,9 +120,9 @@ div {
 	<div>
 		<span class="goPlan">发起的计划</span>
 	</div>
-	<ul style="padding-left: 0px;">
+	<ul style="padding-left: 0px; margin-bottom: 45px;">
 		<% Plan.where(user_id:current_user.user.id, is_maker:false).each do |t| %>
-            <a href="<%= wechat_community_plandetail_path(t) %>">
+            <a href="<%= wechat_community_plandetail_path(t) %>" style="display: block;">
              <li>
                  <div class="slLeft">
                     <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>

@@ -118,9 +118,9 @@ div {
 	<div>
 		<span class="goPlan">发起的计划</span>
 	</div>
-		<ul style="padding-left: 0px;">
+		<ul style="padding-left: 0px; margin-bottom: 45px;">
             <% @plans.each do |t| %>
-                <a href="<%= wechat_makers_plan_details_path(t) %>">
+                <a href="<%= wechat_makers_plan_details_path(t) %>" style="display: block;">
                  <li>
                      <div class="slLeft">
                         <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
