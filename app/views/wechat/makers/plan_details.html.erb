@@ -312,7 +312,7 @@
             <a class="renew" href="<%= wechat_makers_protocol_path %>">续约</a>
         <% end %>
 	</div>
-	<% if @plan.is_capital == true && Plan.where(capital_id:@plan.user_id).length < 5 %>
+	<% if @plan.is_capital == true && Plan.where(capital_id:@plan.user_id, is_maker:true).length < 5 %>
         <div class="footer-makers-button">
             <a href="<%= wechat_makers_invite_code_path %>">邀请伙伴</a>
         </div>
