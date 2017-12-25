@@ -113,6 +113,14 @@
 		left: 6px;
 		top: 10px;
 	}
+	.t-submit {
+		width: 100%;
+		background: rgba(201, 43, 47, 1);
+		border: none;
+		padding: 10px 0;
+		color: #fff;
+		margin-top: 60px;
+	}
 </style>
 
 <div class="block">
@@ -165,12 +173,12 @@
 	本合同正本一式贰份，双方各执壹份，具有同等法律效力。<br>
 
 	<div>
-		<select style="width: 50%; margin-top: 20px; background-color: #fff;">
-		  <option value ="10000">10000（1万）</option>
-		  <option value ="10000">50000（5万）</option>
-		  <option value ="10000">100000(10万)</option>
-		  <option value ="10000">500000(50万)</option>
-		  <option value ="10000">1000000(100万)</option>
+		<select style="width: 50%; margin-top: 20px; background-color: #fff;" id="payment">
+		  <option value ="10000">10000(1万)</option>
+		  <option value ="50000">50000(5万)</option>
+		  <option value ="100000">100000(10万)</option>
+		  <option value ="500000">500000(50万)</option>
+		  <option value ="1000000">1000000(100万)</option>
 		</select>
 	</div>
 
@@ -193,7 +201,7 @@
 			</div>
 			<div class="info-block">
 				<input type="text" name="price" value="0.01" style="display: none;">
-				<p style="font-size: 18px; font-weight: 800;">￥：10000</p>
+				<p style="font-size: 18px; font-weight: 800;">￥：<span id="payText">10000</span> </p>
 				<ul>
 					<li>
 						<span>订单信息</span>
@@ -210,7 +218,7 @@
 			</div>
 			<div class="button-applay">
 				<a href="<%= wechat_create_makers_path(@user_id) %>">
-					<button> <input type="submit" name="" class="t-submit" value="立即付款"> </button>
+					<input type="submit" name="" class="t-submit" value="立即付款">
 				</a>
 			</div>
 		</div>
@@ -222,6 +230,8 @@
 	$( function () {
 		$("#planBtn").click( function () {
 			if ($('#commit').is(":checked")) {
+				var objpayment = $("#payment").val();
+				$("#payText").text(objpayment);
 				$("#agree").show();
 			}else {
 				alert("请在承诺书前打钩")
