@@ -160,6 +160,27 @@ a:active {
     flex:1;
     text-align: right;
 }
+ul.block-li {
+    display: block;
+    /*text-align: center;*/
+    margin: 20px 0;
+  }
+
+  ul.block-li li{
+    width: 23%;
+    height: 101px;
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  ul.block-li li:first-child {
+    margin-left: 2.3%;
+  }
+
+  ul.block-li li:nth-child(6) {
+    margin-left: 2.3%;
+  }
 
 </style>
 
@@ -175,45 +196,41 @@ a:active {
     <a href="<%= feedback_advice_content_path(5) %>">全国万民肿瘤患者救助计划咨询</a>
   </div>
 <div>
-  <table style="margin-top: 4%;">
-    <tr style="text-align: center;">
-      <td style="width: 10%;">
-        <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">易健康</p>
-      </td>      
-              
-        <td style="width: 10%;">
-            <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
-            <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
-        </td>
 
-<% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
-        <td style="width: 10%;">
-            <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
-            <p style="margin-bottom:15%;" class="fontSizes">199计划</p>
-        </td>
-           
-        <td style="width: 10%;">
-            <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
-            <p style="margin-bottom:15%;" class="fontSizes">创客计划</p>
-        </td> 
-      <% end %>        
-      
-      
-      
-    </tr>
 
-    <tr style="text-align: center;">
-      <td>
+  <div>
+  <ul class="block-li">
+
+    <li>
+      <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">易健康</p>
+    </li>
+    <li>
+      <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
+    </li>
+     <% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
+      <li>
+          <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
+          <p style="margin-bottom:15%;" class="fontSizes">199计划</p>
+      </li>
+         
+      <li>
+          <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
+          <p style="margin-bottom:15%;" class="fontSizes">创客计划</p>
+      </li> 
+    <% end %>
+
+    <li>
         <a href="<%= wechat_parallel_shops_partners_path %>"><%= image_tag "御合伙.png", size: "50x50" %></a>
         <p class="fontSizes">御合伙</p>
-      </td>      
+      </li>      
 
-      <td>
+      <li>
         <a href="<%= wechat_light_path %>"><%= image_tag "明灯.png", size: "50x50" %></a>
         <p class="fontSizes">一盏明灯</p>
-      </td>
-      <!-- <td>
+      </li>
+      <!-- <li>
         <% if !current_user.user.nil? && current_user.user.staff_type == "R&D" %>
           <a href="<%= wechat_coalition_path  %>"><%= image_tag "联盟.png", size: "50x50" %></a>
           <p class="fontSizes">商盟</p>
@@ -221,18 +238,18 @@ a:active {
           <a href=""><%= image_tag "联盟.png", size: "50x50" %></a>
           <p class="fontSizes">商盟</p>
         <% end %>
-      </td> -->
-        <td>
+      </li> -->
+        <li>
             <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
             <p class="fontSizes">商城</p>
-        </td>       
-      <td>
+        </li>       
+      <li>
         <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
         <p class="fontSizes">我的</p>
-      </td>       
-                 
-    </tr>
-  </table>
+      </li>     
+
+  </ul>
+</div>
 
 <% if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.status.nil? && current_user.user.status != "User" %>
   <div class="healthDiv">
