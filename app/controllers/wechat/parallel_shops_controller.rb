@@ -12,7 +12,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def pay
-      @shop_order = ShopOrder.create(   customer_id:Customer.find_by(phone:current_user.user.telphone).id,
+      @shop_order = ShopOrder.create(   wechat_user_id:current_user.id,
                                         total:      params[:total].to_f,
                                         status:     "pending",
                                         difference: params[:total].to_f,
@@ -24,6 +24,23 @@ class Wechat::ParallelShopsController < Wechat::BaseController
                                 price:          Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price,
                                 sub_total:      params[:items][key][:count].to_i*Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price)
       end
+  end
+
+  def code
+    @shop_order = ShopOrder.where(wechat_user_id:current_user.id).last
+    #   二維碼方法
+    url = wechat_parallel_shops_waiter_url(@shop_order)
+    @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+  end
+
+  def waiter
+    @shop_user =  ShopUser.find_by(phone: current_user.user.telphone)
+    if !@shop_user
+      @message = "您没有此权限"
+    else
+      @shop_order = ShopOrder.find(params[:format])
+      @shop_order_items = @shop_order.shop_order_items
+    end
   end
 
   def shopreceive

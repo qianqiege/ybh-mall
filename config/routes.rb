@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-
   mount API => '/'
   mount GrapeSwaggerRails::Engine => '/swagger'
 
@@ -63,6 +61,7 @@ Rails.application.routes.draw do
     get '/donate_record', to: 'home#donate_record'
     get '/light_city', to: 'home#light_city'
     get '/tickethome', to: 'home#ticket_home'
+    post 'parallel_shops/pay'
   end
 
   namespace :wechat do

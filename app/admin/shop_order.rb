@@ -3,7 +3,7 @@ ActiveAdmin.register ShopOrder do
     permit_params   :number,
                     :status,
                     :total,
-                    :customer,
+                    :wechat_user_id,
                     :user_id,
                     :express_number,
                     :difference,
@@ -19,7 +19,7 @@ ActiveAdmin.register ShopOrder do
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店订单" do
         f.input :number
-        f.input :customer
+        f.input :wechat_user
         f.input :user
         f.input :express_number
         f.input :shop_pay
@@ -37,7 +37,7 @@ ActiveAdmin.register ShopOrder do
         selectable_column
         id_column
         column :number
-        column :customer
+        column :wechat_user
         column :user
         column :express_number
         column :difference
@@ -52,7 +52,7 @@ ActiveAdmin.register ShopOrder do
     show do |shop_order|
         attributes_table do
             row :number
-            row :customer
+            row :wechat_user
             row :user
             row :express_number
             row :difference
