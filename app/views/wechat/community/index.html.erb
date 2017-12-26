@@ -142,7 +142,7 @@ div {
                             <% end %>
                         </div>
                         <div>
-                            <span>发起时间：2017-12-18</span>
+                            <span>发起时间：<%= t.created_at.to_s[0..10] %></span>
                         </div>
                  </div>
              </li>
