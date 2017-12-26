@@ -63,10 +63,10 @@ class AdminAbility
       can :manage, HealthProgram
       can :manage, ExchangeRecord
     elsif user.role_name == 'parallel_shop'
-      can [:update,:read], ParallelShop, id: user.parallel_shop_id
-      can :read, ShopOrder, user_id: User.where(parallel_shop_id: user.parallel_shop_id).pluck(:id)
-      can :manage, Stock, parallel_shop_id: user.parallel_shop_id
-      can :manage, PurchaseOrder, parallel_shop_id: user.parallel_shop_id
+      can [:update,:read]
+      can :read, ShopOrder
+      can :manage, Stock
+      can :manage, PurchaseOrder
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end

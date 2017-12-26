@@ -123,9 +123,23 @@
         <span>详细地址：</span>
         <%= f.text_field :detail, class: 'gray84' %>
       </li>
+
+
+      <li class="clearfix">
+        <div>
+          <span>管理登录邮箱:</span>
+          <input type="input" name="admin_email" class="gray84" />
+        </div>
+        <div>
+          <span>管理密码:</span>
+          <input type="password" name="admin_password" class="gray84" />
+        </div>
+      </li>
       <%= hidden_field_tag 'from_order_confirm', params[:from_order_confirm] %>
     </ul>
   </div>
+  
+
   <div class="address-btn">
     <input type="submit" name="" value="保存">
   </div>

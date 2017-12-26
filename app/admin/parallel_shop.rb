@@ -1,6 +1,6 @@
 ActiveAdmin.register ParallelShop do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
-    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status
+    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店" do
         f.input :plan
@@ -9,6 +9,7 @@ ActiveAdmin.register ParallelShop do
         f.input :main_business
         f.input :image, as: :file
         f.input :status
+        f.input :admin_user
         f.input :desc
       end
       f.actions
