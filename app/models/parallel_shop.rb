@@ -6,7 +6,7 @@ class ParallelShop < ApplicationRecord
     has_many :stock
     has_many :users
     belongs_to :plan
-
+    belongs_to :admin_user
 
     include AASM
 	aasm column: :status do

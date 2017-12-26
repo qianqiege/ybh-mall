@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171223043832) do
+ActiveRecord::Schema.define(version: 20171226033032) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -488,6 +488,21 @@ ActiveRecord::Schema.define(version: 20171223043832) do
     t.decimal  "count",            precision: 10, scale: 2
   end
 
+  create_table "integrals_copy1", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.decimal  "locking",          precision: 10, scale: 2
+    t.decimal  "available",        precision: 10, scale: 2
+    t.decimal  "exchange",         precision: 10, scale: 2
+    t.decimal  "cash",             precision: 10, scale: 2
+    t.decimal  "not_exchange",     precision: 10, scale: 2
+    t.decimal  "not_cash",         precision: 10, scale: 2
+    t.decimal  "appreciation",     precision: 10, scale: 2
+    t.decimal  "not_appreciation", precision: 10, scale: 2
+    t.decimal  "count",            precision: 10, scale: 2
+  end
+
   create_table "lights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "city"
     t.text     "desc",       limit: 65535
@@ -562,6 +577,14 @@ ActiveRecord::Schema.define(version: 20171223043832) do
     t.datetime "updated_at",                                      null: false
     t.text     "remark",             limit: 65535
     t.decimal  "price",                            precision: 10
+  end
+
+  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "vip_type_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -678,8 +701,15 @@ ActiveRecord::Schema.define(version: 20171223043832) do
     t.string   "main_business"
     t.string   "image"
     t.string   "desc"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "status",        default: "waiting"
+    t.string   "province"
+    t.string   "city"
+    t.string   "street"
+    t.string   "detail"
+    t.integer  "plan_id"
+    t.integer  "admin_user_id"
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -699,9 +729,14 @@ ActiveRecord::Schema.define(version: 20171223043832) do
     t.integer  "capital_id"
     t.boolean  "active"
     t.boolean  "is_maker"
-    t.float    "money",       limit: 24, default: 0.0
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.float    "money",       limit: 24,                          default: 0.0
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+    t.string   "trade_nos"
+    t.string   "number"
+    t.string   "payment"
+    t.string   "status"
+    t.decimal  "price",                  precision: 10, scale: 2
   end
 
   create_table "presented_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -932,7 +967,6 @@ ActiveRecord::Schema.define(version: 20171223043832) do
 
   create_table "shop_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "number"
-    t.string   "customer"
     t.integer  "user_id"
     t.float    "total",          limit: 24, default: 0.0
     t.string   "status",                    default: "pending"
@@ -941,6 +975,7 @@ ActiveRecord::Schema.define(version: 20171223043832) do
     t.float    "shop_pay",       limit: 24, default: 0.0
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.integer  "wechat_user_id"
   end
 
   create_table "shop_propaganda_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

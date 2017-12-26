@@ -4,6 +4,8 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_one :parallel_shop
+
   ROLE_NAME_DATA = { member: '成员',
                     admin: '管理员',
                     db: '仓库管理员',
