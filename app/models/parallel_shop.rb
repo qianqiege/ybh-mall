@@ -3,6 +3,7 @@ class ParallelShop < ApplicationRecord
     has_many :stock_outs
     has_many :day_deals
     has_many :month_deal
+    has_many :sale_products
     has_many :stock
     has_many :users
     belongs_to :plan

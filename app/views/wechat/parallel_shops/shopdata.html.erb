@@ -190,7 +190,7 @@
 		</div>
 		<!-- 带有a标签的循环，其他删掉 -->
 		<div style="margin-bottom: 110px;">
-			<% @parallel_shop.stock.each do |t| %>
+			<% @parallel_shop.sale_products.each do |t| %>
                 <% if t.amount > 0 %>
                     <div class="imgcon">
                         <%= image_tag t.product.image.url %>
