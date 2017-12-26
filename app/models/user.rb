@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_paper_trail
   belongs_to :parallel_shop
   has_many :plans
+  has_many :money_details
   # 操作记录
   include PresentedConcern
 

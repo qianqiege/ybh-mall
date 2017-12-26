@@ -1,6 +1,21 @@
 class Plan < ApplicationRecord
     belongs_to :user
     has_many :parallel_shops
+    before_save :change_number
+
+    def change_number
+        if !self.capital_id
+            self.code = Plan.generate_number
+        end
+    end
+
+    def self.generate_number
+      loop do
+        salt = rand(99999..999999)
+        coding = "PL"+"#{Date.current.to_s(:number)}#{salt}"
+        break coding unless self.exists?(number: coding)
+      end
+    end
 
     # serialize :partner_ids, Array
 
