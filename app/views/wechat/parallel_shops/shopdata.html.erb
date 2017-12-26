@@ -194,12 +194,12 @@
                 <% if t.amount > 0 %>
                     <div class="imgcon">
                         <%= image_tag t.product.image.url %>
-                        <input type="checkbox" class="checkbox" value="<%= t.product_id %>">
+                        <!-- <input type="checkbox" class="checkbox" value="<%= t.product_id %>"> -->
                         <div class="name"><%= t.product.name %></div>
                         <div class="price"><%= t.product.now_product_price %></div>
                         <div class="gw_num">
                             <em class="jian">-</em>
-                            <input type="text" value="1" disabled class="num"/>
+                            <input type="text" value="0" disabled class="num"/>
                             <em class="add">+</em>
                         </div>
                     </div>
@@ -233,43 +233,43 @@
         }
         $(this).prev().val(num);
         var price = parseFloat($(this).parent().siblings('.price').text());
-        var statusC = $(this).parent().siblings('.checkbox').is(':checked');
-        if (statusC) {
+        // var statusC = $(this).parent().siblings('.checkbox').is(':checked');
+        // if (statusC) {
             allPrice += price;
             $("#priceTotal").text(allPrice.toFixed(2));
-        } else {
-            return false;
-        }
+        // } else {
+        //     return false;
+        // }
     });
     //减的效果
     $(".jian").click(function () {
         var n = $(this).next().val();
         var num = parseInt(n) - 1;
-        if (num == 0) {
+        if (num == -1) {
             return
         }
         $(this).next().val(num);
         var price = parseFloat($(this).parent().siblings('.price').text());
-        var statusC = $(this).parent().siblings('.checkbox').is(':checked');
-        if (statusC) {
+        // var statusC = $(this).parent().siblings('.checkbox').is(':checked');
+        // if (statusC) {
             allPrice -= price;
             $("#priceTotal").text(allPrice.toFixed(2));
-        } else {
-            return false;
-        }
+        // } else {
+            // return false;
+        // }
     });
 
-    $('.checkbox').click(function () {
-        // console.log($(this).is(':checked'));
-        var num = parseInt($(this).siblings('.gw_num').find("input").val());
-        if ($(this).is(':checked')) {
-            allPrice += $(this).siblings('.price').text() * num;
-        } else {
-            allPrice -= $(this).siblings('.price').text() * num;
-        }
+    // // $('.checkbox').click(function () {
+    //     // console.log($(this).is(':checked'));
+    //     var num = parseInt($(this).siblings('.gw_num').find("input").val());
+    //     if ($(this)) {
+    //         allPrice += $(this).siblings('.price').text() * num;
+    //     } else {
+    //         allPrice -= $(this).siblings('.price').text() * num;
+    //     }
 
-        $("#priceTotal").text(allPrice.toFixed(2));
-    })
+    //     $("#priceTotal").text(allPrice.toFixed(2));
+    // })
 
     $("#clearing").click( function () {
         var priceTotal = $("#priceTotal").text();
