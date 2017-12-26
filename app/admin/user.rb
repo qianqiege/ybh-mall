@@ -16,7 +16,6 @@ ActiveAdmin.register User do
                 :staff_invitation_type,
                 :is_admin,
                 :is_test,
-                :maker_id,
                 :parallel_shop_id
 
   index do
@@ -37,16 +36,6 @@ ActiveAdmin.register User do
     column '是否为管理员', :is_admin
     column '注册时间',:created_at
     column :is_test
-    column '199计划' do |user|
-      if !user.maker_id.nil?
-        User.find_by(id: user.maker_id).name
-      end
-    end
-    column '创客计划' do |user|
-      if !user.community_id.nil?
-        User.find_by(id: user.community_id).name
-      end
-    end
     actions defaults: true
   end
 
@@ -88,7 +77,6 @@ ActiveAdmin.register User do
       row :is_admin
       row :created_at
       row :is_test
-      row :maker_id
     end
   end
 
