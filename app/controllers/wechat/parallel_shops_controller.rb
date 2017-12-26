@@ -35,7 +35,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   def waiter
     @shop_user =  User.find_by(id: current_user.user.id)
-    if !@shop_user
+    if current_user.user.parallel_shop_id
       @message = "您没有此权限"
     else
       @shop_order = ShopOrder.find(params[:format])
@@ -61,6 +61,18 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   def applyshop
     @shop = ParallelShop.new
+  end
+
+  def shop_pay
+      @shop_order = ShopOrder.find_by(id:params[:id])
+      @shop_order.shop_pay = params[:shop_pay].to_f
+      @shop_order.difference = @shop_order.total - params[:shop_pay].to_f
+      @shop_order.save
+      if @shop_order.difference > 0
+          render text: @shop_order.difference
+      else
+          render text: "支付成功！"
+      end
   end
 
   def create

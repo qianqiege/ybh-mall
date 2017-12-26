@@ -1,6 +1,7 @@
 <style type="text/css" media="screen">
-	.container {
+	.containers {
 		overflow-y: auto;
+        padding-bottom: 10px;
 	}
 
 	.price {
@@ -81,18 +82,18 @@
     	color: red;
     }
 
-    .container form {
+    .containers form {
     	margin-top: 20px;
     	text-align: center;
     	color: #888;
     }
 
-    .container input {
+    .containers input {
     	border-radius: 4px;
     	height: 30px;
     }
 
-    .container form .confirm {
+    .containers form .confirm {
     	margin-top: 20px;
     	display: inline-block;
     	width: 60%;
@@ -101,6 +102,23 @@
     	line-height: 40px;
     	border-radius: 40px;
     }
+
+    @media screen and (max-width:350px) {
+        .listShow li .proRight .proName {
+            font-size: 16px!important;
+            margin-top: 15px!important;
+        }
+    }
+
+    #shop_pay {
+        outline: none;
+        -webkit-appearance: none;
+        border-radius: 0;
+        border:0;
+        border:1px solid #ccc;
+        padding-left: 2%;
+    }
++
 </style>
 
 
@@ -109,7 +127,7 @@
 <% end %>
 
 <% if !@message  %>
-	<div class="container">
+	<div class="containers">
 		<p class="allPay"><%= @shop_order.total %></p>
 		<ul class="listShow">
 			<% @shop_order_items.each do |t| %>
@@ -119,7 +137,7 @@
 	                    <p class="proName"><%= t.product.name %></p>
 	                    <p class="proInfo">
 	                        <span>￥<%=t.product.now_product_price %></span>
-	                        <span>X <%= t.amount %></span>
+	                        <span style="float: right;margin-right: 5%;">X <%= t.amount %></span>
 	                    </p>
 	                </div>
 	            </li>
@@ -127,7 +145,7 @@
 		</ul>
 
 
-		<%= form_tag(parallel_shop_shop_pay_path(id: @shop_order)) do %>
+		<%= form_tag(wechat_parallel_shops_shop_pay_path(id: @shop_order)) do %>
 			<label for="shop_pay">实际消费: </label>
 			<input type="text" name="shop_pay" id="shop_pay">
 
