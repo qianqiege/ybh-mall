@@ -50,5 +50,25 @@ class ParallelShop < ApplicationRecord
 	   "#{ChinaCity.get(province)} #{ChinaCity.get(city)} #{ChinaCity.get(street)} #{detail}"
 	end
 
+	# 生成一个id，title的二维数组
+	# ['lisbon', 1], ['Madrid', 2]...]
+	def self.get_id_with_title
+		arr = []
+		ParallelShop.pluck(:id).each do |id|
+			item = []
+			title = ParallelShop.find(id).title
+			p "@"*30
+			p title
+			p id
+			item.push(title);
+			item.push(id);
+			p item
+			arr.push(item)
+			p arr
+		end
+		return arr
+	end
+
+
 
 end
