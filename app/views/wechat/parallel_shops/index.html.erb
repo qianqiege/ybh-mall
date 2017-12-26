@@ -57,6 +57,16 @@ a {
 	margin:0;
 }
 
+.block-li {
+    display: flex;
+    padding:2% 0;
+}
+
+.block-li li {
+    flex:1;
+    text-align: center;
+}
+
 </style>
 
 <%= title '平行店' %>
@@ -65,14 +75,22 @@ a {
 		<a href="<%= wechat_parallel_shops_instructions_path %>"><%= image_tag "pingxingdian.jpg", class:'topImage' %></a>
 	</div>
 	<!-- 轮播↑ -->
+    <div>
+        <ul class="block-li">
+            <li>
+                <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
+                <p class="fontSizes">199计划</p>
+            </li>
 
+            <li>
+                <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
+                <p class="fontSizes">创客计划</p>
+            </li>
+        </ul>
+    </div>
 	<div class="wraper graybg">
   <div class='user-center'>
     <div class='my-info'>
-      <div class="nickname">
-        <div class="nick-item">
-        </div>
-      </div>
 
       <div class="module-title">
         <h3>

@@ -91,11 +91,11 @@
 }
 
 .shopList {
-   margin-top: 5%; 
+   margin-top: 5%;
 }
 
 .shopList ul {
-    border-top: 1px solid #ccc;  
+    border-top: 1px solid #ccc;
 }
 
 .shopList ul li {
@@ -131,7 +131,7 @@
     color: #666;
 }
 
-a { 
+a {
   text-decoration:none;
   out-line: none;
   color: #000;
@@ -197,6 +197,52 @@ ul.block-li {
 <div class="tongzhi">
     <%= image_tag "喇叭.png", size: "15x15" %>
     <a href="<%= feedback_advice_content_path(5) %>">全国万民肿瘤患者救助计划咨询</a>
+  </div>
+<div>
+
+
+  <div>
+  <ul class="block-li">
+
+    <li>
+      <a href="<%= user_moving_health_data_path %>"><%= image_tag "数据.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">易健康</p>
+    </li>
+     <% if current_user.user.status == "Staff" %>
+     <li>
+       <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
+       <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
+     </li>
+    <% end %>
+
+    <li>
+        <a href="<%= wechat_parallel_shops_partners_path %>"><%= image_tag "御合伙.png", size: "50x50" %></a>
+        <p class="fontSizes">御合伙</p>
+      </li>
+
+      <li>
+        <a href="<%= wechat_light_path %>"><%= image_tag "明灯.png", size: "50x50" %></a>
+        <p class="fontSizes">一盏明灯</p>
+      </li>
+      <!-- <li>
+        <% if !current_user.user.nil? && current_user.user.staff_type == "R&D" %>
+          <a href="<%= wechat_coalition_path  %>"><%= image_tag "联盟.png", size: "50x50" %></a>
+          <p class="fontSizes">商盟</p>
+        <% else %>
+          <a href=""><%= image_tag "联盟.png", size: "50x50" %></a>
+          <p class="fontSizes">商盟</p>
+        <% end %>
+      </li> -->
+        <li>
+            <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
+            <p class="fontSizes">商城</p>
+        </li>
+      <li>
+        <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
+        <p class="fontSizes">我的</p>
+      </li>
+
+  </ul>
 </div>
 
 <div>
@@ -218,17 +264,17 @@ ul.block-li {
             <% if !current_user.user_id.nil? && !current_user.user.nil? && !current_user.user.staff_type.nil? &&current_user.user.staff_type == "R&D" %>
             <li>
                 <a href="<%= wechat_community_index_path %>">
-                    <%= image_tag "共同体.png", size: "50x50" %>        
+                    <%= image_tag "共同体.png", size: "50x50" %>
                 </a>
                 <p style="margin-bottom:15%;" class="fontSizes">199计划</p>
             </li>
-                 
+
             <li>
                 <a href="<%=  wechat_makers_plan_path %>">
                     <%= image_tag "创客.png", size: "50x50" %>
                 </a>
                 <p style="margin-bottom:15%;" class="fontSizes">创客计划</p>
-            </li> 
+            </li>
             <% end %>
 
             <li>
@@ -236,7 +282,7 @@ ul.block-li {
                     <%= image_tag "御合伙.png", size: "50x50" %>
                 </a>
                 <p class="fontSizes">御合伙</p>
-            </li>      
+            </li>
 
             <li>
                 <a href="<%= wechat_light_path %>">
@@ -259,16 +305,16 @@ ul.block-li {
             </li> -->
             <li>
                 <a href="<%= mall_root_path %>">
-                    <%= image_tag "商城.png", size: "50x50" %>                        
+                    <%= image_tag "商城.png", size: "50x50" %>
                 </a>
                 <p class="fontSizes">商城</p>
-            </li>       
+            </li>
             <li>
                 <a href="<%= user_root_path %>">
-                    <%= image_tag "会员.png", size: "50x50" %>                        
+                    <%= image_tag "会员.png", size: "50x50" %>
                 </a>
                 <p class="fontSizes">我的</p>
-            </li>     
+            </li>
         </ul>
     </div>
 
@@ -287,48 +333,25 @@ ul.block-li {
             </div>
         </div>
     <% end %>
-
-    <div class="shopList">
-        <div class="shopTag">
-            <span>平行店</span>
-            <a href="">更多 》</a>
-        </div>
-        <ul>
-            <a href="<%= wechat_parallel_shops_shopdata_path %>">
+<div class="shopList">
+    <div class="shopTag">
+        <span>平行店</span>
+        <a href="">更多 》</a>
+    </div>
+    <ul>
+        <% ParallelShop.all.each do |t| %>
+            <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
                 <li>
                     <div class="slLeft">
                         <%= image_tag "bji04680164.jpg", class:'shopImage' %>
                     </div>
                     <div class="slRight">
-                        <p>汉庭酒店</p>
-                        <span>北京市朝阳区王府井大街</span>
-                    </div>
-                </li>
-              </a>
-            <a href="">
-                <li>
-                    <div class="slLeft">
-                        <%= image_tag "raw_1512717706.jpg", class:'shopImage' %>
-                    </div>
-                    <div class="slRight">
-                        <p>四海一家</p>
-                        <span>深圳市南山区深南大道益田假日广场</span>
+                        <p><%= t.title %></p>
+                        <span><%= t.address %></span>
                     </div>
                 </li>
             </a>
-
-            <a href="">
-                <li>
-                    <div class="slLeft">
-                        <%= image_tag "raw_1512721018.jpg", class:'shopImage' %>
-                    </div>
-                    <div class="slRight">
-                        <p>格林豪泰酒店</p>
-                        <span>北京市朝阳区王府井大街</span>
-                    </div>
-                </li>
-            </a>            
-        </ul>
-    </div>  
-
+        <% end %>
+    </ul>
+  </div>
 </div>
