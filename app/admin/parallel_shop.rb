@@ -7,7 +7,7 @@ ActiveAdmin.register ParallelShop do
         f.input :title
         f.input :address
         f.input :main_business
-        f.input :image
+        f.input :image, as: :file
         f.input :status
         f.input :desc
       end
@@ -20,7 +20,9 @@ ActiveAdmin.register ParallelShop do
         column :title
         column :address
         column :main_business
-        column :image
+        column "平行店图片" do |slide|
+          image_tag(slide.image_url, size: "72x45", :alt => "parallel shop image")
+        end
         column :desc
         column "平行店审核" do |shop|
             if shop.status == "waiting"

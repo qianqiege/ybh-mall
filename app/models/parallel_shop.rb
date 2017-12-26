@@ -1,4 +1,5 @@
 class ParallelShop < ApplicationRecord
+    include ImageConcern
     has_many :purchase_orders
     has_many :stock_outs
     has_many :day_deals

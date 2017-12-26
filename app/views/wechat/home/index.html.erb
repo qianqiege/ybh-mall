@@ -272,7 +272,7 @@ ul.block-li {
             <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
                 <li>
                     <div class="slLeft">
-                        <%= image_tag "bji04680164.jpg", class:'shopImage' %>
+                        <%= image_tag t.image.url, class:'shopImage' %>
                     </div>
                     <div class="slRight">
                         <p><%= t.title %></p>
