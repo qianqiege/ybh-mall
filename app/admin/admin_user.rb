@@ -1,6 +1,6 @@
 ActiveAdmin.register AdminUser do
   menu parent: I18n.t("active_admin.menu.user_manage")
-  permit_params :email, :password, :password_confirmation, :role_name
+  permit_params :email, :password, :password_confirmation, :role_name, :parallel_shop_id
 
   index do
     selectable_column
@@ -24,6 +24,7 @@ ActiveAdmin.register AdminUser do
       f.input :password
       f.input :password_confirmation
       f.input :role_name, as: :select, collection: AdminUser::ROLE_NAME_DATA.invert, include: true
+      f.input :parallel_shop_id, as: :select, collection: ParallelShop.get_id_with_title
     end
     f.actions
   end
