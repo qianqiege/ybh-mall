@@ -15,7 +15,8 @@ ActiveAdmin.register User do
                 :family_doctor,
                 :staff_invitation_type,
                 :is_admin,
-                :is_test,:maker_id
+                :is_test,
+                :maker_id,
                 :parallel_shop_id
 
   index do
