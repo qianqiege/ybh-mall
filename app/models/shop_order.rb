@@ -2,13 +2,31 @@ class ShopOrder < ApplicationRecord
     belongs_to :user
     belongs_to :wechat_user
     has_many :shop_order_items
+    has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
     after_update :update_amount
+    before_save :change_number
+
+    def name
+        self.number
+    end
+
+    def change_number
+        self.number = ShopOrder.generate_number
+    end
+
+    def self.generate_number
+      loop do
+        salt = rand(99999..999999)
+        coding = "OR"+"#{Date.current.to_s(:number)}#{salt}"
+        break coding unless self.exists?(number: coding)
+      end
+    end
 
     def update_amount
         if self.status == "finished"
             parallel_shop = self.user.parallel_shop
-            
+            MoneyDetail.create(user_id:parallel_shop.plan.user_id, reason:"平行店收入", money:self.total*0.1)
             self.shop_order_items.each do |t|
                 a = Stock.find_by(product_id:t.product_id, parallel_shop_id:self.user.parallel_shop_id)
                 a.amount -= t.amount

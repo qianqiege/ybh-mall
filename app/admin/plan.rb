@@ -16,6 +16,7 @@ ActiveAdmin.register Plan do
         selectable_column
         id_column
         column :user
+        column :code
         column :partner_ids
         column :is_capital
         column :capital_id
