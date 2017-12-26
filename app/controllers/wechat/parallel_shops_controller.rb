@@ -67,10 +67,12 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       @shop_order = ShopOrder.find_by(id:params[:id])
       @shop_order.shop_pay = params[:shop_pay].to_f
       @shop_order.difference = @shop_order.total - params[:shop_pay].to_f
-      @shop_order.save
       if @shop_order.difference > 0
+          @shop_order.save
           render text: @shop_order.difference
       else
+          @shop_order.status = "finished"
+          @shop_order.save
           render text: "支付成功！"
       end
   end
