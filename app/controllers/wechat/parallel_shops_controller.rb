@@ -80,7 +80,18 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   def create
     @plan = Plan.find(params[:plan_id])
     @shop = @plan.parallel_shops.new(shop_params)
+
+    admin_data = {
+      email: params[:admin_email],
+      password: params[:admin_password],
+      role_name: 'parallel_shop'
+    }
+
     if @shop.save
+      # 在创建平行店后，创建adminuser用户
+      @admin_user = AdminUser.create(admin_data)
+      @shop.update!(admin_user_id: @admin_user.id)
+
       flash[:success] = '平行店创建成功'
       redirect_to wechat_community_plandetail_path(params[:plan_id])
     else
