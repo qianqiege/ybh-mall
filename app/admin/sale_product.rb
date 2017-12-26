@@ -1,17 +1,21 @@
 ActiveAdmin.register SaleProduct do
+    menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
+    permit_params :product_id, :amount, :parallel_shop_id
+    form(:html => { :multipart => true }) do |f|
+      f.inputs "平行店上架产品" do
+        f.input :product
+        f.input :parallel_shop
+        f.input :amount
+      end
+      f.actions
+    end
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-
-
+    index do
+        selectable_column
+        id_column
+        column :product
+        column :parallel_shop
+        column :amount
+        actions
+    end
 end
