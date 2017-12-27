@@ -1,0 +1,14 @@
+ <%= title '营业员输入金额' %>
+
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+
+<%= form_tag wechat_parallel_shops_waiter_code_path, method: :get do %>
+	<label>请输入用户消费金额</label>
+	<br />
+	<input type="text" placeholder="请输入消费金额" name="con_money">
+
+	<input type="submit" value="确认" />
+<% end %>
+
