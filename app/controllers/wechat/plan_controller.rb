@@ -35,4 +35,8 @@ class Wechat::PlanController < ApplicationController
             end
         end
     end
+
+    def show_files
+        
+    end
 end
