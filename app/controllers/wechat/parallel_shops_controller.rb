@@ -71,7 +71,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     end
 
     # 用户扫码后跳转到营业员对应平行店中
-    url = wechat_parallel_shops_shopdata_url(money: params[:con_money], waiter_id: current_user.user.parallel_shop_id)
+    url = wechat_parallel_shops_shopdata_url(money: params[:con_money], waiter_id: current_user.user.id)
     @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
 
   end
