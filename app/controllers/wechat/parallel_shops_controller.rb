@@ -8,13 +8,19 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     # 注册了，则直接跳转到营业员所在的平行店
     # 未注册， 跳转到注册页面
     # params[:waiter_id]  传入的是 营业员id
-    if params[:waiter_id] && params[:money]
-      @money = params[:money]
-      @waiter = User.find(params[:waiter_id])
-    end
     if !current_user.user_id.nil?
-      @waiter = User.find(params[:waiter_id])
-      @parallel_shop = ParallelShop.find_by(id: @waiter.parallel_shop_id)
+
+      # 如果流程是 顾客自己从首页进入平行店  走true判断
+      # 若流程是 顾客扫描营业员二维码进入  走elsif流程
+      # elsif 流程  提供营业员@waiter  店内消费金额@money
+      if !params[:format].nil?
+        @parallel_shop = ParallelShop.find(params[:format])
+      elsif params[:waiter_id] && params[:money]
+          @money = params[:money]
+          @waiter = User.find(params[:waiter_id])
+          @parallel_shop = ParallelShop.find_by(id: @waiter.parallel_shop_id)
+      end
+      
     else
       redirect_to user_binding_path(waiter_id: params[:waiter_id], money: params[:money])
     end
