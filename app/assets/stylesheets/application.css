@@ -12,4 +12,5 @@
  *
  *= require wechat/base
  *= require_self
+ *= require wechat/plan
  */

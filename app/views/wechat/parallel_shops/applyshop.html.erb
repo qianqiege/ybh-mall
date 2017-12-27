@@ -65,6 +65,12 @@
 		background-color: #f7f7f7 !important;
 		border: none !important;
 	}
+  .aler-p {
+    text-align: right;
+    margin-right: 2rem;
+    font-size: 11px;
+    color: red;
+  }
 </style>
 
 
@@ -85,6 +91,23 @@
     </div>
   <% end %>
   <div class="address-box city-group">
+    <ul style="margin-bottom: 2px;">
+       <li class='clearfix'>
+          <span>账号：</span>
+          <input type="text" name="admin_email" id="admin-user" />
+          <p class="aler-p" id="user-txt"></p>
+        </li>
+        <li class='clearfix'>
+          <span>密码：</span>
+          <input type="password" name="admin_password" id="admin-pwd" />
+          <p class="aler-p" id="pwd-txt"></p>
+        </li>
+        <li class='clearfix'>
+          <span>确认密码：</span>
+          <input type="password" name="admin_password_confirm" id="admin-pwd-confirm" />
+          <p class="aler-p" id="pwd-txt-confirm"></p>
+        </li>
+    </ul>
     <ul>
       <li class='clearfix'>
         <span>名称：</span>
@@ -125,7 +148,7 @@
       </li>
 
 
-      <li class="clearfix">
+     <!--  <li class="clearfix">
         <div>
           <span>管理登录邮箱:</span>
           <input type="input" name="admin_email" class="gray84" />
@@ -134,7 +157,7 @@
           <span>管理密码:</span>
           <input type="password" name="admin_password" class="gray84" />
         </div>
-      </li>
+      </li> -->
       <%= hidden_field_tag 'from_order_confirm', params[:from_order_confirm] %>
     </ul>
   </div>
@@ -145,3 +168,64 @@
   </div>
 <% end %>
 
+<script type="text/javascript">
+  $(function() {
+    var search_str = /^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/; //验证邮箱
+    var pwd_str = /^[0-9a-zA-Z]{6,12}$/; //密码验证
+    //邮箱验证
+    $("#admin-user").blur( function() {
+      if(!search_str.test($(this).val())) {
+        $("#user-txt").text("邮箱格式不正确！");
+        $("#address_submit").attr("type", "button");
+        return false;
+      }else if($(this).val() == "") {
+        $("#user-txt").text("邮箱不能为空");
+        $("#address_submit").attr("type", "button");
+        return false;
+      }else {
+        $("#user-txt").text("");
+        $("#address_submit").attr("type", "submit");
+      }
+    })
+
+    //密码验证
+    $("#admin-pwd").blur( function() {
+      if(!pwd_str.test($(this).val())) {
+        $("#pwd-txt").text("密码为6到12位数字或字母！");
+        $("#address_submit").attr("type", "button");
+        return false;
+      }else if($(this).val() == "") {
+        $("#pwd-txt").text("密码不能为空！");
+        $("#address_submit").attr("type", "button");
+        return false;
+      }else {
+        $("#pwd-txt").text("");
+        $("#address_submit").attr("type", "submit");
+      }
+
+      //判断两次密码是否一致；
+      if( $("#admin-pwd-confirm").val() ) {
+        confirm("#admin-pwd-confirm", "#pwd-txt-confirm", $(this));
+      }
+
+    })
+
+    //确认密码；
+    $("#admin-pwd-confirm").blur( function() {
+      confirm("#admin-pwd", "#pwd-txt-confirm", $(this));
+    })
+
+    function confirm(obj, objText, thats) {
+      var value = $(obj).val();
+      if ( thats.val() != value ) {
+        $(objText).text("两次密码不一致！");
+        $("#address_submit").attr("type", "button");
+        return false;
+      }else {
+        $(objText).text("");
+        $("#address_submit").attr("type", "submit");
+      }
+    }
+
+  })
+</script>
