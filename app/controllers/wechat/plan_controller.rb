@@ -36,7 +36,21 @@ class Wechat::PlanController < ApplicationController
         end
     end
 
+    # 展示平行店文件
     def show_files
         
     end
+
+
+    # 展示199计划文件
+    def show_community_files
+        
+    end
+
+    # 展示百万创客计划文件
+    def show_maker_files
+        
+    end
+
+
 end
