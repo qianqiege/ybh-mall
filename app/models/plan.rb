@@ -2,6 +2,7 @@ class Plan < ApplicationRecord
     belongs_to :user
     has_many :parallel_shops
     before_save :change_number
+    has_many :money_details
 
     def change_number
         if !self.capital_id

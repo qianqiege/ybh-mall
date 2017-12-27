@@ -1,0 +1,85 @@
+<style type="text/css" media="screen">
+	.container {
+		overflow-y: auto;
+	}
+
+	.price {
+		width:220px;
+		height: 220px;
+		margin: 0 auto;
+		border:1px solid #ccc;
+		margin-top: 10%;
+	}
+
+	.allPay {
+		text-align: center;
+		font-size: 1.5rem;
+		color:#ad0e11;
+	}
+
+	.listShow {
+		width:85%;
+		margin: 0 auto;
+		border-top: 1px solid #ccc;
+		padding:0;
+	}
+
+	.listShow li {
+		display: flex;
+		height:90px;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.listShow li .proLeft {
+		width:90px;
+	}
+
+	.listShow li .proLeft img {
+		width:80px;
+		height:80px;
+		margin: 5px 0 0 5px;
+	}
+
+	.listShow li .proRight {
+		flex:1;
+		padding-left: 5%;
+	}
+
+	.listShow li .proRight .proName {
+		font-size: 18px;
+		color:#474747;
+		margin: 0;
+		margin-top:18px;
+	}
+
+	.listShow li .proRight .proInfo {
+		margin: 0;
+		margin-top:10px;
+		font-size: 14px;
+		color:#888;
+	}
+
+    .qr-code-invitation {
+        position: static;
+        height:206px;
+        margin-top: 5%;
+    }
+
+    .qr-code-invitation table{
+        position:absolute;
+        top:0;
+        left:50%;
+        margin-left: -98px;
+    }
+</style>
+
+
+<div class="container">
+	<div class="qr-code">
+	  <%= raw @code.as_html %>
+	</div>
+	<p class="allPay">
+		<span>金额为: </span>
+		<%= @con_money %>
+	</p>
+</div>

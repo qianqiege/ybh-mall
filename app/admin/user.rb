@@ -35,6 +35,7 @@ ActiveAdmin.register User do
     column '是否为合伙人', :is_partner
     column '是否为管理员', :is_admin
     column '注册时间',:created_at
+    column :parallel_shop
     column :is_test
     actions defaults: true
   end
@@ -57,6 +58,7 @@ ActiveAdmin.register User do
       f.input :health_manager
       f.input :is_admin
       f.input :is_test
+      f.input :parallel_shop
     end
     f.actions
   end
@@ -77,6 +79,7 @@ ActiveAdmin.register User do
       row :is_admin
       row :created_at
       row :is_test
+      row :parallel_shop
     end
   end
 

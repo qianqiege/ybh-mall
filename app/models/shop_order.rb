@@ -25,8 +25,12 @@ class ShopOrder < ApplicationRecord
 
     def update_amount
         if self.status == "finished"
-            parallel_shop = self.user.parallel_shop
-            MoneyDetail.create(user_id:parallel_shop.plan.user_id, reason:"平行店收入", money:self.total*0.1)
+            plan = self.user.parallel_shop.plam
+            if plan.capital_id
+                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*0.045)
+            else
+                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*0.05)
+            end
             self.shop_order_items.each do |t|
                 a = Stock.find_by(product_id:t.product_id, parallel_shop_id:self.user.parallel_shop_id)
                 a.amount -= t.amount

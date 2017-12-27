@@ -4,7 +4,20 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def shopdata
-  	@parallel_shop = ParallelShop.find_by(id:params[:format])
+    # 判断当前顾客是否注册
+    # 注册了，则直接跳转到营业员所在的平行店
+    # 未注册， 跳转到注册页面
+    # params[:waiter_id]  传入的是 营业员id
+    if params[:waiter_id] && params[:money]
+      @money = params[:money]
+      @waiter = User.find(params[:waiter_id])
+    end
+    if !current_user.user_id.nil?
+      @waiter = User.find(params[:waiter_id])
+      @parallel_shop = ParallelShop.find_by(id: @waiter.parallel_shop_id)
+    else
+      redirect_to user_binding_path(waiter_id: params[:waiter_id], money: params[:money])
+    end
   end
 
   def commoditydetails
@@ -43,6 +56,26 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     end
   end
 
+  # 营业员输入消费金额页面
+  def waiter_input_money
+    
+  end
+
+  # 店铺营业员二维码
+  def waiter_code
+    # 获得顾客消费的金额
+    if params[:con_money] != ""
+      @con_money = params[:con_money]
+    else
+      redirect_to :back, notice: "请输入消费金额"
+    end
+
+    # 用户扫码后跳转到营业员对应平行店中
+    url = wechat_parallel_shops_shopdata_url(money: params[:con_money], waiter_id: current_user.user.id)
+    @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+
+  end
+
   def shopreceive
 
   end
@@ -53,6 +86,10 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   def salesclerk
 
+  end
+
+  def shopindex
+    
   end
 
   def partners
