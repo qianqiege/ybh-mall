@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     get 'plan/show_files'
     get 'parallel_shops/index'
     get 'parallel_shops/shopdata'
+    get 'parallel_shops/waiter_input_money'
+    get 'parallel_shops/waiter_code'
     get 'parallel_shops/commoditydetails'
     get 'parallel_shops/shopreceive'
     get 'parallel_shops/instructions'

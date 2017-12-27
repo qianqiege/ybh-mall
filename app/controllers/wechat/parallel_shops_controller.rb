@@ -4,7 +4,11 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def shopdata
-  	@parallel_shop = ParallelShop.find_by(id:params[:format])
+    if !current_user.user_id.nil?
+      @parallel_shop = ParallelShop.find_by(id:params[:format])
+    else
+      redirect_to '/user/binding'
+    end
   end
 
   def commoditydetails
@@ -41,6 +45,27 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       @shop_order = ShopOrder.find(params[:format])
       @shop_order_items = @shop_order.shop_order_items
     end
+  end
+
+  # 营业员输入消费金额页面
+  def waiter_input_money
+    
+  end
+
+  # 店铺营业员二维码
+  def waiter_code
+    byebug
+    # 获得顾客消费的金额
+    if params[:con_money] != ""
+      @con_money = params[:con_money]
+    else
+      redirect_to :back, notice: "请输入消费金额"
+    end
+
+    # 用户扫码后跳转到营业员对应平行店中
+    url = wechat_parallel_shops_shopdata_url(current_user.user.parallel_shop_id)
+    @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+
   end
 
   def shopreceive
