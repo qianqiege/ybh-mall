@@ -54,7 +54,6 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   # 店铺营业员二维码
   def waiter_code
-    byebug
     # 获得顾客消费的金额
     if params[:con_money] != ""
       @con_money = params[:con_money]
