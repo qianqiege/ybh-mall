@@ -55,6 +55,10 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   end
 
+  def shopindex
+    
+  end
+
   def partners
 
   end
