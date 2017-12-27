@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get '/create_makers', to: 'makers#create'
     get '/create_community', to: 'community#create'
     post 'plan/create_plan'
+    get 'plan/show_files'
     get 'parallel_shops/index'
     get 'parallel_shops/shopdata'
     get 'parallel_shops/commoditydetails'
