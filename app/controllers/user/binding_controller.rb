@@ -84,7 +84,7 @@ class User::BindingController < Wechat::BaseController
            flash[:notice] = '恭喜您，注册成功'
 
            # 若是从平行店扫营业员二维码，  则回到平行店页面
-           if params[:waiter_id]
+           if params[:waiter_id] != ""
              redirect_to wechat_parallel_shops_shopdata_path(money: params[:money], waiter_id: params[:waiter_id])
            else
             redirect_to root_path
