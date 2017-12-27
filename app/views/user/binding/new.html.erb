@@ -93,6 +93,11 @@
 <%= title '注册御易健账号' %>
 
 <%= form_tag(user_bind_phone_path, method: :post, id: 'bind_phone_form') do %>
+
+  <!-- 注册流程是否是 从营业员扫码处 过来  -->
+  <input type="text" name="waiter_id" value="<%= params[:waiter_id] %>" style="display: none;">
+  <input type="text" name="money" value="<%= params[:money] %>" style="display: none;">
+
   <div class='mobile_box'>
     <div class="page-title">
       <h2 class="text-cen yyj_title">

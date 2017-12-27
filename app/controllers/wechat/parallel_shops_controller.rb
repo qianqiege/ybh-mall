@@ -4,10 +4,19 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def shopdata
+    # 判断当前顾客是否注册
+    # 注册了，则直接跳转到营业员所在的平行店
+    # 未注册， 跳转到注册页面
+    # params[:waiter_id]  传入的是 营业员id
+    if params[:waiter_id] && params[:money]
+      @money = params[:money]
+      @waiter = User.find(params[:waiter_id])
+    end
     if !current_user.user_id.nil?
-      @parallel_shop = ParallelShop.find_by(id:params[:format])
+      @waiter = User.find(params[:waiter_id])
+      @parallel_shop = ParallelShop.find_by(id: @waiter.parallel_shop_id)
     else
-      redirect_to '/user/binding'
+      redirect_to user_binding_path(waiter_id: params[:waiter_id], money: params[:money])
     end
   end
 
@@ -62,7 +71,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     end
 
     # 用户扫码后跳转到营业员对应平行店中
-    url = wechat_parallel_shops_shopdata_url(current_user.user.parallel_shop_id)
+    url = wechat_parallel_shops_shopdata_url(money: params[:con_money], waiter_id: current_user.user.parallel_shop_id)
     @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
 
   end
