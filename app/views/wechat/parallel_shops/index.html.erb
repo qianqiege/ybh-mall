@@ -99,6 +99,26 @@ a {
     font-size: 14px;
 }
 
+.shopTag {
+    display: flex;
+    padding:0 5% 0 2%;
+    margin:1% 0;
+}
+
+.shopTag span {
+    display: inline-block;
+    width:30%;
+    background: #ad0e11;
+    text-align: center;
+    color: #fff;
+    padding: 0 2%;
+}
+
+.shopTag a {
+    flex:1;
+    text-align: right;
+}
+
 </style>
 
 <%= title '平行店' %>
@@ -111,7 +131,7 @@ a {
 		<a href="<%= wechat_parallel_shops_instructions_path %>"><%= image_tag "pingxingdian.jpg", class:'topImage' %></a>
 	</div>
 	<!-- 轮播↑ -->
-    <div>
+    <div style="background: #fff;">
         <ul class="block-li">
             <li>
                 <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
@@ -181,6 +201,10 @@ a {
 
 	<!-- 列表↓ -->
 	<div class="shopList">
+        <div class="shopTag">
+            <span>推荐平行店</span>
+            <a href="">更多 》</a>
+        </div>
 		<ul>
             <% ParallelShop.all.each do |t| %>
                 <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
