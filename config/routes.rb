@@ -67,10 +67,11 @@ Rails.application.routes.draw do
     get '/donate_record', to: 'home#donate_record'
     get '/light_city', to: 'home#light_city'
     get '/tickethome', to: 'home#ticket_home'
-    post 'parallel_shops/pay'
+    post 'parallel_shops/collective'
     get 'parallel_shops/code'
     get 'parallel_shops/waiter'
     post 'parallel_shops/shop_pay'
+    post 'parallel_shops/pay'
   end
 
   namespace :wechat do
