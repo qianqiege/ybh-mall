@@ -41,7 +41,26 @@ ActiveAdmin.register ParallelShop do
                shop.get_status
             end
         end
+        column "添加营业员" do |shop|
+            link_to "添加营业员", edit_waiter_admin_parallel_shop_path(shop), method: :get
+        end
         actions
+    end
+
+    member_action :edit_waiter, method: :get do
+        shop_id = params[:id].to_i
+        render partial: 'pages/edit_waiter', locals: {shop: shop_id}
+    end
+
+    member_action :add_waiter, method: :get do
+        user = User.find_by(telphone:params[:phone])
+        if user
+            user.parallel_shop_id = params[:id].to_i
+            user.save
+            redirect_to admin_parallel_shops_path
+        else
+            render text:"该手机号未注册御易健!"
+        end
     end
 
     member_action :pass, method: :put do
