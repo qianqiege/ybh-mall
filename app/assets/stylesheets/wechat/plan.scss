@@ -5,11 +5,12 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
 .file-block {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background-image: image-url("ads.png");
+	background-image: image-url("link.jpg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	top: 0;
@@ -21,12 +22,12 @@ body {
 		a {
 		    display: block;
 		    text-decoration: none;
-		    font-size: 0.8rem;
+		    font-size: 0.9rem;
 		    width: 40%;
 		    background: #a30b19;
 		    color: #fff;
 		    border-radius: 8px;
-		    padding: 5px;
+		    padding: 17px;
 		    margin-top: 20px;
 		}
 	}
@@ -46,3 +47,35 @@ body {
     	display: block;
 	}
 }
+
+@media screen and (min-width:640px) {
+    .file-block {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background-image: image-url("pclink.jpg");
+		background-size: content;
+		background-repeat: no-repeat;
+		top: 0;
+		left: 0;
+		.file-p {
+			position: relative;
+			top: 57%;
+			width: 100%;
+			left: 0;
+			a {
+			    display: block;
+			    text-decoration: none;
+			    font-size: 0.9rem;
+			    width: 40%;
+			    background: #a30b19;
+			    color: #fff;
+			    border-radius: 8px;
+			    padding: 1.9rem;
+			    margin-top: 2rem;
+			    margin-left: 7%;
+			}
+		}
+	}
+}
+
