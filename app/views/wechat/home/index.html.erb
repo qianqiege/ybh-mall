@@ -160,32 +160,34 @@ a:active {
     flex:1;
     text-align: right;
 }
-ul.block-li {
+.block-li {
     display: block;
     /*text-align: center;*/
     margin: 20px 0;
   }
 
-  ul.block-li li{
-    width: 23%;
+  .block-li li{
+    width: 22%;
     height: 101px;
     text-align: center;
     display: inline-block;
     overflow: hidden;
   }
 
-  ul.block-li li:first-child {
-    margin-left: 2.3%;
+  .block-li li:first-child {
+    margin-left: 3%;
   }
 
-  ul.block-li li:nth-child(5) {
-    margin-left: 2.3%;
+ .block-li li:nth-child(5) {
+    margin-left: 3%;
   }
 
 </style>
 
 <%= title '御易健' %>
 
+
+<div style="height:100%;overflow-y: auto;">
 <% if flash[:notice] %>
     <div class="notice"><%=flash[:notice]%></div>
 <% end %>
@@ -283,4 +285,5 @@ ul.block-li {
         <% end %>
     </ul>
   </div>
+</div>
 </div>
