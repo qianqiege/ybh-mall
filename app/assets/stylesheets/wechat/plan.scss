@@ -48,7 +48,39 @@ body {
 	}
 }
 
-@media screen and (min-width:640px) {
+@media screen and (min-width:640px) and (max-width: 1200px) {
+    .file-block {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background-image: image-url("pclink.jpg");
+		background-size: content;
+		background-repeat: no-repeat;
+		top: 0;
+		left: 0;
+		.file-p {
+			position: relative;
+			top: 50%;
+			width: 100%;
+			left: 0;
+			a {
+			    display: block;
+			    text-decoration: none;
+			    font-size: 0.9rem;
+			    width: 48%;
+			    background: #a30b19;
+			    color: #fff;
+			    border-radius: 8px;
+			    padding: .5rem;
+			    margin-top: 2rem;
+			    margin-left: 9%;
+			    font-size: 1.8rem;
+			}
+		}
+	}
+}
+
+@media screen and (min-width:1200px) {
     .file-block {
 		width: 100%;
 		height: 100%;
@@ -67,13 +99,14 @@ body {
 			    display: block;
 			    text-decoration: none;
 			    font-size: 0.9rem;
-			    width: 40%;
+			    width: 48%;
 			    background: #a30b19;
 			    color: #fff;
 			    border-radius: 8px;
-			    padding: 1.9rem;
+			    padding: .5rem;
 			    margin-top: 2rem;
-			    margin-left: 7%;
+			    margin-left: 9%;
+			    font-size: 2.2rem;
 			}
 		}
 	}
