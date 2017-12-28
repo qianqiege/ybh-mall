@@ -11,11 +11,15 @@
 		margin-top: 10%;
 	}
 
-	.allPay {
+	.allPay p{
 		text-align: center;
+		font-size: 1.3rem;
+		color:#000;	
+	}
+
+	.allPay p:nth-child(2) {
+		color: #ad0e11;
 		font-size: 1.5rem;
-		color:#ad0e11;
-		margin-top: 20px;
 	}
 
 	.listShow {
@@ -82,8 +86,9 @@
 	<div class="qr-code">
 	  <%= raw @code.as_html %>
 	</div>
-	<p class="allPay">
-		<span>金额为: </span>
-		<%= @con_money %>
-	</p>
+	<div class="allPay">
+		<p>尊敬的用户，您的领配金额为：</p>
+		<p><%= @con_money %>元</p>
+		<p>请确认后扫码</p>
+	</div>
 </div>
