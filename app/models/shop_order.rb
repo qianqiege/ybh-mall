@@ -1,6 +1,7 @@
 class ShopOrder < ApplicationRecord
     belongs_to :user
     belongs_to :wechat_user
+    belongs_to :parallel_shop
     has_many :shop_order_items
     has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
@@ -25,7 +26,7 @@ class ShopOrder < ApplicationRecord
 
     def update_amount
         if self.status == "finished"
-            plan = self.user.parallel_shop.plam
+            plan = self.parallel_shop.plan
             if plan.capital_id
                 MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*0.045)
             else

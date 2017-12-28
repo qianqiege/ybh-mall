@@ -18,6 +18,10 @@ class Plan < ApplicationRecord
       end
     end
 
+    def name
+        self.code
+    end
+
     # serialize :partner_ids, Array
 
 

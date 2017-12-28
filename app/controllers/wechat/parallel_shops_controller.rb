@@ -20,7 +20,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
           @waiter = User.find(params[:waiter_id])
           @parallel_shop = ParallelShop.find_by(id: @waiter.parallel_shop_id)
       end
-      
+
     else
       redirect_to user_binding_path(waiter_id: params[:waiter_id], money: params[:money])
     end
@@ -30,18 +30,35 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   end
 
-  def pay
-      @shop_order = ShopOrder.create(   wechat_user_id:current_user.id,
-                                        total:      params[:total].to_f,
-                                        status:     "pending",
-                                        difference: params[:total].to_f,
+  def collective
+      @shop_order = ShopOrder.create(   wechat_user_id:     current_user.id,
+                                        total:              params[:total].to_f,
+                                        status:             "finished",
+                                        difference:         params[:total].to_f,
+                                        user_id:            params[:waiter_id].to_i,
+                                        parallel_shop_id:   User.find_by(id:params[:waiter_id].to_i).parallel_shop_id
                                         )
       params[:items].each do |key|
-          ShopOrderItem.create( shop_order_id:  @shop_order.id,
-                                product_id:     params[:items][key][:product_id].to_i,
-                                amount:         params[:items][key][:count].to_i,
-                                price:          Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price,
-                                sub_total:      params[:items][key][:count].to_i*Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price)
+          ShopOrderItem.create(         shop_order_id:      @shop_order.id,
+                                        product_id:         params[:items][key][:product_id].to_i,
+                                        amount:             params[:items][key][:count].to_i,
+                                        price:              Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price,
+                                        sub_total:          params[:items][key][:count].to_i*Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price)
+      end
+  end
+
+  def pay
+      @shop_order = ShopOrder.create(   wechat_user_id:     current_user.id,
+                                        total:              params[:total].to_f,
+                                        status:             "pending",
+                                        difference:         params[:total].to_f,
+                                        )
+      params[:items].each do |key|
+          ShopOrderItem.create(         shop_order_id:      @shop_order.id,
+                                        product_id:         params[:items][key][:product_id].to_i,
+                                        amount:             params[:items][key][:count].to_i,
+                                        price:              Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price,
+                                        sub_total:          params[:items][key][:count].to_i*Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price)
       end
   end
 
@@ -64,7 +81,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   # 营业员输入消费金额页面
   def waiter_input_money
-    
+
   end
 
   # 店铺营业员二维码
@@ -95,7 +112,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def shopindex
-    
+
   end
 
   def partners
