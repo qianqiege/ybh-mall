@@ -174,8 +174,12 @@
 <%= title '店内详情' %>
 <div class="outD">
 	<div class="contain">
-        <input type="text" id="waiter" name="waiter_id" value="<%= @waiter.id %>">
-        <input type="text" id="money" name="money" value="<%= @money %>">
+        <% if @waiter %>
+            <div style="display:none">
+                <input type="text" id="waiter" name="waiter_id" value="<%= @waiter.id %>">
+                <input type="text" id="money" name="money" value="<%= @money %>">
+            </div>
+        <% end %>
 		<div class="shopDatas">
 			<div class="slLeft">
 				<%= image_tag "bji04680164.jpg", class:'shopImage' %>
