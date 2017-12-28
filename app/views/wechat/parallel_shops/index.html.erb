@@ -107,16 +107,22 @@ a {
 
 .shopTag span {
     display: inline-block;
-    width:30%;
+    /*width:30%;*/
     background: #ad0e11;
     text-align: center;
     color: #fff;
-    padding: 0 2%;
+    padding: 0 5%;
+    font-size: 16px;
 }
 
 .shopTag a {
     flex:1;
     text-align: right;
+    font-size: 14px;
+}
+
+.shopTag a:active {
+    color: #000;
 }
 
 </style>
@@ -135,24 +141,27 @@ a {
         <ul class="block-li">
             <li>
                 <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
-                <p class="fontSizes">199计划</p>
+                <p class="fontSizes">消费共同体计划</p>
             </li>
 
             <li>
                 <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
                 <p class="fontSizes">创客计划</p>
             </li>
+            <li>
+                <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
+                <p class="fontSizes">消费共享合伙人</p>
+            </li>            
         </ul>
     </div>
 	<div class="wraper graybg">
   <div class='user-center'>
     <div class='my-info'>
 
-      <div class="module-title">
-        <h3>
-          <a href="javascript:;"> 我的订单</a>
-        </h3>
-      </div>
+        <div class="shopTag">
+            <span style="font-family: '微软雅黑'">我的订单</span>
+            <a href="">全部订单 》</a>
+        </div>
     </div>
 
     <div class="order-item">
@@ -161,7 +170,7 @@ a {
           <a href="<%= mall_orders_path %>">
             <i class="ico-status waitPay">
             </i>
-            待付款
+            待领配
           </a>
         </li>
         <li class="flex-item5">
@@ -173,16 +182,9 @@ a {
         </li>
         <li class="flex-item5">
           <a href="<%= mall_orders_path %>">
-            <i class="ico-status waitComfirm">
-            </i>
-            待收货
-          </a>
-        </li>
-        <li class="flex-item5">
-          <a href="<%= mall_orders_path %>">
             <i class="ico-status allOrders">
             </i>
-            全部订单
+            待评价
           </a>
         </li>
         <li class="flex-item5">
