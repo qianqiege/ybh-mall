@@ -202,24 +202,27 @@
                         <input type="text" class="product_id" value="<%= t.product_id %>" disabled style="display: none;">
                         <div class="name"><%= t.product.name %></div>
                         <div class="price"><%= t.product.now_product_price %></div>
-                        <div class="gw_num">
-                            <em class="jian">-</em>
-                            <input type="text" value="0" disabled class="num"/>
-                            <em class="add">+</em>
-                        </div>
+                        <% if @waiter %>
+	                        <div class="gw_num">
+	                            <em class="jian">-</em>
+	                            <input type="text" value="0" disabled class="num"/>
+	                            <em class="add">+</em>
+	                        </div>
+                        <% end %>
                     </div>
                 <% end %>
             <% end %>
 		</div>
 	</div>
 	<div class="total">
-		<p class="money">
-			总计：<span id="priceTotal">0.00</span>
-		</p>
+		
         <% if @waiter %>
+	        <p class="money">
+				总计：<span id="priceTotal">0.00</span>
+			</p>
             <a class="settle" id = "clearing" >平行配领</a>
         <% else %>
-            <a class="goPay" id="">去结算</a>
+            <!-- <a class="goPay" id="">去结算</a> -->
         <% end %>
 	</div>
 </div>
