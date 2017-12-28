@@ -1,6 +1,7 @@
 <style type="text/css" media="screen">
 	.container {
 		overflow-y: auto;
+		padding-bottom: 3px;
 	}
 
 	.price {
@@ -70,57 +71,57 @@
 		font-size: 14px;
 		color:#888;				
 	}
+
+	.call-number {
+		text-align: center;
+		font-size: 20px;
+		font-weight: 600;
+		margin-top: 10px;
+	}
+	.pric-block {
+		border: 25px solid #ad0e11;
+		padding-bottom: 11.11px;
+	}
+	.pro-list {
+		padding: 10px;
+		margin-top: 20px;
+	}
+	.pro-list span {
+		background-color: #ad0e11;
+		color: #fff;
+		padding: 3px 10px;
+		display: inline-block;
+	}
 </style>
 
 <%= title '平行配领' %>
 <div class="container">
-	<div class="price">
-		<a href="<%= wechat_parallel_shops_salesclerk_path %>">点击二维码占位查看营业员扫码确认页面</a>
+	<div class="pric-block">
+		<div class="qr-code">
+			<!-- <a href="<%= wechat_parallel_shops_salesclerk_path %>">点击二维码占位查看营业员扫码确认页面</a> -->
+			<%= raw @code.as_html %>
+		</div>
+		<p class="call-number">领配排号: <%= @shop_order.show_call_number %></p>
+	</div>
+	<div class="pro-list">
+		<span>产品列表</span>
 	</div>
 	<ul class="listShow">
-		<li>
-			<div class="proLeft"><%= image_tag "L-alabo.png",class:'proImg' %></div>
-			<div class="proRight">
-				<p class="proName">阿拉伯糖</p>
-				<p class="proInfo">
-					<span>￥960</span>
-					<span style="float: right;margin-right: 5%;">X 2</span>
-				</p>
-			</div>
-		</li>	
-		<li>
-			<div class="proLeft"><%= image_tag "L-alabo.png",class:'proImg' %></div>
-			<div class="proRight">
-				<p class="proName">阿拉伯糖</p>
-				<p class="proInfo">
-					<span>￥960</span>
-					<span style="float: right;margin-right: 5%;">X 2</span>
-				</p>
-			</div>
-		</li>		
-		<li>
-			<div class="proLeft"><%= image_tag "L-alabo.png",class:'proImg' %></div>
-			<div class="proRight">
-				<p class="proName">阿拉伯糖</p>
-				<p class="proInfo">
-					<span>￥960</span>
-					<span style="float: right;margin-right: 5%;">X 2</span>
-				</p>
-			</div>
-		</li>
-		<li>
-			<div class="proLeft"><%= image_tag "L-alabo.png",class:'proImg' %></div>
-			<div class="proRight">
-				<p class="proName">阿拉伯糖</p>
-				<p class="proInfo">
-					<span>￥960</span>
-					<span style="float: right;margin-right: 5%;">X 2</span>
-				</p>
-			</div>
-		</li>					
+		<% @shop_order_items.each do |order_item| %>
+			<li>
+				<div class="proLeft"><%= image_tag Product.find_by(id: order_item.product_id).image_url,class:'proImg' %></div>
+				<div class="proRight">
+					<p class="proName"><%= Product.find_by(id: order_item.product_id).name %></p>
+					<p class="proInfo">
+						<span>￥<%= Product.find_by(id: order_item.product_id).now_product_price %></span>
+						<span style="float: right;margin-right: 5%;">X <%= order_item.amount %></span>
+					</p>
+				</div>
+			</li>
+		<% end %>
 	</ul>
 	
 </div>
 <div class="jiesuan">
-		<p class="allPay">总计：2312元</p>
-	</div>
+	<p class="allPay">总计：<%= @shop_order.total %>元</p>
+</div>

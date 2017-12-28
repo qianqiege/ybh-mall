@@ -6,7 +6,7 @@ class ShopOrder < ApplicationRecord
     has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
     after_update :update_amount
-    before_save :change_number
+    before_save :change_number, :generate_call_number
 
     def name
         self.number
@@ -74,6 +74,23 @@ class ShopOrder < ApplicationRecord
 
     def difference
         self.total - self.shop_pay
+    end
+
+    def generate_call_number
+        last_shop_order = ShopOrder.where(parallel_shop_id: self.parallel_shop_id).last
+        if last_shop_order.call_number == nil
+            self.call_number = 1
+        else
+            self.call_number = last_shop_order.call_number.to_i + 1
+
+            # 将叫号码 不足4位时 前面 补零
+            self.call_number = self.call_number.to_s.rjust(4, '0')
+        end
+    end
+
+    # 前端显示叫号码
+    def show_call_number
+        self.call_number.rjust(4, '0')
     end
 
 
