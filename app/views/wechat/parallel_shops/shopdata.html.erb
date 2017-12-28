@@ -280,8 +280,8 @@
 
     $("#clearing").click( function () {
         var waiter_id = $("#waiter_id").text();
-        var money = $("#money").text();
-        var priceTotal = $("#priceTotal").text();
+        var money = $("#money").val();
+        var priceTotal = $("#priceTotal").val();
         for (var i = 0; i < $("input:checked").length; i ++) {
             var obj = $("input:checked")[i];
             var count = $("input[type='text']")[i].value;

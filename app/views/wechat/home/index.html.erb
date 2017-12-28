@@ -268,7 +268,7 @@ ul.block-li {
         <a href="">更多 》</a>
     </div>
     <ul>
-        <% ParallelShop.all.each do |t| %>
+        <% ParallelShop.where(status: "dealed").each do |t| %>
             <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
                 <li>
                     <div class="slLeft">
