@@ -215,8 +215,11 @@
 		<p class="money">
 			总计：<span id="priceTotal">0.00</span>
 		</p>
-		<a class="goPay" id="">去结算</a>
-		<a class="settle" id = "clearing" >平行配领</a>
+        <% if @waiter %>
+            <a class="settle" id = "clearing" >平行配领</a>
+        <% else %>
+            <a class="goPay" id="">去结算</a>
+        <% end %>
 	</div>
 </div>
 
