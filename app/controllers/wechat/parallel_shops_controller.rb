@@ -31,20 +31,28 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def collective
+
+      # 从营业员扫码流程 平行领配 
+      # 订单初始状态为 "pending"
+      # 经过"配货"动作后， 将状态改为 "finished"
       @shop_order = ShopOrder.create(   wechat_user_id:     current_user.id,
                                         total:              params[:total].to_f,
-                                        status:             "finished",
+                                        status:             "pending",
                                         difference:         params[:total].to_f,
                                         user_id:            params[:waiter_id].to_i,
                                         parallel_shop_id:   User.find_by(id:params[:waiter_id].to_i).parallel_shop_id
                                         )
-      params[:items].each do |key|
-          ShopOrderItem.create(         shop_order_id:      @shop_order.id,
-                                        product_id:         params[:items][key][:product_id].to_i,
-                                        amount:             params[:items][key][:count].to_i,
-                                        price:              Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price,
-                                        sub_total:          params[:items][key][:count].to_i*Product.find_by(id:params[:items][key][:product_id].to_i).now_product_price)
+
+
+      params[:items].keys.each do |key|
+        ShopOrderItem.create(           shop_order_id:      @shop_order.id,
+                                        product_id:         params[:items][key]["product_id"].to_i,
+                                        amount:             params[:items][key]["amount"].to_i,
+                                        price:              params[:items][key]["price"].to_f,
+                                        sub_total:          params[:items][key]["amount"].to_i*params[:items][key]["price"].to_f)
       end
+
+
   end
 
   def pay
@@ -100,7 +108,15 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def shopreceive
+    # 用户扫描营业员二维码 平行配领成功
+    # 获取该用户最后一条订单
+    @shop_order = ShopOrder.where(wechat_user_id: current_user.id).last
 
+    @shop_order_items = @shop_order.shop_order_items
+
+
+    url = root_url
+    @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
   end
 
   def instructions
