@@ -23,5 +23,8 @@ class MoneyDetail < ApplicationRecord
                                     )
             end
         end
+        f = self.plan
+        f.money += self.money
+        f.save
     end
 end
