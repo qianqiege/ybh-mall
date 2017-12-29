@@ -80,11 +80,11 @@
 	}
 	.settle{
 		display: inline-block;
-		width: 30%;
+		/*width: 30%;*/
 		text-align: center;
 		background-color: #ad0e11;
 		color: #fff;
-		padding:3% 0;
+		padding:3% 10px;
 		float: right;
 		/*line-height: 25px;*/
 	}
@@ -172,6 +172,9 @@
 		font-size: 16px;
 	}
 
+	.active-block {
+		background-color: #ccc;
+	}
 </style>
 
 
@@ -254,6 +257,16 @@
         // } else {
         //     return false;
         // }
+
+        if ( allPrice > $("#money").val() ) {
+        	$("#clearing").addClass("active-block");
+        	$("#clearing").text("超出领配额度,请减少所选产品");
+        }else {
+        	$("#clearing").removeClass("active-block");
+        	$("#clearing").text("平行领配");
+
+        }
+
     });
     //减的效果
     $(".jian").click(function () {
@@ -271,6 +284,15 @@
         // } else {
             // return false;
         // }
+
+         if ( allPrice > $("#money").val() ) {
+        	$("#clearing").addClass("active-block");
+        	$("#clearing").text("超出领配额度,请减少所选产品");
+        }else {
+        	$("#clearing").removeClass("active-block");
+        	$("#clearing").text("平行领配");
+        }
+
     });
 
     // // $('.checkbox').click(function () {
@@ -296,12 +318,14 @@
  				arr.push({amount: $(".num")[i].value, product_id: $(".product_id")[i].value, price: $(".price")[i].innerText})
  			}		
     	}
-
-        $.post("/wechat/parallel_shops/collective", { "total": priceTotal, "items": arr, "waiter_id":waiter_id, "money":money},
-            function(data){
-            	// 订单生成后，跳转到叫号码页面
-                location.href = "/wechat/parallel_shops/shopreceive";
-                console.log(data)
-            }, "json");
-        })
+    	if ( parseFloat(money) >= parseFloat(priceTotal) ) {
+    		console.log(money, priceTotal);
+	        $.post("/wechat/parallel_shops/collective", { "total": priceTotal, "items": arr, "waiter_id":waiter_id, "money":money},
+	            function(data){
+	            	// 订单生成后，跳转到叫号码页面
+	                location.href = "/wechat/parallel_shops/shopreceive";
+	                console.log(data)
+	            }, "json");
+    	}
+    })
 </script>
