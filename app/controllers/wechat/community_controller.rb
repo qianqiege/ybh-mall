@@ -12,7 +12,6 @@ class Wechat::CommunityController < Wechat::BaseController
   end
 
   def commitment
-      byebug
     @user_id = params[:user_id]
     @plan = params[:plan]
   end
