@@ -47,8 +47,18 @@
 	.subBtn {
 		margin: 40% 0 0 5%;
 	}
+  .address{
+    margin:0 auto;
+    position: fixed;
+    bottom: 58px;
+    left: 0;
+    right: 0;
+    background-color: #ad0e11;
+    line-height: 40px;
+    text-align: center;
+  }
 
-	.address-btn input{
+	.address input{
 	    background-color: #ad0e11;
     	line-height: 40px;
     	width: 100%;
@@ -70,6 +80,18 @@
     margin-right: 2rem;
     font-size: 11px;
     color: red;
+  }
+  .city-select{
+    -webkit-appearance: none;
+  }
+  .save{
+     -webkit-appearance: none;
+  }
+  .inpt{
+    -webkit-appearance: none;
+  }
+  .address-box li select{
+      width: 65%!important;
   }
 </style>
 
@@ -94,28 +116,28 @@
     <ul style="margin-bottom: 2px;">
        <li class='clearfix'>
           <span>账号：</span>
-          <input type="text" name="admin_email" id="admin-user" />
+          <input type="text" name="admin_email" id="admin-user" class="inpt" />
           <p class="aler-p" id="user-txt"></p>
         </li>
         <li class='clearfix'>
           <span>密码：</span>
-          <input type="password" name="admin_password" id="admin-pwd" />
+          <input type="password" name="admin_password" id="admin-pwd" class="inpt"/>
           <p class="aler-p" id="pwd-txt"></p>
         </li>
         <li class='clearfix'>
           <span>确认密码：</span>
-          <input type="password" name="admin_password_confirm" id="admin-pwd-confirm" />
+          <input type="password" name="admin_password_confirm" id="admin-pwd-confirm" class="inpt"/>
           <p class="aler-p" id="pwd-txt-confirm"></p>
         </li>
     </ul>
     <ul>
       <li class='clearfix'>
         <span>名称：</span>
-        <%= f.text_field :title, class: 'gray84' %>
+        <%= f.text_field :title, class: 'gray84 inpt' %>
       </li>
       <li class='clearfix'>
         <span>主要经营：</span>
-        <%= f.text_field :main_business, class: 'gray84' %>
+        <%= f.text_field :main_business, class: 'gray84 inpt' %>
       </li>
       <li class="clearfix">
         <span>省份</span>
@@ -144,7 +166,7 @@
       </li>
       <li class="clearfix">
         <span>详细地址：</span>
-        <%= f.text_field :detail, class: 'gray84' %>
+        <%= f.text_field :detail, class: 'gray84 inpt' %>
       </li>
 
 
@@ -163,8 +185,8 @@
   </div>
   
 
-  <div class="address-btn">
-    <input type="submit" name="" value="保存">
+  <div class="address">
+    <input type="submit" name="" class="save" value="保存">
   </div>
 <% end %>
 
