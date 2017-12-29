@@ -193,6 +193,7 @@
 
 <!-- 弹框  -->
 <%= form_tag(controller: "makers", action: "create_plan_exchange", method: "post") do  %>
+	<input type="text" name="plan_id" value="<%= params[:plan_id] %>" style="display: none;">
 	<div class="agree-block" id="agree" style="display: none;">
 		<div class="block-order" id="blockD">
 			<div class="clear-block">

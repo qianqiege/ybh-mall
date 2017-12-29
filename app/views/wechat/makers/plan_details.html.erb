@@ -303,7 +303,7 @@
 					            <p><%= shop.title %></p>
 					           	<p><%= shop.display_detail %></p>
 					           	<p class="money">
-					           		<span>分润额：1000</span>
+					           		<span>分润额：0</span>
 					           		<% if shop.status == "waiting" %>
 					           			<span class="d-shen d-active-w">待处理</span>
 					           		<% elsif shop.status == "dealed" %>
@@ -346,7 +346,7 @@
 	</div>
 	<% if @plan.is_capital == true && Plan.where(capital_id:@plan.user_id, is_maker:true).length < 5 %>
         <div class="footer-makers-button">
-            <a href="<%= wechat_makers_invite_code_path %>">邀请伙伴</a>
+            <a href="<%= user_maker_code_path(plan_id: @plan) %>">邀请伙伴</a>
         </div>
     <% end %>
 </div>
