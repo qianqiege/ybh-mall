@@ -1,6 +1,12 @@
 
 <style>
 
+.weui-tab__panel {
+    height:100%;
+    background: #fff;
+    overflow-y: auto;
+}
+
 .shopList {
 	background: #fff;
 }
@@ -98,15 +104,29 @@ a {
     background: transparent;
     font-size: 14px;
 }
-
+/*
 .module-title {
 	padding-top: 10px;
+}
+*/
+.shopTag {
+    display: flex;
+    padding:1% 5% 1% 2%;
+    /*margin:1% 0;*/
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+h5 {
+    color: #ad0e11;
+    font-family: '微软雅黑';
+    font-size: 14px;
 }
 
 </style>
 
 <%= title '平行店' %>
-<div>
+<div style="background: #fff;">
     <div class="shopHeader">
         <input type="text" name="" placeholder="搜索">
         <a href="<%= wechat_parallel_shops_index_path %>">用户版</a>
@@ -120,9 +140,9 @@ a {
     <div class='my-info'>
 
       <div class="module-title">
-        <h3>
-          <a href="javascript:;"> 平行店系统管理</a>
-        </h3>
+        <div class="shopTag">
+            <h5>平行店系统管理</h5>
+        </div>
       </div>
     </div>
 
@@ -148,9 +168,9 @@ a {
 <div class='my-info'>
 
       <div class="module-title">
-        <h3>
-          <a href="javascript:;"> 客户管理</a>
-        </h3>
+        <div class="shopTag">
+            <h5>客户管理</h5>
+        </div>
       </div>
     </div>
 
@@ -160,7 +180,7 @@ a {
           <a href="">
             <i class="ico-status waitPay">
             </i>
-            带领配
+            待领配
           </a>
         </li>
         <li class="flex-item5">

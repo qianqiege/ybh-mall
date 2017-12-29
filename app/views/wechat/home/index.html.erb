@@ -26,7 +26,7 @@
 
 .healthDiv {
   width: 100%;
-  border-top: 1px solid #eee;
+ /* border-top: 1px solid #eee;*/
   border-bottom: 1px solid #eee;
   padding-top: 8px;
 }
@@ -92,15 +92,17 @@
 
 .shopList {
    margin-top: 5%;
+   /*border-top: 1px solid #eee;*/
+   padding-top: 5px;
 }
 
 .shopList ul {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #eee;
 }
 
 .shopList ul li {
     display: flex;
-    border-bottom:1px solid #ccc;
+    border-bottom:1px solid #eee;
 }
 
 .shopList ul li .slLeft,.shopList ul li .slRight {
@@ -121,12 +123,12 @@
 }
 
 .shopList ul li .slRight p {
-    font-size: 1.1rem;
+    font-size: 16px;
     margin: 6% 0 0 4%;
 }
 
 .shopList ul li .slRight span {
-    font-size: 0.8rem;
+    font-size: 12px;
     margin: 4% 0 0 4%;
     color: #666;
 }
@@ -149,26 +151,27 @@ a:active {
 
 .shopTag span {
     display: inline-block;
-    width:20%;
+    /*width:20%;*/
     background: #ad0e11;
     text-align: center;
     color: #fff;
-    padding: 0 2%;
+    padding: 0 5%;
 }
 
 .shopTag a {
     flex:1;
     text-align: right;
+    font-size: 12px;
 }
 .block-li {
     display: block;
     /*text-align: center;*/
-    margin: 20px 0;
+    margin-top: 20px;
   }
 
   .block-li li{
     width: 22%;
-    height: 101px;
+    height: 95px;
     text-align: center;
     display: inline-block;
     overflow: hidden;
@@ -182,12 +185,20 @@ a:active {
     margin-left: 3%;
   }
 
+  h5 {
+    color: #ad0e11;
+  }
+
+  .yyj_text {
+    font-size: 14px;
+  }
+
 </style>
 
 <%= title '御易健' %>
 
 
-<div style="height:100%;overflow-y: auto;">
+<div style="height:100%;overflow-y: auto;background: #fff;">
 <% if flash[:notice] %>
     <div class="notice"><%=flash[:notice]%></div>
 <% end %>
@@ -266,7 +277,7 @@ a:active {
     <% end %>
 <div class="shopList">
     <div class="shopTag">
-        <span>平行店</span>
+        <h5 style="padding-left: 15px;">热门平行店</h5>
         <a href="">更多 》</a>
     </div>
     <ul>
