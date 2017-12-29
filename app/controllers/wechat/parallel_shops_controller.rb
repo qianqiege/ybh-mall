@@ -169,7 +169,15 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       @shop.update!(admin_user_id: @admin_user.id)
 
       flash[:success] = '平行店创建成功'
-      redirect_to wechat_community_plandetail_path(params[:plan_id])
+
+      # 判断计划为 199 或者 创客计划
+      if @plan.is_maker == true
+        redirect_to wechat_makers_plan_details_path(params[:plan_id])
+      else
+        redirect_to wechat_community_plandetail_path(params[:plan_id])
+      end
+
+      
     else
       render 'applyshop'
     end

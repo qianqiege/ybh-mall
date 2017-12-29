@@ -22,6 +22,15 @@ class Wechat::MakersController < Wechat::BaseController
     @plan.active = false
     @plan.is_maker = true
 
+    # 判断是否为 通过队长二维码 扫码发起的计划
+    if params[:plan_id] != ""
+      # 更新伙伴计划中的
+      # capital_id 和 invite_plan_id(邀请队长的plan_id)
+      @plan.capital_id = Plan.find(params[:plan_id]).user_id
+      @plan.is_capital = false
+      @plan.invite_plan_id = params[:plan_id]
+    end
+
     if @plan.save
       redirect_to wechat_makers_plan_pay_path(@plan)
     end
