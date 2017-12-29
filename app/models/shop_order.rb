@@ -5,7 +5,7 @@ class ShopOrder < ApplicationRecord
     has_many :shop_order_items
     has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
-    after_update :update_amount
+    after_update :update_create
     before_save :change_number, :generate_call_number
 
     def name

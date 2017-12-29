@@ -66,7 +66,7 @@ class User::InfoController < Wechat::BaseController
   end
 
   def maker_code
-    url = wechat_makers_protocol_url(user_id: current_user.user_id)
+    url = wechat_makers_protocol_url(user_id: current_user.user_id, plan_id: params[:plan_id])
     @maker_code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
 
     # if !current_user.user.nil? && !current_user.user.maker_id.nil?

@@ -3,6 +3,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   	@slides = Slide.top(1)
   end
 
+  # 平行店详情
   def shopdata
     # 判断当前顾客是否注册
     # 注册了，则直接跳转到营业员所在的平行店
@@ -30,6 +31,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   end
 
+  # 平行领配
   def collective
 
       # 从营业员扫码流程 平行领配 
@@ -153,6 +155,11 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       end
   end
 
+  # 营业员查看的带领配页面
+  def waiting_collective
+    
+  end
+
   def create
     @plan = Plan.find(params[:plan_id])
     @shop = @plan.parallel_shops.new(shop_params)
@@ -169,7 +176,15 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       @shop.update!(admin_user_id: @admin_user.id)
 
       flash[:success] = '平行店创建成功'
-      redirect_to wechat_community_plandetail_path(params[:plan_id])
+
+      # 判断计划为 199 或者 创客计划
+      if @plan.is_maker == true
+        redirect_to wechat_makers_plan_details_path(params[:plan_id])
+      else
+        redirect_to wechat_community_plandetail_path(params[:plan_id])
+      end
+
+      
     else
       render 'applyshop'
     end
