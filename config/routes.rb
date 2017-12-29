@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     get '/light_city', to: 'home#light_city'
     get '/tickethome', to: 'home#ticket_home'
     post 'parallel_shops/collective'
+    get 'parallel_shops/waiting_collective'
     get 'parallel_shops/code'
     get 'parallel_shops/waiter'
     post 'parallel_shops/shop_pay'
