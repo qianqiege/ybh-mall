@@ -5,13 +5,9 @@
 	background: #fff;
 }
 
-.shopList ul {
-    border-top: 1px solid #ccc;
-}
-
 .shopList ul li {
     display: flex;
-    border-bottom:1px solid #ccc;
+    border-bottom:1px solid #eee;
 }
 
 .shopList ul li .slLeft,.shopList ul li .slRight {
@@ -67,6 +63,10 @@ a {
     text-align: center;
 }
 
+.block-li li p {
+    font-size: 14px;
+}
+
 .shopHeader {
     height:40px;
     display: flex;
@@ -101,34 +101,40 @@ a {
 
 .shopTag {
     display: flex;
-    padding:0 5% 0 2%;
-    margin:1% 0;
+    padding:1% 5% 1% 2%;
+    /*margin:1% 0;*/
+    background: #fff;
+    border-bottom: 1px solid #eee;
 }
 
 .shopTag span {
     display: inline-block;
-    /*width:30%;*/
+    /*width:20%;*/
     background: #ad0e11;
     text-align: center;
     color: #fff;
     padding: 0 5%;
-    font-size: 16px;
 }
 
 .shopTag a {
     flex:1;
     text-align: right;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .shopTag a:active {
     color: #000;
 }
 
+h5 {
+    color: #ad0e11;
+    font-size: 14px;
+  }
+
 </style>
 
 <%= title '平行店' %>
-<div>
+<div style="background: #fff;">
     <div class="shopHeader">
         <input type="text" name="" placeholder="搜索">
         <a href="<%= wechat_parallel_shops_shopindex_path %>">平行店版</a>
@@ -137,7 +143,7 @@ a {
 		<a href="<%= wechat_parallel_shops_instructions_path %>"><%= image_tag "pingxingdian.jpg", class:'topImage' %></a>
 	</div>
 	<!-- 轮播↑ -->
-    <div style="background: #fff;">
+    <div style="background: #fff;padding-bottom: 10px;">
         <ul class="block-li">
             <li>
                 <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
@@ -149,7 +155,7 @@ a {
                 <p class="fontSizes">创客计划</p>
             </li>
             <li>
-                <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
+                <a><%= image_tag "共同体.png", size: "50x50" %></a>
                 <p class="fontSizes">消费共享合伙人</p>
             </li>            
         </ul>
@@ -159,7 +165,7 @@ a {
     <div class='my-info'>
 
         <div class="shopTag">
-            <span style="font-family: '微软雅黑'">我的订单</span>
+            <h5 style="padding-left: 15px;font-family: '微软雅黑'">我的订单</h5>
             <a href="">全部订单 》</a>
         </div>
     </div>
@@ -177,16 +183,16 @@ a {
           <a href="<%= mall_orders_path %>">
             <i class="ico-status waitSend">
             </i>
-            待发货
+            已领配
           </a>
         </li>
-        <li class="flex-item5">
+<!--         <li class="flex-item5">
           <a href="<%= mall_orders_path %>">
             <i class="ico-status allOrders">
             </i>
             待评价
           </a>
-        </li>
+        </li> -->
         <li class="flex-item5">
           <a href="<%= mall_orders_path %>">
             <i class="ico-status returns">
@@ -204,7 +210,7 @@ a {
 	<!-- 列表↓ -->
 	<div class="shopList">
         <div class="shopTag">
-            <span>推荐平行店</span>
+            <h5 style="padding-left: 15px;">推荐平行店</h5>
             <a href="">更多 》</a>
         </div>
 		<ul>
