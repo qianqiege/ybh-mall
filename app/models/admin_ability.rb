@@ -65,9 +65,10 @@ class AdminAbility
     elsif user.role_name == 'parallel_shop'
       can [:update,:read]
       can :read, ShopOrder
-      can :manage, Stock
+      can :manage, StockOut
       can :manage, PurchaseOrder
       can :manage, SaleProduct
+      can :managr, Stock
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end

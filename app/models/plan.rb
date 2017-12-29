@@ -5,9 +5,7 @@ class Plan < ApplicationRecord
     has_many :money_details
 
     def change_number
-        if !self.capital_id
-            self.code = Plan.generate_number
-        end
+        self.code = Plan.generate_number
     end
 
     def self.generate_number
