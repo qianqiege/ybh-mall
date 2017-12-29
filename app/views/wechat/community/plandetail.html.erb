@@ -311,7 +311,7 @@
             </div>
         <% elsif @plan.is_capital == true && Plan.where(capital_id:@plan.user_id).length < 9 %>
         	<div class="footer-makers-button">
-                <a href="<%= user_community_code_path %>">邀请伙伴</a>
+                <a href="<%= user_community_code_path(@plan) %>">邀请伙伴</a>
             </div>
         <% end %>
 

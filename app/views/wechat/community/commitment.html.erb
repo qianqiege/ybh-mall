@@ -91,6 +91,9 @@
                 <% if @user_id %>
                     <input name="capital_id" value="<%= @user_id %>" style="display:none;">
                 <% end %>
+                <% if @plan %>
+                    <input name="invite_plan_id" value="<%= @plan %>" style="display:none;">
+                <% end %>
                 <input name="current_user" value="<%= current_user.id %>" style="display:none;">
     			<input type="submit" name="action" value="提交" />
     		</div>

@@ -2,7 +2,7 @@ class Wechat::PlanController < ApplicationController
     def create_plan
         user_id = WechatUser.find_by(id:params[:current_user].to_i).user.id
         if params[:capital_id]
-            plan = Plan.new(user_id:user_id, is_capital:false, active:false,is_maker:false, capital_id:params[:capital_id].to_i)
+            plan = Plan.new(user_id:user_id, is_capital:false, active:false,is_maker:false, capital_id:params[:capital_id].to_i, invite_plan_id:params[:invite_plan_id].to_i)
             if plan.save
                 if plan.capital_id
                     arr = Plan.where(capital_id:plan.capital_id)
@@ -38,18 +38,18 @@ class Wechat::PlanController < ApplicationController
 
     # 展示平行店文件
     def show_files
-        
+
     end
 
 
     # 展示199计划文件
     def show_community_files
-        
+
     end
 
     # 展示百万创客计划文件
     def show_maker_files
-        
+
     end
 
 

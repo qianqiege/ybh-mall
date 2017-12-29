@@ -25,12 +25,12 @@ class ShopOrder < ApplicationRecord
     end
 
     def update_amount
-        if self.status == "finished"
+        if self.status == "pending"
             plan = self.parallel_shop.plan
-            if plan.capital_id
-                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*0.045)
+            if plan.invite_plan_id
+                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*self.parallel_shop.earning_ratio*0.9)
             else
-                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*0.05)
+                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*self.parallel_shop.earning_ratio)
             end
             self.shop_order_items.each do |t|
                 a = Stock.find_by(product_id:t.product_id, parallel_shop_id:self.user.parallel_shop_id)
@@ -91,7 +91,7 @@ class ShopOrder < ApplicationRecord
         else
             self.call_number = 1
         end
-        
+
     end
 
     # 前端显示叫号码
