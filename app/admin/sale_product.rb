@@ -3,8 +3,9 @@ ActiveAdmin.register SaleProduct do
     permit_params :product_id, :amount, :parallel_shop_id
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店上架产品" do
+          byebug
         f.input :product
-        f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id), input_html: { disabled: true }
+        f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id)
         f.input :amount
       end
       f.actions

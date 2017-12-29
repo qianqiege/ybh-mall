@@ -26,4 +26,8 @@ class AdminUser < ApplicationRecord
   def change_order?
     self.email == "change_order@ybyt.com"
   end
+
+  def name
+      self.email
+  end
 end

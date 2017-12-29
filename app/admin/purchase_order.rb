@@ -10,7 +10,7 @@ ActiveAdmin.register PurchaseOrder do
     form(:html => { :multipart => true }) do |f|
       f.inputs "采购订单" do
         f.input :number
-        f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id), input_html: { disabled: true }
+        f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id)
         f.input :address
         f.input :contact
         f.input :phone
