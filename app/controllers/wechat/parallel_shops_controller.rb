@@ -114,6 +114,11 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     # 获取该用户最后一条订单
     @shop_order = ShopOrder.where(wechat_user_id: current_user.id).last
 
+    # 营业员从待领配页面  进入该页面
+    if params[:order_id]
+      @shop_order = ShopOrder.find(params[:order_id])
+    end
+
     @shop_order_items = @shop_order.shop_order_items
 
 
@@ -157,7 +162,9 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   # 营业员查看的带领配页面
   def waiting_collective
-    
+    @shop = ParallelShop.find(current_user.user.parallel_shop_id)
+    @shop_orders = @shop.shop_orders
+    ap @shop_orders
   end
 
   def create

@@ -96,6 +96,10 @@ class ShopOrder < ApplicationRecord
 
     # 前端显示叫号码
     def show_call_number
+        if call_number == nil
+            return
+        end
+        
         self.call_number.rjust(4, '0')
     end
 
