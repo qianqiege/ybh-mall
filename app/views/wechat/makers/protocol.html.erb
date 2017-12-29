@@ -120,6 +120,21 @@
 		padding: 10px 0;
 		color: #fff;
 		margin-top: 60px;
+		-webkit-appearance: none;
+		border-radius: 0;
+	}
+	#planBtn{
+		-webkit-appearance: none;
+	}
+	#payment{
+		-webkit-appearance: none;	
+		padding: 5px;
+		border-radius: 5px;
+	}
+	.pay{
+		-webkit-appearance: none;
+		padding: 5px;
+		border-radius: 5px;
 	}
 </style>
 
@@ -210,7 +225,7 @@
 					</li>
 					<li>
 						<span style="margin-top: 5px;">支付方式</span>
-						<select name="payment">
+						<select name="payment" class="pay">
 							<option value="PAYMENT_TYPE_WECHAT">微信</option>
 							<option>线下支付</option>
 						</select>

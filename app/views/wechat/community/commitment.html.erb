@@ -49,6 +49,12 @@
 	input {
 		background-color: transparent;
 	}
+	.sub{
+		-webkit-appearance: none;
+	}
+	#commit{
+		-webkit-appearance: none;
+	}
 </style>
 
 <%= title "消费共同体计划承诺书" %>
@@ -95,7 +101,7 @@
                     <input name="invite_plan_id" value="<%= @plan %>" style="display:none;">
                 <% end %>
                 <input name="current_user" value="<%= current_user.id %>" style="display:none;">
-    			<input type="submit" name="action" value="提交" />
+    			<input type="submit" name="action" class="sub" value="提交" />
     		</div>
         <% end %>
 	</div>
