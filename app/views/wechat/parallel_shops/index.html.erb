@@ -28,12 +28,12 @@
 }
 
 .shopList ul li .slRight p {
-    font-size: 1.1rem;
+    font-size: 16px;
     margin: 6% 0 0 4%;
 }
 
 .shopList ul li .slRight span {
-    font-size: 0.8rem;
+    font-size: 12px;
     margin: 4% 0 0 4%;
     color: #666;
 }
@@ -94,7 +94,7 @@ a {
     line-height: 26px;
     margin-top: 6px;
     border:0;
-    color: #fff; 
+    color: #fff;
     background: transparent;
     font-size: 14px;
 }
@@ -214,7 +214,7 @@ h5 {
             <a href="">更多 》</a>
         </div>
 		<ul>
-            <% ParallelShop.all.each do |t| %>
+            <% ParallelShop.where(status: "dealed").each do |t| %>
                 <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
                     <li>
                         <div class="slLeft">

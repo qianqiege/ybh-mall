@@ -75,7 +75,7 @@
 		display: inline-block;
 		text-align: center;
 		width: 35%;
-		line-height: 30px;
+		line-height: 46px;
 	}
 	.settle{
 		display: inline-block;
@@ -84,6 +84,7 @@
 		background-color: #ad0e11;
 		color: #fff;
 		padding:3% 0;
+		float: right;
 		/*line-height: 25px;*/
 	}
 	.goPay{
@@ -176,7 +177,7 @@
 	<div class="contain">
         <% if @waiter %>
             <div style="display:none">
-                <input type="text" id="waiter" name="waiter_id" value="<%= @waiter.id %>">
+                <input type="text" id="waiter_id" name="waiter_id" value="<%= @waiter.id %>">
                 <input type="text" id="money" name="money" value="<%= @money %>">
             </div>
         <% end %>
@@ -198,27 +199,30 @@
                 <% if t.amount > 0 %>
                     <div class="imgcon">
                         <%= image_tag t.product.image.url %>
-                        <!-- <input type="checkbox" class="checkbox" value="<%= t.product_id %>"> -->
+                        <input type="text" class="product_id" value="<%= t.product_id %>" disabled style="display: none;">
                         <div class="name"><%= t.product.name %></div>
                         <div class="price"><%= t.product.now_product_price %></div>
-                        <div class="gw_num">
-                            <em class="jian">-</em>
-                            <input type="text" value="0" disabled class="num"/>
-                            <em class="add">+</em>
-                        </div>
+                        <% if @waiter %>
+	                        <div class="gw_num">
+	                            <em class="jian">-</em>
+	                            <input type="text" value="0" disabled class="num"/>
+	                            <em class="add">+</em>
+	                        </div>
+                        <% end %>
                     </div>
                 <% end %>
             <% end %>
 		</div>
 	</div>
 	<div class="total">
-		<p class="money">
-			总计：<span id="priceTotal">0.00</span>
-		</p>
+		
         <% if @waiter %>
+	        <p class="money">
+				总计：<span id="priceTotal">0.00</span>
+			</p>
             <a class="settle" id = "clearing" >平行配领</a>
         <% else %>
-            <a class="goPay" id="">去结算</a>
+            <!-- <a class="goPay" id="">去结算</a> -->
         <% end %>
 	</div>
 </div>
@@ -279,18 +283,22 @@
     // })
 
     $("#clearing").click( function () {
-        var waiter_id = $("#waiter_id").text();
-        var money = $("#money").text();
+        arr = [];
+        var waiter_id = $("#waiter_id").val();
+        var money = $("#money").val();
         var priceTotal = $("#priceTotal").text();
-        for (var i = 0; i < $("input:checked").length; i ++) {
-            var obj = $("input:checked")[i];
-            var count = $("input[type='text']")[i].value;
-            arr.push({product_id: obj.value, count: count});
-        }
-        console.log(arr);
+    	for (var i = 0; i < $(".num").length; i ++) {
+    		// console.log($(".num")[i].value, $(".product_id")[i].value, $(".price")[i].innerText);
+ 			if ($(".num")[i].value > 0) {
+ 				arr.push({amount: $(".num")[i].value, product_id: $(".product_id")[i].value, price: $(".price")[i].innerText})
+ 			}		
+    	}
+
         $.post("/wechat/parallel_shops/collective", { "total": priceTotal, "items": arr, "waiter_id":waiter_id, "money":money},
             function(data){
-                location.href = "wechat/parallel_shops/shopreceive";
+            	// 订单生成后，跳转到叫号码页面
+                location.href = "/wechat/parallel_shops/shopreceive";
+                console.log(data)
             }, "json");
         })
 </script>

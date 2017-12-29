@@ -4,7 +4,7 @@ ActiveAdmin.register SaleProduct do
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店上架产品" do
         f.input :product
-        f.input :parallel_shop
+        f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id), input_html: { disabled: true }
         f.input :amount
       end
       f.actions

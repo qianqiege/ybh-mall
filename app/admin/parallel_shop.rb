@@ -1,6 +1,6 @@
 ActiveAdmin.register ParallelShop do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
-    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id
+    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id, :earning_ratio, :settlement_ratio
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店" do
         f.input :plan
@@ -11,6 +11,8 @@ ActiveAdmin.register ParallelShop do
         f.input :status
         f.input :admin_user
         f.input :desc
+        f.input :settlement_ratio
+        f.input :earning_ratio
       end
       f.actions
     end
@@ -21,6 +23,8 @@ ActiveAdmin.register ParallelShop do
         column :title
         column :address
         column :main_business
+        column :earning_ratio
+        column :settlement_ratio
         column "平行店图片" do |slide|
           image_tag(slide.image_url, size: "72x45", :alt => "parallel shop image")
         end
@@ -37,7 +41,26 @@ ActiveAdmin.register ParallelShop do
                shop.get_status
             end
         end
+        column "添加营业员" do |shop|
+            link_to "添加营业员", edit_waiter_admin_parallel_shop_path(shop), method: :get
+        end
         actions
+    end
+
+    member_action :edit_waiter, method: :get do
+        shop_id = params[:id].to_i
+        render partial: 'pages/edit_waiter', locals: {shop: shop_id}
+    end
+
+    member_action :add_waiter, method: :get do
+        user = User.find_by(telphone:params[:phone])
+        if user
+            user.parallel_shop_id = params[:id].to_i
+            user.save
+            redirect_to admin_parallel_shops_path
+        else
+            render text:"该手机号未注册御易健!"
+        end
     end
 
     member_action :pass, method: :put do

@@ -123,7 +123,7 @@
 }
 
 .shopList ul li .slRight p {
-    font-size: 14px;
+    font-size: 16px;
     margin: 6% 0 0 4%;
 }
 
@@ -281,7 +281,7 @@ a:active {
         <a href="">更多 》</a>
     </div>
     <ul>
-        <% ParallelShop.all.each do |t| %>
+        <% ParallelShop.where(status: "dealed").each do |t| %>
             <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
                 <li>
                     <div class="slLeft">
