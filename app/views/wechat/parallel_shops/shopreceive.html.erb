@@ -2,6 +2,7 @@
 	.container {
 		overflow-y: auto;
 		padding-bottom: 3px;
+		background: #fff;
 	}
 
 	.price {
@@ -14,12 +15,12 @@
 
 	.allPay {
 		text-align: center;
-		color:#ad0e11;
+		color:#fff;
 		line-height: 50px;
 	}
 
 	.jiesuan {
-		background: #fff;
+		background: #ad0e11;
 		width:100%;
 		height:50px;
 		position: absolute;
@@ -29,18 +30,19 @@
 	}
 
 	.listShow {
-		width:85%;
+		
 		margin: 0 auto;
-		border-top: 1px solid #ccc;
+		/*border-top: 1px solid #ccc;*/
 		padding:0;
-		margin-top: 20px;
+		/*margin-top: 20px;*/
 		padding-bottom: 108px;
 	}
 
 	.listShow li {
 		display: flex;
 		height:90px;
-		border-bottom: 1px solid #ccc;
+		padding:0 15px;
+		border-bottom: 1px solid #eee;
 	}
 
 	.listShow li .proLeft {
@@ -79,18 +81,20 @@
 		margin-top: 10px;
 	}
 	.pric-block {
-		border: 25px solid #ad0e11;
+		/*border: 25px solid #ad0e11;*/
 		padding-bottom: 11.11px;
-	}
-	.pro-list {
-		padding: 10px;
 		margin-top: 20px;
 	}
-	.pro-list span {
-		background-color: #ad0e11;
-		color: #fff;
-		padding: 3px 10px;
-		display: inline-block;
+	.pro-list {
+		display: flex;
+		padding:1% 5% 1% 5%;
+		margin-top:20px;
+		background: #fff;
+		border-bottom: 1px solid #eee;
+	}
+	.pro-list h5 {
+		color: #ad0e11;
+		font-size: 16px;
 	}
 </style>
 
@@ -104,7 +108,7 @@
 		<p class="call-number">领配排号: <%= @shop_order.show_call_number %></p>
 	</div>
 	<div class="pro-list">
-		<span>产品列表</span>
+		<h5>已选产品列表</h5>
 	</div>
 	<ul class="listShow">
 		<% @shop_order_items.each do |order_item| %>
