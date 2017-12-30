@@ -54,11 +54,15 @@ ActiveAdmin.register StockOut do
         column :created_at
         column :updated_at
         column '订单操作' do |stock_out|
-          span do
-            link_to '发货', deal_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.pending?
+          if current_admin_user.role_name == "db"
+              span do
+                link_to '发货', deal_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.pending?
+              end
           end
-          span do
-            link_to '收货', sending_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.sending?
+          if current_admin_user.role_name == "parallel_shop"
+              span do
+                link_to '收货', sending_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.sending?
+              end
           end
         end
         actions

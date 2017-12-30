@@ -41,10 +41,12 @@ ActiveAdmin.register PurchaseOrder do
         column :total
         column :created_at
         column :updated_at
-        column '订单操作' do |purchase_order|
-          span do
-            link_to '受理订单', deal_admin_purchase_order_path(purchase_order), method: :put, data: { confirm: 'Are you sure?' } if purchase_order.pending?
-          end
+        if current_admin_user.role_name == "db"
+            column '订单操作' do |purchase_order|
+              span do
+                link_to '受理订单', deal_admin_purchase_order_path(purchase_order), method: :put, data: { confirm: 'Are you sure?' } if purchase_order.pending?
+              end
+            end
         end
         actions
     end
