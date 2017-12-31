@@ -1,17 +1,17 @@
 class ParallelShop < ApplicationRecord
-    include ImageConcern
-    has_many :purchase_orders
-    has_many :stock_outs
-    has_many :day_deals
-    has_many :month_deal
-    has_many :sale_products
-    has_many :stock
-    has_many :users
-    has_many :shop_orders
-    belongs_to :plan
-    belongs_to :admin_user
+  include ImageConcern
+  has_many :purchase_orders
+  has_many :stock_outs
+  has_many :day_deals
+  has_many :month_deal
+  has_many :sale_products
+  has_many :stock
+  has_many :users
+  has_many :shop_orders
+  belongs_to :plan
+  belongs_to :admin_user
 
-    include AASM
+  include AASM
 	aasm column: :status do
 		# 初始化状态
 		state :waiting, :initial => true
@@ -36,6 +36,8 @@ class ParallelShop < ApplicationRecord
 			end
 		end
 	end
+
+	before_create :add_location
 
 	def get_status
 		if status == "waiting"
@@ -70,6 +72,12 @@ class ParallelShop < ApplicationRecord
 		return arr
 	end
 
-
+	private
+	def add_location
+		qq_lbs = Sdk::QQLbs.new
+		data = qq_lbs.geocoder_by_address(display_detail)
+		self.latitude = data["result"]["location"]["lat"]
+		self.longitude = data["result"]["location"]["lng"]
+	end
 
 end

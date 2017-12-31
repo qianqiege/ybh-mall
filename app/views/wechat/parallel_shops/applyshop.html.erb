@@ -65,7 +65,7 @@
     	border: none;
     	color: #fff;
 	}
-	
+
 	.p-title {
 		text-align: center;
 		line-height: 35px;
@@ -92,6 +92,12 @@
   }
   .address-box li select{
       width: 65%!important;
+  }
+
+  #address_info span {
+    font-size: 12px;
+    padding-left: 10px;
+    color: red;
   }
 </style>
 
@@ -139,16 +145,17 @@
         <span>主要经营：</span>
         <%= f.text_field :main_business, class: 'gray84 inpt' %>
       </li>
+
       <li class="clearfix">
         <span>省份</span>
-        <select class="city-select" name="parallel_shop[province]">
+        <select class="city-select" id="province_select" name="parallel_shop[province]">
           <option value="">--省份--</option>
           <%= options_for_select(ChinaCity.list, @shop.try(:province)) %>
         </select>
       </li>
       <li class="clearfix">
         <span>城市</span>
-        <select class="city-select" name="parallel_shop[city]">
+        <select class="city-select" id="city_select" name="parallel_shop[city]">
           <option value="">--城市--</option>
           <% if @shop.province.present? && !(@shop.city == "--城市--") %>
             <%= options_for_select(ChinaCity.list(@shop.province), @shop.city) %>
@@ -157,7 +164,7 @@
       </li>
       <li class="clearfix">
         <span>地区或街道</span>
-        <select class="city-select" name="parallel_shop[street]">
+        <select class="city-select" id="street_select" name="parallel_shop[street]">
           <option value="">--地区或街道--</option>
           <% if @shop.province.present? && @shop.city.present? && !(@shop.street == "--地区或街道--") %>
             <%= options_for_select(ChinaCity.list(@shop.city), @shop.street) %>
@@ -166,9 +173,10 @@
       </li>
       <li class="clearfix">
         <span>详细地址：</span>
-        <%= f.text_field :detail, class: 'gray84 inpt' %>
+        <%= f.text_field :detail, class: 'gray84 inpt', id: 'address_detail' %>
       </li>
 
+      <div id='address_info'></div>
 
      <!--  <li class="clearfix">
         <div>
@@ -183,12 +191,31 @@
       <%= hidden_field_tag 'from_order_confirm', params[:from_order_confirm] %>
     </ul>
   </div>
-  
+
 
   <div class="address">
     <input type="submit" name="" class="save" value="保存">
   </div>
 <% end %>
+
+<%= content_for :weixin_api do %>
+  <script type="text/javascript">
+    wx.ready(function () {
+        wx.getLocation({
+          type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+          success: function(res) {
+            var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+            var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+            $.get('/wechat/parallel_shops/address', {latitude: latitude, longitude: longitude }, function(res){
+              var address = res.result.address;
+              $("#address_info").html("<span>定位地址参考: " + address + "</span>")
+            });
+          }
+        });
+    });
+  </script>
+<% end %>
+
 
 <script type="text/javascript">
   $(function() {

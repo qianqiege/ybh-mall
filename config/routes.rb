@@ -73,6 +73,8 @@ Rails.application.routes.draw do
     get 'parallel_shops/waiter'
     post 'parallel_shops/shop_pay'
     post 'parallel_shops/pay'
+
+    get '/parallel_shops/address', to: 'parallel_shops#get_address'
   end
 
   namespace :wechat do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226033032) do
+ActiveRecord::Schema.define(version: 20171230081521) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -612,6 +612,17 @@ ActiveRecord::Schema.define(version: 20171226033032) do
     t.integer  "allowance"
   end
 
+  create_table "money_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "reason"
+    t.integer  "shop_order_id"
+    t.integer  "record_id"
+    t.float    "money",         limit: 24
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "plan_id"
+  end
+
   create_table "month_deal_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "product_id"
     t.integer  "month_deal_id"
@@ -701,15 +712,19 @@ ActiveRecord::Schema.define(version: 20171226033032) do
     t.string   "main_business"
     t.string   "image"
     t.string   "desc"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "status",        default: "waiting"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "status",                      default: "waiting"
     t.string   "province"
     t.string   "city"
     t.string   "street"
     t.string   "detail"
     t.integer  "plan_id"
     t.integer  "admin_user_id"
+    t.float    "settlement_ratio", limit: 24
+    t.float    "earning_ratio",    limit: 24
+    t.float    "latitude",         limit: 24
+    t.float    "longitude",        limit: 24
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -729,14 +744,16 @@ ActiveRecord::Schema.define(version: 20171226033032) do
     t.integer  "capital_id"
     t.boolean  "active"
     t.boolean  "is_maker"
-    t.float    "money",       limit: 24,                          default: 0.0
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.float    "money",          limit: 24,                          default: 0.0
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.string   "trade_nos"
     t.string   "number"
     t.string   "payment"
     t.string   "status"
-    t.decimal  "price",                  precision: 10, scale: 2
+    t.decimal  "price",                     precision: 10, scale: 2
+    t.string   "code"
+    t.integer  "invite_plan_id"
   end
 
   create_table "presented_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -879,6 +896,14 @@ ActiveRecord::Schema.define(version: 20171226033032) do
     t.index ["order_id"], name: "index_return_requests_on_order_id", using: :btree
   end
 
+  create_table "sale_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "product_id"
+    t.integer  "amount"
+    t.integer  "parallel_shop_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "scoin_account_order_relations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "order_id"
     t.integer  "scoin_account_id"
@@ -968,14 +993,16 @@ ActiveRecord::Schema.define(version: 20171226033032) do
   create_table "shop_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "number"
     t.integer  "user_id"
-    t.float    "total",          limit: 24, default: 0.0
-    t.string   "status",                    default: "pending"
+    t.float    "total",            limit: 24, default: 0.0
+    t.string   "status",                      default: "pending"
     t.string   "express_number"
-    t.float    "difference",     limit: 24
-    t.float    "shop_pay",       limit: 24, default: 0.0
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.float    "difference",       limit: 24
+    t.float    "shop_pay",         limit: 24, default: 0.0
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "wechat_user_id"
+    t.integer  "parallel_shop_id"
+    t.string   "call_number"
   end
 
   create_table "shop_propaganda_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

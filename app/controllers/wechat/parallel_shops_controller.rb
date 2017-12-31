@@ -34,7 +34,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   # 平行领配
   def collective
 
-      # 从营业员扫码流程 平行领配 
+      # 从营业员扫码流程 平行领配
       # 订单初始状态为 "pending"
       # 经过"配货"动作后， 将状态改为 "finished"
       @shop_order = ShopOrder.create(   wechat_user_id:     current_user.id,
@@ -191,13 +191,19 @@ class Wechat::ParallelShopsController < Wechat::BaseController
         redirect_to wechat_community_plandetail_path(params[:plan_id])
       end
 
-      
+
     else
       render 'applyshop'
     end
 
   end
 
+  def get_address
+    qq_lbs = Sdk::QQLbs.new
+    @result = qq_lbs.geocoder_by_location("#{params[:latitude]},#{params[:longitude]}")
+
+    render json: @result
+  end
 
   private
    def shop_params

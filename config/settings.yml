@@ -49,3 +49,8 @@ notification:
     - 448426851@qq.com
     - yubangyitong@ybyt.cc
     - skjmy@outlook.com
+
+qq_lbs:
+  url: http://apis.map.qq.com/ws/
+  app_id: K32BZ-MDYKU-3A2V6-4QR4F-N23U3-QWF67
+  secrect_key: vHpDX5JaWXjnZr2IJ3NHTUxoMIqzkUoN
