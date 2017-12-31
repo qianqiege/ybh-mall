@@ -33,5 +33,17 @@ class ApplicationController < ActionController::Base
     admin_user_signed_in? ? current_admin_user.try(:email) : '系统自动创建'
   end
 
+  def get_city_code_by name, parent_id = ''
+    data = parent_id.present? ? ChinaCity.list(parent_id) : ChinaCity.list
+    return_code = ''
+    data.each do |value|
+      if(value[0]) == name
+        return_code = value[1]
+        break
+      end
+    end
+    return_code
+  end
+
   # ApiAuth.authentic?(signed_request, secrect_key)
 end

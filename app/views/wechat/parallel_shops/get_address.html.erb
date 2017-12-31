@@ -1,0 +1,25 @@
+<li class="clearfix">
+  <span>省份</span>
+  <select class="city-select" id="province_select" name="parallel_shop[province]">
+    <option value="">--省份--</option>
+    <%= options_for_select(ChinaCity.list, @province_code) %>
+  </select>
+</li>
+<li class="clearfix">
+  <span>城市</span>
+  <select class="city-select" id="city_select" name="parallel_shop[city]">
+    <option value="">--城市--</option>
+    <%= options_for_select(ChinaCity.list(@province_code), @city_code) %>
+  </select>
+</li>
+<li class="clearfix">
+  <span>地区或街道</span>
+  <select class="city-select" id="street_select" name="parallel_shop[street]">
+    <option value="">--地区或街道--</option>
+    <%= options_for_select(ChinaCity.list(@city_code), @district_code) %>
+  </select>
+</li>
+<li class="clearfix">
+  <span>详细地址</span>
+  <input class="gray84 inpt" id="address_detail" type="text" name="parallel_shop[detail]" value=<%= @detail %>>
+</li>

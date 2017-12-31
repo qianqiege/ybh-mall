@@ -200,9 +200,16 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   def get_address
     qq_lbs = Sdk::QQLbs.new
-    @result = qq_lbs.geocoder_by_location("#{params[:latitude]},#{params[:longitude]}")
+    data = qq_lbs.geocoder_by_location("#{params[:latitude]},#{params[:longitude]}")
+    province = data["result"]["address_component"]["province"]
+    city = data["result"]["address_component"]["city"]
+    district = data["result"]["address_component"]["district"]
+    @province_code = get_city_code_by(province)
+    @city_code = get_city_code_by(city, @province_code)
+    @district_code = get_city_code_by(district, @city_code)
+    @detail = data["result"]["address_component"]["street"]
 
-    render json: @result
+    render 'get_address', layout: false
   end
 
   private
