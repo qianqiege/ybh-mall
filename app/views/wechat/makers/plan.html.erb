@@ -13,7 +13,6 @@ div {
 	padding: 0;
 	margin: 0;
 }
-
 .shopList ul {
     border-top: 1px solid #ccc;
     margin-top: 2%;
@@ -108,14 +107,14 @@ div {
 }
 
 </style>
-
+<%= title "御邦医通创客计划" %>
+<div class="plan-image">
+	<a href="<%=  wechat_makers_instructions_path %>">
+		<%= image_tag "makers.jpg" %>
+	</a>
+</div>
 <div class="shopList">
-	<div class="plan-image">
-		<a href="<%=  wechat_makers_instructions_path %>">
-			<%= image_tag "makers.jpg" %>
-		</a>
-	</div>
-	<div>
+	<div class="">
 		<span class="goPlan">发起的计划</span>
 	</div>
 		<ul style="padding-left: 0px; margin-bottom: 45px;">
