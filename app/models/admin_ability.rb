@@ -9,6 +9,7 @@ class AdminAbility
       can :manage, Product
       can :manage, ReturnRequest
       can :manage, User
+      can :manage, PurchaseOrder
     elsif user.role_name == 'spinebuild'
       can :manage, Rank
       can :manage, SpineBuild
@@ -68,7 +69,7 @@ class AdminAbility
       can :manage, StockOut
       can :manage, PurchaseOrder
       can :manage, SaleProduct
-      can :managr, Stock
+      can :manage, Stock
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end
