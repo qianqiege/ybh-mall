@@ -25,7 +25,7 @@ class ShopOrder < ApplicationRecord
       end
     end
 
-    # 每次创建订单时，累计到发起人计划表的money字段
+    # 每次创建订单时，累计到分成人计划表的money字段
     # 如果发起人人是队长，分100%，如果发起人是伙伴，则分90%，队长分10%
     def divide_into
         # 这里的状态需要确认是什么状态才会触发分成
@@ -34,7 +34,7 @@ class ShopOrder < ApplicationRecord
             capital_money = 0
 
             # 发起人是伙伴
-            if plan.capital_id.present?
+            if plan.capital_id.present? && plan.invite_plan_id.present?
                 capital_money = total * parallel_shop.earning_ratio * 0.1
                 MoneyDetail.create(
                     user_id:plan.user_id,
@@ -45,7 +45,7 @@ class ShopOrder < ApplicationRecord
                 )
                 MoneyDetail.create(
                     user_id:plan.capital_id,
-                    plan_id:plan.id,
+                    plan_id:plan.invite_plan_id,
                     shop_order_id: id,
                     reason:"平行店队长收益",
                     money: capital_money
@@ -60,10 +60,6 @@ class ShopOrder < ApplicationRecord
                     reason:"平行店收益",
                     money: capital_money)
             end
-
-            plan.money += capital_money
-            plan.save
-
         end
     end
 
