@@ -5,7 +5,8 @@ class ShopOrder < ApplicationRecord
     has_many :shop_order_items
     has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
-    after_create :update_amount
+    # after_create :update_amount
+    after_create :divide_into
     before_save :change_number, :generate_call_number
 
     def name
@@ -24,6 +25,27 @@ class ShopOrder < ApplicationRecord
       end
     end
 
+    # 每次创建订单时，累计到发起人计划表的money字段
+    # 如果发起人人是队长，分100%，如果发起人是伙伴，则分90%，队长分10%
+    def divide_into
+        # 这里的状态需要确认是什么状态才会触发分成
+        if status == 'pending'
+            plan = parallel_shop.plan
+            plan.money += total
+            plan.save
+
+            # 发起人是伙伴
+            if plan.capital_id.present?
+                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id: id, reason:"平行店伙伴收益", money:self.total*self.parallel_shop.earning_ratio*0.9)
+                MoneyDetail.create(user_id:plan.capital_id, plan_id:plan.id, shop_order_id: id, reason:"平行店队长收益", money:self.total*self.parallel_shop.earning_ratio*0.1)
+            else
+                # 队长100%收益
+                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*self.parallel_shop.earning_ratio)
+            end
+        end
+    end
+
+    # 这里的逻辑不正确, 先修改
     def update_amount
         if self.status == "pending"
             plan = self.parallel_shop.plan
