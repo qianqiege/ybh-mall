@@ -31,17 +31,39 @@ class ShopOrder < ApplicationRecord
         # 这里的状态需要确认是什么状态才会触发分成
         if status == 'pending'
             plan = parallel_shop.plan
-            plan.money += total
-            plan.save
+            capital_money = 0
 
             # 发起人是伙伴
             if plan.capital_id.present?
-                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id: id, reason:"平行店伙伴收益", money:self.total*self.parallel_shop.earning_ratio*0.9)
-                MoneyDetail.create(user_id:plan.capital_id, plan_id:plan.id, shop_order_id: id, reason:"平行店队长收益", money:self.total*self.parallel_shop.earning_ratio*0.1)
+                capital_money = total * parallel_shop.earning_ratio * 0.1
+                MoneyDetail.create(
+                    user_id:plan.user_id,
+                    plan_id:plan.id,
+                    shop_order_id: id,
+                    reason:"平行店伙伴收益",
+                    money:total * parallel_shop.earning_ratio * 0.9
+                )
+                MoneyDetail.create(
+                    user_id:plan.capital_id,
+                    plan_id:plan.id,
+                    shop_order_id: id,
+                    reason:"平行店队长收益",
+                    money: capital_money
+                )
             else
                 # 队长100%收益
-                MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*self.parallel_shop.earning_ratio)
+                capital_money = total * parallel_shop.earning_ratio
+                MoneyDetail.create(
+                    user_id:plan.user_id,
+                    plan_id:plan.id,
+                    shop_order_id:self.id,
+                    reason:"平行店收益",
+                    money: capital_money)
             end
+
+            plan.money += capital_money
+            plan.save
+
         end
     end
 
