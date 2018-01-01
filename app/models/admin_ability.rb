@@ -10,6 +10,7 @@ class AdminAbility
       can :manage, ReturnRequest
       can :manage, User
       can :manage, PurchaseOrder
+      can :manage, StockOut
     elsif user.role_name == 'spinebuild'
       can :manage, Rank
       can :manage, SpineBuild
