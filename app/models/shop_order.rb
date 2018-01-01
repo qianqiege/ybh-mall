@@ -64,13 +64,13 @@ class ShopOrder < ApplicationRecord
         end
     end
 
-    def total
-        a = 0
-        self.shop_order_items.each do |t|
-            a += t.product.now_product_price*t.amount
-        end
-        return a
-    end
+    # def total
+    #     a = 0
+    #     self.shop_order_items.each do |t|
+    #         a += t.product.now_product_price*t.amount
+    #     end
+    #     return a
+    # end
 
     def difference
         self.total - self.shop_pay
