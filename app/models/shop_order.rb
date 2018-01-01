@@ -5,7 +5,7 @@ class ShopOrder < ApplicationRecord
     has_many :shop_order_items
     has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
-    after_update :update_create
+    after_create :update_amount
     before_save :change_number, :generate_call_number
 
     def name
@@ -99,9 +99,7 @@ class ShopOrder < ApplicationRecord
         if call_number == nil
             return
         end
-        
         self.call_number.rjust(4, '0')
     end
-
 
 end
