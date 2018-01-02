@@ -70,7 +70,7 @@ class AdminAbility
       can :manage, StockOut
       can :manage, PurchaseOrder
       can :manage, SaleProduct
-      can :manage, Stock
+      can :read, Stock
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end

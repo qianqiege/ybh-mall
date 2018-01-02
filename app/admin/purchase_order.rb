@@ -6,6 +6,7 @@ ActiveAdmin.register PurchaseOrder do
                                                         :_destroy,
                                                         :amount,
                                                         ]
+    actions :index, :show, :create, :new, :update
     form(:html => { :multipart => true }) do |f|
       f.inputs "采购订单" do
         f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id)
@@ -24,7 +25,7 @@ ActiveAdmin.register PurchaseOrder do
 
     member_action :deal, method: :put do
       resource.deal
-      redirect_to :back, notice: "已受理订单!"
+      redirect_to :back
     end
 
     index do
