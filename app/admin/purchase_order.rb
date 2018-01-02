@@ -6,10 +6,8 @@ ActiveAdmin.register PurchaseOrder do
                                                         :_destroy,
                                                         :amount,
                                                         ]
-    actions :index, :show, :new, :create
     form(:html => { :multipart => true }) do |f|
       f.inputs "采购订单" do
-        f.input :number
         f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id)
         f.input :address
         f.input :contact
@@ -41,7 +39,7 @@ ActiveAdmin.register PurchaseOrder do
         column :total
         column :created_at
         column :updated_at
-        if current_admin_user.role_name == "db"
+        if current_admin_user.role_name == "db" || current_admin_user.role_name == "admin"
             column '订单操作' do |purchase_order|
               span do
                 link_to '受理订单', deal_admin_purchase_order_path(purchase_order), method: :put, data: { confirm: 'Are you sure?' } if purchase_order.pending?
