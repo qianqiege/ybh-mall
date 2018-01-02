@@ -80,7 +80,7 @@
 	}
 	.settle{
 		display: inline-block;
-		/*width: 30%;*/
+		width: 30%;
 		text-align: center;
 		background-color: #ad0e11;
 		color: #fff;
@@ -110,40 +110,6 @@
 	em{
 		font-style: normal;
 	}
-
-	.shopDatas {
-		display: flex;
-		margin: 15px 0;
-	}
-
-	.shopDatas .slLeft,.shopDatas .slRight {
-		display: inline-block;
-	}
-
-	.shopDatas .slLeft {
-		width: 30%;
-		padding:2%;
-	}
-
-	.shopDatas .slRight {
-		flex:1;
-	}
-
-	.shopDatas .slLeft img {
-		width: 100%;
-	}
-
-	.shopDatas .slRight p {
-		font-size: 1.1rem;
-		margin: 4% 0 0 4%;
-	}
-
-	.shopDatas .slRight span {
-		font-size: 0.8rem;
-		margin: 4% 0 0 4%;
-		color: #666;
-	}
-
 	.checkbox {
 		width:20px;
 		height:20px;
@@ -179,7 +145,7 @@
 
 
 <%= title '店内详情' %>
-<div class="outD">
+<div class="outD" id="pShopData">
 	<div class="contain">
         <% if @waiter %>
             <div style="display:none">

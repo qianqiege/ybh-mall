@@ -269,3 +269,48 @@ body {
     background-size: 100%;
     position: relative;
 }
+
+
+/*-----------------首页平行店-------------------------*/
+.shopList {
+   margin-top: 5%;
+   /*border-top: 1px solid #eee;*/
+   padding-top: 5px;
+}
+
+.shopList ul {
+    border-top: 1px solid #eee;
+}
+
+.shopList ul li {
+    display: flex;
+    border-bottom:1px solid #eee;
+}
+
+.shopList ul li .slLeft,.shopList ul li .slRight {
+    display: inline-block;
+}
+
+.shopList ul li .slLeft {
+    width: 30%;
+    padding:2%;
+}
+
+.shopList ul li .slRight {
+    flex:1;
+}
+
+.shopList ul li .slLeft img {
+    width: 100%;
+}
+
+.shopList ul li .slRight p {
+    font-size: 16px;
+    margin: 6% 0 0 4%;
+}
+
+.shopList ul li .slRight span {
+    font-size: 12px;
+    margin: 4% 0 0 4%;
+    color: #666;
+}

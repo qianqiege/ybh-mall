@@ -1,0 +1,139 @@
+// Place all the styles related to the parallel_shops controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+* {
+    margin: 0;
+    padding:0;
+    background: #fff;
+}
+
+// -----------------平行店首页--------------------
+.shopList {
+   margin-top: 5%;
+   /*border-top: 1px solid #eee;*/
+   padding-top: 5px;
+}
+
+.shopList ul {
+    border-top: 1px solid #eee;
+}
+
+.shopList ul li {
+    display: flex;
+    border-bottom:1px solid #eee;
+}
+
+.shopList ul li .slLeft,.shopList ul li .slRight {
+    display: inline-block;
+}
+
+.shopList ul li .slLeft {
+    width: 30%;
+    padding:2%;
+}
+
+.shopList ul li .slRight {
+    flex:1;
+}
+
+.shopList ul li .slLeft img {
+    width: 100%;
+}
+
+.shopList ul li .slRight p {
+    font-size: 16px;
+    margin: 6% 0 0 4%;
+}
+
+.shopList ul li .slRight span {
+    font-size: 12px;
+    margin: 4% 0 0 4%;
+    color: #666;
+}
+
+
+
+//-----------------平行店详情页--------------------
+#pShopData .shopDatas {
+    display: flex;
+    margin: 15px 0;
+}
+
+#pShopData .shopDatas .slLeft,.shopDatas .slRight {
+    display: inline-block;
+}
+
+#pShopData .shopDatas .slLeft {
+    width: 30%;
+    padding:2%;
+}
+
+#pShopData .shopDatas .slRight {
+    flex:1;
+}
+
+#pShopData .shopDatas .slLeft img {
+    width: 100%;
+}
+
+#pShopData .shopDatas .slRight p {
+    font-size: 1.1rem;
+    margin: 4% 0 0 4%;
+}
+
+#pShopData .shopDatas .slRight span {
+    font-size: 0.8rem;
+    margin: 4% 0 0 4%;
+    color: #666;
+}
+
+
+
+//-------------------平行配领页面列表------------------
+.listShow {
+        
+        margin: 0 auto;
+        /*border-top: 1px solid #ccc;*/
+        padding:0;
+        /*margin-top: 20px;*/
+        padding-bottom: 108px;
+    }
+
+    .listShow li {
+        display: flex;
+        height:90px;
+        padding:0 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .listShow li .proLeft {
+        width:90px;
+    }
+
+    .listShow li .proLeft img {
+        width:80px;
+        height:80px;
+        margin: 5px 0 0 5px;
+    }
+
+    .listShow li .proRight {
+        flex:1;
+        padding-left: 5%;
+    }
+
+    .listShow li .proRight .proName {
+        font-size: 18px;
+        color:#474747;
+        margin: 0;
+        margin-top:18px;
+    }
+
+    .listShow li .proRight .proInfo {
+        margin: 0;
+        margin-top:10px;
+        font-size: 14px;
+        color:#888;             
+    }
+
