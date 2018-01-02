@@ -32,7 +32,12 @@ class Wechat::MakersController < Wechat::BaseController
     end
 
     if @plan.save
-      redirect_to wechat_makers_plan_pay_path(@plan)
+        if params["payment"] == "PAYMENT_TYPE_NULL"
+            redirect_to '/wechat/makers/plan'
+        else
+            redirect_to wechat_makers_plan_pay_path(@plan)
+        end
+
     end
   end
 
