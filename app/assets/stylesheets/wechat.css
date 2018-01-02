@@ -14,6 +14,7 @@
  *= require wechat/home
  *= require wechat/member
  *= require wechat/weui_ext
+ *= require wechat/parallel_shops
  *= require serve/serve
  *= require examine/examine
  *= require user/info
