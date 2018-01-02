@@ -7,6 +7,7 @@ ActiveAdmin.register ShopOrder do
                     :user_id,
                     :express_number,
                     :difference,
+                    :parallel_shop_id,
                     :shop_pay,
                     shop_order_items_attributes: [  :product_id,
                                                     :id,
@@ -15,14 +16,13 @@ ActiveAdmin.register ShopOrder do
                                                     :price,
                                                     :sub_total
                                                     ]
-    actions :show, :index, :update
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店订单" do
-        f.input :number
         f.input :wechat_user
         f.input :user
-        f.input :express_number
+        f.input :parallel_shop
         f.input :shop_pay
+        f.input :express_number
       end
       f.inputs do
           f.has_many :shop_order_items, allow_destroy: true do |a|
@@ -39,6 +39,7 @@ ActiveAdmin.register ShopOrder do
         column :number
         column :wechat_user
         column :user
+        column :parallel_shop
         column :express_number
         column :difference
         column :shop_pay
@@ -54,6 +55,7 @@ ActiveAdmin.register ShopOrder do
             row :number
             row :wechat_user
             row :user
+            row :parallel_shop
             row :express_number
             row :difference
             row :shop_pay

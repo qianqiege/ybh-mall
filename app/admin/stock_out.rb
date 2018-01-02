@@ -15,7 +15,7 @@ ActiveAdmin.register StockOut do
                                                     :price,
                                                     :sub_total
                                                     ]
-    actions :show, :index
+    actions :index, :show
     form(:html => { :multipart => true }) do |f|
       f.inputs "出库订单" do
         f.input :number
@@ -43,7 +43,6 @@ ActiveAdmin.register StockOut do
     index do
         selectable_column
         id_column
-        column :number
         column :parallel_shop
         column :purchase_order
         column :contact
@@ -53,8 +52,8 @@ ActiveAdmin.register StockOut do
         column :total
         column :created_at
         column :updated_at
-        column '订单操作' do |stock_out|
-          if current_admin_user.role_name == "db"
+        column '出库操作' do |stock_out|
+          if current_admin_user.role_name == "db" || current_admin_user.role_name == "admin"
               span do
                 link_to '发货', deal_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.pending?
               end

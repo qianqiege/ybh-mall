@@ -8,7 +8,6 @@ ActiveAdmin.register DayDeal do
                                                     :price,
                                                     :sub_total
                                                     ]
-    actions :show, :index
     form(:html => { :multipart => true }) do |f|
       f.inputs "日清" do
         f.input :parallel_shop
