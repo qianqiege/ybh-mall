@@ -52,5 +52,9 @@ class Wechat::PlanController < ApplicationController
 
     end
 
+    #消费计划
+    def consumption_plan
+
+    end
 
 end
