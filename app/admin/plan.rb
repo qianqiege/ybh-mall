@@ -36,7 +36,7 @@ ActiveAdmin.register Plan do
             end
         end
         column "操作" do |plan|
-            link_to "确认线下支付", payment_admin_plan_path(plan), method: :put, data: { confirm: 'Are you sure?' } if plan.payment == "PAYMENT_TYPE_NULL"
+            link_to "确认线下支付", payment_admin_plan_path(plan), method: :put, data: { confirm: 'Are you sure?' } if plan.payment == "PAYMENT_TYPE_NULL" && !plan.active
         end
         actions
     end
