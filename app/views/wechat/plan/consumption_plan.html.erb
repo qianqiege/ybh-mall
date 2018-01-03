@@ -1,0 +1,217 @@
+
+<style>
+
+body {
+	margin: 0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+div {
+	padding: 0;
+	margin: 0;
+}
+.shopList ul {
+    border-top: 1px solid #ccc;
+    margin-top: 2%;
+}
+
+.shopList ul li {
+    display: flex;
+    border-bottom:1px solid #ccc;
+}
+
+.shopList ul li .slLeft,.shopList ul li .slRight {
+    display: inline-block;
+}
+
+.shopList ul li .slLeft {
+    width: 30%;
+    padding:2%;
+}
+
+.shopList ul li .slRight {
+    flex:1;
+}
+
+.shopList ul li .slLeft img {
+    width: 100%;
+    border-radius: 13px;
+}
+
+.slRight {
+	margin-top: 11px;
+	padding-left: .5rem;
+	padding-right: 8px;
+}
+
+.slRight-title {
+	overflow: hidden;
+	margin-bottom: 8px;
+}
+.goPlan {
+	background: #ad0e11;
+	color: #fff;
+	display: inline-block;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+.shopList ul li .slRight span {
+    font-size: 0.8rem;
+    color: #444;
+}
+.shopList ul li .slRight b {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #fff !important;
+	padding: 3px 8px;
+	position: relative;
+	top: 0;
+	margin: 10px;
+}
+
+.slRight-title .leader {
+	background: #ad0e11;
+}
+.slRight-title .success {
+	background: #68a870;
+}
+.slRight-title .partner {
+	background: #5aa0d6;
+}
+.slRight-title .fail {
+	background: red;
+}
+.plan-image {
+	margin-bottom: 15px;
+}
+
+.plan-image img {
+	width: 100%;
+
+}
+.plan-button{
+	position: fixed;
+	bottom: 58px;
+	width: 100%;
+}
+.plan-button a{
+	display: block;
+	text-align: center;
+	background: #ad0e11;
+	padding: 8px 0;
+	color: #fff;
+	font-size: 14px;
+}
+
+/*入口按钮样式*/
+.block-plan-btn ul {
+	padding: 0;
+	/*padding-left: 5%;*/
+	display: block;
+	overflow: hidden;
+}
+.block-plan-btn ul li {
+	background-color: #4499d0;
+	float: left;
+	width: 45%;
+	font-size: .9rem;
+	text-align: center;
+	border-radius: 6px;
+}
+.block-plan-btn ul li:nth-child(odd) {
+	margin: 10px 0;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+}
+.block-plan-btn ul li:nth-child(even) {
+	margin: 10px 0;
+	margin-left: 2.5%;
+}
+.block-plan-btn ul li a {
+	display: block;
+	padding: 8px 3%;
+	color: #fff;
+	min-height: 59px;
+}
+.block-plan-btn ul li a span:last-child {
+	display: block;
+	margin-top: 3px;
+	position: relative;
+	top: 3px;
+}
+</style>
+<%= title '消费计划' %>
+
+
+<div class="plan-image">
+	<a href="">
+		<%= image_tag "makers.jpg" %>
+	</a>
+</div>
+<div class="block-plan-btn">
+	<ul>
+		<li>
+			<a href="<%= wechat_community_index_path %>"> 
+				<span>御易健消费共同体计划</span>
+				<span>199</span>
+			</a>
+		</li>
+		<li>
+			<a href="<%= wechat_makers_plan_path %>"> 
+				<span>御邦医通消费创客计划</span>
+				<span>177</span>
+			</a>
+		</li>
+		<li>
+			<a href=""> 
+				<span>御邦医通消费共享计划</span>
+				<span>155</span>
+			</a>
+		</li>
+		<li>
+			<a href=""> 
+				<span>御邦医通消费共同计划</span>
+				<span>133</span>
+			</a>
+		</li>
+		<li>
+			<a href=""> 
+				<span>御邦医通价值链战略合伙人计划</span>
+				<span>122</span>
+			</a>
+		</li>
+		<li>
+			<a href=""> 
+				<span>高级战略计划</span>
+				<span>1XX</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="shopList">
+	<div class="">
+		<span class="goPlan">发起的计划</span>
+	</div>
+		<ul style="padding-left: 0px; margin-bottom: 45px;">
+			<a href="" style="display: block;">
+				<li>
+					<div class="slLeft">
+						<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+					</div>
+					<div class="slRight">
+						<div class="slRight-title">
+							<span>创客计划</span>
+							<b class="leader">队长</b>
+							<b class="success">已激活</b>
+						</div>
+						<div>
+							<span>发起时间：2017-12-18</span>
+						</div>
+					</div>
+				</li>
+			</a>
+		</ul>
+</div>
