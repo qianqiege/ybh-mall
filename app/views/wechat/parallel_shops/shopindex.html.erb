@@ -126,6 +126,11 @@ h5 {
 </style>
 
 <%= title '平行店' %>
+
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+
 <div style="background: #fff;">
     <div class="shopHeader">
         <input type="text" name="" placeholder="搜索">

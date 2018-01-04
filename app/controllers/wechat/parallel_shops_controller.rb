@@ -183,13 +183,17 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   # 确认平行店订单 页面
   def waiter_confirm
       @shop_order = ShopOrder.try(:find, params[:shop_order_id])
-
-     # 判断是否为此订单所在平行店中的营业员
-     if @shop_order.user_id == current_user.user_id
-         @shop_order_items = @shop_order.shop_order_items
-     else
-        redirect_to root_path, notice: '你不是此平行店营业员，无法扫码'
-     end
+      # 判断此订单是否已配领
+      if @shop_order.status == "finished"
+          redirect_to wechat_parallel_shops_shopindex_path, notice: '此订单已经领配成功'
+      else
+          # 判断是否为此订单所在平行店中的营业员
+          if @shop_order.user_id == current_user.user_id
+              @shop_order_items = @shop_order.shop_order_items
+          else
+             redirect_to root_path, notice: '你不是此平行店营业员，无法扫码'
+          end
+      end
   end
 
   # 营业员确认待领配订单  变成已领配
