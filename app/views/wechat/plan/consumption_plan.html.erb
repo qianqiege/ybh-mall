@@ -3,6 +3,7 @@
 
 body {
 	margin: 0px;
+	background: #fff;
 }
 
 a {
@@ -114,7 +115,7 @@ div {
 	overflow: hidden;
 }
 .block-plan-btn ul li {
-	background-color: #4499d0;
+	background-color: #ad0e11;
 	float: left;
 	width: 45%;
 	font-size: .9rem;
@@ -134,14 +135,27 @@ div {
 	display: block;
 	padding: 8px 3%;
 	color: #fff;
-	min-height: 59px;
+	/*min-height: 59px;*/
 }
 .block-plan-btn ul li a span:last-child {
 	display: block;
 	margin-top: 3px;
 	position: relative;
-	top: 3px;
+	/*top: 3px;*/
 }
+.shopTag {
+    display: flex;
+    padding:1% 5% 1% 2%;
+    /*margin:1% 0;*/
+    background: #fff;
+    /*border-bottom: 1px solid #eee;*/
+}
+
+h5 {
+    color: #ad0e11;
+    font-size: 14px;
+    margin: 0;
+  }
 </style>
 <%= title '消费计划' %>
 
@@ -179,8 +193,8 @@ div {
 		</li>
 		<li>
 			<a href=""> 
-				<span>御邦医通价值链战略合伙人计划</span>
-				<span>122</span>
+				<span>御邦医通价值链战略合伙人计划 122</span>
+				<!-- <span></span> -->
 			</a>
 		</li>
 		<li>
@@ -192,9 +206,9 @@ div {
 	</ul>
 </div>
 <div class="shopList">
-	<div class="">
-		<span class="goPlan">发起的计划</span>
-	</div>
+		<div class="shopTag">
+            <h5 style="padding-left: 15px;">发起的计划</h5>
+        </div>	
 		<ul style="padding-left: 0px; margin-bottom: 45px;">
 			<a href="" style="display: block;">
 				<li>
