@@ -53,6 +53,18 @@
 		color: #ad0e11;
 		font-size: 16px;
 	}
+    .waiter-confirm {
+        width: 100%;
+        border: none;
+        background-color: #ad0e11;
+        color: #fff;
+        height: 100%;
+    }
+    .waiter-confirm {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
 </style>
 
 <%= title '平行配领' %>
@@ -60,7 +72,6 @@
 	<div class="pric-block">
 		<div class="qr-code">
 			<!-- <a href="<%= wechat_parallel_shops_salesclerk_path %>">点击二维码占位查看营业员扫码确认页面</a> -->
-			<%= raw @code.as_html %>
 		</div>
 		<p class="call-number">领配排号: <%= @shop_order.show_call_number %></p>
 	</div>
@@ -84,5 +95,7 @@
 
 </div>
 <div class="jiesuan">
-	<p class="allPay">总计：<%= @shop_order.total %>元</p>
+	<p class="allPay">
+        <%= link_to '确认', wechat_parallel_shops_shop_order_finished_path(shop_order_id: @shop_order), class: 'waiter-confirm' %>
+    </p>
 </div>

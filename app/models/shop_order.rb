@@ -6,8 +6,9 @@ class ShopOrder < ApplicationRecord
     has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
     # after_create :update_amount
+    before_create :generate_call_number
     after_create :divide_into
-    before_save :change_number, :generate_call_number
+    before_save :change_number
 
     def name
         self.number
@@ -28,8 +29,10 @@ class ShopOrder < ApplicationRecord
     # 每次创建订单时，累计到分成人计划表的money字段
     # 如果发起人人是队长，分100%，如果发起人是伙伴，则分90%，队长分10%
     def divide_into
+        # 订单生成时，状态为 待配领("pending")
+        # 营业员扫码确认后， 状态为 已配领("finished")
         # 这里的状态需要确认是什么状态才会触发分成
-        if status == 'pending'
+        if status == 'finished'
             plan = parallel_shop.plan
             capital_money = 0
 
