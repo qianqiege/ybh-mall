@@ -70,10 +70,14 @@ Rails.application.routes.draw do
     get '/tickethome', to: 'home#ticket_home'
     post 'parallel_shops/collective'
     get 'parallel_shops/waiting_collective'
+    get 'parallel_shops/customer_collective'
+    get 'parallel_shops/customer_collectived'
     get 'parallel_shops/code'
     get 'parallel_shops/waiter'
     post 'parallel_shops/shop_pay'
     post 'parallel_shops/pay'
+    get 'parallel_shops/waiter_confirm'
+    get 'parallel_shops/shop_order_finished'
 
     get '/parallel_shops/address', to: 'parallel_shops#get_address'
   end
