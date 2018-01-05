@@ -1,16 +1,16 @@
 <div class='wallet bg-size'>
-  <div class="weui-flex profile">
-    <div>
-      <div class="placeholder headImage">
+  <div class="weui-flex profile" style="background: none;">
+    <div style="background: none;">
+      <div class="placeholder headImage" style="background: none;">
         <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
       </div>
     </div>
 
-    <div class="weui-flex__item profile-text">
+    <div class="weui-flex__item profile-text" style="background: none;">
         <% if current_user.user.is_partner == true %>
             <%= image_tag '合伙人.png', style:"margin-left:5px; width:50px; height:25px;" %>
         <% end %>
-      <div class="placeholder" style="float:left;"><%= current_user.nickname %></div>
+      <div class="placeholder" style="float:left;background: none;"><%= current_user.nickname %></div>
     </div>
   </div>
 </div>

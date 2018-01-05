@@ -15,13 +15,21 @@
   margin-top: 3%;
 }
 
+.qr-code-invitation a table{
+    background: none;
+}
+
+span {
+  background: none;
+}
+
 </style>
 
 
 
 <div class="back-image">
   <%= title '邀请好友' %>
-    <div class="weui-panel__hd"><span style="color: red; font-size: 15px;">提示：</span>此二维码用于邀请用户注册御易健平台</div>
+    <div class="weui-panel__hd" style="background: none;"><span style="color: red; font-size: 15px;background: none;">提示：</span>此二维码用于邀请用户注册御易健平台</div>
   <!-- <div style=" font-size: 15px; color: #555;" class="ways">
       <span style="color: red; font-size: 15px;">邀请码使用方法：</span><br/>
       1.面对面扫码注册 <br/>
@@ -29,18 +37,18 @@
       3.禁止点击右上角分享链接注册 <br/>
       4.点击二维码查看我的邀请记录
   </div>  -->
-  <div class="qr-code-invitation">
+  <div class="qr-code-invitation" style="background: none;">
 
-    <a href="<%= user_invitation_friend_path %>"><%= raw @qrcode.as_html %></a></br>
-    <span style="margin-right:2px;">邀请码：<%= @wechat_user.user.invitation_card %></span>
-    <div class="clearfix" id='info'>
+    <a href="<%= user_invitation_friend_path %>" style="background: none;"><%= raw @qrcode.as_html %></a></br>
+    <span style="margin-right:2px;" style="background: none;">邀请码：<%= @wechat_user.user.invitation_card %></span>
+    <div class="clearfix" id='info' style="background: none;">
       <img src="<%= @wechat_user.headimgurl %>" style="width:35px; float: left;">
       <span class="ways" style="margin-right: 3%;"><%= @wechat_user.user.name %></span>
       <div class="">
           <span class="ways"><%= @wechat_user.user.telphone %></span>
       </div>
     </div>
-    <div class="clearfix" id='infom' onclick="create()">
+    <div class="clearfix" id='infom' onclick="create()" style="background: none;">
       <span class="ways" style="font-size:12px;">点击隐藏个人信息</span>
     </div>
   </div>
