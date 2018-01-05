@@ -1,5 +1,5 @@
 ActiveAdmin.register Plan do
-    permit_params :user_id, :is_capital, :capital_id, :active, :is_maker, :money
+    permit_params :user_id, :is_capital, :capital_id, :active, :is_maker, :money, :invite_plan_id
     form(:html => { :multipart => true }) do |f|
       f.inputs "评价" do
         f.input :user

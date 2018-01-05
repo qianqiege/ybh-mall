@@ -6,9 +6,9 @@ class ShopOrder < ApplicationRecord
     has_many :money_details
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
     # after_create :update_amount
-    before_create :generate_call_number
-    after_create :divide_into
-    before_save :change_number
+    before_create :generate_call_number,:change_number
+    # after_create :divide_into
+    after_update :update_amount
 
     def name
         self.number
@@ -28,49 +28,49 @@ class ShopOrder < ApplicationRecord
 
     # 每次创建订单时，累计到分成人计划表的money字段
     # 如果发起人人是队长，分100%，如果发起人是伙伴，则分90%，队长分10%
-    def divide_into
-        # 订单生成时，状态为 待配领("pending")
-        # 营业员扫码确认后， 状态为 已配领("finished")
-        # 这里的状态需要确认是什么状态才会触发分成
-        if status == 'finished'
-            plan = parallel_shop.plan
-            capital_money = 0
+    # def divide_into
+    #     # 订单生成时，状态为 待配领("pending")
+    #     # 营业员扫码确认后， 状态为 已配领("finished")
+    #     # 这里的状态需要确认是什么状态才会触发分成
+    #     if status == 'finished'
+    #         plan = parallel_shop.plan
+    #         capital_money = 0
+    #
+    #         # 发起人是伙伴
+    #         if plan.capital_id.present? && plan.invite_plan_id.present?
+    #             capital_money = total * parallel_shop.earning_ratio * 0.1
+    #             MoneyDetail.create(
+    #                 user_id:plan.user_id,
+    #                 plan_id:plan.id,
+    #                 shop_order_id: id,
+    #                 reason:"平行店伙伴收益",
+    #                 money:total * parallel_shop.earning_ratio * 0.9
+    #             )
+    #             MoneyDetail.create(
+    #                 user_id:plan.capital_id,
+    #                 plan_id:plan.invite_plan_id,
+    #                 shop_order_id: id,
+    #                 reason:"平行店队长收益",
+    #                 money: capital_money
+    #             )
+    #         else
+    #             # 队长100%收益
+    #             capital_money = total * parallel_shop.earning_ratio
+    #             MoneyDetail.create(
+    #                 user_id:plan.user_id,
+    #                 plan_id:plan.id,
+    #                 shop_order_id:self.id,
+    #                 reason:"平行店收益",
+    #                 money: capital_money)
+    #         end
+    #     end
+    # end
 
-            # 发起人是伙伴
-            if plan.capital_id.present? && plan.invite_plan_id.present?
-                capital_money = total * parallel_shop.earning_ratio * 0.1
-                MoneyDetail.create(
-                    user_id:plan.user_id,
-                    plan_id:plan.id,
-                    shop_order_id: id,
-                    reason:"平行店伙伴收益",
-                    money:total * parallel_shop.earning_ratio * 0.9
-                )
-                MoneyDetail.create(
-                    user_id:plan.capital_id,
-                    plan_id:plan.invite_plan_id,
-                    shop_order_id: id,
-                    reason:"平行店队长收益",
-                    money: capital_money
-                )
-            else
-                # 队长100%收益
-                capital_money = total * parallel_shop.earning_ratio
-                MoneyDetail.create(
-                    user_id:plan.user_id,
-                    plan_id:plan.id,
-                    shop_order_id:self.id,
-                    reason:"平行店收益",
-                    money: capital_money)
-            end
-        end
-    end
-
-    # 这里的逻辑不正确, 先修改
     def update_amount
-        if self.status == "pending"
+        if self.status == "finished"
             plan = self.parallel_shop.plan
-            if plan.invite_plan_id
+            f = Plan.where(user_id:plan.user_id).where.not(invite_plan_id:nil)
+            if f
                 MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*self.parallel_shop.earning_ratio*0.9)
             else
                 MoneyDetail.create(user_id:plan.user_id, plan_id:plan.id, shop_order_id:self.id, reason:"平行店收益", money:self.total*self.parallel_shop.earning_ratio)
@@ -106,6 +106,7 @@ class ShopOrder < ApplicationRecord
             end
         end
     end
+
 
     # def total
     #     a = 0
