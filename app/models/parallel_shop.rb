@@ -37,7 +37,7 @@ class ParallelShop < ApplicationRecord
 		end
 	end
 
-	before_create :add_location
+	# before_create :add_location
 
 	def get_status
 		if status == "waiting"

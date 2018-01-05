@@ -35,8 +35,8 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   def collective
 
       # 从营业员扫码流程 平行领配
-      # 订单初始状态为 "pending"
-      # 经过"配货"动作后， 将状态改为 "finished"
+      # 订单初始状态为 "pending"(带配领状态)
+      # 经过"配货"动作后， 将状态改为 "finished"(已配领状态)
       @shop_order = ShopOrder.create(   wechat_user_id:     current_user.id,
                                         total:              params[:total].to_f,
                                         status:             "pending",
@@ -109,6 +109,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   end
 
+  # 用户查看叫号码，及二维码页面
   def shopreceive
     # 用户扫描营业员二维码 平行配领成功
     # 获取该用户最后一条订单
@@ -122,7 +123,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     @shop_order_items = @shop_order.shop_order_items
 
 
-    url = root_url
+    url = wechat_parallel_shops_waiter_confirm_url(shop_order_id: @shop_order)
     @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
   end
 
@@ -135,7 +136,9 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   def shopindex
-
+      if current_user.user.parallel_shop_id == nil
+          redirect_to :back, notice: '您非平行店人员，无法进入。'
+      end
   end
 
   def partners
@@ -160,11 +163,43 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       end
   end
 
-  # 营业员查看的带领配页面
+  # 营业员查看的待领配页面
   def waiting_collective
     @shop = ParallelShop.find(current_user.user.parallel_shop_id)
-    @shop_orders = @shop.shop_orders
-    ap @shop_orders
+    @shop_orders = @shop.shop_orders.where(status: 'pending')
+  end
+
+  # 顾客待领配页面
+  def customer_collective
+      @shop_orders = ShopOrder.where(wechat_user_id: current_user.id, status: 'pending')
+  end
+
+  # 顾客查看已经领配页面
+  def customer_collectived
+      @shop_orders = ShopOrder.where(wechat_user_id: current_user.id, status: 'finished')
+  end
+
+  # 营业员扫取顾客生成的平行领配码
+  # 确认平行店订单 页面
+  def waiter_confirm
+      @shop_order = ShopOrder.try(:find, params[:shop_order_id])
+
+     # 判断是否为此订单所在平行店中的营业员
+     if @shop_order.user_id == current_user.user_id
+         @shop_order_items = @shop_order.shop_order_items
+     else
+        redirect_to root_path, notice: '你不是此平行店营业员，无法扫码'
+     end
+  end
+
+  # 营业员确认待领配订单  变成已领配
+  def shop_order_finished
+    @shop_order = ShopOrder.find_by(id: params[:shop_order_id])
+    @shop_order.status = "finished"
+    if @shop_order.save
+        # 确认成功后，回到平行店版首页
+        redirect_to wechat_parallel_shops_shopindex_path, notice: '确认订单成功'
+    end
   end
 
   def create

@@ -99,6 +99,12 @@ h5 {
 </style>
 
 <%= title '平行店' %>
+
+<% if flash[:notice] %>
+  <div class="notice"><%=flash[:notice]%></div>
+<% end %>
+
+
 <div style="background: #fff;">
     <div class="shopHeader">
         <input type="text" name="" placeholder="搜索">
@@ -139,14 +145,14 @@ h5 {
     <div class="order-item">
       <ul class='flex'>
         <li class="flex-item5">
-          <a href="<%= mall_orders_path %>">
+          <a href="<%= wechat_parallel_shops_customer_collective_path %>">
             <i class="ico-status waitPay">
             </i>
             待领配
           </a>
         </li>
         <li class="flex-item5">
-          <a href="<%= mall_orders_path %>">
+          <a href="<%= wechat_parallel_shops_customer_collectived_path %>">
             <i class="ico-status waitSend">
             </i>
             已领配
@@ -196,4 +202,3 @@ h5 {
 		</ul>
 	</div>
 </div>
-

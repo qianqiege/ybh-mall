@@ -23,6 +23,7 @@ ActiveAdmin.register ShopOrder do
         f.input :parallel_shop
         f.input :shop_pay
         f.input :express_number
+        f.input :status, as: :select, collection: ['pending','finished']
       end
       f.inputs do
           f.has_many :shop_order_items, allow_destroy: true do |a|
