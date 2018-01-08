@@ -1,4 +1,4 @@
-class Wechat::PlanController < ApplicationController
+class Wechat::PlanController < Wechat::BaseController
     def create_plan
         user_id = WechatUser.find_by(id:params[:current_user].to_i).user.id
         if params[:capital_id]
@@ -54,7 +54,8 @@ class Wechat::PlanController < ApplicationController
 
     #消费计划
     def consumption_plan
-
+        @plan_rules = PlanRule.all
+        @plans = Plan.where(user_id:current_user.user.id, is_capital:true)
     end
 
 end

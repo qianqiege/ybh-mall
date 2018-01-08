@@ -1,5 +1,5 @@
 ActiveAdmin.register Plan do
-    permit_params :user_id, :is_capital, :capital_id, :active, :is_maker, :money
+    permit_params :user_id, :is_capital, :capital_id, :active, :is_maker, :plan_type, :money
     form(:html => { :multipart => true }) do |f|
       f.inputs "评价" do
         f.input :user
@@ -8,6 +8,7 @@ ActiveAdmin.register Plan do
         f.input :active
         f.input :is_maker
         f.input :money
+        f.input :plan_type, as: :select, collection: ['199', '177', '155', '133', '122']
       end
       f.actions
     end
@@ -28,6 +29,7 @@ ActiveAdmin.register Plan do
         column :active
         column :is_maker
         column :money
+        column :plan_type
         column '支付方式' do |plan|
             if plan.payment == 'PAYMENT_TYPE_NULL'
                 '线下支付'

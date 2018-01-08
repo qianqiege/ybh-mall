@@ -157,6 +157,9 @@ h5 {
     font-size: 14px;
     margin: 0;
   }
+.block-plan-btn ul li.active-li {
+    background-color: #ccc;
+}
 </style>
 <%= title '消费计划' %>
 
@@ -168,83 +171,62 @@ h5 {
 	</div>
 	<div class="block-plan-btn">
 		<ul>
-			<li>
-				<a href="<%= wechat_community_index_path %>"> 
-					<span>御易健消费共同体计划</span>
-					<span>199</span>
-				</a>
-			</li>
-			<li>
-				<a href="<%= wechat_makers_plan_path %>"> 
-					<span>御邦医通消费创客计划</span>
-					<span>177</span>
-				</a>
-			</li>
-			<li>
-				<a href=""> 
-					<span>御邦医通消费共享计划</span>
-					<span>155</span>
-				</a>
-			</li>
-			<li>
-				<a href=""> 
-					<span>御邦医通消费共同计划</span>
-					<span>133</span>
-				</a>
-			</li>
-			<li>
-				<a href=""> 
-					<span>御邦医通价值链战略合伙人计划 122</span>
-					<!-- <span></span> -->
-				</a>
-			</li>
-			<li>
-				<a href=""> 
-					<span>高级战略计划</span>
-					<span>1XX</span>
-				</a>
-			</li>
+			<% @plan_rules.each do |t| %>
+                <% if Plan.find_by(user_id:current_user.user.id, is_capital:true, plan_type:t.plan_type) %>
+                    <li class="active-li">
+                        <a>
+                            <span><%=t.name[0..9]%></span>
+                            <span><%=t.name[10..12]%></span>
+                        </a>
+                    </li>
+                <% else %>
+                    <li>
+                        <% if t.plan_type == "199" %>
+                            <a href="<%= wechat_community_instruct_path %>">
+                        <% else %>
+                            <a href="<%= wechat_makers_protocol_path %>">
+                        <% end %>
+                            <span><%=t.name[0..9]%></span>
+                            <span><%=t.name[10..12]%></span>
+                        </a>
+                    </li>
+                <% end %>
+            <% end %>
 		</ul>
 	</div>
 	<div class="shopList">
 			<div class="shopTag">
 	            <h5 style="padding-left: 15px;">发起的计划</h5>
-	        </div>	
+	        </div>
 			<ul style="padding-left: 0px; margin-bottom: 45px;">
 				<a href="" style="display: block;">
-					<li>
-						<div class="slLeft">
-							<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-						</div>
-						<div class="slRight">
-							<div class="slRight-title">
-								<span>创客计划</span>
-								<b class="leader">队长</b>
-								<b class="success">已激活</b>
-							</div>
-							<div>
-								<span>发起时间：2017-12-18</span>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="slLeft">
-							<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-						</div>
-						<div class="slRight">
-							<div class="slRight-title">
-								<span>创客计划</span>
-								<b class="leader">队长</b>
-								<b class="success">已激活</b>
-							</div>
-							<div>
-								<span>发起时间：2017-12-18</span>
-							</div>
-						</div>
-					</li>
-
+					<% @plans.each do |t| %>
+                        <li>
+                            <div class="slLeft">
+                                <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+                            </div>
+                            <div class="slRight">
+                                <div class="slRight-title">
+                                    <% if t.is_maker %>
+                                        <span>177计划</span>
+                                    <% else %>
+                                        <span>199计划</span>
+                                    <% end %>
+                                    <b class="leader">队长</b>
+                                    <% if t.active %>
+                                        <b class="success">已激活</b>
+                                    <% else %>
+                                        <b class="success">待激活</b>
+                                    <% end %>
+                                </div>
+                                <div>
+                                    <span>发起时间：<%= t.created_at.to_s[0..9] %></span>
+                                </div>
+                            </div>
+                        </li>
+                    <% end %>
 				</a>
 			</ul>
 	</div>
-	
+
 </div>

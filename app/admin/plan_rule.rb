@@ -1,3 +1,29 @@
 ActiveAdmin.register PlanRule do
-permit_params :name, :invite_count, :commitment_consumption_amount, :start_money, :amount_of_promised_income, :ratio
+permit_params :name, :invite_count, :commitment_consumption_amount, :start_money, :amount_of_promised_income, :ratio, :plan_type
+
+    form(:html => { :multipart => true }) do |f|
+      f.inputs "Plan Rule" do
+        f.input :name
+        f.input :invite_count
+        f.input :commitment_consumption_amount
+        f.input :start_money
+        f.input :amount_of_promised_income
+        f.input :ratio
+        f.input :plan_type, as: :select, collection: ['199', '177', '155', '133', '122']
+      end
+      f.actions
+    end
+
+    index do
+        selectable_column
+        id_column
+        column :name
+        column :invite_count
+        column :commitment_consumption_amount
+        column :start_money
+        column :amount_of_promised_income
+        column :ratio
+        column :plan_type
+        actions
+    end
 end
