@@ -16,7 +16,7 @@ class Wechat::MakersController < Wechat::BaseController
     format_data = {
       price: params[:price].to_f,
       payment: params[:payment],
-      plan_id: '177'
+      plan_type: '177'
     }
     @plan = User.find(current_user.user_id).plans.new(format_data)
     @plan.is_capital = true

@@ -199,33 +199,37 @@ h5 {
 	            <h5 style="padding-left: 15px;">发起的计划</h5>
 	        </div>
 			<ul style="padding-left: 0px; margin-bottom: 45px;">
-				<a href="" style="display: block;">
 					<% @plans.each do |t| %>
-                        <li>
-                            <div class="slLeft">
-                                <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-                            </div>
-                            <div class="slRight">
-                                <div class="slRight-title">
-                                    <% if t.is_maker %>
-                                        <span>177计划</span>
-                                    <% else %>
-                                        <span>199计划</span>
-                                    <% end %>
-                                    <b class="leader">队长</b>
-                                    <% if t.active %>
-                                        <b class="success">已激活</b>
-                                    <% else %>
-                                        <b class="success">待激活</b>
-                                    <% end %>
+                        <% if t.plan_type == "199" %>
+                            <a href="<%= wechat_community_plandetail_path(t) %>" style="display: block;">
+                        <% else %>
+                            <a href="<%= wechat_community_plandetail_path(t)  %>" style="display: block;">
+                        <% end %>
+                            <li>
+                                <div class="slLeft">
+                                    <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
                                 </div>
-                                <div>
-                                    <span>发起时间：<%= t.created_at.to_s[0..9] %></span>
+                                <div class="slRight">
+                                    <div class="slRight-title">
+                                        <% if t.is_maker %>
+                                            <span>177计划</span>
+                                        <% else %>
+                                            <span>199计划</span>
+                                        <% end %>
+                                        <b class="leader">队长</b>
+                                        <% if t.active %>
+                                            <b class="success">已激活</b>
+                                        <% else %>
+                                            <b class="success">待激活</b>
+                                        <% end %>
+                                    </div>
+                                    <div>
+                                        <span>发起时间：<%= t.created_at.to_s[0..9] %></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        </a>
                     <% end %>
-				</a>
 			</ul>
 	</div>
 
