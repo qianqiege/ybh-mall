@@ -10,12 +10,13 @@ class Wechat::MakersController < Wechat::BaseController
 
   def protocol
   end
-  
+
   #创客付款
   def create_plan_exchange
     format_data = {
       price: params[:price].to_f,
-      payment: params[:payment]
+      payment: params[:payment],
+      plan_id: '177'
     }
     @plan = User.find(current_user.user_id).plans.new(format_data)
     @plan.is_capital = true
