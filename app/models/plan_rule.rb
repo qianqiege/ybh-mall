@@ -1,0 +1,2 @@
+class PlanRule < ApplicationRecord
+end
