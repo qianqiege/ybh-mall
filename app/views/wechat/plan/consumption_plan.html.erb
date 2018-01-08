@@ -202,8 +202,8 @@ h5 {
 					<% @plans.each do |t| %>
                         <% if t.plan_type == "199" %>
                             <a href="<%= wechat_community_plandetail_path(t) %>" style="display: block;">
-                        <% else %>
-                            <a href="<%= wechat_community_plandetail_path(t)  %>" style="display: block;">
+                        <% elsif t.plan_type == "177" %>
+                            <a href="<%= wechat_makers_plan_details_path(t)  %>" style="display: block;">
                         <% end %>
                             <li>
                                 <div class="slLeft">
@@ -211,9 +211,9 @@ h5 {
                                 </div>
                                 <div class="slRight">
                                     <div class="slRight-title">
-                                        <% if t.is_maker %>
+                                        <% if t.plan_type == '177' %>
                                             <span>177计划</span>
-                                        <% else %>
+                                        <% elsif t.plan_type == '199' %>
                                             <span>199计划</span>
                                         <% end %>
                                         <b class="leader">队长</b>
