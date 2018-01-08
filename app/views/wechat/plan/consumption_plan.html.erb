@@ -1,9 +1,10 @@
 
 <style>
 
-body {
+body,html {
 	margin: 0px;
 	background: #fff;
+	/*overflow-y: auto;*/
 }
 
 a {
@@ -159,73 +160,91 @@ h5 {
 </style>
 <%= title '消费计划' %>
 
-
-<div class="plan-image">
-	<a href="">
-		<%= image_tag "makers.jpg" %>
-	</a>
-</div>
-<div class="block-plan-btn">
-	<ul>
-		<li>
-			<a href="<%= wechat_community_index_path %>"> 
-				<span>御易健消费共同体计划</span>
-				<span>199</span>
-			</a>
-		</li>
-		<li>
-			<a href="<%= wechat_makers_plan_path %>"> 
-				<span>御邦医通消费创客计划</span>
-				<span>177</span>
-			</a>
-		</li>
-		<li>
-			<a href=""> 
-				<span>御邦医通消费共享计划</span>
-				<span>155</span>
-			</a>
-		</li>
-		<li>
-			<a href=""> 
-				<span>御邦医通消费共同计划</span>
-				<span>133</span>
-			</a>
-		</li>
-		<li>
-			<a href=""> 
-				<span>御邦医通价值链战略合伙人计划 122</span>
-				<!-- <span></span> -->
-			</a>
-		</li>
-		<li>
-			<a href=""> 
-				<span>高级战略计划</span>
-				<span>1XX</span>
-			</a>
-		</li>
-	</ul>
-</div>
-<div class="shopList">
-		<div class="shopTag">
-            <h5 style="padding-left: 15px;">发起的计划</h5>
-        </div>	
-		<ul style="padding-left: 0px; margin-bottom: 45px;">
-			<a href="" style="display: block;">
-				<li>
-					<div class="slLeft">
-						<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
-					</div>
-					<div class="slRight">
-						<div class="slRight-title">
-							<span>创客计划</span>
-							<b class="leader">队长</b>
-							<b class="success">已激活</b>
-						</div>
-						<div>
-							<span>发起时间：2017-12-18</span>
-						</div>
-					</div>
-				</li>
-			</a>
+<div style="width: 100%; height: 100%; overflow-y: auto;">
+	<div class="plan-image">
+		<a href="">
+			<%= image_tag "makers.jpg" %>
+		</a>
+	</div>
+	<div class="block-plan-btn">
+		<ul>
+			<li>
+				<a href="<%= wechat_community_index_path %>"> 
+					<span>御易健消费共同体计划</span>
+					<span>199</span>
+				</a>
+			</li>
+			<li>
+				<a href="<%= wechat_makers_plan_path %>"> 
+					<span>御邦医通消费创客计划</span>
+					<span>177</span>
+				</a>
+			</li>
+			<li>
+				<a href=""> 
+					<span>御邦医通消费共享计划</span>
+					<span>155</span>
+				</a>
+			</li>
+			<li>
+				<a href=""> 
+					<span>御邦医通消费共同计划</span>
+					<span>133</span>
+				</a>
+			</li>
+			<li>
+				<a href=""> 
+					<span>御邦医通价值链战略合伙人计划 122</span>
+					<!-- <span></span> -->
+				</a>
+			</li>
+			<li>
+				<a href=""> 
+					<span>高级战略计划</span>
+					<span>1XX</span>
+				</a>
+			</li>
 		</ul>
+	</div>
+	<div class="shopList">
+			<div class="shopTag">
+	            <h5 style="padding-left: 15px;">发起的计划</h5>
+	        </div>	
+			<ul style="padding-left: 0px; margin-bottom: 45px;">
+				<a href="" style="display: block;">
+					<li>
+						<div class="slLeft">
+							<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+						</div>
+						<div class="slRight">
+							<div class="slRight-title">
+								<span>创客计划</span>
+								<b class="leader">队长</b>
+								<b class="success">已激活</b>
+							</div>
+							<div>
+								<span>发起时间：2017-12-18</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="slLeft">
+							<%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+						</div>
+						<div class="slRight">
+							<div class="slRight-title">
+								<span>创客计划</span>
+								<b class="leader">队长</b>
+								<b class="success">已激活</b>
+							</div>
+							<div>
+								<span>发起时间：2017-12-18</span>
+							</div>
+						</div>
+					</li>
+
+				</a>
+			</ul>
+	</div>
+	
 </div>
