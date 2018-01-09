@@ -136,6 +136,9 @@
 		padding: 5px;
 		border-radius: 5px;
 	}
+    .del-btn {
+        background-color: #ccc !important;
+    }
 </style>
 
 <%= title '创客计划承诺书' %>
@@ -204,7 +207,11 @@
 		<label>我同意签订承诺消费书</label>
 	</div>
 	<div class="plan-button">
+        <% if !@wheter_has_plan %>
 			<button id="planBtn"> 同意发起计划 </button>
+        <% else %>
+            <button id="planBtn-del" class="del-btn"> 同意发起计划 </button>
+        <% end %>
 	</div>
 </div>
 
@@ -259,5 +266,10 @@
 		$("#fImg").click( function () {
 			$("#agree").hide();
 		})
+
+        $("#planBtn-del").click( function() {
+            alert("您已经发起过了计划")
+        })
+
 	})
 </script>
