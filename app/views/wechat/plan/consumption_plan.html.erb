@@ -175,8 +175,8 @@ h5 {
                 <% if Plan.find_by(user_id:current_user.user.id, is_capital:true, plan_type:t.plan_type) %>
                     <li class="active-li">
                         <a>
-                            <span><%=t.name[0..9]%></span>
-                            <span><%=t.name[10..12]%></span>
+                            <span><%= t.name %></span>
+                            <span><%= t.simple_name %></span>
                         </a>
                     </li>
                 <% else %>
@@ -185,9 +185,11 @@ h5 {
                             <a href="<%= wechat_community_commitment_path %>">
                         <% elsif t.plan_type == "177"  %>
                             <a href="<%= wechat_makers_protocol_path %>">
+                        <% else %>
+                        	<a>
                         <% end %>
-                            <span><%=t.name[0..9]%></span>
-                            <span><%=t.name[10..12]%></span>
+                            <span><%= t.name %></span>
+                            <span><%= t.simple_name %></span>
                         </a>
                     </li>
                 <% end %>
