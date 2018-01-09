@@ -245,9 +245,9 @@
 			<span class="auth">平行店授权</span>
 			<button class="btn2" disabled>授权</button>
 			<% if @plan.is_capital == true %>
-                <span class="worry">队长操心费：0.0</span>
+                <span class="worry">管理指导费：0.0</span>
             <% else %>
-                <span class="worry">队长操心费：<%= @plan.money*0.1 %></span>
+                <span class="worry">管理指导费：<%= @plan.money*0.1 %></span>
             <% end %>
 		</div>
 	    <div>
