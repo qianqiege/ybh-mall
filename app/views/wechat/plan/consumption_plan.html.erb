@@ -183,7 +183,7 @@ h5 {
                     <li>
                         <% if t.plan_type == "199" %>
                             <a href="<%= wechat_community_commitment_path %>">
-                        <% else %>
+                        <% elsif t.plan_type == "177"  %>
                             <a href="<%= wechat_makers_protocol_path %>">
                         <% end %>
                             <span><%=t.name[0..9]%></span>
