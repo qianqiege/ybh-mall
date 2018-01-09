@@ -1,8 +1,8 @@
 ActiveAdmin.register PlanRule do
-permit_params :name, :simple_name, :invite_count, :commitment_consumption_amount, :start_money, :amount_of_promised_income, :ratio, :plan_type
-
+    menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
+    permit_params :name, :simple_name, :invite_count, :commitment_consumption_amount, :start_money, :amount_of_promised_income, :ratio, :plan_type
     form(:html => { :multipart => true }) do |f|
-      f.inputs "Plan Rule" do
+      f.inputs "计划规则" do
         f.input :name
         f.input :simple_name
         f.input :invite_count

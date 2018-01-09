@@ -387,11 +387,14 @@ zh-CN:
         image: '缩略图'
         desc: '描述'
       parallel_shop:
+        plan: '所属计划'
         title: '名称'
         address: '地址'
         main_business: "主营业务"
         image: "图片"
         desc: "描述"
+        earning_ratio: "分利比例"
+        settlement_ratio: "结算比例"
       stock_out:
         number: "编号"
         parallel_shop: "平行店"
@@ -401,8 +404,38 @@ zh-CN:
         status: "状态"
         total: "总金额"
         purchase_order: "采购单"
+      money_detail:
+        user: "用户"
+        shop_order: "订单"
+        plan: "所属计划"
+        record_id: "记录"
+        reason: "收入来源"
+        money: "金额"
+      plan_rule:
+        name: "计划名称"
+        invite_count: "邀请人数"
+        commitment_consumption_amount: "承诺消费金额"
+        start_money: "启动资金"
+        amount_of_promised_income: '承诺收益金额'
+        ratio: "消费购买产品比"
+        plan_type: "计划类型"
+      plan:
+        user: "用户"
+        code: "计划编号"
+        is_capital: "是否队长"
+        capital_id: "队长id"
+        active: "是否激活"
+        is_maker: "是否为创客"
+        money: "总收益"
+        plan_type: "计划类型"
+      sale_product:
+        product: "产品"
+        parallel_shop: '平行店'
+        amount: "数量"
       shop_order:
         number: "编号"
+        wechat_user: "微信用户"
+        parallel_shop: '平行店'
         customer: "客户"
         user: "营业员"
         express_number: '运单号'
@@ -507,3 +540,7 @@ zh-CN:
       shop_order: "平行店订单"
       stock: "库存管理"
       parallel_shop: "平行店"
+      plan_rule: "计划规则"
+      plan: '计划'
+      sale_product: '产品上架'
+      money_detail: "收益明细"
