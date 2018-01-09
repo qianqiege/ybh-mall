@@ -55,6 +55,10 @@
 	#commit{
 		-webkit-appearance: none;
 	}
+
+    .del-btn {
+        background-color: #ccc !important;
+    }
 </style>
 
 <%= title "消费共同体计划承诺书" %>
@@ -101,7 +105,13 @@
                     <input name="invite_plan_id" value="<%= @plan %>" style="display:none;">
                 <% end %>
                 <input name="current_user" value="<%= current_user.id %>" style="display:none;">
-    			<input type="submit" name="action" class="sub" value="提交" />
+                <% if !@wheter_has_plan %>
+                    <input type="submit" name="action" class="sub" value="提交" />
+                <% else %>
+                    <input type="button" name="action" class="sub del-btn" id="planBtn-del" value="提交" />
+                <% end %>
+
+
     		</div>
         <% end %>
 	</div>
@@ -116,6 +126,10 @@
 			}else {
 				alert("请在承诺书前打钩")
 			}
-		})
+		});
+
+        $("#planBtn-del").click( function() {
+            alert("您已经发起过了计划")
+        })
 	})
 </script>

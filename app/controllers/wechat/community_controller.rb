@@ -14,6 +14,13 @@ class Wechat::CommunityController < Wechat::BaseController
   def commitment
     @user_id = params[:user_id]
     @plan = params[:plan]
+
+    # 标识当前用户 是否有此类型的计划
+    @wheter_has_plan = nil
+    if params[:plan]
+        @plan = Plan.find(params[:plan])
+        @wheter_has_plan = current_user.user.plans.find_by(plan_type: '199')
+    end
   end
 
   def invite
