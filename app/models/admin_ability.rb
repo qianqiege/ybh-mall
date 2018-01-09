@@ -66,11 +66,12 @@ class AdminAbility
       can :manage, ExchangeRecord
     elsif user.role_name == 'parallel_shop'
       can [:update,:read]
-      can :read, ShopOrder
-      can :manage, StockOut
-      can :manage, PurchaseOrder
-      can :manage, SaleProduct
-      can :read, Stock
+      can :read,            ShopOrder,      parallel_shop_id:   user.parallel_shop.id
+      can :manage,          StockOut,       parallel_shop_id:   user.parallel_shop.id
+      can :manage,          PurchaseOrder,  parallel_shop_id:   user.parallel_shop.id
+      can :manage,          SaleProduct,    parallel_shop_id:   user.parallel_shop.id
+      can :read,            Stock,          parallel_shop_id:   user.parallel_shop.id
+      can [:update,:read],  ParallelShop,   id:                 user.parallel_shop.id
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end

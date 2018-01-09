@@ -8,11 +8,13 @@ ActiveAdmin.register ParallelShop do
         f.input :address
         f.input :main_business
         f.input :image, as: :file
-        f.input :status
-        f.input :admin_user
         f.input :desc
-        f.input :settlement_ratio
-        f.input :earning_ratio
+        if current_admin_user.role_name == "admin"
+            f.input :status
+            f.input :admin_user
+            f.input :settlement_ratio
+            f.input :earning_ratio
+        end
       end
       f.actions
     end
@@ -29,16 +31,18 @@ ActiveAdmin.register ParallelShop do
           image_tag(slide.image_url, size: "72x45", :alt => "parallel shop image")
         end
         column :desc
-        column "平行店审核" do |shop|
-            if shop.status == "waiting"
-              span do
-                link_to '通过', pass_admin_parallel_shop_path(shop),method: :put, data: { confirm: 'Are you sure?' }
-              end
-              span do
-                link_to '不通过', not_pass_admin_parallel_shop_path(shop),method: :put, data: { confirm: 'Are you sure?' }
-              end
-            else
-               shop.get_status
+        if current_admin_user.role_name == "admin"
+            column "平行店审核" do |shop|
+                if shop.status == "waiting"
+                  span do
+                    link_to '通过', pass_admin_parallel_shop_path(shop),method: :put, data: { confirm: 'Are you sure?' }
+                  end
+                  span do
+                    link_to '不通过', not_pass_admin_parallel_shop_path(shop),method: :put, data: { confirm: 'Are you sure?' }
+                  end
+                else
+                   shop.get_status
+                end
             end
         end
         column "添加营业员" do |shop|
