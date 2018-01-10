@@ -1,6 +1,6 @@
 ActiveAdmin.register ParallelShop do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
-    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id, :earning_ratio, :settlement_ratio
+    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id, :settlement_ratio
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店" do
         f.input :plan
@@ -13,7 +13,6 @@ ActiveAdmin.register ParallelShop do
             f.input :status
             f.input :admin_user
             f.input :settlement_ratio
-            f.input :earning_ratio
         end
       end
       f.actions
@@ -25,7 +24,6 @@ ActiveAdmin.register ParallelShop do
         column :title
         column :address
         column :main_business
-        column :earning_ratio
         column :settlement_ratio
         column "平行店图片" do |slide|
           image_tag(slide.image_url, size: "72x45", :alt => "parallel shop image")
