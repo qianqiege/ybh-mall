@@ -51,6 +51,9 @@ zh-CN:
         is_custom_price: '自定义商品价格'
         height: '其他区分'
         is_test: '是否为测试产品'
+        sort: '产品分类'
+        activity: '活动专属'
+        led_away_category: '领配类别'
       hight_ticket:
         user: '用户'
         number: '数量'

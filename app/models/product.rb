@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  LED_AWAY_CATEGORY = { '1' => 'A类产品', '2' => 'B类产品', '3' => 'C类产品' }.freeze
+
   include ImageConcern
   has_many :line_items
   has_many :member_equities
@@ -33,6 +35,9 @@ class Product < ApplicationRecord
   def pay_reduce_shop_count(quantity)
     self.lock_shop_count -= quantity
     self.save!
+  end
+  def category
+    LED_AWAY_CATEGORY[self.led_away_category.to_s]
   end
 
   private
