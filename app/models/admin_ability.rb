@@ -71,7 +71,7 @@ class AdminAbility
       can :manage,          PurchaseOrder,  parallel_shop_id:   user.parallel_shop.id
       can :manage,          SaleProduct,    parallel_shop_id:   user.parallel_shop.id
       can :read,            Stock,          parallel_shop_id:   user.parallel_shop.id
-      can [:update,:read],  ParallelShop,   id:                 user.parallel_shop.id
+      can :read,            ParallelShop,   id:                 user.parallel_shop.id
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end
