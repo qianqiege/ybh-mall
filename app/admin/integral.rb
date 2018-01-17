@@ -1,7 +1,7 @@
 ActiveAdmin.register Integral do
 menu parent: I18n.t("active_admin.menu.wallet_manage")
 
-permit_params :exchange, :user_id, :locking, :available,:cash,:not_exchange
+permit_params :exchange, :user_id, :locking, :available,:cash,:not_exchange, :celebrate_ratsimp
 
   index do
     selectable_column
@@ -14,6 +14,7 @@ permit_params :exchange, :user_id, :locking, :available,:cash,:not_exchange
     column :not_exchange
     column :cash
     column :not_cash
+    column :celebrate_ratsimp
     column :updated_at
     actions defaults: true
   end

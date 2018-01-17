@@ -422,6 +422,7 @@ zh-CN:
         amount_of_promised_income: '承诺收益金额'
         ratio: "消费购买产品比"
         plan_type: "计划类型"
+        earning_ratio: "分利比例"
       plan:
         user: "用户"
         code: "计划编号"
