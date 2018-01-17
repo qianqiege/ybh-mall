@@ -18,7 +18,8 @@ ActiveAdmin.register Product do
                 :display,
                 :height,
                 :activity_id,
-                :is_test
+                :is_test,
+                :led_away_category
 
   index do
     selectable_column
@@ -66,6 +67,7 @@ ActiveAdmin.register Product do
       f.input :height
       f.input :desc,:as => :ckeditor
       f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3','点亮心灯' => '4' }
+      f.input :led_away_category, as: :select, collection: {'A' => '1', 'B' => '2', 'C' => '3'}
       f.input :activity
       f.input :is_test
     end
@@ -89,6 +91,8 @@ ActiveAdmin.register Product do
         truncate(raw product.desc)
       end
       row :is_test
+      row :sort
+      row :led_away_category
     end
   end
 

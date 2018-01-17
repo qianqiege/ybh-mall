@@ -24,9 +24,15 @@
 	}
 	.imgcon .name{
 		text-align: center;
-		font-size: 14px;
+		font-size: 18px;
 		margin: 3px 0 3px;
 		margin: 0 auto;
+	}
+	.imgcon .led_away_category{
+		text-align: center;
+		color: #3c5e91;
+		font-size: 14px;
+		margin: 3px 0 3px;
 	}
 	.imgcon .price{
 		text-align: center;
@@ -176,6 +182,7 @@
                         <%= image_tag t.product.image.url %>
                         <input type="text" class="product_id" value="<%= t.product_id %>" disabled style="display: none;">
                         <div class="name"><%= t.product.name %></div>
+                        <div class="led_away_category"><%= t.product.category %></div>
                         <div class="price"><%= t.product.now_product_price %></div>
                         <% if @waiter %>
 	                        <div class="gw_num">
@@ -190,7 +197,7 @@
 		</div>
 	</div>
 	<div class="total">
-		
+
         <% if @waiter %>
 	        <p class="money">
 				总计：<span id="priceTotal">0.00</span>
@@ -285,7 +292,7 @@
     		// console.log($(".num")[i].value, $(".product_id")[i].value, $(".price")[i].innerText);
  			if ($(".num")[i].value > 0) {
  				arr.push({amount: $(".num")[i].value, product_id: $(".product_id")[i].value, price: $(".price")[i].innerText})
- 			}		
+ 			}
     	}
     	if ( parseFloat(money) >= parseFloat(priceTotal) ) {
     		console.log(money, priceTotal);
