@@ -4,11 +4,27 @@ class ShopOrder < ApplicationRecord
     belongs_to :parallel_shop
     has_many :shop_order_items
     has_many :money_details
+    has_many :celebrate_ratsimps
+
     accepts_nested_attributes_for :shop_order_items, allow_destroy:true
     # after_create :update_amount
+
     before_create :generate_call_number
     after_create :divide_into
     before_save :change_number
+    after_save :create_celebrate_ratsimp
+
+
+    def create_celebrate_ratsimp
+        if self.status == "finished"
+            CelebrateRatsimp.create(user_id:            self.wechat_user.user.id,
+                                    waiter:             self.user.name,
+                                    shop_order_id:      self.id,
+                                    parallel_shop_id:   self.parallel_shop_id,
+                                    amount:             self.total
+                                    )
+        end
+    end
 
     def name
         self.number
