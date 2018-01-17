@@ -65,7 +65,6 @@ class AdminAbility
       can :manage, HealthProgram
       can :manage, ExchangeRecord
     elsif user.role_name == 'parallel_shop'
-      can [:update,:read]
       can :read,            ShopOrder,      parallel_shop_id:   user.parallel_shop.id
       can :manage,          StockOut,       parallel_shop_id:   user.parallel_shop.id
       can :manage,          PurchaseOrder,  parallel_shop_id:   user.parallel_shop.id
