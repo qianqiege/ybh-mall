@@ -23,6 +23,14 @@ class ShopOrder < ApplicationRecord
                                     parallel_shop_id:   self.parallel_shop_id,
                                     amount:             self.total
                                     )
+            self.shop_order_items.each do |t|
+                f = Stock.find_by(parallel_shop_id:self.parallel_shop_id, product_id:t.product_id)
+                f.amount -= t.amount
+                f.save
+                s = SaleProduct.find_by(parallel_shop_id:self.parallel_shop_id, product_id:t.product_id)
+                s.amount -= t.amount
+                s.save
+            end
         end
     end
 
