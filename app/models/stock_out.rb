@@ -4,10 +4,19 @@ class StockOut < ApplicationRecord
     has_many :stock_out_items
     accepts_nested_attributes_for :stock_out_items, allow_destroy:true
     after_update :update_stock
-    before_save :change_number
+    before_create :change_number
 
     def change_number
         self.number = StockOut.generate_number
+        a= 0
+        self.stock_out_items.each do |t|
+            a += t.product.now_product_price*t.amount
+        end
+        self.total = a
+        self.parallel_shop_id = self.purchase_order.parallel_shop.id
+        self.contact = self.purchase_order.contact
+        self.address = self.purchase_order.address
+        self.phone = self.purchase_order.phone
     end
 
 
@@ -51,29 +60,5 @@ class StockOut < ApplicationRecord
               self.save
           end
       end
-    end
-
-    def total
-        a= 0
-        self.stock_out_items.each do |t|
-            a += t.product.now_product_price*t.amount
-        end
-        return a
-    end
-
-    def parallel_shop
-        self.purchase_order.parallel_shop
-    end
-
-    def contact
-        self.purchase_order.contact
-    end
-
-    def address
-        self.purchase_order.address
-    end
-
-    def phone
-        self.purchase_order.phone
     end
 end
