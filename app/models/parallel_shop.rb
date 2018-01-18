@@ -8,6 +8,7 @@ class ParallelShop < ApplicationRecord
   has_many :stock
   has_many :users
   has_many :shop_orders
+  has_many :celebrate_ratsimps
   belongs_to :plan
   belongs_to :admin_user
 

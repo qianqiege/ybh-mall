@@ -135,6 +135,7 @@ zh-CN:
         remark: '备注'
         payment: '支付类型'
         is_test: '是否为测试类型'
+        celebrate_ratsimp: '庆通分'
       wechat_user:
         open_id: '微信open_id'
         user: '用户姓名'
@@ -171,6 +172,7 @@ zh-CN:
         not_exchange: '不可兑换（积分）'
         not_cash: '不可体现（余额）'
         updated_at: '最后更新时间'
+        celebrate_ratsimp: '庆通分'
       reservation_record:
         time: '时间'
         name: '客户'
@@ -422,6 +424,7 @@ zh-CN:
         amount_of_promised_income: '承诺收益金额'
         ratio: "消费购买产品比"
         plan_type: "计划类型"
+        earning_ratio: "分利比例"
       plan:
         user: "用户"
         code: "计划编号"

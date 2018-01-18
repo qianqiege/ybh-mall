@@ -41,6 +41,7 @@ class User < ApplicationRecord
   has_many :user_idata_subscribes
   has_many :ycoin_records, dependent: :destroy, as: :account
   has_many :donation_records
+  has_many :celebrate_ratsimps
   has_one :user_info_review
   has_one :shop
   has_many :shop_orders

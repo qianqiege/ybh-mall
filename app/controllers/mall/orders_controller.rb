@@ -56,6 +56,7 @@ class Mall::OrdersController < Mall::BaseController
 
     integral_available = params["integral_available"].to_f
     integral_money = params["integral_money"].to_f
+    celebrate_ratsimp = params["celebrate_ratsimp"].to_f/10
 
     # 使用优惠券
     if params[:lottery_prize_id].present?
@@ -64,11 +65,12 @@ class Mall::OrdersController < Mall::BaseController
     end
 
     # 自定义价格
+    # 这里会减去 使用积分， 现金余额， 庆通分
     if params[:custom_price].present?
-      price = params[:custom_price].to_f - (integral_money + integral_available)
+      price = params[:custom_price].to_f - (integral_money + integral_available + celebrate_ratsimp)
     else
-      if integral_money.present? && integral_available.present?
-        price = price - (integral_money + integral_available)
+      if integral_money.present? && integral_available.present? && celebrate_ratsimp.present?
+        price = price - (integral_money + integral_available + celebrate_ratsimp)
       end
     end
 
@@ -118,12 +120,14 @@ class Mall::OrdersController < Mall::BaseController
       @order.account = params[:account]
     end
 
-    if !integral_money.nil? && !integral_available.nil?
+    if !integral_money.nil? && !integral_available.nil? && !celebrate_ratsimp.nil?
       @order.cash = integral_money
       @order.integral = integral_available
+      @order.celebrate_ratsimp = celebrate_ratsimp*10
     else
       @order.cash = 0
       @order.integral = 0
+      @order.celebrate_ratsimp = 0
     end
 
     @order.desc = params[:custom_desc]

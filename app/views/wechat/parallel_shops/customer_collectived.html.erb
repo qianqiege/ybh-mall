@@ -22,44 +22,42 @@
 		width:85%;
 		margin: 0 auto;
 		padding:0;
-		margin-top: 20px;
 		padding-bottom: 108px;
 	}
 
 	.listShow li {
-		display: flex;
-		height:90px;
+		height:60px;
 		border-bottom: 1px solid #ccc;
 	}
 
-	.listShow li .proLeft {
-		width:90px;
-	}
-
-	.listShow li .proLeft img {
-		width:80px;
-		height:80px;
-		margin: 5px 0 0 5px;
-	}
-
 	.listShow li .proRight {
-		flex:1;
+		/*display: flex;*/
 		padding-left: 5%;
 	}
 
 	.listShow li .proRight .proName {
-		font-size: 18px;
+		font-size: 14px;
 		color:#474747;
 		margin: 0;
-		margin-top:18px;
+		line-height: 60px;
+	}
+
+	.listShow li .proRight .proName .nameStyle {
+		font-size: 18px;
+		color:#ad0e11;
 	}
 
 	.listShow li .proRight .proInfo {
 		margin: 0;
-		margin-top:10px;
+		line-height: 60px;
 		font-size: 14px;
 		color:#888;
+		float: right;
 	}
+
+.listShow li .proRight p {
+		display: inline-block;
+	}	
 
 	.call-number {
 		text-align: center;
@@ -73,19 +71,21 @@
 	}
 	.pro-list {
 		padding: 10px;
+		margin:0 auto;
+		width: 85%;
 		margin-top: 20px;
+		background-color: #ad0e11;
 	}
 	.pro-list span {
-		background-color: #ad0e11;
 		color: #fff;
-		padding: 3px 10px;
+		width: 100%;
 		display: inline-block;
+		text-align: center;
 	}
 </style>
 
 <%= title '平行已配领' %>
 <div class="container">
-	<div class="">
 	<div class="pro-list">
 		<span>已领配订单</span>
 	</div>
@@ -94,7 +94,7 @@
 			<a href="<%= wechat_parallel_shops_shopreceive_path(order_id: order_item) %>">
 				<li>
 					<div class="proRight">
-						<p class="proName">叫号码: <%= order_item.show_call_number %></p>
+						<p class="proName">叫号码:<span class="nameStyle"> <%= order_item.show_call_number %></span></p>
 						<p class="proInfo">
 							<span>顾客名: <%= WechatUser.find(order_item.wechat_user_id).user.name %></span>
 						</p>
