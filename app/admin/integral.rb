@@ -25,7 +25,9 @@ permit_params :exchange, :user_id, :locking, :available,:cash,:not_exchange, :ce
       f.input :locking
       f.input :available
       f.input :cash
+      f.input :not_cash
       f.input :not_exchange
+      f.input :celebrate_ratsimp
     end
     f.actions
   end
