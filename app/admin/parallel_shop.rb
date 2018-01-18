@@ -25,6 +25,9 @@ ActiveAdmin.register ParallelShop do
         column :address
         column :main_business
         column :settlement_ratio
+        column "营业员" do |parallelshop|
+          parallelshop.users.pluck(:name).join(',')
+        end
         column "平行店图片" do |slide|
           image_tag(slide.image_url, size: "72x45", :alt => "parallel shop image")
         end
