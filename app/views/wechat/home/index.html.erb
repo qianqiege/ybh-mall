@@ -180,15 +180,19 @@ a:active {
       <a href="<%= user_moving_health_data_path %>"><%= image_tag "易健康.png", size: "50x50" %></a>
       <p style="margin-bottom:15%;" class="fontSizes">易健康</p>
     </li>
-     <% if current_user.user && current_user.user.status == "Staff" %>
-     <li>
-       <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
-       <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
-     </li>
-     <li>
-         <a href="<%= wechat_plan_consumption_plan_path %>"><%= image_tag "消费计划.png", size: "50x50" %></a>
-         <p style="margin-bottom:15%;" class="fontSizes">消费计划</p>
-     </li>
+    <li>
+      <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
+    </li>
+    <li>
+        <a href="<%= wechat_plan_consumption_plan_path %>"><%= image_tag "消费计划.png", size: "50x50" %></a>
+        <p style="margin-bottom:15%;" class="fontSizes">消费计划</p>
+    </li>
+    <% if current_user.user && current_user.user.status == "Staff" %>
+      <li>
+        <a href="<%= wechat_light_path %>"><%= image_tag "一盏明灯.png", size: "50x50" %></a>
+        <p class="fontSizes">一盏明灯</p>
+      </li>
     <% end %>
 
     <!-- <li>
@@ -196,10 +200,7 @@ a:active {
         <p class="fontSizes">御合伙</p>
       </li> -->
 
-      <li>
-        <a href="<%= wechat_light_path %>"><%= image_tag "一盏明灯.png", size: "50x50" %></a>
-        <p class="fontSizes">一盏明灯</p>
-      </li>
+
       <!-- <li>
         <% if !current_user.user.nil? && current_user.user.staff_type == "R&D" %>
           <a href="<%= wechat_coalition_path  %>"><%= image_tag "联盟.png", size: "50x50" %></a>
@@ -209,10 +210,10 @@ a:active {
           <p class="fontSizes">商盟</p>
         <% end %>
       </li> -->
-        <li>
-            <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
-            <p class="fontSizes">商城</p>
-        </li>
+      <li>
+          <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
+          <p class="fontSizes">商城</p>
+      </li>
       <!-- <li>
         <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
         <p class="fontSizes">我的</p>
