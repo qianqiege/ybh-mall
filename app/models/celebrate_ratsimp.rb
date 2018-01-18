@@ -2,6 +2,7 @@ class CelebrateRatsimp < ApplicationRecord
     belongs_to :user
     belongs_to :parallel_shop
     belongs_to :shop_order
+    belongs_to :order
     after_create :update_integral
 
     def update_integral

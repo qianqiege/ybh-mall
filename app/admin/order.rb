@@ -18,6 +18,7 @@ ActiveAdmin.register Order do
     column :price
     column :integral
     column :cash
+    column :celebrate_ratsimp
     column :quantity
     column :lottery_prize
     column :desc
@@ -128,6 +129,7 @@ ActiveAdmin.register Order do
     column "YBZ方案",:packang
     column :integral
     column "现金余额",:cash
+    column :celebrate_ratsimp
     column :quantity
     column '优惠券',:lottery_prize
     column :number
@@ -196,6 +198,7 @@ ActiveAdmin.register Order do
       row :price do
         money order.price
       end
+      row :celebrate_ratsimp
       row :integral
       row :status do
         order.human_state

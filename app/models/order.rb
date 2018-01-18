@@ -28,6 +28,7 @@ class Order < ApplicationRecord
   before_create :generate_number, :copy_price_to_initial_price
   after_create :set_used_address, :create_scoin_account
   before_save :update_is_test
+  after_update :update_celebrate_ratsimp
 
   STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' ,return_change: '退货/款'}.freeze
   PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
@@ -345,6 +346,17 @@ class Order < ApplicationRecord
         end
       end
     end
+  end
+
+  def update_celebrate_ratsimp
+      if self.status == "wait_send"
+          f = CelebrateRatsimp.find_by(user_id:self.user_id,order_id:self.id)
+          if !f
+              CelebrateRatsimp.create(  user_id:self.user_id,
+                                        order_id:self.id, amount:-self.celebrate_ratsimp
+                                    )
+          end
+      end
   end
 
   # 支出易积分
