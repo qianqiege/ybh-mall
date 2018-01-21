@@ -3,8 +3,13 @@ ActiveAdmin.register SaleProduct do
     permit_params :product_id, :amount, :parallel_shop_id
     form(:html => { :multipart => true }) do |f|
       f.inputs "产品上架" do
-        f.input :product, as: :select, collection: current_admin_user.parallel_shop.stock.map{|f| [Product.find(f.product_id).name, f.product_id]}
-        f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id)
+        if current_admin_user.role_name == "admin"
+            f.input :product
+            f.input :parallel_shop
+        else
+            f.input :product, as: :select, collection: current_admin_user.parallel_shop.stock.map{|f| [Product.find(f.product_id).name, f.product_id]}
+            f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id)
+        end
         f.input :amount
       end
       f.actions
