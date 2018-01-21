@@ -405,7 +405,7 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
-  # 医师认证
+  # 健康管理师认证
   def authentication
     @user_info_review = current_user.user.user_info_review
     if !@user_info_review

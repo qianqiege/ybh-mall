@@ -123,7 +123,7 @@
 
 <%= form_tag(user_update_user_info_review_path(id: @user_info_review), method: :put, id: 'bind_phone_form') do %>
     <div class="wraper pt50">
-      <h2 class="yyj_title">编辑医师验证信息</h2>
+      <h2 class="yyj_title">编辑健康管理师验证信息</h2>
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
@@ -210,7 +210,7 @@
 
       <div class="weui-panel weui-panel_access marginLeft">
         <div class="weui-panel">
-          <div class="weui-panel__hd">执业医师证号</div>
+          <div class="weui-panel__hd">健康管理师证号</div>
             <div class="weui-panel__bd">
               <div class="address-box city-group">
                 <input type="text" name="doctor_number" class="yyj_input" value="<%= @user_info_review.doctor_number %>">
@@ -229,9 +229,9 @@
           <div class="weui-uploader__hd">
             <p class="weui-uploader__title">
               <% if @user_info_review && @user_info_review.doctor_image %>
-                执业医师证
+                健康管理师证
               <% else %>
-                上传执业医师证
+                上传健康管理师证
               <% end -%>
             </p>
           </div>
@@ -239,7 +239,7 @@
              <ul class="weui-uploader__files uploaderUserImage">
                 <% if @user_info_review %>
                   <li class="weui-uploader__file">
-                     <%= image_tag(@user_info_review.doctor_image_url, :alt => "执业医师资格证图片", :class => "identity-card-img images") if @user_info_review&&@user_info_review.image %>
+                     <%= image_tag(@user_info_review.doctor_image_url, :alt => "健康管理师资格证图片", :class => "identity-card-img images") if @user_info_review&&@user_info_review.image %>
                  </li>
                 <% end -%>
              </ul>

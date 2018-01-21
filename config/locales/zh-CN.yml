@@ -231,7 +231,7 @@ zh-CN:
         coding: '开房编号'
         product: '方案中的产品'
       long_program:
-        doctor: '开方医师'
+        doctor: '开方健康管理师'
         hospital: '开方医院/服务中心'
         recipe_number: '开方编号'
         total: '方案总金额'
