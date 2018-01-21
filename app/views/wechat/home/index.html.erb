@@ -5,130 +5,131 @@
     display: flex;
   }
 
-.huiyuan div {
-  width: 26%;
-  height: 40px;
-  background: #DCDCDC;
-  flex: 1;
-  margin-right: 2%;
-  text-align: center;
-  line-height: 40px;
-  border-radius: 10px 35px;
-}
+  .huiyuan div {
+    width: 26%;
+    height: 40px;
+    background: #DCDCDC;
+    flex: 1;
+    margin-right: 2%;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 10px 35px;
+  }
 
-.img_width{
-  width: 100%;
-}
+  .img_width {
+    width: 100%;
+  }
 
-.fontSizes {
-  font-size: 0.8rem;
-}
+  .fontSizes {
+    font-size: 0.8rem;
+  }
 
-.healthDiv {
-  width: 100%;
- /* border-top: 1px solid #eee;*/
-  border-bottom: 1px solid #eee;
-  padding-top: 8px;
-}
+  .healthDiv {
+    width: 100%;
+    /* border-top: 1px solid #eee;*/
+    border-bottom: 1px solid #eee;
+    padding-top: 8px;
+  }
 
-.healthDiv h5 {
-  padding: 0 10px 8px 20px;
-  border-bottom: 1px solid #eee;
-}
+  .healthDiv h5 {
+    padding: 0 10px 8px 20px;
+    border-bottom: 1px solid #eee;
+  }
 
-.healthKuai {
+  .healthKuai {
     display: flex;
-    padding:8px 0;
-}
+    padding: 8px 0;
+  }
 
-.healthKuai a {
-  display: inline-block;
-  flex: 1;
-  display: flex;
-}
-
-.healthKuai a:first-child {
-  border-right: 1px solid #eee;
-}
-
-.healthKuai a img {
-  width: 45px;
-  margin-right: 10%;
-
-}
-
-.healthKuai a span {
-  display: inline-block;
-  flex: 1;
-  text-align: center;
-  color: #666;
-}
-
-.tongzhi {
-  width: 90%;
-  margin:0 auto;
-  overflow: hidden;
-  height: 4%;
-  background:#eee;
-  border-radius: 15px;
-  margin-top: 2%;
-  text-align: center;
-  position: relative;
-}
-
-.tongzhi a {
-  display: inline-block;
-  height: 100%;
-  color: #ad0e11;
-  font-size: 1rem;
-  background: #eee;
-}
-
-.tongzhi img {
-  display: inline-block;
-  position: absolute;
-  top: 6px;
-  left: 15px;
-  background: #eee;
-}
-
-a {
-  text-decoration:none;
-  out-line: none;
-  color: #000;
-}
-
-a:active {
-  color: #000;
-}
-
-.shopTag {
+  .healthKuai a {
+    display: inline-block;
+    flex: 1;
     display: flex;
-    padding:0 5% 0 2%;
-    margin:1% 0;
-}
+  }
 
-.shopTag span {
+  .healthKuai a:first-child {
+    border-right: 1px solid #eee;
+  }
+
+  .healthKuai a img {
+    width: 45px;
+    margin-right: 10%;
+
+  }
+
+  .healthKuai a span {
+    display: inline-block;
+    flex: 1;
+    text-align: center;
+    color: #666;
+  }
+
+  .tongzhi {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 4%;
+    background: #eee;
+    border-radius: 15px;
+    margin-top: 2%;
+    text-align: center;
+    position: relative;
+  }
+
+  .tongzhi a {
+    display: inline-block;
+    height: 100%;
+    color: #ad0e11;
+    font-size: 1rem;
+    background: #eee;
+  }
+
+  .tongzhi img {
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    left: 15px;
+    background: #eee;
+  }
+
+  a {
+    text-decoration: none;
+    out-line: none;
+    color: #000;
+  }
+
+  a:active {
+    color: #000;
+  }
+
+  .shopTag {
+    display: flex;
+    padding: 0 5% 0 2%;
+    margin: 1% 0;
+  }
+
+  .shopTag span {
     display: inline-block;
     /*width:20%;*/
     background: #ad0e11;
     text-align: center;
     color: #fff;
     padding: 0 5%;
-}
+  }
 
-.shopTag a {
-    flex:1;
+  .shopTag a {
+    flex: 1;
     text-align: right;
     font-size: 12px;
-}
-.block-li {
+  }
+
+  .block-li {
     display: block;
     /*text-align: center;*/
     margin-top: 20px;
   }
 
-  .block-li li{
+  .block-li li {
     width: 22%;
     height: 95px;
     text-align: center;
@@ -140,7 +141,7 @@ a:active {
     margin-left: 3%;
   }
 
- .block-li li:nth-child(5) {
+  .block-li li:nth-child(5) {
     margin-left: 3%;
   }
 
@@ -158,108 +159,100 @@ a:active {
 
 
 <div style="height:100%;overflow-y: auto;background: #fff;">
-<% if flash[:notice] %>
-    <div class="notice"><%=flash[:notice]%></div>
-<% end %>
+  <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
 
-<div class="home">
+  <div class="home">
     <%= render 'shared/slide' %>
-</div>
+  </div>
 
-<div class="tongzhi">
+  <div class="tongzhi">
     <%= image_tag "喇叭.png", size: "15x15" %>
     <a href="<%= feedback_advice_content_path(5) %>">全国万民肿瘤患者救助计划咨询</a>
   </div>
 <div>
 
-
-  <div>
+<div>
   <ul class="block-li">
-
     <li>
-      <a href="<%= user_moving_health_data_path %>"><%= image_tag "易健康.png", size: "50x50" %></a>
-      <p style="margin-bottom:15%;" class="fontSizes">易健康</p>
+      <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
+      <p class="fontSizes">商城</p>
     </li>
     <li>
       <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
       <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
     </li>
     <li>
-        <a href="<%= wechat_plan_consumption_plan_path %>"><%= image_tag "消费计划.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">消费计划</p>
+      <a href="<%= wechat_plan_consumption_plan_path %>"><%= image_tag "消费计划.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">消费计划</p>
+    </li>
+    <li>
+      <a href="<%= user_moving_health_data_path %>"><%= image_tag "易健康.png", size: "50x50" %></a>
+      <p style="margin-bottom:15%;" class="fontSizes">易健康</p>
     </li>
     <% if current_user.user && current_user.user.status == "Staff" %>
-      <li>
-        <a href="<%= wechat_light_path %>"><%= image_tag "一盏明灯.png", size: "50x50" %></a>
-        <p class="fontSizes">一盏明灯</p>
-      </li>
+        <!-- <li>
+          <a href="<%= wechat_parallel_shops_partners_path %>"><%= image_tag "御合伙.png", size: "50x50" %></a>
+          <p class="fontSizes">御合伙</p>
+        </li>
+        <li>
+          <a href="<%= wechat_light_path %>"><%= image_tag "一盏明灯.png", size: "50x50" %></a>
+          <p class="fontSizes">一盏明灯</p>
+        </li> -->
+        <!-- <li>
+          <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
+          <p class="fontSizes">我的</p>
+        </li> -->
     <% end %>
-
     <!-- <li>
-        <a href="<%= wechat_parallel_shops_partners_path %>"><%= image_tag "御合伙.png", size: "50x50" %></a>
-        <p class="fontSizes">御合伙</p>
-      </li> -->
-
-
-      <!-- <li>
-        <% if !current_user.user.nil? && current_user.user.staff_type == "R&D" %>
-          <a href="<%= wechat_coalition_path  %>"><%= image_tag "联盟.png", size: "50x50" %></a>
-          <p class="fontSizes">商盟</p>
-        <% else %>
-          <a href=""><%= image_tag "联盟.png", size: "50x50" %></a>
-          <p class="fontSizes">商盟</p>
-        <% end %>
-      </li> -->
-      <li>
-          <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
-          <p class="fontSizes">商城</p>
-      </li>
-      <!-- <li>
-        <a href="<%= user_root_path %>"><%= image_tag "会员.png", size: "50x50" %></a>
-        <p class="fontSizes">我的</p>
-      </li> -->
-
+    <% if !current_user.user.nil? && current_user.user.staff_type == "R&D" %>
+      <a href="<%= wechat_coalition_path %>"><%= image_tag "联盟.png", size: "50x50" %></a>
+      <p class="fontSizes">商盟</p>
+    <% else %>
+      <a href=""><%= image_tag "联盟.png", size: "50x50" %></a>
+      <p class="fontSizes">商盟</p>
+    <% end %>
+    </li> -->
   </ul>
 </div>
 
 <div>
-
-    <% if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.status.nil? && current_user.user.status != "User" %>
-        <div class="healthDiv">
-            <h5>健康管理中心</h5>
-            <div class="healthKuai">
-                <a href="/user/doctor_home">
-                    <span class="yyj_text" style="line-height:45px;">健康管理师</span>
-                    <%= image_tag "御易健.png", size: "45x45" %>
-                </a>
-                <a href="/work/home">
-                    <span class="yyj_text">社区数字健康</br>管理服务平台</span>
-                    <%= image_tag "work.png", size: "45x45" %>
-                </a>
-            </div>
-        </div>
-    <% end %>
-<div class="shopList">
+  <% if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.status.nil? && current_user.user.status != "User" %>
+      <!--<div class="healthDiv">-->
+        <!--<h5>健康管理中心</h5>-->
+        <!--<div class="healthKuai">-->
+          <!--<a href="/user/doctor_home">-->
+            <!--<span class="yyj_text" style="line-height:45px;">健康管理师</span>-->
+            <!--<%= image_tag "御易健.png", size: "45x45" %>-->
+          <!--</a>-->
+          <!--<a href="/work/home">-->
+            <!--<span class="yyj_text">社区数字健康</br>管理服务平台</span>-->
+            <!--<%= image_tag "work.png", size: "45x45" %>-->
+          <!--</a>-->
+        <!--</div>-->
+      <!--</div>-->
+  <% end %>
+  <div class="shopList">
     <div class="shopTag">
-        <h5 style="padding-left: 15px;">热门平行店</h5>
-        <a href="">更多 》</a>
+      <h5 style="padding-left: 15px;">热门平行店</h5>
+      <%= link_to '更多》', wechat_parallel_shops_index_path %>
     </div>
     <ul>
-        <% ParallelShop.where(status: "dealed").each do |t| %>
-            <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
-                <li>
-                    <div class="slLeft">
-                        <!-- <%= image_tag t.image.url, class:'shopImage' %> -->
-                        <%= image_tag "raw_1512721018.jpg", class:'shopImage' %>
-                    </div>
-                    <div class="slRight">
-                        <p><%= t.title %></p>
-                        <span><%= t.address %></span>
-                    </div>
-                </li>
-            </a>
-        <% end %>
+      <% ParallelShop.where(status: "dealed").each do |t| %>
+          <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
+            <li>
+              <div class="slLeft">
+                <!-- <%= image_tag t.image.url, class: 'shopImage' %> -->
+                <%= image_tag "raw_1512721018.jpg", class: 'shopImage' %>
+              </div>
+              <div class="slRight">
+                <p><%= t.title %></p>
+                <span><%= t.address %></span>
+              </div>
+            </li>
+          </a>
+      <% end %>
     </ul>
   </div>
-</div>
 </div>
