@@ -179,7 +179,7 @@
 			<% @parallel_shop.sale_products.each do |t| %>
                 <% if t.amount > 0 %>
                     <div class="imgcon">
-                        <%= image_tag t.product.image.url %>
+                        <a href="<%= mall_product_path(id: t.product_id, parallel_product_show: true) %>"><%= image_tag t.product.image.url %></a>
                         <input type="text" class="product_id" value="<%= t.product_id %>" disabled style="display: none;">
                         <div class="name"><%= t.product.name %></div>
                         <div class="led_away_category"><%= t.product.category %></div>

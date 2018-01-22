@@ -1,5 +1,5 @@
 <style media="screen">
-  .guige-span{
+  .guige-span {
     display: inline-block;
     padding: 0 15px;
     text-align: center;
@@ -12,94 +12,97 @@
     color: #fff;
   }
 
-  .a{
+  .a {
     color: #ad0e11;
   }
 </style>
 
-  <div class="pro-show">
-    <div class="swiper-container swp_pro swiper-container-horizontal">
-      <ul class="swiper-wrapper">
-        <li class='swiper-slide swiper-slide-active'>
-          <!-- <%= image_tag @product.image_url(:product_icon) if @product.image_url.present? %> -->
-          <div class="product-image">
-            <%= render 'shared/slide' %>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="pro-info">
-      <p class="name"><%= @product.name %></p>
-      <p class="price">¥<%= money @product.now_product_price %></p>
-    </div>
+<div class="pro-show">
+  <div class="swiper-container swp_pro swiper-container-horizontal">
+    <ul class="swiper-wrapper">
+      <li class='swiper-slide swiper-slide-active'>
+        <!-- <%= image_tag @product.image_url(:product_icon) if @product.image_url.present? %> -->
+        <div class="product-image">
+          <%= render 'shared/slide' %>
+        </div>
+      </li>
+    </ul>
   </div>
+  <div class="pro-info">
+    <p class="name"><%= @product.name %></p>
+    <p class="price">¥<%= money @product.now_product_price %></p>
+  </div>
+</div>
 
-  <% if flash[:notice] %>
+<% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
+<% end %>
 
-  <ul class="list-type" style="margin-bottom: 52px; border-bottom: 0;">
-    <li class="arrow-right">
-      <div class="fr amount">
-        <span class="decrease disable" id="decrease_btn">-</span>
-        <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="" style="width: 60px;">
-        <span class="increase" id="increase_btn">+</span>
-      </div>
-      <span class="choosed">购买数量(<%= @product.shop_count > 0 ? '有货' : '无货' %>)</span>
-    </li>
-
- <% if !@product.name.match(/YBZ/) %>
-    <li class="arrow-right guige">规格：
-      <% standard = Product.where(name: @product.name) %>
-      <% standard.each do |standard| %>
-        <a href="<%= mall_product_path(standard) %>" class="a">
-          <span class="choosed guige-span"><%= standard.spec %></span>
-        </a>
-      <% end %>
-    </li>
-  <% else %>
-  <li class="arrow-right guige">套餐：
-      <span class="choosed guige-span">A</span>
-      <span class="choosed guige-span">B</span>
-      <span class="choosed guige-span">C</span>
-      <span class="choosed guige-span">D</span>
-  </li>
-  <% end %>
-
-    <li class="arrow-right">
-      <span class="choosed" >包装：<%= @product.packaging %></span>
-    </li>
-    <li class="arrow-right">
-      <span class="choosed">生产厂家：<%= @product.production %></span>
-    </li>
-
-    <li class="arrow-right">
-      <span class="choosed">说明：<%= raw @product.desc %></span>
-    </li>
-  </ul>
-
-  <div class="fixed-ft">
-    <div class='operation flex'>
-      <a class="flex-item home" href="/mall">
-        <i class="icon-pre"></i>
-        首页
-      </a>
-      <a class="flex-item home" href="<%= mall_cart_path() %>">
-        <i class="icon-car"></i>
-        <i class="num <%= current_cart_count > 0 ? '' : 'hide' %>" id="carNum">
-          <%= current_cart_count %>
-        </i>
-        购物车
-      </a>
-      <a class="flex-item footer_link" href="<%= feedback_root_path %>">
-        <i class="icon-wechat"></i>
-        客服
-      </a>
-      <% if !@product.spec.nil? && @product.spec != "" %>
-        <a class="flex-item btn add-car" data-product_id="<%= @product.id %>" id="add_cart" >加入购物车</a>
-        <a class="flex-item btn buy" data-product_id="<%= @product.id %>" id='fast-buy-btn' >立即购买</a>
-      <% else %>
-        <a class="flex-item btn gui" style="display:block;">请选择规格</a>
-      <% end %>
+<ul class="list-type" style="margin-bottom: 52px; border-bottom: 0;">
+  <li class="arrow-right">
+    <div class="fr amount">
+      <span class="decrease disable" id="decrease_btn">-</span>
+      <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="" style="width: 60px;">
+      <span class="increase" id="increase_btn">+</span>
     </div>
-  </div>
+    <% unless params[:parallel_product_show] %>
+        <span class="choosed">购买数量(<%= @product.shop_count > 0 ? '有货' : '无货' %>)</span>
+    <% end %>
+  </li>
+
+  <% if !@product.name.match(/YBZ/) %>
+      <li class="arrow-right guige">规格：
+        <% standard = Product.where(name: @product.name) %>
+        <% standard.each do |standard| %>
+            <a href="<%= mall_product_path(standard) %>" class="a">
+              <span class="choosed guige-span"><%= standard.spec %></span>
+            </a>
+        <% end %>
+      </li>
+  <% else %>
+      <li class="arrow-right guige">套餐：
+        <span class="choosed guige-span">A</span>
+        <span class="choosed guige-span">B</span>
+        <span class="choosed guige-span">C</span>
+        <span class="choosed guige-span">D</span>
+      </li>
+  <% end %>
+
+  <li class="arrow-right">
+    <span class="choosed">包装：<%= @product.packaging %></span>
+  </li>
+  <li class="arrow-right">
+    <span class="choosed">生产厂家：<%= @product.production %></span>
+  </li>
+
+  <li class="arrow-right">
+    <span class="choosed">说明：<%= raw @product.desc %></span>
+  </li>
+</ul>
+<% unless params[:parallel_product_show] %>
+    <div class="fixed-ft">
+      <div class='operation flex'>
+        <a class="flex-item home" href="/mall">
+          <i class="icon-pre"></i>
+          首页
+        </a>
+        <a class="flex-item home" href="<%= mall_cart_path() %>">
+          <i class="icon-car"></i>
+          <i class="num <%= current_cart_count > 0 ? '' : 'hide' %>" id="carNum">
+            <%= current_cart_count %>
+          </i>
+          购物车
+        </a>
+        <a class="flex-item footer_link" href="<%= feedback_root_path %>">
+          <i class="icon-wechat"></i>
+          客服
+        </a>
+        <% if !@product.spec.nil? && @product.spec != "" %>
+            <a class="flex-item btn add-car" data-product_id="<%= @product.id %>" id="add_cart">加入购物车</a>
+            <a class="flex-item btn buy" data-product_id="<%= @product.id %>" id='fast-buy-btn'>立即购买</a>
+        <% else %>
+            <a class="flex-item btn gui" style="display:block;">请选择规格</a>
+        <% end %>
+      </div>
+    </div>
+<% end %>
