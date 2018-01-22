@@ -18,9 +18,6 @@ weixin:
           name: "御易健首页"
           url: "http://ybhm.ybyt.cc/wechat"
         - type: "view"
-          name: "健康娱乐"
-          url: "http://qolm.ybyt.cc/_game/llk/"
-        - type: "view"
           name: "客服服务"
           url: "http://ybhm.ybyt.cc/feedback"
     - name: "御易健商城"
@@ -41,8 +38,11 @@ weixin:
           name: "动态健康数据"
           url: "http://ybhm.ybyt.cc/user/moving_health_data"
         - type: "view"
-          name: "疾病风险评估"
-          url: "http://ybhm.ybyt.cc/evaluate/index"
+          name: "健康娱乐"
+          url: "http://qolm.ybyt.cc/_game/llk/"
+#        - type: "view"
+#          name: "疾病风险评估"
+#          url: "http://ybhm.ybyt.cc/evaluate/index"
 
 
 external:
