@@ -16,7 +16,7 @@
     color: #ad0e11;
   }
 </style>
-
+<%= title '产品详情' %>
 <div class="pro-show">
   <div class="swiper-container swp_pro swiper-container-horizontal">
     <ul class="swiper-wrapper">
@@ -39,17 +39,16 @@
 <% end %>
 
 <ul class="list-type" style="margin-bottom: 52px; border-bottom: 0;">
-  <li class="arrow-right">
-    <div class="fr amount">
-      <span class="decrease disable" id="decrease_btn">-</span>
-      <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="" style="width: 60px;">
-      <span class="increase" id="increase_btn">+</span>
-    </div>
-    <% unless params[:parallel_product_show] %>
+  <% unless params[:parallel_product_show] %>
+      <li class="arrow-right">
+        <div class="fr amount">
+          <span class="decrease disable" id="decrease_btn">-</span>
+          <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="" style="width: 60px;">
+          <span class="increase" id="increase_btn">+</span>
+        </div>
         <span class="choosed">购买数量(<%= @product.shop_count > 0 ? '有货' : '无货' %>)</span>
-    <% end %>
-  </li>
-
+      </li>
+  <% end %>
   <% if !@product.name.match(/YBZ/) %>
       <li class="arrow-right guige">规格：
         <% standard = Product.where(name: @product.name) %>
