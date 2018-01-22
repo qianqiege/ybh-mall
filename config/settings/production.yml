@@ -35,7 +35,7 @@ weixin:
 #          name: "一盏明灯"
 #          url: "http://ybhm.ybyt.cc/wechat/light"
         - type: "view"
-          name: "动态健康数据"
+          name: "动态监测"
           url: "http://ybhm.ybyt.cc/user/moving_health_data"
         - type: "view"
           name: "健康娱乐"
