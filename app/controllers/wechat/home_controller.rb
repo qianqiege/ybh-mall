@@ -2,8 +2,9 @@ class Wechat::HomeController < Wechat::BaseController
 skip_before_filter :verify_authenticity_token
   def index
     @slides = Slide.top(1)
-    @setmeal = Setmeal.all
-    @type = VipType.includes(:member_clubs)
+    # @setmeal = Setmeal.all
+    # @type = VipType.includes(:member_clubs)
+    @hot_parallel_shops = ParallelShop.where("is_hot = ? && status = ?", true, "dealed" )
   end
 
   def merchants

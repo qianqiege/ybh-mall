@@ -1,6 +1,6 @@
 ActiveAdmin.register ParallelShop do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
-    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id, :settlement_ratio
+    permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id, :settlement_ratio, :is_hot
     form(:html => { :multipart => true }) do |f|
       f.inputs "平行店" do
         f.input :plan
@@ -14,6 +14,7 @@ ActiveAdmin.register ParallelShop do
             f.input :admin_user
             f.input :settlement_ratio
         end
+        f.input :is_hot
       end
       f.actions
     end
@@ -49,6 +50,7 @@ ActiveAdmin.register ParallelShop do
         column "添加营业员" do |shop|
             link_to "添加营业员", edit_waiter_admin_parallel_shop_path(shop), method: :get
         end
+        column :is_hot
         actions
     end
 

@@ -237,7 +237,7 @@
       <%= link_to '更多》', wechat_parallel_shops_index_path %>
     </div>
     <ul>
-      <% ParallelShop.where(status: "dealed").each do |t| %>
+      <% @hot_parallel_shops.each do |t| %>
           <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
             <li>
               <div class="slLeft">
