@@ -13,6 +13,7 @@ class Product < ApplicationRecord
   has_many :sale_products
   has_many :stocks
   belongs_to :activity
+  belongs_to :contents_category
   before_destroy :ensure_not_referenced_by_any_line_item
 
   validates :name, :now_product_price, :image, :desc, presence: true
