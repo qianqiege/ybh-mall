@@ -52,6 +52,54 @@
     height: 92%;
   }
 
+    .pro_tab {
+        width: 95%;
+        margin:0 auto;
+        margin-top: 20px;
+    }
+
+    .pro_tab .fst_tab {
+        display: flex;
+    }
+
+    .pro_tab .fst_tab li {
+        flex:1;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bolder;
+        color: #ad0e11;
+        background: #eee;
+        padding:3px 0;
+    }
+
+    .active {
+        color: #fff!important;
+        background: #ad0e11!important;        
+    }
+
+    .borbot {
+        color:#ad0e11!important; 
+        border-bottom: 2px solid #ad0e11!important;
+    }
+
+    .hid_tab {
+        display: none;
+    }
+
+    .hid_tab ul{
+        display: flex;
+    }
+
+    .hid_tab ul li {
+        flex:1;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bolder;
+        color: #666;
+        padding:5px 0;
+        margin-top: 5px;
+        border-bottom: 2px solid transparent;
+    }
 
 </style>
 
@@ -60,45 +108,84 @@
 <div class="home">
   <%= render 'shared/slide' %>
   <!-- end mall_menu -->
+    <div class="pro_tab"><!-- 这里是切换位置 -->
+        <ul class="fst_tab">
+            <li class="active">健康产品</li>
+            <li>文艺保值品</li>
+            <li>不动产</li>
+        </ul>
+        <div class="hid_tab" style="display: block;">
+            <ul>
+                <li>健康管理</li>
+                <li>农副产品</li>
+            </ul>
+        </div>
+        <div class="hid_tab">
+            <ul>
+                <li>红木家具</li>
+                <li>珠宝玉器</li>
+                <li>名家字画</li>
+                <li>古董藏品</li>
+            </ul>
+        </div>        
+        <div class="hid_tab">
+            <ul>
+                <li>暂无分类</li>
+            </ul>
+        </div>             
+    </div>
+    <div class="pro-area graybg"> <!-- 以下是商品展示位置 -->
+        <div class="pro-list">
+            <ul class="clearfix">
+                <% @products.each do |product| %>
+                    <li>
+                        <a href="<%= mall_product_path(product) %>">
+                            <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
+                            <h5 class='text-center'><%= product.name %></h5>
+                            <div class="sub-title text-center"><%= raw product.desc %></div>
+                            <p class="item-price text-center">
+                              <em>¥<%= money product.now_product_price %></em>
+                              <!-- <% if product.original_product_price.present? %>
+                                <del><%= money product.original_product_price %></del>
+                              <% end %> -->
+                            </p>
+                        </a>
+                    </li>
+                <% end %>
+            </ul>
 
-  <div class="pro-area graybg">
-    <div class="pro-tit">
-      <h2>全部商品</h2>
+        </div>
     </div>
-    <div class="pro-list">
-      <ul class="clearfix">
-        <% @products.each do |product| %>
-            <li>
-              <a href="<%= mall_product_path(product) %>">
-                <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
-                <h5 class='text-center'><%= product.name %></h5>
-                <div class="sub-title text-center"><%= raw product.desc %></div>
-                <p class="item-price text-center">
-                  <em>¥<%= money product.now_product_price %></em>
-                  <!-- <% if product.original_product_price.present? %>
-                    <del><%= money product.original_product_price %></del>
-                  <% end %> -->
-                </p>
-              </a>
-            </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
 
 
 </div>
 
 
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 
     $(function(){
-        $('#alert').show();
+        
+        $('.fst_tab li').each(function(index,el){
+            $(this).click(function(){
+                console.log(index);
+                $(this).addClass('active').siblings().removeClass('active');
+                $(".hid_tab").each(function(index_sm, el_sm) {
+                    if(index === index_sm){
+                        $(this).show();
+                    }else{
+                        $(this).hide();
+                    }
+                });                
+            })
+        })
+
+        $(".hid_tab li").each(function(index,el){
+            $(this).click(function(){
+                $(this).addClass('borbot').siblings().removeClass('borbot');
+            })
+        })
+
     })
 
-    $('#alert p').click(function(){
-        $('#alert').hide();
-    })
-
-</script> -->
+</script>
