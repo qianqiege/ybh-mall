@@ -3,6 +3,8 @@ class Plan < ApplicationRecord
     has_many :parallel_shops
     before_save :change_number
     has_many :money_details
+		has_many :partners, class_name: "Plan", foreign_key: "invite_plan_id"
+		belongs_to :invite_plan, class_name: "Plan"
 
     def change_number
         self.code = Plan.generate_number

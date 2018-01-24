@@ -1,11 +1,12 @@
 ActiveAdmin.register Plan do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
-    permit_params :user_id, :is_capital, :capital_id, :active, :is_maker, :plan_type, :money
+    permit_params :user_id, :is_capital, :capital_id, :active, :is_maker, :plan_type, :money, :invite_plan_id
     form(:html => { :multipart => true }) do |f|
       f.inputs "计划" do
         f.input :user
         f.input :is_capital
         f.input :capital_id
+        f.input :invite_plan_id
         f.input :active
         f.input :is_maker
         f.input :money
@@ -27,6 +28,7 @@ ActiveAdmin.register Plan do
         column :code
         column :is_capital
         column :capital_id
+        column :invite_plan_id
         column :active
         column :is_maker
         column :money
