@@ -25,11 +25,15 @@ Rails.application.routes.draw do
     root "home#index"
     get '/create_makers', to: 'makers#create'
     get '/create_community', to: 'community#create'
-    post 'plan/create_plan'
-    get 'plan/show_files'
-    get 'plan/show_community_files'
-    get 'plan/show_maker_files'
-    get 'plan/consumption_plan'
+    post 'plans/create_plan'
+    resources :plans, only: [:show, :index] do
+      collection do
+        get 'index_files'
+        get 'index_community_files'
+        get 'index_maker_files'
+        get 'show_invitation_code'
+      end
+    end
     get 'parallel_shops/index'
     get 'parallel_shops/shopdata'
     get 'parallel_shops/waiter_input_money'

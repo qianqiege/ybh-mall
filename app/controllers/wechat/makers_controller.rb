@@ -10,11 +10,11 @@ class Wechat::MakersController < Wechat::BaseController
 
   def protocol
       # 标识当前用户 是否有此类型的计划
-      @wheter_has_plan = nil
-      if params[:plan_id]
-          @plan = Plan.find(params[:plan_id])
-          @wheter_has_plan = current_user.user.plans.find_by(plan_type: '177')
-      end
+      # @wheter_has_plan = nil
+      # if params[:plan_id]
+      #     @plan = Plan.find(params[:plan_id])
+      #     @wheter_has_plan = current_user.user.plans.find_by(plan_type: '177')
+      # end
   end
 
   #创客付款
