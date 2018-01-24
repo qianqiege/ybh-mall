@@ -1,0 +1,238 @@
+
+<style>
+
+body,html {
+	margin: 0px;
+	background: #fff;
+	/*overflow-y: auto;*/
+}
+
+a {
+	text-decoration: none;
+}
+
+div {
+	padding: 0;
+	margin: 0;
+}
+.shopList ul {
+    border-top: 1px solid #ccc;
+    margin-top: 2%;
+}
+
+.shopList ul li {
+    display: flex;
+    border-bottom:1px solid #ccc;
+}
+
+.shopList ul li .slLeft,.shopList ul li .slRight {
+    display: inline-block;
+}
+
+.shopList ul li .slLeft {
+    width: 30%;
+    padding:2%;
+}
+
+.shopList ul li .slRight {
+    flex:1;
+}
+
+.shopList ul li .slLeft img {
+    width: 100%;
+    border-radius: 13px;
+}
+
+.slRight {
+	margin-top: 11px;
+	padding-left: .5rem;
+	padding-right: 8px;
+}
+
+.slRight-title {
+	overflow: hidden;
+	margin-bottom: 8px;
+}
+.goPlan {
+	background: #ad0e11;
+	color: #fff;
+	display: inline-block;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+.shopList ul li .slRight span {
+    font-size: 0.8rem;
+    color: #444;
+}
+.shopList ul li .slRight b {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #fff !important;
+	padding: 3px 8px;
+	position: relative;
+	top: 0;
+	margin: 10px;
+}
+
+.slRight-title .leader {
+	background: #ad0e11;
+}
+.slRight-title .success {
+	background: #68a870;
+}
+.slRight-title .partner {
+	background: #5aa0d6;
+}
+.slRight-title .fail {
+	background: red;
+}
+.plan-image {
+	margin-bottom: 15px;
+}
+
+.plan-image img {
+	width: 100%;
+
+}
+.plan-button{
+	position: fixed;
+	bottom: 58px;
+	width: 100%;
+}
+.plan-button a{
+	display: block;
+	text-align: center;
+	background: #ad0e11;
+	padding: 8px 0;
+	color: #fff;
+	font-size: 14px;
+}
+
+/*入口按钮样式*/
+.block-plan-btn ul {
+	padding: 0;
+	/*padding-left: 5%;*/
+	display: block;
+	overflow: hidden;
+}
+.block-plan-btn ul li {
+	background-color: #ad0e11;
+	float: left;
+	width: 45%;
+	font-size: .9rem;
+	text-align: center;
+	border-radius: 6px;
+}
+.block-plan-btn ul li:nth-child(odd) {
+	margin: 10px 0;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+}
+.block-plan-btn ul li:nth-child(even) {
+	margin: 10px 0;
+	margin-left: 2.5%;
+}
+.block-plan-btn ul li a {
+	display: block;
+	padding: 8px 3%;
+	color: #fff;
+	/*min-height: 59px;*/
+}
+.block-plan-btn ul li a span:last-child {
+	display: block;
+	margin-top: 3px;
+	position: relative;
+	/*top: 3px;*/
+}
+.shopTag {
+    display: flex;
+    padding:1% 5% 1% 2%;
+    /*margin:1% 0;*/
+    background: #fff;
+    /*border-bottom: 1px solid #eee;*/
+}
+
+h5 {
+    color: #ad0e11;
+    font-size: 14px;
+    margin: 0;
+  }
+.block-plan-btn ul li.active-li {
+    background-color: #ccc;
+}
+</style>
+<%= title '消费计划' %>
+
+<div style="width: 100%; height: 100%; overflow-y: auto;background: #fff;">
+	<div class="plan-image">
+		<a href="">
+			<%= image_tag "makers.jpg" %>
+		</a>
+	</div>
+	<div class="block-plan-btn">
+		<ul>
+			<% @plan_rules.each do |t| %>
+                <% if Plan.find_by(user_id:current_user.user.id, is_capital:true, plan_type:t.plan_type) %>
+                    <li class="active-li">
+                        <a>
+                            <span><%= t.name %></span>
+                            <span><%= t.plan_type %></span>
+                        </a>
+                    </li>
+                <% else %>
+                    <li>
+                        <% if t.plan_type == "199" %>
+                            <a href="<%= wechat_community_commitment_path %>">
+                        <% elsif t.plan_type == "177"  %>
+                            <a href="<%= wechat_makers_protocol_path %>">
+                        <% else %>
+                        	<a>
+                        <% end %>
+                            <span><%= t.name %></span>
+                            <span><%= t.plan_type %></span>
+                        </a>
+                    </li>
+                <% end %>
+            <% end %>
+		</ul>
+	</div>
+	<div class="shopList">
+			<div class="shopTag">
+	            <h5 style="padding-left: 15px;">发起的计划</h5>
+	        </div>
+			<ul style="padding-left: 0px; margin-bottom: 45px;">
+					<% @plans.each do |t| %>
+                        <% if t.plan_type == "199" %>
+                            <a href="<%= wechat_community_plandetail_path(t) %>" style="display: block;">
+                        <% elsif t.plan_type == "177" %>
+                            <a href="<%= wechat_makers_plan_details_path(t)  %>" style="display: block;">
+                        <% end %>
+                            <li>
+                                <div class="slLeft">
+                                    <%= image_tag "east-ep-a51-9990611.jpg", class:'shopImage' %>
+                                </div>
+                                <div class="slRight">
+                                    <div class="slRight-title">
+                                        <% if t.plan_type == '177' %>
+                                            <span>177 计划</span>
+                                        <% elsif t.plan_type == '199' %>
+                                            <span>199 计划</span>
+                                        <% end %>
+                                        <b class="leader">队长</b>
+                                        <% if t.active %>
+                                            <b class="success">已激活</b>
+                                        <% else %>
+                                            <b class="success">待激活</b>
+                                        <% end %>
+                                    </div>
+                                    <div>
+                                        <span>发起时间: <%= t.created_at.to_s[0..9] %></span>
+                                    </div>
+                                </div>
+                            </li>
+                        </a>
+                    <% end %>
+			</ul>
+	</div>
+
+</div>
