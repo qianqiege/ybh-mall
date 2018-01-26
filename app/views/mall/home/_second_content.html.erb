@@ -1,16 +1,25 @@
 <div class="hid_tab">
   <ul>
     <% @second_category.each do |second_category| %>
-        <li class="second_level" data-id="<%= second_category.id %>"><%= second_category.name %></li>
+        <% if second_category.id == 6 %>
+            <li class="second_level"">
+              <a href="http://a3.rabbitpre.com/m/vEnrqUvUW?lc=2&sui=IoRROBn8&from=singlemessage&isappinstalled=0#from=share"><%= second_category.name %></a>
+            </li>
+        <% elsif second_category.id == 8 %>
+            <li class="second_level"">
+            <a href="http://a3.rabbitpre.com/m/uUf62bUv8?lc=2&sui=IoRROBn8&from=singlemessage&isappinstalled=0#from=share"><%= second_category.name %></a>
+            </li>
+        <% else %>
+            <li class="second_level" data-id="<%= second_category.id %>"><%= second_category.name %></li>
+        <% end %>
     <% end %>
   </ul>
 </div>
 
 <script type="text/javascript">
     $(function () {
-
         $(".second_level").on('click', function () {
-            $.get("/mall/products/classified?id="+$(this).data("id"), function (data) {
+            $.get("/mall/products/classified?id=" + $(this).data("id"), function (data) {
                 $('#product_index').html(data)
             })
         });
@@ -20,6 +29,5 @@
                 $(this).addClass('borbot').siblings().removeClass('borbot');
             })
         })
-
     })
 </script>
