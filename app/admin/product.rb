@@ -19,7 +19,8 @@ ActiveAdmin.register Product do
                 :height,
                 :activity_id,
                 :is_test,
-                :led_away_category
+                :led_away_category,
+                :contents_category_id
 
   index do
     selectable_column
@@ -47,6 +48,7 @@ ActiveAdmin.register Product do
     # column :product_sort
     column :activity_id
     column :is_test
+    column :contents_category
     actions
   end
 
@@ -73,6 +75,7 @@ ActiveAdmin.register Product do
       f.input :led_away_category, as: :select, collection: {'A' => '1', 'B' => '2', 'C' => '3'}
       f.input :activity
       f.input :is_test
+      f.input :contents_category
     end
     f.actions
   end
@@ -96,6 +99,7 @@ ActiveAdmin.register Product do
       row :is_test
       row :sort
       row :led_away_category
+      row :contents_category
     end
   end
 

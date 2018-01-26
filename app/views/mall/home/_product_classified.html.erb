@@ -1,0 +1,21 @@
+<div class="pro-area graybg"> <!-- 以下是商品展示位置 -->
+  <div class="pro-list">
+    <ul class="clearfix">
+      <% @products.each do |product| %>
+          <li>
+            <a href="<%= mall_product_path(product) %>">
+              <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
+              <h5 class='text-center'><%= product.name %></h5>
+              <div class="sub-title text-center"><%= raw product.desc %></div>
+              <p class="item-price text-center">
+                <em>¥<%= money product.now_product_price %></em>
+                <!-- <% if product.original_product_price.present? %>
+                                <del><%= money product.original_product_price %></del>
+                              <% end %> -->
+              </p>
+            </a>
+          </li>
+      <% end %>
+    </ul>
+
+  </div>

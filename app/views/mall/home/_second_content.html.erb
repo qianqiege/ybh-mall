@@ -1,0 +1,25 @@
+<div class="hid_tab">
+  <ul>
+    <% @second_category.each do |second_category| %>
+        <li class="second_level" data-id="<%= second_category.id %>"><%= second_category.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".second_level").on('click', function () {
+            $.get("/mall/products/classified?id="+$(this).data("id"), function (data) {
+                $('#product_index').html(data)
+            })
+        });
+
+        $(".hid_tab li").each(function (index, el) {
+            $(this).click(function () {
+                $(this).addClass('borbot').siblings().removeClass('borbot');
+            })
+        })
+
+    })
+</script>

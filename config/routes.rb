@@ -109,7 +109,10 @@ Rails.application.routes.draw do
 
   namespace :mall do
     root "home#index"
-    resources :products, only: [:show]
+    resources :products, only: [:show] do
+      get 'classified', on: :collection
+      get 'second_content', on: :collection
+    end
     get 'authenticate_phone', to: 'authenticate#phone'
     post 'bind_phone', to: 'authenticate#bind_phone'
     get 'activity', to: 'activity#home'

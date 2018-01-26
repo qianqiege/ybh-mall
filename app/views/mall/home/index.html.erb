@@ -9,13 +9,14 @@
     clear: both;
     height: 0;
   }
+
   .clearfix {
     zoom: 1;
   }
 
   .pro-area .pro-list {
     padding: 0;
-    margin:0;
+    margin: 0;
   }
 
   .pro-area .pro-list ul {
@@ -33,159 +34,105 @@
     top: 25%;
     left: 50%;
     margin-left: -150px;
-    width:300px;
+    width: 300px;
     height: 300px;
     border: 1px solid #000;
 
   }
 
-  .alert p{
+  .alert p {
     position: absolute;
     right: 3%;
     font-weight: bolder;
   }
 
   .alert a {
-    display:inline-block;
+    display: inline-block;
     padding-top: 25px;
     width: 100%;
     height: 92%;
   }
 
-    .pro_tab {
-        width: 95%;
-        margin:0 auto;
-        margin-top: 20px;
-    }
+  .pro_tab {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
 
-    .pro_tab .fst_tab {
-        display: flex;
-    }
+  .pro_tab .fst_tab {
+    display: flex;
+  }
 
-    .pro_tab .fst_tab li {
-        flex:1;
-        text-align: center;
-        font-size: 16px;
-        font-weight: bolder;
-        color: #ad0e11;
-        background: #eee;
-        padding:3px 0;
-    }
+  .pro_tab .fst_tab li {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #ad0e11;
+    background: #eee;
+    padding: 3px 0;
+  }
 
-    .active {
-        color: #fff!important;
-        background: #ad0e11!important;        
-    }
+  .active {
+    color: #fff !important;
+    background: #ad0e11 !important;
+  }
 
-    .borbot {
-        color:#ad0e11!important; 
-        border-bottom: 2px solid #ad0e11!important;
-    }
+  .borbot {
+    color: #ad0e11 !important;
+    border-bottom: 2px solid #ad0e11 !important;
+  }
 
-    .hid_tab {
-        display: none;
-    }
+  .hid_tab ul {
+    display: flex;
+  }
 
-    .hid_tab ul{
-        display: flex;
-    }
-
-    .hid_tab ul li {
-        flex:1;
-        text-align: center;
-        font-size: 14px;
-        font-weight: bolder;
-        color: #666;
-        padding:5px 0;
-        margin-top: 5px;
-        border-bottom: 2px solid transparent;
-    }
+  .hid_tab ul li {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #666;
+    padding: 5px 0;
+    margin-top: 5px;
+    border-bottom: 2px solid transparent;
+  }
 
 </style>
-
-
 
 <div class="home">
   <%= render 'shared/slide' %>
   <!-- end mall_menu -->
-    <div class="pro_tab"><!-- 这里是切换位置 -->
-        <ul class="fst_tab">
-            <li class="active">健康产品</li>
-            <li>文艺保值品</li>
-            <li>不动产</li>
-        </ul>
-        <div class="hid_tab" style="display: block;">
-            <ul>
-                <li>健康管理</li>
-                <li>农副产品</li>
-            </ul>
-        </div>
-        <div class="hid_tab">
-            <ul>
-                <li>红木家具</li>
-                <li>珠宝玉器</li>
-                <li>名家字画</li>
-                <li>古董藏品</li>
-            </ul>
-        </div>        
-        <div class="hid_tab">
-            <ul>
-                <li>暂无分类</li>
-            </ul>
-        </div>             
+  <div class="pro_tab"><!-- 这里是切换位置 -->
+    <ul class="fst_tab">
+      <% @first_categorys.each do |categroy| %>
+          <li class="first" data-id="<%= categroy.id %>"><%= categroy.name %></li>
+      <% end %>
+    </ul>
+    <div id="second_category">
+
     </div>
-    <div class="pro-area graybg"> <!-- 以下是商品展示位置 -->
-        <div class="pro-list">
-            <ul class="clearfix">
-                <% @products.each do |product| %>
-                    <li>
-                        <a href="<%= mall_product_path(product) %>">
-                            <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
-                            <h5 class='text-center'><%= product.name %></h5>
-                            <div class="sub-title text-center"><%= raw product.desc %></div>
-                            <p class="item-price text-center">
-                              <em>¥<%= money product.now_product_price %></em>
-                              <!-- <% if product.original_product_price.present? %>
-                                <del><%= money product.original_product_price %></del>
-                              <% end %> -->
-                            </p>
-                        </a>
-                    </li>
-                <% end %>
-            </ul>
-
-        </div>
-    </div>
-
-
+  </div>
+  <div id="product_index">
+    <%= render 'product_classified' %>
+  </div>
 </div>
-
-
-
 <script type="text/javascript">
+    $(function () {
+        $(".first").on('click', function () {
+            $.get("/mall/products/second_content?id="+$(this).data("id"), function (data) {
+                console.log(data);
+                $('#second_category').html(data)
+            })
+        });
 
-    $(function(){
-        
-        $('.fst_tab li').each(function(index,el){
-            $(this).click(function(){
+        $('.fst_tab li').each(function (index, el) {
+            $(this).click(function () {
                 console.log(index);
                 $(this).addClass('active').siblings().removeClass('active');
-                $(".hid_tab").each(function(index_sm, el_sm) {
-                    if(index === index_sm){
-                        $(this).show();
-                    }else{
-                        $(this).hide();
-                    }
-                });                
-            })
-        })
 
-        $(".hid_tab li").each(function(index,el){
-            $(this).click(function(){
-                $(this).addClass('borbot').siblings().removeClass('borbot');
             })
         })
 
     })
-
 </script>
