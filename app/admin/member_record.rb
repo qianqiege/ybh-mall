@@ -1,5 +1,5 @@
 ActiveAdmin.register MemberRecord do
-  menu parent: I18n.t("active_admin.menu.record_manage")
+  menu parent: I18n.t("active_admin.menu.user_manage")
   permit_params :member_number, :initiation_time,:user_id,:affiliation,:membership_card_id
   
   form(:html => { :multipart => true }) do |f|

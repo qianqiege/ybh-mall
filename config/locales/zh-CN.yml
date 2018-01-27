@@ -17,7 +17,7 @@ zh-CN:
       company_manage: '机构（公司）'
       wallet_manage: '钱包/账户'
       yb_work_manage: '御邦服务中心'
-      official_website: '官网管理'
+      official_website: '网站管理'
       parallel_shop_manage: "平行店管理"
   activerecord:
     attributes:
@@ -425,6 +425,7 @@ zh-CN:
         ratio: "消费购买产品比"
         plan_type: "计划类型"
         earning_ratio: "分利比例"
+        link: "链接地址"
       plan:
         user: "用户"
         code: "计划编号"
@@ -475,7 +476,7 @@ zh-CN:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
       idata_subscribe: '数动力付款记录'
-      user_idata_subscribe: '用户数动力订阅服务'
+      user_idata_subscribe: '数动力订阅服务'
       user_info_review: '用户信息审核'
       doctor_rebate: '医生用药服务费记录'
       product: "商品"
@@ -546,7 +547,10 @@ zh-CN:
       shop_order: "平行店订单"
       stock: "库存管理"
       parallel_shop: "平行店"
-      plan_rule: "计划规则"
-      plan: '计划'
+      plan_rule: "消费计划规则"
+      plan: '共享合伙人计划'
       sale_product: '产品上架'
       money_detail: "收益明细"
+      celebrate_ratsimp: "庆通分记录"
+      contents_category: "商品分类目录"
+

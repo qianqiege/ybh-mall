@@ -1,6 +1,6 @@
 ActiveAdmin.register Slide do
-menu parent: I18n.t("active_admin.menu.view_manage")
-permit_params :desc, :image, :is_show, :weight, :url, :tp
+  menu parent: I18n.t("active_admin.menu.official_website")
+  permit_params :desc, :image, :is_show, :weight, :url, :tp
 
   index do
     selectable_column
@@ -20,7 +20,7 @@ permit_params :desc, :image, :is_show, :weight, :url, :tp
     actions
   end
 
-  form(:html => { :multipart => true }) do |f|
+  form(:html => {:multipart => true}) do |f|
     f.inputs "Slide" do
       f.input :desc
       f.input :image, :as => :file

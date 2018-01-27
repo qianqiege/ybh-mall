@@ -1,4 +1,5 @@
 ActiveAdmin.register FileAsset do
+  menu parent: I18n.t("active_admin.menu.official_website")
   permit_params :name, :location
 
   index do
