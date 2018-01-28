@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230081521) do
+ActiveRecord::Schema.define(version: 20180128120208) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -184,6 +184,17 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.string   "desc"
   end
 
+  create_table "celebrate_ratsimps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "waiter"
+    t.integer  "parallel_shop_id"
+    t.integer  "shop_order_id"
+    t.float    "amount",           limit: 24
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "order_id"
+  end
+
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -237,6 +248,14 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.string   "image"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "contents_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "up_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "is_display"
   end
 
   create_table "day_deal_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -352,6 +371,17 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "user_id"
+  end
+
+  create_table "excels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "company"
+    t.string   "type"
+    t.string   "telphone"
+    t.string   "time"
+    t.string   "info"
+    t.string   "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "exchange_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -475,17 +505,18 @@ ActiveRecord::Schema.define(version: 20171230081521) do
 
   create_table "integrals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.decimal  "locking",          precision: 10, scale: 2
-    t.decimal  "available",        precision: 10, scale: 2
-    t.decimal  "exchange",         precision: 10, scale: 2
-    t.decimal  "cash",             precision: 10, scale: 2
-    t.decimal  "not_exchange",     precision: 10, scale: 2
-    t.decimal  "not_cash",         precision: 10, scale: 2
-    t.decimal  "appreciation",     precision: 10, scale: 2
-    t.decimal  "not_appreciation", precision: 10, scale: 2
-    t.decimal  "count",            precision: 10, scale: 2
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+    t.decimal  "locking",                      precision: 10, scale: 2
+    t.decimal  "available",                    precision: 10, scale: 2
+    t.decimal  "exchange",                     precision: 10, scale: 2
+    t.decimal  "cash",                         precision: 10, scale: 2
+    t.decimal  "not_exchange",                 precision: 10, scale: 2
+    t.decimal  "not_cash",                     precision: 10, scale: 2
+    t.decimal  "appreciation",                 precision: 10, scale: 2
+    t.decimal  "not_appreciation",             precision: 10, scale: 2
+    t.decimal  "count",                        precision: 10, scale: 2
+    t.float    "celebrate_ratsimp", limit: 24,                          default: 0.0
   end
 
   create_table "integrals_copy1", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -577,14 +608,6 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.datetime "updated_at",                                      null: false
     t.text     "remark",             limit: 65535
     t.decimal  "price",                            precision: 10
-  end
-
-  create_table "member_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "vip_type_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "member_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -692,6 +715,7 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.string   "packang"
     t.integer  "lottery_prize_id"
     t.boolean  "is_test",                                    default: false
+    t.decimal  "celebrate_ratsimp", precision: 10, scale: 2
     t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["wechat_user_id"], name: "index_orders_on_wechat_user_id", using: :btree
   end
@@ -722,9 +746,9 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.integer  "plan_id"
     t.integer  "admin_user_id"
     t.float    "settlement_ratio", limit: 24
-    t.float    "earning_ratio",    limit: 24
     t.float    "latitude",         limit: 24
     t.float    "longitude",        limit: 24
+    t.boolean  "is_hot"
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -737,9 +761,22 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "plan_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "invite_count"
+    t.float    "commitment_consumption_amount", limit: 24
+    t.float    "start_money",                   limit: 24
+    t.float    "amount_of_promised_income",     limit: 24
+    t.float    "ratio",                         limit: 24
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.string   "plan_type"
+    t.float    "earning_ratio",                 limit: 24, default: 0.05
+    t.string   "link"
+  end
+
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.string   "partner_ids"
     t.boolean  "is_capital"
     t.integer  "capital_id"
     t.boolean  "active"
@@ -754,6 +791,8 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.decimal  "price",                     precision: 10, scale: 2
     t.string   "code"
     t.integer  "invite_plan_id"
+    t.decimal  "promise_money",             precision: 10, scale: 2
+    t.string   "plan_type"
   end
 
   create_table "presented_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -816,6 +855,8 @@ ActiveRecord::Schema.define(version: 20171230081521) do
     t.string   "height"
     t.integer  "activity_id"
     t.boolean  "is_test",                                                       default: false
+    t.string   "led_away_category"
+    t.integer  "contents_category_id"
   end
 
   create_table "programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
