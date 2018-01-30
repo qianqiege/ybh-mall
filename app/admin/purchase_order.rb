@@ -37,7 +37,7 @@ ActiveAdmin.register PurchaseOrder do
         column :address
         column :phone
         column :state
-        column :total
+        # column :total
         column :created_at
         column :updated_at
         if current_admin_user.role_name == "db" || current_admin_user.role_name == "admin"
