@@ -8,9 +8,9 @@ ActiveAdmin.register SaleProduct do
             f.input :parallel_shop
         else
             f.input :product, as: :select, collection: current_admin_user.parallel_shop.stock.map{|f| [Product.find(f.product_id).name, f.product_id]}
-            f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id)
+            f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id), :input_html => { :disabled => true }
         end
-        f.input :amount
+        # f.input :amount
       end
       f.actions
     end
@@ -20,7 +20,7 @@ ActiveAdmin.register SaleProduct do
         id_column
         column :product
         column :parallel_shop
-        column :amount
+        # column :amount
         actions
     end
 end
