@@ -58,7 +58,7 @@ ActiveAdmin.register StockOut do
                 link_to '发货', deal_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.pending?
               end
           end
-          if current_admin_user.role_name == "parallel_shop" || current_admin_user.role_name == "admin"
+          if current_admin_user.role_name == "parallel_shop"
               span do
                 link_to '收货', sending_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.sending?
               end
