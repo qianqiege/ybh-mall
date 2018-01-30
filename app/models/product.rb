@@ -27,6 +27,10 @@ class Product < ApplicationRecord
     self.save validate: false
   end
 
+  def display_name
+    "#{self.name}-----#{self.product_sort}-----#{self.packaging}"
+  end
+
   def back_shop_count(quantity)
     self.shop_count += quantity
     self.lock_shop_count -= quantity
