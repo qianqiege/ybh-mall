@@ -48,7 +48,9 @@ notification:
   notification_receivers:
     - 448426851@qq.com
     - yubangyitong@ybyt.cc
-    - skjmy@outlook.com
+    - fangmingming@ybyt.cc
+    - liujingjing@ybyt.cc
+    - lijing@ybyt.cc
 
 qq_lbs:
   url: http://apis.map.qq.com/ws/
