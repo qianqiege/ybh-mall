@@ -53,7 +53,7 @@ ActiveAdmin.register StockOut do
         column :created_at
         column :updated_at
         column '出库操作' do |stock_out|
-          if current_admin_user.role_name == "db" || current_admin_user.role_name == "admin"
+          if current_admin_user.role_name == "db" || current_admin_user.role_name == "admin" || current_admin_user.role_name == "customer_service"
               span do
                 link_to '发货', deal_admin_stock_out_path(stock_out), method: :put, data: { confirm: 'Are you sure?' } if stock_out.pending?
               end
