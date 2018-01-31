@@ -52,6 +52,12 @@ class AdminAbility
       can :manage, PresentedRecord
       can :manage, Integral
       can :manage, ExchangeRecord
+      can :read, ShopOrder
+      can :manage, StockOut
+      can :manage, PurchaseOrder
+      can :manage, SaleProduct
+      can :read, Stock
+      can :manage, ParallelShop
     elsif user.role_name == 'tester'
       can :manage, Order
       can :manage, Product
@@ -65,15 +71,15 @@ class AdminAbility
       can :manage, HealthProgram
       can :manage, ExchangeRecord
     elsif user.role_name == 'parallel_shop'
-      can :read,            ShopOrder,      parallel_shop_id:   user.parallel_shop.id
-      can :manage,          StockOut,       parallel_shop_id:   user.parallel_shop.id
-      can :create,          StockOut
-      can :manage,          PurchaseOrder,  parallel_shop_id:   user.parallel_shop.id
-      can :create,          PurchaseOrder
-      can :manage,          SaleProduct,    parallel_shop_id:   user.parallel_shop.id
-      can :create,          SaleProduct
-      can :read,            Stock,          parallel_shop_id:   user.parallel_shop.id
-      can :read,            ParallelShop,   id:                 user.parallel_shop.id
+      can :read, ShopOrder, parallel_shop_id: user.parallel_shop.id
+      can :manage, StockOut, parallel_shop_id: user.parallel_shop.id
+      can :create, StockOut
+      can :manage, PurchaseOrder, parallel_shop_id: user.parallel_shop.id
+      can :create, PurchaseOrder
+      can :manage, SaleProduct, parallel_shop_id: user.parallel_shop.id
+      can :create, SaleProduct
+      can :read, Stock, parallel_shop_id: user.parallel_shop.id
+      can :read, ParallelShop, id: user.parallel_shop.id
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end
