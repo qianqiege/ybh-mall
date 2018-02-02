@@ -1,0 +1,107 @@
+<style type="text/css">
+  .containe {
+    margin: 15px 10px 0;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  p {
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+  }
+
+  .argee {
+    width: 100%;
+    background-color: #ad0e11;
+    position: fixed;
+    bottom: 69px;
+    left: 0;
+
+  }
+
+  .argee input {
+    color: #fff;
+    border: none;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 8px;
+  }
+
+  /*.link{
+    text-align: center;
+    display: block;
+    padding: 8px 0;
+    color: #fff;
+  }*/
+  .ipt1 {
+    border: none;
+    border-bottom: 1px solid #999;
+    width: 30%;
+  }
+
+  .ipt {
+    border: none;
+    border-bottom: 1px solid #999;
+    width: 42%;
+  }
+
+  span {
+    display: inline-block;
+    width: 45%;
+    margin-top: 10px;
+  }
+
+  input {
+    background-color: transparent;
+  }
+
+  .sub {
+    -webkit-appearance: none;
+  }
+
+  .del-btn {
+    background-color: #ccc !important;
+  }
+</style>
+
+<%= title "消费共同体计划承诺书" %>
+<div>
+  <div class="containe">
+    <%= raw @sharing_plan_contract.html_safe %>
+  </div>
+  <%= form_for(:plan, url: wechat_plans_path) do %>
+      <%= select("plan", "plan_rule_name", @plan_rules_name, { include_blank: false }) %>
+
+      <div style="margin-top: 20px;margin-bottom: 65px;">
+        <input type="checkbox" checked id="commit">
+        <label>我同意签订承诺消费书</label>
+      </div>
+      <div class="argee">
+        <input name="plan[user_id]" value="<%= @current_user_id %>" style="display:none;">
+        <!--199计划-->
+
+        <% if @plan_rule_name %>
+            <input name="plan[plan_rule_id]" value="<%= @plan_rule_id %>" style="display:none;">
+        <% end %>
+
+        <% if @invite_plan_id %>
+            <input name="plan[invite_plan_id]" value="<%= @invite_plan_id %>" style="display:none;">
+        <% end %>
+        <input type="submit" name="action" class="sub" value="提交"/>
+      </div>
+  <% end %>
+</div>
+
+<script>
+    $(function () {
+        $(".link").click(function () {
+            if ($('#commit').is(":checked")) {
+                location.href = "<%= wechat_community_plandetail_path %>";
+            } else {
+                alert("请在承诺书前打钩")
+            }
+        });
+    })
+</script>

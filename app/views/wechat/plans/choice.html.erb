@@ -177,19 +177,13 @@
     background-color: #ccc;
   }
 </style>
-<%= title '消费计划' %>
-
+<%= title '请选择计划' %>
 <div style="width: 100%; height: 100%; overflow-y: auto;background: #fff;">
-  <div class="plan-image">
-    <a href="">
-      <%= image_tag "makers.jpg" %>
-    </a>
-  </div>
   <div class="block-plan-btn">
     <ul>
       <% @sharing_plan_types.each do |t| %>
           <li class="<%= t.plan_type.in?(@user_plans_type) ? 'active-li' : '' %>">
-            <%= link_to new_wechat_plan_path(id: t) do %>
+            <%= link_to new_wechat_plan_path(id: t, invite_plan_id: @invite_plan_id ) do %>
                 <span><%= t.name %></span>
                 <span><%= t.plan_type %></span>
             <% end %>
@@ -198,30 +192,4 @@
       <% end %>
     </ul>
   </div>
-  <div class="shopList">
-    <div class="shopTag">
-      <h5 style="padding-left: 15px;">发起的计划</h5>
-    </div>
-    <ul style="padding-left: 0px; margin-bottom: 45px;">
-      <% @plan_records_all.each do |t| %>
-          <a href="<%= wechat_plan_path(t) %>" style="display: block;">
-            <li>
-              <div class="slLeft">
-                <%= image_tag "east-ep-a51-9990611.jpg", class: 'shopImage' %>
-              </div>
-              <div class="slRight">
-                <div class="slRight-title">
-                  <span><%= t.plan_rule.name %></span>
-                  <b class="<%= t.active ? 'success' : 'fail' %>"><%= t.active ? '已授权' : '未授权' %></b>
-                </div>
-                <div>
-                  <span>发起时间：<%= t.created_at.to_s[0..9] %></span>
-                </div>
-              </div>
-            </li>
-          </a>
-      <% end %>
-    </ul>
-  </div>
-
 </div>

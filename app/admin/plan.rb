@@ -1,16 +1,14 @@
 ActiveAdmin.register Plan do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
-    permit_params :user_id, :is_capital, :capital_id, :active, :is_maker, :plan_type, :money, :invite_plan_id
+    permit_params :user_id, :active, :plan_rule_id, :money, :invite_plan_id, :is_end
     form(:html => { :multipart => true }) do |f|
       f.inputs "计划" do
         f.input :user
-        f.input :is_capital
-        f.input :capital_id
+        f.input :is_end
         f.input :invite_plan_id
         f.input :active
-        f.input :is_maker
         f.input :money
-        f.input :plan_type, as: :select, collection: ['199', '177', '155', '133', '122']
+        f.input :plan_rule
       end
       f.actions
     end
@@ -26,13 +24,11 @@ ActiveAdmin.register Plan do
         id_column
         column :user
         column :code
-        column :is_capital
-        column :capital_id
+        column :is_end
         column :invite_plan_id
         column :active
-        column :is_maker
         column :money
-        column :plan_type
+        column :plan_rule_id
         column '支付方式' do |plan|
             if plan.payment == 'PAYMENT_TYPE_NULL'
                 '线下支付'

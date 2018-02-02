@@ -25,8 +25,10 @@ Rails.application.routes.draw do
     root "home#index"
     get '/create_makers', to: 'makers#create'
     get '/create_community', to: 'community#create'
-    post 'plans/create_plan'
-    resources :plans, only: [:show, :index] do
+    resources :plans, only: [:show, :index, :new, :create] do
+      member do
+        get 'choice'
+      end
       collection do
         get 'index_files'
         get 'index_community_files'

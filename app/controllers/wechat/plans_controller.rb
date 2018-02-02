@@ -1,49 +1,52 @@
 class Wechat::PlansController < Wechat::BaseController
-  def create_plan
-    user_id = WechatUser.find_by(id: params[:current_user].to_i).user.id
-    if params[:capital_id]
-      plan = Plan.new(user_id: user_id, is_capital: false, active: false, is_maker: false, capital_id: params[:capital_id].to_i, invite_plan_id: params[:invite_plan_id].to_i, plan_type: '199')
-      if plan.save
-        if plan.capital_id
-          arr = Plan.where(capital_id: plan.capital_id)
-          if arr.length == 9
-            t = Plan.find_by(user_id: plan.capital_id)
-            t.active = true
-            t.save
-            arr.each do |f|
-              f.active = true
-              f.save
-            end
-          end
-        end
+  #消费计划
+  def index
+    @sharing_plan_types = SharingPlan.all #所有计划
+    @plan_records_all = Plan.where(user_id: current_user.user_id) #当前用户的所有计划
+    @plan_records = @plan_records_all.where(is_end: false) #当前用户未结束的所有计划
+    @user_plans_type = SharingPlan.joins(:plans).where("plans.user_id = ? AND plans.is_end = ?", current_user.user_id, false).pluck(:plan_type)
+    # @user_plans_type = @plan_records.pluck(:plan_type)
+  end
 
-        # 更新队长的伙伴id数组
-        # capital = Plan.find_by(user_id: params[:capital_id])
-        # capital.partner_ids.push(plans.id)
-        # capital.save
+  def show
+    @plan = Plan.find(params[:id])
+    @partners = @plan.partners
+    @plan_rule = @plan.plan_rule
+    @permit_count = @plan.plan_rule.sharing_plan.invite_count
+  end
 
-        redirect_to '/wechat/community/index'
-      else
-        redirect_to :back
-      end
+  def new
+    sharing_plan = SharingPlan.find(params[:id]) #发起计划大类实例
+    @sharing_plan_contract = sharing_plan.contract #计划合约
+    @plan_rules_name = sharing_plan.plan_rules.pluck(:name)
+    @current_user_id = current_user.user_id #当前user_id
+    @invite_plan_id = params[:invite_plan_id]
+  end
+
+  def create
+    plan = Plan.new(set_plan)
+    plan.plan_rule_id = PlanRule.find_by_name(params["plan"]["plan_rule_name"]).id
+    if plan.save
+      redirect_to action: :index
     else
-      plan = Plan.new(user_id: user_id, is_capital: true, active: false, is_maker: false, plan_type: '199')
-      if plan.save
-        redirect_to '/wechat/community/index'
-      else
-        redirect_to :back
-      end
+      render "/wechat/plans/new"
     end
+  end
+
+  def show_invitation_code
+    url = choice_wechat_plan_path(plan_id: params[:format])
+    @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+  end
+
+  def choice
+    @sharing_plan_types = SharingPlan.all #所有计划
+    @user_plans_type = SharingPlan.joins(:plans).where("plans.user_id = ? AND plans.is_end = ?", current_user.user_id, false).pluck(:plan_type)
+    @invite_plan_id = params[:id] #邀请人id
   end
 
   # 展示平行店文件
   def index_files
 
-  end
-
-  def show
-    @plan = Plan.find(params[:id])
-    @plan_rule = PlanRule.find_by(plan_type: @plan.plan_type)
   end
 
   # 展示199计划文件
@@ -56,17 +59,8 @@ class Wechat::PlansController < Wechat::BaseController
 
   end
 
-  def show_invitation_code
-    url = wechat_plans_path(plan_id: params[:format])
-    @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
+  private
+  def set_plan
+    params.require(:plan).permit(:user_id, :invite_plan_id, :plan_rules_id)
   end
-
-  #消费计划
-  def index
-    @plan_rules = PlanRule.all
-    @plans = Plan.where(user_id: current_user.user.id)
-    @user_plans = @plans.pluck(:plan_type)
-    #包含哪些计划
-  end
-
 end
