@@ -41,7 +41,8 @@ class AdminAbility
       can :manage, Integral
       can :manage, CashRecord
       can :manage, DoctorRebate
-    elsif user.role_name == 'customer_service'
+    elsif user.role_name == 'customer_service'                   #客服权限
+      can :manage, AdminUser
       can :manage, Advice
       can :manage, AdviceType
       can :manage, User
