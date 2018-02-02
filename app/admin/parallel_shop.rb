@@ -9,7 +9,7 @@ ActiveAdmin.register ParallelShop do
         f.input :main_business
         f.input :image, as: :file
         f.input :desc
-        if current_admin_user.role_name == "admin"
+        if current_admin_user.role_name == "admin" || current_admin_user.role_name == "customer_service"
             f.input :status
             f.input :admin_user
             f.input :settlement_ratio
@@ -23,6 +23,7 @@ ActiveAdmin.register ParallelShop do
         id_column
         column :plan
         column :title
+        column :admin_user
         column :address
         column :main_business
         column :settlement_ratio
