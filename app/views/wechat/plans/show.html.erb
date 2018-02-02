@@ -243,36 +243,21 @@
   <div class="authd">
     <span class="auth">平行店授权</span>
     <button class="<%= @plan.active? ? 'btn2' : 'btn1' %>" disabled><%= @plan.active? ? '已授权' : '待授权' %></button>
-    <span class="worry"><%= @plan.is_capital? ? '管理指导费：0' : '管理指导费：'+(@plan.money/9.0).to_s %></span>
+    <span class="worry"><%= @plan.invite_plan ? '管理指导费：0' : '管理指导费：'+(@plan.money/9.0).to_s %></span>
   </div>
   <div>
     <ul class="block-li">
       <li>
         <%= image_tag "共同体.png", size: "50x50" %>
-        <% if @plan.is_capital == true %>
-            <div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;"><%= @plan.user.name %></div>
-        <% else %>
-            <div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;"><%= Plan.find_by(user_id: @plan.capital_id, is_maker: false).user.name %></div>
-        <% end %>
+        <div class="fontSizes" style="font-weight: 800; font-size: 16px;position: relative; top: 6px;"><%= @plan.user.name %></div>
       </li>
-      <% if @plan.is_capital == true %>
-          <% Plan.where(capital_id: @plan.user_id, is_maker: false).each do |t| %>
-              <% u = User.find_by(id: t.user_id) %>
-              <li>
-                <%= image_tag "共同体.png", size: "50x50" %>
-                <div class="fontSizes"><%= u.name %></div>
-                <span style="margin-bottom:15%;" class="fontSizes over-text"><%= t.money*0.1 %></span>
-              </li>
-          <% end %>
-      <% else %>
-          <% Plan.where(capital_id: @plan.capital_id, is_maker: false).each do |t| %>
-              <% u = User.find_by(id: t.user_id) %>
-              <li>
-                <%= image_tag "共同体.png", size: "50x50" %>
-                <div class="fontSizes"><%= u.name %></div>
-                <span style="margin-bottom:15%;" class="fontSizes over-text"><%= t.money*0.1 %></span>
-              </li>
-          <% end %>
+
+      <% @partners.each do |t| %>
+          <li>
+            <%= image_tag "共同体.png", size: "50x50" %>
+            <div class="fontSizes"><%= t.user.name %></div>
+            <span style="margin-bottom:15%;" class="fontSizes over-text"><%= t.money*0.1 %></span>
+          </li>
       <% end %>
     </ul>
   </div>
@@ -326,11 +311,11 @@
         <a class="renew" style="background-color: #bbb;">续约</a>
     <% end %>
   </div>
-  <% if Plan.where(capital_id: @plan.user_id).length >= @plan_rule.invite_count %>
+  <% if @partners.count >= @permit_count %>
       <div class="footer-makers-button" style="background-color: #bbb;">
         <a>邀请伙伴</a>
       </div>
-  <% elsif Plan.where(capital_id: @plan.user_id).length < @plan_rule.invite_count %>
+  <% else %>
       <div class="footer-makers-button">
         <a href="<%= show_invitation_code_wechat_plans_path(@plan) %>">邀请伙伴</a>
       </div>

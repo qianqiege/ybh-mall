@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128120208) do
+ActiveRecord::Schema.define(version: 20180201040000) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -763,27 +763,22 @@ ActiveRecord::Schema.define(version: 20180128120208) do
 
   create_table "plan_rules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "invite_count"
     t.float    "commitment_consumption_amount", limit: 24
     t.float    "start_money",                   limit: 24
     t.float    "amount_of_promised_income",     limit: 24
     t.float    "ratio",                         limit: 24
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
-    t.string   "plan_type"
     t.float    "earning_ratio",                 limit: 24, default: 0.05
-    t.string   "link"
+    t.integer  "sharing_plan_id"
   end
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.boolean  "is_capital"
-    t.integer  "capital_id"
     t.boolean  "active"
-    t.boolean  "is_maker"
     t.float    "money",          limit: 24,                          default: 0.0
-    t.datetime "created_at",                                                       null: false
-    t.datetime "updated_at",                                                       null: false
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
     t.string   "trade_nos"
     t.string   "number"
     t.string   "payment"
@@ -792,7 +787,8 @@ ActiveRecord::Schema.define(version: 20180128120208) do
     t.string   "code"
     t.integer  "invite_plan_id"
     t.decimal  "promise_money",             precision: 10, scale: 2
-    t.string   "plan_type"
+    t.boolean  "is_end",                                             default: false
+    t.integer  "plan_rule_id"
   end
 
   create_table "presented_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1004,6 +1000,15 @@ ActiveRecord::Schema.define(version: 20180128120208) do
     t.float    "const",      limit: 24
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "sharing_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "invite_count"
+    t.string   "plan_type"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.text     "contract",     limit: 65535
   end
 
   create_table "shop_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
