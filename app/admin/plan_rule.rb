@@ -8,7 +8,6 @@ ActiveAdmin.register PlanRule do
         f.input :start_money
         f.input :amount_of_promised_income
         f.input :ratio
-        f.input :earning_ratio
         f.input :sharing_plan
       end
       f.actions
@@ -23,7 +22,6 @@ ActiveAdmin.register PlanRule do
         column :start_money
         column :amount_of_promised_income
         column :ratio
-        column :earning_ratio
         actions
     end
 end

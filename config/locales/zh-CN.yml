@@ -416,26 +416,29 @@ zh-CN:
         record_id: "记录"
         reason: "收入来源"
         money: "金额"
+      sharing_plan:
+        name: "计划名称"
+        invite_count: "邀请人数"
+        plan_type: "计划类型"
+        contract: "合约"
+        earning_ratio: "分利比例"
       plan_rule:
         name: "计划名称"
+        sharing_plan: "计划类别"
         invite_count: "邀请人数"
         commitment_consumption_amount: "承诺消费金额"
         start_money: "启动资金"
         amount_of_promised_income: '承诺收益金额'
         ratio: "消费购买产品比"
         plan_type: "计划类型"
-        earning_ratio: "分利比例"
         link: "链接地址"
       plan:
         user: "用户"
         code: "计划编号"
-        is_end: "是否结束"
-        is_capital: "是否队长"
-        capital_id: "队长id"
-        active: "是否激活"
-        is_maker: "是否为创客"
+        plan_rule_id: "计划规则"
+        active: "平行店链接授权"
+        is_end: "本轮结束"
         money: "总收益"
-        plan_type: "计划类型"
       sale_product:
         product: "产品"
         parallel_shop: '平行店'

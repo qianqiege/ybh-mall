@@ -1,6 +1,6 @@
 ActiveAdmin.register SharingPlan do
   menu parent: I18n.t("active_admin.menu.activity_manage")
-  permit_params :name, :plan_type, :invite_count, :contract
+  permit_params :name, :plan_type, :invite_count, :contract, :earning_ratio
 
   index do
     selectable_column
@@ -8,6 +8,7 @@ ActiveAdmin.register SharingPlan do
     column :name
     column :invite_count
     column :plan_type
+    column :earning_ratio
     actions
   end
 
@@ -17,6 +18,7 @@ ActiveAdmin.register SharingPlan do
       f.input :invite_count
       f.input :contract, :as => :ckeditor
       f.input :plan_type, as: :select, collection: ['199', '177', '155', '133', '122', '1xx']
+      f.input :earning_ratio
     end
     f.actions
   end
@@ -26,6 +28,7 @@ ActiveAdmin.register SharingPlan do
       row :name
       row :invite_count
       row :plan_type
+      row :earning_ratio
       row '合约内容' do |sharing_plan|
         truncate(raw sharing_plan.contract)
       end
