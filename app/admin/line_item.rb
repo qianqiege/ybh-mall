@@ -1,5 +1,7 @@
 ActiveAdmin.register LineItem do
+  menu parent: I18n.t("active_admin.menu.mall")
 
+  actions :index, :show
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -23,6 +25,5 @@ ActiveAdmin.register LineItem do
     column :unit_price
     actions
   end
-
   filter :product_id
 end

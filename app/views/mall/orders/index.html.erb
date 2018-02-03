@@ -30,7 +30,7 @@
 
               <div class="car-box car-nmb">
                 <div class="pro-list-portrait">
-                  <% order.line_items.each do |line_item| %>
+                  <% order.line_items.where.not(product_id: @delete_product).each do |line_item| %>
                     <div class="order-line-item">
                       <div class="img">
                         <a href="<%= mall_product_path(line_item.product) %>">

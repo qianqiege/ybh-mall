@@ -15,6 +15,8 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def index
+    #在商城中删除的产品放入一个数组
+    @delete_product = [9,10,12,14,15,16,17,18,19,20,21,22,25,40,48,61]
     @title = params[:status] ? Order::STATUS_TEXT[params[:status].to_sym].to_s + '订单' : '全部订单'
     @orders = if params[:status]
       current_user.orders.where(status: params[:status])
