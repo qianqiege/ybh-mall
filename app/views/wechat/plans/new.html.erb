@@ -25,25 +25,6 @@
     width: 100%;
     padding: 8px;
   }
-
-  /*.link{
-    text-align: center;
-    display: block;
-    padding: 8px 0;
-    color: #fff;
-  }*/
-  .ipt1 {
-    border: none;
-    border-bottom: 1px solid #999;
-    width: 30%;
-  }
-
-  .ipt {
-    border: none;
-    border-bottom: 1px solid #999;
-    width: 42%;
-  }
-
   span {
     display: inline-block;
     width: 45%;
@@ -71,29 +52,12 @@
     text-align: center;
   }
 
-  .link {
-    text-align: center;
-    display: block;
-    padding: 10px 0;
-    color: #fff;
-  }
-
-  .plan-button button {
+  .plan-button {
     width: 100%;
     background: rgba(201, 43, 47, 1);
     border: none;
     padding: 10px 0;
     color: #fff;
-    position: fixed;
-    bottom: 58px;
-    left: 0;
-
-  }
-
-  .block {
-    padding: 10px 15px;
-    padding-bottom: 58px;
-    background-color: #fff;
   }
 
   .agree-block {
@@ -177,6 +141,9 @@
     top: 10px;
   }
 
+  .iphone {
+    -webkit-appearance: none;
+  }
   .t-submit {
     width: 100%;
     background: rgba(201, 43, 47, 1);
@@ -220,7 +187,7 @@
   </div>
   <div>
     <%= form_for(:plan, url: wechat_plans_path) do %>
-        <span style="margin-left:18px;width: 66px">启动资金</span><%= select("plan", "plan_rule_id", @plan_rules.collect{|plan_rule|[plan_rule.start_money.to_i,plan_rule.id]}, {include_blank: false}) %>
+        <span style="margin-left:18px;width: 66px">启动资金</span><%= select("plan", "plan_rule_id", @plan_rules.collect{|plan_rule|[plan_rule.start_money.to_i,plan_rule.id]}, {include_blank: false}, class: "iphone")%>
         <div style="margin-top: 20px;margin-bottom: 65px;">
           <input type="checkbox" checked id="commit">
           <label>我同意签订承诺消费书</label>
@@ -233,7 +200,7 @@
         </div>
         <div class="argee">
           <% if @sharing_plan.plan_rules.first.start_money > 0 %>
-              <button id="plan-new" type="button"> 付款 </button>
+              <button id="plan-new" type="button" class="plan-button"> 付款 </button>
           <% else %>
               <input type="submit" name="action" class="sub" value="同意发起计划"/>
           <% end %>
@@ -287,7 +254,8 @@
     $(function () {
         $("#plan-new").click(function () {
             if ($('#commit').is(":checked")) {
-                var objpayment = $("#plan_plan_rule_id option:checked").text();
+//                var objpayment = $("#plan_plan_rule_id option:checked").text();
+                var objpayment = 0.01;
                 var planRuleId = $("#plan_plan_rule_id option:checked").val();
                 console.log(objpayment)
                 $("#start-money").val(objpayment)

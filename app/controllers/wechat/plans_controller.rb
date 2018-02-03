@@ -54,7 +54,6 @@ class Wechat::PlansController < Wechat::BaseController
   def pay
     @no_fotter = true
     @plan = Plan.find(params["id"])
-    byebug
     @trade_merge_pay_params = @plan.fast_pay.trade_merge_pay_params_plan(params["payment"])
   end
 
