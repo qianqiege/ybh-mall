@@ -52,8 +52,9 @@
     text-align: center;
   }
 
-  .plan-button {
+  .plan-button button{
     width: 100%;
+    height: 40px;
     background: rgba(201, 43, 47, 1);
     border: none;
     padding: 10px 0;
@@ -180,7 +181,7 @@
 
 </style>
 
-<%= title "消费共同体计划承诺书" %>
+<%= title "消费计划合约" %>
 <div>
   <div class="containe">
     <%= raw @sharing_plan.contract.html_safe %>
@@ -190,7 +191,7 @@
         <span style="margin-left:18px;width: 66px">启动资金</span><%= select("plan", "plan_rule_id", @plan_rules.collect{|plan_rule|[plan_rule.start_money.to_i,plan_rule.id]}, {include_blank: false}, class: "iphone")%>
         <div style="margin-top: 20px;margin-bottom: 65px;">
           <input type="checkbox" checked id="commit">
-          <label>我同意签订承诺消费书</label>
+          <label>我同意签订消费计划合约</label>
         </div>
         <div class="implicit-input">
           <input class="implicit-input" name="plan[user_id]" value="<%= @current_user_id %>">
@@ -198,9 +199,10 @@
               <input class="implicit-input" name="plan[invite_plan_id]" value="<%= @invite_plan_id %>">
           <% end %>
         </div>
-        <div class="argee">
+
+        <div class="plan-button">
           <% if @sharing_plan.plan_rules.first.start_money > 0 %>
-              <button id="plan-new" type="button" class="plan-button"> 付款 </button>
+              <button id="plan-new" type="button"> 付款 </button>
           <% else %>
               <input type="submit" name="action" class="sub" value="同意发起计划"/>
           <% end %>
@@ -212,7 +214,7 @@
 
 <%= form_tag(controller: "plans", action: "create", method: "post") do %>
     <input id="planRuleId" class="implicit-input" name="plan[plan_rule_id]" value="">
-    <div id="agree" class="agree-block implicit-input">
+    <div id="agreePay" class="agree-block implicit-input">
       <div id="block" class="block-order">
         <div class="clear-block">
           <h3>确认付款</h3>
@@ -261,13 +263,13 @@
                 $("#start-money").val(objpayment)
                 $("#planRuleId").val(planRuleId)
                 $("#payText").text(objpayment);
-                $("#agree").show();
+                $("#agreePay").show();
             } else {
                 alert("请在承诺书前打钩")
             }
         });
         $("#fImg").click(function () {
-            $("#agree").hide();
+            $("#agreePay").hide();
         })
     })
 </script>
