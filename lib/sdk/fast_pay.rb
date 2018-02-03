@@ -124,7 +124,7 @@ module Sdk
       sign_params(options)
     end
 
-    # 生成百万创客付款交易支付参数
+    # 生成消费计划付款交易支付参数
     # PAYMENT_TYPE_WECHAT
     # PAYMENT_TYPE_YJ
     def trade_merge_pay_params_plan(pay_type = "PAYMENT_TYPE_YJ")
@@ -136,7 +136,7 @@ module Sdk
         sellerUserId: @partner_id,
         tradeAmount: @order.price.to_f,
         currency: "CNY",
-        goodsName: "百万创客计划"
+        goodsName: "消费计划"
       }]
 
       options = {
@@ -144,7 +144,7 @@ module Sdk
         merchOrderNo: @order.number,
         service: "fastPayTradeMergePay",
         tradeInfo: tradeInfo.to_json,
-        returnUrl: @host + 'wechat/makers/plan',
+        returnUrl: @host + 'wechat/plans',
         notifyUrl: @host + 'notifies/plans',
         paymentType: pay_type
       }

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :plans, only: [:show, :index, :new, :create] do
       member do
         get 'choice'
+        get 'pay'
       end
       collection do
         get 'index_files'

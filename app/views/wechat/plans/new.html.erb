@@ -14,10 +14,7 @@
   .argee {
     width: 100%;
     background-color: #ad0e11;
-    position: fixed;
-    bottom: 69px;
-    left: 0;
-
+    margin-bottom: 58px;
   }
 
   .argee input {
@@ -64,44 +61,245 @@
   .del-btn {
     background-color: #ccc !important;
   }
+
+  div {
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .link {
+    text-align: center;
+    display: block;
+    padding: 10px 0;
+    color: #fff;
+  }
+
+  .plan-button button {
+    width: 100%;
+    background: rgba(201, 43, 47, 1);
+    border: none;
+    padding: 10px 0;
+    color: #fff;
+    position: fixed;
+    bottom: 58px;
+    left: 0;
+
+  }
+
+  .block {
+    padding: 10px 15px;
+    padding-bottom: 58px;
+    background-color: #fff;
+  }
+
+  .agree-block {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+  }
+
+  .block-order {
+    width: 100%;
+    background-color: #fff;
+    position: absolute;
+    bottom: 58px;
+    left: 0;
+  }
+
+  .block-order > h3 {
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .info-block {
+    padding: 20px 0;
+  }
+
+  .info-block > p {
+    margin: 5px auto 10px;
+  }
+
+  .info-block li {
+    border-bottom: 1px solid #bbb;
+    overflow: auto;
+    padding: 5px 8px;
+  }
+
+  .info-block li span:first-child {
+    float: left;
+  }
+
+  .info-block li span:last-child, .info-block li select {
+    float: right;
+  }
+
+  .info-block li select option {
+    text-align: center;
+  }
+
+  .info-block li select {
+    min-width: 30%;
+    min-height: 30px;
+  }
+
+  .button-applay button {
+    width: 100%;
+    background: rgba(201, 43, 47, 1);
+    border: none;
+    padding: 10px 0;
+    color: #fff;
+    margin-top: 60px;
+  }
+
+  .clear-block {
+
+  }
+
+  .clear-block h3 {
+    text-align: center;
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .clear-block img {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    left: 6px;
+    top: 10px;
+  }
+
+  .t-submit {
+    width: 100%;
+    background: rgba(201, 43, 47, 1);
+    border: none;
+    padding: 10px 0;
+    color: #fff;
+    margin-top: 60px;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  #planBtn {
+    -webkit-appearance: none;
+  }
+
+  #payment {
+    -webkit-appearance: none;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .pay {
+    -webkit-appearance: none;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .del-btn {
+    background-color: #ccc !important;
+  }
+  .implicit-input {
+    display: none;
+  }
+
 </style>
 
 <%= title "消费共同体计划承诺书" %>
 <div>
   <div class="containe">
-    <%= raw @sharing_plan_contract.html_safe %>
+    <%= raw @sharing_plan.contract.html_safe %>
   </div>
-  <%= form_for(:plan, url: wechat_plans_path) do %>
-      <%= select("plan", "plan_rule_name", @plan_rules_name, { include_blank: false }) %>
+  <div>
+    <%= form_for(:plan, url: wechat_plans_path) do %>
+        <span style="margin-left:18px;width: 66px">启动资金</span><%= select("plan", "plan_rule_id", @plan_rules.collect{|plan_rule|[plan_rule.start_money.to_i,plan_rule.id]}, {include_blank: false}) %>
+        <div style="margin-top: 20px;margin-bottom: 65px;">
+          <input type="checkbox" checked id="commit">
+          <label>我同意签订承诺消费书</label>
+        </div>
+        <div class="implicit-input">
+          <input class="implicit-input" name="plan[user_id]" value="<%= @current_user_id %>">
+          <% if @invite_plan_id %>
+              <input class="implicit-input" name="plan[invite_plan_id]" value="<%= @invite_plan_id %>">
+          <% end %>
+        </div>
+        <div class="argee">
+          <% if @sharing_plan.plan_rules.first.start_money > 0 %>
+              <button id="plan-new" type="button"> 付款 </button>
+          <% else %>
+              <input type="submit" name="action" class="sub" value="同意发起计划"/>
+          <% end %>
+        </div>
 
-      <div style="margin-top: 20px;margin-bottom: 65px;">
-        <input type="checkbox" checked id="commit">
-        <label>我同意签订承诺消费书</label>
-      </div>
-      <div class="argee">
-        <input name="plan[user_id]" value="<%= @current_user_id %>" style="display:none;">
-        <!--199计划-->
-
-        <% if @plan_rule_name %>
-            <input name="plan[plan_rule_id]" value="<%= @plan_rule_id %>" style="display:none;">
-        <% end %>
-
-        <% if @invite_plan_id %>
-            <input name="plan[invite_plan_id]" value="<%= @invite_plan_id %>" style="display:none;">
-        <% end %>
-        <input type="submit" name="action" class="sub" value="提交"/>
-      </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
+
+<%= form_tag(controller: "plans", action: "create", method: "post") do %>
+    <input id="planRuleId" class="implicit-input" name="plan[plan_rule_id]" value="">
+    <div id="agree" class="agree-block implicit-input">
+      <div id="block" class="block-order">
+        <div class="clear-block">
+          <h3>确认付款</h3>
+          <%= image_tag "u12.png", id: 'fImg' %>
+        </div>
+        <div class="info-block">
+          <input id="start-money" class="implicit-input" name="plan[price]" value="0.01">
+          <p style="font-size: 18px; font-weight: 800;">￥：<span id="payText"></span></p>
+          <ul>
+            <li>
+              <span>订单信息</span>
+              <span>启动资金</span>
+            </li>
+            <li>
+              <span style="margin-top: 5px;">支付方式</span>
+              <select name="plan[payment]" class="pay">
+                <option value="PAYMENT_TYPE_WECHAT">微信</option>
+                <option value="">线下支付</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div class="implicit-input">
+          <input name="plan[user_id]" value="<%= @current_user_id %>">
+          <% if @invite_plan_id %>
+              <input name="plan[invite_plan_id]" value="<%= @invite_plan_id %>">
+          <% end %>
+        </div>
+        <div class="button-applay">
+          <a href="<%= wechat_plans_path(@user_id) %>">
+            <input type="submit" name="" class="t-submit" value="立即付款">
+          </a>
+        </div>
+      </div>
+    </div>
+<% end %>
 
 <script>
     $(function () {
-        $(".link").click(function () {
+        $("#plan-new").click(function () {
             if ($('#commit').is(":checked")) {
-                location.href = "<%= wechat_community_plandetail_path %>";
+                var objpayment = $("#plan_plan_rule_id option:checked").text();
+                var planRuleId = $("#plan_plan_rule_id option:checked").val();
+                console.log(objpayment)
+                $("#start-money").val(objpayment)
+                $("#planRuleId").val(planRuleId)
+                $("#payText").text(objpayment);
+                $("#agree").show();
             } else {
                 alert("请在承诺书前打钩")
             }
         });
+        $("#fImg").click(function () {
+            $("#agree").hide();
+        })
     })
 </script>

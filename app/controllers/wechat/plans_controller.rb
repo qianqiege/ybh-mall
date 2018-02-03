@@ -12,23 +12,30 @@ class Wechat::PlansController < Wechat::BaseController
     @plan = Plan.find(params[:id])
     @partners = @plan.partners
     @plan_rule = @plan.plan_rule
+
     @permit_count = @plan.plan_rule.sharing_plan.invite_count
   end
 
   def new
-    sharing_plan = SharingPlan.find(params[:id]) #发起计划大类实例
-    @sharing_plan_contract = sharing_plan.contract #计划合约
-    @plan_rules_name = sharing_plan.plan_rules.pluck(:name)
+    @sharing_plan = SharingPlan.find(params[:id]) #发起计划大类实例
+    @plan_rules = @sharing_plan.plan_rules
     @current_user_id = current_user.user_id #当前user_id
     @invite_plan_id = params[:invite_plan_id]
   end
 
   def create
-    plan = Plan.new(set_plan)
-    plan.plan_rule_id = PlanRule.find_by_name(params["plan"]["plan_rule_name"]).id
-    if plan.save
-      redirect_to action: :index
+    @plan = Plan.new(set_plan)
+    if @plan.save
+      logger.info("==================保存成功=========================")
+      if params[:plan][:payment].nil?
+        logger.info("==================线下付款=========================")
+        redirect_to action: :index
+      else
+        logger.info("==================线上付款=========================")
+        redirect_to action: :pay, id: @plan.id
+      end
     else
+      logger.info("==================保存失败=========================")
       render "/wechat/plans/new"
     end
   end
@@ -42,6 +49,13 @@ class Wechat::PlansController < Wechat::BaseController
     @sharing_plan_types = SharingPlan.all #所有计划
     @user_plans_type = SharingPlan.joins(:plans).where("plans.user_id = ? AND plans.is_end = ?", current_user.user_id, false).pluck(:plan_type)
     @invite_plan_id = params[:id] #邀请人id
+  end
+
+  def pay
+    @no_fotter = true
+    @plan = Plan.find(params["id"])
+    byebug
+    @trade_merge_pay_params = @plan.fast_pay.trade_merge_pay_params_plan(params["payment"])
   end
 
   # 展示平行店文件
@@ -61,6 +75,6 @@ class Wechat::PlansController < Wechat::BaseController
 
   private
   def set_plan
-    params.require(:plan).permit(:user_id, :invite_plan_id, :plan_rules_id)
+    params.require(:plan).permit(:user_id, :invite_plan_id, :plan_rule_id, :price, :payment)
   end
 end
