@@ -52,7 +52,7 @@ class Wechat::MakersController < Wechat::BaseController
   def plan_pay
     @no_fotter = true
     @plan = User.find(current_user.user_id).plans.find(params[:format])
-    Sdk::FastPay.new(@plan).trade_merge_pay_params_plan(@plan.payment)
+    Sdk::FastPay.new(@plan)
     @trade_merge_pay_params = @plan.fast_pay.trade_merge_pay_params_plan(@plan.payment)
   end
 
