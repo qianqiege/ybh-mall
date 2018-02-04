@@ -23,11 +23,6 @@ class Plan < ApplicationRecord
 
     event :pay do
       transitions from: :failing, to: :success
-
-      after do
-        self.active = true
-        self.save
-      end
     end
   end
 
