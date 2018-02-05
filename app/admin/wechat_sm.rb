@@ -3,7 +3,7 @@ ActiveAdmin.register WechatSm do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-  permit_params :name, :first, :keyword1, :keyword2, :keyword3, :remark
+  permit_params :name, :first, :keyword1, :keyword2, :keyword3, :template,:remark
 #
 # or
 #
@@ -16,6 +16,7 @@ ActiveAdmin.register WechatSm do
     selectable_column
     id_column
     column :name
+    column :template
     column :first
     column :keyword1
     column :keyword2
@@ -61,7 +62,7 @@ ActiveAdmin.register WechatSm do
 
       Settings.weixin.template_id = sms.template
       # Settings.weixin.template_id = "tYUWJ1saT3ZEH4YtV8JnUhqb94_okcU16b1gg-0RvaY"
-      url = Settings.weixin.host + "/admin/wechat_sm/" + sms.id.to_s
+      url = Settings.weixin.host + "/mall"
       open_id = User.find(1).wechat_user.open_id
 
       $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
