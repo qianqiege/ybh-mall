@@ -44,7 +44,7 @@ $(function(){
 
 
     real_value = parseFloat($.trim($(this).val())) || 0 // 最终输入的积分数
-    $("#total-price").text( (total_price - real_value - money_value - celebrate_ratsimp/10).formatMoney() )
+    $("#total-price").text( (total_price - real_value*2 - money_value - celebrate_ratsimp/10).formatMoney() )
 
   })
 

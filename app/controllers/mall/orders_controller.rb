@@ -30,6 +30,7 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def create
+    byebug
     # 需要处理两种特殊情况，第一种是商品突然下架，第二种是商品突然库存不够
     # 这两种情况都不会生成订单，而是重定向到订单确认页面后，由用户重新提交订单
     # 在订单确认页面，会对突然下架的商品进行处理，会显示出来，但不会计算进金额
@@ -69,10 +70,10 @@ class Mall::OrdersController < Mall::BaseController
     # 自定义价格
     # 这里会减去 使用积分， 现金余额， 庆通分
     if params[:custom_price].present?
-      price = params[:custom_price].to_f - (integral_money + integral_available + celebrate_ratsimp)
+      price = params[:custom_price].to_f - (integral_money + integral_available*2 + celebrate_ratsimp)
     else
       if integral_money.present? && integral_available.present? && celebrate_ratsimp.present?
-        price = price - (integral_money + integral_available + celebrate_ratsimp)
+        price = price - (integral_money + integral_available*2 + celebrate_ratsimp)
       end
     end
 
