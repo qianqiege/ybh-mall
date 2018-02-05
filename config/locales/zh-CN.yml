@@ -433,7 +433,7 @@ zh-CN:
         start_money: "启动资金"
         plan_type: "计划类型"
         link: "链接地址"
-        shop_revenue: "平行店规模（月营业额）"
+        parallel_shop_revenue: "平行店规模（月营业额）"
       plan:
         user: "用户"
         code: "计划编号"

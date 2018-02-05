@@ -7,7 +7,7 @@ ActiveAdmin.register PlanRule do
       f.input :commitment_consumption_amount
       f.input :start_money
       f.input :sharing_plan
-      f.input :shop_revenue
+      f.input :parallel_shop_revenue
     end
     f.actions
   end
@@ -19,7 +19,7 @@ ActiveAdmin.register PlanRule do
     column :sharing_plan
     column :commitment_consumption_amount
     column :start_money
-    column :shop_revenue
+    column :parallel_shop_revenue
     actions
   end
 end
