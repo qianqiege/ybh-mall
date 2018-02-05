@@ -1,0 +1,75 @@
+ActiveAdmin.register WechatSm do
+
+# See permitted parameters documentation:
+# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+#
+  permit_params :name, :first, :keyword1, :keyword2, :keyword3, :remark
+#
+# or
+#
+# permit_params do
+#   permitted = [:permitted, :attributes]
+#   permitted << :other if params[:action] == 'create' && current_user.admin?
+#   permitted
+# end
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :first
+    column :keyword1
+    column :keyword2
+    column :keyword3
+    column :remark
+    column '操作' do |sent|
+      span do
+        link_to '群发所有人', send_test_admin_wechat_sm_path(sent)
+      end
+    end
+    actions
+  end
+
+  member_action :send_test do
+
+  end
+
+  controller do
+    def send_test
+      sms = WechatSm.find(params[:id])
+      byebug
+      data = {
+          first: {
+              value: sms.name,
+              color: "#173177"
+          },
+          keyword1: {
+              value: sms.keyword1,
+              color: "#173177"
+          },
+          keyword2: {
+              value: sms.keword2,
+              color: "#173177"
+          },
+          keyword3: {
+              value: sms.keword3,
+              color: "#173177"
+          },
+          remark: {
+              value: sms.remark,
+              color: "#173177"
+          }
+      }
+
+      Settings.weixin.template_id = sms.template
+      # Settings.weixin.template_id = "tYUWJ1saT3ZEH4YtV8JnUhqb94_okcU16b1gg-0RvaY"
+      url = Settings.weixin.host + "/admin/wechat_sm/" + sms.id.to_s
+      ybhm.ybyt.cc/mall/orders/:7
+
+      open_id = User.find(1).wechat_user.open_id
+
+      $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
+      redirect_to admin_wechat_sms_path
+    end
+  end
+
+end
