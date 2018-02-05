@@ -46,11 +46,11 @@ ActiveAdmin.register WechatSm do
               color: "#173177"
           },
           keyword2: {
-              value: sms.keword2,
+              value: sms.keyword2,
               color: "#173177"
           },
           keyword3: {
-              value: sms.keword3,
+              value: sms.keyword3,
               color: "#173177"
           },
           remark: {
