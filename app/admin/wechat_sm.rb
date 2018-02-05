@@ -63,8 +63,6 @@ ActiveAdmin.register WechatSm do
       Settings.weixin.template_id = sms.template
       # Settings.weixin.template_id = "tYUWJ1saT3ZEH4YtV8JnUhqb94_okcU16b1gg-0RvaY"
       url = Settings.weixin.host + "/admin/wechat_sm/" + sms.id.to_s
-      ybhm.ybyt.cc/mall/orders/:7
-
       open_id = User.find(1).wechat_user.open_id
 
       $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
