@@ -36,10 +36,9 @@ ActiveAdmin.register WechatSm do
   controller do
     def send_test
       sms = WechatSm.find(params[:id])
-      byebug
       data = {
           first: {
-              value: sms.name,
+              value: sms.first,
               color: "#173177"
           },
           keyword1: {
