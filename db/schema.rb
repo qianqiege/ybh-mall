@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205063546) do
+ActiveRecord::Schema.define(version: 20180205091944) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -1280,6 +1280,18 @@ ActiveRecord::Schema.define(version: 20180205063546) do
   create_table "vip_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
+    t.string   "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "wechat_sms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "template"
+    t.string   "first"
+    t.string   "keyword1"
+    t.string   "keyword2"
+    t.string   "keyword3"
     t.string   "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
