@@ -28,7 +28,7 @@ class Product < ApplicationRecord
   end
 
   def display_name
-    "#{self.name}-----#{self.product_sort}-----#{self.packaging}"
+    "#{self.name}-----#{self.product_sort}-----#{self.packaging}-----#{self.spec}"
   end
 
   def back_shop_count(quantity)
