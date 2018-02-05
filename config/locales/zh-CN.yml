@@ -421,17 +421,19 @@ zh-CN:
         invite_count: "邀请人数"
         plan_type: "计划类型"
         contract: "合约"
-        earning_ratio: "分利比例"
+        instruction: "说明书"
+        earning_ratio: "承诺收益比"
+        product_ratio: "消费购买产品比"
+        link_income_ratio: "链接人分利比"
       plan_rule:
         name: "计划名称"
         sharing_plan: "计划类别"
         invite_count: "邀请人数"
         commitment_consumption_amount: "承诺消费金额"
         start_money: "启动资金"
-        amount_of_promised_income: '承诺收益金额'
-        ratio: "消费购买产品比"
         plan_type: "计划类型"
         link: "链接地址"
+        shop_revenue: "平行店规模（月营业额）"
       plan:
         user: "用户"
         code: "计划编号"
