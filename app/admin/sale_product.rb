@@ -3,7 +3,7 @@ ActiveAdmin.register SaleProduct do
     permit_params :product_id, :amount, :parallel_shop_id
     form(:html => { :multipart => true }) do |f|
       f.inputs "产品上架" do
-        if current_admin_user.role_name == "admin"
+        if current_admin_user.role_name == "admin" || current_admin_user.role_name == "customer_service"
             f.input :product
             f.input :parallel_shop
         else
