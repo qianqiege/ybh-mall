@@ -69,7 +69,7 @@ ActiveAdmin.register WechatSm do
       #   logger.info("========================群发变更通知#{user.id}=====================")
       # end
       $wechat_client.send_template_msg("oFcxev8t8S6nTfkDojRTin1ODJNc", Settings.weixin.template_id, url, "#FD878E", data)
-      logger.info("========================群发变更通知#{user.id}=====================")
+      # logger.info("========================群发变更通知#{user.id}=====================")
       redirect_to admin_wechat_sms_path
     end
   end
