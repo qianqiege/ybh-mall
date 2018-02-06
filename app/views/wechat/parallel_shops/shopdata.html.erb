@@ -1,212 +1,229 @@
 <style>
-	html,body {
-		background: #fff;
-	}
-	.outD{
-		position: relative;
-		height: 100%;
-		background: #fff;
-	}
-	.contain{
-		width: 100%;
-		padding-bottom: 10px;
-	}
-	.imgcon {
-		display: inline-block;
-		width: 47%;
-		padding: 0 3px 5px;
-		position: relative;
-	}
-	.imgcon img{
-		width:100%;
-		margin: 0 auto;
-		background-color: #eee;
-	}
-	.imgcon .name{
-		text-align: center;
-		font-size: 18px;
-		margin: 3px 0 3px;
-		margin: 0 auto;
-	}
-	.imgcon .led_away_category{
-		text-align: center;
-		color: #3c5e91;
-		font-size: 14px;
-		margin: 3px 0 3px;
-	}
-	.imgcon .price{
-		text-align: center;
-		color: #ad0e11;
-		font-size: 14px;
-		margin: 3px 0 3px;
-	}
-	.gw_num{
-		border: 1px solid #dbdbdb;
-		width: 110px;
-		line-height: 26px;
-		overflow: hidden;
-		margin: 0 auto;
-		text-align: center;
-	}
-	.gw_num em{
-		display: block;
-		height: 26px;
-		width: 26px;
-		float: left;
-		color: #7A7979;
-		border-right: 1px solid #dbdbdb;
-		text-align: center;
-		cursor: pointer;
-	}
-	.gw_num .num{
-		display: block;
-		float: left;
-		text-align: center;
-		width: 56px;
-		font-style: normal;
-		font-size: 14px;
-		line-height: 26px;
-		border: 0;
-	}
-	.gw_num em.add{
-		float: right;
-		border-right: 0;
-		border-left: 1px solid #dbdbdb;
-	}
-	.total{
-		width: 100%;
-		position: fixed;
-		bottom: 58px;
-		left: 0;
-		font-size: 14px;
-		background-color: #fff;
-	}
-	.money{
-		display: inline-block;
-		text-align: center;
-		width: 35%;
-		line-height: 46px;
-	}
-	.settle{
-		display: inline-block;
-		width: 30%;
-		text-align: center;
-		background-color: #ad0e11;
-		color: #fff;
-		padding:3% 10px;
-		float: right;
-		/*line-height: 25px;*/
-	}
-	.goPay{
-		display: inline-block;
-		width: 30%;
-		text-align: center;
-		background-color: #5aa0d6;
-		color: #fff;
-		padding:3% 0;
-		/*line-height: 25px;*/
-	}
-	.checkbox{
-		display: inline-block;
-		margin-top: 10px;
-		position: absolute;
-		left: 5px;
-		bottom: 38px;
-	}
-	.layCheck{
-		display: inline-block;
-	}
-	em{
-		font-style: normal;
-	}
-	.checkbox {
-		width:20px;
-		height:20px;
-	}
+  html, body {
+    background: #fff;
+  }
 
-	.proDataLink {
-		text-decoration:none;
-		out-line: none;
-		color: #000;
-	}
+  .outD {
+    position: relative;
+    height: 100%;
+    background: #fff;
+  }
 
-	a:active {
-		color: #fff;
-	}
+  .contain {
+    width: 100%;
+    padding-bottom: 10px;
+  }
 
-	.smallTilte {
-		display: flex;
-		padding:1% 5% 1% 5%;
-		/*margin:1% 0;*/
-		background: #fff;
-		border-bottom: 1px solid #eee;
-	}
+  .imgcon {
+    display: inline-block;
+    width: 47%;
+    padding: 0 3px 5px;
+    position: relative;
+  }
 
-	.smallTilte h5 {
-		color: #ad0e11;
-		font-size: 16px;
-	}
+  .imgcon img {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #eee;
+  }
 
-	.active-block {
-		background-color: #ccc;
-	}
+  .imgcon .name {
+    text-align: center;
+    font-size: 18px;
+    margin: 3px 0 3px;
+    margin: 0 auto;
+  }
+
+  .imgcon .led_away_category {
+    text-align: center;
+    color: #3c5e91;
+    font-size: 14px;
+    margin: 3px 0 3px;
+  }
+
+  .imgcon .price {
+    text-align: center;
+    color: #ad0e11;
+    font-size: 14px;
+    margin: 3px 0 3px;
+  }
+
+  .gw_num {
+    border: 1px solid #dbdbdb;
+    width: 110px;
+    line-height: 26px;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .gw_num em {
+    display: block;
+    height: 26px;
+    width: 26px;
+    float: left;
+    color: #7A7979;
+    border-right: 1px solid #dbdbdb;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .gw_num .num {
+    display: block;
+    float: left;
+    text-align: center;
+    width: 56px;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 26px;
+    border: 0;
+  }
+
+  .gw_num em.add {
+    float: right;
+    border-right: 0;
+    border-left: 1px solid #dbdbdb;
+  }
+
+  .total {
+    width: 100%;
+    position: fixed;
+    bottom: 58px;
+    left: 0;
+    font-size: 14px;
+    background-color: #fff;
+  }
+
+  .money {
+    display: inline-block;
+    text-align: center;
+    width: 35%;
+    line-height: 46px;
+  }
+
+  .settle {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    background-color: #ad0e11;
+    color: #fff;
+    padding: 3% 10px;
+    float: right;
+    /*line-height: 25px;*/
+  }
+
+  .goPay {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    background-color: #5aa0d6;
+    color: #fff;
+    padding: 3% 0;
+    /*line-height: 25px;*/
+  }
+
+  .checkbox {
+    display: inline-block;
+    margin-top: 10px;
+    position: absolute;
+    left: 5px;
+    bottom: 38px;
+  }
+
+  .layCheck {
+    display: inline-block;
+  }
+
+  em {
+    font-style: normal;
+  }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+  }
+
+  .proDataLink {
+    text-decoration: none;
+    out-line: none;
+    color: #000;
+  }
+
+  a:active {
+    color: #fff;
+  }
+
+  .smallTilte {
+    display: flex;
+    padding: 1% 5% 1% 5%;
+    /*margin:1% 0;*/
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+
+  .smallTilte h5 {
+    color: #ad0e11;
+    font-size: 16px;
+  }
+
+  .active-block {
+    background-color: #ccc;
+  }
 </style>
 
 
 <%= title '店内详情' %>
 <div class="outD" id="pShopData">
-	<div class="contain">
-        <% if @waiter %>
-            <div style="display:none">
-                <input type="text" id="waiter_id" name="waiter_id" value="<%= @waiter.id %>">
-                <input type="text" id="money" name="money" value="<%= @money %>">
-            </div>
-        <% end %>
-		<div class="shopDatas">
-			<div class="slLeft">
-				<%= image_tag "bji04680164.jpg", class:'shopImage' %>
-			</div>
-			<div class="slRight">
-				<p><%= @parallel_shop.title %></p>
-				<span><%= @parallel_shop.address %></span>
-			</div>
-		</div>
-		<div class="smallTilte">
-			<h5>健康产品</h5>
-		</div>
-		<!-- 带有a标签的循环，其他删掉 -->
-		<div style="margin-bottom: 110px;">
-			<% @parallel_shop.sale_products.each do |t| %>
-                <% if t.amount > 0 %>
-                    <div class="imgcon">
-                        <a href="<%= mall_product_path(id: t.product_id, parallel_product_show: true) %>"><%= image_tag t.product.image.url %></a>
-                        <input type="text" class="product_id" value="<%= t.product_id %>" disabled style="display: none;">
-                        <div class="name"><%= t.product.name %></div>
-                        <div class="led_away_category"><%= t.product.category %></div>
-                        <div class="price"><%= t.product.now_product_price %></div>
-                        <% if @waiter %>
-	                        <div class="gw_num">
-	                            <em class="jian">-</em>
-	                            <input type="text" value="0" disabled class="num"/>
-	                            <em class="add">+</em>
-	                        </div>
-                        <% end %>
-                    </div>
-                <% end %>
+  <div class="contain">
+    <% if @waiter %>
+        <div style="display:none">
+          <input type="text" id="waiter_id" name="waiter_id" value="<%= @waiter.id %>">
+          <input type="text" id="money" name="money" value="<%= @money %>">
+        </div>
+    <% end %>
+    <div class="shopDatas">
+      <div class="slLeft">
+        <%= image_tag "bji04680164.jpg", class: 'shopImage' %>
+      </div>
+      <div class="slRight">
+        <p><%= @parallel_shop.title %></p>
+        <span><%= @parallel_shop.address %></span>
+      </div>
+    </div>
+    <div class="smallTilte">
+      <h5>健康产品</h5>
+    </div>
+    <!-- 带有a标签的循环，其他删掉 -->
+    <div style="margin-bottom: 110px;">
+      <% @parallel_shop.sale_products.each do |t| %>
+          <div class="imgcon">
+            <a href="<%= mall_product_path(id: t.product_id, parallel_product_show: true) %>"><%= image_tag t.product.image.url %></a>
+            <input type="text" class="product_id" value="<%= t.product_id %>" disabled style="display: none;">
+            <div class="name"><%= t.product.name %></div>
+            <div class="led_away_category"><%= t.product.category %></div>
+            <div class="price"><%= t.product.now_product_price %></div>
+            <% if @waiter %>
+                <div class="gw_num">
+                  <em class="jian">-</em>
+                  <input type="text" value="0" disabled class="num"/>
+                  <em class="add">+</em>
+                </div>
             <% end %>
-		</div>
-	</div>
-	<div class="total">
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="total">
 
-        <% if @waiter %>
-	        <p class="money">
-				总计：<span id="priceTotal">0.00</span>
-			</p>
-            <a class="settle" id = "clearing" >平行配领</a>
-        <% else %>
-            <!-- <a class="goPay" id="">去结算</a> -->
-        <% end %>
-	</div>
+    <% if @waiter %>
+        <p class="money">
+          总计：<span id="priceTotal">0.00</span>
+        </p>
+        <a class="settle" id="clearing">平行配领</a>
+    <% else %>
+        <!-- <a class="goPay" id="">去结算</a> -->
+    <% end %>
+  </div>
 </div>
 
 
@@ -228,18 +245,18 @@
         var price = parseFloat($(this).parent().siblings('.price').text());
         // var statusC = $(this).parent().siblings('.checkbox').is(':checked');
         // if (statusC) {
-            allPrice += price;
-            $("#priceTotal").text(allPrice.toFixed(2));
+        allPrice += price;
+        $("#priceTotal").text(allPrice.toFixed(2));
         // } else {
         //     return false;
         // }
 
-        if ( allPrice > $("#money").val() ) {
-        	$("#clearing").addClass("active-block");
-        	$("#clearing").text("超出领配额度,请减少所选产品");
-        }else {
-        	$("#clearing").removeClass("active-block");
-        	$("#clearing").text("平行领配");
+        if (allPrice > $("#money").val()) {
+            $("#clearing").addClass("active-block");
+            $("#clearing").text("超出领配额度,请减少所选产品");
+        } else {
+            $("#clearing").removeClass("active-block");
+            $("#clearing").text("平行领配");
 
         }
 
@@ -255,18 +272,18 @@
         var price = parseFloat($(this).parent().siblings('.price').text());
         // var statusC = $(this).parent().siblings('.checkbox').is(':checked');
         // if (statusC) {
-            allPrice -= price;
-            $("#priceTotal").text(allPrice.toFixed(2));
+        allPrice -= price;
+        $("#priceTotal").text(allPrice.toFixed(2));
         // } else {
-            // return false;
+        // return false;
         // }
 
-         if ( allPrice > $("#money").val() ) {
-        	$("#clearing").addClass("active-block");
-        	$("#clearing").text("超出领配额度,请减少所选产品");
-        }else {
-        	$("#clearing").removeClass("active-block");
-        	$("#clearing").text("平行领配");
+        if (allPrice > $("#money").val()) {
+            $("#clearing").addClass("active-block");
+            $("#clearing").text("超出领配额度,请减少所选产品");
+        } else {
+            $("#clearing").removeClass("active-block");
+            $("#clearing").text("平行领配");
         }
 
     });
@@ -283,25 +300,34 @@
     //     $("#priceTotal").text(allPrice.toFixed(2));
     // })
 
-    $("#clearing").click( function () {
+    $("#clearing").click(function () {
         arr = [];
         var waiter_id = $("#waiter_id").val();
         var money = $("#money").val();
         var priceTotal = $("#priceTotal").text();
-    	for (var i = 0; i < $(".num").length; i ++) {
-    		// console.log($(".num")[i].value, $(".product_id")[i].value, $(".price")[i].innerText);
- 			if ($(".num")[i].value > 0) {
- 				arr.push({amount: $(".num")[i].value, product_id: $(".product_id")[i].value, price: $(".price")[i].innerText})
- 			}
-    	}
-    	if ( parseFloat(money) >= parseFloat(priceTotal) ) {
-    		console.log(money, priceTotal);
-	        $.post("/wechat/parallel_shops/collective", { "total": priceTotal, "items": arr, "waiter_id":waiter_id, "money":money},
-	            function(data){
-	            	// 订单生成后，跳转到叫号码页面
-	                location.href = "/wechat/parallel_shops/shopreceive";
-	                console.log(data)
-	            }, "json");
-    	}
+        for (var i = 0; i < $(".num").length; i++) {
+            // console.log($(".num")[i].value, $(".product_id")[i].value, $(".price")[i].innerText);
+            if ($(".num")[i].value > 0) {
+                arr.push({
+                    amount: $(".num")[i].value,
+                    product_id: $(".product_id")[i].value,
+                    price: $(".price")[i].innerText
+                })
+            }
+        }
+        if (parseFloat(money) >= parseFloat(priceTotal)) {
+            console.log(money, priceTotal);
+            $.post("/wechat/parallel_shops/collective", {
+                    "total": priceTotal,
+                    "items": arr,
+                    "waiter_id": waiter_id,
+                    "money": money
+                },
+                function (data) {
+                    // 订单生成后，跳转到叫号码页面
+                    location.href = "/wechat/parallel_shops/shopreceive";
+                    console.log(data)
+                }, "json");
+        }
     })
 </script>
