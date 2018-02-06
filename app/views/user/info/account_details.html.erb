@@ -72,6 +72,11 @@
   .pagination a span {
     color: gray;
   }
+
+  .add-mar-left {
+    margin-left: 28%;
+  }
+
 </style>
 
 <%= title '易积分收支明细' %>
@@ -300,15 +305,15 @@
   <!-- <a class="button-dh" href="<%= user_exchange_path %>">兑换</a> -->
 
 
-  <a class="weui-cell weui-cell_access" href="<%= user_gift_account_path %>">
+  <!-- <a class="weui-cell weui-cell_access" href="<%= user_gift_account_path %>">
     <div class="weui-cell__hd">
       <%= image_tag "account.png", style: "width:30px;margin-right:5px;display:block;" %>
     </div>
     <div class="weui-cell__bd weui-cell_primary">
       <p style="font-size:15px; margin-left:5px;">兑换积分</p>
     </div>
-  </a>
-  <a class="weui-cell weui-cell_access" href="<%= user_gift_friend_path %>">
+  </a> -->
+  <a class="weui-cell weui-cell_access add-mar-left" href="<%= user_gift_friend_path %>">
     <!-- <div class="weui-cell__hd" style="margin:0 auto;height:36px;"> -->
     <%= image_tag "friend.png", style: "width:30px;margin-right:5px;display:inline-block;" %>
     <p style="font-size:15px; margin-left:5px;display: inline-block; ">赠送好友</p>
