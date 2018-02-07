@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207015359) do
+ActiveRecord::Schema.define(version: 20180207135846) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -371,17 +371,6 @@ ActiveRecord::Schema.define(version: 20180207015359) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "user_id"
-  end
-
-  create_table "excels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "company"
-    t.string   "type"
-    t.string   "telphone"
-    t.string   "time"
-    t.string   "info"
-    t.string   "remark"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "exchange_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1265,6 +1254,20 @@ ActiveRecord::Schema.define(version: 20180207015359) do
     t.integer  "community_id"
     t.integer  "maker_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "value_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "contents_category_id"
+    t.string   "image"
+    t.decimal  "price",                              precision: 10, scale: 2
+    t.string   "product_number"
+    t.integer  "inventory"
+    t.string   "spec"
+    t.text     "desc",                 limit: 65535
+    t.boolean  "is_show"
+    t.datetime "create_at",                                                   null: false
+    t.datetime "update_at",                                                   null: false
   end
 
   create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
