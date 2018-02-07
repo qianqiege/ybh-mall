@@ -1,0 +1,2 @@
+class WechatExpressNotice < ApplicationRecord
+end

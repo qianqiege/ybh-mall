@@ -1,4 +1,5 @@
 ActiveAdmin.register WechatSm do
+  menu parent: I18n.t("active_admin.menu.mass_message")
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -36,7 +37,7 @@ ActiveAdmin.register WechatSm do
 
   controller do
     def send_test
-      WechatUser.find_each(batch_size: 1) do |user|
+      WechatUser.find_each(batch_size: 500) do |user|
         sms = WechatSm.find(params[:id])
         data = {
             first: {
@@ -66,7 +67,7 @@ ActiveAdmin.register WechatSm do
         open_id = user.open_id
 
         $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
-
+        sleep(0.5)
         logger.info("========================群发变更通知#{user.id}=====================")
       end
       redirect_to admin_wechat_sms_path
