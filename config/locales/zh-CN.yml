@@ -5,6 +5,7 @@ zh-CN:
     menu:
       mall: '商城管理'
       member_manage: '会员管理'
+      mass_message: '群发消息'
       serve_manage: '服务管理'
       user_manage: '人员管理'
       view_manage: '页面管理'
@@ -478,6 +479,16 @@ zh-CN:
         phone: "电话"
         state: "状态"
         total: "总金额"
+      wechat_sm:
+        name: "标题"
+        template: "模版ID"
+        keyword1: "等级名称"
+        keyword2: "等级变动原因"
+        keyword3: "变动时间"
+      wechat_express_notice:
+        template: "模版ID"
+        location: "服务名" 
+        time: "有效期"
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
@@ -560,4 +571,6 @@ zh-CN:
       celebrate_ratsimp: "庆通分记录"
       contents_category: "商品分类目录"
       sharing_plan: "消费计划"
+      wechat_sm: "积分规则更改通知"
+      wechat_express_notice: "积分快递通知"
 
