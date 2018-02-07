@@ -438,10 +438,12 @@ zh-CN:
       plan:
         user: "用户"
         code: "计划编号"
+        invite_plan_id: "所属上级计划"
         plan_rule_id: "计划规则"
         active: "平行店链接授权"
         is_end: "本轮结束"
         money: "总收益"
+        status: "付款状态"
       sale_product:
         product: "产品"
         parallel_shop: '平行店'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205091944) do
+ActiveRecord::Schema.define(version: 20180207015359) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -765,9 +765,10 @@ ActiveRecord::Schema.define(version: 20180205091944) do
     t.string   "name"
     t.float    "commitment_consumption_amount", limit: 24
     t.float    "start_money",                   limit: 24
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "sharing_plan_id"
+    t.text     "shop_revenue",                  limit: 65535
     t.float    "parallel_shop_revenue",         limit: 24
   end
 
@@ -1004,14 +1005,13 @@ ActiveRecord::Schema.define(version: 20180205091944) do
     t.string   "name"
     t.integer  "invite_count"
     t.string   "plan_type"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.text     "contract",                limit: 65535
-    t.float    "earning_ratio",           limit: 24
-    t.float    "commitment_income_ratio", limit: 24
-    t.float    "link_income_ratio",       limit: 24
-    t.float    "product_ratio",           limit: 24
-    t.text     "instruction",             limit: 65535
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.text     "contract",          limit: 65535
+    t.float    "earning_ratio",     limit: 24
+    t.float    "link_income_ratio", limit: 24
+    t.float    "product_ratio",     limit: 24
+    t.text     "instruction",       limit: 65535
   end
 
   create_table "shop_activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1283,6 +1283,17 @@ ActiveRecord::Schema.define(version: 20180205091944) do
     t.string   "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "wechat_express_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "first"
+    t.string   "content"
+    t.string   "location"
+    t.string   "time"
+    t.text     "remark",     limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "template"
   end
 
   create_table "wechat_sms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
