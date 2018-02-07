@@ -354,4 +354,9 @@ Rails.application.routes.draw do
     get '/perscribe/get_product'
     post '/perscribe/create'
   end
+
+  #保值产品
+  namespace :value_product do 
+    resources :value_products
+  end
 end

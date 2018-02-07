@@ -1,0 +1,2 @@
+module ValueProduct::ValueProductsHelper
+end
