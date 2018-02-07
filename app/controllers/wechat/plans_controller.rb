@@ -10,10 +10,12 @@ class Wechat::PlansController < Wechat::BaseController
 
   def show
     @plan = Plan.find(params[:id])
-    @partners = @plan.partners
     @plan_rule = @plan.plan_rule
-
-    @permit_count = @plan.plan_rule.sharing_plan.invite_count
+    start_money = @plan_rule.start_money
+    earning_ratio = @plan_rule.sharing_plan.earning_ratio
+    @partners = @plan.partners
+    @settlement = start_money * earning_ratio
+    @permit_count = @plan_rule.sharing_plan.invite_count
   end
 
   def new
@@ -41,7 +43,7 @@ class Wechat::PlansController < Wechat::BaseController
   end
 
   def show_invitation_code
-    url = choice_wechat_plan_path(plan_id: params[:format])
+    url = choice_wechat_plan_url(params[:format])
     @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
   end
 

@@ -305,7 +305,7 @@
   <div class="footer-makers-span">
     <span style="font-weight: bold;margin-top: 5px;">总额：<%= @plan.money %></span>
 
-    <% if @plan.money >= @plan_rule.amount_of_promised_income %>
+    <% if @plan.money >= @plan_rule.sharing_plan.earning_ratio %>
         <a class="renew" href="<%= wechat_community_renew_path %>">续约</a>
     <% else %>
         <a class="renew" style="background-color: #bbb;">续约</a>
