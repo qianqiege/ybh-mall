@@ -43,7 +43,7 @@ class Wechat::PlansController < Wechat::BaseController
   end
 
   def show_invitation_code
-    url = choice_wechat_plan_path(params[:format])
+    url = choice_wechat_plan_url(params[:format])
     @qrcode = RQRCode::QRCode.new(url, :size => 8, :level => :h)
   end
 
