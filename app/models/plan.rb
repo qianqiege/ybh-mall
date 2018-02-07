@@ -1,4 +1,6 @@
 class Plan < ApplicationRecord
+  PAYMENT = { 1 => "线下付款", 2 => "微信付款", 3 => "银行卡付款" }
+
   before_save :change_number
   before_create :generate_number
   after_create :plan_active
@@ -6,7 +8,6 @@ class Plan < ApplicationRecord
   belongs_to :user
   has_many :parallel_shops
   has_many :money_details
-
   has_many :partners, class_name: "Plan", foreign_key: "invite_plan_id"
   belongs_to :invite_plan, class_name: "Plan"
   belongs_to :plan_rule
@@ -40,6 +41,10 @@ class Plan < ApplicationRecord
 
   def name
     "#{self.user.name} -- #{self.code}"
+  end
+
+  def pay_ment
+    PAYMENT[self.payment.to_i]
   end
 
   def fast_pay

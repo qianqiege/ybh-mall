@@ -231,10 +231,7 @@
               </li>
               <li>
                 <span style="margin-top: 5px;">支付方式</span>
-                <select name="plan[payment]" class="pay">
-                  <option value="PAYMENT_TYPE_WECHAT">微信</option>
-                  <option value="">线下支付</option>
-                </select>
+                <%= select("plan", "payment", [["微信付款", "2"],["银行卡付款", "3"],["线下支付", "1"]], {include_blank: false}, class: "pay")%>
               </li>
             </ul>
           </div>
