@@ -1,1 +1,78 @@
 <%= title '保值产品' %>
+
+<style type="text/css" media="screen">
+	.active {
+		color: #fff !important;
+		background: #ad0e11 !important;
+	}
+	.borbot {
+    color: #ad0e11 !important;
+    border-bottom: 2px solid #ad0e11 !important;
+  }	
+</style>
+
+<div class="valuePro">
+	<h2 class="yyj_title">保值产品</h2>
+	<div class="pro_tab"><!-- 这里是切换位置 -->
+	    <ul class="fst_tab">
+	        <li class="active">红木家具</li>
+			<li>玉器珠宝</li>
+			<li>名家字画</li>
+			<li>古董藏品</li>
+	    </ul>  	    
+	</div>
+	<div class="pro_show">
+		<ul class="clearfix chanpin">
+			<li>
+				<a href="">
+					<div class="images">
+						<%= image_tag "L-alabo.png", class: "value_img" %>
+					</div>
+					<span>保值产品1</span>
+					<p>100.00元</p>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<div class="images">
+						<%= image_tag "L-alabo.png", class: "value_img" %>
+					</div>
+					<span>保值产品1</span>
+					<p>100.00元</p>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<div class="images">
+						<%= image_tag "L-alabo.png", class: "value_img" %>
+					</div>
+					<span>保值产品1</span>
+					<p>100.00元</p>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<div class="images">
+						<%= image_tag "L-alabo.png", class: "value_img" %>
+					</div>
+					<span>保值产品1</span>
+					<p>100.00元</p>
+				</a>
+			</li>									
+		</ul>		
+	</div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.fst_tab li').each(function(index,el){
+            $(this).click(function(){
+                console.log(index);
+                $(this).addClass('active').siblings().removeClass('active');               
+            })
+ 	    })
+
+    })
+</script>
