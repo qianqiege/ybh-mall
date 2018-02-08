@@ -13,4 +13,5 @@
  *= require wechat/base
  *= require_self
  *= require wechat/plan
+ *= require valueable_product/valueable_products
  */

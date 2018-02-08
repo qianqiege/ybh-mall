@@ -1,0 +1,16 @@
+<ul class="clearfix chanpin">
+	<% @valueable_products.each do |product| %>
+	 	<li>
+			<a href="">
+				<div class="images">
+					<%= image_tag "L-alabo.png", class: "value_img" %>
+				</div>
+				<span><%= product.name %></span>
+				<p>
+					<span> <%= product.price %> </span>
+		 			<span> 元 </span>
+				</p>
+			</a>
+		</li>
+	<% end%>									
+</ul>
