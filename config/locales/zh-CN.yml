@@ -491,6 +491,16 @@ zh-CN:
         template: "模版ID"
         location: "服务名" 
         time: "有效期"
+      valueable_product: 
+        name: "商品"
+        image: "商品图片"
+        price: "价格"
+        product_number: "产品编号"
+        inventory: "库存"
+        spec: "规格"
+        desc: "描述"
+        is_show: "是否展示"
+        contents_category: "所属分类"
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
