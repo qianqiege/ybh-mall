@@ -3,7 +3,7 @@
 	 	<li>
 			<a href="">
 				<div class="images">
-					<%= image_tag "L-alabo.png", class: "value_img" %>
+					<%= image_tag(product.image_url(:product_icon), class: "value_img", alt: "产品图片") %>
 				</div>
 				<span><%= product.name %></span>
 				<p>

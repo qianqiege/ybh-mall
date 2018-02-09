@@ -4,16 +4,16 @@ ActiveAdmin.register ValueableProduct do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
 	permit_params :name, 
-							:contents_category_id, 
-							:image,
-							:price,
-							:product_number,
-							:inventory,
-							:spec,
-							:desc,
-							:is_show,
-							:create_at,
-							:update_at
+				:contents_category_id, 
+				:image,
+				:price,
+				:product_number,
+				:inventory,
+				:spec,
+				:desc,
+				:is_show,
+				:create_at,
+				:update_at
 
 #
 # or
@@ -27,11 +27,11 @@ ActiveAdmin.register ValueableProduct do
 
 		selectable_column
 		id_column
-		column "商品图片" do |slide|
-      # image_tag(slide.image, size: "72x45", :alt => "product image")
-    end
 		column :name
-		column :contents_category_id 
+		column :contents_category_id
+		column "商品图片" do |image|
+		  image_tag(image.image_url, size: "72x45", :alt => "product image")
+		end 
 		column :price
 		column :product_number
 		column :inventory
