@@ -124,7 +124,7 @@ module Sdk
       sign_params(options)
     end
 
-    # 生成消费计划付款交易支付参数
+    # 生成平行系统计划付款交易支付参数
     # PAYMENT_TYPE_WECHAT
     # PAYMENT_TYPE_YJ
     def trade_merge_pay_params_plan(pay_type = "PAYMENT_TYPE_YJ")
@@ -136,7 +136,7 @@ module Sdk
         sellerUserId: @partner_id,
         tradeAmount: @order.price.to_f,
         currency: "CNY",
-        goodsName: "消费计划"
+        goodsName: "平行系统计划"
       }]
 
       options = {
