@@ -356,7 +356,9 @@ Rails.application.routes.draw do
   end
 
   #保值产品
-  namespace :value_product do 
-    resources :value_products
+  namespace :valueable_product do 
+    resources :valueable_products do 
+      get 'classified', on: :collection
+    end
   end
 end

@@ -1,0 +1,2 @@
+module ValueableProduct::ValueableProductsHelper
+end
