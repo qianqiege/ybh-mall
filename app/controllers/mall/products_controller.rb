@@ -9,7 +9,7 @@ class Mall::ProductsController < Mall::BaseController
   end
 
   def classified
-    @products = Product.where(contents_category_id: params[:id])
+    @products = Product.where(contents_category_id: params[:id], display: true, is_test: false).order("priority DESC, id DESC")
     render partial: '/mall/home/product_classified'
   end
 
