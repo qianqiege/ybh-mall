@@ -19,10 +19,10 @@ weixin:
           url: "http://ybhm.ybyt.cc/wechat"
     - name: "御易健商城"
       url: "http://ybhm.ybyt.cc/mall"
-#      sub_button:
-#        - type: "view"
-#          name: "商城"
-#          url: "http://ybhm.ybyt.cc/mall"
+      sub_button:
+        - type: "view"
+          name: "商城"
+          url: "http://ybhm.ybyt.cc/mall"
     - name: "我的"
       sub_button:
         - type: "view"
