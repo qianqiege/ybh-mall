@@ -64,7 +64,7 @@ class PresentedRecord < ApplicationRecord
           @wallet.exchange = @wallet.exchange - @number
         end
       else
-        @wallet.exchange + self.number
+        @wallet.exchange = @wallet.exchange + self.number
       end
     end
     @wallet.save

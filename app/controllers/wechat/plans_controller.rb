@@ -1,5 +1,5 @@
 class Wechat::PlansController < Wechat::BaseController
-  #消费计划
+  #平行系统计划
   def index
     @sharing_plan_types = SharingPlan.all #所有计划
     @plan_records_all = Plan.where(user_id: current_user.user_id) #当前用户的所有计划

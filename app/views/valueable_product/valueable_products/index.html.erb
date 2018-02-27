@@ -1,0 +1,72 @@
+<%= title '保值产品' %>
+
+<style type="text/css" media="screen">
+	.active {
+		color: #fff !important;
+		background: #ad0e11 !important;
+	}
+	.borbot {
+    color: #ad0e11 !important;
+    border-bottom: 2px solid #ad0e11 !important;
+  }	
+  .img-bg img {
+	width: 100%;
+	height: 100%;
+  }
+  .ad-heard img{
+  	width: 100%;
+  	height: 200px;
+  }
+</style>
+<div class="ad-heard">
+	<%= image_tag "bji03130039.jpg" %>
+</div>
+<div class="valuePro">
+	<h2 class="yyj_title">保值产品</h2>
+	<div class="pro_tab"><!-- 这里是切换位置 -->
+	    <ul class="fst_tab">
+<!-- 	        <li class="active">红木家具</li>
+			<li>玉器珠宝</li>
+			<li>名家字画</li>
+			<li>古董藏品</li> -->
+			<% @categories.each do |category| %>
+			 	<li data-category="<%= category.id %>"> <%= category.name %></li>
+			<% end%>
+	    </ul>  	    
+	</div>
+	<div class="pro_show" id="valueable-pro">
+		<ul class="clearfix chanpin">
+			<% @valueable_products.each do |product| %>
+			 	<li>
+					<a href="">
+						<div class="images">
+							<%= image_tag(product.image_url(:product_icon), class: "value_img", alt: "产品图片") %>
+						</div>
+						<span><%= product.name %></span>
+						<p>
+							<span> <%= product.price %> </span>
+				 			<span> 元 </span>
+						</p>
+					</a>
+				</li>
+			<% end%>									
+		</ul>		
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        $('.fst_tab li').each(function(index,el){
+            $(this).click(function(){
+                console.log(index);
+                $(this).addClass('active').siblings().removeClass('active');
+
+                $.get("/valueable_product/valueable_products/classified?id=" + $(this).data("category"), function(data) {
+                	$("#valueable-pro").html(data)
+                })              
+            })
+ 	    })
+
+    })
+</script>
