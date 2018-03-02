@@ -9,7 +9,7 @@ ul {
     list-style:none
 }
 .page, body {
-    background-color:#f8f8f8;
+    background-color:#eee;
 }
 .link {
     color:#1aad19
@@ -171,4 +171,88 @@ ul {
 }
 .clearfix {
   zoom: 1;
+}
+
+/*-----------------左图右文列表-------------------------*/
+.yyj-list-item {
+  background: #e6e8f8;
+  /*border-top: 1px solid #eee;*/
+  padding: 5px 10px;
+  margin: 2% 1% 2%;
+  border-radius: 5px;
+}
+
+.yyj-list-item-Tag {
+  display: flex;
+  margin: 1% 0;
+  color: #ad0e11;
+}
+//
+//.yyj-list-item-Tag h4 {
+//  display: inline-block;
+//  /*width:20%;*/
+//  background: #ad0e11;
+//  text-align: center;
+//  color: #fff;
+//  padding: 0 5%;
+//}
+
+.yyj-list-item-Tag a {
+  flex: 1;
+  text-align: right;
+  font-size: 12px;
+}
+.yyj-list-item ul {
+  border-top: 1px solid #cba3d2;
+}
+
+.yyj-list-item ul li {
+  display: flex;
+  border-bottom: 1px solid #cba3d2;
+  padding-top: 6px;
+}
+
+.yyj-list-item ul li .slLeft, .yyj-list-item ul li .slRight {
+  display: inline-block;
+}
+
+.yyj-list-item ul li .slLeft {
+  width: 30%;
+}
+
+.yyj-list-item ul li .slLeft img {
+  width: 100%;
+}
+
+.yyj-list-item ul li .slRight {
+  width: 70%;
+}
+
+.yyj-list-item ul li .slRight h5 {
+
+  margin: 2% 0 0 4%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.yyj-list-item ul li .slRight span {
+  display: inline-block;
+  width: 98%;
+  font-size: 12px;
+  margin: 4% 0 0 4%;
+  color: #666;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.yyj-list-item a {
+  text-decoration: none;
+  out-line: none;
+  color: #222;
+}
+
+.yyj-list-item a:active {
+  color: #222;
 }
