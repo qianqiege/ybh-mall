@@ -1,121 +1,113 @@
-
 <style>
 
 
+  a {
+    text-decoration: none;
+    out-line: none;
+    color: #000;
+    font-family: '微软雅黑';
+  }
 
-a {
-	text-decoration:none;
-	out-line: none;
-	color: #000;
-	font-family: '微软雅黑';
-}
+  .topImage {
+    width: 100%;
+  }
 
-.topImage {
-	width:100%;
-}
+  .module-title {
+    margin: 0;
+  }
 
-.module-title {
-	margin:0;
-}
-
-.block-li {
+  .block-li {
     display: flex;
-    padding:2% 0;
-}
+    padding: 2% 0;
+  }
 
-.block-li li {
-    flex:1;
+  .block-li li {
+    flex: 1;
     text-align: center;
-}
+  }
 
-.block-li li p {
+  .block-li li p {
     font-size: 14px;
-}
+  }
 
-.shopHeader {
-    height:40px;
+  .shopHeader {
+    height: 40px;
     display: flex;
     background: #ad0e11;
-}
+  }
 
-.shopHeader input {
-    flex:1;
+  .shopHeader input {
+    flex: 1;
     margin-left: 4%;
-    height:26px;
+    height: 26px;
     margin-top: 5px;
     padding-left: 3%;
-    border:0;
-    border:1px solid #fff;
+    border: 0;
+    border: 1px solid #fff;
     border-radius: 5px;
     --webkit-appearance: none;
 
-}
+  }
 
-.shopHeader a {
+  .shopHeader a {
     display: inline-block;
-    padding:0 2%;
-    margin:0 4% 0 1%;
-    height:26px;
+    padding: 0 2%;
+    margin: 0 4% 0 1%;
+    height: 26px;
     line-height: 26px;
     margin-top: 6px;
-    border:0;
+    border: 0;
     color: #fff;
     background: transparent;
     font-size: 14px;
-}
+  }
 
-.shopTag {
+  .shopTag {
     display: flex;
-    padding:1% 5% 1% 2%;
+    padding: 1% 5% 1% 2%;
     /*margin:1% 0;*/
     background: #fff;
     border-bottom: 1px solid #eee;
-}
+  }
 
-.shopTag span {
+  .shopTag span {
     display: inline-block;
     /*width:20%;*/
     background: #ad0e11;
     text-align: center;
     color: #fff;
     padding: 0 5%;
-}
-
-.shopTag a {
-    flex:1;
-    text-align: right;
-    font-size: 12px;
-}
-
-.shopTag a:active {
-    color: #000;
-}
-
-h5 {
-    color: #ad0e11;
-    font-size: 14px;
   }
 
+  .shopTag a {
+    flex: 1;
+    text-align: right;
+    font-size: 12px;
+  }
+
+  .shopTag a:active {
+    color: #000;
+  }
 </style>
 
 <%= title '平行店' %>
 
 <% if flash[:notice] %>
-  <div class="notice"><%=flash[:notice]%></div>
+    <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
 
 <div style="background: #fff;">
-    <div class="shopHeader">
-        <input type="text" name="" placeholder="搜索">
-        <a href="<%= wechat_parallel_shops_shopindex_path %>">平行店版</a>
-    </div>
-	<div class="home">
-		<!-- <a href="<%= wechat_parallel_shops_instructions_path %>"><%= image_tag "pingxingdian.jpg", class:'topImage' %></a> -->
-        <%= render 'shared/slide' %>
-	</div>
-	<!-- 轮播↑ -->
-    <!-- <div style="background: #fff;padding-bottom: 10px;">
+  <div class="shopHeader">
+    <input type="text" name="" placeholder="搜索">
+    <a href="<%= wechat_parallel_shops_shopindex_path %>">平行店版</a>
+  </div>
+  <div class="home">
+    <!-- <a href="<%= wechat_parallel_shops_instructions_path %>"><%= image_tag "pingxingdian.jpg", class: 'topImage' %></a> -->
+    <%= render 'shared/slide' %>
+  </div>
+  <!-- 轮播↑ -->
+  <!-- <div style="background: #fff;padding-bottom: 10px;">
         <ul class="block-li">
             <li>
                 <a href="<%= wechat_community_index_path %>"><%= image_tag "共同体.png", size: "50x50" %></a>
@@ -123,7 +115,7 @@ h5 {
             </li>
 
             <li>
-                <a href="<%=  wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
+                <a href="<%= wechat_makers_plan_path %>"><%= image_tag "创客.png", size: "50x50" %></a>
                 <p class="fontSizes">创客计划</p>
             </li>
             <li>
@@ -132,74 +124,75 @@ h5 {
             </li>
         </ul>
     </div> -->
-	<div class="wraper graybg">
-  <div class='user-center'>
-    <div class='my-info'>
+  <div class="yyj-title yyj-title-h4">
+    <h4>我的订单</h4>
+  </div>
+  <div class="wraper graybg">
+    <div class='user-center'>
+      <div class='my-info'>
 
-        <div class="shopTag" style="margin-top: 5%;">
-            <h5 style="padding-left: 15px;font-family: '微软雅黑'">我的订单</h5>
-            <a href="">全部订单 》</a>
-        </div>
-    </div>
 
-    <div class="order-item">
-      <ul class='flex'>
-        <li class="flex-item5">
-          <a href="<%= wechat_parallel_shops_customer_collective_path %>">
-            <i class="ico-status waitPay">
-            </i>
-            待领配
-          </a>
-        </li>
-        <li class="flex-item5">
-          <a href="<%= wechat_parallel_shops_customer_collectived_path %>">
-            <i class="ico-status waitSend">
-            </i>
-            已领配
-          </a>
-        </li>
-<!--         <li class="flex-item5">
+      </div>
+
+      <div class="order-item">
+        <ul class='flex'>
+          <li class="flex-item5">
+            <a href="<%= wechat_parallel_shops_customer_collective_path %>">
+              <i class="ico-status waitPay">
+              </i>
+              待领配
+            </a>
+          </li>
+          <li class="flex-item5">
+            <a href="<%= wechat_parallel_shops_customer_collectived_path %>">
+              <i class="ico-status waitSend">
+              </i>
+              已领配
+            </a>
+          </li>
+          <!--         <li class="flex-item5">
           <a href="<%= mall_orders_path %>">
             <i class="ico-status allOrders">
             </i>
             待评价
           </a>
         </li> -->
-        <li class="flex-item5">
-          <a href="<%= mall_orders_path %>">
-            <i class="ico-status returns">
-            </i>
-            退换货
-          </a>
-        </li>
-      </ul>
+          <li class="flex-item5">
+            <a href="<%= mall_orders_path %>">
+              <i class="ico-status returns">
+              </i>
+              退换货
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
 
-
-	<!-- 列表↓ -->
-	<div class="shopList">
-        <div class="shopTag">
-            <h5 style="padding-left: 15px;">推荐平行店</h5>
-            <a href="">更多 》</a>
-        </div>
-		<ul>
-            <% ParallelShop.where(status: "dealed").each do |t| %>
-                <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
-                    <li>
-                        <div class="slLeft">
-                            <!-- <%= image_tag t.image.url, class:'shopImage' %> -->
-                            <%= image_tag "raw_1512721018.jpg", class:'shopImage' %>
-                        </div>
-                        <div class="slRight">
-                            <p><%= t.title %></p>
-                            <span><%= t.address %></span>
-                        </div>
-                    </li>
-                </a>
-            <% end %>
-		</ul>
-	</div>
+  <!-- 列表↓ -->
+  <div class="yyj-title yyj-title-h4">
+    <h4>推荐平行店</h4>
+  </div>
+  <div class="yyj-list-item">
+    <ul>
+      <% ParallelShop.where(status: "dealed").each do |t| %>
+          <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
+            <li>
+              <div class="slLeft">
+                <!-- <%= image_tag t.image.url, class: 'shopImage' %> -->
+                <%= image_tag "raw_1512721018.jpg", class: 'shopImage' %>
+              </div>
+              <div class="slRight">
+                <h5><%= t.title %></h5>
+                <span>
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKSSURBVDhPrZPrT5JRHMd50Zb9U7lewItm06ZubrVavXLLVl7K0pnTEq8giok1EzVTSJdaAoooaNMexNtDbprGTZ1o2gQcNxO+nXPkwZxv+23fnbM95/s5v8t5RP+G2uxKadZvqKo0/F5JuzVW1DqD4jccytULEUNu4apVIvF/E4v9c2Jxqzk1NSVhO40Wo+t6WactWqX9jj7bPozuKHrmQ6j9coDBQinst24jUF3NtJKTE6KQhFUkUo557tKbKvvdUE0foWUygOldoHMuhCZTAFx6BjPas7Nhz8pCQCoFJ5H4mFk2u3nlebstXtnvQpctxIzm7Thbh9eOMUH2XNoNHNXUnAKI6J4Ti4MMUDfkmChVL6Pe4IPWHkEHF4RszI9R9wmDUHFFJdguKEC4sZFpOz8fpju5vxmgrGsp+mrAwwCCGkZ97HYB8NXCY+5mJkJyOYIyGawZmVDUfTpmgKdvOdSO7DOjjBj7lsMwemJJM1XfcgTj9x/DmfcQjgd5MN57BOpjADqqhtFDtE4dQW0NnjNSTXmBZtJUpWYds2npTErND1AfAzwj8349eYiJrThGfv65ABhcPU6W1iX/zFQzcoBiIQOplt/tnNlD71IEg6RuWrswBSoNSV8ACHpJxl3Ww4cZoEm/rqz+aIdlJ548oCLlmLbO+jC+GUP/SpR9qyMq6VhE/bBTxwBmMy5VvF8Mds/uQGHyJyFUNCMBQkUfVYXWQQDzMb0+fpkBaLRZXNdK31ljCsP5cRqcZ2+BSqHzsH9DafRmJ6xn0TbmvPqieyFM06sccEPLB2HxxmF0RdFr+wWphkd592KoSb+VlbBcDJpW/ZBDV/GB95GMTp6oZkBX0mivUrchp+Umjv6vEIn+Ato5fLSauRIIAAAAAElFTkSuQmCC">
+                  <%= t.address %>
+                </span>
+              </div>
+            </li>
+          </a>
+      <% end %>
+    </ul>
+  </div>
 </div>
