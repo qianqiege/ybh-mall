@@ -96,9 +96,8 @@ class ShopOrder < ApplicationRecord
     # 营业员扫码确认后， 状态为 已配领("finished")
     # 这里的状态需要确认是什么状态才会触发分成
     if status == 'finished'
-      plan = parallel_shop.plan
-
-      ratio = PlanRule.find_by(plan_type: plan.plan_type).earning_ratio
+      plan = self.parallel_shop.plan
+      ratio = SharingPlan.find_by(earning_ratio: plan.plan_rule.sharing_plan.earning_ratio).link_income_ratio
       # 给店铺链接人分钱
       unless plan.invite_plan_id.nil?
         MoneyDetail.create(
