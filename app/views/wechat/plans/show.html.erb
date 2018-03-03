@@ -243,7 +243,7 @@
   <div class="authd">
     <span class="auth">平行店授权</span>
     <button class="<%= @plan.active? ? 'btn2' : 'btn1' %>" disabled><%= @plan.active? ? '已授权' : '待授权' %></button>
-    <span class="worry"><%= @plan.invite_plan ? '管理指导费：0' : '管理指导费：'+(@plan.money/9.0).to_s %></span>
+    <span class="worry"><%= !@plan.invite_plan ? '管理指导费：0' : '管理指导费：'+(@plan.money/9.0).to_s %></span>
   </div>
   <div>
     <ul class="block-li">
@@ -283,7 +283,7 @@
                 <p><%= shop.title %></p>
                 <p><%= shop.display_detail %></p>
                 <p class="money">
-                  <span>分润额：0</span>
+                  <span>分润额：<%= @shop_divide %></span>
                   <% if shop.status == "waiting" %>
                       <span class="d-shen d-active-w">待处理</span>
                   <% elsif shop.status == "dealed" %>

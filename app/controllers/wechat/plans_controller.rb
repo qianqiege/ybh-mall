@@ -16,6 +16,7 @@ class Wechat::PlansController < Wechat::BaseController
     @partners = @plan.partners
     @settlement = start_money * earning_ratio
     @permit_count = @plan_rule.sharing_plan.invite_count
+    @shop_divide = MoneyDetail.where(plan_id: params[:id]).sum("money")
   end
 
   def new
