@@ -233,12 +233,12 @@
 
       <% if !@integral.nil? && product_id_ybz != 1 && product_id_ybz != 43 && product_id_ybz != 38 && product_id_ybz != 50 %>
         <div class="weui-cells">
-          <div class="weui-cell">
-            <div class="weui-cell__hd"><label for="" class="weui-label">易积分数量</label></div>
-            <div class="weui-cell__bd">
-              <%= number_field_tag 'integral_available', '', class: "weui-input", placeholder: "可用#{money @integral.exchange + @integral.not_exchange}易积分", data: { size: money(@integral.exchange + @integral.not_exchange) } %>
-            </div>
-          </div>
+          <!--<div class="weui-cell">-->
+            <!--<div class="weui-cell__hd"><label for="" class="weui-label">易积分数量</label></div>-->
+            <!--<div class="weui-cell__bd">-->
+              <!--<%= number_field_tag 'integral_available', '', class: "weui-input", placeholder: "可用#{money @integral.exchange + @integral.not_exchange}易积分", data: { size: money(@integral.exchange + @integral.not_exchange) } %>-->
+            <!--</div>-->
+          <!--</div>-->
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">现金余额</label></div>
             <div class="weui-cell__bd">
