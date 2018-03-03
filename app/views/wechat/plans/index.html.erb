@@ -189,11 +189,10 @@
     <ul>
       <% @sharing_plan_types.each do |t| %>
           <li class="<%= t.plan_type.in?(@user_plans_type) ? 'active-li' : '' %>">
-            <%= link_to new_wechat_plan_path(id: t) do %>
-                <span><%= t.name %></span>
-                <span><%= t.plan_type %></span>
+            <%= link_to_if !t.plan_type.in?(@user_plans_type), t.name+t.plan_type, new_wechat_plan_path(id: t) do %>
+                <%= t.name %>
+                <%= t.plan_type %>
             <% end %>
-            </a>
           </li>
       <% end %>
     </ul>
