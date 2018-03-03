@@ -29,7 +29,7 @@ class Wechat::PlansController < Wechat::BaseController
     @plan = Plan.new(set_plan)
     if @plan.save
       logger.info("==================保存成功=========================")
-      if params[:plan][:payment] == "1"
+      if params[:plan][:payment] == "1" || params[:plan][:plan_rule_id] == "1"
         logger.info("==================线下付款=========================")
         redirect_to action: :index
       else
