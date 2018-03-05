@@ -361,34 +361,3 @@ body {
   left: 15px;
   background: #eee;
 }
-
-.yyj-tab-btn {
-  background: #f8f8f8;
-  margin: 2% 1% 2%;
-  padding: 16px 0px;
-  border-radius: 5px;
-}
-.yyj-tab-btn-li {
-  display: block;
-  /*text-align: center;*/
-  //padding-top: 15px;
-}
-
-.yyj-tab-btn-li li {
-  width: 23%;
-  text-align: center;
-  display: inline-block;
-  overflow: hidden;
-}
-
-.yyj-tab-btn-li li:first-child {
-  margin-left: 1%;
-}
-
-.yyj-tab-btn-li li:nth-child(5) {
-  margin-left: 1%;
-}
-
-.yyj_text {
-  font-size: 14px;
-}

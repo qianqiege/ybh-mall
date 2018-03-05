@@ -1,3 +1,8 @@
+$yyjBackground: #eee;
+$yyjRed: #ad0e11;
+$yyjDisable: #999;
+
+
 body, html {
     height:100%;
     -webkit-tap-highlight-color:transparent
@@ -9,7 +14,7 @@ ul {
     list-style:none
 }
 .page, body {
-    background-color:#eee;
+    background-color: $yyjBackground;
 }
 .link {
     color:#1aad19
@@ -64,11 +69,6 @@ ul {
     text-align:left;
     font-size:14px
 }
-
-
-
-
-
 //御易健样式整理
 
 //input样式
@@ -103,8 +103,81 @@ ul {
 
 
 //统一实心填充按钮或块背景颜色
-.yyj_btn {
-    background: #ad0e11!important;
+//button
+.yyj-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  //border-radius: 4px;
+}
+//color
+.yyj-btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.yyj-btn-primary {
+  color: #fff;
+  background-color: $yyjRed;
+  border-color: $yyjRed;
+}
+.yyj-btn-disable {
+  color: #fff;
+  background-color: $yyjDisable;
+  border-color: $yyjDisable;
+}
+
+//shape
+.yyj-btn-tg-lg {
+  width: 100%;
+  padding: 10px 0px;
+  font-size: 16px;
+  line-height: 1.3333333;
+}
+.yyj-btn-tg-sm {
+  width: 50%;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.yyj-btn-tg-xs {
+  width: 25%;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.yyj-btn-ls-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+.yyj-btn-ls-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.yyj-btn-ls-xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
 }
 
 //统一带边框块基本样式
@@ -125,7 +198,7 @@ ul {
 //统一标题样式
 .yyj_title {
     font-weight: normal;
-    color:#ad0e11;
+    color: $yyjRed;
     text-align: center;
     font-size: 20px!important;
 }
@@ -136,7 +209,7 @@ ul {
 .yyj-title-h4 {
   display: flex;
   margin: 0 1%;
-  color: #ad0e11;
+  color: $yyjRed;
 }
 .yyj-title-h4 a {
   flex: 1;
@@ -154,7 +227,7 @@ ul {
 //统一iOS自带样式提交小按钮
 .yyj_commit {
     -webkit-appearance: none;
-    background: #ad0e11!important;
+    background: $yyjRed!important;
     border:0;
 }
 
@@ -201,6 +274,17 @@ ul {
   padding: 0px 10px;
   margin: 0% 1% 2%;
   border-radius: 5px;
+}
+
+
+.yyj-list-item a {
+  text-decoration: none;
+  out-line: none;
+  color: #222;
+}
+
+.yyj-list-item a:active {
+  color: #222;
 }
 
 .yyj-list-item ul {
@@ -252,13 +336,42 @@ ul {
   }
 }
 
-
-.yyj-list-item a {
-  text-decoration: none;
-  out-line: none;
-  color: #222;
+//tab-btn
+.yyj-tab-btn {
+  background: #f8f8f8;
+  margin: 2% 1% 2%;
+  padding: 16px 0px;
+  border-radius: 5px;
+}
+.yyj-tab-btn-li {
+  display: block;
+  /*text-align: center;*/
+  //padding-top: 15px;
+}
+.yyj-tab-btn-li li {
+  width: 23%;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+}
+.yyj-tab-btn-li li:first-child {
+  margin-left: 1%;
+}
+.yyj-tab-btn-li li:nth-child(5) {
+  margin-left: 1%;
+}
+.yyj-tab-btn-tw-li li {
+  width: 46%;
+}
+.yyj-tab-btn-th-li li {
+  width: 31%;
+}
+.yyj-tab-btn-fi-li li {
+  width: 18%;
 }
 
-.yyj-list-item a:active {
-  color: #222;
+
+
+.yyj_text {
+  font-size: 14px;
 }

@@ -8,19 +8,6 @@
     font-weight: normal;
   }
 
-  a {
-    color: #000;
-    font-size: 0.8rem;
-  }
-
-  a:link {
-    color: #fff;
-  }
-
-  a:active {
-    color: #fff;
-  }
-
   .tdwith {
     width: 10%;
     height: 114px;
@@ -312,13 +299,15 @@
     <% end %>
   </div>
   <% if @partners.count >= @permit_count %>
-      <div class="footer-makers-button" style="background-color: #bbb;">
-        <a>邀请伙伴</a>
+      <div class="yyj-btn yyj-btn-disable yyj-btn-tg-lg">
+        邀请伙伴
       </div>
   <% else %>
-      <div class="footer-makers-button">
-        <a href="<%= show_invitation_code_wechat_plans_path(@plan) %>">邀请伙伴</a>
-      </div>
+      <a href="<%= show_invitation_code_wechat_plans_path(@plan) %>">
+        <div class="yyj-btn yyj-btn-primary yyj-btn-tg-lg">
+          邀请伙伴
+        </div>
+      </a>
   <% end %>
 
 </div>
