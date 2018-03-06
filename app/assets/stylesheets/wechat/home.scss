@@ -80,25 +80,25 @@
   }
 }
 
-.rname{
+.rname {
   display: inline-block;
   margin-left: 0px;
 }
 
 .weui-media-box__desc {
-    font-family:'microsoft Yahei';
-    color: black;
-    font-size: 15px;
-    line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
+  font-family: 'microsoft Yahei';
+  color: black;
+  font-size: 15px;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
 
-.weui-media-box__title{
-  font-family:'microsoft Yahei';
+.weui-media-box__title {
+  font-family: 'microsoft Yahei';
   font-size: 20px;
   color: black;
 }
@@ -107,31 +107,30 @@ body {
   font-family: microsoft Yahei;
 }
 
-
 .label {
-    display: inline;
-    padding: .2em .6em .3em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }
 
-.img{
+.img {
   display: inline-block;
   float: left;
 }
 
-.zdiv{
+.zdiv {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.wechat_home_image{
+.wechat_home_image {
   width: 100%;
   height: 100%;
 }
@@ -221,7 +220,7 @@ body {
   }
 }
 
-.video{
+.video {
   width: 100%;
   margin-top: 20px;
   background-image: image-url("ybyt.png");
@@ -258,59 +257,107 @@ body {
   background-size: 100%;
 }
 
-
-
 /*----------------------活动页面---------------------------*/
 
 .activityContent {
-    width: 100%;
-    height: 100%;
-    background-image: image-url("hd_bg2.jpg");
-    background-size: 100%;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: image-url("hd_bg2.jpg");
+  background-size: 100%;
+  position: relative;
 }
 
 
-/*-----------------首页平行店-------------------------*/
-.shopList {
-   margin-top: 5%;
-   /*border-top: 1px solid #eee;*/
-   padding-top: 5px;
+
+.huiyuan {
+  width: 92%;
+  margin: 0 auto;
+  display: flex;
 }
 
-.shopList ul {
-    border-top: 1px solid #eee;
+.huiyuan div {
+  width: 26%;
+  height: 40px;
+  background: #DCDCDC;
+  flex: 1;
+  margin-right: 2%;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 10px 35px;
 }
 
-.shopList ul li {
-    display: flex;
-    border-bottom:1px solid #eee;
+.img_width {
+  width: 100%;
 }
 
-.shopList ul li .slLeft,.shopList ul li .slRight {
-    display: inline-block;
+.fontSizes {
+  font-size: 0.8rem;
 }
 
-.shopList ul li .slLeft {
-    width: 30%;
-    padding:2%;
+.healthDiv {
+  width: 100%;
+  /* border-top: 1px solid #eee;*/
+  border-bottom: 1px solid #eee;
+  padding-top: 8px;
 }
 
-.shopList ul li .slRight {
-    flex:1;
+.healthDiv h5 {
+  padding: 0 10px 8px 20px;
+  border-bottom: 1px solid #eee;
 }
 
-.shopList ul li .slLeft img {
-    width: 100%;
+.healthKuai {
+  display: flex;
+  padding: 8px 0;
 }
 
-.shopList ul li .slRight p {
-    font-size: 16px;
-    margin: 6% 0 0 4%;
+.healthKuai a {
+  display: inline-block;
+  flex: 1;
+  display: flex;
 }
 
-.shopList ul li .slRight span {
-    font-size: 12px;
-    margin: 4% 0 0 4%;
-    color: #666;
+.healthKuai a:first-child {
+  border-right: 1px solid #eee;
+}
+
+.healthKuai a img {
+  width: 45px;
+  margin-right: 10%;
+
+}
+
+.healthKuai a span {
+  display: inline-block;
+  flex: 1;
+  text-align: center;
+  color: #666;
+}
+
+.tongzhi {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 4%;
+  background: #eee;
+  border-radius: 15px;
+  margin-top: 2%;
+  text-align: center;
+  position: relative;
+}
+
+.tongzhi a {
+  display: inline-block;
+  height: 100%;
+  color: #ad0e11;
+  font-size: 1rem;
+  background: #eee;
+}
+
+.tongzhi img {
+  display: inline-block;
+  position: absolute;
+  top: 6px;
+  left: 15px;
+  background: #eee;
 }

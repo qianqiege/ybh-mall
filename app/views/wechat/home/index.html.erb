@@ -1,164 +1,6 @@
-<style>
-  .huiyuan {
-    width: 92%;
-    margin: 0 auto;
-    display: flex;
-  }
-
-  .huiyuan div {
-    width: 26%;
-    height: 40px;
-    background: #DCDCDC;
-    flex: 1;
-    margin-right: 2%;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 10px 35px;
-  }
-
-  .img_width {
-    width: 100%;
-  }
-
-  .fontSizes {
-    font-size: 0.8rem;
-  }
-
-  .healthDiv {
-    width: 100%;
-    /* border-top: 1px solid #eee;*/
-    border-bottom: 1px solid #eee;
-    padding-top: 8px;
-  }
-
-  .healthDiv h5 {
-    padding: 0 10px 8px 20px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .healthKuai {
-    display: flex;
-    padding: 8px 0;
-  }
-
-  .healthKuai a {
-    display: inline-block;
-    flex: 1;
-    display: flex;
-  }
-
-  .healthKuai a:first-child {
-    border-right: 1px solid #eee;
-  }
-
-  .healthKuai a img {
-    width: 45px;
-    margin-right: 10%;
-
-  }
-
-  .healthKuai a span {
-    display: inline-block;
-    flex: 1;
-    text-align: center;
-    color: #666;
-  }
-
-  .tongzhi {
-    width: 90%;
-    margin: 0 auto;
-    overflow: hidden;
-    height: 4%;
-    background: #eee;
-    border-radius: 15px;
-    margin-top: 2%;
-    text-align: center;
-    position: relative;
-  }
-
-  .tongzhi a {
-    display: inline-block;
-    height: 100%;
-    color: #ad0e11;
-    font-size: 1rem;
-    background: #eee;
-  }
-
-  .tongzhi img {
-    display: inline-block;
-    position: absolute;
-    top: 6px;
-    left: 15px;
-    background: #eee;
-  }
-
-  a {
-    text-decoration: none;
-    out-line: none;
-    color: #000;
-  }
-
-  a:active {
-    color: #000;
-  }
-
-  .shopTag {
-    display: flex;
-    padding: 0 5% 0 2%;
-    margin: 1% 0;
-  }
-
-  .shopTag span {
-    display: inline-block;
-    /*width:20%;*/
-    background: #ad0e11;
-    text-align: center;
-    color: #fff;
-    padding: 0 5%;
-  }
-
-  .shopTag a {
-    flex: 1;
-    text-align: right;
-    font-size: 12px;
-  }
-
-  .block-li {
-    display: block;
-    /*text-align: center;*/
-    margin-top: 20px;
-  }
-
-  .block-li li {
-    width: 22%;
-    height: 95px;
-    text-align: center;
-    display: inline-block;
-    overflow: hidden;
-  }
-
-  .block-li li:first-child {
-    margin-left: 3%;
-  }
-
-  .block-li li:nth-child(5) {
-    margin-left: 3%;
-  }
-
-  h5 {
-    color: #ad0e11;
-  }
-
-  .yyj_text {
-    font-size: 14px;
-  }
-
-</style>
-
 <%= title '御易健' %>
 
-
-<div style="height:100%;overflow-y: auto;background: #fff;">
+<div style="height:100%;overflow-y: auto;">
   <% if flash[:notice] %>
       <div class="notice"><%= flash[:notice] %></div>
   <% end %>
@@ -171,23 +13,43 @@
     <%= image_tag "喇叭.png", size: "15x15" %>
     <a href="<%= feedback_advice_content_path(5) %>">全国万名肿瘤患者救助计划咨询</a>
   </div>
-  <div>
-    <ul class="block-li">
+  <div class="yyj-tab-btn">
+    <ul class="yyj-tab-btn-li">
       <li>
-        <a href="<%= mall_root_path %>"><%= image_tag "商城.png", size: "50x50" %></a>
+        <a href="<%= mall_root_path %>">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+               width="50" height="50"
+               viewBox="0 0 252 252"
+               style="fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,252v-252h252v252z" fill="none"></path><path d="M25.2,252c-13.91758,0 -25.2,-11.28242 -25.2,-25.2v-201.6c0,-13.91758 11.28242,-25.2 25.2,-25.2h201.6c13.91758,0 25.2,11.28242 25.2,25.2v201.6c0,13.91758 -11.28242,25.2 -25.2,25.2z" fill="#ddbbea"></path><g><g id="surface1"><path d="M49.525,105.875h152.95v76.475h-152.95z" fill="#cfd8dc"></path><path d="M49.525,182.35h152.95v16.1h-152.95z" fill="#b0bec5"></path><path d="M77.7,126h96.6v72.45h-96.6z" fill="#e3f2fd"></path><path d="M81.725,130.025h88.55v68.425h-88.55z" fill="#2196f3"></path><path d="M170.275,198.45h-88.55v-28.175l88.55,-40.25z" fill="#64b5f6"></path><path d="M138.075,105.875c0,6.66641 -5.40859,12.075 -12.075,12.075c-6.66641,0 -12.075,-5.40859 -12.075,-12.075c0,-6.66641 5.40859,-12.075 12.075,-12.075c6.66641,0 12.075,5.40859 12.075,12.075" fill="#d84315"></path><path d="M186.375,105.875c0,6.66641 -5.40859,12.075 -12.075,12.075c-6.66641,0 -12.075,-5.40859 -12.075,-12.075c0,-6.66641 5.40859,-12.075 12.075,-12.075c6.66641,0 12.075,5.40859 12.075,12.075" fill="#d84315"></path><path d="M65.625,105.875c0,6.66641 5.40859,12.075 12.075,12.075c6.66641,0 12.075,-5.40859 12.075,-12.075c0,-6.66641 -5.40859,-12.075 -12.075,-12.075c-6.66641,0 -12.075,5.40859 -12.075,12.075" fill="#d84315"></path><path d="M190.4,53.55h-128.8c-4.44951,0 -8.05,3.60049 -8.05,8.05v12.075h144.9v-12.075c0,-4.44951 -3.60049,-8.05 -8.05,-8.05" fill="#ff5722"></path><path d="M113.925,73.675h24.15v32.2h-24.15z" fill="#ff5722"></path><path d="M178.325,73.675h-20.125l4.025,32.2h24.15z" fill="#ff5722"></path><path d="M73.675,73.675h20.125l-4.025,32.2h-24.15z" fill="#ff5722"></path><path d="M162.225,105.875c0,6.66641 -5.40859,12.075 -12.075,12.075c-6.66641,0 -12.075,-5.40859 -12.075,-12.075c0,-6.66641 5.40859,-12.075 12.075,-12.075c6.66641,0 12.075,5.40859 12.075,12.075" fill="#ffa000"></path><path d="M210.525,105.875c0,6.66641 -5.40859,12.075 -12.075,12.075c-6.66641,0 -12.075,-5.40859 -12.075,-12.075c0,-6.66641 5.40859,-12.075 12.075,-12.075z" fill="#ffa000"></path><path d="M89.775,105.875c0,6.66641 5.40859,12.075 12.075,12.075c6.66641,0 12.075,-5.40859 12.075,-12.075c0,-6.66641 -5.40859,-12.075 -12.075,-12.075c-6.66641,0 -12.075,5.40859 -12.075,12.075" fill="#ffa000"></path><path d="M41.475,105.875c0,6.66641 5.40859,12.075 12.075,12.075c6.66641,0 12.075,-5.40859 12.075,-12.075c0,-6.66641 -5.40859,-12.075 -12.075,-12.075z" fill="#ffa000"></path><path d="M158.2,73.675h-20.125v32.2h24.15z" fill="#ffc107"></path><path d="M198.45,73.675h-20.125l8.05,32.2h24.15z" fill="#ffc107"></path><path d="M93.8,73.675h20.125v32.2h-24.15z" fill="#ffc107"></path><path d="M53.55,73.675h20.125l-8.05,32.2h-24.15z" fill="#ffc107"></path><path d="M121.975,130.025h8.05v68.425h-8.05z" fill="#1976d2"></path><path d="M121.975,151.97383v46.47617h8.05v-50.12383z" fill="#1e88e5"></path><path d="M146.125,166.25c0,2.21689 -1.80811,4.025 -4.025,4.025c-2.21689,0 -4.025,-1.80811 -4.025,-4.025c0,-2.21689 1.80811,-4.025 4.025,-4.025c2.21689,0 4.025,1.80811 4.025,4.025z" fill="#1e88e5"></path><path d="M113.925,166.25c0,2.21689 -1.80811,4.025 -4.025,4.025c-2.21689,0 -4.025,-1.80811 -4.025,-4.025c0,-2.21689 1.80811,-4.025 4.025,-4.025c2.21689,0 4.025,1.80811 4.025,4.025z" fill="#1e88e5"></path></g></g></g></svg>
+        </a>
         <p class="fontSizes">商城</p>
       </li>
       <li>
-        <a href="<%= wechat_parallel_shops_index_path %>"><%= image_tag "平行店.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">平行店</p>
+        <a href="<%= wechat_parallel_shops_index_path %>">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+               width="50" height="50"
+               viewBox="0 0 252 252"
+               style="fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,252v-252h252v252z" fill="none"></path><path d="M25.2,252c-13.91758,0 -25.2,-11.28242 -25.2,-25.2v-201.6c0,-13.91758 11.28242,-25.2 25.2,-25.2h201.6c13.91758,0 25.2,11.28242 25.2,25.2v201.6c0,13.91758 -11.28242,25.2 -25.2,25.2z" fill="#caecf1"></path><g><g id="surface1"><path d="M37.8,153.09v-110.88h15.12v-10.08h55.44v10.08h15.12v110.88z" fill="#b6dcfe"></path><path d="M105.84,34.65v10.08h15.12v105.84h-80.64v-105.84h15.12v-10.08h50.4M110.88,29.61h-60.48v10.08h-15.12v115.92h90.72v-115.92h-15.12z" fill="#596f98"></path><path d="M55.44,69.93h20.16v-10.08h-20.16z" fill="#596f98"></path><path d="M55.44,90.09h20.16v-10.08h-20.16z" fill="#596f98"></path><path d="M55.44,110.25h20.16v-10.08h-20.16z" fill="#596f98"></path><path d="M55.44,130.41h20.16v-10.08h-20.16z" fill="#596f98"></path><path d="M80.64,155.61h20.16v-10.08h-20.16zM115.92,39.69v15.12h10.08v-15.12z" fill="#b6dcfe"></path><path d="M98.28,213.57v-146.16h20.16v-10.08h75.6v10.08h20.16v146.16z" fill="#cc6862"></path><path d="M191.52,59.85v10.08h20.16v141.12h-110.88v-141.12h20.16v-10.08h70.56M196.56,54.81h-80.64v10.08h-20.16v151.2h120.96v-151.2h-20.16z" fill="#596f98"></path><path d="M115.92,95.13h20.16v-10.08h-20.16zM146.16,95.13h20.16v-10.08h-20.16zM176.4,85.05v10.08h20.16v-10.08z" fill="#ad0e11"></path><path d="M115.92,115.29h20.16v-10.08h-20.16zM146.16,115.29h20.16v-10.08h-20.16zM176.4,105.21v10.08h20.16v-10.08z" fill="#ad0e11"></path><path d="M115.92,135.45h20.16v-10.08h-20.16zM146.16,135.45h20.16v-10.08h-20.16zM176.4,125.37v10.08h20.16v-10.08z" fill="#ad0e11"></path><path d="M115.92,155.61h20.16v-10.08h-20.16zM146.16,155.61h20.16v-10.08h-20.16zM176.4,145.53v10.08h20.16v-10.08z" fill="#ad0e11"></path><path d="M115.92,175.77h20.16v-10.08h-20.16zM146.16,175.77h20.16v-10.08h-20.16zM176.4,165.69v10.08h20.16v-10.08z" fill="#ad0e11"></path><path d="M115.92,195.93h20.16v-10.08h-20.16zM146.16,195.93h20.16v-10.08h-20.16zM176.4,185.85v10.08h20.16v-10.08z" fill="#ad0e11"></path><path d="M63,150.57h20.16c1.37813,0 2.52,1.14188 2.52,2.52c0,1.37813 -1.14187,2.52 -2.52,2.52h-20.16c-1.37812,0 -2.52,-1.14187 -2.52,-2.52c0,-1.37812 1.14188,-2.52 2.52,-2.52z" fill="#596f98"></path><path d="M108.36,39.69h15.12c1.37813,0 2.52,1.14188 2.52,2.52c0,1.37813 -1.14187,2.52 -2.52,2.52h-15.12c-1.37812,0 -2.52,-1.14187 -2.52,-2.52c0,-1.37812 1.14188,-2.52 2.52,-2.52z" fill="#596f98"></path></g></g></g></svg>
+        </a>
+        <p class="fontSizes">平行店</p>
       </li>
       <li>
-        <a href="<%= wechat_plans_path %>"><%= image_tag "消费计划.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">平行系统计划</p>
+        <a href="<%= wechat_plans_path %>">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+               width="50" height="50"
+               viewBox="0 0 252 252"
+               style="fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,252v-252h252v252z" fill="none"></path><path d="M25.2,252c-13.91758,0 -25.2,-11.28242 -25.2,-25.2v-201.6c0,-13.91758 11.28242,-25.2 25.2,-25.2h201.6c13.91758,0 25.2,11.28242 25.2,25.2v201.6c0,13.91758 -11.28242,25.2 -25.2,25.2z" fill="#f5c255"></path><g><g id="surface1"><path d="M75.6,192.675v-84h134.4v84c0,9.23672 -7.56328,16.8 -16.8,16.8h-100.8c-9.23672,0 -16.8,-7.56328 -16.8,-16.8z" fill="#ffffff"></path><path d="M210,91.875v25.2h-134.4v-25.2c0,-9.23672 7.56328,-16.8 16.8,-16.8h100.8c9.23672,0 16.8,7.56328 16.8,16.8z" fill="#9b59b6"></path><path d="M193.2,91.875c0,6.95625 -5.64375,12.6 -12.6,12.6c-6.95625,0 -12.6,-5.64375 -12.6,-12.6c0,-6.95625 5.64375,-12.6 12.6,-12.6c6.95625,0 12.6,5.64375 12.6,12.6z" fill="#f39c12"></path><path d="M121.8,91.875c0,6.95625 -5.64375,12.6 -12.6,12.6c-6.95625,0 -12.6,-5.64375 -12.6,-12.6c0,-6.95625 5.64375,-12.6 12.6,-12.6c6.95625,0 12.6,5.64375 12.6,12.6z" fill="#f39c12"></path><path d="M180.6,66.675c-4.62656,0 -8.4,3.77344 -8.4,8.4v16.8c0,4.62656 3.77344,8.4 8.4,8.4c4.62656,0 8.4,-3.77344 8.4,-8.4v-16.8c0,-4.62656 -3.77344,-8.4 -8.4,-8.4z" fill="#34495e"></path><path d="M109.2,66.675c-4.62656,0 -8.4,3.77344 -8.4,8.4v16.8c0,4.62656 3.77344,8.4 8.4,8.4c4.62656,0 8.4,-3.77344 8.4,-8.4v-16.8c0,-4.62656 -3.77344,-8.4 -8.4,-8.4z" fill="#34495e"></path><path d="M159.6,167.475h16.8v16.8h-16.8z" fill="#000000"></path><path d="M134.4,167.475h16.8v16.8h-16.8z" fill="#000000"></path><path d="M109.2,167.475h16.8v16.8h-16.8z" fill="#000000"></path><path d="M159.6,142.275h16.8v16.8h-16.8z" fill="#000000"></path><path d="M134.4,142.275h16.8v16.8h-16.8z" fill="#000000"></path><path d="M109.2,142.275h16.8v16.8h-16.8z" fill="#000000"></path><path d="M142.8,87.675c0,27.84141 -22.55859,50.4 -50.4,50.4c-27.84141,0 -50.4,-22.55859 -50.4,-50.4c0,-27.84141 22.55859,-50.4 50.4,-50.4c27.84141,0 50.4,22.55859 50.4,50.4z" fill="#3498db"></path><path d="M130.2,87.675c0,20.86875 -16.93125,37.8 -37.8,37.8c-20.86875,0 -37.8,-16.93125 -37.8,-37.8c0,-20.86875 16.93125,-37.8 37.8,-37.8c20.86875,0 37.8,16.93125 37.8,37.8z" fill="#eeeeee"></path><path d="M88.2,58.275h8.4v29.4h-8.4z" fill="#c0392b"></path><path d="M111.36563,100.70156l-5.64375,5.64375l-16.04531,-16.04531l5.64375,-5.64375z" fill="#c0392b"></path><path d="M98.7,87.675c0,3.47813 -2.82187,6.3 -6.3,6.3c-3.47812,0 -6.3,-2.82187 -6.3,-6.3c0,-3.47812 2.82188,-6.3 6.3,-6.3c3.47812,0 6.3,2.82188 6.3,6.3z" fill="#c0392b"></path></g></g></g></svg>
+        </a>
+        <p class="fontSizes">平行计划</p>
       </li>
       <li>
-        <a href="<%= user_moving_health_data_path %>"><%= image_tag "易健康.png", size: "50x50" %></a>
-        <p style="margin-bottom:15%;" class="fontSizes">动态监测</p>
+        <a href="<%= user_moving_health_data_path %>">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+               width="50" height="50"
+               viewBox="0 0 252 252"
+               style="fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,252v-252h252v252z" fill="none"></path><path d="M25.2,252c-13.91758,0 -25.2,-11.28242 -25.2,-25.2v-201.6c0,-13.91758 11.28242,-25.2 25.2,-25.2h201.6c13.91758,0 25.2,11.28242 25.2,25.2v201.6c0,13.91758 -11.28242,25.2 -25.2,25.2z" fill="#91e7ea"></path><g id="Layer_1"><path d="M198.45,216.60975h-144.9c-3.48075,0 -6.3,-2.81925 -6.3,-6.3v-163.8c0,-3.48075 2.81925,-6.3 6.3,-6.3h144.9c3.48075,0 6.3,2.81925 6.3,6.3v163.8c0,3.48075 -2.81925,6.3 -6.3,6.3z" fill="#3498db"></path><path d="M201.6,46.50975v0c0,1.7388 -1.4112,3.15 -3.15,3.15h-144.9c-1.7388,0 -3.15,-1.4112 -3.15,-3.15v0c0,-1.7388 1.4112,-3.15 3.15,-3.15h144.9c1.7388,0 3.15,1.4112 3.15,3.15z" fill="#9b59b6"></path><path d="M66.15,197.70975h94.5h25.2v-138.6h-119.7z" fill="#ecf0f1"></path><path d="M185.85,136.20285v-65.6523l-105.29505,126.7875h51.37335z" fill="#fff7f0"></path><path d="M67.3974,192.65715l110.5776,-133.5474h-14.175l-99.225,121.60575z" fill="#fff7f0"></path><path d="M66.15,161.2359l83.475,-102.12615h-4.725l-78.75,96.16005z" fill="#fff7f0"></path><path d="M157.5,43.35975l-31.5,-15.75l-31.5,15.75l-3.15,22.05h69.3z" fill="#f3ef12"></path><circle cx="40" cy="13.765" transform="scale(3.15,3.15)" r="2" fill="#333333"></circle><path d="M85.05,117.9108h11.025c2.03175,0 3.67605,-1.6443 3.67605,-3.67605v-11.025h14.70105v11.025c0,2.03175 1.6443,3.67605 3.67605,3.67605h11.02185v14.70105h-11.025c-2.03175,0 -3.67605,1.6443 -3.67605,3.67605v11.02185h-14.70105v-11.025c0,-2.03175 -1.6443,-3.67605 -3.67605,-3.67605h-11.02185z" fill="#ad0e11"></path><g fill="#333333"><path d="M198.45,37.05975h-45.423l-8.505,-6.174c-5.544,-4.032 -12.033,-6.048 -18.522,-6.048c-6.489,0 -12.978,2.016 -18.522,6.048l-8.505,6.174h-45.423c-5.1975,0 -9.45,4.2525 -9.45,9.45v163.8c0,5.1975 4.2525,9.45 9.45,9.45h144.9c5.1975,0 9.45,-4.2525 9.45,-9.45v-163.8c0,-5.1975 -4.2525,-9.45 -9.45,-9.45zM111.1635,35.98875c8.883,-6.4575 20.79,-6.4575 29.673,0l1.4805,1.071l8.631,6.3l2.646,1.9215c2.457,1.764 3.906,4.6305 3.906,7.6545v3.024v3.15c0,1.7325 -1.4175,3.15 -3.15,3.15h-56.7c-1.7325,0 -3.15,-1.4175 -3.15,-3.15v-3.15v-3.024c0,-3.024 1.449,-5.8905 3.906,-7.6545l2.646,-1.9215l8.631,-6.3zM88.767,62.25975c1.2915,3.654 4.788,6.3 8.883,6.3h56.7c4.095,0 7.5915,-2.646 8.883,-6.3h19.467v132.3h-113.4v-132.3zM201.6,210.30975c0,1.7325 -1.4175,3.15 -3.15,3.15h-144.9c-1.7325,0 -3.15,-1.4175 -3.15,-3.15v-163.8c0,-1.7325 1.4175,-3.15 3.15,-3.15h37.8945c-2.079,2.709 -3.2445,6.0795 -3.2445,9.576v3.024h-18.9c-3.465,0 -6.3,2.835 -6.3,6.3v132.3c0,3.465 2.835,6.3 6.3,6.3h113.4c3.465,0 6.3,-2.835 6.3,-6.3v-132.3c0,-3.528 -2.772,-6.3 -6.3,-6.3h-18.9v-3.024c0,-3.4965 -1.1655,-6.867 -3.2445,-9.576h37.8945c1.7325,0 3.15,1.4175 3.15,3.15z"></path><path d="M78.75,87.45975c1.74195,0 3.15,-1.40805 3.15,-3.15v-6.3c0,-1.74195 -1.40805,-3.15 -3.15,-3.15c-1.74195,0 -3.15,1.40805 -3.15,3.15v6.3c0,1.74195 1.40805,3.15 3.15,3.15z"></path><path d="M94.5,87.45975c1.74195,0 3.15,-1.40805 3.15,-3.15v-6.3c0,-1.74195 -1.40805,-3.15 -3.15,-3.15c-1.74195,0 -3.15,1.40805 -3.15,3.15v6.3c0,1.74195 1.40805,3.15 3.15,3.15z"></path><path d="M110.25,87.45975c1.74195,0 3.15,-1.40805 3.15,-3.15v-6.3c0,-1.74195 -1.40805,-3.15 -3.15,-3.15c-1.74195,0 -3.15,1.40805 -3.15,3.15v6.3c0,1.74195 1.40805,3.15 3.15,3.15z"></path><path d="M126,87.45975c1.74195,0 3.15,-1.40805 3.15,-3.15v-6.3c0,-1.74195 -1.40805,-3.15 -3.15,-3.15c-1.74195,0 -3.15,1.40805 -3.15,3.15v6.3c0,1.74195 1.40805,3.15 3.15,3.15z"></path><path d="M141.75,87.45975c1.74195,0 3.15,-1.40805 3.15,-3.15v-6.3c0,-1.74195 -1.40805,-3.15 -3.15,-3.15c-1.74195,0 -3.15,1.40805 -3.15,3.15v6.3c0,1.74195 1.40805,3.15 3.15,3.15z"></path><path d="M157.5,87.45975c1.74195,0 3.15,-1.40805 3.15,-3.15v-6.3c0,-1.74195 -1.40805,-3.15 -3.15,-3.15c-1.74195,0 -3.15,1.40805 -3.15,3.15v6.3c0,1.74195 1.40805,3.15 3.15,3.15z"></path><path d="M173.25,87.45975c1.74195,0 3.15,-1.40805 3.15,-3.15v-6.3c0,-1.74195 -1.40805,-3.15 -3.15,-3.15c-1.74195,0 -3.15,1.40805 -3.15,3.15v6.3c0,1.74195 1.40805,3.15 3.15,3.15z"></path><circle cx="40" cy="13.765" transform="scale(3.15,3.15)" r="2"></circle><path d="M141.75,112.65975h25.2c1.74195,0 3.15,-1.40805 3.15,-3.15c0,-1.74195 -1.40805,-3.15 -3.15,-3.15h-25.2c-1.74195,0 -3.15,1.40805 -3.15,3.15c0,1.74195 1.40805,3.15 3.15,3.15z"></path><path d="M166.95,125.25975h-22.05c-1.74195,0 -3.15,1.40805 -3.15,3.15c0,1.74195 1.40805,3.15 3.15,3.15h22.05c1.74195,0 3.15,-1.40805 3.15,-3.15c0,-1.74195 -1.40805,-3.15 -3.15,-3.15z"></path><path d="M166.95,163.05975h-75.6c-1.74195,0 -3.15,1.40805 -3.15,3.15c0,1.74195 1.40805,3.15 3.15,3.15h75.6c1.74195,0 3.15,-1.40805 3.15,-3.15c0,-1.74195 -1.40805,-3.15 -3.15,-3.15z"></path><path d="M166.95,144.15975h-34.65c-1.74195,0 -3.15,1.40805 -3.15,3.15c0,1.74195 1.40805,3.15 3.15,3.15h34.65c1.74195,0 3.15,-1.40805 3.15,-3.15c0,-1.74195 -1.40805,-3.15 -3.15,-3.15z"></path><path d="M81.9,131.55975c0,3.47445 2.82555,6.3 6.3,6.3h6.3v6.3c0,3.47445 2.82555,6.3 6.3,6.3h12.6c3.47445,0 6.3,-2.82555 6.3,-6.3v-6.3h6.3c3.47445,0 6.3,-2.82555 6.3,-6.3v-12.6c0,-3.47445 -2.82555,-6.3 -6.3,-6.3h-6.3v-6.3c0,-3.47445 -2.82555,-6.3 -6.3,-6.3h-12.6c-3.47445,0 -6.3,2.82555 -6.3,6.3v6.3h-6.3c-3.47445,0 -6.3,2.82555 -6.3,6.3zM88.2,118.95975h9.45c1.74195,0 3.15,-1.40805 3.15,-3.15v-9.45h12.6v9.45c0,1.74195 1.40805,3.15 3.15,3.15h9.45v12.6h-9.45c-1.74195,0 -3.15,1.40805 -3.15,3.15v9.45h-12.6v-9.45c0,-1.74195 -1.40805,-3.15 -3.15,-3.15h-9.45z"></path></g></g></g></svg>
+        </a>
+        <p class="fontSizes">动态监测</p>
       </li>
       <% if current_user.user && current_user.user.status == "Staff" %>
           <!-- <li>
@@ -217,36 +79,53 @@
   <div>
     <% if !current_user.nil? && !current_user.user_id.nil? && !current_user.user.status.nil? && current_user.user.status != "User" %>
         <!--<div class="healthDiv">-->
-          <!--<h5>健康管理中心</h5>-->
-          <!--<div class="healthKuai">-->
-            <!--<a href="/user/doctor_home">-->
-              <!--<span class="yyj_text" style="line-height:45px;">健康管理师</span>-->
-              <!--<%= image_tag "御易健.png", size: "45x45" %>-->
-            <!--</a>-->
-            <!--<a href="/work/home">-->
-              <!--<span class="yyj_text">社区数字健康</br>管理服务平台</span>-->
-              <!--<%= image_tag "work.png", size: "45x45" %>-->
-            <!--</a>-->
-          <!--</div>-->
+        <!--<h5>健康管理中心</h5>-->
+        <!--<div class="healthKuai">-->
+        <!--<a href="/user/doctor_home">-->
+        <!--<span class="yyj_text" style="line-height:45px;">健康管理师</span>-->
+        <!--<%= image_tag "御易健.png", size: "45x45" %>-->
+        <!--</a>-->
+        <!--<a href="/work/home">-->
+        <!--<span class="yyj_text">社区数字健康</br>管理服务平台</span>-->
+        <!--<%= image_tag "work.png", size: "45x45" %>-->
+        <!--</a>-->
+        <!--</div>-->
         <!--</div>-->
     <% end %>
   </div>
-  <div class="shopList">
-    <div class="shopTag">
-      <h5 style="padding-left: 15px;">热门平行店</h5>
-      <%= link_to '更多》', wechat_parallel_shops_index_path %>
-    </div>
+  <div class="yyj-title yyj-title-h4">
+    <h4>热门平行店</h4>
+    <%= link_to wechat_parallel_shops_index_path do %>
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+             width="18" height="18"
+             viewBox="0 0 252 252"
+             style="fill:#ffffff;">
+          <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+            <path d="M0,252v-252h252v252z" fill="none"></path>
+            <g id="Layer_1">
+              <path d="M231,126c0,57.981 -47.019,105 -105,105c-57.981,0 -105,-47.019 -105,-105c0,-57.981 47.019,-105 105,-105c57.981,0 105,47.019 105,105z" fill="#608bb2"></path>
+              <path d="M110.25,126c0,-8.694 7.056,-15.75 15.75,-15.75c8.694,0 15.75,7.056 15.75,15.75c0,8.694 -7.056,15.75 -15.75,15.75c-8.694,0 -15.75,-7.056 -15.75,-15.75zM178.5,141.75c8.694,0 15.75,-7.056 15.75,-15.75c0,-8.694 -7.056,-15.75 -15.75,-15.75c-8.694,0 -15.75,7.056 -15.75,15.75c0,8.694 7.056,15.75 15.75,15.75zM73.5,141.75c8.694,0 15.75,-7.056 15.75,-15.75c0,-8.694 -7.056,-15.75 -15.75,-15.75c-8.694,0 -15.75,7.056 -15.75,15.75c0,8.694 7.056,15.75 15.75,15.75z" fill="#ad0e11"></path>
+            </g>
+          </g>
+        </svg>
+    <% end %>
+  </div>
+  <div class="yyj-list-item">
     <ul>
       <% @hot_parallel_shops.each do |t| %>
           <a href="<%= wechat_parallel_shops_shopdata_path(t.id) %>">
             <li>
               <div class="slLeft">
                 <!-- <%= image_tag t.image.url, class: 'shopImage' %> -->
-                <%= image_tag "raw_1512721018.jpg", class: 'shopImage' %>
+                <%= image_tag "raw_1512721018.jpg" %>
               </div>
               <div class="slRight">
-                <p><%= t.title %></p>
-                <span><%= t.address %></span>
+                <h5><%= t.title %></h5>
+                <span>主营: <%= t.main_business %></span>
+                <span>
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKSSURBVDhPrZPrT5JRHMd50Zb9U7lewItm06ZubrVavXLLVl7K0pnTEq8giok1EzVTSJdaAoooaNMexNtDbprGTZ1o2gQcNxO+nXPkwZxv+23fnbM95/s5v8t5RP+G2uxKadZvqKo0/F5JuzVW1DqD4jccytULEUNu4apVIvF/E4v9c2Jxqzk1NSVhO40Wo+t6WactWqX9jj7bPozuKHrmQ6j9coDBQinst24jUF3NtJKTE6KQhFUkUo557tKbKvvdUE0foWUygOldoHMuhCZTAFx6BjPas7Nhz8pCQCoFJ5H4mFk2u3nlebstXtnvQpctxIzm7Thbh9eOMUH2XNoNHNXUnAKI6J4Ti4MMUDfkmChVL6Pe4IPWHkEHF4RszI9R9wmDUHFFJdguKEC4sZFpOz8fpju5vxmgrGsp+mrAwwCCGkZ97HYB8NXCY+5mJkJyOYIyGawZmVDUfTpmgKdvOdSO7DOjjBj7lsMwemJJM1XfcgTj9x/DmfcQjgd5MN57BOpjADqqhtFDtE4dQW0NnjNSTXmBZtJUpWYds2npTErND1AfAzwj8349eYiJrThGfv65ABhcPU6W1iX/zFQzcoBiIQOplt/tnNlD71IEg6RuWrswBSoNSV8ACHpJxl3Ww4cZoEm/rqz+aIdlJ548oCLlmLbO+jC+GUP/SpR9qyMq6VhE/bBTxwBmMy5VvF8Mds/uQGHyJyFUNCMBQkUfVYXWQQDzMb0+fpkBaLRZXNdK31ljCsP5cRqcZ2+BSqHzsH9DafRmJ6xn0TbmvPqieyFM06sccEPLB2HxxmF0RdFr+wWphkd592KoSb+VlbBcDJpW/ZBDV/GB95GMTp6oZkBX0mivUrchp+Umjv6vEIn+Ato5fLSauRIIAAAAAElFTkSuQmCC">
+                  <%= t.address %>
+                </span>
               </div>
             </li>
           </a>

@@ -8,19 +8,6 @@
     font-weight: normal;
   }
 
-  a {
-    color: #000;
-    font-size: 0.8rem;
-  }
-
-  a:link {
-    color: #fff;
-  }
-
-  a:active {
-    color: #fff;
-  }
-
   .tdwith {
     width: 10%;
     height: 114px;
@@ -243,7 +230,7 @@
   <div class="authd">
     <span class="auth">平行店授权</span>
     <button class="<%= @plan.active? ? 'btn2' : 'btn1' %>" disabled><%= @plan.active? ? '已授权' : '待授权' %></button>
-    <span class="worry"><%= @plan.invite_plan ? '管理指导费：0' : '管理指导费：'+(@plan.money/9.0).to_s %></span>
+    <span class="worry"><%= !@plan.invite_plan ? '管理指导费：0' : '管理指导费：'+(@plan.money/9.0).to_s %></span>
   </div>
   <div>
     <ul class="block-li">
@@ -283,7 +270,7 @@
                 <p><%= shop.title %></p>
                 <p><%= shop.display_detail %></p>
                 <p class="money">
-                  <span>分润额：0</span>
+                  <span>分润额：<%= @shop_divide %></span>
                   <% if shop.status == "waiting" %>
                       <span class="d-shen d-active-w">待处理</span>
                   <% elsif shop.status == "dealed" %>
@@ -312,13 +299,15 @@
     <% end %>
   </div>
   <% if @partners.count >= @permit_count %>
-      <div class="footer-makers-button" style="background-color: #bbb;">
-        <a>邀请伙伴</a>
+      <div class="yyj-btn yyj-btn-disable yyj-btn-tg-lg">
+        邀请伙伴
       </div>
   <% else %>
-      <div class="footer-makers-button">
-        <a href="<%= show_invitation_code_wechat_plans_path(@plan) %>">邀请伙伴</a>
-      </div>
+      <a href="<%= show_invitation_code_wechat_plans_path(@plan) %>">
+        <div class="yyj-btn yyj-btn-primary yyj-btn-tg-lg">
+          邀请伙伴
+        </div>
+      </a>
   <% end %>
 
 </div>

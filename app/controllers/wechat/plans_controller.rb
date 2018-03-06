@@ -4,7 +4,7 @@ class Wechat::PlansController < Wechat::BaseController
     @sharing_plan_types = SharingPlan.all #所有计划
     @plan_records_all = Plan.where(user_id: current_user.user_id) #当前用户的所有计划
     @plan_records = @plan_records_all.where(is_end: false) #当前用户未结束的所有计划
-    @user_plans_type = SharingPlan.joins(:plans).where("plans.user_id = ? AND plans.is_end = ?", current_user.user_id, false).pluck(:plan_type)
+    @user_plans_type = SharingPlan.joins(:plans).where("plans.user_id = ? AND plans.is_end = ? AND plans.status = ?", current_user.user_id, false, "success").pluck(:plan_type)
     # @user_plans_type = @plan_records.pluck(:plan_type)
   end
 
@@ -16,6 +16,7 @@ class Wechat::PlansController < Wechat::BaseController
     @partners = @plan.partners
     @settlement = start_money * earning_ratio
     @permit_count = @plan_rule.sharing_plan.invite_count
+    @shop_divide = MoneyDetail.where(plan_id: params[:id]).sum("money")
   end
 
   def new
@@ -27,9 +28,13 @@ class Wechat::PlansController < Wechat::BaseController
 
   def create
     @plan = Plan.new(set_plan)
+    # 199 默认付款成功 付款成功将作为是否可以发起计划的一个判断条件
+    if params[:plan][:plan_rule_id] == "1"
+      @plan.status = "success"
+    end
     if @plan.save
       logger.info("==================保存成功=========================")
-      if params[:plan][:payment] == "1"
+      if params[:plan][:payment] == "1" || params[:plan][:plan_rule_id] == "1"
         logger.info("==================线下付款=========================")
         redirect_to action: :index
       else

@@ -35,15 +35,17 @@
   <div class="weui-flex bottom-text">
     <div class="weui-flex__item" >
       <div class="placeholder text-center box-btn" >
-        <a href="<%= user_details_path %>" class="weui-cell_access" >
+        <!--<a href="<%= user_details_path %>" class="weui-cell_access" >-->
+        <a href="#" class="weui-cell_access" >
           <p class="qi">总易积分</p>
-          <% record = PresentedRecord.where(user_id: current_user.user_id) %>
-          <% number = 0 %>
-          <% if !record.nil? %>
-            <p><%= current_user && record.sum(:balance) || 0 %></p>
-          <% else %>
-            <p>0</p>
-          <% end %>
+          <p>0.0</p>
+          <!--<% record = PresentedRecord.where(user_id: current_user.user_id) %>-->
+          <!--<% number = 0 %>-->
+          <!--<% if !record.nil? %>-->
+            <!--<p><%= current_user && record.sum(:balance) || 0 %></p>-->
+          <!--<% else %>-->
+            <!--<p>0</p>-->
+          <!--<% end %>-->
         </a>
       </div>
     </div>
