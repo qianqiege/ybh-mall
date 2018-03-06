@@ -2,6 +2,7 @@ $yyjBackground: #eee;
 $yyjRed: #ad0e11;
 $yyjDisable: #999;
 
+
 body, html {
   height: 100%;
   -webkit-tap-highlight-color: transparent
@@ -361,41 +362,46 @@ ul {
 .yyj-tab-btn {
   background: #f8f8f8;
   margin: 2% 2% 2%;
-  padding: 16px 0px;
+  padding: 2% 0px;
   border-radius: 5px;
+  ul {
+    //display: block;
+    /*text-align: center;*/
+    padding-top: 8px;
+    li {
+      width: 23%;
+      text-align: center;
+      display: inline-block;
+      overflow: hidden;
+    }
+    li:first-child {
+      margin-left: 2%;
+    }
+    li:nth-child(5) {
+      margin-left: 2%;
+    }
+  }
 }
-
-.yyj-tab-btn-li {
-  display: block;
-  /*text-align: center;*/
-  //padding-top: 15px;
+.yyj-tab-btn-tw {
+  ul {
+    li {
+      width: 46%;
+    }
+  }
 }
-
-.yyj-tab-btn-li li {
-  width: 23%;
-  text-align: center;
-  display: inline-block;
-  overflow: hidden;
+.yyj-tab-btn-th {
+  ul {
+    li {
+      width: 31%;
+    }
+  }
 }
-
-.yyj-tab-btn-li li:first-child {
-  margin-left: 1%;
-}
-
-.yyj-tab-btn-li li:nth-child(5) {
-  margin-left: 1%;
-}
-
-.yyj-tab-btn-tw-li li {
-  width: 46%;
-}
-
-.yyj-tab-btn-th-li li {
-  width: 31%;
-}
-
-.yyj-tab-btn-fi-li li {
-  width: 18%;
+.yyj-tab-btn-fi {
+  ul {
+    li {
+      width: 18%;
+    }
+  }
 }
 
 /*入口按钮样式*/
