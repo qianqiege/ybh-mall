@@ -1,19 +1,22 @@
 <%= title '我的健康信息' %>
 <%= render 'head' %>
-<a class="weui-cell weui-cell_access" href="<%= user_record_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>我的基础健康档案</p>
-  </div>
-  <span class="weui-cell__ft"></span>
-</a>
+<div class="weui-panel">
+  <div class="weui-panel__bd">
+    <a class="weui-cell weui-cell_access" href="<%= user_record_path %>">
+      <div class="weui-cell__bd weui-cell_primary">
+        <p>我的基础健康档案</p>
+      </div>
+      <span class="weui-cell__ft"></span>
+    </a>
 
-<a class="weui-cell weui-cell_access" href="<%= user_data_home_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>我的动态监测数据</p>
+    <a class="weui-cell weui-cell_access" href="<%= user_data_home_path %>">
+      <div class="weui-cell__bd weui-cell_primary">
+        <p>我的动态监测数据</p>
+      </div>
+      <span class="weui-cell__ft"></span>
+    </a>
   </div>
-  <span class="weui-cell__ft"></span>
-</a>
-
+</div>
 <div style="margin-left: 1rem; font-size: 15px; color: #555; border-bottom: 1px solid #eee; padding:1rem 0;">
   <span style="color: red; font-size: 15px;">健康监测码：</span>
 </div>
