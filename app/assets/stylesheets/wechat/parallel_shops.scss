@@ -1,55 +1,7 @@
-// Place all the styles related to the parallel_shops controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 * {
   margin: 0;
   padding: 0;
   // background: #fff;
-}
-
-// -----------------平行店首页--------------------
-.shopList {
-  margin-top: 5%;
-  /*border-top: 1px solid #eee;*/
-  padding-top: 5px;
-}
-
-.shopList ul {
-  border-top: 1px solid #eee;
-}
-
-.shopList ul li {
-  display: flex;
-  border-bottom: 1px solid #eee;
-}
-
-.shopList ul li .slLeft, .shopList ul li .slRight {
-  display: inline-block;
-}
-
-.shopList ul li .slLeft {
-  width: 30%;
-  padding: 2%;
-}
-
-.shopList ul li .slRight {
-  flex: 1;
-}
-
-.shopList ul li .slLeft img {
-  width: 100%;
-}
-
-.shopList ul li .slRight p {
-  font-size: 16px;
-  margin: 6% 0 0 4%;
-}
-
-.shopList ul li .slRight span {
-  font-size: 12px;
-  margin: 4% 0 0 4%;
-  color: #666;
 }
 
 //-----------------平行店详情页--------------------
@@ -128,3 +80,42 @@
   color: #888;
 }
 
+
+/***********************平行店的首页和平行店版页面************************/
+.fontSizes {
+  font-size: 0.8rem;
+}
+.topImage {
+  width:100%;
+}
+.shopHeader {
+    height:40px;
+    display: flex;
+    background: #ad0e11;
+    input {
+      flex:1;
+      margin-left: 4%;
+      height:26px;
+      margin-top: 5px;
+      padding-left: 3%;
+      border:0;
+      border:1px solid #fff;
+      border-radius: 5px;
+      --webkit-appearance: none;
+    }
+    a {
+      display: inline-block;
+      padding:0 2%;
+      margin:0 4% 0 1%;
+      height:26px;
+      line-height: 26px;
+      margin-top: 6px;
+      border:0;
+      color: #fff; 
+      background: transparent;
+      font-size: 14px;
+    }
+    a:active{
+      color:#fff;
+    }
+}

@@ -1,94 +1,3 @@
-<style>
-
-
-  a {
-    text-decoration: none;
-    out-line: none;
-    color: #000;
-    font-family: '微软雅黑';
-  }
-
-  .topImage {
-    width: 100%;
-  }
-
-  .module-title {
-    margin: 0;
-  }
-
-  .block-li {
-    display: flex;
-    padding: 2% 0;
-  }
-
-  .block-li li {
-    flex: 1;
-    text-align: center;
-  }
-
-  .block-li li p {
-    font-size: 14px;
-  }
-
-  .shopHeader {
-    height: 40px;
-    display: flex;
-    background: #ad0e11;
-  }
-
-  .shopHeader input {
-    flex: 1;
-    margin-left: 4%;
-    height: 26px;
-    margin-top: 5px;
-    padding-left: 3%;
-    border: 0;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    --webkit-appearance: none;
-
-  }
-
-  .shopHeader a {
-    display: inline-block;
-    padding: 0 2%;
-    margin: 0 4% 0 1%;
-    height: 26px;
-    line-height: 26px;
-    margin-top: 6px;
-    border: 0;
-    color: #fff;
-    background: transparent;
-    font-size: 14px;
-  }
-
-  .shopTag {
-    display: flex;
-    padding: 1% 5% 1% 2%;
-    /*margin:1% 0;*/
-    background: #fff;
-    border-bottom: 1px solid #eee;
-  }
-
-  .shopTag span {
-    display: inline-block;
-    /*width:20%;*/
-    background: #ad0e11;
-    text-align: center;
-    color: #fff;
-    padding: 0 5%;
-  }
-
-  .shopTag a {
-    flex: 1;
-    text-align: right;
-    font-size: 12px;
-  }
-
-  .shopTag a:active {
-    color: #000;
-  }
-</style>
 
 <%= title '平行店' %>
 
@@ -167,7 +76,7 @@
             <li>
               <div class="slLeft">
                 <!-- <%= image_tag t.image.url, class: 'shopImage' %> -->
-                <%= image_tag "raw_1512721018.jpg", class: 'shopImage' %>
+                <%= image_tag "raw_1512721018.jpg"%>
               </div>
               <div class="slRight">
                 <h5><%= t.title %></h5>
