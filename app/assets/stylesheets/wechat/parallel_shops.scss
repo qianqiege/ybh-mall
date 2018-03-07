@@ -190,6 +190,8 @@
 /*****************待领配、已领配订单页面**********************/
   .container {
     overflow-y: auto;
+    padding-bottom: 3px;
+    background: #fff;
   }
   .listShow {
     width:85%;
@@ -224,7 +226,7 @@
       }
     }
   }
-  .pro-list {
+  .pro-order {
     padding: 10px;
     margin:0 auto;
     width: 85%;
@@ -237,4 +239,43 @@
       text-align: center;
     }
   }
-  
+  /******************领配排号页面*******************/
+  .allPay {
+    text-align: center;
+    color:#fff; 
+    line-height: 50px;
+  }
+  .jiesuan {
+    background: #ad0e11;
+    width:100%;
+    height:50px;
+    position: absolute;
+    bottom: 54px;
+    left:0;
+    border-top: 1px solid #ccc;
+  }
+  .call-number {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  .pric-block {
+    /*border: 25px solid #ad0e11;*/
+    padding-bottom: 11.11px;
+    margin-top: 20px;
+  }
+
+  /*******************领配金额生成二维码页面***************/
+  .con-qr-block {
+    margin-top: 10%;
+  }
+  .allPay p{
+    text-align: center;
+    font-size: 1.3rem;
+    color:#000; 
+  }
+  .allPay p:nth-child(2) {
+    color: #ad0e11;
+    font-size: 1.5rem;
+  }
