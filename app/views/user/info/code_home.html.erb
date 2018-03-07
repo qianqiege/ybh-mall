@@ -1,53 +1,55 @@
 <%= title '我的二维码' %>
 <%= render 'head' %>
+<div class="weui-panel">
+  <div class="weui-panel__bd">
+    <% if !current_user.user.nil? && current_user.user.is_admin == true %>
+        <a class="weui-cell weui-cell_access" href="<%= user_auch_code_path %>">
+          <div class="weui-cell__bd weui-cell_primary">
+            <p>活动二维码审核</p>
+          </div>
+          <span class="weui-cell__ft"></span>
+        </a>
+    <% end %>
 
-<% if !current_user.user.nil? && current_user.user.is_admin == true %>
-  <a class="weui-cell weui-cell_access" href="<%= user_auch_code_path %>">
-    <div class="weui-cell__bd weui-cell_primary">
-      <p>活动二维码审核</p>
-    </div>
-    <span class="weui-cell__ft"></span>
-  </a>
-<% end %>
+    <% if !current_user.user.nil? && current_user.user.status == "Staff" %>
+        <a class="weui-cell weui-cell_access" href="<%= user_apply_code_path %>">
+          <div class="weui-cell__bd weui-cell_primary">
+            <p>申请活动推广码</p>
+          </div>
+          <span class="weui-cell__ft"></span>
+        </a>
 
-<% if !current_user.user.nil? && current_user.user.status == "Staff" %>
-  <a class="weui-cell weui-cell_access" href="<%= user_apply_code_path %>">
-    <div class="weui-cell__bd weui-cell_primary">
-      <p>申请活动推广码</p>
-    </div>
-    <span class="weui-cell__ft"></span>
-  </a>
+        <a class="weui-cell weui-cell_access" href="/user/apply_code?id=1">
+          <div class="weui-cell__bd weui-cell_primary">
+            <p>活动推广码</p>
+          </div>
+          <span class="weui-cell__ft"></span>
+        </a>
+    <% end %>
 
-  <a class="weui-cell weui-cell_access" href="/user/apply_code?id=1">
-    <div class="weui-cell__bd weui-cell_primary">
-      <p>活动推广码</p>
-    </div>
-    <span class="weui-cell__ft"></span>
-  </a>
-<% end %>
+    <a class="weui-cell weui-cell_access" href="<%= user_invitation_path %>">
+      <div class="weui-cell__bd weui-cell_primary">
+        <p>注册邀请码</p>
+      </div>
+      <span class="weui-cell__ft"></span>
+    </a>
 
-<a class="weui-cell weui-cell_access" href="<%= user_invitation_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>注册邀请码</p>
-  </div>
-  <span class="weui-cell__ft"></span>
-</a>
+    <a class="weui-cell weui-cell_access" href="<%= user_community_code_path %>">
+      <div class="weui-cell__bd weui-cell_primary">
+        <p>199计划邀请码</p>
+      </div>
+      <span class="weui-cell__ft"></span>
+    </a>
 
-<a class="weui-cell weui-cell_access" href="<%= user_community_code_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>199计划邀请码</p>
-  </div>
-  <span class="weui-cell__ft"></span>
-</a>
+    <a class="weui-cell weui-cell_access" href="<%= user_maker_code_path %>">
+      <div class="weui-cell__bd weui-cell_primary">
+        <p>创客计划邀请码</p>
+      </div>
+      <span class="weui-cell__ft"></span>
+    </a>
 
-<a class="weui-cell weui-cell_access" href="<%= user_maker_code_path %>">
-  <div class="weui-cell__bd weui-cell_primary">
-    <p>创客计划邀请码</p>
-  </div>
-  <span class="weui-cell__ft"></span>
-</a>
-
-<!-- <% if !current_user.user.nil? && current_user.user.status == "Staff" %>
+    <!--
+    <% if !current_user.user.nil? && current_user.user.status == "Staff" %>
   <a class="weui-cell weui-cell_access" href="<%= user_activity_code_path %>">
     <div class="weui-cell__bd weui-cell_primary">
       <p>100积分活动推广码</p>
@@ -55,3 +57,5 @@
     <span class="weui-cell__ft"></span>
   </a>
 <% end %> -->
+  </div>
+</div>

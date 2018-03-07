@@ -1,11 +1,28 @@
 .weui-icon-warn-no-circle:before {
-    content: "\EA0B";
-}
-.weui-icon_toast.weui-icon-warn-no-circle:before {
-    color: #FFFFFF;
-    font-size: 40px;
+  content: "\EA0B";
 }
 
-.weui-uploader{
-    width: 100%;
+.weui-icon_toast.weui-icon-warn-no-circle:before {
+  color: #FFFFFF;
+  font-size: 40px;
+}
+
+.weui-uploader {
+  width: 100%;
+}
+
+.weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+  color: #ad0e11;
+}
+
+.weui-tabbar__item.weui-bar__item_on svg .weui-tabbar__label {
+  fill: #ad0e11;
+}
+
+.weui-panel__hd{
+  font-size: 18px;
+  color: #ad0e11;
+}
+.weui-panel__bd p {
+  font-size: 16px;
 }

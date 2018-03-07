@@ -1,20 +1,18 @@
 <style>
-  html, body {
-    background: #fff;
-  }
-
   .outD {
     position: relative;
     height: 100%;
-    background: #fff;
   }
 
   .contain {
     width: 100%;
     padding-bottom: 10px;
   }
-
+  .product-list{
+    margin-bottom: 110px;
+  }
   .imgcon {
+    background-color: #f8f8f8;
     display: inline-block;
     width: 47%;
     padding: 0 3px 5px;
@@ -88,7 +86,7 @@
   .total {
     width: 100%;
     position: fixed;
-    bottom: 58px;
+    bottom: 54px;
     left: 0;
     font-size: 14px;
     background-color: #fff;
@@ -173,7 +171,7 @@
 
 
 <%= title '店内详情' %>
-<div class="outD" id="pShopData">
+<div class="outD">
   <div class="contain">
     <% if @waiter %>
         <div style="display:none">
@@ -181,20 +179,26 @@
           <input type="text" id="money" name="money" value="<%= @money %>">
         </div>
     <% end %>
+
     <div class="shopDatas">
       <div class="slLeft">
-        <%= image_tag "bji04680164.jpg", class: 'shopImage' %>
+        <%= image_tag "bji04680164.jpg", size: '' %>
       </div>
       <div class="slRight">
         <p><%= @parallel_shop.title %></p>
-        <span><%= @parallel_shop.address %></span>
+        <span>主营：<%= @parallel_shop.main_business %></span>
+        <span>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKSSURBVDhPrZPrT5JRHMd50Zb9U7lewItm06ZubrVavXLLVl7K0pnTEq8giok1EzVTSJdaAoooaNMexNtDbprGTZ1o2gQcNxO+nXPkwZxv+23fnbM95/s5v8t5RP+G2uxKadZvqKo0/F5JuzVW1DqD4jccytULEUNu4apVIvF/E4v9c2Jxqzk1NSVhO40Wo+t6WactWqX9jj7bPozuKHrmQ6j9coDBQinst24jUF3NtJKTE6KQhFUkUo557tKbKvvdUE0foWUygOldoHMuhCZTAFx6BjPas7Nhz8pCQCoFJ5H4mFk2u3nlebstXtnvQpctxIzm7Thbh9eOMUH2XNoNHNXUnAKI6J4Ti4MMUDfkmChVL6Pe4IPWHkEHF4RszI9R9wmDUHFFJdguKEC4sZFpOz8fpju5vxmgrGsp+mrAwwCCGkZ97HYB8NXCY+5mJkJyOYIyGawZmVDUfTpmgKdvOdSO7DOjjBj7lsMwemJJM1XfcgTj9x/DmfcQjgd5MN57BOpjADqqhtFDtE4dQW0NnjNSTXmBZtJUpWYds2npTErND1AfAzwj8349eYiJrThGfv65ABhcPU6W1iX/zFQzcoBiIQOplt/tnNlD71IEg6RuWrswBSoNSV8ACHpJxl3Ww4cZoEm/rqz+aIdlJ548oCLlmLbO+jC+GUP/SpR9qyMq6VhE/bBTxwBmMy5VvF8Mds/uQGHyJyFUNCMBQkUfVYXWQQDzMb0+fpkBaLRZXNdK31ljCsP5cRqcZ2+BSqHzsH9DafRmJ6xn0TbmvPqieyFM06sccEPLB2HxxmF0RdFr+wWphkd592KoSb+VlbBcDJpW/ZBDV/GB95GMTp6oZkBX0mivUrchp+Umjv6vEIn+Ato5fLSauRIIAAAAAElFTkSuQmCC">
+          <%= @parallel_shop.address %></span>
       </div>
     </div>
-    <div class="smallTilte">
-      <h5>健康产品</h5>
+
+
+    <div class="yyj-title-h4">
+      <h4>领配产品</h4>
     </div>
     <!-- 带有a标签的循环，其他删掉 -->
-    <div style="margin-bottom: 110px;">
+    <div class="product-list">
       <% @parallel_shop.sale_products.each do |t| %>
           <div class="imgcon">
             <a href="<%= mall_product_path(id: t.product_id, parallel_product_show: true) %>"><%= image_tag t.product.image.url %></a>
