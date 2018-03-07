@@ -230,17 +230,19 @@ ActiveAdmin.register Order do
 
     panel "物流信息" do
       div do
-        if order.express_number.present? &&
-            (express = order.remote_express_info) &&
-            express["status"].to_i == 200
-
-          express["data"].each do |data|
-            div do
-              "#{unix_time_to_datatime(data['time'].to_s)}：#{data['info']}"
+        if order.express_number.present? && 
+          (express = order.remote_express_info) && 
+          express_body = express["showapi_res_body"]
+            if express_body["ret_code"].to_i == 0 
+              express_body["data"].each do |data|
+                div do
+                  "#{unix_time_to_datatime(data['time'].to_s)}：#{data['context']}"
+                end
+              end
             end
-          end
         else
           "未有物流信息，可能没有填写物流单号或者查不到信息"
+
         end
       end
     end
