@@ -274,7 +274,11 @@ ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
       menu.add label: I18n.t("active_admin.menu.mall"), priority: 2
-      menu.add label: I18n.t("active_admin.menu.member_manage"), priority: 3
+      menu.add label: I18n.t("active_admin.menu.parallel_shop_manage"), priority: 3
+      menu.add label: I18n.t("active_admin.menu.activity_manage"), priority: 4
+      menu.add label: I18n.t("active_admin.menu.coin_record_manage"), priority: 5
+      menu.add label: I18n.t("active_admin.menu.wallet_manage"), priority: 6
+
     end
   end
 end
