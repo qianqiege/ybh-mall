@@ -122,3 +122,179 @@
   background: image-url("choujiang.jpg") center;
   background-size: 100%;
 }
+
+/*----------------商城首页样式------------------*/
+
+  .clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
+  }
+
+  .clearfix {
+    zoom: 1;
+  }
+
+  .pro-area .pro-list {
+    padding: 0;
+    margin: 0;
+  }
+
+  .pro-area .pro-list ul {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .pro-area .pro-list ul li {
+    margin: 0 2.5% 15px 2.5%;
+  }
+
+  .alert {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+
+  }
+
+  .alert p {
+    position: absolute;
+    right: 3%;
+    font-weight: bolder;
+  }
+
+  .alert a {
+    display: inline-block;
+    padding-top: 25px;
+    width: 100%;
+    height: 92%;
+  }
+
+  .pro_tab {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+    .fst_tab {
+        display: flex;
+        li {
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bolder;
+            color: #ad0e11;
+            background: #eee;
+            padding: 3px 0;
+        }      
+    }
+  }
+  
+
+  .active {
+    color: #fff !important;
+    background: #ad0e11 !important;
+  }
+
+  .borbot {
+    color: #ad0e11 !important;
+    border-bottom: 2px solid #ad0e11 !important;
+  }
+
+  .hid_tab ul {
+    display: flex;
+    li {
+        flex: 1;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bolder;
+        color: #666;
+        padding: 5px 0;
+        margin-top: 5px;
+        border-bottom: 2px solid transparent;
+    }
+  }
+
+
+
+/*--------------商城分类页面-------------------*/
+    .silder {
+        width: 18%;
+        height: 92%;
+        background: #eaeaea;
+        padding-bottom: 58px;
+        border-right: 1px solid #ccc;
+        position: fixed;
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+        }
+        a {
+            color: #666;
+            font-size: 14px;
+        }
+    }
+
+    .pro {
+        width: 82%;
+        height: 100%;
+        margin-left: 18%;
+        .pro-sm {
+            width: 100%;
+            display:none;
+            padding-bottom: 58px;
+            .chanpin {
+                width: 100%;
+                li {
+                    width: 49%;
+                    float: left;
+                    margin-bottom: 25px;
+                    height: 250px;
+                    a {
+                        color: #666;
+                    }
+                    span {
+                        font-size: 14px;
+                        display: block;
+                        width: 90%;
+                        margin: 0 auto;
+                        margin-top: 10px;
+                        text-align: center;                        
+                    }
+                    p {
+                        display: block;
+                        width: 90%;
+                        margin: 0 auto;
+                        margin-top: 10px;
+                        text-align: center;
+                        color: red;
+                    }                   
+                }
+                .images {
+                    width: 90%;
+                    margin: 0 auto;
+                    margin-top: 10px;
+                    height: 150px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                }
+            }
+        }
+    }
+
+    #content {
+        display: block;
+    }
+    .activing {
+        background: #fff;
+        color: red;
+        z-index: 999;
+    }
+

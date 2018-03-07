@@ -1,3 +1,123 @@
 // Place all the styles related to the value_product::value_products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//统一标题样式
+.yyj_title {
+    font-weight: normal;
+    color:#ad0e11;
+    text-align: center;
+    font-size: 30px!important;
+    font-weight: bolder;
+}
+
+.valuePro {
+	width:100%;
+	overflow-x:hidden;
+}
+
+.pro_tab {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .pro_tab .fst_tab {
+    display: flex;
+    padding: 0;
+  }
+
+  .pro_tab .fst_tab li {
+    flex: 1;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bolder;
+    color: #ad0e11;
+    background: #eee;
+    padding: 3px 0;
+    cursor: pointer;
+  }
+
+  .active {
+    color: #fff !important;
+    background: #ad0e11 !important;
+  }
+
+  .pro_show {
+  	width:95%;
+  	margin:0 auto;
+  }
+
+  .pro_show ul {
+  	padding:0;
+  }
+
+  .pro_show ul li {
+  	float: left;
+  	text-align: center;
+  }
+
+  .pro_show ul li a {
+	text-decoration:none; 
+	color:#333;
+  }
+
+  .pro_show ul li .value_img {
+  	width: 100%;
+  }
+
+.clearfix:before,.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+  
+
+@media screen and (max-width: 650px) {
+	.yyj_title {
+		font-size: 20px!important;
+	}
+
+	.pro_tab .fst_tab li {
+		font-size: 16px;
+	}
+
+	.pro_show ul li {
+		width:48%;
+		margin: 0 1%;
+	}
+
+	.pro_show ul li span {
+		font-weight: bold;
+		font-size: 16px;
+	}
+
+	.pro_show ul li p {
+		margin: 8px 0;
+		color: #ad0e11;
+		font-size: 14px;
+	}
+}
+
+@media screen and (min-width: 651px) {
+
+	.pro_show ul li {
+		width:23%;
+		margin: 0 1%;
+	}
+
+	.pro_show ul li span {
+		font-weight: bold;
+		font-size: 22px;
+	}
+
+	.pro_show ul li p {
+		margin: 8px 0;
+		color: #ad0e11;
+		font-size: 20px;
+	}			
+
+}
