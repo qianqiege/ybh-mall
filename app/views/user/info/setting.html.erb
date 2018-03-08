@@ -1,68 +1,40 @@
-
 <style type="text/css">
-  
-    .relaA {
-      position: relative;
-    }
 
-    .posiA {
-        position: absolute;
-        top: 0;right: 0;
-        border-radius: inherit;
-    }
+  .relaA {
+    position: relative;
+  }
 
-    .uploaderImageBoxStyle {
-      position: relative;
-      background-color: #D9D9D9;
-    }
+  .posiA {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: inherit;
+  }
 
-    .cover {
-      width: 50px;
-      height: 50px;
-      z-index: 999;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      text-align: center;
-      background-color: #D9D9D9;
-      display: none;
-    }
+  .uploaderImageBoxStyle {
+    position: relative;
+    background-color: #D9D9D9;
+  }
+
+  .cover {
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: #D9D9D9;
+    display: none;
+  }
 
 </style>
-
-
-
-
-
-
-
 <%= title '我的信息' %>
 <% if flash[:notice] %>
-  <div class="notice"><%=flash[:notice]%></div>
+    <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<div class="weui-panel weui-panel_access">
-  <div class="weui-panel__bd">
-    <a href="<%= user_w_info_path %>" class="weui-media-box weui-media-box_appmsg">
-      <div class="weui-media-box__hd">
-        <% if !@wechat_user.nil? %>
-          <img src="<%= @wechat_user.headimgurl %>" class="weui-media-box__thumb",>
-        <% else %>
-          <%= image_tag "ybyt04.png" ,class:"weui-media-box__thumb" ,size: "50x55" %>
-        <% end %>
-      </div>
-      <div class="weui-media-box__bd">
-        <h4 class="weui-media-box__title">
-          <% if !@wechat_user.nil?%>
-            <%= @wechat_user.nickname %>
-          <% else %>
-            御邦医通
-          <% end %>
-        </h4>
-      </div>
-    </a>
-  </div>
-</div>
+<%= render 'head' %>
 
 <div class="weui-panel weui-panel_access">
   <div class="weui-panel">
@@ -89,187 +61,112 @@
               </div>
             </div>
             <% if false %>
-              <div class="weui-form-preview__ft">
-                <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
-              </div>
+                <div class="weui-form-preview__ft">
+                  <a data-id="<%= @wechat_user.id %>" class="weui-form-preview__btn weui-form-preview__btn_primary remove_binding_wechat_user_btn" href="javascript:">解绑</a>
+                </div>
             <% end %>
           </div>
 
           <div class="weui-cell">
             <div class="weui-uploader">
               <div class="weui-uploader__hd">
-                <p class="weui-uploader__title"><%= @show_upload_btn ? "上传身份证": "身份证信息"%></p>
+                <p class="weui-uploader__title"><%= @show_upload_btn ? "上传身份证" : "身份证信息" %></p>
               </div>
               <div class="weui-uploader__bd">
-                  <ul class="weui-uploader__files" id="uploaderFiles">
-                  <% @identity_cards.each  do |identity_card|%>
-                    <li class="weui-uploader__file">
-                      <%= image_tag(identity_card.image_url, :alt => "身份证", :class => "identity-card-img") %>
-                    </li>
-                  <% end%>
-                  </ul>
-
-                  <% if @show_upload_btn %>
-                    <div class="weui-uploader__input-box">
-                      <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
-                    </div>
+                <ul class="weui-uploader__files" id="uploaderFiles">
+                  <% @identity_cards.each do |identity_card| %>
+                      <li class="weui-uploader__file">
+                        <%= image_tag(identity_card.image_url, :alt => "身份证", :class => "identity-card-img") %>
+                      </li>
                   <% end %>
+                </ul>
+
+                <% if @show_upload_btn %>
+                    <div class="weui-uploader__input-box">
+                      <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple/>
+                    </div>
+                <% end %>
               </div>
             </div>
           </div>
-          </div>
-          
-            
-          
         </div>
       </div>
     </div>
   </div>
-
-
-    <div class="weui-panel weui-panel_access">
-      <div class="weui-panel">
-        <div class="weui-panel__hd relaA">
-          <span>审核信息</span>
-          <a href="<%= user_edit_user_info_review_path(id: @user_info_review) %>" class="weui-btn weui-btn_primary posiA yyj_btn">编辑</a>
-        </div>
-        <div class="weui-panel__bd">
-          <div class="weui-media-box weui-media-box_small-appmsg">
-            <div class="weui-cells">
-              <div class="weui-form-preview">
-                <div class="weui-form-preview__bd">
-                  <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">工作地</label>
-                    <span class="weui-form-preview__value"><%= @user_info_review.display_work_detail if @user_info_review %></span>
-                  </div>
-                  <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">常住地</label>
-                    <span class="weui-form-preview__value"><%= @user_info_review.display_resident_detail if @user_info_review %></span>
-                  </div>
-                  <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">身份</label>
-                    <span class="weui-form-preview__value"><%= @user_info_review ?  @user_info_review.identity_name : "用户" %></span>
-                  </div>
-                  <div class="weui-form-preview__item">
-                    <label class="weui-form-preview__label">审核状态</label>
-                    <span class="weui-form-preview__value"><%= @user_info_review.get_state if @user_info_review %></span>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="weui-cell">
-                <div class="weui-uploader">
-                  <div class="weui-uploader__hd">
-                    <p class="weui-uploader__title">
-                      <% if @user_info_review && @user_info_review.image %>
-                        图片信息
-                      <% else %>
-                        上传图片
-                      <% end -%>
-                    </p>
-                  </div>
-                  <div class="weui-uploader__bd">
-                     <ul class="weui-uploader__files" id="uploaderUserImage">
-                        <% if @user_info_review %>
-                          <li class="weui-uploader__file">
-                             <%= image_tag(@user_info_review.image_url, :alt => "身份图片", :class => "identity-card-img user_image") if @user_info_review&&@user_info_review.image %>
-                         </li>
-                        <% end -%>
-                     </ul>
-
-
-                     <div class="weui-uploader__input-box uploaderImageBox">
-                       <input id="uploaderUserImageInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
-                        <div class="cover">
-                          编辑图片    
-                        </div>
-                     </div>
-                  </div>
-                </div>
-              </div>
-            
-
-              </div>   
-            </div>
-          </div>
-        </div>
-      </div>
- 
 </div>
 
 
 <%= content_for :weixin_api do %>
-  <script type="text/javascript">
-    wx.ready(function () {
-      $('#uploaderInput').click(function(){
-        wx.chooseImage({
-          count: 1,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera'],
-          success: function (res) {
-              var localIds = res.localIds.toString();
-              wx.uploadImage({
-                localId: localIds,
-                isShowProgressTips: 1,
-                success: function (res) {
-                  var serverId = res.serverId;
-                  $.post('/user/upload_image', {serverId: serverId}, function(res){
-                    location.reload();
-                  });
+    <script type="text/javascript">
+        wx.ready(function () {
+            $('#uploaderInput').click(function () {
+                wx.chooseImage({
+                    count: 1,
+                    sizeType: ['original', 'compressed'],
+                    sourceType: ['album', 'camera'],
+                    success: function (res) {
+                        var localIds = res.localIds.toString();
+                        wx.uploadImage({
+                            localId: localIds,
+                            isShowProgressTips: 1,
+                            success: function (res) {
+                                var serverId = res.serverId;
+                                $.post('/user/upload_image', {serverId: serverId}, function (res) {
+                                    location.reload();
+                                });
+                            }
+                        });
+                    }
+                });
+
+                return false;
+            });
+
+
+            var image_url = $(".user_image").attr("src");
+            if (image_url) {
+                if (image_url[1] == "a") {
+                    $("#uploaderUserImage").css("display", "none");
+                } else {
+                    $(".uploaderImageBox").addClass("uploaderImageBoxStyle");
+                    $(".cover").css("display", "block");
                 }
-              });
-          }
+            }
+
+            function uploader_user_image() {
+                wx.chooseImage({
+                    count: 1,
+                    sizeType: ['original', 'compressed'],
+                    sourceType: ['album', 'camera'],
+                    success: function (res) {
+                        var localIds = res.localIds.toString();
+                        wx.uploadImage({
+                            localId: localIds,
+                            isShowProgressTips: 1,
+                            success: function (res) {
+                                var serverId = res.serverId;
+                                $.post('/user/upload_user_image', {serverId: serverId}, function (res) {
+                                    location.reload();
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+
+            $('#uploaderUserImageInput').click(function () {
+                uploader_user_image();
+
+                return false;
+
+            }) //uploaderUserImage end
+
+
+            $('.cover').click(function () {
+                uploader_user_image();
+
+                return false;
+            }) // cover end
         });
-
-        return false;
-      });
-
-
-      var image_url = $(".user_image").attr("src");
-      if (image_url) {
-        if (image_url[1] == "a") {
-          $("#uploaderUserImage").css("display", "none");
-        }else{
-           $(".uploaderImageBox").addClass("uploaderImageBoxStyle");
-           $(".cover").css("display", "block");
-        }
-      }
-
-      function uploader_user_image() {
-         wx.chooseImage({
-          count: 1,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera'],
-          success: function (res) {
-              var localIds = res.localIds.toString();
-              wx.uploadImage({
-                localId: localIds,
-                isShowProgressTips: 1,
-                success: function (res) {
-                  var serverId = res.serverId;
-                  $.post('/user/upload_user_image', {serverId: serverId}, function(res){
-                    location.reload();
-                  });
-                }
-              });
-          }
-        });
-      }
-
-      $('#uploaderUserImageInput').click(function() {
-         uploader_user_image();
-
-        return false;       
-
-      }) //uploaderUserImage end
-
-
-      $('.cover').click(function() {
-        uploader_user_image();
-
-        return false;
-      }) // cover end
-    });
-  </script>
+    </script>
 <% end %>
