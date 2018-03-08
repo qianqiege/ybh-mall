@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208032628) do
+ActiveRecord::Schema.define(version: 20180308072327) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -852,6 +852,7 @@ ActiveRecord::Schema.define(version: 20180208032628) do
     t.boolean  "is_test",                                                       default: false
     t.string   "led_away_category"
     t.integer  "contents_category_id"
+    t.string   "general"
   end
 
   create_table "programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1267,7 +1268,7 @@ ActiveRecord::Schema.define(version: 20180208032628) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "valueable_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "valueable_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "contents_category_id"
     t.string   "image"
