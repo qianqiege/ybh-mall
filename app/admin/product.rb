@@ -20,7 +20,8 @@ ActiveAdmin.register Product do
                 :activity_id,
                 :is_test,
                 :led_away_category,
-                :contents_category_id
+                :contents_category_id,
+                :general
 
   index do
     selectable_column
@@ -70,6 +71,7 @@ ActiveAdmin.register Product do
       f.input :image, as: :file
       f.input :priority
       f.input :height
+      f.input :general
       f.input :desc,:as => :ckeditor
       f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3','点亮心灯' => '4' }
       f.input :led_away_category, as: :select, collection: {'A' => '1', 'B' => '2', 'C' => '3'}

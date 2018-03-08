@@ -46,6 +46,7 @@ zh-CN:
         packaging: '包装'
         production: '厂家'
         image: '展示图片'
+        general: '概要'
         desc: '描述'
         product_sort: '类别'
         priority: '权重(数字越大排在前)'

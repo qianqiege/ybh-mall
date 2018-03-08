@@ -17,7 +17,8 @@
 	          <li>
 							<a href="<%= mall_product_path(product) %>">
 		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-		            <span><%= product.name %></span>
+		            <h5><%= product.name %></h5>
+                <span><%= product.general %></span>
 		            <!-- <span><%= raw product.name %></span> -->
 		            <p><%= money product.now_product_price %></p>
 							</a>
