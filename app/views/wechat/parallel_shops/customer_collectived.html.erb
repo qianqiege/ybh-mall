@@ -1,92 +1,7 @@
-<style type="text/css" media="screen">
-	.container {
-		overflow-y: auto;
-		/*padding-bottom: 3px;*/
-	}
-
-	.price {
-		width:220px;
-		height: 220px;
-		margin: 0 auto;
-		border:1px solid #ccc;
-		margin-top: 10%;
-	}
-
-	.allPay {
-		text-align: center;
-		color:#ad0e11;
-		line-height: 50px;
-	}
-
-	.listShow {
-		width:85%;
-		margin: 0 auto;
-		padding:0;
-		padding-bottom: 108px;
-	}
-
-	.listShow li {
-		height:60px;
-		border-bottom: 1px solid #ccc;
-	}
-
-	.listShow li .proRight {
-		/*display: flex;*/
-		padding-left: 5%;
-	}
-
-	.listShow li .proRight .proName {
-		font-size: 14px;
-		color:#474747;
-		margin: 0;
-		line-height: 60px;
-	}
-
-	.listShow li .proRight .proName .nameStyle {
-		font-size: 18px;
-		color:#ad0e11;
-	}
-
-	.listShow li .proRight .proInfo {
-		margin: 0;
-		line-height: 60px;
-		font-size: 14px;
-		color:#888;
-		float: right;
-	}
-
-.listShow li .proRight p {
-		display: inline-block;
-	}	
-
-	.call-number {
-		text-align: center;
-		font-size: 20px;
-		font-weight: 600;
-		margin-top: 10px;
-	}
-	.pric-block {
-		border: 25px solid #ad0e11;
-		padding-bottom: 11.11px;
-	}
-	.pro-list {
-		padding: 10px;
-		margin:0 auto;
-		width: 85%;
-		margin-top: 20px;
-		background-color: #ad0e11;
-	}
-	.pro-list span {
-		color: #fff;
-		width: 100%;
-		display: inline-block;
-		text-align: center;
-	}
-</style>
 
 <%= title '平行已配领' %>
 <div class="container">
-	<div class="pro-list">
+	<div class="pro-order">
 		<span>已领配订单</span>
 	</div>
 	<ul class="listShow">
@@ -103,5 +18,4 @@
 			</a>
 		<% end %>
 	</ul>
-
 </div>
