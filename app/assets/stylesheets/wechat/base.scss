@@ -1,8 +1,4 @@
-$yyjBackground: #eee;
-$yyjRed: #ad0e11;
-$yyjDisable: #999;
-
-
+@import "yyj_variables";
 body, html {
   height: 100%;
   -webkit-tap-highlight-color: transparent
@@ -150,8 +146,8 @@ ul {
 
 .yyj-btn-primary {
   color: #fff;
-  background-color: $yyjRed;
-  border-color: $yyjRed;
+  background-color: $yyjPrimary;
+  border-color: $yyjPrimary;
 }
 
 .yyj-btn-disable {
@@ -221,7 +217,7 @@ ul {
 //统一标题样式
 .yyj_title {
   font-weight: normal;
-  color: $yyjRed;
+  color: $yyjPrimary;
   text-align: center;
   font-size: 20px !important;
 }
@@ -234,7 +230,7 @@ ul {
 .yyj-title-h4 {
   display: flex;
   margin: 0 1%;
-  color: $yyjRed;
+  color: $yyjPrimary;
 }
 
 .yyj-title-h4 a {
@@ -254,7 +250,7 @@ ul {
 //统一iOS自带样式提交小按钮
 .yyj_commit {
   -webkit-appearance: none;
-  background: $yyjRed !important;
+  background: $yyjPrimary !important;
   border: 0;
 }
 
@@ -305,16 +301,16 @@ ul {
   a {
     text-decoration: none;
     out-line: none;
-    color: #222;
-  }
-  a:active {
-    color: #222;
+    color: $yyjImportant;
+    &:active {
+      color: $yyjImportant;
+    }
   }
   ul {
-    border-top: 1px solid #cba3d2;
+    border-top: 1px solid $yyjListItemBorder;
     li {
       display: flex;
-      border-bottom: 1px solid #cba3d2;
+      border-bottom: 1px solid $yyjListItemBorder;
       padding-top: 6px;
     }
     .slLeft, slRight {
@@ -353,9 +349,16 @@ ul {
 }
 
 .yyj-list-plan-item {
+  @extend .yyj-list-item;
   background: #d5b884;
   h5 {
     padding: 8px 0;
+  }
+  ul {
+    border-top: 1px solid $yyjListPlanBorder;
+    li{
+      border-bottom: 1px solid $yyjListPlanBorder;
+    }
   }
 }
 

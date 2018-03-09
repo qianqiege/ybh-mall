@@ -1,4 +1,4 @@
-$yyjRed: #ad0e11;
+@import "yyj_variables";
 
 .weui-icon-warn-no-circle:before {
   content: "\EA0B";
@@ -14,24 +14,24 @@ $yyjRed: #ad0e11;
 }
 
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
-  color: $yyjRed;
+  color: $yyjPrimary;
 }
 
 .weui-tabbar__item.weui-bar__item_on svg .weui-tabbar__label {
-  fill: $yyjRed;
+  fill: $yyjPrimary;
 }
 
 .weui-panel__hd{
   font-size: 18px;
-  color: $yyjRed;
+  color: $yyjPrimary;
 }
 .weui-panel__bd p {
   font-size: 16px;
 }
 .weui-btn_primary {
-  background-color: $yyjRed;
+  background-color: $yyjPrimary;
 }
 .weui-btn_primary:not(.weui-btn_disabled):active{
   color:rgba(255, 255, 255, 0.6);
-  background-color:$yyjRed;
+  background-color:$yyjPrimary;
 }
