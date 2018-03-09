@@ -12,10 +12,9 @@ ul {
   list-style: none
 }
 
-.page, body {
-  background-color: $yyjBackground;
+.page__bd {
+  background: $yyjBackground;
 }
-
 .link {
   color: #1aad19
 }
