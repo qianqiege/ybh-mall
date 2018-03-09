@@ -12,7 +12,9 @@
 .weui-uploader {
   width: 100%;
 }
-
+.weui-tabbar__item{
+  padding-bottom: 4px;
+}
 .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
   color: $yyjPrimary;
 }
