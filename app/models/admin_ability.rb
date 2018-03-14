@@ -72,7 +72,9 @@ class AdminAbility
       can :manage, HealthProgram
       can :manage, ExchangeRecord
     elsif user.role_name == 'parallel_shop'
+
       can :read, ShopOrder, parallel_shop_id: user.parallel_shop.id
+      can :flag, ShopOrder
       can :manage, StockOut, parallel_shop_id: user.parallel_shop.id
       can :create, StockOut
       can :manage, PurchaseOrder, parallel_shop_id: user.parallel_shop.id
