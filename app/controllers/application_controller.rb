@@ -46,4 +46,8 @@ class ApplicationController < ActionController::Base
   end
 
   # ApiAuth.authentic?(signed_request, secrect_key)
+
+  def current_ability
+    @current_ability ||= AdminAbility.new(current_admin_user)
+  end
 end
