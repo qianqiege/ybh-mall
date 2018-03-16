@@ -41,6 +41,8 @@ class AdminAbility
       can :manage, Integral
       can :manage, CashRecord
       can :manage, DoctorRebate
+      can :read, ShopOrder
+      can [:batch_action, :receive], ShopOrder
     elsif user.role_name == 'customer_service'                   #客服权限
       can :manage, AdminUser
       can :manage, Advice
@@ -74,7 +76,7 @@ class AdminAbility
     elsif user.role_name == 'parallel_shop'
 
       can :read, ShopOrder, parallel_shop_id: user.parallel_shop.id
-      can :flag, ShopOrder
+      can [:batch_action, :pay], ShopOrder, parallel_shop_id: user.parallel_shop.id
       can :manage, StockOut, parallel_shop_id: user.parallel_shop.id
       can :create, StockOut
       can :manage, PurchaseOrder, parallel_shop_id: user.parallel_shop.id

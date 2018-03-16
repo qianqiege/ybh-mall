@@ -33,12 +33,20 @@ ActiveAdmin.register ShopOrder do
     end
     f.actions
   end
-  batch_action :flag, if: proc{ can? :flag, ShopOrder} do |ids|
+  batch_action '结算确认', if: proc{ can? :pay, ShopOrder} do |ids|
     batch_action_collection.find(ids).each do |shop_order|
       shop_order.status = "已结算"
       shop_order.save
     end
     redirect_to collection_path, alert: "已结算"
+  end
+
+  batch_action '收款确认', if: proc{ can? :receive, ShopOrder} do |ids|
+    batch_action_collection.find(ids).each do |shop_order|
+      shop_order.status = "已收款"
+      shop_order.save
+    end
+    redirect_to collection_path, alert: "已收款"
   end
 
   index do
