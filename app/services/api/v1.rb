@@ -7,6 +7,8 @@ class API::V1 < Grape::API
   mount Work
   mount Auth
   mount ShopMall
+  mount ParallelShop
+  mount ParallelShopManage
 
   add_swagger_documentation(
   	tags: [{name: 'auth', description: '授权相关'},
@@ -15,7 +17,9 @@ class API::V1 < Grape::API
   			{name: 'shop_mall', description: '商城相关'},
   			{name: 'wallet', description: '钱包'},
   			{name: 'work', description: '社区健康管理平台'},
-  			{name: 'user', description: '用户相关'}]
+  			{name: 'user', description: '用户相关'},
+        {name: 'parallel_shop', description: '平行店'},
+        {name: 'parallel_shop_manage', description: '平行店管理'}]
   	)
 
 end

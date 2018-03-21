@@ -8,21 +8,21 @@ class API::V1::User < API
       ```json
       {
         "id": 2,
-        "telphone": "138****7270",
-        "identity_card": "210282*********8111",
-        "id_number": "210282********8111",
-        "name": "萧炎",
-        "invitation_card": "98******98",
-        "invitation_id": 1,
-        "email": "email@ybyt.ccc",
+        "access_token": null,
+        "expires_at": null,
+        "telphone": "13823767270",
+        "identity_card": "210282199809088111",
+        "id_number": "",
+        "name": "肖辉周（正式）",
+        "invitation_card": "9898989898",
+        "invitation_id": null,
+        "email": "river@ybyt.ccc",
         "type": "Patient",
         "status": "Staff",
         "lamp_number": 1,
-        "is_partner": true,
-        "family_health_manager": false,
-        "family_doctor": false,
-        "health_manager": false,
-        "staff_type": "R&D"
+        "is_partner": null,
+        "staff_type": "R&D",
+        "parallel_shop_id": null
       }
       ```
       > 请求失败返回信息
