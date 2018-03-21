@@ -7,23 +7,21 @@ class API::V1::Auth < API
       ```json
       {
         "id": 2,
-        "access_token": "GsneygSQSzn_eSm5H5Qy",
-        "expires_at": "2017-12-07 11:49:19 +0800",
+        "access_token": null,
+        "expires_at": null,
         "telphone": "13823767270",
-        "identity_card": "210************111",
-        "id_number": "210************111",
-        "name": "萧炎",
-        "invitation_card": "98******98",
-        "invitation_id": 1,
-        "email": "email@ybyt.ccc",
+        "identity_card": "210282199809088111",
+        "id_number": "",
+        "name": "肖辉周（正式）",
+        "invitation_card": "9898989898",
+        "invitation_id": null,
+        "email": "river@ybyt.ccc",
         "type": "Patient",
         "status": "Staff",
         "lamp_number": 1,
-        "is_partner": true,
-        "family_health_manager": false,
-        "family_doctor": false,
-        "health_manager": false,
-        "staff_type": "R&D"
+        "is_partner": null,
+        "staff_type": "R&D",
+        "parallel_shop_id": null
       }
       ```
       > 登陆失败返回信息

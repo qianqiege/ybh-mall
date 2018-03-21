@@ -15,9 +15,7 @@ module Entities
            :lamp_number,
            :invitation_card,
            :is_partner,
-           :family_health_manager,
-           :family_doctor,
-           :health_manager,
-           :staff_type
+           :staff_type,
+           :parallel_shop_id
   end
 end
