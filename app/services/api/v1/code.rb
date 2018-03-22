@@ -35,7 +35,10 @@ class API::V1::Code < API
       # 活动二维码审核功能 查出所有二维码
     end
 
-    desc '小程序二维码' 
+    desc '小程序二维码'
+    params do
+      requires :get_price, type: String
+    end 
     get 'get_rcode' do
 
       
@@ -44,9 +47,27 @@ class API::V1::Code < API
       token = JSON.parse(access_token)
 
       # 获取二维码
-      data = {:scene => "10000"}
+      data = {"scene": params[:get_price]}.to_json
       url = 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='+ token["access_token"]
-      RestClient.post url, data.to_json, {content_type: :json, accept: :json}
+      
+      path = File.join Rails.root, 'app', 'assets', 'images', 'rcode'
+      FileUtils.mkdir_p(path) unless File.exist?(path)
+      num = rand(0xffffff)
+      File.open(File.join(path, "rcode_img_#{num}.jpeg"), 'w'){ |f|
+        block = proc { |response|
+          response.read_body do |chunk|
+            chunk.force_encoding('utf-8') 
+            puts "二维码生成"
+            f.write chunk
+          end
+        }
+        RestClient::Request.new(method: :post, url: url, payload: data, block_response: block).execute
+
+      }
+
+      return "http://192.168.1.235:3000/assets/rcode/rcode_img_#{num}.jpeg"
+      
+
     end 
   end
 
