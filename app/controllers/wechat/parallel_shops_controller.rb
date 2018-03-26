@@ -1,6 +1,7 @@
 class Wechat::ParallelShopsController < Wechat::BaseController
   def index
   	@slides = Slide.top(1)
+    @parallel_shops = ParallelShop.where(status: "dealed").order(created_at: :desc)
   end
 
   # 平行店详情
@@ -201,7 +202,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     @shop_order = ShopOrder.find_by(id: params[:shop_order_id])
     @shop_order.status = "finished"
     if @shop_order.save
-        # 确认成功后，回到平行店版首页
+        # 确认成功后，回到商家版首页
         redirect_to wechat_parallel_shops_shopindex_path, notice: '确认订单成功'
     end
   end
