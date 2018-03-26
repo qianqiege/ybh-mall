@@ -6,11 +6,13 @@
   <%= render 'shared/slide' %>
   <!-- end mall_menu -->
   <div class="pro_tab"><!-- 这里是切换位置 -->
-    <ul class="fst_tab">
-      <% @first_categorys.each do |categroy| %>
-          <li class="first" data-id="<%= categroy.id %>"><%= categroy.name %></li>
-      <% end %>
-    </ul>
+    <!-- <div class="autoView"> -->
+      <ul class="fst_tab clearfix">
+        <% @first_categorys.each do |categroy| %>
+            <li class="first" data-id="<%= categroy.id %>"><%= categroy.name %></li>
+        <% end %>
+      </ul>
+    <!-- </div> -->
     <div id="second_category">
 
     </div>
