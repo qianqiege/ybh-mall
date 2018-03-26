@@ -5,6 +5,7 @@ ActiveAdmin.register ParallelShop do
       f.inputs "平行店" do
         f.input :plan
         f.input :title
+        f.input :province,as: :select, collection: options_for_select(ChinaCity.list, @address.try(:province))
         f.input :address
         f.input :main_business
         f.input :image, as: :file

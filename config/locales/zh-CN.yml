@@ -396,6 +396,10 @@ zh-CN:
       parallel_shop:
         plan: '所属计划'
         title: '名称'
+        province: '省'
+        city: '市'
+        street: '街道'
+        detail: '详细地址'
         address: '地址'
         main_business: "主营业务"
         image: "图片"

@@ -211,7 +211,7 @@
 <%= title "消费共同体计划详情" %>
 <div class="containe">
 	<div class="authd">
-		<span class="auth">平行店授权</span>
+		<span class="auth">链接店授权</span>
         <% if @plan.active == true %>
             <button class="btn2" disabled>已授权</button>
         <% else %>
@@ -258,11 +258,11 @@
 
 	<div  class="shopList">
 		<div style="line-height: 30px;">
-			<span class="mystore">我的平行店</span>
+			<span class="mystore">我的店铺</span>
             <% if @plan.active == true %>
-                <a href="<%= wechat_parallel_shops_applyshop_path(params[:format]) %>" class="add">添加平行店</a>
+                <a href="<%= wechat_parallel_shops_applyshop_path(params[:format]) %>" class="add">添加店铺</a>
             <% else %>
-            	<a class="add" style="background-color: #bbb;">添加平行店</a>
+            	<a class="add" style="background-color: #bbb;">添加店铺</a>
             <% end %>
 		</div>
 		<ul>
