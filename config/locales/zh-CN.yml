@@ -406,6 +406,8 @@ zh-CN:
         desc: "描述"
         earning_ratio: "分利比例"
         settlement_ratio: "结算比例"
+        left_and_right_ratio: "左右店结算比例"
+        shop_type: "店铺类型"
       stock_out:
         number: "编号"
         parallel_shop: "平行店"
