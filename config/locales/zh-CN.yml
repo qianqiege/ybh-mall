@@ -466,6 +466,8 @@ zh-CN:
         shop_pay: "消费额"
         status: "状态"
         total: "订单总金额"
+        ybyt_amount_receivable: "御邦医通应收款"
+        order_from: "订单来源"
       stock:
         parallel_shop: "平行店"
         product: '产品'

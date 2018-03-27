@@ -9,6 +9,8 @@ ActiveAdmin.register ShopOrder do
                 :difference,
                 :parallel_shop_id,
                 :shop_pay,
+                :order_from,
+                :ybyt_amount_receivable,
                 shop_order_items_attributes: [:product_id,
                                               :id,
                                               :_destroy,
@@ -24,6 +26,7 @@ ActiveAdmin.register ShopOrder do
       f.input :shop_pay
       f.input :express_number
       f.input :status, as: :select, collection: ['pending', 'finished']
+      f.input :order_from, as: :select, collection: ['平行购买', '影子领配', '平行领配']
     end
     f.inputs do
       f.has_many :shop_order_items, allow_destroy: true do |a|
@@ -56,11 +59,13 @@ ActiveAdmin.register ShopOrder do
     column :wechat_user
     column :user
     column :parallel_shop
+    column :order_from
     column :express_number
     column :difference
     column :shop_pay
     column :status
     column :total
+    column :ybyt_amount_receivable
     column :created_at
     column :updated_at
     actions
