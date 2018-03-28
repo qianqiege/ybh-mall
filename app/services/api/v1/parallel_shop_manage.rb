@@ -1,7 +1,7 @@
 class API::V1::ParallelShopManage < API 
 
-	namespace :parallel_shop_manage, desc: '平行店管理' do 
-		desc '判断有没有平行店', detail: <<-NOTES.strip_heredoc
+	namespace :parallel_shop_manage, desc: '影子店管理' do 
+		desc '判断有没有影子店', detail: <<-NOTES.strip_heredoc
 		> 请求成功返回信息
 
 		```json
@@ -21,8 +21,8 @@ class API::V1::ParallelShopManage < API
 		>请求成功之后的状态信息
 		```json
 		{
-		"status": "1（表示有平行店）",
-		"status": "2（表示没有平行店）",
+		"status": "1（表示有影子店）",
+		"status": "2（表示没有影子店）",
 		}
 		```
 		NOTES

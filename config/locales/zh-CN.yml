@@ -3,7 +3,7 @@ zh-CN:
     express_number_model: '货运单号'
     edit_price_model: '更改价格'
     menu:
-      mall: '商城管理'
+      mall: '御邦平行店管理'
       member_manage: '会员管理'
       mass_message: '群发消息'
       serve_manage: '服务管理'
