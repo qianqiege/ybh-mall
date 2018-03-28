@@ -83,7 +83,7 @@ class User::BindingController < Wechat::BaseController
          if @user.save && @wechat = WechatUser.find(current_user.id).update(user_id: @user.id)
            flash[:notice] = '恭喜您，注册成功'
 
-           # 若是从平行店扫营业员二维码，  则回到平行店页面
+           # 若是从影子店扫营业员二维码，  则回到影子店页面
            if params[:waiter_id] != ""
              redirect_to wechat_parallel_shops_shopdata_path(money: params[:money], waiter_id: params[:waiter_id])
            else

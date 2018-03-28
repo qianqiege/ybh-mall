@@ -17,7 +17,7 @@ class AdminUser < ApplicationRecord
                     finance:'财务管理',
                     customer_service:'客户服务',
                     tester: '测试人员',
-                    parallel_shop: '平行店管理者'}.freeze
+                    parallel_shop: '影子店管理者'}.freeze
 
   def role_name_label
     ROLE_NAME_DATA[self.role_name.to_sym]

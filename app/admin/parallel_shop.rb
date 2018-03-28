@@ -2,7 +2,7 @@ ActiveAdmin.register ParallelShop do
     menu parent: I18n.t("active_admin.menu.parallel_shop_manage")
     permit_params :title, :address, :main_business, :image, :desc, :plan_id, :status, :admin_user_id, :settlement_ratio, :is_hot, :left_and_right_ratio, :shop_type
     form(:html => { :multipart => true }) do |f|
-      f.inputs "平行店" do
+      f.inputs "影子店" do
         f.input :plan
         f.input :title
         f.input :province,as: :select, collection: options_for_select(ChinaCity.list, @address.try(:province))
@@ -17,7 +17,7 @@ ActiveAdmin.register ParallelShop do
             f.input :left_and_right_ratio
         end
         f.input :is_hot
-        f.input :shop_type, as: :select, collection: options_for_select(["御邦平行店", "医通影子店"])
+        f.input :shop_type, as: :select, collection: options_for_select(["御邦影子店", "医通影子店"])
       end
       f.actions
     end
@@ -35,12 +35,12 @@ ActiveAdmin.register ParallelShop do
         column "营业员" do |parallelshop|
           parallelshop.users.pluck(:name).join(',')
         end
-        column "平行店图片" do |slide|
+        column "影子店图片" do |slide|
           image_tag(slide.image_url, size: "72x45", :alt => "parallel shop image")
         end
         column :desc
         if current_admin_user.role_name == "admin"
-            column "平行店审核" do |shop|
+            column "影子店审核" do |shop|
                 if shop.status == "waiting"
                   span do
                     link_to '通过', pass_admin_parallel_shop_path(shop),method: :put, data: { confirm: 'Are you sure?' }

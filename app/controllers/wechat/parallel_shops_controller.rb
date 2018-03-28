@@ -4,15 +4,15 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     @parallel_shops = ParallelShop.where(status: "dealed").order(created_at: :desc)
   end
 
-  # 平行店详情
+  # 影子店详情
   def shopdata
     # 判断当前顾客是否注册
-    # 注册了，则直接跳转到营业员所在的平行店
+    # 注册了，则直接跳转到营业员所在的影子店
     # 未注册， 跳转到注册页面
     # params[:waiter_id]  传入的是 营业员id
     if !current_user.user_id.nil?
 
-      # 如果流程是 顾客自己从首页进入平行店  走true判断
+      # 如果流程是 顾客自己从首页进入影子店  走true判断
       # 若流程是 顾客扫描营业员二维码进入  走elsif流程
       # elsif 流程  提供营业员@waiter  店内消费金额@money
       if !params[:format].nil?
@@ -104,7 +104,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       redirect_to :back, notice: "请输入消费金额"
     end
 
-    # 用户扫码后跳转到营业员对应平行店中
+    # 用户扫码后跳转到营业员对应影子店中
     url = wechat_parallel_shops_shopdata_url(money: params[:con_money], waiter_id: current_user.user.id)
     @code = RQRCode::QRCode.new(url, :size => 8, :level => :h)
 
@@ -138,7 +138,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   def shopindex
       if current_user.user.parallel_shop_id == nil
-          redirect_to :back, notice: '您非平行店人员，无法进入。'
+          redirect_to :back, notice: '您非医通影子店人员，无法进入。'
       end
   end
 
@@ -181,18 +181,18 @@ class Wechat::ParallelShopsController < Wechat::BaseController
   end
 
   # 营业员扫取顾客生成的平行领配码
-  # 确认平行店订单 页面
+  # 确认影子店订单 页面
   def waiter_confirm
       @shop_order = ShopOrder.try(:find, params[:shop_order_id])
       # 判断此订单是否已配领
       if @shop_order.status == "finished"
           redirect_to wechat_parallel_shops_shopindex_path, notice: '此订单已经领配成功'
       else
-          # 判断是否为此订单所在平行店中的营业员
+          # 判断是否为此订单所在影子店中的营业员
           if @shop_order.user_id == current_user.user_id
               @shop_order_items = @shop_order.shop_order_items
           else
-             redirect_to root_path, notice: '你不是此平行店营业员，无法扫码'
+             redirect_to root_path, notice: '你不是此影子店营业员，无法扫码'
           end
       end
   end
@@ -218,11 +218,11 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     }
 
     if @shop.save
-      # 在创建平行店后，创建adminuser用户
+      # 在创建影子店后，创建adminuser用户
       @admin_user = AdminUser.create(admin_data)
       @shop.update!(admin_user_id: @admin_user.id)
 
-      flash[:success] = '平行店创建成功'
+      flash[:success] = '影子店创建成功'
 
       # 判断计划为 199 或者 创客计划
       if @plan.is_maker == true

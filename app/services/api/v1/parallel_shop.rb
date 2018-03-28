@@ -1,9 +1,9 @@
 class API::V1::ParallelShop < API 
 
-	namespace :parallel_shop, desc: "平行店" do
+	namespace :parallel_shop, desc: "影子店" do
 
-		#所有上线平行店 
-		desc '平行店',detail: <<-NOTES.strip_heredoc
+		#所有上线影子店 
+		desc '影子店',detail: <<-NOTES.strip_heredoc
       > 请求成功返回信息
 
       ```json
@@ -33,7 +33,7 @@ class API::V1::ParallelShop < API
 
       ```json
       {
-        "error_message": "未找到热门的平行店",
+        "error_message": "未找到热门的影子店",
         "error_code": 401
       }
       ```
@@ -43,8 +43,8 @@ class API::V1::ParallelShop < API
   		parallel_shops = ParallelShop.where(status: "dealed")
 		end
 
-		#推荐平行店
-		desc '推荐平行店',detail: <<-NOTES.strip_heredoc
+		#推荐影子店
+		desc '推荐影子店',detail: <<-NOTES.strip_heredoc
       > 请求成功返回信息
 
       ```json
@@ -74,7 +74,7 @@ class API::V1::ParallelShop < API
 
       ```json
       {
-        "error_message": "未找到热门的平行店",
+        "error_message": "未找到热门的影子店",
         "error_code": 401
       }
       ```
@@ -204,7 +204,7 @@ class API::V1::ParallelShop < API
 
       end
       if arr.blank?
-          return "该平行店尚未添加产品！"
+          return "该影子店尚未添加产品！"
       else
           return {name: parallel_shop[:title], address: parallel_shop[:address], product_info: arr}
       end

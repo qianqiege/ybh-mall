@@ -69,14 +69,14 @@ class ShopOrder < ApplicationRecord
   #           user_id: plan.user_id,
   #           plan_id: plan.id,
   #           shop_order_id: id,
-  #           reason: "平行店伙伴收益",
+  #           reason: "影子店伙伴收益",
   #           money: total * parallel_shop.earning_ratio * 0.9
   #       )
   #       MoneyDetail.create(
   #           user_id: plan.capital_id,
   #           plan_id: plan.invite_plan_id,
   #           shop_order_id: id,
-  #           reason: "平行店队长收益",
+  #           reason: "影子店队长收益",
   #           money: capital_money
   #       )
   #     else
@@ -86,7 +86,7 @@ class ShopOrder < ApplicationRecord
   #           user_id: plan.user_id,
   #           plan_id: plan.id,
   #           shop_order_id: self.id,
-  #           reason: "平行店收益",
+  #           reason: "影子店收益",
   #           money: capital_money)
   #     end
   #   end
@@ -104,7 +104,7 @@ class ShopOrder < ApplicationRecord
             user_id: plan.user_id,
             plan_id: plan.id,
             shop_order_id: id,
-            reason: "平行店伙伴收益",
+            reason: "影子店伙伴收益",
             money: total * ratio * 0.9
         )
         pedding_money = total * ratio * 0.1
@@ -115,7 +115,7 @@ class ShopOrder < ApplicationRecord
             user_id: plan.user_id,
             plan_id: plan.id,
             shop_order_id: self.id,
-            reason: "平行店收益",
+            reason: "影子店收益",
             money: capital_money)
         pedding_money = 0
       end
@@ -147,9 +147,9 @@ class ShopOrder < ApplicationRecord
     if self.status == "pending"
       plan = self.parallel_shop.plan
       if plan.invite_plan_id
-        MoneyDetail.create(user_id: plan.user_id, plan_id: plan.id, shop_order_id: self.id, reason: "平行店收益", money: self.total*self.parallel_shop.earning_ratio*0.9)
+        MoneyDetail.create(user_id: plan.user_id, plan_id: plan.id, shop_order_id: self.id, reason: "影子店收益", money: self.total*self.parallel_shop.earning_ratio*0.9)
       else
-        MoneyDetail.create(user_id: plan.user_id, plan_id: plan.id, shop_order_id: self.id, reason: "平行店收益", money: self.total*self.parallel_shop.earning_ratio)
+        MoneyDetail.create(user_id: plan.user_id, plan_id: plan.id, shop_order_id: self.id, reason: "影子店收益", money: self.total*self.parallel_shop.earning_ratio)
       end
       self.shop_order_items.each do |t|
         a = Stock.find_by(product_id: t.product_id, parallel_shop_id: self.user.parallel_shop_id)
@@ -197,7 +197,7 @@ class ShopOrder < ApplicationRecord
 
   def generate_call_number
     last_shop_order = ShopOrder.where(parallel_shop_id: self.parallel_shop_id).last
-    # 如果该平行店没有订单  直接将叫号码设为1
+    # 如果该影子店没有订单  直接将叫号码设为1
     if last_shop_order
       if last_shop_order.call_number == nil
         self.call_number = 1
