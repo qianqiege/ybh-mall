@@ -147,7 +147,7 @@ class User < ApplicationRecord
             color:"#173177"
           },
           keyword4:{
-            value: "请您进入御易健商城设置",
+            value: "请您进入御邦平行店设置",
             color:"#173177"
           },
           keyword5:{

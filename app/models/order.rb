@@ -530,7 +530,7 @@ class Order < ApplicationRecord
         color:"#173177"
       },
       remark:{
-        value: "请在商城我的订单中查询物流信息",
+        value: "请在御邦平行店我的订单中查询物流信息",
         color:"#173177"
       }
     }
