@@ -228,7 +228,7 @@
 <%= title "平行系统计划详情" %>
 <div class="containe">
   <div class="authd">
-    <span class="auth">平行店授权</span>
+    <span class="auth">医通影子店授权</span>
     <button class="<%= @plan.active? ? 'btn2' : 'btn1' %>" disabled><%= @plan.active? ? '已授权' : '待授权' %></button>
     <span class="worry"><%= !@plan.invite_plan ? '管理指导费：0' : '管理指导费：'+(@plan.money/9.0).to_s %></span>
   </div>
@@ -251,11 +251,11 @@
 
   <div class="shopList">
     <div style="line-height: 30px;">
-      <span class="mystore">我的平行店</span>
+      <span class="mystore">我的影子店</span>
       <% if @plan.active == true %>
-          <a href="<%= wechat_parallel_shops_applyshop_path(params[:format]) %>" class="add">添加平行店</a>
+          <a href="<%= wechat_parallel_shops_applyshop_path(params[:format]) %>" class="add">添加影子店</a>
       <% else %>
-          <a class="add" style="background-color: #bbb;">添加平行店</a>
+          <a class="add" style="background-color: #bbb;">添加影子店</a>
       <% end %>
     </div>
     <ul>

@@ -18,8 +18,8 @@ class API::V1 < Grape::API
   			{name: 'wallet', description: '钱包'},
   			{name: 'work', description: '社区健康管理平台'},
   			{name: 'user', description: '用户相关'},
-        {name: 'parallel_shop', description: '平行店'},
-        {name: 'parallel_shop_manage', description: '平行店管理'}]
+        {name: 'parallel_shop', description: '影子店'},
+        {name: 'parallel_shop_manage', description: '影子店管理'}]
   	)
 
 end

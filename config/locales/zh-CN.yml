@@ -19,7 +19,7 @@ zh-CN:
       wallet_manage: '钱包/账户'
       yb_work_manage: '御邦服务中心'
       official_website: '网站管理'
-      parallel_shop_manage: "平行店管理"
+      parallel_shop_manage: "影子店管理"
   activerecord:
     attributes:
       program:
@@ -215,7 +215,7 @@ zh-CN:
         telphone: '手机号码（用于登陆）'
         identity_card: '系统身份码'
         id_number: '身份证'
-        parallel_shop: "平行店"
+        parallel_shop: "影子店"
         name: '真实姓名'
         invitation_card: '邀请码'
         invitation: '邀请人'
@@ -410,7 +410,7 @@ zh-CN:
         shop_type: "店铺类型"
       stock_out:
         number: "编号"
-        parallel_shop: "平行店"
+        parallel_shop: "影子店"
         contact: "联系人"
         address: "地址"
         phone: "电话"
@@ -441,24 +441,24 @@ zh-CN:
         start_money: "启动资金"
         plan_type: "计划类型"
         link: "链接地址"
-        parallel_shop_revenue: "平行店规模（月营业额）"
+        parallel_shop_revenue: "影子店规模（月营业额）"
       plan:
         user: "用户"
         code: "计划编号"
         invite_plan_id: "所属上级计划"
         plan_rule_id: "计划规则"
-        active: "平行店链接授权"
+        active: "影子店链接授权"
         is_end: "本轮结束"
         money: "总收益"
         status: "付款状态"
       sale_product:
         product: "产品"
-        parallel_shop: '平行店'
+        parallel_shop: '影子店'
         amount: "数量"
       shop_order:
         number: "编号"
         wechat_user: "微信用户"
-        parallel_shop: '平行店'
+        parallel_shop: '影子店'
         customer: "客户"
         user: "营业员"
         express_number: '运单号'
@@ -469,22 +469,22 @@ zh-CN:
         ybyt_amount_receivable: "御邦医通应收款"
         order_from: "订单来源"
       stock:
-        parallel_shop: "平行店"
+        parallel_shop: "影子店"
         product: '产品'
         amount: "数量"
       day_deal:
-        parallel_shop: "平行店"
+        parallel_shop: "影子店"
         should_pay: '应付'
         already_pay: "实付"
         status: "状态"
       month_deal:
-        parallel_shop: "平行店"
+        parallel_shop: "影子店"
         should_pay: '应付'
         already_pay: "实付"
         status: "状态"
       purchase_order:
         number: "编号"
-        parallel_shop: "平行店"
+        parallel_shop: "影子店"
         contact: "联系人"
         address: "地址"
         phone: "电话"
@@ -582,9 +582,9 @@ zh-CN:
       stock_out: "出库单"
       day_deal: "日清"
       month_deal: '月结'
-      shop_order: "平行店订单"
+      shop_order: "影子店订单"
       stock: "库存管理"
-      parallel_shop: "平行店"
+      parallel_shop: "影子店"
       plan_rule: "平行系统计划规则"
       plan: '平行系统计划记录'
       sale_product: '产品上架'

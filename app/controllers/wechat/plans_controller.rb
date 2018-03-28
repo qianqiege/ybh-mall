@@ -64,7 +64,7 @@ class Wechat::PlansController < Wechat::BaseController
     @trade_merge_pay_params = @plan.fast_pay.trade_merge_pay_params_plan(params["payment"])
   end
 
-  # 展示平行店文件
+  # 展示影子店文件
   def index_files
 
   end
