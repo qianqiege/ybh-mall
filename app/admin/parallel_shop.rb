@@ -17,7 +17,7 @@ ActiveAdmin.register ParallelShop do
             f.input :left_and_right_ratio
         end
         f.input :is_hot
-        f.input :shop_type, as: :select, collection: options_for_select(["御邦影子店", "医通影子店"])
+        f.input :shop_type, as: :select, collection: options_for_select(["御邦平行店", "医通影子店"])
       end
       f.actions
     end

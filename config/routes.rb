@@ -87,6 +87,8 @@ Rails.application.routes.draw do
     get 'parallel_shops/shop_order_finished'
 
     get '/parallel_shops/address', to: 'parallel_shops#get_address'
+
+    get '/ybytparallel_shops/index'
   end
 
   namespace :wechat do
