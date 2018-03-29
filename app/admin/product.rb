@@ -30,9 +30,9 @@ ActiveAdmin.register Product do
     column "商品图片" do |slide|
       image_tag(slide.image_url, size: "72x45", :alt => "product image")
     end
-    column :qcode do |product|
-      raw RQRCode::QRCode.new(mall_product_url(id: product.id, parallel_product_show: true), :size => 8, :level => :h).as_html
-    end
+    # column :qcode do |product|
+    #   raw RQRCode::QRCode.new(mall_product_url(id: product.id, parallel_product_show: true), :size => 8, :level => :h).as_html
+    # end
     column :name
     column :only_number
     column :now_product_price
