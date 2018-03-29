@@ -175,6 +175,7 @@ zh-CN:
         not_cash: '不可体现（余额）'
         updated_at: '最后更新时间'
         celebrate_ratsimp: '庆通分'
+        allocation_money: '领配金额'
       reservation_record:
         time: '时间'
         name: '客户'
