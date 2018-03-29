@@ -77,7 +77,7 @@ ActiveAdmin.register Product do
       f.input :led_away_category, as: :select, collection: {'A' => '1', 'B' => '2', 'C' => '3'}
       f.input :activity
       f.input :is_test
-      f.input :contents_category
+      f.input :contents_category, as: :select, collection: ContentsCategory.where(up_id: ContentsCategory.where(up_id: nil).select(:id))
     end
     f.actions
   end
