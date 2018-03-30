@@ -56,8 +56,9 @@
     <span class="choosed">生产厂家：<%= @product.production %></span>
   </li>
 
-  <li class="arrow-right">
-    <span class="choosed">说明：<%= raw @product.desc %></span>
+  <li>
+    <span class="arrow-right">说明：</span>
+    <div class="li-center"><%= raw @product.desc %></div>
   </li>
 </ul>
 <% unless params[:parallel_product_show] %>
