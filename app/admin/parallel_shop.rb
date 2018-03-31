@@ -17,7 +17,7 @@ ActiveAdmin.register ParallelShop do
             f.input :left_and_right_ratio
         end
         f.input :is_hot
-        f.input :shop_type, as: :select, collection: options_for_select(["御邦平行店", "医通影子店"])
+        f.input :shop_type, as: :select, collection: ParallelShop::SHOP_TYPE.invert
       end
       f.actions
     end
@@ -31,7 +31,9 @@ ActiveAdmin.register ParallelShop do
         column :main_business
         column :settlement_ratio
         column :left_and_right_ratio
-        column :shop_type
+        column :shop_type do |shop_type|
+          shop_type.shop_type_name
+        end
         column "营业员" do |parallelshop|
           parallelshop.users.pluck(:name).join(',')
         end
@@ -60,6 +62,7 @@ ActiveAdmin.register ParallelShop do
         actions
     end
 
+    filter :shop_type, as: :select, collection: ParallelShop::SHOP_TYPE.invert
     member_action :edit_waiter, method: :get do
         shop_id = params[:id].to_i
         render partial: 'pages/edit_waiter', locals: {shop: shop_id}

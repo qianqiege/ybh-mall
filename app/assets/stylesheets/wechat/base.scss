@@ -1,4 +1,5 @@
 @import "yyj_variables";
+
 body, html {
   height: 100%;
   -webkit-tap-highlight-color: transparent
@@ -15,6 +16,7 @@ ul {
 .page__bd {
   background: $yyjBackground;
 }
+
 .link {
   color: #1aad19
 }
@@ -147,6 +149,12 @@ ul {
   color: #fff;
   background-color: $yyjPrimary;
   border-color: $yyjPrimary;
+}
+
+.yyj-btn-assist {
+  color: #fff;
+  background-color: $yyjAssist;
+  border-color: $yyjAssist;
 }
 
 .yyj-btn-disable {
@@ -308,9 +316,20 @@ ul {
   ul {
     border-top: 1px solid $yyjListItemBorder;
     li {
-      display: flex;
-      border-bottom: 1px solid $yyjListItemBorder;
       padding-top: 6px;
+      .li-flex {
+        display: flex;
+        a {
+          flex: 1;
+          display: block;
+          color: $yyjBtnColor;
+          text-align: center;
+          &:active {
+            color: $yyjBtnColor;
+          }
+        }
+      }
+      border-bottom: 1px solid $yyjListItemBorder;
     }
     .slLeft, slRight {
       display: inline-block;
@@ -355,7 +374,7 @@ ul {
   }
   ul {
     border-top: 1px solid $yyjListPlanBorder;
-    li{
+    li {
       border-bottom: 1px solid $yyjListPlanBorder;
     }
   }
@@ -386,6 +405,7 @@ ul {
     }
   }
 }
+
 .yyj-tab-btn-tw {
   ul {
     li {
@@ -393,6 +413,7 @@ ul {
     }
   }
 }
+
 .yyj-tab-btn-th {
   ul {
     li {
@@ -400,6 +421,7 @@ ul {
     }
   }
 }
+
 .yyj-tab-btn-fi {
   ul {
     li {

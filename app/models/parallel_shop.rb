@@ -1,4 +1,6 @@
 class ParallelShop < ApplicationRecord
+	SHOP_TYPE = { '1' => '御邦平行店', '2' => '医通影子店' }.freeze
+
   include ImageConcern
   has_many :purchase_orders
   has_many :stock_outs
@@ -73,6 +75,9 @@ class ParallelShop < ApplicationRecord
 		return arr
 	end
 
+	def shop_type_name
+		SHOP_TYPE[self.shop_type.to_s]
+	end
 	private
 	def add_location
 		qq_lbs = Sdk::QQLbs.new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308072327) do
+ActiveRecord::Schema.define(version: 20180328092220) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -517,6 +517,7 @@ ActiveRecord::Schema.define(version: 20180308072327) do
     t.decimal  "not_appreciation",             precision: 10, scale: 2
     t.decimal  "count",                        precision: 10, scale: 2
     t.float    "celebrate_ratsimp", limit: 24,                          default: 0.0
+    t.decimal  "allocation_money",             precision: 10
   end
 
   create_table "integrals_copy1", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -736,19 +737,21 @@ ActiveRecord::Schema.define(version: 20180308072327) do
     t.string   "main_business"
     t.string   "image"
     t.string   "desc"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "status",                      default: "waiting"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "status",                          default: "waiting"
     t.string   "province"
     t.string   "city"
     t.string   "street"
     t.string   "detail"
     t.integer  "plan_id"
     t.integer  "admin_user_id"
-    t.float    "settlement_ratio", limit: 24
-    t.float    "latitude",         limit: 24
-    t.float    "longitude",        limit: 24
+    t.float    "settlement_ratio",     limit: 24
+    t.float    "latitude",             limit: 24
+    t.float    "longitude",            limit: 24
     t.boolean  "is_hot"
+    t.float    "left_and_right_ratio", limit: 24
+    t.string   "shop_type"
   end
 
   create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1043,16 +1046,18 @@ ActiveRecord::Schema.define(version: 20180308072327) do
   create_table "shop_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "number"
     t.integer  "user_id"
-    t.float    "total",            limit: 24, default: 0.0
-    t.string   "status",                      default: "pending"
+    t.float    "total",                  limit: 24, default: 0.0
+    t.string   "status",                            default: "pending"
     t.string   "express_number"
-    t.float    "difference",       limit: 24
-    t.float    "shop_pay",         limit: 24, default: 0.0
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.float    "difference",             limit: 24
+    t.float    "shop_pay",               limit: 24, default: 0.0
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.integer  "wechat_user_id"
     t.integer  "parallel_shop_id"
     t.string   "call_number"
+    t.string   "order_from"
+    t.float    "ybyt_amount_receivable", limit: 24, default: 0.0
   end
 
   create_table "shop_propaganda_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

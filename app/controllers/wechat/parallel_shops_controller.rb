@@ -1,9 +1,14 @@
 class Wechat::ParallelShopsController < Wechat::BaseController
   def index
   	@slides = Slide.top(1)
-    @parallel_shops = ParallelShop.where(status: "dealed").order(created_at: :desc)
+    @shop_type = params["format"]
+    @parallel_shops = ParallelShop.where(status: "dealed", shop_type: params["format"]).order(created_at: :desc)
   end
 
+  # 御邦平行店首页
+  def ybparallel_shop_index
+
+  end
   # 影子店详情
   def shopdata
     # 判断当前顾客是否注册
