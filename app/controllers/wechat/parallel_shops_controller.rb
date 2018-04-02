@@ -5,11 +5,16 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     @parallel_shops = ParallelShop.where(status: "dealed", shop_type: params["format"]).order(created_at: :desc)
   end
 
-  # 御邦平行店首页
-  def ybparallel_shop_index
-
+  # 平行店购买
+  def parallel_pay
+    @parallel_shop = ParallelShop.find(params[:format])
+    # byebug
+    @ps =  Product.where(id: @parallel_shop.stock.pluck(:product_id))
+    @products = Product.where(id: @parallel_shop.stock.pluck(:product_id)).select(&:id)
+    @classify_id = @products.pluck(:contents_category_id)
+    @classify = ContentsCategory.where(id: @classify_id)
   end
-  # 影子店详情
+  # 影子店详情  影子店领配
   def shopdata
     # 判断当前顾客是否注册
     # 注册了，则直接跳转到营业员所在的影子店

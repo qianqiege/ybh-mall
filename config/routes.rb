@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       end
     end
     get 'parallel_shops/index'
+    get 'parallel_shops/parallel_pay'
     get 'parallel_shops/shopdata'
     get 'parallel_shops/waiter_input_money'
     get 'parallel_shops/waiter_code'

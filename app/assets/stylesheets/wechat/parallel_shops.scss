@@ -1,3 +1,5 @@
+@import "yyj_variables";
+
 * {
   margin: 0;
   padding: 0;
@@ -8,32 +10,90 @@
 .shopDatas {
   display: flex;
   background-color: #f8f8f8;
-  margin:0% 0% 2%;
-  padding: 5% 2%;
-  .slLeft,.slRight {
+  margin: 0% 0% 2%;
+  padding: 2% 2%;
+  .slLeft, .slRight {
     display: inline-block;
   }
   .slLeft {
     width: 35%;
-    padding-top:5px;
+    padding-top: 5px;
     img {
       width: 100%;
     }
   }
   .slRight {
     padding-left: 4%;
-    padding-top:12px;
+    padding-top: 12px;
     flex: 1;
     p {
       font-size: 1.1rem;
     }
     span {
+      padding-top: 8px;
       display: block;
       font-size: 0.8rem;
       color: #666;
     }
   }
 }
+
+.shopClassify {
+  font-size: medium;
+  ul {
+    a {
+      color: $yyjImportant;
+      &:hover {
+        color: $yyjPrimary;
+      }
+      li {
+        padding: 8px 0;
+        background-color: #f0f0f0;
+        text-align: center;
+      }
+      :hover {
+        border-left: 3px solid $yyjPrimary;
+        background-color: #f8f8f8;
+      }
+    }
+  }
+}
+
+.shopProductList {
+  .title {
+    font-size: small;
+    border-bottom: 1px solid $yyjPrimary;
+  }
+  background: #f8f8f8;
+  .li-image{
+    display: inline-block;
+    color: $yyjImportant;
+    &:hover {
+      color: $yyjPrimary;
+    }
+    width: 100%;
+    img {
+      display: inline-block;
+      width: 80%;
+      margin-left: 10%;
+    }
+  }
+  ul {
+    padding: 8px;
+    li {
+      ul {
+        li {
+          margin: 0 5%;
+          position: relative;
+          width:40%;
+          float: left;
+        }
+      }
+
+    }
+  }
+}
+
 //-------------------平行配领页面列表------------------
 .listShow {
 
@@ -80,200 +140,214 @@
   color: #888;
 }
 
-
 /***********************店铺的首页和店铺版页面************************/
 .fontSizes {
   font-size: 0.8rem;
 }
+
 .topImage {
-  width:100%;
+  width: 100%;
 }
+
 .shopHeader {
-    height:40px;
-    display: flex;
-    background: #ad0e11;
-    input {
-      flex:1;
-      margin-left: 4%;
-      height:26px;
-      margin-top: 5px;
-      padding-left: 3%;
-      border:0;
-      border:1px solid #fff;
-      border-radius: 5px;
-      --webkit-appearance: none;
-    }
-    a {
-      display: inline-block;
-      padding:0 2%;
-      margin:0 4% 0 1%;
-      height:26px;
-      line-height: 26px;
-      margin-top: 6px;
-      border:0;
-      color: #fff; 
-      background: transparent;
-      font-size: 14px;
-    }
-    a:active{
-      color:#fff;
-    }
+  height: 40px;
+  display: flex;
+  background: #ad0e11;
+  input {
+    flex: 1;
+    margin-left: 4%;
+    height: 26px;
+    margin-top: 5px;
+    padding-left: 3%;
+    border: 0;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    --webkit-appearance: none;
+  }
+  a {
+    display: inline-block;
+    padding: 0 2%;
+    margin: 0 4% 0 1%;
+    height: 26px;
+    line-height: 26px;
+    margin-top: 6px;
+    border: 0;
+    color: #fff;
+    background: transparent;
+    font-size: 14px;
+  }
+  a:active {
+    color: #fff;
+  }
 }
+
 /******************生成领配码页面********************/
 .block-label {
-    color: #ad0e11;
-    font-size: 16px;
-    display: block;
-    margin-top: 25%;
-    padding-left: .7rem;
-  }
-  .block-content span, .block-content .block-money {
-    display: block;
+  color: #ad0e11;
+  font-size: 16px;
+  display: block;
+  margin-top: 25%;
+  padding-left: .7rem;
+}
+
+.block-content span, .block-content .block-money {
+  display: block;
+  border: none;
+  /*width: 100%;*/
+  height: 105px;
+  line-height: 105px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #fff;
+
+}
+
+.block-btn-money {
+  position: absolute;
+  bottom: 58px;
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  height: 45px;
+  padding: 0;
+  text-align: right;
+  input {
+    width: 30%;
     border: none;
-    /*width: 100%;*/
-    height: 105px;
-    line-height: 105px;
-    margin-top: 15px;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: #fff;
-
-  }
-  .block-btn-money {
-    position: absolute;
-    bottom: 58px;
-    width: 100%;
-    left: 0;
-    background-color: #fff;
-    height: 45px;
-    padding: 0;
-    text-align: right;
-    input {
-      width: 30%;
-      border: none;
-      background-color: #ad0e11;
-      color: #fff;
-      height: 100%;
-      -webkit-appearance: none;
-      border-radius: 0;
-      font-size: 14px;
-    }
-  }
-  .block-content {
-    overflow: hidden;
-    span {
-      float: left;
-      width: 10%;
-      text-align: center;
-      font-size: 20px;
-      line-height: 40px;
-    }
-  }
-  .block-content .block-money {
-    float: right;
-    width: 90%;
-    height: 40px;
-    line-height: 40px;
+    background-color: #ad0e11;
+    color: #fff;
+    height: 100%;
     -webkit-appearance: none;
-    border-bottom: 1px solid #ccc;
-    outline: none;
     border-radius: 0;
+    font-size: 14px;
   }
-  .waiterCss {
-    height:100%;
-    background: #fff;
-  }
+}
 
+.block-content {
+  overflow: hidden;
+  span {
+    float: left;
+    width: 10%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+  }
+}
+
+.block-content .block-money {
+  float: right;
+  width: 90%;
+  height: 40px;
+  line-height: 40px;
+  -webkit-appearance: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  border-radius: 0;
+}
+
+.waiterCss {
+  height: 100%;
+  background: #fff;
+}
 
 /*****************待领配、已领配订单页面**********************/
-  .container {
-    overflow-y: auto;
-    padding-bottom: 3px;
-    background: #fff;
-  }
-  .listShow {
-    width:85%;
-    margin: 0 auto;
-    padding:0;
-    padding-bottom: 108px;
-    li {
-      height:60px;
-      border-bottom: 1px solid #ccc;
-      .proRight {
-        padding-left: 5%;
-        p {
-          display: inline-block;
+.container {
+  overflow-y: auto;
+  padding-bottom: 3px;
+  background: #fff;
+}
+
+.listShow {
+  width: 85%;
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: 108px;
+  li {
+    height: 60px;
+    border-bottom: 1px solid #ccc;
+    .proRight {
+      padding-left: 5%;
+      p {
+        display: inline-block;
+      }
+      .proName {
+        font-size: 14px;
+        color: #474747;
+        margin: 0;
+        line-height: 60px;
+        .nameStyle {
+          font-size: 18px;
+          color: #ad0e11;
         }
-        .proName {
-          font-size: 14px;
-          color:#474747;
-          margin: 0;
-          line-height: 60px;
-          .nameStyle {
-            font-size: 18px;
-            color:#ad0e11;
-          }
-        }
-        .proInfo {
-          margin: 0;
-          line-height: 60px;
-          font-size: 14px;
-          color:#888;
-          float: right;
-        }
+      }
+      .proInfo {
+        margin: 0;
+        line-height: 60px;
+        font-size: 14px;
+        color: #888;
+        float: right;
       }
     }
   }
-  .pro-order {
-    padding: 10px;
-    margin:0 auto;
-    width: 85%;
-    margin-top: 20px;
-    background-color: #ad0e11;
-    span {
-      color: #fff;
-      width: 100%;
-      display: inline-block;
-      text-align: center;
-    }
-  }
-  /******************领配排号页面*******************/
-  .allPay {
-    text-align: center;
-    color:#fff; 
-    line-height: 50px;
-  }
-  .jiesuan {
-    background: #ad0e11;
-    width:100%;
-    height:50px;
-    position: absolute;
-    bottom: 58px;
-    left:0;
-    border-top: 1px solid #ccc;
-  }
-  .call-number {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 10px;
-  }
-  .pric-block {
-    /*border: 25px solid #ad0e11;*/
-    padding-bottom: 11.11px;
-    margin-top: 20px;
-  }
+}
 
-  /*******************领配金额生成二维码页面***************/
-  .con-qr-block {
-    margin-top: 10%;
-  }
-  .allPay p{
+.pro-order {
+  padding: 10px;
+  margin: 0 auto;
+  width: 85%;
+  margin-top: 20px;
+  background-color: #ad0e11;
+  span {
+    color: #fff;
+    width: 100%;
+    display: inline-block;
     text-align: center;
-    font-size: 1.3rem;
-    color:#000; 
   }
-  .allPay p:nth-child(2) {
-    color: #ad0e11;
-    font-size: 1.5rem;
-  }
+}
+
+/******************领配排号页面*******************/
+.allPay {
+  text-align: center;
+  color: #fff;
+  line-height: 50px;
+}
+
+.jiesuan {
+  background: #ad0e11;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 58px;
+  left: 0;
+  border-top: 1px solid #ccc;
+}
+
+.call-number {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.pric-block {
+  /*border: 25px solid #ad0e11;*/
+  padding-bottom: 11.11px;
+  margin-top: 20px;
+}
+
+/*******************领配金额生成二维码页面***************/
+.con-qr-block {
+  margin-top: 10%;
+}
+
+.allPay p {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #000;
+}
+
+.allPay p:nth-child(2) {
+  color: #ad0e11;
+  font-size: 1.5rem;
+}

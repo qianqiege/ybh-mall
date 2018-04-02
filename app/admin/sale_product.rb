@@ -11,7 +11,9 @@ ActiveAdmin.register SaleProduct do
             f.input :parallel_shop,  as: :select, selected: current_admin_user.parallel_shop.try(:id), :input_html => { :disabled => true }
         end
         # f.input :amount
+        f.input :sale_type, as: :select, collection: SaleProduct::SALE_TYPE.invert
       end
+
       f.actions
     end
 
@@ -21,6 +23,9 @@ ActiveAdmin.register SaleProduct do
         column :product
         column :parallel_shop
         # column :amount
+        column :sale_type do |sale_type|
+          sale_type.sale_type_name
+        end
         actions
     end
 end

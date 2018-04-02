@@ -25,7 +25,7 @@
         <p class="fontSizes">御邦平行店</p>
       </li>
       <li>
-        <a href="<%= wechat_parallel_shops_index_path %>">
+        <a href="<%= wechat_parallel_shops_index_path(2) %>">
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                width="50" height="50"
                viewBox="0 0 252 252"
@@ -131,7 +131,7 @@
               </div>
               <div class="li-flex">
                 <% if t.shop_type == '1'%>
-                    <a class="yyj-btn-tg-sm yyj-btn-primary" href="<%=  %>">
+                    <a class="yyj-btn-tg-sm yyj-btn-primary" href="<%= wechat_parallel_shops_parallel_pay_path(t) %>">
                       购买
                     </a>
                 <% end %>
