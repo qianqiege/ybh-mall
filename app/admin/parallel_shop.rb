@@ -17,7 +17,9 @@ ActiveAdmin.register ParallelShop do
             f.input :left_and_right_ratio
         end
         f.input :is_hot
+        f.input :status, as: :select, collection: ParallelShop::STATUS.invert
         f.input :shop_type, as: :select, collection: ParallelShop::SHOP_TYPE.invert
+
       end
       f.actions
     end
@@ -59,6 +61,9 @@ ActiveAdmin.register ParallelShop do
             link_to "添加营业员", edit_waiter_admin_parallel_shop_path(shop), method: :get
         end
         column :is_hot
+        column :status do |status|
+          status.status_name
+        end
         actions
     end
 
