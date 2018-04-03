@@ -35,7 +35,7 @@ class Mall::HomeController < Mall::BaseController
 
     # 判断用户不是测试人员时， 筛选非测试产品
     if current_user.user && current_user.user.is_test == false
-      @products = @products.where(is_test: false, contents_category_id: ContentsCategory.find(1).downs)
+      @products = @products.where(is_test: false, contents_category_id: ContentsCategory.find(params["format"]).downs)
     end
     @second_categorys = ContentsCategory.find( params["format"]).downs
   end
