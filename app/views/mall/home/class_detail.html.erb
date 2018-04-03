@@ -1,0 +1,42 @@
+<%= render 'mall/shared/search' %>
+
+<%= title '分类详情' %>
+
+<div class="home">
+  <%= render 'shared/slide' %>
+  <!-- end mall_menu -->
+  <div class="pro_tab"><!-- 这里是切换位置 -->
+    <!-- <div class="autoView"> -->
+      <ul class="fst_tab clearfix">
+        <% @first_categorys.each do |categroy| %>
+            <li class="first" data-id="<%= categroy.id %>"><%= categroy.name %></li>
+        <% end %>
+      </ul>
+    <!-- </div> -->
+    <div id="second_category">
+
+    </div>
+  </div>
+  <div id="product_index">
+    <%= render 'product_classified' %>
+  </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".first").on('click', function () {
+            $.get("/mall/products/second_content?id="+$(this).data("id"), function (data) {
+                console.log(data);
+                $('#second_category').html(data)
+            })
+        });
+
+        $('.fst_tab li').each(function (index, el) {
+            $(this).click(function () {
+                console.log(index);
+                $(this).addClass('active').siblings().removeClass('active');
+
+            })
+        })
+
+    })
+</script>

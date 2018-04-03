@@ -127,6 +127,7 @@ Rails.application.routes.draw do
     get 'classify',to:'home#classify'
     get 'luck', to: 'lottery#luck'
     get 'create', to: 'lottery#create'
+    get 'class_detail', to: 'home#class_detail'
 
     resources :line_items, only: [:create, :destroy] do
       put :add, on: :member
@@ -149,6 +150,7 @@ Rails.application.routes.draw do
     resources :return_requests, only: [:new, :create]
     get 'my', to: 'my#home'
     post 'my/unbinding_wechat_user/:id', to: 'my#unbinding_wechat_user'
+
   end
 
   namespace :service do
