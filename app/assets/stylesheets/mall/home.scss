@@ -176,10 +176,10 @@
   }
 
   .pro_tab {
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
-    margin-top: 20px;
-    overflow: hidden; 
+    overflow: hidden;
+    background-color: #eee;
       .fst_tab {
         white-space:nowrap;
         overflow-x:auto;
@@ -190,7 +190,7 @@
             font-weight: bolder;
             color: #ad0e11;
             background: #eee;
-            padding: 3px 50px;
+            padding: 3px 8px;
         }      
       }      
   }
