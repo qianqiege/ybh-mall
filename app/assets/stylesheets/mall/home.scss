@@ -176,10 +176,10 @@
   }
 
   .pro_tab {
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
-    margin-top: 20px;
-    overflow: hidden; 
+    overflow: hidden;
+    background-color: #eee;
       .fst_tab {
         white-space:nowrap;
         overflow-x:auto;
@@ -190,7 +190,7 @@
             font-weight: bolder;
             color: #ad0e11;
             background: #eee;
-            padding: 3px 50px;
+            padding: 3px 8px;
         }      
       }      
   }
@@ -300,3 +300,48 @@
         z-index: 999;
     }
 
+
+.classifyLevel {
+  ul {
+    width:94%;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding-bottom: 50px;
+    li {
+      .levelTitle {
+        padding:5px;
+        width:30%;
+        background: -webkit-linear-gradient(left, #ad0e11 , #f8b372); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(right, #ad0e11,#f8b372 ); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(right, #ad0e11, #f8b372); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, #ad0e11 , #f8b372); /* 标准的语法（必须放在最后） */
+        color: #fff;
+        text-align: center;
+        border-top-right-radius:20px; 
+        border-bottom-right-radius:20px; 
+      }
+      .levelList {
+        width:100%;
+        margin-top: 5px;
+        display: flex;
+        flex-wrap:wrap;
+        li {
+          width:33%;
+          padding-bottom: 5px;
+          &:nth-child(2n+1) {
+            background: #eee;
+          }
+          img {
+            width:76%;
+            margin-left: 12%;
+          }
+          .textCenter {
+            font-size: 12px;
+            text-align: center;
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+}
