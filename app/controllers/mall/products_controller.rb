@@ -15,7 +15,7 @@ class Mall::ProductsController < Mall::BaseController
 
   def second_content
     @second_category = ContentsCategory.find(params[:id]).downs.where(is_display: true)
-    @products = Product.where(contents_category_id: params[:id])
+    @products = Product.where(is_display: true, contents_category_id: params[:id])
     render partial: '/mall/home/product_classified'
   end
 
