@@ -4,22 +4,10 @@
 
 <div class="home">
   <%= render 'shared/slide' %>
-  <!-- end mall_menu -->
-  <div class="pro_tab"><!-- 这里是切换位置 -->
-    <!-- <div class="autoView"> -->
-      <ul class="fst_tab clearfix">
-        <% @first_categorys.each do |categroy| %>
-            <li class="first" data-id="<%= categroy.id %>"><%= categroy.name %></li>
-        <% end %>
-      </ul>
-    <!-- </div> -->
-    <div id="second_category">
-
-    </div>
-  </div>
-  <div id="product_index">
-    <%= render 'product_classified' %>
-  </div>
+  <!-- 这里是切换位置 -->
+  <%= render 'classified_name' %>
+  <!-- 这里是展示位置 -->
+    <%= render 'classified_level' %>
 </div>
 <script type="text/javascript">
     $(function () {

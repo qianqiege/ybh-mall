@@ -1,0 +1,19 @@
+<div class="classifyLevel">
+  <ul>
+    <% @first_categorys.each do |content_category| %>
+        <li>
+          <a href="<%= mall_class_detail_path(content_category.id) %>"><p class="levelTitle"><%= content_category.name %></p></a>
+          <ul class="levelList">
+            <% @products.where(contents_category_id: content_category.downs).take(6).each do |product| %>
+                <li>
+                  <a href="#">
+                    <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
+                    <p class="textCenter"><%= product.name %></p>
+                  </a>
+                </li>
+            <% end %>
+          </ul>
+        </li>
+    <% end %>
+  </ul>
+</div>
