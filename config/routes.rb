@@ -87,6 +87,7 @@ Rails.application.routes.draw do
     get 'parallel_shops/waiter_confirm'
     get 'parallel_shops/shop_order_finished'
     get '/parallel_shops/address', to: 'parallel_shops#get_address'
+    get '/show_consumer_entrustment', to: 'home#show_consumer_entrustment'
   end
 
   namespace :wechat do
@@ -266,6 +267,8 @@ Rails.application.routes.draw do
     get '/idata_subscribe_pay', to: 'examine_data#idata_subscribe_pay'
     get '/show_week_or_month_report', to: 'examine_data#show_week_or_month_report'
     get '/show_user_idata_subscribe_list', to: 'examine_data#show_user_idata_subscribe_list'
+    # consumer_entrustment
+    post '/update_consumer_entrustment', to: 'info#update_consumer_entrustment'
   end
 
   namespace :examine do

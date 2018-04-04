@@ -68,6 +68,11 @@ ActiveAdmin.register ParallelShop do
     end
 
     filter :shop_type, as: :select, collection: ParallelShop::SHOP_TYPE.invert
+    filter :title, as: :select, label: "店铺名称"
+    filter :settlement_ratio, as: :select, label: "店铺审核"
+    filter :is_hot, as: :select, label: "热门平行店"
+    filter :status, as: :select, label: "审核状态"
+
     member_action :edit_waiter, method: :get do
         shop_id = params[:id].to_i
         render partial: 'pages/edit_waiter', locals: {shop: shop_id}

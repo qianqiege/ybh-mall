@@ -748,4 +748,17 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  # 
+  def update_consumer_entrustment
+    @user = User.find(current_user.user.id)
+    if @user.update(entrustment_params)
+      redirect_to root_path
+    end
+  end
+  
+  private
+  def entrustment_params 
+    params.require(:consumer_entrustment).permit(:is_entrust)
+  end
+
 end
