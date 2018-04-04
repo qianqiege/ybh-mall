@@ -1,2 +1,0 @@
-module Wechat::ConsumerEntrustmentsHelper
-end

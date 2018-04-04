@@ -116,4 +116,8 @@ skip_before_filter :verify_authenticity_token
 
   def coalition_edit_info
   end
+  # 御邦医通家庭（个人）消费委托书
+  def show_consumer_entrustment
+  end
+
 end
