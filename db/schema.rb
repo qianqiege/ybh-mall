@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403103958) do
+ActiveRecord::Schema.define(version: 20180409064718) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -730,6 +730,7 @@ ActiveRecord::Schema.define(version: 20180403103958) do
     t.decimal  "ycoin",       precision: 10
     t.string   "address"
     t.string   "phone"
+    t.integer  "up_id"
   end
 
   create_table "parallel_shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1155,6 +1156,18 @@ ActiveRecord::Schema.define(version: 20180403103958) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "suppliers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "coding"
+    t.string   "industry"
+    t.string   "receivables"
+    t.string   "accumulated_pay"
+    t.string   "contact"
+    t.string   "telephone"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "temperatures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float    "value",             limit: 24
     t.datetime "created_at",                   null: false
@@ -1272,6 +1285,7 @@ ActiveRecord::Schema.define(version: 20180403103958) do
     t.integer  "parallel_shop_id"
     t.integer  "community_id"
     t.integer  "maker_id"
+    t.boolean  "is_entrust"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
@@ -1305,6 +1319,15 @@ ActiveRecord::Schema.define(version: 20180403103958) do
     t.string   "remark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "warehouses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.integer  "up_id"
+    t.string   "address"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "wechat_express_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
