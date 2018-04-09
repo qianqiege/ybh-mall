@@ -8,11 +8,12 @@ ActiveAdmin.register Warehouse do
       f.input :name
       f.input :up
       f.input :address
-      f.input :organization, as: :select, selected: current_admin_user.organization.try(:id)
+      if current_admin_user.role_name == "admin"
+        f.input :organization
+      elsif current_admin_user.role_name == "province_admin"
+        f.input :organization_id, :input_html => { :value => current_admin_user.organization.id  }, as: :hidden
+      end
     end
     f.actions
   end
-
-
-
 end
