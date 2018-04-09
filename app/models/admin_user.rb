@@ -5,6 +5,7 @@ class AdminUser < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :parallel_shop
+  belongs_to :organization
 
   ROLE_NAME_DATA = { member: '成员',
                     admin: '管理员',
@@ -17,7 +18,8 @@ class AdminUser < ApplicationRecord
                     finance:'财务管理',
                     customer_service:'客户服务',
                     tester: '测试人员',
-                    parallel_shop: '影子店管理者'}.freeze
+                    parallel_shop: '店铺管理者',
+                    province_admin:'省级平台公司管理员'}.freeze
 
   def role_name_label
     ROLE_NAME_DATA[self.role_name.to_sym]

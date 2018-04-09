@@ -74,7 +74,6 @@ class AdminAbility
       can :manage, HealthProgram
       can :manage, ExchangeRecord
     elsif user.role_name == 'parallel_shop'
-
       can :read, ShopOrder, parallel_shop_id: user.parallel_shop.id
       can [:batch_action, :pay], ShopOrder, parallel_shop_id: user.parallel_shop.id
       can :manage, StockOut, parallel_shop_id: user.parallel_shop.id
@@ -85,6 +84,9 @@ class AdminAbility
       can :create, SaleProduct
       can :read, Stock, parallel_shop_id: user.parallel_shop.id
       can :read, ParallelShop, id: user.parallel_shop.id
+    elsif user.role_name == 'province_admin'
+      can :manage, Warehouse, organization_id: user.organization.id
+      can :manage, Warehouse
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end

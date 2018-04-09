@@ -6,12 +6,13 @@ ActiveAdmin.register Warehouse do
   form do |f|
     f.inputs "Warehouse" do
       f.input :name
-      f.input :organization_id
-      f.input :up_id
+      f.input :up
       f.input :address
+      f.input :organization, as: :select, selected: current_admin_user.organization.try(:id)
     end
     f.actions
   end
+
 
 
 end
