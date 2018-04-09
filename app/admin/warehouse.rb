@@ -11,6 +11,7 @@ ActiveAdmin.register Warehouse do
       if current_admin_user.role_name == "admin"
         f.input :organization
       elsif current_admin_user.role_name == "province_admin"
+        f.input :organization,  as: :select, selected: current_admin_user.organization.try(:id), :input_html => { :disabled => true }
         f.input :organization_id, :input_html => { :value => current_admin_user.organization.id  }, as: :hidden
       end
     end
