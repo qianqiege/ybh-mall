@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409072330) do
+ActiveRecord::Schema.define(version: 20180410070711) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -373,17 +373,6 @@ ActiveRecord::Schema.define(version: 20180409072330) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "user_id"
-  end
-
-  create_table "excels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "company"
-    t.string   "type"
-    t.string   "telphone"
-    t.string   "time"
-    t.string   "info"
-    t.string   "remark"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "exchange_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1155,6 +1144,34 @@ ActiveRecord::Schema.define(version: 20180409072330) do
     t.integer  "amount",           default: 0
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+  end
+
+  create_table "supplier_order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "supplier_order_id"
+    t.integer  "product_id"
+    t.integer  "order_count"
+    t.decimal  "prices",            precision: 10, scale: 2
+    t.decimal  "amount",            precision: 10, scale: 2
+    t.decimal  "discount",          precision: 2,  scale: 2
+    t.integer  "receive_count"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  create_table "supplier_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "order_number"
+    t.integer  "supplier_id"
+    t.integer  "warehouse_id"
+    t.integer  "admin_user_id"
+    t.decimal  "discount",        precision: 2,  scale: 2
+    t.decimal  "preferential",    precision: 10, scale: 2
+    t.decimal  "amounts_payable", precision: 10, scale: 2
+    t.boolean  "is_amended"
+    t.datetime "order_date"
+    t.string   "purchase_status"
+    t.string   "pay_status"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "suppliers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

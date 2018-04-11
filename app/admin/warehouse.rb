@@ -3,6 +3,16 @@ ActiveAdmin.register Warehouse do
 
   permit_params :name, :organization_id, :up_id, :address
 
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :organization_id
+    column :up_id
+    column :address
+    actions
+  end
+
   form do |f|
     f.inputs "Warehouse" do
       f.input :name
