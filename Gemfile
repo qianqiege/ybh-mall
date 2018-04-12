@@ -66,7 +66,7 @@ gem 'devise'
 # https://github.com/activeadmin/activeadmin
 # Active Admin master has preliminary support for Rails 5. To give it a try, these Gemfile changes may be needed:
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'activeadmin'
 
 
 # https://github.com/carrierwaveuploader/carrierwave

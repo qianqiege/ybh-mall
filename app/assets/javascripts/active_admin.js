@@ -1,11 +1,10 @@
 #= require active_admin/base
 #= require activeadmin_addons/all
 
+
+
 $(function () {
-    // if（$("#supplier_order_is_amended").val() == 0){
-    //     console
-    // }else{
-    //
+    // 显示隐藏补单功能
     $('#supplier_order_order_date_input').hide();
     $("#supplier_order_is_amended").click(function () {
         if ($("#supplier_order_is_amended").prop("checked")) {

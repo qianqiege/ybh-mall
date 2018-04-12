@@ -32,7 +32,7 @@ class AdminAbility
       can :manage, Product
       can :manage, Slide
       can :manage, Program
-    elsif user.role_name == 'finance'
+    elsif user.role_name == 'finance'                            #财务权限
       can :manage, Order
       can :manage, ReturnRequest
       can :manage, ExchangeRecord
@@ -42,6 +42,8 @@ class AdminAbility
       can :manage, CashRecord
       can :manage, DoctorRebate
       can :read, ShopOrder
+      can :manage, SupplierOrder
+
       can [:batch_action, :receive], ShopOrder
     elsif user.role_name == 'customer_service'                   #客服权限
       can :manage, AdminUser
