@@ -119,10 +119,9 @@ skip_before_filter :verify_authenticity_token
   # 御邦医通家庭（个人）消费委托书
   def show_consumer_entrustment
     if current_user.user
-      flash[:notice] = '恭喜您，成功签订消费委托书'
+
     else
       redirect_to '/user/binding'
     end
   end
-
 end

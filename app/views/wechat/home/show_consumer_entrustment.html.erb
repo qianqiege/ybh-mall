@@ -14,8 +14,8 @@
 
   <div class="agreeCheckbox">
     <%= form_for :consumer_entrustment, url: "/user/update_consumer_entrustment" do |f| %>
-      <%= f.check_box(:is_entrust) %>
-      <%= f.label(:is_entrust, "我同意签订家庭（个人）消费委托书") %>
+      <%= f.check_box :is_entrust, html_options = {hidden: true, checked: true} %>
+
       <div class="yyj-btn yyj-btn-primary yyj-btn-tg-lg agree">
         <%= f.submit "同意" %>
       </div>    

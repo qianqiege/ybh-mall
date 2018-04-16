@@ -752,7 +752,7 @@ class User::InfoController < Wechat::BaseController
   def update_consumer_entrustment
     @user = User.find(current_user.user.id)
     if @user.update(entrustment_params)
-      redirect_to root_path
+      redirect_to root_path, notice: '恭喜您，成功签订消费委托书'
     end
   end
   
