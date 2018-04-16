@@ -19,7 +19,7 @@ ActiveAdmin.register Product do
                 :height,
                 :activity_id,
                 :is_test,
-                :led_away_coefficient,
+                :led_away_coefficient_id,
                 :contents_category_id,
                 :general
 
