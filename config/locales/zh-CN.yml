@@ -49,16 +49,22 @@ zh-CN:
         general: '概要'
         desc: '描述'
         product_sort: '类别'
-        priority: '权重(数字越大排在前)'
+        priority: '权重(数字大在前)'
         is_custom_price: '自定义商品价格'
         height: '其他区分'
         is_test: '是否为测试产品'
         sort: '产品分类'
         activity: '活动专属'
         led_away_category: '领配类别'
+        led_away_price: '领配价格'
+        contents_category: '所属类别'
+        led_away_coefficient: '领配类别系数'
       hight_ticket:
         user: '用户'
         number: '数量'
+      led_away_coefficient:
+        name: '领配类名称'
+        coefficient: '领配系数'
       appraise:
         user_id: '用户'
         result: '评价'
@@ -537,7 +543,6 @@ zh-CN:
         template: "模版ID"
         location: "服务名" 
         time: "有效期"
-
     models:
       cash_record: '现金收支明细'
       deposit: '现金充值记录'
@@ -555,8 +560,7 @@ zh-CN:
       return_request: '退换货请求'
       admin_user: '后台用户'
       rank: '级别'
-      spine_build: '筑脊师'
-      serve: '服务'
+      led_away_coefficient: '领配系数表'
       reservation_record: '预约记录'
       workstation: '服务中心'
       member_club: '会员俱乐部'
@@ -616,6 +620,8 @@ zh-CN:
       plan_rule: "平行系统计划规则"
       plan: '平行系统计划记录'
       sale_product: '产品上架'
+      spine_build: '筑脊师'
+      serve: '服务'
       money_detail: "收益明细"
       celebrate_ratsimp: "庆通分记录"
       contents_category: "商品分类目录"

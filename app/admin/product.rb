@@ -19,7 +19,7 @@ ActiveAdmin.register Product do
                 :height,
                 :activity_id,
                 :is_test,
-                :led_away_category,
+                :led_away_coefficient,
                 :contents_category_id,
                 :general
 
@@ -55,29 +55,32 @@ ActiveAdmin.register Product do
 
   form(:html => { :multipart => true }) do |f|
     f.inputs "Product" do
-      f.input :name
-      f.input :now_product_price
-      f.input :original_product_price
-      f.input :shop_count
-      f.input :display
-      f.input :is_show
-      f.input :spec
-      f.input :is_custom_price
-      f.input :is_consumption
-      f.input :production
-      f.input :product_sort
-      f.input :only_number
-      f.input :packaging
-      f.input :image, as: :file
-      f.input :priority
-      f.input :height
-      f.input :general
+      panel "基础信息", id: 'base_info' do
+        f.input :name
+        f.input :now_product_price
+        f.input :original_product_price
+        f.input :led_away_price
+        f.input :shop_count
+        f.input :spec
+        f.input :production
+        f.input :product_sort
+        f.input :only_number
+        f.input :packaging
+        f.input :image, as: :file
+        f.input :priority
+        f.input :height
+        f.input :general
+        f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3','点亮心灯' => '4' }
+        f.input :led_away_coefficient
+        f.input :activity
+        f.input :contents_category, as: :select, collection: ContentsCategory.where(up_id: ContentsCategory.where(up_id: nil).select(:id))
+        f.input :display
+        f.input :is_show
+        f.input :is_custom_price
+        f.input :is_consumption
+      end
       f.input :desc,:as => :ckeditor
-      f.input :sort,as: :select, collection: {'销售产品' => '1' ,'活动产品' => '2' ,'虚拟产品' => '3','点亮心灯' => '4' }
-      f.input :led_away_category, as: :select, collection: {'A' => '1', 'B' => '2', 'C' => '3'}
-      f.input :activity
       f.input :is_test
-      f.input :contents_category, as: :select, collection: ContentsCategory.where(up_id: ContentsCategory.where(up_id: nil).select(:id))
     end
     f.actions
   end

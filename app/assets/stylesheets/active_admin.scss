@@ -53,3 +53,25 @@ $skinActiveColor: #bf2835;
   td.black { border-color: #000 !important; }
   td.white { border-color: #fff !important; }
 }
+
+#base_info {
+  .panel_contents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li {
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      width: 45%;
+      text-align: center;
+    }
+  }
+}
+#product_desc_input {
+  background-color: #f8f8f8;
+  label {
+    width: 15%;
+  }
+}
