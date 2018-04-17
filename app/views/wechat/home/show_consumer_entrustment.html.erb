@@ -11,7 +11,7 @@
   <br><br>
   <p class="textRight">委托人签字：</p>
   <p class="textRight">签订日期：</p>
-
+  <% if !current_user.user.is_entrust %>
   <div class="agreeCheckbox">
     <%= form_for :consumer_entrustment, url: "/user/update_consumer_entrustment" do |f| %>
       <%= f.check_box :is_entrust, html_options = {hidden: true, checked: true} %>
@@ -21,4 +21,7 @@
       </div>    
     <% end %>
   </div>
+  <% else %>
+    <p class="yyj_confirm_tiny"> 恭喜您，您已经签订了该委托书 </p>
+  <% end %>
 </div>

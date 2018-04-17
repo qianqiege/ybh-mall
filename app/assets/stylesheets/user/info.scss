@@ -149,21 +149,23 @@ a{
   color: #fff;
   .profile {
     padding-left: 20px;
-    padding-top: 10px;
+    padding-top: 49px;
     img {
         height: 45px;
         width: 45px;
         border-radius: 50%;
     }
     .headImage img {
-      height: 45px;
-      width: 45px;
+      height: 50px;
+      width: 50px;
       border-radius: 50%;
     }
   }
   .profile-text {
     margin-left: 10px;
-    margin-top: 10px;
+    position: relative;
+    // margin-top: 10px;
+    // text-align: right;
   }
   .middle-text {
     height: 65px;
