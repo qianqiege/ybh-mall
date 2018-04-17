@@ -7,7 +7,9 @@ class User::BindingController < Wechat::BaseController
     @no_fotter = true
     @tp = params[:format]
     @recommender = User.find_by(invitation_card: params[:invitation_id])
-
+    if !params["entrustment"].nil?
+      @entrustment = params["entrustment"]
+    end
     # 如果当前用户没有推荐人，自动添加推荐人
     if current_user.recommender.nil? && @recommender.present?
       current_user.recommender = @recommender.id
@@ -76,7 +78,13 @@ class User::BindingController < Wechat::BaseController
       else
         @user.type = "Patient"
       end
+      if params["entrustment"] == "1"
+        if @user.save && @wechat = WechatUser.find(current_user.id).update(user_id: @user.id)
+          redirect_to 'wechat/show_consumer_entrustment', notice: '恭喜您，注册成功'
 
+          return
+        end
+      end
       if @user_info_review.blank?
         if @user.save && @wechat = WechatUser.find(current_user.id).update(user_id: @user.id)
           flash[:notice] = '恭喜您，注册成功'
@@ -103,15 +111,6 @@ class User::BindingController < Wechat::BaseController
           redirect_to root_path
         else
           flash[:notice] = '注册失败，请检查您的信息'
-          redirect_back fallback_location: user_binding_path
-        end
-      end
-      if params[:entrustment] == 1
-        if @user.save && @wechat = WechatUser.find(current_user.id).update(user_id: @user.id)
-          redirect_to 'wechat/show_consumer_entrustment', notice:  '恭喜您，注册成功'
-          return
-        else
-          flash[:notice] = '对不起，注册失败'
           redirect_back fallback_location: user_binding_path
         end
       end

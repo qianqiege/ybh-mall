@@ -121,7 +121,7 @@ skip_before_filter :verify_authenticity_token
     if current_user.user
 
     else
-      redirect_to '/user/binding/?entrustment=1'
+      redirect_to '/user/binding?entrustment=1'
     end
   end
 end
