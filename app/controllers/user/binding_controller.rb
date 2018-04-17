@@ -80,7 +80,7 @@ class User::BindingController < Wechat::BaseController
       end
       if params["entrustment"] == "1"
         if @user.save && @wechat = WechatUser.find(current_user.id).update(user_id: @user.id)
-          redirect_to 'wechat/show_consumer_entrustment', notice: '恭喜您，注册成功'
+          redirect_to '/wechat/show_consumer_entrustment', notice: '恭喜您，注册成功'
 
           return
         end
