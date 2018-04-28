@@ -50,6 +50,7 @@ ActiveAdmin.register Product do
     column :activity_id
     column :is_test
     column :contents_category
+    column :led_away_coefficient
     actions
   end
 
@@ -105,6 +106,7 @@ ActiveAdmin.register Product do
       row :sort
       row :led_away_category
       row :contents_category
+      row :led_away_coefficient
     end
   end
 

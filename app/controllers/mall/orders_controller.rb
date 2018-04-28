@@ -168,7 +168,6 @@ class Mall::OrdersController < Mall::BaseController
 
   def confirm
     @line_items = current_cart.line_items.where(id: session[:line_item_ids])
-
     @line_items.each do |line_item|
       if line_item.product.name.match(/点亮心灯/)
         if !line_item.product.height.nil? && line_item.product_id != 55 && line_item.product_id != 56
@@ -178,6 +177,13 @@ class Mall::OrdersController < Mall::BaseController
         end
       end
     end
+
+    # 用户购买的产品能兑换的庆通分
+    @line_item_qt = 0
+    @line_items.each do |item| 
+      @line_item_qt += ((item.quantity.to_f * item.product.now_product_price.to_f) / item.product.led_away_coefficient.exchange_rate.to_f).round(2) 
+    end
+
     @all_line_item_count =  @line_items.sum { |line_item| line_item.quantity }
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address

@@ -18,7 +18,7 @@ class Product < ApplicationRecord
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  validates :name, :now_product_price, :image, :desc, presence: true
+  validates :name, :now_product_price, :desc, presence: true
   validates :now_product_price, numericality: { greater_than_or_equal_to: 0.01 }
   # validates :shop_count, :lock_shop_count, numericality: { only_integer: true,  greater_than_or_equal_to: 0 }
   validates :shop_count, numericality: { only_integer: true,  greater_than_or_equal_to: 0 }
