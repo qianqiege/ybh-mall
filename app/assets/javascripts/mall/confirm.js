@@ -77,8 +77,8 @@ $(function(){
 
     var size = parseFloat($(this).data("size")), //积分总数
         value = parseFloat($.trim($(this).val())), // 输入的积分数
-        // money_value = parseFloat($.trim($("#integral_money").val())) || 0, //输入的现金余额
-        // integral_available = parseFloat($.trim($("#integral_available").val())) || 0, //输入的易积分数量
+        money_value = parseFloat($.trim($("#integral_money").val())) || 0, //输入的现金余额
+        integral_available = parseFloat($.trim($("#integral_available").val())) || 0, //输入的易积分数量
         total_price = parseFloat($.trim($("#total-price").data("all_total_price"))), // 订单总金额
         line_item_qt = $("#line_item_qt").val();
 
@@ -87,21 +87,26 @@ $(function(){
       $.tips("最大可用庆通分为: " + size.formatMoney());
       $(this).val(size.formatMoney());
     } else {
-        // if ( value/10 + money_value + integral_available > total_price ) {
-        //   $.tips("不能超过总计金额: " + total_price);
-        //   $(this).val( (total_price - money_value - integral_available).formatMoney()*10 );
+        if ( value/10 + money_value + integral_available > total_price ) {
+          $.tips("不能超过总计金额: " + total_price);
+          $(this).val( (total_price - money_value - integral_available).formatMoney()*10 );
+        }
+        // if (value < line_item_qt) {
+        //   $.tips("您需要用" + line_item_qt);
         // }
-        if (value < line_item_qt) {
-          $.tips("您需要用" + line_item_qt);
-        }
-        else {
-          $("#total-price").html(0)
-        }
+        // else {
+        //   $("#total-price").html(0)
+        // }
     }
 
     real_value = parseFloat($.trim($(this).val())) || 0 // 最终输入的积分数
-    $("#total-price").text( (total_price - real_value/10 - money_value - integral_available).formatMoney() )
-
+    // $("#total-price").text( (total_price - real_value/10 - money_value - integral_available).formatMoney() )
+    
+    if ( real_value && real_value >= line_item_qt ) {
+      $("#total-price").text(0)
+    }else {
+      $("#total-price").text( (total_price - real_value/10 - money_value - integral_available).formatMoney() )
+    }
   })
 
   $("#custom_price").on('change keyup', function() {

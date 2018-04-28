@@ -79,7 +79,14 @@ class Order < ApplicationRecord
           update_lottery
 
           # # 收入庆通分
-          add_qtcoin
+          unless self.price.to_f.zero? 
+            add_qtcoin
+
+          end
+
+          # # 支出庆通分
+          remove_qtcoin
+        
         end
 
         # # 模板消息
@@ -574,6 +581,16 @@ class Order < ApplicationRecord
       integral.celebrate_ratsimp += total_qtcoin
       integral.save!
     end
+  end
+
+  # 减去庆通分
+  def remove_qtcoin 
+
+    logger.info("ddddddddddddddddddddddddddddddd")
+    integral = self.wechat_user.user.integral
+    integral.celebrate_ratsimp -= self.celebrate_ratsimp
+    integral.save!
+
   end
 
   # 判断用户是否为测试用户  是测试用户 该条记录为测试记录

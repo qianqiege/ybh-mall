@@ -30,6 +30,8 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def create
+    byebug
+
     # 需要处理两种特殊情况，第一种是商品突然下架，第二种是商品突然库存不够
     # 这两种情况都不会生成订单，而是重定向到订单确认页面后，由用户重新提交订单
     # 在订单确认页面，会对突然下架的商品进行处理，会显示出来，但不会计算进金额
@@ -88,6 +90,10 @@ class Mall::OrdersController < Mall::BaseController
       else
         activity = params[:activity_id]
       end
+    end
+
+    if params[:celebrate_ratsimp].present? 
+      price = 0
     end
 
     # 3. 生成订单
@@ -208,6 +214,7 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def exchange_pay
+    p params
     @no_fotter = true
     @order = Order.find(params["format"])
   end

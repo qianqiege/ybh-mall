@@ -10,7 +10,14 @@ $(function () {
       return;
     }
     showFlash('#loadingToast', '提交订单中')
+    var  real_value = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0;
+    var line_item_qt = $("#line_item_qt").val();
+    if ( real_value && real_value < line_item_qt ) {
+      $.tips("您的领配值不够，不能用领配值购买此产品");
+      return false;
+    }
     $("#confirm_order").submit();
+
   })
 
   $("#return_request_btn").on('click', function() {
