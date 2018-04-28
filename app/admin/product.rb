@@ -27,9 +27,9 @@ ActiveAdmin.register Product do
     selectable_column
     id_column
 
-    column "商品图片" do |slide|
-      image_tag(slide.image_url, size: "72x45", :alt => "product image")
-    end
+    # column "商品图片" do |slide|
+    #   image_tag(slide.image_url, size: "72x45", :alt => "product image")
+    # end
     # column :qcode do |product|
     #   raw RQRCode::QRCode.new(mall_product_url(id: product.id, parallel_product_show: true), :size => 8, :level => :h).as_html
     # end
@@ -117,6 +117,7 @@ ActiveAdmin.register Product do
   filter :is_show, as: :select
   filter :shop_count, as: :select
   filter :production, as: :select
-  filter :product_sort, as: :select
+  filter :contents_category, as: :select
   filter :is_test, as: :select
+  filter :led_away_coefficient, as: :select
 end

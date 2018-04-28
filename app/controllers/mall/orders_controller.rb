@@ -30,7 +30,6 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def create
-    byebug
 
     # 需要处理两种特殊情况，第一种是商品突然下架，第二种是商品突然库存不够
     # 这两种情况都不会生成订单，而是重定向到订单确认页面后，由用户重新提交订单
@@ -186,9 +185,10 @@ class Mall::OrdersController < Mall::BaseController
 
     # 用户购买的产品能兑换的庆通分
     @line_item_qt = 0
-    @line_items.each do |item| 
-      @line_item_qt += ((item.quantity.to_f * item.product.now_product_price.to_f) / item.product.led_away_coefficient.exchange_rate.to_f).round(2) 
+    @line_items.each do |item|
+      @line_item_qt += ((item.quantity.to_f * item.product.now_product_price.to_f) / item.product.led_away_coefficient.exchange_rate.to_f).round(2)
     end
+
 
     @all_line_item_count =  @line_items.sum { |line_item| line_item.quantity }
     @total_price = @line_items.sum { |line_item| line_item.total_price }

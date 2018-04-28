@@ -44,34 +44,38 @@ $(function(){
 
 
     real_value = parseFloat($.trim($(this).val())) || 0 // 最终输入的积分数
-    $("#total-price").text( (total_price - real_value*2 - money_value - celebrate_ratsimp/10).formatMoney() )
+    $("#total-price").text( (total_price - real_value - money_value - celebrate_ratsimp/10).formatMoney())
 
   })
 
-  // $("#integral_money").on('change keyup', function() {
+  $("#integral_money").on('change keyup', function() {
 
-  //   var size = parseFloat($(this).data("size")),
-  //       value = parseFloat($.trim($(this).val())),
-  //       money_value = parseFloat($.trim($("#integral_available").val())) || 0,
-  //       celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的庆通分数量
-  //       total_price = parseFloat($.trim($("#total-price").data("all_total_price")));
+    var size = parseFloat($(this).data("size")),
+        value = parseFloat($.trim($(this).val())),
+        money_value = parseFloat($.trim($("#integral_available").val())) || 0,
+        celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的庆通分数量
+        total_price = parseFloat($.trim($("#total-price").data("all_total_price")));
 
-  //   if ( value < 0 || value > size ) {
-  //     $.tips("最大可用现金为: " + size.formatMoney());
-  //     $(this).val(size.formatMoney());
-  //   }else {
-  //       if ( value + money_value + celebrate_ratsimp/10 > total_price ) {
-  //         $.tips("不能超过总计金额: " + total_price);
-  //         $(this).val( (  total_price - money_value - celebrate_ratsimp/10).formatMoney() );
-  //       }
-  //   }
+    if ( value < 0 || value > size ) {
+      $.tips("最大可用现金为: " + size.formatMoney());
+      $(this).val(size.formatMoney());
+    }else {
+        if ( value + money_value + celebrate_ratsimp/10 > total_price ) {
+          $.tips("不能超过总计金额: " + total_price);
+          $(this).val( (  total_price - money_value - celebrate_ratsimp/10).formatMoney() );
+        }
+    }
+
+    real_value = parseFloat($.trim($(this).val())) || 0
+      $("#total-price").text( (total_price - real_value).formatMoney() + "  元" )
+      if (real_value) {
+          $("#celebrate_ratsimp").attr("disabled", "disabled")
+      } else {
+          $("#celebrate_ratsimp").removeAttr("disabled")
+      }
 
 
-
-  //   real_value = parseFloat($.trim($(this).val())) || 0
-  //   $("#total-price").text( (total_price - real_value - money_value - celebrate_ratsimp/10).formatMoney() )
-
-  // })
+  })
 
   $("#celebrate_ratsimp").on('change keyup', function() {
 
@@ -82,10 +86,9 @@ $(function(){
         total_price = parseFloat($.trim($("#total-price").data("all_total_price"))), // 订单总金额
         line_item_qt = $("#line_item_qt").val();
 
-
     if ( value < 0 || value > size ) {
-      $.tips("最大可用庆通分为: " + size.formatMoney());
-      $(this).val(size.formatMoney());
+      $.tips("不能超过订单总领配值: " + line_item_qt);
+      $(this).val(line_item_qtc);
     } else {
         if ( value/10 + money_value + integral_available > total_price ) {
           $.tips("不能超过总计金额: " + total_price);
@@ -101,12 +104,14 @@ $(function(){
 
     real_value = parseFloat($.trim($(this).val())) || 0 // 最终输入的积分数
     // $("#total-price").text( (total_price - real_value/10 - money_value - integral_available).formatMoney() )
-    
-    if ( real_value && real_value >= line_item_qt ) {
-      $("#total-price").text(0)
-    }else {
-      $("#total-price").text( (total_price - real_value/10 - money_value - integral_available).formatMoney() )
-    }
+      $("#total-price").text( ( line_item_qt - real_value  - integral_available) + "  领配值")
+      if (real_value) {
+          $("#integral_money").attr("disabled", "disabled")
+      } else {
+          $("#integral_money").removeAttr("disabled")
+      }
+
+
   })
 
   $("#custom_price").on('change keyup', function() {

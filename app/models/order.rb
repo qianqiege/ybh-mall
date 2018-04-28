@@ -81,11 +81,10 @@ class Order < ApplicationRecord
           # # 收入庆通分
           unless self.price.to_f.zero? 
             add_qtcoin
-
           end
 
           # # 支出庆通分
-          remove_qtcoin
+          # remove_qtcoin
         
         end
 
@@ -362,9 +361,9 @@ class Order < ApplicationRecord
       if self.status == "wait_send"
           f = CelebrateRatsimp.find_by(user_id:self.user_id,order_id:self.id)
           if !f
-              CelebrateRatsimp.create(  user_id:self.user_id,
-                                        order_id:self.id, amount:-self.celebrate_ratsimp
-                                    )
+            CelebrateRatsimp.create(  user_id:self.user_id,
+                                      order_id:self.id, amount:-self.celebrate_ratsimp
+            )
           end
       end
   end
