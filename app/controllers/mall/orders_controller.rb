@@ -30,6 +30,7 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def create
+
     # 需要处理两种特殊情况，第一种是商品突然下架，第二种是商品突然库存不够
     # 这两种情况都不会生成订单，而是重定向到订单确认页面后，由用户重新提交订单
     # 在订单确认页面，会对突然下架的商品进行处理，会显示出来，但不会计算进金额
@@ -88,6 +89,10 @@ class Mall::OrdersController < Mall::BaseController
       else
         activity = params[:activity_id]
       end
+    end
+
+    if params[:celebrate_ratsimp].present? 
+      price = 0
     end
 
     # 3. 生成订单
@@ -168,7 +173,6 @@ class Mall::OrdersController < Mall::BaseController
 
   def confirm
     @line_items = current_cart.line_items.where(id: session[:line_item_ids])
-
     @line_items.each do |line_item|
       if line_item.product.name.match(/点亮心灯/)
         if !line_item.product.height.nil? && line_item.product_id != 55 && line_item.product_id != 56
@@ -178,6 +182,14 @@ class Mall::OrdersController < Mall::BaseController
         end
       end
     end
+
+    # 用户购买的产品能兑换的庆通分
+    @line_item_qt = 0
+    @line_items.each do |item|
+      @line_item_qt += ((item.quantity.to_f * item.product.now_product_price.to_f) / item.product.led_away_coefficient.exchange_rate.to_f).round(2)
+    end
+
+
     @all_line_item_count =  @line_items.sum { |line_item| line_item.quantity }
     @total_price = @line_items.sum { |line_item| line_item.total_price }
     @recommend_address = current_user.addresses.find_by(id: params[:address_id]) || current_user.recommend_address
@@ -202,6 +214,7 @@ class Mall::OrdersController < Mall::BaseController
   end
 
   def exchange_pay
+    p params
     @no_fotter = true
     @order = Order.find(params["format"])
   end

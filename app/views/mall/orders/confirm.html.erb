@@ -130,7 +130,7 @@
           <input id="value" name="packang" style="display:none;"/>
         </ul>
       </div>
-
+      <input id="line_item_qt" type="hidden" value=<%= @line_item_qt %> />
       <div class="weui-cells">
         <span style="font-size:10px; margin-left: 15px; color: red;">请详细了解该活动的活动规则，选定活动、订单提交后不可更改</span>
           <div class="weui-cell weui-cell_select weui-cell_select-after">
@@ -214,14 +214,20 @@
           <div class="weui-cell">
             <div class="weui-cell__hd"><label for="" class="weui-label">现金余额</label></div>
             <div class="weui-cell__bd">
-              <%= number_field_tag 'integral_money', '', class: "weui-input", placeholder: "可用#{money @integral.not_cash + @integral.cash}现金",  data: { size: money(@integral.not_cash) } %>
+              <%= number_field_tag 'integral_money', '', class: "weui-input", placeholder: "可用#{money @integral.not_cash + @integral.cash}现金",  data: { size: money(@integral.not_cash + @integral.cash) } %>
             </div>
           </div>
           <div class="weui-cell">
-            <div class="weui-cell__hd"><label for="" class="weui-label">庆通分数量</label></div>
+            <div class="weui-cell__hd"><label for="" class="weui-label">领配值</label></div>
             <div class="weui-cell__bd">
               <%= number_field_tag 'celebrate_ratsimp', '', class: "weui-input", placeholder: "可用#{money @integral.celebrate_ratsimp }庆通分",  data: { size: money(@integral.celebrate_ratsimp ) } %>
             </div>
+          </div>
+          <div class="weui-cell">
+            <p style="color: red; font-size: 13px;"> 本次订单需消费 <%= money @line_item_qt  %> 领配值</p>
+          </div>
+          <div class="weui-cell">
+            <p style="color: red; font-size: 13px;"> 您的可用领配值为 <%= money @integral.celebrate_ratsimp  %> </p>
           </div>
         </div>
       <% end %>

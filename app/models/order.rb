@@ -77,6 +77,15 @@ class Order < ApplicationRecord
           update_hight
           # # 优惠券
           update_lottery
+
+          # # 收入庆通分
+          unless self.price.to_f.zero? 
+            add_qtcoin
+          end
+
+          # # 支出庆通分
+          # remove_qtcoin
+        
         end
 
         # # 模板消息
@@ -352,9 +361,9 @@ class Order < ApplicationRecord
       if self.status == "wait_send"
           f = CelebrateRatsimp.find_by(user_id:self.user_id,order_id:self.id)
           if !f
-              CelebrateRatsimp.create(  user_id:self.user_id,
-                                        order_id:self.id, amount:-self.celebrate_ratsimp
-                                    )
+            CelebrateRatsimp.create(  user_id:self.user_id,
+                                      order_id:self.id, amount:-self.celebrate_ratsimp
+            )
           end
       end
   end
@@ -557,6 +566,31 @@ class Order < ApplicationRecord
     message
   end
 
+
+  # 计算庆通分
+  def add_qtcoin 
+    line_items = self.line_items
+    total_qtcoin = 0.0
+    line_items.each do |item| 
+      total_qtcoin += (item.quantity.to_f * item.unit_price.to_f * item.product.led_away_coefficient.coefficient.to_f)
+    end
+
+    unless total_qtcoin.zero? 
+      integral = WechatUser.find(self.wechat_user_id).user.integral
+      integral.celebrate_ratsimp += total_qtcoin
+      integral.save!
+    end
+  end
+
+  # 减去庆通分
+  def remove_qtcoin 
+
+    logger.info("ddddddddddddddddddddddddddddddd")
+    integral = self.wechat_user.user.integral
+    integral.celebrate_ratsimp -= self.celebrate_ratsimp
+    integral.save!
+
+  end
 
   # 判断用户是否为测试用户  是测试用户 该条记录为测试记录
   def update_is_test
