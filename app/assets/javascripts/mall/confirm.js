@@ -1,4 +1,9 @@
 $(function(){
+
+  if ( parseFloat($("#celebrate_ratsimp").data("size")) < parseFloat($("#line_item_qt").val()) ) {
+    $("#celebrate_ratsimp").attr({disabled: "disabled", placeholder: "您的可用配领值不够支付该订单"});
+  }
+
   $("#activity_id").on('change', function(event){
     var id = event.currentTarget.value
     if(id){
@@ -84,13 +89,19 @@ $(function(){
         money_value = parseFloat($.trim($("#integral_money").val())) || 0, //输入的现金余额
         integral_available = parseFloat($.trim($("#integral_available").val())) || 0, //输入的易积分数量
         total_price = parseFloat($.trim($("#total-price").data("all_total_price"))), // 订单总金额
-        line_item_qt = $("#line_item_qt").val();
+        line_item_qt = $("#line_item_qt").val(); //本次订单需用配领值；
 
-    if ( value < 0 || value > size || value > line_item_qt ) {
-      $.tips("不能超过订单总配领值: " + line_item_qt);
-      $(this).val(line_item_qt);
-    }
-    // else {
+        if( value < 0 ) {
+          $.tips("您输入的值不能小于0");
+        }else if ( value > line_item_qt ) {
+          $(this).val(line_item_qt);
+          $.tips("不能超过订单总配领值: " + line_item_qt);
+        }
+
+    // if ( value < 0 || value > line_item_qt || value > size ) {
+    //   $(this).val(line_item_qt);
+    //   $.tips("不能超过订单总配领值: " + line_item_qt);
+    // }else {
     //     console.log(value, money_value, integral_available, total_price);
     //     if ( value/10 + money_value + integral_available > total_price ) {
     //       $.tips("不能超过总计金额: " + total_price);

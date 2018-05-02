@@ -11,12 +11,13 @@ $(function () {
         }
         showFlash('#loadingToast', '提交订单中')
         var real_value = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0;
-        console.log(real_value)
-        var line_item_qt = $("#line_item_qt").val();
-        if (real_value && real_value < line_item_qt) {
-            $.tips("您的配领值不够，不能用配领值购买此产品");
+        var line_item_qt = parseFloat($("#line_item_qt").val());
+
+        if (real_value < line_item_qt) {
+            console.log(real_value, line_item_qt)
+            $.tips("购买此产品需用领配值" + line_item_qt + ", 请您重新输入领配值");
             return false;
-        } else if (real_value && real_value > line_item_qt) {
+        } else if (real_value > line_item_qt) {
             $.tips("您输入的配领值超过订单金额");
             return false;
         }
