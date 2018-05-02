@@ -195,7 +195,7 @@
 
 
     <div class="yyj-title-h4">
-      <h4>领配产品</h4>
+      <h4>配领产品</h4>
     </div>
     <!-- 带有a标签的循环，其他删掉 -->
     <div class="product-list">
@@ -257,10 +257,10 @@
 
         if (allPrice > $("#money").val()) {
             $("#clearing").addClass("active-block");
-            $("#clearing").text("超出领配额度,请减少所选产品");
+            $("#clearing").text("超出配领额度,请减少所选产品");
         } else {
             $("#clearing").removeClass("active-block");
-            $("#clearing").text("平行领配");
+            $("#clearing").text("平行配领");
 
         }
 
@@ -284,10 +284,10 @@
 
         if (allPrice > $("#money").val()) {
             $("#clearing").addClass("active-block");
-            $("#clearing").text("超出领配额度,请减少所选产品");
+            $("#clearing").text("超出配领额度,请减少所选产品");
         } else {
             $("#clearing").removeClass("active-block");
-            $("#clearing").text("平行领配");
+            $("#clearing").text("平行配领");
         }
 
     });

@@ -36,7 +36,7 @@
     <div class="weui-flex__item">
       <div class="placeholder text-center box-btn">
         <a href="#" class="weui-cell_access">
-          <p>YJ领配值</p>
+          <p>YJ配领值</p>
           <% available = Integral.find_by(user_id: current_user.user_id) %>
           <p><%= available.celebrate_ratsimp || 0 %></p>
         </a>
@@ -56,7 +56,7 @@
     <div class="weui-flex__item">
       <div class="placeholder text-center box-btn">
         <a href="<%= user_transaction_path %>" class="weui-cell_access">
-          <p>领配值</p>
+          <p>配领值</p>
           <% available = Integral.find_by(user_id: current_user.user_id) %>
           <p>0</p>
         </a>

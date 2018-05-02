@@ -26,7 +26,7 @@ ActiveAdmin.register ShopOrder do
       f.input :shop_pay
       f.input :express_number
       f.input :status, as: :select, collection: ['pending', 'finished']
-      f.input :order_from, as: :select, collection: ['平行购买', '影子领配', '平行领配']
+      f.input :order_from, as: :select, collection: ['平行购买', '影子配领', '平行配领']
     end
     f.inputs do
       f.has_many :shop_order_items, allow_destroy: true do |a|

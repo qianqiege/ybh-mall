@@ -14,10 +14,10 @@ $(function () {
         console.log(real_value)
         var line_item_qt = $("#line_item_qt").val();
         if (real_value && real_value < line_item_qt) {
-            $.tips("您的领配值不够，不能用领配值购买此产品");
+            $.tips("您的配领值不够，不能用配领值购买此产品");
             return false;
         } else if (real_value && real_value > line_item_qt) {
-            $.tips("您输入的领配值超过订单金额");
+            $.tips("您输入的配领值超过订单金额");
             return false;
         }
         $("#confirm_order").submit();
