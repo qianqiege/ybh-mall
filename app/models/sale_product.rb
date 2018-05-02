@@ -1,5 +1,5 @@
 class SaleProduct < ApplicationRecord
-  SALE_TYPE = {'0' => "左店购买产品", '1' => "右店领配产品"}
+  SALE_TYPE = {'0' => "左店购买产品", '1' => "右店配领产品"}
 
   belongs_to :product
   belongs_to :parallel_shop

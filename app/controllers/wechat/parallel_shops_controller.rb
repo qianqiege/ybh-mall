@@ -14,7 +14,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     @classify_id = @products.pluck(:contents_category_id)
     @classify = ContentsCategory.where(id: @classify_id)
   end
-  # 影子店详情  影子店领配
+  # 影子店详情  影子店配领
   def shopdata
     # 判断当前顾客是否注册
     # 注册了，则直接跳转到营业员所在的影子店
@@ -42,10 +42,10 @@ class Wechat::ParallelShopsController < Wechat::BaseController
 
   end
 
-  # 平行领配
+  # 平行配领
   def collective
 
-      # 从营业员扫码流程 平行领配
+      # 从营业员扫码流程 平行配领
       # 订单初始状态为 "pending"(带配领状态)
       # 经过"配货"动作后， 将状态改为 "finished"(已配领状态)
       @shop_order = ShopOrder.create(   wechat_user_id:     current_user.id,
@@ -126,7 +126,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
     # 获取该用户最后一条订单
     @shop_order = ShopOrder.where(wechat_user_id: current_user.id).last
 
-    # 营业员从待领配页面  进入该页面
+    # 营业员从待配领页面  进入该页面
     if params[:order_id]
       @shop_order = ShopOrder.find(params[:order_id])
     end
@@ -174,29 +174,29 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       end
   end
 
-  # 营业员查看的待领配页面
+  # 营业员查看的待配领页面
   def waiting_collective
     @shop = ParallelShop.find(current_user.user.parallel_shop_id)
     @shop_orders = @shop.shop_orders.where(status: 'pending')
   end
 
-  # 顾客待领配页面
+  # 顾客待配领页面
   def customer_collective
       @shop_orders = ShopOrder.where(wechat_user_id: current_user.id, status: 'pending')
   end
 
-  # 顾客查看已经领配页面
+  # 顾客查看已经配领页面
   def customer_collectived
       @shop_orders = ShopOrder.where(wechat_user_id: current_user.id, status: 'finished')
   end
 
-  # 营业员扫取顾客生成的平行领配码
+  # 营业员扫取顾客生成的平行配领码
   # 确认影子店订单 页面
   def waiter_confirm
       @shop_order = ShopOrder.try(:find, params[:shop_order_id])
       # 判断此订单是否已配领
       if @shop_order.status == "finished"
-          redirect_to wechat_parallel_shops_shopindex_path, notice: '此订单已经领配成功'
+          redirect_to wechat_parallel_shops_shopindex_path, notice: '此订单已经配领成功'
       else
           # 判断是否为此订单所在影子店中的营业员
           if @shop_order.user_id == current_user.user_id
@@ -207,7 +207,7 @@ class Wechat::ParallelShopsController < Wechat::BaseController
       end
   end
 
-  # 营业员确认待领配订单  变成已领配
+  # 营业员确认待配领订单  变成已配领
   def shop_order_finished
     @shop_order = ShopOrder.find_by(id: params[:shop_order_id])
     @shop_order.status = "finished"
