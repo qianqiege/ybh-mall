@@ -301,3 +301,13 @@
   .a {
     color: #ad0e11;
   }
+
+  .pro-flex-block {
+    display: flex;
+    justify-content: space-between;
+    p:nth-child(2) {
+      margin-top: 10px;
+    }
+  }
+
+   

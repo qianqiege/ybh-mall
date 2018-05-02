@@ -10,9 +10,27 @@
       </li>
     </ul>
   </div>
+  <div class="pro-info pro-flex-block">
+    <div>
+      <p class="name"><%= @product.name %></p>
+      <p class="price">¥<%= money @product.now_product_price %></p>
+    </div>
+    <div>
+      <% unless !@product.led_away_coefficient %>
+        <p>
+          <span> 配领类别: </span>  
+          <span> <%= @product.led_away_coefficient.name %> </span>  
+        </p>
+        <p>
+          <span> 配领值: </span>  
+          <span> <%= (@product.now_product_price / @product.led_away_coefficient.exchange_rate).round(2) %> </span>  
+        </p>
+      <% end %>
+      
+    </div>
+  </div>
   <div class="pro-info">
-    <p class="name"><%= @product.name %></p>
-    <p class="price">¥<%= money @product.now_product_price %></p>
+
   </div>
 </div>
 
