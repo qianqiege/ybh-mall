@@ -124,4 +124,9 @@ skip_before_filter :verify_authenticity_token
       redirect_to '/user/binding?entrustment=1'
     end
   end
+
+  # 医通影子店运营说明书
+  def show_yt_operation_instructions 
+
+  end
 end
