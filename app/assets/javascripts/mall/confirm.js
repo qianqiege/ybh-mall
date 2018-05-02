@@ -86,25 +86,28 @@ $(function(){
         total_price = parseFloat($.trim($("#total-price").data("all_total_price"))), // 订单总金额
         line_item_qt = $("#line_item_qt").val();
 
-    if ( value < 0 || value > size ) {
+    if ( value < 0 || value > size || value > line_item_qt ) {
       $.tips("不能超过订单总领配值: " + line_item_qt);
-      $(this).val(line_item_qtc);
-    } else {
-        if ( value/10 + money_value + integral_available > total_price ) {
-          $.tips("不能超过总计金额: " + total_price);
-          $(this).val( (total_price - money_value - integral_available).formatMoney()*10 );
-        }
-        // if (value < line_item_qt) {
-        //   $.tips("您需要用" + line_item_qt);
-        // }
-        // else {
-        //   $("#total-price").html(0)
-        // }
+      $(this).val(line_item_qt);
     }
+    // else {
+    //     console.log(value, money_value, integral_available, total_price);
+    //     if ( value/10 + money_value + integral_available > total_price ) {
+    //       $.tips("不能超过总计金额: " + total_price);
+    //       $(this).val( (total_price - money_value - integral_available).formatMoney()*10 );
+    //     }
+    //     if (value < line_item_qt) {
+    //       $.tips("您需要用" + line_item_qt);
+    //     }
+    //     else {
+    //       $("#total-price").html(0)
+    //     }
+    // }
+    
 
     real_value = parseFloat($.trim($(this).val())) || 0 // 最终输入的积分数
     // $("#total-price").text( (total_price - real_value/10 - money_value - integral_available).formatMoney() )
-      $("#total-price").text( ( line_item_qt - real_value  - integral_available) + "  领配值")
+      $("#total-price").text( ( line_item_qt - real_value  - integral_available).formatMoney() + "  领配值")
       if (real_value) {
           $("#integral_money").attr("disabled", "disabled")
       } else {

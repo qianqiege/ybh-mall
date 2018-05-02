@@ -234,7 +234,16 @@
 
       <div class="cart-fixed-ft">
         <a class="commit" id="confirm_order_btn">提交订单</a>
-        <span class="mr15">共<%= @all_line_item_count %>件，合计：¥<span class="total" data-all_total_price="<%= money @total_price %>" id="total-price"><%= money @total_price %></span></span>
+        <!-- <span class="mr15">共<%= @all_line_item_count %>件，合计：¥<span class="total" data-all_total_price="<%= money @total_price %>" id="total-price"><%= money @total_price %></span></span> -->
+        <span class="mr15">
+          <span style="float: left; margin-left: 3px; color: red">
+            <span> 合计: </span> <span> ￥<%= money @total_price %> 元 </span>
+          </span>
+          <span> ￥ </span>
+          <span class="total" data-all_total_price="<%= money @total_price %>" id="total-price">
+              <%= money @total_price %>
+          </span>
+        
       </div>
     </div>
   </div>
