@@ -6,7 +6,7 @@
           <ul class="levelList">
             <% @products.where(contents_category_id: content_category.downs).take(6).each do |product| %>
                 <li>
-                  <a href="#">
+                  <a href="<%= mall_product_path(product) %>">
                     <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
                     <p class="textCenter"><%= product.name %></p>
                   </a>
