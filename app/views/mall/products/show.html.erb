@@ -14,8 +14,11 @@
     <div>
       <p class="name"><%= @product.name %></p>
       <p class="price">¥<%= money @product.now_product_price %></p>
+      <p>
+        <span>配领值：</span>  
+      </p>
     </div>
-    <div>
+    <!-- <div>
       <% unless !@product.led_away_coefficient %>
         <p>
           <span> 配领类别: </span>  
@@ -27,11 +30,11 @@
         </p>
       <% end %>
       
-    </div>
+    </div> -->
   </div>
-  <div class="pro-info">
+  <!-- <div class="pro-info">
 
-  </div>
+  </div> -->
 </div>
 
 <% if flash[:notice] %>
@@ -66,7 +69,9 @@
         <span class="choosed guige-span">D</span>
       </li>
   <% end %>
-
+  <li class="arrow-right">
+    <span class="choosed">配领类别：</span>   
+  </li>
   <li class="arrow-right">
     <span class="choosed">包装：<%= @product.packaging %></span>
   </li>

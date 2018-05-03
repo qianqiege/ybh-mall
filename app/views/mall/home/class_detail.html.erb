@@ -1,4 +1,4 @@
-<%= render 'mall/shared/search' %>
+<!-- <%= render 'mall/shared/search' %> -->
 
 <%= title '分类详情' %>
 
@@ -15,24 +15,21 @@
   </div>
   <div id="product_index">
     <%= render 'product_classified' %>
+    
   </div>
 </div>
 <script type="text/javascript">
     $(function () {
-        $(".second").on('click', function () {
-            $.get("/mall/products/second_content?id="+$(this).data("id"), function (data) {
-                console.log(data);
-                $('#product_index').html(data)
-            })
-        });
-
-        $('.fst_tab li').each(function (index, el) {
-            $(this).click(function () {
-                console.log(index);
-                $(this).addClass('active').siblings().removeClass('active');
-
-            })
+      $(".second").on('click', function () {
+        $.get("/mall/products/second_content?id="+$(this).data("id"), function (data) {
+          $('#product_index').html(data)
         })
+      });
 
+      $('.fst_tab li').each(function (index, el) {
+        $(this).click(function () {
+          $(this).addClass('active').siblings().removeClass('active');
+        })
+      })
     })
 </script>

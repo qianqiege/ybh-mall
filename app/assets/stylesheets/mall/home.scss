@@ -144,10 +144,17 @@
   .pro-area .pro-list ul {
     width: 95%;
     margin: 0 auto;
+    padding-bottom: 0;
   }
 
   .pro-area .pro-list ul li {
     margin: 0 2.5% 15px 2.5%;
+  }
+
+  .pro-area .more{
+    padding-bottom: 70px;
+    text-align: center;
+    
   }
 
   .alert {
