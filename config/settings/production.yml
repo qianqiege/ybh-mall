@@ -12,14 +12,11 @@ weixin:
   menu:
     button:
     - type: "view"
-      name: "御易健"
+      name: "医通平行店"
       sub_button:
-       - type: "view"
+        - type: "view"
           name: "医通平行店"
-          url: "http://ybhm.ybyt.cc/wechat/parallel_shops/index.1"
-#        - type: "view"
-#          name: "御易健首页"
-#          url: "http://ybhm.ybyt.cc/wechat"
+          url: "http://ybhm.ybyt.cc/wechat"
     - name: "御易健商城"
       url: "http://ybhm.ybyt.cc/mall"
       sub_button:
