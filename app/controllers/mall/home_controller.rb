@@ -14,7 +14,7 @@ class Mall::HomeController < Mall::BaseController
     if current_user.user && current_user.user.is_test == false
       @products = @products.where(is_test: false)
     end
-    @first_categorys = ContentsCategory.where(up_id: nil, is_display: true)
+    @first_categorys = ContentsCategory.where(up_id: nil, is_display: true).order(order: :desc)
   end
 
   def classify

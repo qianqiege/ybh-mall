@@ -17,10 +17,10 @@ weixin:
         - type: "view"
           name: "我的"
           url: "http://ybhm.ybyt.c/wechat/my/my_info"
-    - name: "御邦平行店"
+    - name: "医通平行店"
       sub_button:
         - type: "view"
-          name: "御邦平行店首页"
+          name: "医通平行店首页"
           url: "http://spddev.ybyt.cc/"
     - name: "服务"
       sub_button:
