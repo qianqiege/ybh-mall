@@ -15,7 +15,7 @@
       <p class="name"><%= @product.name %></p>
       <p class="price">¥<%= money @product.now_product_price %></p>
       <p>
-        <span>配领值：</span>  
+        <span>配领值：<%= (@product.now_product_price / @product.led_away_coefficient.exchange_rate).round(2) %></span>
       </p>
     </div>
     <!-- <div>
@@ -70,7 +70,7 @@
       </li>
   <% end %>
   <li class="arrow-right">
-    <span class="choosed">配领类别：</span>   
+    <span class="choosed">配领类别：<%= @product.led_away_coefficient.name %></span>
   </li>
   <li class="arrow-right">
     <span class="choosed">包装：<%= @product.packaging %></span>
