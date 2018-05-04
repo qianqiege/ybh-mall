@@ -5,23 +5,30 @@ $(function () {
 
     $("#confirm_order_btn").on('click', function () {
         event.preventDefault();
-        if ($("#custom_price").length > 0 && ( $.trim($("#custom_price").val()) == "" || $.trim($("#custom_price").val()) <= 0 )) {
-            $.tips('必须填定自定义价格');
-            return;
-        }
+        // if ($("#custom_price").length > 0 && ( $.trim($("#custom_price").val()) == "" || $.trim($("#custom_price").val()) <= 0 )) {
+        //     $.tips('必须填定自定义价格');
+        //     return;
+        // }
         showFlash('#loadingToast', '提交订单中')
-        var real_value = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0;
+        // 判断领配值
+        var real_value = parseFloat($.trim($("#celebrate_ratsimp").val()));
         var line_item_qt = parseFloat($("#line_item_qt").val());
+        
+        if (real_value === 0) {
+            $.tips("输入的领配值不能为0");
+            return false;
+        }
 
-        if (real_value < line_item_qt) {
+        if(real_value && real_value < line_item_qt) {
             console.log(real_value, line_item_qt)
             $.tips("购买此产品需用领配值" + line_item_qt + ", 请您重新输入领配值");
             return false;
-        } else if (real_value > line_item_qt) {
+        } else if (real_value && real_value > line_item_qt) {
             $.tips("您输入的配领值超过订单金额");
             return false;
         }
         $("#confirm_order").submit();
+
 
     })
 
