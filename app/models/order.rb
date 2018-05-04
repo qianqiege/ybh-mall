@@ -78,12 +78,12 @@ class Order < ApplicationRecord
           # # 优惠券
           update_lottery
 
-          # # 收入庆通分
+          # # 收入配领值
           unless self.price.to_f.zero? 
             add_qtcoin
           end
 
-          # # 支出庆通分
+          # # 支出配领值
           # remove_qtcoin
         
         end
@@ -539,7 +539,7 @@ class Order < ApplicationRecord
         color:"#173177"
       },
       remark:{
-        value: "请在御邦平行店我的订单中查询物流信息",
+        value: "请在御易健商城我的订单中查询物流信息",
         color:"#173177"
       }
     }
@@ -567,7 +567,7 @@ class Order < ApplicationRecord
   end
 
 
-  # 计算庆通分
+  # 计算配领值
   def add_qtcoin 
     line_items = self.line_items
     total_qtcoin = 0.0
@@ -582,7 +582,7 @@ class Order < ApplicationRecord
     end
   end
 
-  # 减去庆通分
+  # 减去配领值
   def remove_qtcoin 
 
     logger.info("ddddddddddddddddddddddddddddddd")
