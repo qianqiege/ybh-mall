@@ -1,5 +1,5 @@
 class ParallelShop < ApplicationRecord
-  SHOP_TYPE = {'1' => '御邦平行店', '2' => '医通影子店'}.freeze
+  SHOP_TYPE = {'1' => '医通平行店', '2' => '医通影子店'}.freeze
   STATUS = {'waiting' => "待审核", 'dealed' => "已通过"}.freeze
   include ImageConcern
   has_many :purchase_orders

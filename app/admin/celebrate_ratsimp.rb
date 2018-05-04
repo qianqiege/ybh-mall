@@ -3,7 +3,7 @@ ActiveAdmin.register CelebrateRatsimp do
   permit_params :user_id, :parallel_shop_id, :shop_order_id, :amount, :waiter
 
   form do |f|
-    inputs "庆通分记录" do
+    inputs "配领值记录" do
       input :user
       input :parallel_shop
       input :shop_order

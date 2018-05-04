@@ -11,7 +11,7 @@ class AdminUser < ApplicationRecord
                     admin: '管理员',
                     db: '仓库管理员',
                     spinebuild:'筑脊部管理员',
-                    mall:'御邦平行店管理员',
+                    mall:'医通平行店管理员',
                     scoin_admin:'S货币管理员',
                     activity_admin:'活动管理员',
                     market: '市场部管理',

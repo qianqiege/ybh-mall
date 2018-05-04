@@ -32,7 +32,7 @@ $(function(){
     var size = parseFloat($(this).data("size")), //积分总数
         value = parseFloat($.trim($(this).val())), // 输入的积分数
         money_value = parseFloat($.trim($("#integral_money").val())) || 0, //输入的现金余额
-        celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的庆通分数量
+        celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的配领值数量
         total_price = parseFloat($.trim($("#total-price").data("all_total_price")));  // 订单总金额
 
     if ( value < 0 || value > size ) {
@@ -58,7 +58,7 @@ $(function(){
     var size = parseFloat($(this).data("size")),
         value = parseFloat($.trim($(this).val())),
         money_value = parseFloat($.trim($("#integral_available").val())) || 0,
-        celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的庆通分数量
+        celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的配领值数量
         total_price = parseFloat($.trim($("#total-price").data("all_total_price")));
 
     if ( value < 0 || value > size ) {
@@ -132,7 +132,7 @@ $(function(){
     custom_price = parseFloat($.trim($(this).val())),
     integral_money = parseFloat($.trim($("#integral_money").val())) || 0,
     integral_available = parseFloat($.trim($("#integral_available").val())) || 0,
-    celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的庆通分数量
+    celebrate_ratsimp = parseFloat($.trim($("#celebrate_ratsimp").val())) || 0, //输入的配领值数量
 
     real_value = custom_price - integral_money - integral_available - celebrate_ratsimp/10;
     $("#total-price").data("all_total_price", custom_price);
