@@ -143,7 +143,7 @@ zh-CN:
         remark: '备注'
         payment: '支付类型'
         is_test: '是否为测试类型'
-        celebrate_ratsimp: '庆通分'
+        celebrate_ratsimp: '配领值'
       wechat_user:
         open_id: '微信open_id'
         user: '用户姓名'
