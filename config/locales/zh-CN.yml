@@ -3,7 +3,7 @@ zh-CN:
     express_number_model: '货运单号'
     edit_price_model: '更改价格'
     menu:
-      mall: '御邦平行店管理'
+      mall: '御易健商城管理'
       member_manage: '会员管理'
       mass_message: '群发消息'
       serve_manage: '服务管理'
@@ -143,7 +143,7 @@ zh-CN:
         remark: '备注'
         payment: '支付类型'
         is_test: '是否为测试类型'
-        celebrate_ratsimp: '庆通分'
+        celebrate_ratsimp: '配领值'
       wechat_user:
         open_id: '微信open_id'
         user: '用户姓名'
@@ -180,7 +180,7 @@ zh-CN:
         not_exchange: '不可兑换（积分）'
         not_cash: '不可体现（余额）'
         updated_at: '最后更新时间'
-        celebrate_ratsimp: '庆通分'
+        celebrate_ratsimp: '配领值'
         allocation_money: '配领金额'
       reservation_record:
         time: '时间'
@@ -623,7 +623,7 @@ zh-CN:
       spine_build: '筑脊师'
       serve: '服务'
       money_detail: "收益明细"
-      celebrate_ratsimp: "庆通分记录"
+      celebrate_ratsimp: "配领值记录"
       contents_category: "商品分类目录"
       sharing_plan: "平行系统计划"
       supplier: "供应商"

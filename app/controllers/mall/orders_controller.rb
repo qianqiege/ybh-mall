@@ -68,7 +68,7 @@ class Mall::OrdersController < Mall::BaseController
     end
 
     # 自定义价格
-    # 这里会减去 使用积分， 现金余额， 庆通分
+    # 这里会减去 使用积分， 现金余额， 配领值
     if params[:custom_price].present?
       price = params[:custom_price].to_f - (integral_money + integral_available*2 + celebrate_ratsimp)
     else
@@ -183,7 +183,7 @@ class Mall::OrdersController < Mall::BaseController
       end
     end
 
-    # 用户购买的产品能兑换的庆通分
+    # 用户购买的产品能兑换的配领值
     @line_item_qt = 0
     @line_items.each do |item|
       @line_item_qt += ((item.quantity.to_f * item.product.now_product_price.to_f) / item.product.led_away_coefficient.exchange_rate.to_f).round(2)
