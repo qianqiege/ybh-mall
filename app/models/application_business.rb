@@ -1,0 +1,2 @@
+class ApplicationBusiness < SpdBusiness
+end

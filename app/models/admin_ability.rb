@@ -86,9 +86,45 @@ class AdminAbility
       can :create, SaleProduct
       can :read, Stock, parallel_shop_id: user.parallel_shop.id
       can :read, ParallelShop, id: user.parallel_shop.id
+    elsif user.role_name == 'parent_company_admin'
+      can :manage, Supplier
+      can :manage, Warehouse
+      can :manage, PurchaseApplicationBusiness
+      can :manage, PurchaseInstockBusiness
+      can :manage, AllocateApplicationBusiness
+      can :manage, AllocateOutstockBusiness
+      can :manage, AllocateInstockBusiness
+      can :manage, SpdBusinessItem
+      can :manage, SpdBusinessBatch
+      can :manage, SpdStock
+      can :manage, SpdStockBatch
+      can :manage, DistributionApplicationBusiness
+      can :manage, DistributionOutstockBusiness
+      can :manage, DistributionInstockBusiness
+      can :manage, Stock
+
     elsif user.role_name == 'province_admin'
       can :manage, Warehouse, organization_id: user.organization.id
       can :manage, Warehouse
+      can :manage, AllocateApplicationBusiness, warehouse_id: user.organization.warehouses.ids
+      can :manage, AllocateApplicationBusiness
+      can :manage, AllocateOutstockBusiness, warehouse_id: user.organization.warehouses.ids
+      can :manage, AllocateOutstockBusiness
+      can :manage, AllocateInstockBusiness, warehouse_id: user.organization.warehouses.ids
+      can :manage, AllocateInstockBusiness
+      can :manage, DistributionApplicationBusiness, warehouse_id: user.organization.warehouses.ids
+      can :manage, DistributionApplicationBusiness
+      can :manage, DistributionOutstockBusiness, warehouse_id: user.organization.warehouses.ids
+      can :manage, DistributionOutstockBusiness
+      can :manage, DistributionInstockBusiness, warehouse_id: user.organization.warehouses.ids
+      can :manage, DistributionInstockBusiness
+      can :manage, SpdBusinessItem, spd_business_id: SpdBusiness.where(warehouse_id: user.organization.warehouses.ids)
+      can :manage, SpdBusinessItem
+      can :manage, SpdBusinessBatch, warehouse_id: user.organization.warehouses.ids
+      can :manage, SpdBusinessBatch
+      can :manage, SpdStock
+      can :manage, SpdStockBatch
+      can :manage, Stock
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"
   end
