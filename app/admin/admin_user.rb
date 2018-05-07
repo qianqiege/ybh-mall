@@ -37,6 +37,7 @@ ActiveAdmin.register AdminUser do
       row :password
       row :password_confirmation
       row :role_name
+      row :organization
       row :created_at
       row :sign_in_count
     end

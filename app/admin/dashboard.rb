@@ -9,5 +9,23 @@ ActiveAdmin.register_page "Dashboard" do
         small I18n.t("active_admin.dashboard_welcome.call_to_action")
       end
     end
+    columns do
+      column do
+        panel "待处理任务" do
+
+        end
+      end
+      column do
+        panel "产品效期预警" do
+
+        end
+      end
+      column do
+        panel "库存预警" do
+
+        end
+      end
+    end
   end
+
 end

@@ -19,9 +19,16 @@ zh-CN:
       wallet_manage: '钱包/账户'
       yb_work_manage: '御邦服务中心'
       official_website: '网站管理'
-      parallel_shop_manage: "影子店管理"
+      parallel_shop_manage: "医通平行店店管理"
+      stock: '库存管理'
+      spd: '业务中台'
+      spd_purchase: '采购管理'
+      spd_allocate: '调拨管理'
+      spd_distribution: '备货管理'
   activerecord:
     attributes:
+      distribution_application_business:
+        warehouse_id: '备货出库仓库'
       program:
         name: '方案名称'
         features: '方案功能'
@@ -416,6 +423,9 @@ zh-CN:
         settlement_ratio: "结算比例"
         left_and_right_ratio: "左右店结算比例"
         shop_type: "店铺类型"
+      purchase_application_business:
+        warehouse_id: '采购仓库'
+        order_date: '补单日期'
       stock_out:
         number: "编号"
         parallel_shop: "影子店"
@@ -510,6 +520,47 @@ zh-CN:
         order_date: '补单日期'
         purchase_status: '采购状态'
         pay_status: '付款状态'
+      spd_business:
+        up_id: '关联业务单'
+        business_number: '单据编号'
+        out_warehouse: '出库仓库'
+        in_warehouse: '入库仓库'
+        warehouse: '业务仓库'
+        supplier: '供应商'
+        type: '业务类型'
+        purchase_status: '采购状态'
+        allocate_status: '调拨状态'
+        datetime: '入库日期'
+        preparer: '制单人'
+        reviewer: '审核人'
+        discount: '整单折扣'
+        preferential: '整单优惠'
+        amounts_payable: '应付金额'
+        is_amended: '补单'
+        order_date: '订单日期'
+        pay_status: '付款状态'
+        supplier_id: '供应商'
+      spd_business_item:
+        spd_business_id: '所属订单'
+        product_id: '商品名称'
+        count: '数量'
+      spd_business_batch:
+        spd_business_item_id: '所属订单'
+        batch: '批次'
+        date: '生产日期'
+        count: '数量'
+        receive_count: '已到货数量'
+      spd_stock:
+        name: '库名'
+        product_id: '产品'
+        count: '数量'
+        out_count: '在途数量'
+        warehouse_id: '所属仓库'
+      spd_stock_batch:
+        stock_id: '所属库存'
+        batch: '批次'
+        count: '数量'
+        out_count: '在途数量'
       purchase_order:
         number: "编号"
         parallel_shop: "影子店"
@@ -518,6 +569,18 @@ zh-CN:
         phone: "电话"
         state: "状态"
         total: "总金额"
+      purchase_business:
+        up_id: '所属业务单'
+        business_number: '单据编号'
+        in_warehouse: '入库仓库'
+        preparer: '制单人'
+        discount: '整单折扣'
+        preferential: '整单优惠'
+        amounts_payable: '应付金额'
+        is_amended: '补单'
+        order_date: '订单日期'
+        purchase_status: '采购状态'
+        pay_status: '付款状态'
       valueable_product:
         name: "商品"
         image: "商品图片"
@@ -544,11 +607,17 @@ zh-CN:
         location: "服务名" 
         time: "有效期"
     models:
+      allocate_application_business: '调拨申请'
+      allocate_instock_business: '调拨入库'
+      allocate_outstock_business: '调拨出库'
       cash_record: '现金收支明细'
+      celebrate_ratsimp: "配领值记录"
+      contents_category: "商品分类目录"
+      distribution_application_business: '备货申请'
+      distribution_instock_business: '备货入库'
+      distribution_outstock_business: '备货出库'
       deposit: '现金充值记录'
       idata_subscribe: '数动力付款记录'
-      user_idata_subscribe: '数动力订阅服务'
-      user_info_review: '用户信息审核'
       doctor_rebate: '医生用药服务费记录'
       product: "商品"
       scoin_type: 'S货币包'
@@ -601,33 +670,40 @@ zh-CN:
       donation_record: '募捐记录'
       shop: "健康慢病服务中心"
       doctor_info: '医生信息'
-      shop_service: '服务中心服务详情'
-      shop_activity: '服务中心活动详情'
-      shop_propaganda_image: '服务中心宣传图片'
       feature: '功能模块'
       shop_feature: '服务中心功能'
       lottery_prize: '抽奖奖品'
-      user_prize: '用户奖品'
+      money_detail: "收益明细"
       new: '新闻'
       company_progress: '企业大事件'
       purchase_order: "采购单"
-      stock_out: "出库单"
       day_deal: "日清"
       month_deal: '月结'
-      shop_order: "影子店订单"
-      stock: "库存管理"
       parallel_shop: "影子店"
       plan_rule: "平行系统计划规则"
       plan: '平行系统计划记录'
+      purchase_application_business: '采购申请单'
+      purchase_instock_business: '采购入库单'
       sale_product: '产品上架'
       spine_build: '筑脊师'
       serve: '服务'
-      money_detail: "收益明细"
-      celebrate_ratsimp: "配领值记录"
-      contents_category: "商品分类目录"
+      shop_order: "影子店订单"
+      shop_service: '服务中心服务详情'
+      shop_activity: '服务中心活动详情'
+      shop_propaganda_image: '服务中心宣传图片'
+      stock: "库存管理"
+      stock_out: "出库单"
+      spd_business: '业务单'
+      spd_business_item: '业务单项'
+      spd_business_batch: '业务批次'
+      spd_stock: '库存'
+      spd_stock_batch: '批次库存'
       sharing_plan: "平行系统计划"
       supplier: "供应商"
       supplier_order: "供应商订单"
+      user_idata_subscribe: '数动力订阅服务'
+      user_info_review: '用户信息审核'
+      user_prize: '用户奖品'
       valueable_product: "保值产品"
       warehouse: "仓库"
       wechat_sm: "积分规则更改通知"
