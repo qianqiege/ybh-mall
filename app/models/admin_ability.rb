@@ -94,6 +94,7 @@ class AdminAbility
       can :manage, AllocateApplicationBusiness
       can :manage, AllocateOutstockBusiness
       can :manage, AllocateInstockBusiness
+      can :manage, SpdBusiness
       can :manage, SpdBusinessItem
       can :manage, SpdBusinessBatch
       can :manage, SpdStock

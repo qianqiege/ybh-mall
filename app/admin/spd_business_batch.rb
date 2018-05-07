@@ -5,11 +5,23 @@ ActiveAdmin.register SpdBusinessBatch, namespace: :spd do
   index do
     selectable_column
     id_column
-    column :spd_business_item_id
+    column :business_number do |spd|
+      spd.spd_business_item.spd_business.business_number
+    end
+    column :warehouse do |spd|
+      spd.spd_business_item.spd_business.warehouse.name
+    end
+    column :product do |spd|
+      "#{spd.spd_business_item.product.name} --- #{spd.spd_business_item.product.only_number}"
+    end
+    column :type do |spd|
+      spd.spd_business_item.spd_business.type
+    end
+    column :count do |spd|
+      spd.spd_business_item.count
+    end
     column :batch
-    column :date
     column :count
-    column :receive_count
     actions
   end
 #form
