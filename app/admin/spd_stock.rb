@@ -29,7 +29,7 @@ ActiveAdmin.register SpdStock do
   show do
     attributes_table do
       row :name
-      row :product_id
+      row :product
       row :count
       row :out_count
     end

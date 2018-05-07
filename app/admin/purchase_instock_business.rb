@@ -21,6 +21,7 @@ ActiveAdmin.register PurchaseInstockBusiness do
   form do |spd_business|
     spd_business.inputs do
       panel "基础信息", id: 'base_info' do
+        number = PurchaseApplicationBusiness.generator_number params
         spd_business.input :business_number, :input_html => {:placeholder => "#{number}", :value => "#{number}", disabled: true}
         spd_business.input :business_number, :input_html => {:value => "#{number}"}, as: :hidden
         spd_business.input :warehouse_id, as: :select, collection: current_admin_user.organization.warehouses.where(up_id: nil)

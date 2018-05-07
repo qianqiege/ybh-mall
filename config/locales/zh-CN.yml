@@ -545,6 +545,10 @@ zh-CN:
         product_id: '商品名称'
         count: '数量'
       spd_business_batch:
+        warehouse: '所属仓库'
+        business_number: '业务单号'
+        type: '业务类型'
+        product: '产品名称'
         spd_business_item_id: '所属订单'
         batch: '批次'
         date: '生产日期'
@@ -561,6 +565,8 @@ zh-CN:
         batch: '批次'
         count: '数量'
         out_count: '在途数量'
+        product_datetime: '生产日期'
+        expire_datetime: '到期日期'
       purchase_order:
         number: "编号"
         parallel_shop: "影子店"

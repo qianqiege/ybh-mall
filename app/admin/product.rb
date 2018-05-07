@@ -44,7 +44,6 @@ ActiveAdmin.register Product do
         f.input :led_away_price
         f.input :shop_count
         f.input :spec
-        f.input :production
         f.input :product_sort
         f.input :only_number
         f.input :packaging
