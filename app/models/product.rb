@@ -12,9 +12,13 @@ class Product < ApplicationRecord
   has_many :month_deal_items
   has_many :sale_products
   has_many :stocks
+  has_many :spd_stocks
   belongs_to :activity
   belongs_to :contents_category
   belongs_to :led_away_coefficient
+  belongs_to :supplier
+  #todo list params[:id]
+  scope :food, -> {where(contents_category_id: 13)}
 
   before_destroy :ensure_not_referenced_by_any_line_item
 

@@ -1,9 +1,9 @@
-ActiveAdmin.register Organization do
-menu parent: I18n.t("active_admin.menu.company_manage")
+ActiveAdmin.register InstockBusiness do
+  menu parent: I18n.t( "active_admin.menu.spd")
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :name, :only_number, :up_id
+# permit_params :list, :of, :attributes, :on, :model
 #
 # or
 #

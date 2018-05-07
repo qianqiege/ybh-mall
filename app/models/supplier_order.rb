@@ -8,14 +8,14 @@ class SupplierOrder < ApplicationRecord
   before_update :updat_order_total
 
   scope :approved, -> {where(purchase_status: "approved")}
-  scope :rejected, -> {where(purchase_status: "rejected")}
+  # scope :rejected, -> {where(purchase_status: "rejected")}
   scope :rejected, -> {where(purchase_status: "applying")}
 
 
   aasm column: :purchase_status do
     state :applying, :initial => true
     state :approved
-    state :rejected
+    # state :rejected
 
     event :review do
       transitions :from => :applying, :to => :approved

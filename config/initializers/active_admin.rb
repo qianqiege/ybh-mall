@@ -278,7 +278,12 @@ ActiveAdmin.setup do |config|
       menu.add label: I18n.t("active_admin.menu.activity_manage"), priority: 4
       menu.add label: I18n.t("active_admin.menu.coin_record_manage"), priority: 5
       menu.add label: I18n.t("active_admin.menu.wallet_manage"), priority: 6
-
+      menu.add label: I18n.t("active_admin.menu.spd"), priority: 17
+      menu.add label: I18n.t("active_admin.menu.spd_purchase"), priority: 17
+      menu.add label: I18n.t("active_admin.menu.spd_allocate"), priority: 18
+      menu.add label: I18n.t("active_admin.menu.spd_distribution"), priority: 19
+      menu.add label: I18n.t("active_admin.menu.stock"), priority: 20
+      menu.add label: I18n.t("active_admin.menu.company_manage"), priority: 20
     end
   end
 end

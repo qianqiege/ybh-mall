@@ -19,6 +19,7 @@ class AdminUser < ApplicationRecord
                     customer_service:'客户服务',
                     tester: '测试人员',
                     parallel_shop: '店铺管理者',
+                    parent_company_admin: '总公司管理员',
                     province_admin:'省级平台公司管理员'}.freeze
 
   def role_name_label
