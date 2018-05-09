@@ -1,8 +1,8 @@
-ActiveAdmin.register SpdBusinessItem, namespace: :spd do
+ActiveAdmin.register SpdBusinessItem do
 
   menu parent: I18n.t("active_admin.menu.spd")
   permit_params :spd_business_id, :product_id, :count,
-                spd_business_batches_attributes: [:id, :spd_business_item_id, :batch, :date, :count, :receive_count, :_destroy]
+                spd_business_batches_attributes: [:id, :spd_business_item_id, :batch, :date, :count, :product_datetime, :expire_datetime, :receive_count, :_destroy]
 
   index do
     selectable_column
@@ -24,6 +24,8 @@ ActiveAdmin.register SpdBusinessItem, namespace: :spd do
                                  allow_destroy: true do |spd_business_batch|
         spd_business_batch.input :batch
         spd_business_batch.input :count
+        spd_business_batch.input :product_datetime, as: :date_time_picker
+        spd_business_batch.input :expire_datetime, as: :date_time_picker
       end
     end
     spd_business_item.actions
@@ -40,14 +42,13 @@ ActiveAdmin.register SpdBusinessItem, namespace: :spd do
         batch.column('id') {|spd_business_batches| spd_business_batches.id}
         batch.column('批次') {|spd_business_batches| spd_business_batches.batch}
         batch.column('数量') {|spd_business_batches| spd_business_batches.count}
-        batch.column('生产日期') {|spd_business_batches| spd_business_batches.count}
-        batch.column('有效期') {|spd_business_batches| spd_business_batches.count}
+        batch.column('生产日期') {|spd_business_batches| spd_business_batches.product_datetime}
+        batch.column('到期日期') {|spd_business_batches| spd_business_batches.expire_datetime}
       end
     end
     panel "返回首页" do
       h1 link_to '返回业务首页', admin_root_path
     end
   end
-
 
 end

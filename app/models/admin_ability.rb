@@ -113,7 +113,7 @@ class AdminAbility
       can :manage, AllocateOutstockBusiness
       can :manage, AllocateInstockBusiness, warehouse_id: user.organization.warehouses.ids
       can :manage, AllocateInstockBusiness
-      can :manage, DistributionApplicationBusiness, warehouse_id: user.organization.warehouses.ids
+      can :manage, DistributionApplicationBusiness
       can :manage, DistributionApplicationBusiness
       can :manage, DistributionOutstockBusiness, warehouse_id: user.organization.warehouses.ids
       can :manage, DistributionOutstockBusiness
@@ -121,10 +121,12 @@ class AdminAbility
       can :manage, DistributionInstockBusiness
       can :manage, SpdBusinessItem, spd_business_id: SpdBusiness.where(warehouse_id: user.organization.warehouses.ids)
       can :manage, SpdBusinessItem
-      can :manage, SpdBusinessBatch, warehouse_id: user.organization.warehouses.ids
       can :manage, SpdBusinessBatch
-      can :manage, SpdStock
-      can :manage, SpdStockBatch
+      can :manage, SpdBusinessBatch
+      can :manage, SpdBusiness
+      can :manage, SpdBusiness
+      can :manage, SpdStock,warehouse_id: user.organization.warehouses.ids
+      can :manage, SpdStockBatch, spd_stock_id: SpdStock.where(warehouse_id: user.organization.warehouses.ids)
       can :manage, Stock
     end
     can :read, ActiveAdmin::Page, name: "Dashboard"

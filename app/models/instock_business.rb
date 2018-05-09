@@ -14,11 +14,12 @@ class InstockBusiness < OutinstockBusiness
           spd_stock_batch.count = spd_stock_batch.count.to_i + batch.count.to_i
           spd_stock_batch.save
         else
-          SpdStockBatch.create(spd_stock_id: spd_stocks.first.id, batch: batch.batch, count: batch.count)
+          SpdStockBatch.create(spd_stock_id: spd_stocks.first.id, batch: batch.batch, count: batch.count, product_datetime: batch.product_datetime, expire_datetime: batch.expire_datetime)
         end
       else
+        # 库存中没有采购产品  创建新的
         spd_stock = SpdStock.create(warehouse_id: business.warehouse_id, product_id: batch.spd_business_item.product_id)
-        SpdStockBatch.create(spd_stock_id: spd_stock.id, batch: batch.batch, count: batch.count)
+        SpdStockBatch.create(spd_stock_id: spd_stock.id, batch: batch.batch, count: batch.count, product_datetime: batch.product_datetime, expire_datetime: batch.expire_datetime)
       end
     end
   end

@@ -77,8 +77,8 @@ ActiveAdmin.register SupplierOrder do
       f.input :order_number, :input_html => {:value => "#{order_number}"}, as: :hidden
       f.input :supplier
       f.input :warehouse_id, as: :select, collection: current_admin_user.organization.warehouses.where(up_id: nil)
-      f.input :admin_user_id, :input_html => {:placeholder => current_admin_user.email, :value => current_admin_user, disabled: true}
-      f.input :admin_user_id, :input_html => {:value => current_admin_user.email}, as: :hidden
+      f.input :admin_user_id, :input_html => {:placeholder => current_admin_user.name, :value => current_admin_user, disabled: true}
+      f.input :admin_user_id, :input_html => {:value => current_admin_user.name}, as: :hidden
       f.input :discount
       f.input :preferential
       f.input :is_amended

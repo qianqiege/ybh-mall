@@ -27,8 +27,6 @@ zh-CN:
       spd_distribution: '备货管理'
   activerecord:
     attributes:
-      distribution_application_business:
-        warehouse_id: '备货出库仓库'
       program:
         name: '方案名称'
         features: '方案功能'
@@ -44,6 +42,8 @@ zh-CN:
       product:
         name: "标题"
         spec: "规格"
+        supplier: "供应商"
+        supplier_id: "供应商"
         original_product_price: "原价"
         now_product_price: "现价"
         only_number: "产品编号"
@@ -168,6 +168,7 @@ zh-CN:
         sign_in_count: '登录次数'
         created_at: '创建时间'
         current_sign_in_at: '当前登录时间'
+        organization: '组织'
         role_name_label: '角色'
       rank:
         level: '等级'
@@ -423,9 +424,6 @@ zh-CN:
         settlement_ratio: "结算比例"
         left_and_right_ratio: "左右店结算比例"
         shop_type: "店铺类型"
-      purchase_application_business:
-        warehouse_id: '采购仓库'
-        order_date: '补单日期'
       stock_out:
         number: "编号"
         parallel_shop: "影子店"
@@ -527,6 +525,7 @@ zh-CN:
         out_warehouse: '出库仓库'
         in_warehouse: '入库仓库'
         warehouse: '业务仓库'
+        warehouse_id: '业务仓库'
         supplier: '供应商'
         type: '业务类型'
         purchase_status: '采购状态'
@@ -538,12 +537,17 @@ zh-CN:
         preferential: '整单优惠'
         amounts_payable: '应付金额'
         is_amended: '补单'
-        order_date: '订单日期'
+        order_date: '补单日期'
         pay_status: '付款状态'
+        distribute_status: '备货状态'
+        parallel_shop: '平行店'
         supplier_id: '供应商'
+        created_at: '创建日期'
       spd_business_item:
         spd_business_id: '所属订单'
+        supplier: "供应商"
         product_id: '商品名称'
+        price: '价格'
         count: '数量'
       spd_business_batch:
         warehouse: '所属仓库'
@@ -552,9 +556,11 @@ zh-CN:
         product: '产品名称'
         spd_business_item_id: '所属订单'
         batch: '批次'
-        date: '生产日期'
         count: '数量'
         receive_count: '已到货数量'
+        product_datetime: '生产日期'
+        expire_datetime: '到期日期'
+        created_at: '创建日期'
       spd_stock:
         name: '库名'
         product_id: '产品'
@@ -585,9 +591,13 @@ zh-CN:
         preferential: '整单优惠'
         amounts_payable: '应付金额'
         is_amended: '补单'
-        order_date: '订单日期'
+        order_date: '补单日期'
         purchase_status: '采购状态'
         pay_status: '付款状态'
+      purchase_instock_business:
+        warehouse_id: '业务仓库'
+        order_date: '补单日期'
+        created_at: '订单日期'
       valueable_product:
         name: "商品"
         image: "商品图片"
@@ -616,25 +626,26 @@ zh-CN:
     models:
       inventory_loss: '盘亏'
       inventory_profit: '盘盈'
+      activity: '活动'
+      activity_rule: '活动规则'
+      address: '收货地址'
       allocate_application_business: '调拨申请'
       allocate_instock_business: '调拨入库'
       allocate_outstock_business: '调拨出库'
       cash_record: '现金收支明细'
       celebrate_ratsimp: "配领值记录"
       contents_category: "商品分类目录"
+      company_progress: '企业大事件'
       distribution_application_business: '备货申请'
       distribution_instock_business: '备货入库'
       distribution_outstock_business: '备货出库'
       deposit: '现金充值记录'
-      idata_subscribe: '数动力付款记录'
       doctor_rebate: '医生用药服务费记录'
+      idata_subscribe: '数动力付款记录'
+      order: '订单'
       product: "商品"
       scoin_type: 'S货币包'
       ycoin_type: '易积分包'
-      address: '收货地址'
-      order: '订单'
-      activity: '活动'
-      activity_rule: '活动规则'
       return_request: '退换货请求'
       admin_user: '后台用户'
       rank: '级别'
@@ -652,7 +663,6 @@ zh-CN:
       member_record: '会员档案/信息'
       program: '方案'
       slide: '滚动图片'
-      scoin_account: 'S货币账户'
       integral: '用户钱包账户'
       coin_record: '积分包记录'
       blood_glucose: '血糖检测'
@@ -664,7 +674,6 @@ zh-CN:
       health_examine: '检测项目'
       blood_fat: '血脂检测'
       unine: '尿酸检测'
-      scoin_account_order_relation: '账户订单绑定'
       paper_trail/version: '操作记录'
       organization: '机构（公司）'
       identity_card: '身份证'
@@ -684,7 +693,6 @@ zh-CN:
       lottery_prize: '抽奖奖品'
       money_detail: "收益明细"
       new: '新闻'
-      company_progress: '企业大事件'
       purchase_order: "采购单"
       day_deal: "日清"
       month_deal: '月结'
@@ -693,6 +701,8 @@ zh-CN:
       plan: '平行系统计划记录'
       purchase_application_business: '采购申请单'
       purchase_instock_business: '采购入库单'
+      scoin_account: 'S货币账户'
+      scoin_account_order_relation: '账户订单绑定'
       sale_product: '产品上架'
       spine_build: '筑脊师'
       serve: '服务'
