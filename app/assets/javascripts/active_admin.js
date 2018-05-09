@@ -14,3 +14,15 @@ $(function () {
         }
     })
 });
+
+$(function () {
+    // 显示隐藏补单功能
+    $('#purchase_application_business_order_date_input').hide();
+    $("#purchase_application_business_is_amended").click(function () {
+        if ($("#purchase_application_business_is_amended").prop("checked")) {
+            $('#purchase_application_business_order_date_input').show();
+        } else {
+            $('#purchase_application_business_order_date_input').hide();
+        }
+    })
+});

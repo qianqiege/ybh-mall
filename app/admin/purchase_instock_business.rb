@@ -9,7 +9,6 @@ ActiveAdmin.register PurchaseInstockBusiness do
     id_column
     column :business_number
     column :warehouse
-    column :type
     column :purchase_status
     column :is_amended
     column :order_date
@@ -27,13 +26,13 @@ ActiveAdmin.register PurchaseInstockBusiness do
         spd_business.input :warehouse_id, as: :select, collection: current_admin_user.organization.warehouses.where(up_id: nil)
         spd_business.input :type
         spd_business.input :purchase_status
-        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.email, disabled: true}
+        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.name, disabled: true}
         spd_business.input :reviewer
         spd_business.input :discount
         spd_business.input :preferential
         spd_business.input :amounts_payable
         spd_business.input :is_amended
-        spd_business.input :preparer, :input_html => {:value => current_admin_user.email}, as: :hidden
+        spd_business.input :preparer, :input_html => {:value => current_admin_user.name}, as: :hidden
         spd_business.input :order_date, as: :date_time_picker
       end
     end
@@ -53,24 +52,19 @@ ActiveAdmin.register PurchaseInstockBusiness do
     attributes_table do
       row :business_number
       row :warehouse_id
-      row :type
       row :purchase_status
-      row :datetime
-      row :preparer
-      row :reviewer
-      row :discount
-      row :preferential
-      row :amounts_payable
       row :is_amended
       row :order_date
-      row :pay_status
+      row :preparer
+      row :reviewer
+      row :created_at
     end
     panel "订单项详情" do
       table_for purchase_instock_business.spd_business_items do |item|
         item.column('id') {|spd_business_items| spd_business_items.id}
         item.column('产品') {|spd_business_items| spd_business_items.product.name}
         item.column('产品数量') {|spd_business_items| spd_business_items.count}
-        item.column('添加批次') {|spd_business_items| link_to '添加批次', edit_spd_spd_business_item_path(spd_business_items)}
+        item.column('添加批次') {|spd_business_items| link_to '添加批次', edit_admin_spd_business_item_path(spd_business_items)}
       end
     end
 
@@ -81,6 +75,8 @@ ActiveAdmin.register PurchaseInstockBusiness do
         item.column('产品名称') {|spd_business_batch| spd_business_batch.spd_business_item.product.name}
         item.column('批次') {|spd_business_batch| spd_business_batch.batch}
         item.column('数量') {|spd_business_batch| spd_business_batch.count}
+        item.column('生产日期') {|spd_business_batch| spd_business_batch.product_datetime}
+        item.column('到期日期') {|spd_business_batch| spd_business_batch.expire_datetime}
       end
     end
   end

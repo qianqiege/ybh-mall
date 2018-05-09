@@ -1,4 +1,4 @@
-ActiveAdmin.register SpdBusinessBatch, namespace: :spd do
+ActiveAdmin.register SpdBusinessBatch do
 
   menu parent: I18n.t( "active_admin.menu.spd")
   permit_params :spd_business_item_id, :batch, :date, :count, :receive_count
@@ -22,6 +22,7 @@ ActiveAdmin.register SpdBusinessBatch, namespace: :spd do
     end
     column :batch
     column :count
+    column :created_at
     actions
   end
 #form
@@ -29,9 +30,7 @@ ActiveAdmin.register SpdBusinessBatch, namespace: :spd do
     spd_business_batch.inputs do
       spd_business_batch.input :spd_business_item
       spd_business_batch.input :batch
-      spd_business_batch.input :date, as: :date_time_picker
       spd_business_batch.input :count
-      spd_business_batch.input :receive_count
     end
     spd_business_batch.actions
   end

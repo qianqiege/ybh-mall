@@ -8,7 +8,6 @@ ActiveAdmin.register DistributionInstockBusiness do
     id_column
     column :business_number
     column :parallel_shop
-    column :type
     column :distribute_status
     column :is_amended
     column :order_date
@@ -23,10 +22,10 @@ ActiveAdmin.register DistributionInstockBusiness do
       panel "基础信息", id: 'base_info' do
         spd_business.input :business_number, :input_html => {:placeholder => "#{number}", :value => "#{number}", disabled: true}
         spd_business.input :business_number, :input_html => {:value => "#{number}"}, as: :hidden
-        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.email, disabled: true}
+        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.name, disabled: true}
         spd_business.input :reviewer
         spd_business.input :is_amended
-        spd_business.input :preparer, :input_html => {:value => current_admin_user.email}, as: :hidden
+        spd_business.input :preparer, :input_html => {:value => current_admin_user.name}, as: :hidden
         spd_business.input :order_date, as: :date_time_picker
       end
     end

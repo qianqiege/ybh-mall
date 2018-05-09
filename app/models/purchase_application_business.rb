@@ -1,5 +1,5 @@
 class PurchaseApplicationBusiness < ApplicationBusiness
-  number_prefix "CGRK"
+  number_prefix "CGSQ"
   before_create :updat_order_total
   before_update :updat_order_total
 

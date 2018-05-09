@@ -9,9 +9,10 @@ ActiveAdmin.register AllocateApplicationBusiness do
     column :business_number
     column :out_warehouse
     column :warehouse
-    column :type
     column :allocate_status
-    column :datetime
+    column :is_amended
+    column :order_date
+    column :created_at
     column :preparer
     column :reviewer
     actions
@@ -25,8 +26,8 @@ ActiveAdmin.register AllocateApplicationBusiness do
       spd_business.input :out_warehouse, :input_html => {:placeholder => "深圳一级库", disabled: true}
       spd_business.input :out_warehouse, :input_html => {:value => "深圳一级库"}, as: :hidden
       spd_business.input :warehouse_id, as: :select, collection: current_admin_user.try(:organization).try(:warehouses) || ['您没有所属仓库']
-      spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.email, disabled: true}
-      spd_business.input :preparer, :input_html => {:value => current_admin_user.email}, as: :hidden
+      spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.name, disabled: true}
+      spd_business.input :preparer, :input_html => {:value => current_admin_user.name}, as: :hidden
       spd_business.input :is_amended
       spd_business.input :order_date, as: :date_time_picker
     end
@@ -67,27 +68,14 @@ ActiveAdmin.register AllocateApplicationBusiness do
   member_action :review, method: [:get, :post] do
     if resource.may_review?
       resource.review
-      resource.reviewer = current_admin_user.email
+      resource.reviewer = current_admin_user.name
       resource.save
       redirect_to admin_allocate_application_businesses_path
     else
       redirect_to :back, notice: "只能审核，等待审核的订单!"
     end
   end
-  member_action :reject, method: [:get, :post] do
-    if resource.may_reject?
-      resource.reject
-      resource.reviewer = current_admin_user.email
-      resource.save
-      redirect_to admin_allocate_application_businesses_path
-    else
-      redirect_to :back, notice: "只能审核拒绝，等待审核的订单!"
-    end
-  end
   action_item :review_action, only: :show, if: proc{ current_admin_user.role_name == "admin" || current_admin_user.role_name == "parent_company_admin" } do
     link_to "审核通过", review_admin_allocate_application_business_path
-  end
-  action_item :reject_action, only: :show, if: proc{ current_admin_user.role_name == "admin" || current_admin_user.role_name == "parent_company_admin" } do
-    link_to "审核不通过", reject_admin_allocate_application_business_path
   end
 end

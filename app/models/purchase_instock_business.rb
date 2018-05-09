@@ -1,5 +1,5 @@
 class PurchaseInstockBusiness < InstockBusiness
-  number_prefix "CGSQ"
+  number_prefix "CGRK"
   include AASM
   aasm column: :purchase_status do
     state :pendding, :initial => true
