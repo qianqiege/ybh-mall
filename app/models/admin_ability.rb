@@ -102,6 +102,8 @@ class AdminAbility
       can :manage, DistributionApplicationBusiness
       can :manage, DistributionOutstockBusiness
       can :manage, DistributionInstockBusiness
+      can :manage, CheckOutstockBusiness
+      can :manage, CheckInstockBusiness
       can :manage, Stock
 
     elsif user.role_name == 'province_admin'
