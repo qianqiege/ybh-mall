@@ -523,6 +523,7 @@ zh-CN:
       spd_business:
         up_id: '关联业务单'
         business_number: '单据编号'
+        inventory_status: '盘亏状态'
         out_warehouse: '出库仓库'
         in_warehouse: '入库仓库'
         warehouse: '业务仓库'
@@ -613,6 +614,8 @@ zh-CN:
         location: "服务名" 
         time: "有效期"
     models:
+      inventory_loss: '盘亏'
+      inventory_profit: '盘盈'
       allocate_application_business: '调拨申请'
       allocate_instock_business: '调拨入库'
       allocate_outstock_business: '调拨出库'

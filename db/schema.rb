@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410070711) do
+ActiveRecord::Schema.define(version: 20180508090317) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(version: 20180410070711) do
     t.datetime "updated_at", null: false
     t.boolean  "is_display"
     t.string   "image"
+    t.string   "order"
   end
 
   create_table "day_deal_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -524,6 +525,14 @@ ActiveRecord::Schema.define(version: 20180410070711) do
     t.decimal  "appreciation",     precision: 10, scale: 2
     t.decimal  "not_appreciation", precision: 10, scale: 2
     t.decimal  "count",            precision: 10, scale: 2
+  end
+
+  create_table "led_away_coefficients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.float    "coefficient",   limit: 24
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.float    "exchange_rate", limit: 24
   end
 
   create_table "lights", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -818,8 +827,8 @@ ActiveRecord::Schema.define(version: 20180410070711) do
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "image"
-    t.decimal  "original_product_price",               precision: 10, scale: 2
-    t.decimal  "now_product_price",                    precision: 10, scale: 2
+    t.decimal  "original_product_price",                precision: 10, scale: 2
+    t.decimal  "now_product_price",                     precision: 10, scale: 2
     t.boolean  "is_show"
     t.string   "standard"
     t.string   "product_sort"
@@ -828,26 +837,29 @@ ActiveRecord::Schema.define(version: 20180410070711) do
     t.string   "weight"
     t.string   "standard_number"
     t.string   "serial_number"
-    t.text     "desc",                   limit: 65535
-    t.datetime "created_at",                                                                    null: false
-    t.datetime "updated_at",                                                                    null: false
-    t.integer  "shop_count",                                                    default: 0
-    t.integer  "lock_shop_count",                                               default: 0
+    t.text     "desc",                    limit: 65535
+    t.datetime "created_at",                                                                     null: false
+    t.datetime "updated_at",                                                                     null: false
+    t.integer  "shop_count",                                                     default: 0
+    t.integer  "lock_shop_count",                                                default: 0
     t.string   "only_number"
-    t.integer  "priority",                                                      default: 0
-    t.boolean  "is_custom_price",                                               default: false
+    t.integer  "priority",                                                       default: 0
+    t.boolean  "is_custom_price",                                                default: false
     t.boolean  "is_consumption"
     t.string   "translate"
     t.integer  "sort"
     t.string   "spec"
     t.boolean  "display"
-    t.float    "data_number",            limit: 24
+    t.float    "data_number",             limit: 24
     t.string   "height"
     t.integer  "activity_id"
-    t.boolean  "is_test",                                                       default: false
+    t.boolean  "is_test",                                                        default: false
     t.string   "led_away_category"
     t.integer  "contents_category_id"
     t.string   "general"
+    t.decimal  "led_away_price",                        precision: 16, scale: 2
+    t.integer  "led_away_coefficient_id"
+    t.integer  "supplier_id"
   end
 
   create_table "programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1096,6 +1108,76 @@ ActiveRecord::Schema.define(version: 20180410070711) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "tp",         default: 1
+  end
+
+  create_table "spd_business_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "spd_business_item_id"
+    t.string   "batch"
+    t.datetime "date"
+    t.string   "count"
+    t.string   "receive_count"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.datetime "product_datetime"
+    t.datetime "expire_datetime"
+  end
+
+  create_table "spd_business_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "spd_business_id"
+    t.integer  "product_id"
+    t.decimal  "price",                      precision: 16, scale: 2
+    t.decimal  "amount",                     precision: 16, scale: 2
+    t.float    "discount",        limit: 24
+    t.string   "count"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  create_table "spd_businesses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "up_id"
+    t.string   "business_number"
+    t.string   "out_warehouse"
+    t.string   "in_warehouse"
+    t.string   "type"
+    t.string   "purchase_status"
+    t.string   "allocate_status"
+    t.datetime "datetime"
+    t.string   "preparer"
+    t.string   "reviewer"
+    t.string   "discount"
+    t.string   "preferential"
+    t.string   "amounts_payable"
+    t.boolean  "is_amended"
+    t.datetime "order_date"
+    t.string   "pay_status"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "warehouse_id"
+    t.integer  "supplier_id"
+    t.integer  "parallel_shop_id"
+    t.string   "distribute_status"
+    t.string   "inventory_status"
+  end
+
+  create_table "spd_stock_batches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "spd_stock_id"
+    t.string   "batch"
+    t.string   "count"
+    t.string   "out_count"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.datetime "product_datetime"
+    t.datetime "expire_datetime"
+  end
+
+  create_table "spd_stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.string   "count"
+    t.string   "out_count"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "warehouse_id"
   end
 
   create_table "spine_builds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
