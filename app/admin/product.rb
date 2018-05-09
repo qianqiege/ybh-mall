@@ -22,10 +22,10 @@ ActiveAdmin.register Product do
     column'是否上架', :is_show
     column :shop_count
     column :priority
-    column '产品描述' do |product|
-      truncate(raw product.desc)
-    end
-    column :production
+    # column '产品描述' do |product|
+    #   truncate(raw product.desc)
+    # end
+    # column :production
     # column :product_sort
     column :activity_id
     column :is_test
@@ -44,7 +44,7 @@ ActiveAdmin.register Product do
         f.input :led_away_price
         f.input :shop_count
         f.input :spec
-        f.input :product_sort
+        # f.input :product_sort
         f.input :only_number
         f.input :packaging
         f.input :image, as: :file

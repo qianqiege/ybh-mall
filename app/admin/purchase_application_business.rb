@@ -9,18 +9,14 @@ ActiveAdmin.register PurchaseApplicationBusiness do
     id_column
     column :business_number
     column :supplier
-    column :warehouse_id
-    column :type
+    column :warehouse
     column :purchase_status
-    column :datetime
-    column :preparer
-    column :reviewer
-    column :discount
-    column :preferential
     column :amounts_payable
     column :is_amended
     column :order_date
-    column :pay_status
+    column :created_at
+    column :preparer
+    column :reviewer
     actions
   end
 #form
@@ -32,11 +28,11 @@ ActiveAdmin.register PurchaseApplicationBusiness do
         spd_business.input :business_number, :input_html => {:value => "#{number}"}, as: :hidden
         spd_business.input :supplier
         spd_business.input :warehouse_id, as: :select, collection: current_admin_user.try(:organization).try(:warehouses).try{|x| x.where(up_id: nil)} || ['您没有所属仓库']
-        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.email, disabled: true}
+        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.name, disabled: true}
         spd_business.input :discount, :input_html => {:placeholder => "1", :value => "1"}
         spd_business.input :preferential
         spd_business.input :is_amended
-        spd_business.input :preparer, :input_html => {:value => current_admin_user.email}, as: :hidden
+        spd_business.input :preparer, :input_html => {:value => current_admin_user.name}, as: :hidden
         spd_business.input :order_date, as: :date_time_picker
       end
     end
@@ -63,9 +59,7 @@ ActiveAdmin.register PurchaseApplicationBusiness do
       row :business_number
       row :supplier
       row :warehouse
-      row :type
       row :purchase_status
-      row :datetime
       row :preparer
       row :reviewer
       row :discount
@@ -73,7 +67,7 @@ ActiveAdmin.register PurchaseApplicationBusiness do
       row :amounts_payable
       row :is_amended
       row :order_date
-      row :pay_status
+      row :created_at
     end
     panel "订单项详情" do
       table_for purchase_application_business.spd_business_items do |items|
@@ -81,14 +75,16 @@ ActiveAdmin.register PurchaseApplicationBusiness do
         items.column('产品') {|spd_business_items| "#{spd_business_items.product.name}--#{spd_business_items.product.only_number}"}
         items.column('产品价格') {|spd_business_items| spd_business_items.price}
         items.column('产品数量') {|spd_business_items| spd_business_items.count}
+        items.column('单项金额') {|spd_business_items| spd_business_items.price.to_f * spd_business_items.count.to_f}
         # items.column('添加批次') { link_to '添加批次', edit_admin_spd_business_item_path }
       end
+      h3
     end
   end
   member_action :review, method: [:get, :post] do
     if resource.may_review?
       resource.review
-      resource.reviewer = current_admin_user.email
+      resource.reviewer = current_admin_user.name
       resource.save
       redirect_to admin_purchase_application_businesses_path
     else

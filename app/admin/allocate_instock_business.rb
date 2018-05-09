@@ -8,10 +8,10 @@ ActiveAdmin.register AllocateInstockBusiness do
     id_column
     column :business_number
     column :warehouse
-    column :type
     column :allocate_status
     column :is_amended
     column :order_date
+    column :created_at
     column :preparer
     column :reviewer
     actions
@@ -24,10 +24,10 @@ ActiveAdmin.register AllocateInstockBusiness do
         spd_business.input :business_number, :input_html => {:placeholder => "#{number}", :value => "#{number}", disabled: true}
         spd_business.input :business_number, :input_html => {:value => "#{number}"}, as: :hidden
         spd_business.input :warehouse_id
-        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.email, disabled: true}
+        spd_business.input :preparer, :input_html => {:placeholder => current_admin_user.name, disabled: true}
         spd_business.input :reviewer
         spd_business.input :is_amended
-        spd_business.input :preparer, :input_html => {:value => current_admin_user.email}, as: :hidden
+        spd_business.input :preparer, :input_html => {:value => current_admin_user.name}, as: :hidden
         spd_business.input :order_date, as: :date_time_picker
       end
     end
@@ -58,7 +58,7 @@ ActiveAdmin.register AllocateInstockBusiness do
         item.column('id') {|spd_business_items| spd_business_items.id}
         item.column('产品') {|spd_business_items| spd_business_items.product.name}
         item.column('产品数量') {|spd_business_items| spd_business_items.count}
-        item.column('添加批次') {|spd_business_items| link_to '添加批次', edit_spd_spd_business_item_path(spd_business_items)}
+        item.column('添加批次') {|spd_business_items| link_to '添加批次', edit_admin_spd_business_item_path(spd_business_items)}
       end
     end
     panel "批次详情" do
@@ -74,6 +74,7 @@ ActiveAdmin.register AllocateInstockBusiness do
   member_action :review, method: [:get, :post] do
     if resource.may_review?
       resource.review
+      resource.reviewer = current_admin_user.name
       resource.save
       redirect_to admin_allocate_instock_businesses_path
     else

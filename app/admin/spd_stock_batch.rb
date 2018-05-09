@@ -2,13 +2,14 @@ ActiveAdmin.register SpdStockBatch do
 
   menu parent: I18n.t( "active_admin.menu.stock")
   permit_params :spd_stock_id, :batch, :count, :out_count, :product_datetime, :expire_datetime
+
   actions :index
   index do
     id_column
     column "所属仓库" do |stock|
       stock.spd_stock.warehouse.name
     end
-    column "product" do |stock|
+    column "产品" do |stock|
       stock.spd_stock.product.display_name
     end
     column :batch
@@ -42,4 +43,18 @@ ActiveAdmin.register SpdStockBatch do
   end
   filter :spd_stock_warehouse_name_cont, label: "仓库", as: :select, collection: proc { Warehouse.all.pluck(:name) }
   filter :spd_stock_product_name_cont, label: "产品", as: :select, collection: proc { Product.joins(:spd_stocks).where(spd_stocks: {warehouse_id: Warehouse.all.ids}).pluck(:name) }
+
+  csv do
+    column "所属仓库" do |stock|
+      stock.spd_stock.warehouse.name
+    end
+    column "产品" do |stock|
+      stock.spd_stock.product.display_name
+    end
+    column :batch
+    column :count
+    column :out_count
+    column :product_datetime
+    column :expire_datetime
+  end
 end
