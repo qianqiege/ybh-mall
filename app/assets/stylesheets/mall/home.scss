@@ -309,11 +309,12 @@
 
 
 .classifyLevel {
+  padding-bottom: 70px;
   ul {
     width:94%;
     margin: 0 auto;
     margin-top: 20px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     li {
       .levelTitle {
         padding:5px;
@@ -329,7 +330,7 @@
       }
       .levelList {
         width:100%;
-        margin-top: 5px;
+        margin-top: 4%;
         display: flex;
         flex-wrap:wrap;
         li {
