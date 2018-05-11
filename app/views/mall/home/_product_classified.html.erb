@@ -8,7 +8,7 @@
               <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
               <h5 class='text-center'><%= product.name %></h5>
               <div class="sub-title text-center"><%= raw product.general %></div>
-              <em class="item-price text-center">
+              <p class="item-price text-center">
                 <% if product.is_pendding_sale %>
                     <em>待上架商品</em>
                 <% else %>
