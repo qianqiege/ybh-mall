@@ -12,7 +12,7 @@ ActiveAdmin.register SpdBusinessItem do
     column :count
     actions
   end
-#form
+  #form
   form do |spd_business_item|
     spd_business_item.inputs "#{resource.spd_business.type}" do
       spd_business_item.input :spd_business_id
@@ -30,7 +30,7 @@ ActiveAdmin.register SpdBusinessItem do
     end
     spd_business_item.actions
   end
-#show
+  #show
   show do |spd_business_item|
     attributes_table do
       row :spd_business_id
@@ -50,5 +50,10 @@ ActiveAdmin.register SpdBusinessItem do
       h1 link_to '返回业务首页', admin_root_path
     end
   end
-
+  controller do
+    def update
+      SpdBusiness.find(params[:spd_business_item][:spd_business_id]).update(preparer: current_admin_user.name)
+      super
+    end
+  end
 end

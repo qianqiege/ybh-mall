@@ -24,7 +24,7 @@ zh-CN:
       spd: '业务中台'
       spd_purchase: '采购管理'
       spd_allocate: '调拨管理'
-      spd_check: '备货管理'
+      spd_check: '盘点管理'
       spd_distribution: '备货管理'
   activerecord:
     attributes:

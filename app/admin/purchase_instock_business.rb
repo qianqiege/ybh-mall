@@ -82,6 +82,7 @@ ActiveAdmin.register PurchaseInstockBusiness do
   end
   member_action :review, method: [:get, :post] do
     if resource.may_review?
+      resource.reviewer = current_admin_user.name
       resource.review
       resource.save
       redirect_to admin_purchase_instock_businesses_path

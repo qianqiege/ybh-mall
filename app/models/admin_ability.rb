@@ -105,6 +105,8 @@ class AdminAbility
       can :manage, CheckOutstockBusiness
       can :manage, CheckInstockBusiness
       can :manage, Stock
+      can :manage, Order
+
 
     elsif user.role_name == 'province_admin'
       can :manage, Warehouse, organization_id: user.organization.id
@@ -125,7 +127,7 @@ class AdminAbility
       can :manage, SpdBusinessItem
       can :manage, SpdBusinessBatch
       can :manage, SpdBusinessBatch
-      can :manage, SpdBusiness
+      can :manage, SpdBusiness, warehouse_id: user.organization.warehouses.ids
       can :manage, SpdBusiness
       can :manage, SpdStock,warehouse_id: user.organization.warehouses.ids
       can :manage, SpdStockBatch, spd_stock_id: SpdStock.where(warehouse_id: user.organization.warehouses.ids)

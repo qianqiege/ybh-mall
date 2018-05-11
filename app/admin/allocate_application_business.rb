@@ -58,7 +58,7 @@ ActiveAdmin.register AllocateApplicationBusiness do
     panel "订单项详情" do
       table_for allocate_application_business.spd_business_items do |items|
         items.column('id') {|spd_business_items| spd_business_items.id}
-        items.column('产品') {|spd_business_items| spd_business_items.product.name}
+        items.column('产品') {|spd_business_items| "#{spd_business_items.product.name}--#{spd_business_items.product.only_number}"}
         items.column('产品数量') {|spd_business_items| spd_business_items.count}
         # items.column('添加批次') { link_to '添加批次', edit_admin_spd_business_item_path }
       end

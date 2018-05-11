@@ -29,7 +29,7 @@ class InstockBusiness < OutinstockBusiness
     business.spd_business_items.each do |items|
     stock = Stock.where(parallel_shop_id: business.parallel_shop_id, product_id: items.product_id).first
       if stock.present?
-        stock.amount = stock.amount + items.count
+        stock.amount = stock.amount.to_i + items.count.to_i
         stock.save
       else
         Stock.create(parallel_shop_id: business.parallel_shop_id, product_id: items.product_id, amount: items.count)

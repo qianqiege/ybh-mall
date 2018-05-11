@@ -1,6 +1,6 @@
 ActiveAdmin.register CheckInstockBusiness do
 
-  menu parent: I18n.t("active_admin.menu.spd_check"), priority: 13
+  menu parent: I18n.t("active_admin.menu.spd_check")
   permit_params :up_id, :business_number, :out_warehouse, :warehouse_id, :type, :purchase_status, :allocate_status, :datetime, :preparer, :reviewer, :discount, :preferential, :amounts_payable, :is_amended, :order_date, :pay_status,
                 spd_business_items_attributes: [:id, :spd_business_id, :product_id, :count, :_destroy]
   index do

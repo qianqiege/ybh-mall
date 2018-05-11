@@ -1,4 +1,5 @@
 class OutstockBusiness < OutinstockBusiness
+  # 出库  并  添加在途数量
   def sub_stock business
 
     # 找到单项 中的产品
@@ -12,6 +13,7 @@ class OutstockBusiness < OutinstockBusiness
       spd_stock_batch.save
     end
   end
+  # 出库  不  添加在途数量
   def check_sub_stock business
 
     # 找到单项 中的产品

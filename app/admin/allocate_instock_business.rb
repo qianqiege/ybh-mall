@@ -67,6 +67,8 @@ ActiveAdmin.register AllocateInstockBusiness do
         item.column('产品名称') {|spd_business_batch| spd_business_batch.spd_business_item.product.name}
         item.column('批次') {|spd_business_batch| spd_business_batch.batch}
         item.column('数量') {|spd_business_batch| spd_business_batch.count}
+        item.column('生产日期') {|spd_business_batch| spd_business_batch.product_datetime}
+        item.column('有效期') {|spd_business_batch| spd_business_batch.expire_datetime}
       end
     end
   end
