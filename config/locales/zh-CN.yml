@@ -50,6 +50,7 @@ zh-CN:
         only_number: "产品编号"
         is_show: "是否上架"
         is_consumption: "是否为消费产品"
+        is_pendding_sale: "是否为待上架商品"
         shop_count: '库存'
         packaging: '包装'
         production: '厂家'

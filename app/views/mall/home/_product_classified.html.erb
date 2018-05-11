@@ -1,4 +1,5 @@
-<div class="pro-area graybg"> <!-- 以下是商品展示位置 -->
+<!-- 以下是两列展示商品 -->
+<div class="pro-area graybg">
   <div class="pro-list">
     <ul class="clearfix">
       <% @products.each do |product| %>
@@ -7,16 +8,20 @@
               <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
               <h5 class='text-center'><%= product.name %></h5>
               <div class="sub-title text-center"><%= raw product.general %></div>
-              <p class="item-price text-center">
-                <% if product.now_product_price >= 10000 %>
-                    <em>¥<%= money product.now_product_price/10000 %>万元</em>
+              <em class="item-price text-center">
+                <% if product.is_pendding_sale %>
+                    <em>待上架商品</em>
                 <% else %>
-                    <em>¥<%= money product.now_product_price %></em>
+                  <% if product.now_product_price >= 10000 %>
+                      <em>¥<%= money product.now_product_price/10000 %>万元</em>
+                  <% else %>
+                      <em>¥<%= money product.now_product_price %></em>
+                  <% end %>
+                  <!--
+                  <% if product.original_product_price.present? %>
+                    <del><%= money product.original_product_price %></del>
+                  <% end %> -->
                 <% end %>
-                <!--
-                <% if product.original_product_price.present? %>
-                                <del><%= money product.original_product_price %></del>
-                              <% end %> -->
               </p>
             </a>
           </li>

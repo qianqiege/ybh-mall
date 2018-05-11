@@ -1,4 +1,4 @@
-<%= title '产品详情' %>
+<%= title '商品详情' %>
 <div class="pro-show">
   <div class="swiper-container swp_pro swiper-container-horizontal">
     <ul class="swiper-wrapper">
@@ -13,10 +13,14 @@
   <div class="pro-info pro-flex-block">
     <div>
       <p class="name"><%= @product.name %></p>
-      <p class="price">¥<%= money @product.now_product_price %></p>
-      <p>
-        <span>配领值：<%= (@product.now_product_price / @product.led_away_coefficient.exchange_rate).round(2) %></span>
-      </p>
+      <% if @product.is_pendding_sale %>
+          <p class="price">待上架商品</p>
+      <% else %>
+          <p class="price">¥<%= money @product.now_product_price %></p>
+          <p>
+            <span>配领值：<%= (@product.now_product_price / @product.led_away_coefficient.exchange_rate).round(2) %></span>
+          </p>
+      <% end %>
     </div>
     <!-- <div>
       <% unless !@product.led_away_coefficient %>
