@@ -7,7 +7,7 @@ class PurchaseApplicationBusiness < ApplicationBusiness
   validates :warehouse_id, numericality: { only_integer: true, message: "你选的仓库类型错误"}
 
   include AASM
-  aasm column: :purchase_status do
+  aasm(:purchase_status) do
     state :applying, :initial => true
     state :approved
     state :rejected

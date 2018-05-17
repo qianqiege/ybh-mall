@@ -10,7 +10,9 @@ ActiveAdmin.register PurchaseApplicationBusiness do
     column :business_number
     column :supplier
     column :warehouse
-    column :purchase_status
+    column :purchase_status do |status|
+      status.aasm(:purchase_status).human_state
+    end
     column :amounts_payable
     column :is_amended
     column :order_date

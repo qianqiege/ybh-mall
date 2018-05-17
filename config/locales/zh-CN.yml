@@ -523,7 +523,6 @@ zh-CN:
       spd_business:
         up_id: '关联业务单'
         business_number: '单据编号'
-        inventory_status: '盘亏状态'
         out_warehouse: '出库仓库'
         in_warehouse: '入库仓库'
         warehouse: '业务仓库'
@@ -531,7 +530,21 @@ zh-CN:
         supplier: '供应商'
         type: '业务类型'
         purchase_status: '采购状态'
+        purchase_status/applying: 申请中
+        purchase_status/approved: 审核通过
+        purchase_status/pendding: 待入库
         allocate_status: '调拨状态'
+        allocate_status/applying: 申请中
+        allocate_status/approved: 审核通过
+        allocate_status/pendding: 待入库
+        distribute_status: '备货状态'
+        distribute_status/applying: 申请中
+        distribute_status/approved: 审核通过
+        distribute_status/pendding: 待入库
+        inventory_status: '盘点状态'
+        inventory_status/applying: 申请中
+        inventory_status/approved: 审核通过
+        inventory_status/pendding: 待入库
         datetime: '入库日期'
         preparer: '制单人'
         reviewer: '审核人'
@@ -541,7 +554,6 @@ zh-CN:
         is_amended: '补单'
         order_date: '补单日期'
         pay_status: '付款状态'
-        distribute_status: '备货状态'
         parallel_shop: '平行店'
         supplier_id: '供应商'
         created_at: '创建日期'
@@ -584,18 +596,7 @@ zh-CN:
         phone: "电话"
         state: "状态"
         total: "总金额"
-      purchase_business:
-        up_id: '所属业务单'
-        business_number: '单据编号'
-        in_warehouse: '入库仓库'
-        preparer: '制单人'
-        discount: '整单折扣'
-        preferential: '整单优惠'
-        amounts_payable: '应付金额'
-        is_amended: '补单'
-        order_date: '补单日期'
-        purchase_status: '采购状态'
-        pay_status: '付款状态'
+      purchase_application_business: '采购申请单'
       purchase_instock_business:
         warehouse_id: '业务仓库'
         order_date: '补单日期'

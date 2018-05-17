@@ -1,7 +1,7 @@
 class AllocateInstockBusiness < InstockBusiness
   number_prefix "DBRK"
   include AASM
-  aasm column: :allocate_status do
+  aasm(:allocate_status) do
     state :pendding, :initial => true
     state :approved
     state :rejected

@@ -1,7 +1,7 @@
 class CheckOutstockBusiness < OutstockBusiness
   number_prefix "PDCK"
   include AASM
-  aasm column: :inventory_status do
+  aasm(:inventory_status) do
     state :applying, :initial => true
     state :approved
     state :rejected

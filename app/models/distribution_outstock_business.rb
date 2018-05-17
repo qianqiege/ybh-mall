@@ -2,7 +2,7 @@ class DistributionOutstockBusiness < OutstockBusiness
   number_prefix "BHCK"
 
   include AASM
-  aasm column: :distribute_status do
+  aasm(:distribute_status) do
     state :applying, :initial => true
     state :approved
     state :rejected

@@ -1,7 +1,7 @@
 class CheckInstockBusiness < InstockBusiness
   number_prefix "PDRK"
   include AASM
-  aasm column: :inventory_status do
+  aasm(:inventory_status) do
     state :pendding, :initial => true
     state :approved
     state :rejected

@@ -1,7 +1,7 @@
 class AllocateOutstockBusiness < OutstockBusiness
   number_prefix "DBCK"
   include AASM
-  aasm column: :allocate_status do
+  aasm(:allocate_status) do
     state :applying, :initial => true
     state :approved
     state :rejected

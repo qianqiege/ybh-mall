@@ -1,7 +1,7 @@
 class DistributionInstockBusiness < InstockBusiness
   number_prefix "BHRK"
   include AASM
-  aasm column: :distribute_status do
+  aasm(:distribute_status) do
     state :pendding, :initial => true
     state :approved
     state :rejected

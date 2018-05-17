@@ -8,7 +8,9 @@ ActiveAdmin.register CheckOutstockBusiness do
     id_column
     column :business_number
     column :warehouse
-    column :inventory_status
+    column :inventory_status do |status|
+      status.aasm(:inventory_status).human_state
+    end
     column :is_amended
     column :order_date
     column :created_at

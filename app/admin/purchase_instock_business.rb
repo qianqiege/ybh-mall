@@ -9,7 +9,9 @@ ActiveAdmin.register PurchaseInstockBusiness do
     id_column
     column :business_number
     column :warehouse
-    column :purchase_status
+    column :purchase_status do |purchase_status|
+      purchase_status.aasm(:purchase_status).human_state
+    end
     column :is_amended
     column :order_date
     column :preparer

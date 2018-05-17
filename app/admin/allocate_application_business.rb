@@ -9,7 +9,9 @@ ActiveAdmin.register AllocateApplicationBusiness do
     column :business_number
     column :out_warehouse
     column :warehouse
-    column :allocate_status
+    column :allocate_status do |status|
+      status.aasm(:allocate_status).human_state
+    end
     column :is_amended
     column :order_date
     column :created_at

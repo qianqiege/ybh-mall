@@ -9,7 +9,9 @@ ActiveAdmin.register DistributionApplicationBusiness do
     column :business_number
     column :warehouse
     column :parallel_shop
-    column :distribute_status
+    column :distribute_status do |status|
+      status.aasm(:distribute_status).human_state
+    end
     column :preparer
     column :reviewer
     actions
