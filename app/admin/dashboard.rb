@@ -35,8 +35,8 @@ ActiveAdmin.register_page "Dashboard" do
       end
       if current_admin_user.role_name.in? ['parent_company_admin', 'province_admin']
         column do
-          panel "产品效期预警(提前60天)" do
-            table_for SpdStockBatch.where("expire_datetime < ?", Time.now + 60.day) do |batch|
+          panel "产品效期预警(提前90天)" do
+            table_for SpdStockBatch.where("expire_datetime < ?", Time.now + 90.day) do |batch|
               batch.column('产品名称') {|spd_stock_batch| spd_stock_batch.spd_stock.product.name}
               batch.column('所属仓库') {|spd_stock_batch| spd_stock_batch.spd_stock.warehouse.name}
               batch.column('批次') {|spd_stock_batch| spd_stock_batch.batch}

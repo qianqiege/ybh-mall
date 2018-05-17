@@ -43,4 +43,9 @@ ActiveAdmin.register AdminUser do
     end
   end
 
+  csv do
+    column :email
+    column :role_name_label
+  end
+
 end

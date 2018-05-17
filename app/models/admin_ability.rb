@@ -106,6 +106,7 @@ class AdminAbility
       can :manage, CheckInstockBusiness
       can :manage, Stock
       can :manage, Order
+      can :manage, Product
 
 
     elsif user.role_name == 'province_admin'

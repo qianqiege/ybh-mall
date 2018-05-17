@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_paper_trail
   LED_AWAY_CATEGORY = { '1' => 'A类产品', '2' => 'B类产品', '3' => 'C类产品' }.freeze
 
   include ImageConcern
