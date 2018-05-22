@@ -16,8 +16,8 @@
                   <a href="<%= mall_product_path(product) %>">
                     <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
                     <p class="textCenter"><%= product.name %></p>
-                    <p class="textCenter">产品价格：¥ <%= product.now_product_price %></p>
-                    <p class="textCenter">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient %></p>
+                    <p class="textCenter adee">产品价格：¥ <%= product.now_product_price %></p>
+                    <p class="textCenter bddf">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient %></p>
                   </a>
                 </li>
             <% end %>
