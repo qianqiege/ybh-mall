@@ -11,13 +11,13 @@
      style="fill:#ffffff;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,252v-252h252v252z" fill="none"></path><g id="Layer_1"><path d="M231,126c0,57.981 -47.019,105 -105,105c-57.981,0 -105,-47.019 -105,-105c0,-57.981 47.019,-105 105,-105c57.981,0 105,47.019 105,105z" fill="#fbd06d"></path><path d="M110.25,126c0,-8.694 7.056,-15.75 15.75,-15.75c8.694,0 15.75,7.056 15.75,15.75c0,8.694 -7.056,15.75 -15.75,15.75c-8.694,0 -15.75,-7.056 -15.75,-15.75zM178.5,141.75c8.694,0 15.75,-7.056 15.75,-15.75c0,-8.694 -7.056,-15.75 -15.75,-15.75c-8.694,0 -15.75,7.056 -15.75,15.75c0,8.694 7.056,15.75 15.75,15.75zM73.5,141.75c8.694,0 15.75,-7.056 15.75,-15.75c0,-8.694 -7.056,-15.75 -15.75,-15.75c-8.694,0 -15.75,7.056 -15.75,15.75c0,8.694 7.056,15.75 15.75,15.75z" fill="#e26f64"></path></g></g></svg>
           </a>
           <ul class="levelList">
-            <% @products.where(contents_category_id: content_category.downs).take(9).each do |product| %>
+            <% @products.where(contents_category_id: content_category.downs).take(6).each do |product| %>
                 <li>
                   <a href="<%= mall_product_path(product) %>">
                     <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
                     <p class="textCenter"><%= product.name %></p>
-                    <p class="textCenter">价格：¥</p>
-                    <p class="textCenter">配领值：</p>
+                    <p class="textCenter">产品价格：¥ <%= product.now_product_price %></p>
+                    <p class="textCenter">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient %></p>
                   </a>
                 </li>
             <% end %>

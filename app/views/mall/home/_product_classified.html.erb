@@ -16,6 +16,7 @@
                       <em>¥<%= money product.now_product_price/10000 %>万元</em>
                   <% else %>
                       <em>¥<%= money product.now_product_price %></em>
+                      <p class="pstyle">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient %></p>
                   <% end %>
                   <!--
                   <% if product.original_product_price.present? %>

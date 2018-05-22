@@ -18,13 +18,13 @@
       <% else %>
       <div class="nexflex">
         <p class="nexprice">价格：¥<%= money @product.now_product_price %></p>
-        <p class="nexprice">配领类别：</p>
+        <p class="nexprice">配领类别：<%= @product.led_away_coefficient.name %></p>
       </div>
       <div class="nexflex">
         <p class="nexprice">
           <span>所需配领值：<%= (@product.now_product_price / @product.led_away_coefficient.exchange_rate).round(2) %></span>
         </p>
-        <p class="nexprice">可得配领值：</p>
+        <p class="nexprice">可得配领值：<%= @product.now_product_price * @product.led_away_coefficient.coefficient %></p>
         <% end %>
       </div>
     </div>
