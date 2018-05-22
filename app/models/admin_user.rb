@@ -7,20 +7,21 @@ class AdminUser < ApplicationRecord
   has_one :parallel_shop
   belongs_to :organization
 
-  ROLE_NAME_DATA = { member: '成员',
+  ROLE_NAME_DATA = {member: '成员',
                     admin: '管理员',
                     db: '仓库管理员',
-                    spinebuild:'筑脊部管理员',
-                    mall:'医通平行店管理员',
-                    scoin_admin:'S货币管理员',
-                    activity_admin:'活动管理员',
+                    spinebuild: '筑脊部管理员',
+                    mall: '商城管理员',
+                    product: '产品管理员',
+                    scoin_admin: 'S货币管理员',
+                    activity_admin: '活动管理员',
                     market: '市场部管理',
-                    finance:'财务管理',
-                    customer_service:'客户服务',
+                    finance: '财务管理',
+                    customer_service: '客户服务',
                     tester: '测试人员',
-                    parallel_shop: '店铺管理者',
+                    parallel_shop: '医通平行店管理员',
                     parent_company_admin: '总公司管理员',
-                    province_admin:'省级平台公司管理员'}.freeze
+                    province_admin: '省级平台公司管理员'}.freeze
 
   def role_name_label
     ROLE_NAME_DATA[self.role_name.to_sym]
@@ -31,6 +32,6 @@ class AdminUser < ApplicationRecord
   end
 
   def name
-      self.email
+    self.email
   end
 end
