@@ -21,6 +21,7 @@ class AdminAbility
       can :manage, Order
     elsif user.role_name == 'product'
       can :manage, Product
+      can :manage, ProductImage
     elsif user.role_name == 'scoin_admin'
       can :manage, ScoinAccount
       can :manage, ScoinRecord

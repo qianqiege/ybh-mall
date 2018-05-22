@@ -684,7 +684,7 @@ zh-CN:
       identity_card: '身份证'
       exchange_record: '提现申请记录'
       coin_channel: '货币投放渠道'
-      product_image: '产品图片'
+      product_image: '产品详情轮播图'
       temporary_datum: '临时数据'
       lssue_currency: '货币发行'
       presented_record: '易积分收支明细'
