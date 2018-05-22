@@ -53,6 +53,24 @@
     }
   }
 }
+ .pro-flex-block {
+    display: block;
+    // justify-content: space-between;
+    // p:nth-child(2) {
+    //   margin-top: 10px;
+    // }
+    .detail{
+      width: 100%;
+      .nexflex{
+        width: 100%;
+        .nexprice{
+          width: 47%;
+          display: inline-block;
+        }
+      }
+    }
+  }
+
 
 .price {
   color: #ad0e11;
@@ -307,12 +325,5 @@
     color: #ad0e11;
   }
 
-  .pro-flex-block {
-    display: flex;
-    justify-content: space-between;
-    p:nth-child(2) {
-      margin-top: 10px;
-    }
-  }
-
+ 
    

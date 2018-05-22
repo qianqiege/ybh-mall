@@ -316,9 +316,15 @@
     margin-top: 20px;
     padding-bottom: 10px;
     li {
+      .atitle{
+        width: 100%;
+        display: block;
+        height: 35px;
+      }
       .levelTitle {
         padding:5px;
         width:30%;
+        display: inline-block;
         background: -webkit-linear-gradient(left, #ad0e11 , #f8b372); /* Safari 5.1 - 6.0 */
         background: -o-linear-gradient(right, #ad0e11,#f8b372 ); /* Opera 11.1 - 12.0 */
         background: -moz-linear-gradient(right, #ad0e11, #f8b372); /* Firefox 3.6 - 15 */
@@ -327,6 +333,9 @@
         text-align: center;
         border-top-right-radius:20px; 
         border-bottom-right-radius:20px; 
+      }
+      .svg{
+        float: right;
       }
       .levelList {
         width:100%;
