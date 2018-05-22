@@ -13,9 +13,10 @@
                     <em>待上架商品</em>
                 <% else %>
                   <% if product.now_product_price >= 10000 %>
-                      <em>¥<%= money product.now_product_price/10000 %>万元</em>
+                      <em>产品价格:¥<%= money product.now_product_price/10000 %>万元</em>
+                      <p class="pstyle">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient/10000 %>万</p>
                   <% else %>
-                      <em>¥<%= money product.now_product_price %></em>
+                      <em>产品价格:¥<%= money product.now_product_price %></em>
                       <p class="pstyle">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient %></p>
                   <% end %>
                   <!--
