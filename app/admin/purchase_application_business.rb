@@ -94,7 +94,7 @@ ActiveAdmin.register PurchaseApplicationBusiness do
     end
   end
   collection_action :category, method: [:get, :post] do
-    render json: Product.where(supplier_id: params[:q][:supplier_eq]).each {|x| x.name = x.name + "---" + x.packaging}
+    render json: Product.where(supplier_id: params[:q][:supplier_eq]).each {|x| x.name = x.name + "--" + x.packaging + "--" + x.spec}
   end
   action_item :super_action, only: :show do
     link_to "采购审核", review_admin_purchase_application_business_path
