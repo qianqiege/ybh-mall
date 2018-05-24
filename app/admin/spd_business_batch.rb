@@ -6,21 +6,20 @@ ActiveAdmin.register SpdBusinessBatch do
     selectable_column
     id_column
     column :business_number do |spd|
-      spd.try(:spd_business_item).try(:spd_business).try(:business_number)
+      spd.spd_business_item.spd_business.business_number
     end
-    # column :warehouse do |spd|
-    #   spd.spd_business_item.spd_business.warehouse.name
-    # end
-    # column :product do |spd|
-    #   "#{spd.spd_business_item.product.name} --- #{spd.spd_business_item.product.only_number}"
-    # end
-    # column :type do |spd|
-    #   spd.spd_business_item.spd_business.type
-    # end
-    # column :count do |spd|
-    #   spd.spd_business_item.count
-    # end
-    column :spd_business_item
+    column :warehouse do |spd|
+      spd.spd_business_item.spd_business.warehouse.name
+    end
+    column :product do |spd|
+      "#{spd.spd_business_item.product.name} --- #{spd.spd_business_item.product.only_number}"
+    end
+    column :type do |spd|
+      spd.spd_business_item.spd_business.type
+    end
+    column :count do |spd|
+      spd.spd_business_item.count
+    end
     column :batch
     column :count
     column :created_at
