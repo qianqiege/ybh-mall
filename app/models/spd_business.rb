@@ -4,7 +4,7 @@ class SpdBusiness < ApplicationRecord
   belongs_to :parallel_shop
   belongs_to :up, class_name: 'SpdBusiness', optional: true
   has_many :downs, class_name: 'SpdBusiness', foreign_key: :up_id, dependent: :destroy
-  has_many :spd_business_items
+  has_many :spd_business_items, dependent: :destroy
   accepts_nested_attributes_for :spd_business_items
   has_many :spd_business_batches, through: :spd_business_items
 
