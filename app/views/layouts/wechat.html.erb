@@ -75,15 +75,5 @@
   </div>
 </div>
 </body>
-<%= content_for :weixin_api do %>
-    <script type="text/javascript">
-        wx.ready(function(){
-            wx.onMenuShareTimeline({
-                title: 'test',
-                link: 'https://www.baidu.com',
-                imgUrl: ''
-            });
-        });
-    </script>
-<% end %>
+
 </html>

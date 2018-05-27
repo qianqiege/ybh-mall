@@ -145,6 +145,7 @@ group :development do
   gem 'capistrano', "~> 2.15.5"
   gem 'rvm-capistrano', '~> 1.4.1', :require => false
   gem 'awesome_print'
+  gem 'certified'    #ssl 证书
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -155,3 +156,4 @@ gem 'china_sms'
 gem 'china_city'
 gem 'aasm'
 gem 'cancancan'
+

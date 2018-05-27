@@ -96,6 +96,7 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+    certified (1.0.0)
     chartkick (2.2.3)
     china_city (0.0.4)
       jquery-rails
@@ -389,6 +390,7 @@ DEPENDENCIES
   cancancan
   capistrano (~> 2.15.5)
   carrierwave (~> 0.11.2)
+  certified
   chartkick (~> 2.2, >= 2.2.3)
   china_city
   china_sms
