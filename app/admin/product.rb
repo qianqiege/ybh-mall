@@ -2,7 +2,7 @@ ActiveAdmin.register Product do
   menu parent: I18n.t("active_admin.menu.mall")
   permit_params :name, :now_product_price, :original_product_price, :shop_count, :image, :desc, :is_show, :production, :packaging,
                 :product_sort, :only_number, :priority, :is_custom_price, :is_consumption, :spec, :display, :height, :activity_id,
-                :is_test, :led_away_coefficient_id, :contents_category_id, :general, :supplier_id, :is_pendding_sale
+                :is_test, :led_away_coefficient_id, :contents_category_id, :general, :supplier_id, :is_pendding_sale, :value_batch
   scope :all, :default => true
   scope :food
   index do
@@ -33,6 +33,7 @@ ActiveAdmin.register Product do
     column :is_test
     column :contents_category
     column :led_away_coefficient
+    column :value_batch
     actions
   end
 
@@ -62,6 +63,7 @@ ActiveAdmin.register Product do
         f.input :is_custom_price
         f.input :is_consumption
         f.input :is_pendding_sale
+        f.input :value_batch, as: :select, collection: Product::VALUE_BATCH
       end
       f.input :desc,:as => :ckeditor
       f.input :is_test

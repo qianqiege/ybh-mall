@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508090317) do
+ActiveRecord::Schema.define(version: 20180528074932) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20180508090317) do
     t.datetime "updated_at",                                null: false
     t.string   "role_name",              default: "member"
     t.integer  "organization_id"
+    t.string   "name"
     t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -860,6 +861,8 @@ ActiveRecord::Schema.define(version: 20180508090317) do
     t.decimal  "led_away_price",                        precision: 16, scale: 2
     t.integer  "led_away_coefficient_id"
     t.integer  "supplier_id"
+    t.boolean  "is_pendding_sale"
+    t.string   "value_batch"
   end
 
   create_table "programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1386,6 +1389,10 @@ ActiveRecord::Schema.define(version: 20180508090317) do
     t.integer  "community_id"
     t.integer  "maker_id"
     t.boolean  "is_entrust"
+    t.string   "verify_code"
+    t.datetime "verify_code_expired_at"
+    t.datetime "verified_at"
+    t.string   "authentication_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
