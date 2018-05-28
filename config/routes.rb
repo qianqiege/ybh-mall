@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount API => '/'
-  mount GrapeSwaggerRails::Engine => '/swagger'
+  mount GrapeSwaggerRails::Engine => '/:api_type/docs',
+        constraints: { api_type: /(api)/ }
 
   namespace :evaluate do
     get '/index',to: 'mellitus#index'

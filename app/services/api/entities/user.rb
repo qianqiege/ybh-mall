@@ -1,21 +1,21 @@
 module Entities
   class User < Grape::Entity
-    expose :id,
-           :access_token,
-           :expires_at,
-           :telphone,
-           :identity_card,
-           :id_number,
-           :name,
-           :invitation_card,
-           :invitation_id,
-           :email,
-           :type,
-           :status,
-           :lamp_number,
-           :invitation_card,
-           :is_partner,
-           :staff_type,
-           :parallel_shop_id
+    expose :id
+    expose :access_token
+    expose :expires_at
+    expose :telphone
+    expose :identity_card
+    expose :id_number
+    expose :name
+    expose :invitation_card
+    expose :invitation_id
+    expose :email
+    expose :type
+    expose :status
+    expose :lamp_number
+    expose :invitation_card
+    expose :is_partner
+    expose :staff_type
+    expose :parallel_shop_id
   end
 end

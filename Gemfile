@@ -16,9 +16,10 @@ gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 
 gem 'grape'
-gem 'grape-entity', '~> 0.5.1'
+gem 'grape-entity'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
+gem 'grape-swagger-representable'
 
 # gem 'will_paginate', '3.1.0'
 # gem 'bootstrap-will_paginate', '0.0.10'
@@ -125,6 +126,8 @@ gem 'groupdate', '~> 3.2'
 # Ransack is the successor to the MetaSearch gem. It improves and expands upon MetaSearch's functionality, but does not have a 100%-compatible API
 # https://rubygems.org/gems/ransack
 gem 'ransack', '~> 1.8', '>= 1.8.2'
+
+gem 'grape_logging'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -55,6 +55,33 @@ class User < ApplicationRecord
   validates :telphone, uniqueness: true, presence: true, length: {is: 11}
   validates :identity_card, uniqueness: true, presence: true, length: { is: 18 }
 
+  def self.verify(params = {}, verify_code)
+    user = find_by params
+    return unless user
+
+    return unless (verify_code == user.verify_code) &&
+        user.verify_code_expired_at > Time.now
+
+    user
+  end
+
+  def verified?
+    verified_at.present?
+  end
+
+  def get_token
+    token = Devise.friendly_token
+    while User.where(authentication_token: token).first do
+      token = Devise.friendly_token
+    end
+    token
+  end
+
+  def generate_authentication_token
+
+    self.update_attribute :authentication_token, get_token
+  end
+
   # 已经有真实姓名了，暂时去掉
   # def name
   #   identity_card
@@ -199,6 +226,21 @@ class User < ApplicationRecord
   def invitation_user_name
     if !invitation.nil?
       invitation.name
+    end
+  end
+
+
+  private
+  def clear_verified_msg
+    # 校验后清楚验证码
+    if changes[:verified_at].present?
+      self.verify_code = nil
+      self.verify_code_expired_at = nil
+    end
+    # 设置密码后清楚已校验信息
+    if changes[:encrypted_password].present?
+      self.verified_at = nil
+      self.authentication_token = get_token
     end
   end
 end
