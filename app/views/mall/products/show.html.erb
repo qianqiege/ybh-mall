@@ -16,6 +16,9 @@
       <% if @product.is_pendding_sale %>
           <p class="price">待上架商品</p>
       <% else %>
+      <% if @product.value_batch.present? %>
+        <p class="redText"><%= @product.value_batch %></p>
+      <% end %>      
       <div class="nexflex">
         <p class="nexprice adee">价格：¥<%= money @product.now_product_price %></p>
         <p class="nexprice">配领类别：<%= @product.led_away_coefficient.name %></p>
