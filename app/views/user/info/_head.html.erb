@@ -2,16 +2,20 @@
   <div class="weui-flex profile" style="background: none;">
     <div class="headImage"><%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %></div>
     <div class="headRight">
-      <p><%= current_user.nickname %></p>
-      <p>医通er计划：<%= current_user.try(:user).try(:yter_profile) %></p>
-      <p>ID：</p>
+      <h4><%= current_user.nickname %></h4>
+      <p>医通er级别：<%= current_user.try(:user).try(:yter_profile) %></p>
+      <% if current_user.try(:user).try(:yter_profile) == "未参与" %>
+          <p>医通erID:  未参与 </p>
+      <% else %>
+          <p>ID: Yer<%= current_user.user.telphone %></p>
+      <% end %>
     </div>
   </div>
   <div class="bottomImage">
     <% if current_user.user.is_partner == true %>
-      <%= image_tag '合伙人.png', style: 'width: 40px; height: 20px; position: relative; top: -4px;' %>
+        <%= image_tag '合伙人.png', style: 'width: 40px; height: 20px; position: relative; top: -4px;' %>
     <% else %>
-        <%= image_tag '合伙人3.png', style: 'width: 50px; height: 25px; position: relative; top: -4px;' %>
+        <!--<%= image_tag '合伙人3.png', style: 'width: 50px; height: 25px; position: relative; top: -4px;' %>-->
     <% end %>
     <% if current_user.user.is_entrust %>
         <a href="<%= wechat_show_consumer_entrustment_path %>" style="display: inline-block; position: relative; top: 4px;">
