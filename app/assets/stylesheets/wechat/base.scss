@@ -490,11 +490,15 @@ ul {
 
 
 .containers{
-  padding:0 5% 5% 5%;
+  padding:5% 0;
+  background: #fff;
 }
 .title {
   text-align: center;
   margin: 5% 0;
+}
+.consumer-entrustment img{
+  width: 100%;
 }
 .consumer-entrustment p {
   font-size: 14px;
@@ -527,6 +531,7 @@ p.yyj_confirm_tiny {
   font-size: 13px;
   text-align: right;
   color: $yyjPrimary;
+  margin-right: 8px;
 }
 
 .matching{
