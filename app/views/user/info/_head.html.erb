@@ -1,32 +1,19 @@
-<div class='wallet bg-size'>
+<div class='wallet'>
   <div class="weui-flex profile" style="background: none;">
-    <div style="background: none;">
-      <div class="placeholder headImage" style="background: none;">
-        <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
-      </div>
-    </div>
-    <div class="placeholder" style="background: none; line-height: 54px; margin-left: 10px;"><%= current_user.nickname %></div>
-    <div class="weui-flex__item profile-text" style="background: none;">
-      <% if current_user.user.is_partner == true %>
-          <%= image_tag '合伙人.png', style: 'width: 50px; height: 25px; position: relative; top: -4px; margin-top: 18px;' %>
-      <% end %>
-      <% if current_user.user.is_entrust %>
-          <a href="<%= wechat_show_consumer_entrustment_path %>" style="display: inline-block; position: relative; top: 4px;">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPjSURBVHhe7ZtNTxNBGMeJdyXGqB/Aq19Aj9KS2iLBdEkM8AG8GBNMJHjhYIwYiKgHouLbwYOJB0QlaLD0FYpgGnnRQqKJBSwoFLfbFwrtdpxnmd22y8Kh3WV3yfySJ2RnZvf5P39md6fJbBWFQqGUw7kLl05a7c4Wq4O5brE72/QIyF3rYJpBC5GlPRZLY7XFzjzFybM4kEECa3H22WzNR4hMbbDZmOO4+FkFAYYI0FbT0HCMyFUfi4N5V5zw6rUbqPfRM/Tk+UtdAnJfaW0vMQHflgNErrrU2p1nxSS1dY1o6KMLGYXBD8OCJkkf1kpkqwd2tkdM0Nn9gKQ2Dre77ksG4OgistUD319vxQRub4CkNQ4ut18yALQS2eqBZ4BfTDDzLUzSGgfQJOoDrUS2elADqAHUgF0NyPE8Wl7n0O+1uOYBeSCfHF0N+BmNoWB4Yd8C8smhBuhpAEzJaIxDkb+s5gF5DHcLGAFqADWAGqCfATEujSbmlxSf2GoH5IF8cnQ1ILy4qihWq5jD+eTQGaCnAUaAGkANoAboZ0BZP4fxmn5jM0uuUDm6GlDur8HQjyi5QuVQA/Q0oJyfw0ur8YNzCxgBagA1gBpADaAGUAOoAeY3IJ/Loa3oMkqH51Fqakb4C8fQvhcHwoBsbB1xY59R3OPfEdAO/bthegOyazEU9wYUi5cC98M4JUxtQD6bRVwgKBXKjY6jzMKiUGwmsigcS314HIyXY2oDMr8iUoGJ4ATKb26Snm3gmAsWbo1MZIH0FDC1AcnQV6m4rZU/pLUUaBfHJENTpLWAqQ3gxgpTnN/YIK2lQLs4BsbLMbUBifHJggGpFGkthU+mpDEwXo6pDYD3vVgcPPyUgHZxTGp6lrQW0NwALTdKbi2vSMVx/jGUY+OkZxs4hnZxjNJzQvONkhYHc1dMANtSVYXnUWLii1QgvO9hBQivwPT3uZL1QWIyJIyXc+tOj2QADvW3yso3S8MGZTXJJRIlawGlgNWg0jNicGi4uHhUU8ecIbLVpfg2gICt6g/7XqBXr/srimGXF+XzecSn0yjuG1UuHi+G+EwGJfHDsH9gUDgPcu/YLu9g3hC56gMfI2ATNPlg4tOIV/hv7jYLhKmP6b7Xq3g+BGhzOJqOErnaUF9ff9hqZx7jhOp+MmN3tsD1cbGsvHgI1u2fhn5cJHyuIz8/i8/vBW0wZl+wWi+eqDnPNOHk7Tg6KwpcfEdHxyG4Li52bwMsjdXWOqaVnNsOGuBTHug7EOBiWdbt41mP/z3rDlyOu30jxQYceOIe303WFThFDgUS7tHT/zy+NnJIoVAoKlFV9R/s8w895Swr9gAAAABJRU5ErkJggg==">
-            <!-- <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANxSURBVGhD7ZdLTxNRFIDxB5i414Vbly40xo2JLaSZNhCcETUoG+IrxrXujRsTN7rThIVo3BiFGCWGYJGCgMhDECFtxcqjIBT6mL6Zmes9vaeVliHCdGYymvmSk0zunZ5zvrlzZ6Y1NjYWoM4tHHdwwk0nx98yMqCGw9N4DMvqh8vVeKiW43tr3QIxNTjBe9otHMQ2quNUQ8MBepUCxeSeM82kpfWGoQE1ivWgdn19/X5sRzv0qtyFhHWes6TzdReRZZkYjSRJpIPWgpoFGTd/B9vRDk0yC8nu3X+IZcwDarJVEWawHe3Qpc1Bsq53PZjePKAmE+Fz2I52IBFEj9eH6c0DahbrYzvasUV0wHARMZMjE3PLZCwY1i3Gv4fJaiyJFRiGi4TXE2RwZl738C9GsALDcBFZUchKVCRLkbhuARcntylhBYbhImZhi6jxX4tEkxkyPLugumGriUW6V7ZiuMjKhqjaSLURDK9jBYbhIkCMrkokkdItNsQ0/bJWMDvDFBEzsEXU2Ekkm98kSfqp8reovF32guEia/GU6mZViy/0m0wrtogaaiLArm8t+l2mFVNEzMAWUcMW0QFbRA1bZAfyv1ZJcmyCJPoGSGJgkKS/fiOSKOJsOZYVSc/6SbzXtz0+9BcEK7GkSG4pXGocViS3uESyoXmS+DhUkpFTaTybYUkRcegTk5iYJGTL217OZkmif7Awl/EHcZRhORFotrgam5Hyf4EACMCcODKKIwzriaQzJREpXv6/HMj+CDGR4c84wrCcCNxKcfqUgmazcyEc/ENydLwwl5qaxhGGviKcEIFEz56/wPTaKD2x6KbOhZeJIklEyefLnmT51TU8mwE1obbTza9iO9qhiTog2YWWKyQW235b7BYll6dPqOFS0yBUOqaRnp7BMxnRaIycv3SZiXD8S2xHO3Ucf5ImkiBhU3MredzWTt50de85Qj8XiJzJ0JcgPm63RIq+FGW6Ql4qB+c+antSqIUSktPVeALbqQ6nh79WlNEaTRdb04qidCeGRsRKkXRwLvCq8+1U5W8KNTnhKrahDw4Xf5QmfkojQGNjL8H2Gf8A8sS8vslKETp228mdO0LP8+NvAk630A41C8WtCIjEen1SzNvXSY+niyI4/e9ABa5Hvd7DcEz39L7o+z4HFastTNrYWI2amt8fcO+Ha54FhAAAAABJRU5ErkJggg=="> -->
-          </a>
-      <% end %>
+    <div class="headImage"><%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %></div>
+    <div class="headRight">
+      <p><%= current_user.nickname %></p>
+      <p>医通er计划：<%= current_user.try(:user).try(:yter_profile) %></p>
+      <p>ID：</p>
     </div>
   </div>
-
-
-  <div class="weui-flex profile" style="background: none;">
-    <div style="background: none;">
-      <div class="placeholder headImage-20" style="background: none;">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADeSURBVChTZY+9DgFBFIW3UQqPoPJXCRozg0alVatEqPAGErmzeASdRPw04h20dmapvI57xtgEJ7nZu9/cOXNu8KvaJkqh/O+/lLZlRWYvyR4/JcjU/fFbrYUpYag9j7MqNH2U65k1dFT0Y+zGQKyfaanNSJGdsNNY6XjYWUUZdt65IeTBM+glRTMR2m6TTE9qOwXjSCeX+WtQ2wE7XlHoHeOzZDncai/jHEfYOsBCD8ZxDh4xXJoau5xVeM97FIjFoyDJXJp0q3r0FrbDUnDHc/gKiiv++F/Ik2RKFAQvUVl0b+bh7lgAAAAASUVORK5CYII=">
-      </div>
-    </div>
-
-    <div class="placeholder" style="background: none; line-height: 54px; margin-left: 10px;">医通er计划：<%= current_user.try(:user).try(:yter_profile) %></div>
+  <div class="bottomImage">
+    <% if current_user.user.is_partner == true %>
+      <%= image_tag '合伙人.png', style: 'width: 50px; height: 25px; position: relative; top: -2px;' %>
+      <%= image_tag '合伙人2.png', style: 'width: 50px; height: 25px; position: relative; top: -2px;' %>
+    <% end %>
+    <% if current_user.user.is_entrust %>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPjSURBVHhe7ZtNTxNBGMeJdyXGqB/Aq19Aj9KS2iLBdEkM8AG8GBNMJHjhYIwYiKgHouLbwYOJB0QlaLD0FYpgGnnRQqKJBSwoFLfbFwrtdpxnmd22y8Kh3WV3yfySJ2RnZvf5P39md6fJbBWFQqGUw7kLl05a7c4Wq4O5brE72/QIyF3rYJpBC5GlPRZLY7XFzjzFybM4kEECa3H22WzNR4hMbbDZmOO4+FkFAYYI0FbT0HCMyFUfi4N5V5zw6rUbqPfRM/Tk+UtdAnJfaW0vMQHflgNErrrU2p1nxSS1dY1o6KMLGYXBD8OCJkkf1kpkqwd2tkdM0Nn9gKQ2Dre77ksG4OgistUD319vxQRub4CkNQ4ut18yALQS2eqBZ4BfTDDzLUzSGgfQJOoDrUS2elADqAHUgF0NyPE8Wl7n0O+1uOYBeSCfHF0N+BmNoWB4Yd8C8smhBuhpAEzJaIxDkb+s5gF5DHcLGAFqADWAGqCfATEujSbmlxSf2GoH5IF8cnQ1ILy4qihWq5jD+eTQGaCnAUaAGkANoAboZ0BZP4fxmn5jM0uuUDm6GlDur8HQjyi5QuVQA/Q0oJyfw0ur8YNzCxgBagA1gBpADaAGUAOoAeY3IJ/Loa3oMkqH51Fqakb4C8fQvhcHwoBsbB1xY59R3OPfEdAO/bthegOyazEU9wYUi5cC98M4JUxtQD6bRVwgKBXKjY6jzMKiUGwmsigcS314HIyXY2oDMr8iUoGJ4ATKb26Snm3gmAsWbo1MZIH0FDC1AcnQV6m4rZU/pLUUaBfHJENTpLWAqQ3gxgpTnN/YIK2lQLs4BsbLMbUBifHJggGpFGkthU+mpDEwXo6pDYD3vVgcPPyUgHZxTGp6lrQW0NwALTdKbi2vSMVx/jGUY+OkZxs4hnZxjNJzQvONkhYHc1dMANtSVYXnUWLii1QgvO9hBQivwPT3uZL1QWIyJIyXc+tOj2QADvW3yso3S8MGZTXJJRIlawGlgNWg0jNicGi4uHhUU8ecIbLVpfg2gICt6g/7XqBXr/srimGXF+XzecSn0yjuG1UuHi+G+EwGJfHDsH9gUDgPcu/YLu9g3hC56gMfI2ATNPlg4tOIV/hv7jYLhKmP6b7Xq3g+BGhzOJqOErnaUF9ff9hqZx7jhOp+MmN3tsD1cbGsvHgI1u2fhn5cJHyuIz8/i8/vBW0wZl+wWi+eqDnPNOHk7Tg6KwpcfEdHxyG4Li52bwMsjdXWOqaVnNsOGuBTHug7EOBiWdbt41mP/z3rDlyOu30jxQYceOIe303WFThFDgUS7tHT/zy+NnJIoVAoKlFV9R/s8w895Swr9gAAAABJRU5ErkJggg==">
+    <% end %>
   </div>
 </div>
