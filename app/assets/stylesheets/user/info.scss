@@ -145,48 +145,35 @@ a{
 
 .wallet {
   background: image-url("wallet_bg.png") no-repeat;
-  height: 215px;
+  height: 180px;
   color: #fff;
   .profile {
     padding-left: 20px;
-    padding-top: 2%;
-    img {
-        height: 45px;
-        width: 45px;
-        border-radius: 50%;
-    }
-    .headImage img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-    }
-    .headImage-20 img {
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-    }
-  }
-  .profile-er {
-    padding-left: 20px;
-    padding-top: 12px;
-    img {
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-    }
-  }
-  .profile-text {
-    margin-left: 10px;
-    position: relative;
-    // margin-top: 10px;
-    // text-align: right;
-  }
-  .middle-text {
-    height: 35px;
-    line-height: 35px;
-  }
-  .bottom-text {
     padding-top: 15px;
+    height: 120px;
+    .headImage {
+      width: 30%;
+      img {
+        width: 80%;
+        border-radius: 50%;
+        margin-top: 10%;
+      }
+    }
+    .headRight{
+      // margin-left: 4%;
+      padding-top: 3.5%;
+      p{
+        font-size: 16px;
+      }
+    }
+  }
+  .bottomImage{
+    padding-left: 20px;
+    padding-top: 1.5%;
+    img{
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
