@@ -17,7 +17,8 @@ ActiveAdmin.register User do
                 :is_admin,
                 :is_test,
                 :parallel_shop_id,
-                :is_entrust
+                :is_entrust,
+                :yter_profile
 
   index do
     selectable_column
@@ -38,6 +39,7 @@ ActiveAdmin.register User do
     column :parallel_shop
     column :is_test
     column :is_entrust
+    column :yter_profile
     actions defaults: true
   end
 
@@ -59,6 +61,7 @@ ActiveAdmin.register User do
       f.input :is_admin
       f.input :is_test
       f.input :parallel_shop
+      f.input :yter_profile, as: :select, collection: User::YTER_PROFILE
       f.input :is_entrust
     end
     f.actions
@@ -81,6 +84,7 @@ ActiveAdmin.register User do
       row :is_test
       row :parallel_shop
       row :is_entrust
+      row :yter_profile
     end
   end
 
@@ -103,5 +107,6 @@ ActiveAdmin.register User do
   filter :staff_invitation_type, as: :select
   filter :is_test, as: :select
   filter :is_entrust, as: :select
+  filter :yter_profile, as: :select
 
 end

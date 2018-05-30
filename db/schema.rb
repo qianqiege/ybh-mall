@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528074932) do
+ActiveRecord::Schema.define(version: 20180530041318) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -1393,6 +1393,7 @@ ActiveRecord::Schema.define(version: 20180528074932) do
     t.datetime "verify_code_expired_at"
     t.datetime "verified_at"
     t.string   "authentication_token"
+    t.string   "yter_profile",                                                  default: "未参与"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

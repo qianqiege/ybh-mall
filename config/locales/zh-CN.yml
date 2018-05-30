@@ -241,6 +241,7 @@ zh-CN:
         coin: '易积分'
         is_test: '是否为测试用户'
         is_entrust: '是否委托家庭（个人）消费'
+        yter_profile: '医通er级别'
       spine_build:
         name: '筑脊师名字'
         workstation: '服务中心ID（筑脊师归属管理的服务中心）'

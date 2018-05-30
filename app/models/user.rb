@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  YTER_PROFILE = %w(中心总裁 总店长 店长 分店长 柜长 组长 er).freeze
   has_paper_trail
   belongs_to :parallel_shop
   has_many :plans

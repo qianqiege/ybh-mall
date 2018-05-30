@@ -149,7 +149,7 @@ a{
   color: #fff;
   .profile {
     padding-left: 20px;
-    padding-top: 30px;
+    padding-top: 2%;
     img {
         height: 45px;
         width: 45px;
@@ -158,6 +158,20 @@ a{
     .headImage img {
       height: 50px;
       width: 50px;
+      border-radius: 50%;
+    }
+    .headImage-20 img {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+    }
+  }
+  .profile-er {
+    padding-left: 20px;
+    padding-top: 12px;
+    img {
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
     }
   }
