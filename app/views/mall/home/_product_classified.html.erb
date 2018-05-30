@@ -11,11 +11,14 @@
               <p class="item-price text-center">
                 <% if product.is_pendding_sale %>
                     <em>待上架商品</em>
-                <% else %>
+                <% else %>  
+                  <% if product.value_batch.present? %>
+                    <em><%= product.value_batch %></em>
+                  <% end %>            
                   <% if product.now_product_price >= 10000 %>
                       <em>产品价格:¥<%= money product.now_product_price/10000 %>万元</em>
                       <p class="pstyle">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient/10000 %>万</p>
-                  <% else %>
+                  <% else %>                      
                       <em>产品价格:¥<%= money product.now_product_price %></em>
                       <p class="pstyle">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient %></p>
                   <% end %>
