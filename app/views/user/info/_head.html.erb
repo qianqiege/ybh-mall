@@ -27,6 +27,6 @@
       </div>
     </div>
 
-    <div class="placeholder" style="background: none; line-height: 54px; margin-left: 10px;">医通er计划：<%= current_user.user.yter_profile %></div>
+    <div class="placeholder" style="background: none; line-height: 54px; margin-left: 10px;">医通er计划：<%= current_user.try(:user).try(:yter_profile) %></div>
   </div>
 </div>
