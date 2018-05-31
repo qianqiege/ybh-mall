@@ -89,7 +89,8 @@
     <span class="choosed">包装：<%= @product.packaging %></span>
   </li>
   <li class="arrow-right">
-    <span class="choosed">生产厂家：<%= @product.production %></span>
+    <% byebug %>
+    <span class="choosed">生产厂家：<%= @product.supplier.name %></span>
   </li>
 
   <li>
