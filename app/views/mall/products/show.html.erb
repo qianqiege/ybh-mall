@@ -90,7 +90,7 @@
   </li>
   <li class="arrow-right">
     <% byebug %>
-    <span class="choosed">生产厂家：<%= @product.supplier.name %></span>
+    <span class="choosed">生产厂家：<%= @product.try(:supplier).try(:name) %></span>
   </li>
 
   <li>
