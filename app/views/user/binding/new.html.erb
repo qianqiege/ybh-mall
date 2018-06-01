@@ -120,16 +120,6 @@
                 <i class="weui-icon-warn"></i>
             </div>
         </div>
-        <!-- <div class="weui-cell weui-cell_warn">
-            <div class="weui-cell__hd really"><label for="" class="weui-label">身份证号</label></div>
-            <div class="weui-cell__bd">
-                <input type="text" name="identity_card" id="identity_card">
-            </div>
-            <div class="weui-cell__ft">
-                <i class="weui-icon-warn"></i>
-            </div>
-        </div> -->
-
 
 
 
@@ -222,18 +212,6 @@
 
 
 
-      <% if @tp == 0 %>
-      <!-- 商盟注册 附加信息 -->
-        <div class="login_control">
-          <div class="login_label" style="font-size: 1rem;">商盟注册，附加信息</div>
-          <div class="login_content">
-            <input type="password" name="text" id="text">
-          </div>
-        </div>
-      <% end %>
-
-
-
       <div class="weui-cells weui-cells_form">
 
 
@@ -276,49 +254,48 @@
       </div>
 
       <input type="text" name="entrustment" value="<%= @entrustment %>" hidden>
+      <input type="text" name="inviter_id" value="<%= @inviter_id %>" hidden>
       <div class="weui-btn-area">
         <a class="weui-btn weui-btn_primary" id="txtlogin">验证</a>
       </div>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
 
-      <script type="text/javascript">
-
-        $('#agreeCheck').click(function(){
-          if ($("#agreeCheck").is(':checked')) {
+    $('#agreeCheck').click(function(){
+        if ($("#agreeCheck").is(':checked')) {
             // console.log(1);
             $('#txtlogin').addClass("yyj_submit");
             $('#agreeCheck').css("background","#94c6ad");
 
-          }else{
+        }else{
             // console.log(2);
-             $('#txtlogin').removeClass("yyj_submit");
-             $('#agreeCheck').css("background","#fff");
-          }
+            $('#txtlogin').removeClass("yyj_submit");
+            $('#agreeCheck').css("background","#fff");
+        }
 
-        })
+    })
 
 
-        $("#identity").change(function() {
-          if ($(this).val() == 'user') {
+    $("#identity").change(function() {
+        if ($(this).val() == 'user') {
             $(".weui-panel_access").hide();
-          }else{
+        }else{
             $(".weui-panel_access").show();
-          }
-      });
+        }
+    });
 
-        $("#same-address").click(function() {
-            if ($("#same-address").is(':checked')) {
+    $("#same-address").click(function() {
+        if ($("#same-address").is(':checked')) {
             // console.log(1);
             $('.same-as-work-address').hide();
 
-          }else{
+        }else{
             // console.log(2);
-             $('.same-as-work-address').show();
-          }
-        })
+            $('.same-as-work-address').show();
+        }
+    })
 
 
-      </script>
-
-    </div>
-  </div>
-<% end %>
+</script>

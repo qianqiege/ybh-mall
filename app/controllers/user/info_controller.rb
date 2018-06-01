@@ -176,7 +176,7 @@ class User::InfoController < Wechat::BaseController
       redirect_to '/user/setting'
     end
   end
-
+  # 生成邀请二维码
   def invitation
     @wechat_user = WechatUser.find(current_user)
     if current_user.user
@@ -396,6 +396,7 @@ class User::InfoController < Wechat::BaseController
     end
   end
 
+  # 个人首页
   def home
     @wechat_user = WechatUser.find(current_user)
     if !current_user.user_id.nil?
@@ -649,12 +650,6 @@ class User::InfoController < Wechat::BaseController
 
   def wechat_info
     @wechat_info = WechatUser.find(current_user)
-  end
-
-  def scoin_info
-    @id = params[:format]
-    @scoin_record = ScoinRecord.where(scoin_account_id: @id)
-    @scoin_account = ScoinAccount.find_by(id: @id)
   end
 
   def member_info

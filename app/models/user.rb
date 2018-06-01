@@ -156,49 +156,44 @@ class User < ApplicationRecord
     end
   end
 
-    def send_template_msg
-        data = {
-          first: {
-            value:"欢迎您成为御易健会员",
-            color:"#173177"
-          },
-          keyword1:{
-            value: identity_card,
-            color:"#173177"
-          },
-          keyword2:{
-            value: name,
-            color:"#173177"
-          },
-          keyword3:{
-            value: telphone,
-            color:"#173177"
-          },
-          keyword4:{
-            value: "请您进入医通平行店设置",
-            color:"#173177"
-          },
-          keyword5:{
-            value: DateTime.parse(created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
-            color:"#173177"
-          },
-          remark:{
-            value: "感谢您的加入。",
-            color:"#173177"
-          }
-        }
+  def send_template_msg
+    data = {
+      first: {
+        value:"欢迎您成为御易健会员",
+        color:"#173177"
+      },
+      keyword1:{
+        value: identity_card,
+        color:"#173177"
+      },
+      keyword2:{
+        value: name,
+        color:"#173177"
+      },
+      keyword3:{
+        value: telphone,
+        color:"#173177"
+      },
+      keyword4:{
+        value: "请您进入医通平行店设置",
+        color:"#173177"
+      },
+      keyword5:{
+        value: DateTime.parse(created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
+        color:"#173177"
+      },
+      remark:{
+        value: "感谢您的加入。",
+        color:"#173177"
+      }
+    }
+    Settings.weixin.template_id =  "EOh9eEjDXeArKy0odjDdVW6-GI8GnWIqWfg92eWEyFs"
+    # Settings.weixin.template_id =  "eTwEAFZ2rdA4iFpna3phVwk786_gf7_gQP-z3TbEaG4"
+    url = Settings.weixin.host
+    open_id = self.wechat_user.open_id
 
-
-          Settings.weixin.template_id =  "EOh9eEjDXeArKy0odjDdVW6-GI8GnWIqWfg92eWEyFs"
-          # Settings.weixin.template_id =  "eTwEAFZ2rdA4iFpna3phVwk786_gf7_gQP-z3TbEaG4"
-          url = Settings.weixin.host
-          open_id = self.wechat_user.open_id
-
-          $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
+    $wechat_client.send_template_msg(open_id, Settings.weixin.template_id, url, "#FD878E", data)
   end
-
-
-
 
   # 发送短信
   def send_message
@@ -229,7 +224,6 @@ class User < ApplicationRecord
       invitation.name
     end
   end
-
 
   private
   def clear_verified_msg

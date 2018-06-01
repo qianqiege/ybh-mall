@@ -5,7 +5,7 @@ class Mall::AuthenticateController < Mall::BaseController
     end
     @no_fotter = true
   end
-
+  # 用户注册 post (不用了  请看  binding#bind_phone)
   def bind_phone
     if sms_code_validate(params[:code], params[:mobile])
       user = User.where(identity_card: params[:identity_card]).or(User.where(telphone: params[:mobile])).first
@@ -19,6 +19,8 @@ class Mall::AuthenticateController < Mall::BaseController
           current_user.update_mobile(params[:mobile])
         end
       else
+
+
         if !params[:invitation_user].nil?
           @invitation_user = User.find_by(invitation_card: params[:invitation_user])
           if !@invitation_user.nil?
@@ -43,6 +45,8 @@ class Mall::AuthenticateController < Mall::BaseController
             end
           end
         end
+
+
       end
       redirect_to session[:return_to]
     else
