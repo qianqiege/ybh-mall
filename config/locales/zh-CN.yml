@@ -68,6 +68,7 @@ zh-CN:
         led_away_price: '配领价格'
         contents_category: '所属类别'
         led_away_coefficient: '配领类别系数'
+        yter_profile: '对应医通er级别'
         value_batch: '保值批次'
       hight_ticket:
         user: '用户'

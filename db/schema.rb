@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180530041318) do
+ActiveRecord::Schema.define(version: 20180604070506) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "namespace"
@@ -863,6 +863,7 @@ ActiveRecord::Schema.define(version: 20180530041318) do
     t.integer  "supplier_id"
     t.boolean  "is_pendding_sale"
     t.string   "value_batch"
+    t.integer  "yter_profile",                                                   default: 0
   end
 
   create_table "programs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -1393,7 +1394,7 @@ ActiveRecord::Schema.define(version: 20180530041318) do
     t.datetime "verify_code_expired_at"
     t.datetime "verified_at"
     t.string   "authentication_token"
-    t.string   "yter_profile",                                                  default: "未参与"
+    t.integer  "yter_profile",                                                  default: 0
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

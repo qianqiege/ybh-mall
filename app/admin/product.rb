@@ -2,7 +2,8 @@ ActiveAdmin.register Product do
   menu parent: I18n.t("active_admin.menu.mall")
   permit_params :name, :now_product_price, :original_product_price, :shop_count, :image, :desc, :is_show, :production, :packaging,
                 :product_sort, :only_number, :priority, :is_custom_price, :is_consumption, :spec, :display, :height, :activity_id,
-                :is_test, :led_away_coefficient_id, :contents_category_id, :general, :supplier_id, :is_pendding_sale, :value_batch
+                :is_test, :led_away_coefficient_id, :contents_category_id, :general, :supplier_id, :is_pendding_sale, :value_batch,
+                :yter_profile
   scope :all, :default => true
   scope :food
   index do
@@ -34,6 +35,9 @@ ActiveAdmin.register Product do
     column :contents_category
     column :led_away_coefficient
     column :value_batch
+    column :yter_profile do |product|
+      product.yter_profile_name
+    end
     actions
   end
 
@@ -58,6 +62,7 @@ ActiveAdmin.register Product do
         f.input :led_away_coefficient
         # f.input :activity
         f.input :contents_category, as: :select, collection: ContentsCategory.where(up_id: ContentsCategory.where(up_id: nil).select(:id))
+        f.input :yter_profile, as: :select, collection: User::YTER_PROFILE.invert
         f.input :display
         f.input :is_show
         f.input :is_custom_price
@@ -91,6 +96,7 @@ ActiveAdmin.register Product do
       row :contents_category
       row :led_away_coefficient
       row :is_pendding_sale
+      row :yter_profile
     end
   end
 

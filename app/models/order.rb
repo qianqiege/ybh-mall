@@ -8,17 +8,17 @@ class Order < ApplicationRecord
   belongs_to :address
   belongs_to :lottery_prize
   belongs_to :activity
-  has_many :line_items, -> { where in_cart: false }, dependent: :destroy
+  has_many :line_items, -> {where in_cart: false}, dependent: :destroy
   has_many :return_requests
   has_many :hight_ticket
 
   has_many :scoin_account_order_relations, dependent: :destroy
   has_many :scoin_accounts, through: :scoin_account_order_relations, dependent: :destroy
 
-  default_scope { order(id: :desc) }
+  default_scope {order(id: :desc)}
 
 
-  validates :quantity, numericality: { only_integer: true,  greater_than_or_equal_to: 1 }
+  validates :quantity, numericality: {only_integer: true, greater_than_or_equal_to: 1}
   # validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   # 暂时把address和wechat_user的验证去掉
   validates :user, presence: true
@@ -30,9 +30,9 @@ class Order < ApplicationRecord
   before_save :update_is_test
   after_update :update_celebrate_ratsimp
 
-  STATUS_TEXT = { pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货' ,return_change: '退货/款'}.freeze
-  PAY_TYPE_TEXT = { '0' => '线上付款', '1' => '线下付款' }.freeze
-  PAYMENT_TEXT = { PAYMENT_TYPE_WECHAT: '微信支付', PAYMENT_TYPE_YJ: '银行卡支付' }.freeze
+  STATUS_TEXT = {pending: '待付款', wait_send: '待发货', wait_confirm: '待收货', cancel: '已取消', received: '已收货', return_change: '退货/款'}.freeze
+  PAY_TYPE_TEXT = {'0' => '线上付款', '1' => '线下付款'}.freeze
+  PAYMENT_TEXT = {PAYMENT_TYPE_WECHAT: '微信支付', PAYMENT_TYPE_YJ: '银行卡支付'}.freeze
 
   include AASM
   aasm column: :status do
@@ -58,9 +58,13 @@ class Order < ApplicationRecord
       transitions from: :pending, to: :wait_send
       after do
 
+        # 详单相关处理
         line_items.each do |line_item|
+          # 减库存
           line_item.product.pay_reduce_shop_count(line_item.quantity)
         end
+        # 更新用户医通er级别
+        update_user_yter_profile
 
         # 付款成功后 执行下列方法
         if is_donation != true
@@ -73,19 +77,17 @@ class Order < ApplicationRecord
           add_cash
           # # 消费代金券
           remove_cash
-          # # 一盏明灯
-          update_hight
           # # 优惠券
           update_lottery
 
           # # 收入配领值
-          unless self.price.to_f.zero? 
+          unless self.price.to_f.zero?
             add_qtcoin
           end
 
           # # 支出配领值
           # remove_qtcoin
-        
+
         end
 
         # # 模板消息
@@ -106,7 +108,7 @@ class Order < ApplicationRecord
     end
 
     event :return_change do
-      transitions from: [:pending,:wait_send,:received,:wait_confirm], to: :return_change
+      transitions from: [:pending, :wait_send, :received, :wait_confirm], to: :return_change
       after do
         update_return
       end
@@ -116,9 +118,9 @@ class Order < ApplicationRecord
       transitions from: :wait_send, to: :cancel
       after do
         if self.cash > 0 && self.price <= 0
-          CashRecord.create(user_id: self.user_id, number: self.cash, reason: "订单退换积分，订单ID#{self.id}", is_effective:1)
+          CashRecord.create(user_id: self.user_id, number: self.cash, reason: "订单退换积分，订单ID#{self.id}", is_effective: 1)
         elsif self.integral > 0 && self.price <= 0
-          presented_records.create(user_id: self.user_id, number: self.integral, reason: "订单退换积分，订单ID#{self.id}",is_effective:1, type:"Available", wight: 2)
+          presented_records.create(user_id: self.user_id, number: self.integral, reason: "订单退换积分，订单ID#{self.id}", is_effective: 1, type: "Available", wight: 2)
         end
       end
     end
@@ -200,8 +202,7 @@ class Order < ApplicationRecord
         @wallte = Integral.find_by(user_id: record.user_id)
         if record.type != "Available"
           @wallte.locking = @wallte.locking - record.balance
-        elsif
-          @wallte.available = @wallte.available - record.balance
+        elsif @wallte.available = @wallte.available - record.balance
         end
         if @wallte.save
           record.balance = 0
@@ -271,16 +272,16 @@ class Order < ApplicationRecord
       rules.map do |rule|
         if rule.coin_type.type == 'YcoinType'
           user.ycoin_records.create!(
-            coin_type_id: rule.coin_type_id,
-            start_at: 1.day.from_now,
-            end_at: (rule.coin_type.days - 1).day.from_now
+              coin_type_id: rule.coin_type_id,
+              start_at: 1.day.from_now,
+              end_at: (rule.coin_type.days - 1).day.from_now
           )
           current_time = Time.current.strftime('%Y-%m-%d %H:%M:%S')
 
-        # 判定条件，首次赠送 和 第一天赠送数量 大于0 执行创建方法
+          # 判定条件，首次赠送 和 第一天赠送数量 大于0 执行创建方法
           if rule.coin_type.once > 0 && rule.coin_type.everyday > 0
-            presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 1)
-            presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}",is_effective:1,type:"Available", wight: 1)
+            presented_records.create(user_id: user_id, number: rule.coin_type.once, reason: "首次赠送,订单id:#{id}", is_effective: 1, type: "Available", wight: 1)
+            presented_records.create(user_id: user_id, number: rule.coin_type.everyday, reason: "第一天赠送,订单id:#{id}", is_effective: 1, type: "Available", wight: 1)
           end
 
           # if rule.donation.present?
@@ -291,10 +292,10 @@ class Order < ApplicationRecord
           user = User.find(user_id)
           if !user.invitation_id.nil?
             invitation = User.find(user.invitation_id)
-            if rule.percent.nil?  && self.price != 0 && invitation.is_partner != false || !invitation.nil? && invitation.status == "Staff"
+            if rule.percent.nil? && self.price != 0 && invitation.is_partner != false || !invitation.nil? && invitation.status == "Staff"
               # 赠送比例 乘 金额
               present_count = rule.percent * price
-              presented_records.create(user_id: invitation.id, number: present_count, reason: "推荐好友消费,订单id:#{id}",is_effective:1,type:"Available", wight: 1)
+              presented_records.create(user_id: invitation.id, number: present_count, reason: "推荐好友消费,订单id:#{id}", is_effective: 1, type: "Available", wight: 1)
             end
           end
 
@@ -322,11 +323,11 @@ class Order < ApplicationRecord
           #   if User.find(invitation).status == "Staff" || User.find(invitation).status == "staff"
           #     user_invitation = invitation
           #   end
-            # 判定是否有钱包账户 如果没有创建新的钱包账户
-            # if Integral.find_by(user_id: user_invitation).nil?
-            #   Integral.create(user_id: user_invitation)
-            # end
-            # 判定邀请人是否是员工 是员工的情况下 执行员工邀请奖励
+          # 判定是否有钱包账户 如果没有创建新的钱包账户
+          # if Integral.find_by(user_id: user_invitation).nil?
+          #   Integral.create(user_id: user_invitation)
+          # end
+          # 判定邀请人是否是员工 是员工的情况下 执行员工邀请奖励
           #   if user_invitation.present?
           #     invitation_status = User.find(user_invitation).status
           #     if invitation_status == "Staff" || invitation_status == "staff"
@@ -349,7 +350,7 @@ class Order < ApplicationRecord
                 @integral_price = @integral_price - product.now_product_price
               end
             end
-            presented_records.create(user_id: self.user_id, number: @integral_price * rule.percentage, reason: "购买产品返还积分",is_effective:1, type:"Locking", wight: 1)
+            presented_records.create(user_id: self.user_id, number: @integral_price * rule.percentage, reason: "购买产品返还积分", is_effective: 1, type: "Locking", wight: 1)
           end
 
         end
@@ -358,14 +359,14 @@ class Order < ApplicationRecord
   end
 
   def update_celebrate_ratsimp
-      if self.status == "wait_send"
-          f = CelebrateRatsimp.find_by(user_id:self.user_id,order_id:self.id)
-          if !f
-            CelebrateRatsimp.create(  user_id:self.user_id,
-                                      order_id:self.id, amount:-self.celebrate_ratsimp
-            )
-          end
+    if self.status == "wait_send"
+      f = CelebrateRatsimp.find_by(user_id: self.user_id, order_id: self.id)
+      if !f
+        CelebrateRatsimp.create(user_id: self.user_id,
+                                order_id: self.id, amount: -self.celebrate_ratsimp
+        )
       end
+    end
   end
 
   # 支出易积分
@@ -378,13 +379,13 @@ class Order < ApplicationRecord
         if !record.balance.nil? && record.balance > 0
           while order_integral > 0
             if record.balance >= order_integral
-              presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: 4)
+              presented_records.create(user_id: self.user_id, number: "-#{order_integral}", reason: "消费积分", is_effective: 0, type: record.type, record_id: record.id, wight: 4)
               record.update(balance: record.balance - order_integral)
               order_integral = 0
               break
             elsif record.balance <= order_integral
               order_integral = order_integral - record.balance
-              presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective:0, type: record.type ,record_id: record.id,wight: 4)
+              presented_records.create(user_id: self.user_id, number: "-#{record.balance}", reason: "消费积分", is_effective: 0, type: record.type, record_id: record.id, wight: 4)
               record.balance = 0
               if record.save
                 break
@@ -406,7 +407,7 @@ class Order < ApplicationRecord
         rules = activity.activity_rules.match_rules(self.price)
         rules.each do |rule|
           if !rule.cash.nil?
-            CashRecord.create(user_id: self.user_id, number: rule.cash, reason: "合伙人计划", is_effective:1)
+            CashRecord.create(user_id: self.user_id, number: rule.cash, reason: "合伙人计划", is_effective: 1)
           end
         end
       end
@@ -446,12 +447,12 @@ class Order < ApplicationRecord
 
       # 如果 是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
       if is_custom.is_custom_price == true && is_custom.is_consumption == true && integral.not_cash >= self.price
-        CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
+        CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective: 0)
         # integral.update(not_cash: integral.not_cash - self.price)
 
-      # 如果 不是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
+        # 如果 不是自定义价格产品 是消费产品 便认定为消费代金券 判定账户中的代金券大于订单金额
       elsif self.cash > 0 && is_custom.is_custom_price == false && is_custom.is_consumption == true
-        CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective:0)
+        CashRecord.create(user_id: self.user_id, number: "-#{self.cash}", reason: "消费", is_effective: 0)
         # integral.update(not_cash: integral.not_cash - self.not_cash)
       end
     end
@@ -473,14 +474,6 @@ class Order < ApplicationRecord
     end
   end
 
-  def update_hight
-    hight = HightTicket.where(order_id: self.id)
-    hight.each do |hight|
-      hight.to_start
-      hight.save
-    end
-  end
-
   def update_lottery
     if !self.lottery_prize_id.nil?
       lottery = UserPrize.find(self.lottery_prize_id)
@@ -491,29 +484,29 @@ class Order < ApplicationRecord
 
   def send_template_msg
     data = {
-      first: {
-        value: "您的订单支付成功",
-        color: "#173177"
-      },
-      keyword1: {
-        value: number,
-        color: "#173177"
-      },
-      keyword2: {
-        value: price.to_f.to_s + "元",
-        color:"#173177"
-      },
-      keyword3: {
-        value: DateTime.parse(created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
-        color:"#173177"
-      },
-      remark: {
-        value: get_line_items_info.join(""),
-        color:"#173177"
-      }
+        first: {
+            value: "您的订单支付成功",
+            color: "#173177"
+        },
+        keyword1: {
+            value: number,
+            color: "#173177"
+        },
+        keyword2: {
+            value: price.to_f.to_s + "元",
+            color: "#173177"
+        },
+        keyword3: {
+            value: DateTime.parse(created_at.to_s).strftime('%Y年%m月%d日 %H:%M'),
+            color: "#173177"
+        },
+        remark: {
+            value: get_line_items_info.join(""),
+            color: "#173177"
+        }
     }
 
-    Settings.weixin.template_id =  "lcZBK5Y_wzwz7FZbJ-PPfCV_ieroP3ucCAVGsdSvx9E"
+    Settings.weixin.template_id = "lcZBK5Y_wzwz7FZbJ-PPfCV_ieroP3ucCAVGsdSvx9E"
     # Settings.weixin.template_id = "W3VOrnqPgxby4BKiSHFO8Eez79pjfGf_5HCXd98N-ok"
 
     url = Settings.weixin.host + "/mall/orders/" + self.id.to_s
@@ -526,25 +519,25 @@ class Order < ApplicationRecord
 
   def send_product_templdate_msg
     data = {
-      first: {
-        value: "你好，你的订单已发货",
-        color: "#173177"
-      },
-      keyword1: {
-        value: number,
-        color:"#173177"
-      },
-      keyword2:{
-        value: User.find(user_id).telphone,
-        color:"#173177"
-      },
-      remark:{
-        value: "请在御易健商城我的订单中查询物流信息",
-        color:"#173177"
-      }
+        first: {
+            value: "你好，你的订单已发货",
+            color: "#173177"
+        },
+        keyword1: {
+            value: number,
+            color: "#173177"
+        },
+        keyword2: {
+            value: User.find(user_id).telphone,
+            color: "#173177"
+        },
+        remark: {
+            value: "请在御易健商城我的订单中查询物流信息",
+            color: "#173177"
+        }
     }
 
-    Settings.weixin.template_id =  "nA4JMQFs5HBRiIMwxInqj5TE94VXnHu7-I3o-VtjrBU"
+    Settings.weixin.template_id = "nA4JMQFs5HBRiIMwxInqj5TE94VXnHu7-I3o-VtjrBU"
     # Settings.weixin.template_id = "tYUWJ1saT3ZEH4YtV8JnUhqb94_okcU16b1gg-0RvaY"
     url = Settings.weixin.host + "/mall/orders/" + self.id.to_s
 
@@ -554,28 +547,27 @@ class Order < ApplicationRecord
   end
 
 
-
   def get_line_items_info
     message = []
     self.line_items.each do |line|
       quantity = line.quantity.to_s + " 份 "
       product_name = Product.find(line.product_id).name + ";   "
-      message.push  quantity
-      message.push  product_name
+      message.push quantity
+      message.push product_name
     end
     message
   end
 
 
   # 计算配领值
-  def add_qtcoin 
+  def add_qtcoin
     line_items = self.line_items
     total_qtcoin = 0.0
-    line_items.each do |item| 
+    line_items.each do |item|
       total_qtcoin += (item.quantity.to_f * item.unit_price.to_f * item.product.led_away_coefficient.coefficient.to_f)
     end
 
-    unless total_qtcoin.zero? 
+    unless total_qtcoin.zero?
       integral = WechatUser.find(self.wechat_user_id).user.integral
       integral.celebrate_ratsimp += total_qtcoin
       integral.save!
@@ -583,7 +575,7 @@ class Order < ApplicationRecord
   end
 
   # 减去配领值
-  def remove_qtcoin 
+  def remove_qtcoin
 
     logger.info("ddddddddddddddddddddddddddddddd")
     integral = self.wechat_user.user.integral
@@ -599,4 +591,12 @@ class Order < ApplicationRecord
     end
   end
 
+  def update_user_yter_profile
+    user = self.user
+    yter = Product.joins(line_items: :order).where(line_items: {order_id: self.id}).maximum(:yter_profile)
+    if user.yter_profile < yter
+      user.yter_profile = yter
+      user.save
+    end
+  end
 end

@@ -39,7 +39,9 @@ ActiveAdmin.register User do
     column :parallel_shop
     column :is_test
     column :is_entrust
-    column :yter_profile
+    column :yter_profile do |user|
+      user.yter_profile_name
+    end
     actions defaults: true
   end
 

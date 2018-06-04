@@ -9,7 +9,7 @@ class Mall::ProductsController < Mall::BaseController
   end
 
   def classified
-    @products = Product.select("image,name,general,now_product_price,original_product_price,is_test,priority,display,is_pendding_sale,id").where(contents_category_id: params[:id], display: true, is_test: false).order("priority DESC, id DESC")
+    @products = Product.select("image,name,general,now_product_price,original_product_price,is_test,priority,display,is_pendding_sale,id，supplier_id").where(contents_category_id: params[:id], display: true, is_test: false).order("priority DESC, id DESC")
     render partial: '/mall/home/product_classified'
   end
   # 分类详情 查询展示二级分类产品

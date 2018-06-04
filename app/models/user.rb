@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  YTER_PROFILE = %w(中心总裁 总店长 店长 分店长 柜长 组长 er).freeze
+  YTER_PROFILE = { 7 => "中心总裁", 6 => "总店长", 5 => "店长", 4 => "分店长", 3 => "柜长", 2 => "组长", 1 => "医通er", 0 => "未参与"}.freeze
   has_paper_trail
   belongs_to :parallel_shop
   has_many :plans
@@ -223,6 +223,9 @@ class User < ApplicationRecord
     if !invitation.nil?
       invitation.name
     end
+  end
+  def yter_profile_name
+    YTER_PROFILE[self.yter_profile]
   end
 
   private

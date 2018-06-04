@@ -3,8 +3,8 @@
     <div class="headImage"><%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %></div>
     <div class="headRight">
       <h4><%= current_user.nickname %></h4>
-      <p>医通er级别：<%= current_user.try(:user).try(:yter_profile) %></p>
-      <% if current_user.try(:user).try(:yter_profile) == "未参与" %>
+      <p>医通er级别：<%= User::YTER_PROFILE[current_user.try(:user).try(:yter_profile)] %></p>
+      <% if current_user.try(:user).try(:yter_profile) == 0 %>
           <p>医通erID:  未参与 </p>
       <% else %>
           <p>ID: Yer<%= current_user.user.telphone %></p>

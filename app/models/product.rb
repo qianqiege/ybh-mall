@@ -49,6 +49,11 @@ class Product < ApplicationRecord
     self.lock_shop_count -= quantity
     self.save!
   end
+
+  def yter_profile_name
+    User::YTER_PROFILE[self.yter_profile]
+  end
+
   def category
     LED_AWAY_CATEGORY[self.led_away_category.to_s]
   end
