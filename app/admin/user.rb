@@ -63,7 +63,7 @@ ActiveAdmin.register User do
       f.input :is_admin
       f.input :is_test
       f.input :parallel_shop
-      f.input :yter_profile, as: :select, collection: User::YTER_PROFILE
+      f.input :yter_profile, as: :select, collection: User::YTER_PROFILE.invert
       f.input :is_entrust
     end
     f.actions
