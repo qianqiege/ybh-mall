@@ -16,6 +16,7 @@ class User::BindingController < Wechat::BaseController
       wechat_user.save
     end
     @invitation_card = params[:invitation_card] || ""
+    logger.info("---------------#{@invitation_card}--------------------")
   end
 
   def bind_phone
