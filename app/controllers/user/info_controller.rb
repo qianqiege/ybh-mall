@@ -176,7 +176,7 @@ class User::InfoController < Wechat::BaseController
       redirect_to '/user/setting'
     end
   end
-  # 生成邀请二维码
+  # 生成二维码
   def invitation
     @wechat_user = WechatUser.find(current_user)
     if current_user.user
