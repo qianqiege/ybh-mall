@@ -1,6 +1,6 @@
 module Entities
   class ParallelShopDetail < Grape::Entity
-    present_collection true, :entries
-    expose :entries, as: :data, using: ::Entities::ParallelShop
+    present_collection true, :data
+    expose :data, using: ::Entities::ParallelShop
   end
 end
