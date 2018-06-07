@@ -1,6 +1,6 @@
 module Entities
   class Products < Grape::Entity
-    present_collection true, :data
-    expose :data, using: ::Entities::Product
+    present_collection true, :entries
+    expose :entries, as: :data, using: ::Entities::Product
   end
 end
