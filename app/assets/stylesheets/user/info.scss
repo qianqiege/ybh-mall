@@ -302,3 +302,41 @@ a{
   background-image: image-url("white.png");
   background-size: 100% 110%;
 }
+
+
+// 邀请人表格页面
+.thisTable {
+  width: 100%;
+  border:0;
+  font-size: 14px;
+}
+.thisTable thead tr {
+  display: flex;
+  background:#ad0e11;
+  color: #fff; 
+}
+.thisTable thead td {
+  flex: 1;
+  border:0;
+  font-size: 14px;
+}
+.thisTable tbody tr {
+  display: flex;
+  width:100%;
+  height: 40px;
+  line-height: 40px;
+  background: #eee;
+}
+.thisTable tbody td{
+  flex: 1;
+  padding: 0;
+  border:0;
+  border-bottom: 1px dashed #a19f9f;
+}
+.thisTable tbody tr:nth-child(2n) {
+  background-color:rgba(236,217,217,0.5);
+}
+.weui-cells .weui-cell_access:active{
+  color: #222;
+}
+
