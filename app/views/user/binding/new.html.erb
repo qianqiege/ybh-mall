@@ -1,19 +1,20 @@
 <style type="text/css">
 
   #txtlogin {
-    background:#ccc;
-    padding:0;
+    background: #ccc;
+    padding: 0;
     width: 90%;
     height: 40px;
     margin-top: 5px;
   }
 
   #txtlogin.active {
-    background: #1aad19;z-index: 99;
+    background: #1aad19;
+    z-index: 99;
 
   }
 
-  .really,.login_content {
+  .really, .login_content {
     font-size: 1rem;
   }
 
@@ -21,7 +22,7 @@
     border-bottom: 1px solid #bbb;
   }
 
-  .login_label,.phone,.changearea, .weui-cells__title {
+  .login_label, .phone, .changearea, .weui-cells__title {
     color: #000;
   }
 
@@ -38,7 +39,8 @@
   }
 
   input {
-    width: 100%; height: 30px;
+    width: 100%;
+    height: 30px;
     text-indent: 12px;
   }
 
@@ -69,7 +71,7 @@
   }
 
   .zhushi {
-      margin-top: 15px;
+    margin-top: 15px;
   }
 
   .mobile_box .weui-cell__bd {
@@ -80,7 +82,8 @@
     width: auto;
     float: none;
     position: absolute;
-    top: 0;right: 0;
+    top: 0;
+    right: 0;
   }
 
   #identity {
@@ -94,43 +97,39 @@
 
 <%= form_tag(user_bind_phone_path, method: :post, id: 'bind_phone_form') do %>
 
-  <!-- 注册流程是否是 从营业员扫码处 过来  -->
-  <input type="text" name="waiter_id" value="<%= params[:waiter_id] %>" style="display: none;">
-  <input type="text" name="money" value="<%= params[:money] %>" style="display: none;">
+    <!-- 注册流程是否是 从营业员扫码处 过来  -->
+    <input type="text" name="waiter_id" value="<%= params[:waiter_id] %>" style="display: none;">
+    <input type="text" name="money" value="<%= params[:money] %>" style="display: none;">
 
-  <div class='mobile_box'>
-    <div class="page-title">
-      <h2 class="text-cen yyj_title">
-        <span>手机号验证</span>
-        <%= link_to '', :back, class: 'arrow-left' %>
-      </h2>
-    </div>
-    <div class="wraper pt50">
-      <% if flash[:notice] %>
-        <div class="notice"><%= flash[:notice] %></div>
-      <% end %>
+    <input type="text" name="entrustment" value="<%= @entrustment %>" hidden>
+    <input type="text" name="invitation_card" value="<%= @invitation_card %>" hidden>
+
+    <div class='mobile_box'>
+      <div class="wraper pt50">
+        <% if flash[:notice] %>
+            <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
 
         <div class="weui-cells__title" style="font-size: 1.2rem;">必填信息</div>
         <div class="weui-cell weui-cell_warn">
-            <div class="weui-cell__hd really"><label for="" class="weui-label">真实姓名　</label></div>
-            <div class="weui-cell__bd">
-                <input type="text" name="name" id="name" class="yyj_botline yyj_inputbac">
-            </div>
-            <div class="weui-cell__ft">
-                <i class="weui-icon-warn"></i>
-            </div>
+          <div class="weui-cell__hd really"><label for="" class="weui-label">真实姓名　</label></div>
+          <div class="weui-cell__bd">
+            <input type="text" name="name" id="name" class="yyj_botline yyj_inputbac">
+          </div>
+          <div class="weui-cell__ft">
+            <i class="weui-icon-warn"></i>
+          </div>
         </div>
 
 
-
-      <div class="login_control" style="display: flex;">
-        <div class="login_label" style="font-size: 1rem;color: red;width: 20%;line-height: 31px;">登录密码</div>
-        <div class="login_content yyj_botline" style="flex: 1;line-height: 30px;">
-          <input type="password" name="password" id="password">
+        <div class="login_control" style="display: flex;">
+          <div class="login_label" style="font-size: 1rem;color: red;width: 20%;line-height: 31px;">登录密码</div>
+          <div class="login_content yyj_botline" style="flex: 1;line-height: 30px;">
+            <input type="password" name="password" id="password">
+          </div>
         </div>
-      </div>
 
-      <div class="weui-cell weui-cell_form">
+        <div class="weui-cell weui-cell_form">
           <div class="weui-cell__hd really"><label for="" class="weui-label" style="width: auto;">角色选择　</label></div>
           <div class="weui-cell__bd" style="border-bottom: none;">
             <select name="identity" id="identity" class="yyj_input">
@@ -140,11 +139,11 @@
               <option value="helath_manager">健康管理师</option>
             </select>
           </div>
-      </div>
+        </div>
 
-      <div class="weui-panel weui-panel_access">
-        <div class="weui-panel">
-          <div class="weui-panel__hd yyj_color">工作地信息</div>
+        <div class="weui-panel weui-panel_access">
+          <div class="weui-panel">
+            <div class="weui-panel__hd yyj_color">工作地信息</div>
             <div class="weui-panel__bd">
               <div class="address-box city-group">
                 <ul>
@@ -173,14 +172,14 @@
           </div>
         </div>
 
-      <div class="weui-panel weui-panel_access resident_address">
-        <div class="weui-panel">
+        <div class="weui-panel weui-panel_access resident_address">
+          <div class="weui-panel">
             <div class="weui-panel__hd" style="float:left">常住地信息</div>
             <div class="same-address" style="float:right; margin-right:18%; color:#999; font-size:14px; padding-top:5px;">
-               <input type="checkbox" name="sameaddress" id="same-address" style="width:15px; height:15px; margin-top:10px;">
-               <div class="same-work-address" style="float:right; margin-top:8px; margin-left:5px;">
-                   常住地同工作地
-               </div>
+              <input type="checkbox" name="sameaddress" id="same-address" style="width:15px; height:15px; margin-top:10px;">
+              <div class="same-work-address" style="float:right; margin-top:8px; margin-left:5px;">
+                常住地同工作地
+              </div>
             </div>
             <div class="weui-panel__bd same-as-work-address" style="clear:both">
               <div class="address-box city-group">
@@ -211,17 +210,16 @@
         </div>
 
 
+        <div class="weui-cells weui-cells_form">
 
-      <div class="weui-cells weui-cells_form">
 
-
-        <!-- 医生这里display: none -->
-        <label class="weui-agree" style="display: none;">
-          <%= check_box_tag :is_doctor, 'true', false, class: 'checkbox weui-agree__checkbox'%>
-          <span class="weui-agree__text">
+          <!-- 医生这里display: none -->
+          <label class="weui-agree" style="display: none;">
+            <%= check_box_tag :is_doctor, 'true', false, class: 'checkbox weui-agree__checkbox' %>
+            <span class="weui-agree__text">
             我是医生
           </span>
-        </label>
+          </label>
 
 
           <div class="login_control">
@@ -242,56 +240,54 @@
               <div id="smsgetCode" class="get_code fr yyj_btn">发送验证码</div>
               <div id="resetText" class="get_code hide fr yyj_text">重新发送(<span id="smsTimeText"></span>)</div>
             </div>
-        </div>
+          </div>
 
-        <!-- 服务条款位置 -->
-        <label class="weui-agree">
-        <input type="checkbox" name="agreeCheck" id="agreeCheck" class="yyj_check">
-          <span class="weui-agree__text yyj_color">
+          <!-- 服务条款位置 -->
+          <label class="weui-agree">
+            <input type="checkbox" name="agreeCheck" id="agreeCheck" class="yyj_check">
+            <span class="weui-agree__text yyj_color">
             阅读并同意<a href="<%= user_ybyt_path %>">《御易健平台服务条款》</a>
           </span>
-        </label>
-      </div>
+          </label>
+        </div>
 
-      <input type="text" name="entrustment" value="<%= @entrustment %>" hidden>
-      <input type="text" name="invitation_card" value="<%= @invitation_card %>" hidden>
-      <div class="weui-btn-area">
-        <a class="weui-btn weui-btn_primary" id="txtlogin">验证</a>
+        <div class="weui-btn-area">
+          <a class="weui-btn weui-btn_primary" id="txtlogin">验证</a>
+        </div>
       </div>
     </div>
-  </div>
 <% end %>
 <script type="text/javascript">
 
-    $('#agreeCheck').click(function(){
+    $('#agreeCheck').click(function () {
         if ($("#agreeCheck").is(':checked')) {
             // console.log(1);
             $('#txtlogin').addClass("yyj_submit");
-            $('#agreeCheck').css("background","#94c6ad");
+            $('#agreeCheck').css("background", "#94c6ad");
 
-        }else{
+        } else {
             // console.log(2);
             $('#txtlogin').removeClass("yyj_submit");
-            $('#agreeCheck').css("background","#fff");
+            $('#agreeCheck').css("background", "#fff");
         }
 
     })
 
 
-    $("#identity").change(function() {
+    $("#identity").change(function () {
         if ($(this).val() == 'user') {
             $(".weui-panel_access").hide();
-        }else{
+        } else {
             $(".weui-panel_access").show();
         }
     });
 
-    $("#same-address").click(function() {
+    $("#same-address").click(function () {
         if ($("#same-address").is(':checked')) {
             // console.log(1);
             $('.same-as-work-address').hide();
 
-        }else{
+        } else {
             // console.log(2);
             $('.same-as-work-address').show();
         }
