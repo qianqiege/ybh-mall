@@ -5,9 +5,10 @@ class API::V1 < Grape::API
   mount Users
   mount ParallelShops
   mount ContentsCategories
+  mount Products
   
   add_swagger_documentation hide_documentation_path: true,
-                            host: ENV['HOST'] || "localhost:3000",
+                            host: ENV['HOST'] || "192.168.1.235:8080",
                             hide_format: true,
                             api_version: 'v1',
                             info: {
@@ -24,8 +25,9 @@ class API::V1 < Grape::API
                                    {name: 'work', description: '社区健康管理平台'},
                                    {name: 'users', description: '用户相关'},
                                    {name: 'parallel_shops', description: '影子店'},
-                                   {name: 'contents_categories', description: '产品相关'},
-                                   {name: 'parallel_shop_manage', description: '影子店管理'}],
+                                   {name: 'contents_categories', description: '分类产品相关'},
+                                   {name: 'parallel_shop_manage', description: '影子店管理'},
+                                   {name: 'products', description: '产品相关'}],
                             models: [
                             ]
 end

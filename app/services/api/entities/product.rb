@@ -18,6 +18,7 @@ module Entities
     expose :led_away_price
     expose :yter_profile
     expose :value_batch
+    expose :qr_code
     expose :match, safe: true
     expose :category, safe: true
   end
