@@ -27,15 +27,23 @@
     box-shadow: 1px 1px 5px #f21f1d;
   }
 
+ .wallet .profile{
+    height: auto;
+  }
+  .wallet .profile .headImage{
+    width: 20%;
+  }
+  .profile-text{
+    padding-top: 20px;
+  }  
+
 </style>
 
 <div class='wallet'>
   <div class="weui-flex profile">
-    <div>
-      <div class="placeholder">
+      <div class="headImage">
         <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
       </div>
-    </div>
     <div class="weui-flex__item profile-text">
       <div class="placeholder"><%= current_user.nickname %></div>
     </div>
