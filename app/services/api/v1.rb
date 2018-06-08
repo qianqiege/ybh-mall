@@ -8,7 +8,7 @@ class API::V1 < Grape::API
   mount Products
   
   add_swagger_documentation hide_documentation_path: true,
-                            host: ENV['HOST'] || "192.168.1.235:8080",
+                            host: ENV['HOST'] || "localhost:3000",
                             hide_format: true,
                             api_version: 'v1',
                             info: {
