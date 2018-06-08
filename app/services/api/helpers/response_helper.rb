@@ -4,7 +4,7 @@ module Helpers
       error!({status: code, message: message }, code)
     end
 
-    def build_response code: 0, data: nil
+    def build_response code, data
       { code: code, data: data }
     end
   end

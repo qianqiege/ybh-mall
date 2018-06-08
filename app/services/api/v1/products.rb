@@ -12,7 +12,7 @@ class API::V1::Products < Grape::API
       product = Product.find_by_id(params['id'])
       product.qr_code = params['qr_code']
       if product.save
-        build_response(code: 201, data:"通过二维码#{params[:qr_code]}绑定产品成功")
+        build_response(201, "通过二维码#{params[:qr_code]}绑定产品成功")
       end
     end
   end
