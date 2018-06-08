@@ -21,7 +21,7 @@ class API::V1::ParallelShops < Grape::API
 
     get 'parallel_shop_detail' do 
       present ParallelShop.find_by(id: params['id']), 
-        with: ::Entities::ParallelShopDetail
+        with: ::Entities::ParallelShop
     end
   end
 end
