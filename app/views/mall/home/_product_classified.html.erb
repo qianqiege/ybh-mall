@@ -12,8 +12,8 @@
                 <% if product.is_pendding_sale %>
                     <em>待上架商品</em>
                 <% else %>  
-                  <% if product.value_batch.present? %>
-                    <em><%= product.value_batch %></em>
+                  <% if product.try(:value_batch).present? %>
+                    <em><%= product.try(:value_batch) %></em>
                   <% end %>            
                   <% if product.now_product_price >= 10000 %>
                       <em>产品价格:¥<%= money product.now_product_price/10000 %>万元</em>
