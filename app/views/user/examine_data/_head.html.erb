@@ -1,8 +1,22 @@
+
+<style type="text/css">
+ 
+  .wallet .profile{
+    height: auto;
+  }
+  .wallet .profile .headImage{
+    width: 80%;
+  }
+  .profile-text{
+    padding-top: 20px;
+  }
+
+</style>
 <% if !params[:format].present? %>
   <div class='wallet bg-size'>
     <div class="weui-flex profile">
       <div>
-        <div class="placeholder">
+        <div class="headImage">
           <%= image_tag current_user.headimgurl if current_user && current_user.headimgurl %>
         </div>
       </div>
@@ -18,7 +32,7 @@
   <div class='wallet bg-size'>
     <div class="weui-flex profile">
       <div>
-        <div class="placeholder">
+        <div class="headImage">
           <%= image_tag wechat.headimgurl if wechat && wechat.headimgurl %>
         </div>
       </div>
