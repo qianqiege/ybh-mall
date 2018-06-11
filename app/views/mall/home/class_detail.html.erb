@@ -10,7 +10,7 @@
     <!-- <div class="autoView"> -->
       <ul class="fst_tab clearfix">
         <% @second_categorys.each do |categroy| %>
-            <li class="second" data-id="<%= categroy.id %>"><%= categroy.name %></li>
+            <li class="second" data-id="<%= categroy.try(:id) %>"><%= categroy.try(:name) %></li>
         <% end %>
       </ul>
   </div>

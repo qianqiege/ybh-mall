@@ -5,22 +5,22 @@
       <% @products.each do |product| %>
           <li>
             <a href="<%= mall_product_path(product) %>">
-              <%= image_tag product.image_url(:product_icon) if product.image_url.present? %>
-              <h5 class='text-center'><%= product.name %></h5>
-              <div class="sub-title text-center"><%= raw product.general %></div>
+              <%= image_tag product.image_url(:product_icon) if product.try(:image_url).present? %>
+              <h5 class='text-center'><%= product.try(:name) %></h5>
+              <div class="sub-title text-center"><%= raw product.try(:general) %></div>
               <p class="item-price text-center">
-                <% if product.is_pendding_sale %>
+                <% if product.try(:is_pendding_sale) %>
                     <em>待上架商品</em>
                 <% else %>  
                   <% if product.try(:value_batch).present? %>
                     <em><%= product.try(:value_batch) %></em>
                   <% end %>            
-                  <% if product.now_product_price >= 10000 %>
-                      <em>产品价格:¥<%= money product.now_product_price/10000 %>万元</em>
-                      <p class="pstyle">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient/10000 %>万</p>
+                  <% if product.try(:now_product_price) >= 10000 %>
+                      <em>产品价格:¥<%= money product.try(:now_product_price)/10000 %>万元</em>
+                      <p class="pstyle">可得配领值：<%= product.try(:now_product_price) * product.try(:led_away_coefficient).try(:coefficient)/10000 %>万</p>
                   <% else %>                      
-                      <em>产品价格:¥<%= money product.now_product_price %></em>
-                      <p class="pstyle">可得配领值：<%= product.now_product_price * product.led_away_coefficient.coefficient %></p>
+                      <em>产品价格:¥<%= money product.try(:now_product_price) %></em>
+                      <p class="pstyle">可得配领值：<%= product.try(:now_product_price) * product.try(:led_away_coefficient).try(:coefficient) %></p>
                   <% end %>
                   <!--
                   <% if product.original_product_price.present? %>

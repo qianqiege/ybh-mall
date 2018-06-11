@@ -16,11 +16,11 @@
 			<% @products.each do |product| %>
 	          <li>
 							<a href="<%= mall_product_path(product) %>">
-		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-		            <h5><%= product.name %></h5>
-                <span><%= product.general %></span>
+		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.try(:image_url).present? %></div>
+		            <h5><%= product.try(:name) %></h5>
+                <span><%= product.try(:general) %></span>
 		            <!-- <span><%= raw product.name %></span> -->
-		            <p><%= money product.now_product_price %></p>
+		            <p><%= money product.try(:now_product_price) %></p>
 							</a>
 	          </li>
 	     <% end %>
@@ -31,10 +31,10 @@
 			<% @products.where(sort: 1).each do |product| %>
 						<li>
 							<a href="<%= mall_product_path(product) %>">
-								<div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-								<span><%= product.name %></span>
+								<div class="images"><%= image_tag product.image_url(:product_icon) if product.try(:image_url).present? %></div>
+								<span><%= product.try(:name) %></span>
 								<!-- <span><%= raw product.name %></span> -->
-								<p><%= money product.now_product_price %></p>
+								<p><%= money product.try(:now_product_price) %></p>
 							</a>
 						</li>
 			<% end %>
@@ -45,10 +45,10 @@
       <% @programs.each do |programs| %>
           <li>
             <a href="<%= mall_programs_product_path(programs) %>">
-              <div class="images"><%= image_tag programs.image_url(:product_icon) if programs.image_url.present? %></div>
-              <span><%= programs.name %></span>
+              <div class="images"><%= image_tag programs.image_url(:product_icon) if programs.try(:image_url).present? %></div>
+              <span><%= programs.try(:name) %></span>
               <!-- <span><%= raw programs.name %></span> -->
-              <p><%= raw programs.desc %></p>
+              <p><%= raw programs.try(:desc) %></p>
             </a>
           </li>
       <% end %>
@@ -59,10 +59,10 @@
 			<% @products.where(sort: 2).each do |product| %>
 	          <li>
 							<a href="<%= mall_product_path(product) %>">
-		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-		            <span><%= product.name %></span>
+		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.try(:image_url).present? %></div>
+		            <span><%= product.try(:name) %></span>
 		            <!-- <span><%= raw product.name %></span> -->
-		            <p><%= money product.now_product_price %></p>
+		            <p><%= money product.try(:now_product_price) %></p>
 							</a>
 	          </li>
 	     <% end %>
@@ -73,10 +73,10 @@
 			<% @products.where(sort: 3).each do |product| %>
 	          <li>
 							<a href="<%= mall_product_path(product) %>">
-		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.image_url.present? %></div>
-		            <span><%= product.name %></span>
+		            <div class="images"><%= image_tag product.image_url(:product_icon) if product.try(:image_url).present? %></div>
+		            <span><%= product.try(:name) %></span>
 		            <!-- <span><%= raw product.name %></span> -->
-		            <p><%= money product.now_product_price %></p>
+		            <p><%= money product.try(:now_product_price) %></p>
 							</a>
 	          </li>
 	      <% end %>
