@@ -1,5 +1,5 @@
 module Entities
-  class ParallelShop < Grape::Entity
+  class ParallelShop < Model
     expose :title
     expose :address
     expose :main_business
