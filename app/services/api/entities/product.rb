@@ -20,5 +20,8 @@ module Entities
     expose :value_batch
     expose :match, safe: true
     expose :category, safe: true
+    expose :count do |instance, option|
+        instance = 0
+    end
   end
 end
