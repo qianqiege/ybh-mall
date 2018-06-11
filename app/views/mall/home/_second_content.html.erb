@@ -1,16 +1,16 @@
 <div class="hid_tab">
   <ul>
     <% @second_category.each do |second_category| %>
-        <% if second_category.id == 6 %>
+        <% if second_category.try(:id) == 6 %>
             <li class="second_level"">
-              <a href="http://a3.rabbitpre.com/m/vEnrqUvUW?lc=2&sui=IoRROBn8&from=singlemessage&isappinstalled=0#from=share"><%= second_category.name %></a>
+              <a href="http://a3.rabbitpre.com/m/vEnrqUvUW?lc=2&sui=IoRROBn8&from=singlemessage&isappinstalled=0#from=share"><%= second_category.try(:name) %></a>
             </li>
-        <% elsif second_category.id == 8 %>
+        <% elsif second_category.try(:id) == 8 %>
             <li class="second_level"">
-            <a href="http://a3.rabbitpre.com/m/uUf62bUv8?lc=2&sui=IoRROBn8&from=singlemessage&isappinstalled=0#from=share"><%= second_category.name %></a>
+            <a href="http://a3.rabbitpre.com/m/uUf62bUv8?lc=2&sui=IoRROBn8&from=singlemessage&isappinstalled=0#from=share"><%= second_category.try(:name) %></a>
             </li>
         <% else %>
-            <li class="second_level" data-id="<%= second_category.id %>"><%= second_category.name %></li>
+            <li class="second_level" data-id="<%= second_category.try(:id) %>"><%= second_category.try(:name) %></li>
         <% end %>
     <% end %>
   </ul>
