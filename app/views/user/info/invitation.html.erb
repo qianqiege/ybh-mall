@@ -39,7 +39,7 @@ span {
   </div>  -->
   <div class="qr-code-invitation" style="background: none;">
 
-    <a href="<%= user_invitation_friend_path %>" style="background: none;"><%= raw @qrcode.as_html %></a></br>
+    <a href="" style="background: none;"><%= raw @qrcode.as_html %></a></br>
     <span style="margin-right:2px;" style="background: none;">邀请码：<%= @wechat_user.user.invitation_card %></span>
     <div class="clearfix" id='info' style="background: none;">
       <img src="<%= @wechat_user.headimgurl %>" style="width:35px; float: left;">
