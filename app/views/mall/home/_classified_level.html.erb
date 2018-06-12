@@ -20,7 +20,7 @@
                       <p class="textCenter adee"><%= product.try(:value_batch) %></p >
                     <% end %>
                     <p class="textCenter adee">产品价格：¥ <%= product.try(:now_product_price) %></p>
-                    <p class="textCenter bddf">可得配领值：<%= product.try(:now_product_price) * product.try(:led_away_coefficient).try(:coefficient) %></p>
+                    <p class="textCenter bddf">可得配领值：<%= product.try(:now_product_price).to_f * product.try(:led_away_coefficient).try(:coefficient).to_f %></p>
                   </a>
                 </li>
             <% end %>
