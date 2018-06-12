@@ -109,34 +109,7 @@ a{
   td.white { border-color: #fff; }
 }
 
-.qr-code-invitation {
-  // text-align: center;
-  // float: right;
-  // margin-top: 45%;
-  // margin-right: 12%;
-  position: absolute;
-  bottom: 9rem;
-  right: 1rem;
-  table {
-    padding-top: 10px;
-    display: inline-block;
-    border-width: 0;
-    border-style: none;
-    border-color: #0000ff;
-    border-collapse: collapse;
-  }
 
-  td {
-    border-left: solid 4px #000;
-    padding: 0;
-    margin: 0;
-    width: 0px;
-    height: 4px;
-  }
-
-  td.black { border-color: #000; }
-  td.white { border-color: #fff; }
-}
 
 .identity-card-img {
   width: 100%;

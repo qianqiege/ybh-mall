@@ -1,35 +1,9 @@
-<style type="text/css" media="screen">
-
-.clearfix:after {
-  content: " ";
-  display: block;
-  clear: both;
-  height: 0;
-}
-.clearfix {
-  zoom: 1;
-}
-
-.ways {
-  float: right;
-  margin-top: 3%;
-}
-
-.qr-code-invitation a table{
-    background: none;
-}
-
-span {
-  background: none;
-}
-
-</style>
-
-
 
 <div class="back-image">
   <%= title '邀请好友' %>
-    <div class="weui-panel__hd" style="background: none;"><span style="color: red; font-size: 15px;background: none;">提示：</span>此二维码用于邀请用户注册御易健平台</div>
+    <div class="weui-panel__hd">
+      <span class="prompt">提示：</span><span class="invit">此二维码用于邀请用户注册御易健平台</span>
+    </div>
   <!-- <div style=" font-size: 15px; color: #555;" class="ways">
       <span style="color: red; font-size: 15px;">邀请码使用方法：</span><br/>
       1.面对面扫码注册 <br/>
@@ -39,7 +13,7 @@ span {
   </div>  -->
   <div class="qr-code-invitation" style="background: none;">
 
-    <a href="" style="background: none;"><%= raw @qrcode.as_html %></a></br>
+    <a href="<%= user_invitation_friend_path %>" style="background: none;"><%= raw @qrcode.as_html %></a></br>
     <span style="margin-right:2px;" style="background: none;">邀请码：<%= @wechat_user.user.invitation_card %></span>
     <div class="clearfix" id='info' style="background: none;">
       <img src="<%= @wechat_user.headimgurl %>" style="width:35px; float: left;">
