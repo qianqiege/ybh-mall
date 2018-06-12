@@ -20,14 +20,14 @@
         <p class="redText"><%= @product.try(:value_batch) %></p>
       <% end %>      
       <div class="nexflex">
-        <p class="nexprice adee">价格：¥<%= money @product.now_product_price %></p>
-        <p class="nexprice">配领类别：<%= @product.led_away_coefficient.name %></p>
+        <p class="nexprice adee">价格：¥<%= money @product.try(:now_product_price) %></p>
+        <p class="nexprice">配领类别：<%= @product.try(:led_away_coefficient).try(:name) %></p>
       </div>
       <div class="nexflex">
         <p class="nexprice bddf">
-          <span>所需配领值：<%= (@product.now_product_price / @product.led_away_coefficient.exchange_rate).round(2) %></span>
+          <span>所需配领值：<%= (@product.try(:now_product_price).to_f / @product.try(:led_away_coefficient).try(:exchange_rate).to_f).round(2) %></span>
         </p>
-        <p class="nexprice bddf">可得配领值：<%= @product.now_product_price * @product.led_away_coefficient.coefficient %></p>
+        <p class="nexprice bddf">可得配领值：<%= @product.try(:now_product_price).to_f * @product.try(:led_away_coefficient).try(:coefficient).to_f %></p>
         <% end %>
       </div>
     </div>
@@ -35,11 +35,11 @@
       <% unless !@product.led_away_coefficient %>
         <p>
           <span> 配领类别: </span>  
-          <span> <%= @product.led_away_coefficient.name %> </span>  
+          <span> <%= @product.try(:led_away_coefficient).try(:name) %> </span>
         </p>
         <p>
           <span> 配领值: </span>  
-          <span> <%= (@product.now_product_price / @product.led_away_coefficient.exchange_rate).round(2) %> </span>  
+          <span> <%= (@product.try(:now_product_price).to_f / @product.try(:led_away_coefficient).try(:exchange_rate).to_f).round(2) %> </span>
         </p>
       <% end %>
       
@@ -59,7 +59,7 @@
       <li class="arrow-right">
         <div class="fr amount">
           <span class="decrease disable" id="decrease_btn">-</span>
-          <input type="tel" data-shop-count="<%= @product.shop_count %>" class="num buyNum" id="buyNum" value="1" readonly="" style="width: 60px;">
+          <input type="tel" data-shop-count="<%= @product.try(:shop_count) %>" class="num buyNum" id="buyNum" value="1" readonly="" style="width: 60px;">
           <span class="increase" id="increase_btn">+</span>
         </div>
         <span class="choosed">购买数量(<%= @product.shop_count > 0 ? '有货' : '无货' %>)</span>
@@ -67,7 +67,7 @@
   <% end %>
   <% if !@product.name.match(/YBZ/) %>
       <li class="arrow-right guige">规格：
-        <% standard = Product.where(name: @product.name) %>
+        <% standard = Product.where(name: @product.try(:name)) %>
         <% standard.each do |standard| %>
             <a href="<%= mall_product_path(standard) %>" class="a">
               <span class="choosed guige-span"><%= standard.spec %></span>
@@ -83,10 +83,10 @@
       </li>
   <% end %>
   <!-- <li class="arrow-right">
-    <span class="choosed">配领类别：<%= @product.led_away_coefficient.name %></span>
+    <span class="choosed">配领类别：<%= @product.try(:led_away_coefficient).try(:name) %></span>
   </li> -->
   <li class="arrow-right">
-    <span class="choosed">包装：<%= @product.packaging %></span>
+    <span class="choosed">包装：<%= @product.try(:packaging) %></span>
   </li>
   <li class="arrow-right">
     <span class="choosed">生产厂家：<%= @product.try(:supplier).try(:name) %></span>
