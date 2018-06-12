@@ -7,7 +7,7 @@ weixin:
   api_secret: 2010d4939d948a6c715b8115704e677f
   token: 9ea435f4ac0c6161f25d2253
   secret: iZoqfJJJjGtG6nq-yER_1Ipb7wAu5D6V
-  host: http://ybhm.ybyt.cc
+  host: https://ybhm.ybyt.cc
 
   menu:
     button:
@@ -16,36 +16,36 @@ weixin:
       sub_button:
         - type: "view"
           name: "医通平行店"
-          url: "http://ybhm.ybyt.cc/wechat/parallel_shops/index.1"
+          url: "https://ybhm.ybyt.cc/wechat/parallel_shops/index.1"
     - name: "御易健商城"
-      url: "http://ybhm.ybyt.cc/mall"
+      url: "https://ybhm.ybyt.cc/mall"
       sub_button:
         - type: "view"
           name: "御易健商城"
-          url: "http://ybhm.ybyt.cc/mall"
+          url: "https://ybhm.ybyt.cc/mall"
     - name: "我的"
       sub_button:
         - type: "view"
           name: "御易健首页"
-          url: "http://ybhm.ybyt.cc/wechat"
+          url: "https://ybhm.ybyt.cc/wechat"
         - type: "view"
           name: "我的御易健"
-          url: "http://ybhm.ybyt.cc/user"
+          url: "https://ybhm.ybyt.cc/user"
 #        - type: "view"
 #          name: "一盏明灯"
-#          url: "http://ybhm.ybyt.cc/wechat/light"
+#          url: "https://ybhm.ybyt.cc/wechat/light"
         - type: "view"
           name: "动态监测"
-          url: "http://ybhm.ybyt.cc/user/moving_health_data"
+          url: "https://ybhm.ybyt.cc/user/moving_health_data"
 #        - type: "view"
 #          name: "健康娱乐"
 #          url: "http://qolm.ybyt.cc/_game/llk/"
         - type: "view"
           name: "客服服务"
-          url: "http://ybhm.ybyt.cc/feedback"
+          url: "https://ybhm.ybyt.cc/feedback"
 #        - type: "view"
 #          name: "疾病风险评估"
-#          url: "http://ybhm.ybyt.cc/evaluate/index"
+#          url: "https://ybhm.ybyt.cc/evaluate/index"
 
 
 external:
@@ -57,11 +57,11 @@ fast_pay:
   url: <%= ENV['FAST_PAY_URL'] %>
   secrect_key: <%= ENV['FAST_PAY_KEY'] %>
   partner_id: <%= ENV['FAST_PAY_PARTNER_ID'] %>
-  host: "http://ybhm.ybyt.cc/"
+  host: "https://ybhm.ybyt.cc/"
   # url: http://openapi.yijifu.net/gateway.html
   # secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
   # partner_id: 20160606020000748137
-  # host: "http://ybhm.ybyt.cc/"
+  # host: "https://ybhm.ybyt.cc/"
 
 idata:
   url: http://test.idata-power.com:7001/DRS/

@@ -5,7 +5,7 @@ weixin:
   api_secret: 2010d4939d948a6c715b8115704e677f
   token: 9ea435f4ac0c6161f25d2253
   secret: iZoqfJJJjGtG6nq-yER_1Ipb7wAu5D6V
-  host: http://ybhm.ybyt.cc
+  host: https://ybhm.ybyt.cc
   menu:
     button:
     - type: "view"
@@ -37,7 +37,7 @@ fast_pay:
   url: http://openapi.yijifu.net/gateway.html
   secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
   partner_id: 20160606020000748137
-  host: "http://ybhm.ybyt.cc/"
+  host: "https://ybhm.ybyt.cc/"
 
 device:
   secrect_key: ahutomsystem-yubangyt-jy

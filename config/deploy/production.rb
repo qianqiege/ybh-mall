@@ -1,6 +1,6 @@
 # config/deploy/production.rb
 set :app_server, "ybhm.ybyt.cc"
-set :app_url, "http://ybhm.ybyt.cc"
+set :app_url, "https://ybhm.ybyt.cc"
 set :application, app_server
 role :web, app_server
 role :app, app_server

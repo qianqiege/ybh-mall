@@ -15,24 +15,24 @@ weixin:
       sub_button:
         - type: "view"
           name: "首页"
-          url: "http://ybhm.ybyt.cc/wechat"
+          url: "https://ybhm.ybyt.cc/wechat"
         - type: "view"
           name: "我的信息档案"
-          url: "http://ybhm.ybyt.cc/user"
+          url: "https://ybhm.ybyt.cc/user"
         - type: "view"
           name: "健康数据录入"
-          url: "http://ybhm.ybyt.cc/examine/home"
+          url: "https://ybhm.ybyt.cc/examine/home"
     - name: "御易健商城"
-      url: "http://ybhm.ybyt.cc/mall"
+      url: "https://ybhm.ybyt.cc/mall"
       sub_button:
         - type: "view"
           name: "御易健商城"
-          url: "http://ybhm.ybyt.cc/mall"
+          url: "https://ybhm.ybyt.cc/mall"
     - name: "健康娱乐"
       sub_button:
         - type: "view"
           name: "疾病风险评估"
-          url: "http://ybhm.ybyt.cc/evaluate/home"
+          url: "https://ybhm.ybyt.cc/evaluate/home"
         - type: "view"
           name: "玩玩小游戏"
           url: "http://qolm.ybyt.cc/_game/llk/"
@@ -45,7 +45,7 @@ fast_pay:
   url: http://openapi.yijifu.net/gateway.html
   secrect_key: 3e5509cd3ab2c0ca73cc178d274dcd33
   partner_id: 20160606020000748137
-  host: "http://ybhm.ybyt.cc/"
+  host: "https://ybhm.ybyt.cc/"
 
 idata:
   url: http://test.idata-power.com:7001/DRS/
