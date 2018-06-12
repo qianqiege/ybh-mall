@@ -15,14 +15,14 @@
                 <em><%= product.try(:value_batch) %></em>           
                 <% if product.try(:now_product_price) >= 10000 %>
                     <em>产品价格:¥<%= money product.try(:now_product_price)/10000 %>万元</em>
-                    <p class="pstyle">可得配领值：<%= product.try(:now_product_price) * product.try(:led_away_coefficient).try(:coefficient)/10000 %>万</p>
+                    <p class="pstyle">可得配领值：<%= product.try(:now_product_price).to_f * product.try(:led_away_coefficient).try(:coefficient).to_f/10000 %>万</p>
                 <% else %>                      
                     <em>产品价格:¥<%= money product.try(:now_product_price) %></em>
-                    <p class="pstyle">可得配领值：<%= product.try(:now_product_price) * product.try(:led_away_coefficient).try(:coefficient) %></p>
+                    <p class="pstyle">可得配领值：<%= product.try(:now_product_price).to_f * product.try(:led_away_coefficient).try(:coefficient).to_f %></p>
                 <% end %>
                   <!--
                   <% if product.original_product_price.present? %>
-                    <del><%= money product.original_product_price %></del>
+                    <del><%= money product.try(:original_product_price) %></del>
                   <% end %> -->
                 <% end %>
               </p>
