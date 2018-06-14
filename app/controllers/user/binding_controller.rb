@@ -1,7 +1,7 @@
 class User::BindingController < Wechat::BaseController
   def new
     if current_user.user.present?
-      flash[:notice] = '您已注册，无须重复注册'
+      # flash[:notice] = '您已注册，无须重复注册'
       redirect_to root_path
     end
     @no_fotter = true

@@ -29,6 +29,7 @@ ActiveAdmin.register User do
     column :name
     column :invitation_card
     column :invitation
+    column :invitation_user
     # column :organization
     column '身份',:type
     column '用户/员工',:status
