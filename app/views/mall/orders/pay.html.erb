@@ -28,6 +28,29 @@
       <% else %>
         <a href="<%= mall_exchange_pay_path(@order) %>" class="cachier-fix-foot active payTrue">确定支付</a>
       <% end %>
-    </div>
+    </div>   
+  </div>
+  <div class="address-box city-group">
+    <ul>
+      <li class="clearfix">
+        <span>省份</span>
+        <select class="city-select" name="address[province]">
+          <option value="">--省份--</option>
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>城市</span>
+        <select class="city-select" name="address[city]">
+          <option value="">--城市--</option>
+         
+        </select>
+      </li>
+      <li class="clearfix">
+        <span>地区或街道</span>
+        <select class="city-select" name="address[street]">
+          <option value="">--地区或街道--</option> 
+        </select>
+      </li>
+    </ul>
   </div>
 </form>

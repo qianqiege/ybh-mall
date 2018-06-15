@@ -162,8 +162,8 @@
             <div class="weui-cell__hd">
               <label for="" class="weui-label">支付方式</label>
             </div>
-            <div class="weui-cell__bd">
-              <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"],["线下支付", "PAYMENT_TYPE_NULL"]]) ,  class: "weui-select" %>
+            <div class="weui-cell__bd payWays">
+              <%= select_tag 'payment', options_for_select([['微信支付', 'PAYMENT_TYPE_WECHAT'],["银行卡支付", "PAYMENT_TYPE_YJ"],["线下支付", "PAYMENT_TYPE_NULL"],["配领值支付", "PAYMENT_TYPE_COLLAR"]]) ,  class: "weui-select" %>
             </div>
           </div>
 
@@ -211,29 +211,30 @@
               <!--<%= number_field_tag 'integral_available', '', class: "weui-input", placeholder: "可用#{money @integral.exchange + @integral.not_exchange}易积分", data: { size: money(@integral.exchange + @integral.not_exchange) } %>-->
             <!--</div>-->
           <!--</div>-->
-          <div class="weui-cell">
+          <div class="weui-cell showCash">
             <div class="weui-cell__hd"><label for="" class="weui-label">现金余额</label></div>
             <div class="weui-cell__bd">
               <%= number_field_tag 'integral_money', '', class: "weui-input", placeholder: "可用#{money @integral.not_cash + @integral.cash}现金",  data: { size: money(@integral.not_cash + @integral.cash) } %>
             </div>
           </div>
-          <div class="weui-cell">
+          <div class="weui-cell hideCollar">
             <div class="weui-cell__hd"><label for="" class="weui-label">配领值</label></div>
             <div class="weui-cell__bd">
               <%= number_field_tag 'celebrate_ratsimp', '', class: "weui-input", placeholder: "可用#{money @integral.celebrate_ratsimp }配领值",  data: { size: money(@integral.celebrate_ratsimp ) } %>
             </div>
           </div>
           <div class="weui-cell">
-            <p style="color: red; font-size: 13px;"> 本次订单需消费 <%= money @line_item_qt  %> 配领值</p>
+            <p style="color: red; font-size: 13px;"> 本次订单需消费<span id="needUse"> <%= money @line_item_qt  %> 配领值</span></p>
           </div>
           <div class="weui-cell">
-            <p style="color: red; font-size: 13px;"> 您的可用配领值为 <%= money @integral.celebrate_ratsimp  %> </p>
+            <p style="color: red; font-size: 13px;"> 您的可用配领值为 <span id="canUse"><%= money @integral.celebrate_ratsimp  %></span> </p>
           </div>
         </div>
       <% end %>
 
       <div class="cart-fixed-ft">
         <a class="commit" id="confirm_order_btn">提交订单</a>
+        <span class="hideText">金额不足</span>
         <!-- <span class="mr15">共<%= @all_line_item_count %>件，合计：¥<span class="total" data-all_total_price="<%= money @total_price %>" id="total-price"><%= money @total_price %></span></span> -->
         <span class="mr15">
           <span style="float: left; margin-left: 3px; color: red">
@@ -258,6 +259,29 @@
       $('.hytc_hide').eq(index).toggle().siblings('.hytc_hide').hide();
       $('#value').val(index);
     })
+  })
+
+  $('.payWays .weui-select').change(function(e){
+      console.log(1);
+      console.log($(this).val());
+      if ($(this).val()=="PAYMENT_TYPE_COLLAR") {
+        $(".hideCollar").show();
+        $(".showCash").hide();
+        if ($("#canUse").val() >= $("#needUse").val()) {
+          console.log("yes")
+          $(".hideText").hide();
+          $("#confirm_order_btn").show();
+        }else{
+          console.log("no")
+          $("#confirm_order_btn").hide();
+          $(".hideText").show();
+        }
+      }else{
+        $(".hideCollar").hide();
+        $(".showCash").show();
+        $(".hideText").hide();
+        $("#confirm_order_btn").show();   
+      }
   })
 
 </script>
